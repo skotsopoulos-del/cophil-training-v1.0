@@ -163,7 +163,7 @@ format:
     toc-title: "On This Page"
     code-copy: true
     code-fold: false
-    code-tools: true
+    code-tools: false
     code-link: true
     code-overflow: wrap
     number-sections: false
