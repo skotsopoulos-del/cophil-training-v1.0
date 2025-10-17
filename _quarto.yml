@@ -6,7 +6,6 @@ project:
 
 website:
   title: "CoPhil EO AI/ML Training"
-  site-url: https://DimitrisKasabalis.github.io/cophil-training-v1.0
   description: "4-Day Advanced Training on AI/ML for Earth Observation - A comprehensive training program for Philippine EO professionals"
   favicon: images/favicon.png
 
@@ -40,7 +39,6 @@ website:
             href: resources/glossary.qmd
     right:
       - icon: github
-        href: https://github.com/cophil-training-v1.0
         aria-label: GitHub
       - icon: download
         text: "Materials"

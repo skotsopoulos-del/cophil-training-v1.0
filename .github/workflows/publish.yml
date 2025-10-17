@@ -36,7 +36,16 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install jupyter matplotlib numpy pandas scikit-learn tensorflow torch torchvision rasterio geopandas earthengine-api
+          pip install -r requirements.txt
+
+      - name: Set site URL for fork-friendly deployment
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          GITHUB_USER="${GITHUB_REPOSITORY%/*}"
+          SITE_URL="https://${GITHUB_USER}.github.io/${REPO_NAME}"
+          echo "  site-url: ${SITE_URL}" >> _quarto.yml
+          sed -i "s|icon: github|icon: github\n        href: https://github.com/${GITHUB_REPOSITORY}|" _quarto.yml
+          echo "Deploying to: ${SITE_URL}"
 
       - name: Render Quarto site
         run: quarto render
