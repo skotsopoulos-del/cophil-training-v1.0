@@ -151,9 +151,7 @@ website:
 
 format:
   html:
-    theme:
-      light: [cosmo, styles/custom.scss]
-      dark: [darkly, styles/custom.scss]
+    theme: [cosmo, styles/custom.scss]
     css:
       - styles/custom.css
       - styles/phase2-enhancements.css
