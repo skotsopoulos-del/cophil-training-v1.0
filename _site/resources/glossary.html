@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-10-16">
+
+<title>Glossary – CoPhil EO AI/ML Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../resources/faq.html" rel="next">
+<link href="../resources/cheatsheets.html" rel="prev">
+<link href="../images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4a074efccdeff27617fbc72d37c1244e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a15f5dce5650fb3fe5aba34e3b6df9a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles/custom.css">
+<link rel="stylesheet" href="../styles/phase2-enhancements.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CoPhil EO AI/ML Training</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-training-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Training Days</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-training-days">    
+        <li>
+    <a class="dropdown-item" href="../day1/index.html">
+ <span class="dropdown-text">Day 1: EO Data &amp; Fundamentals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../day2/index.html">
+ <span class="dropdown-text">Day 2: Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../day3/index.html">
+ <span class="dropdown-text">Day 3: Deep Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../day4/index.html">
+ <span class="dropdown-text">Day 4: Advanced Topics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../resources/setup.html">
+ <span class="dropdown-text">Setup Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources/philippine-eo.html">
+ <span class="dropdown-text">Philippine EO Links</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources/cheatsheets.html">
+ <span class="dropdown-text">Cheat Sheets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources/faq.html">
+ <span class="dropdown-text">FAQ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cophil-training-v1.0"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources/downloads.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Materials</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources/philippine-eo.html">Reference Materials</a></li><li class="breadcrumb-item"><a href="../resources/glossary.html">Glossary</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 Start Here: Complete Setup Guide</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference Materials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/philippine-eo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Philippine EO Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheat Sheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/glossary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Help &amp; Downloads</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Frequently Asked Questions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources/downloads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloads</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#how-to-use-this-glossary" id="toc-how-to-use-this-glossary" class="nav-link active" data-scroll-target="#how-to-use-this-glossary">How to Use This Glossary</a></li>
+  <li><a href="#earth-observation-terms" id="toc-earth-observation-terms" class="nav-link" data-scroll-target="#earth-observation-terms">Earth Observation Terms</a>
+  <ul class="collapse">
+  <li><a href="#absorption-band" id="toc-absorption-band" class="nav-link" data-scroll-target="#absorption-band">Absorption Band</a></li>
+  <li><a href="#backscatter" id="toc-backscatter" class="nav-link" data-scroll-target="#backscatter">Backscatter</a></li>
+  <li><a href="#cloud-masking" id="toc-cloud-masking" class="nav-link" data-scroll-target="#cloud-masking">Cloud Masking</a></li>
+  <li><a href="#composite-image" id="toc-composite-image" class="nav-link" data-scroll-target="#composite-image">Composite Image</a></li>
+  <li><a href="#earth-observation-eo" id="toc-earth-observation-eo" class="nav-link" data-scroll-target="#earth-observation-eo">Earth Observation (EO)</a></li>
+  <li><a href="#false-color-composite" id="toc-false-color-composite" class="nav-link" data-scroll-target="#false-color-composite">False Color Composite</a></li>
+  <li><a href="#ground-truth" id="toc-ground-truth" class="nav-link" data-scroll-target="#ground-truth">Ground Truth</a></li>
+  <li><a href="#image-collection" id="toc-image-collection" class="nav-link" data-scroll-target="#image-collection">Image Collection</a></li>
+  <li><a href="#pixel" id="toc-pixel" class="nav-link" data-scroll-target="#pixel">Pixel</a></li>
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
+  <li><a href="#remote-sensing" id="toc-remote-sensing" class="nav-link" data-scroll-target="#remote-sensing">Remote Sensing</a></li>
+  <li><a href="#revisit-time" id="toc-revisit-time" class="nav-link" data-scroll-target="#revisit-time">Revisit Time</a></li>
+  <li><a href="#spectral-signature" id="toc-spectral-signature" class="nav-link" data-scroll-target="#spectral-signature">Spectral Signature</a></li>
+  <li><a href="#true-color-composite" id="toc-true-color-composite" class="nav-link" data-scroll-target="#true-color-composite">True Color Composite</a></li>
+  </ul></li>
+  <li><a href="#aiml-terms" id="toc-aiml-terms" class="nav-link" data-scroll-target="#aiml-terms">AI/ML Terms</a>
+  <ul class="collapse">
+  <li><a href="#activation-function" id="toc-activation-function" class="nav-link" data-scroll-target="#activation-function">Activation Function</a></li>
+  <li><a href="#artificial-intelligence-ai" id="toc-artificial-intelligence-ai" class="nav-link" data-scroll-target="#artificial-intelligence-ai">Artificial Intelligence (AI)</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a></li>
+  <li><a href="#batch-size" id="toc-batch-size" class="nav-link" data-scroll-target="#batch-size">Batch Size</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix">Confusion Matrix</a></li>
+  <li><a href="#convolutional-neural-network-cnn" id="toc-convolutional-neural-network-cnn" class="nav-link" data-scroll-target="#convolutional-neural-network-cnn">Convolutional Neural Network (CNN)</a></li>
+  <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link" data-scroll-target="#data-augmentation">Data Augmentation</a></li>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning">Deep Learning</a></li>
+  <li><a href="#epoch" id="toc-epoch" class="nav-link" data-scroll-target="#epoch">Epoch</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
+  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">Feature Extraction</a></li>
+  <li><a href="#ground-truth-labels" id="toc-ground-truth-labels" class="nav-link" data-scroll-target="#ground-truth-labels">Ground Truth Labels</a></li>
+  <li><a href="#hyperparameter" id="toc-hyperparameter" class="nav-link" data-scroll-target="#hyperparameter">Hyperparameter</a></li>
+  <li><a href="#loss-function" id="toc-loss-function" class="nav-link" data-scroll-target="#loss-function">Loss Function</a></li>
+  <li><a href="#machine-learning-ml" id="toc-machine-learning-ml" class="nav-link" data-scroll-target="#machine-learning-ml">Machine Learning (ML)</a></li>
+  <li><a href="#neural-network" id="toc-neural-network" class="nav-link" data-scroll-target="#neural-network">Neural Network</a></li>
+  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
+  <li><a href="#precision" id="toc-precision" class="nav-link" data-scroll-target="#precision">Precision</a></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest">Random Forest</a></li>
+  <li><a href="#recall-sensitivity" id="toc-recall-sensitivity" class="nav-link" data-scroll-target="#recall-sensitivity">Recall (Sensitivity)</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a></li>
+  <li><a href="#support-vector-machine-svm" id="toc-support-vector-machine-svm" class="nav-link" data-scroll-target="#support-vector-machine-svm">Support Vector Machine (SVM)</a></li>
+  <li><a href="#training-set" id="toc-training-set" class="nav-link" data-scroll-target="#training-set">Training Set</a></li>
+  <li><a href="#transfer-learning" id="toc-transfer-learning" class="nav-link" data-scroll-target="#transfer-learning">Transfer Learning</a></li>
+  <li><a href="#underfitting" id="toc-underfitting" class="nav-link" data-scroll-target="#underfitting">Underfitting</a></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
+  <li><a href="#validation-set" id="toc-validation-set" class="nav-link" data-scroll-target="#validation-set">Validation Set</a></li>
+  </ul></li>
+  <li><a href="#geospatial-data-terms" id="toc-geospatial-data-terms" class="nav-link" data-scroll-target="#geospatial-data-terms">Geospatial Data Terms</a>
+  <ul class="collapse">
+  <li><a href="#affine-transformation" id="toc-affine-transformation" class="nav-link" data-scroll-target="#affine-transformation">Affine Transformation</a></li>
+  <li><a href="#bounding-box" id="toc-bounding-box" class="nav-link" data-scroll-target="#bounding-box">Bounding Box</a></li>
+  <li><a href="#coordinate-reference-system-crs" id="toc-coordinate-reference-system-crs" class="nav-link" data-scroll-target="#coordinate-reference-system-crs">Coordinate Reference System (CRS)</a></li>
+  <li><a href="#digital-elevation-model-dem" id="toc-digital-elevation-model-dem" class="nav-link" data-scroll-target="#digital-elevation-model-dem">Digital Elevation Model (DEM)</a></li>
+  <li><a href="#feature" id="toc-feature" class="nav-link" data-scroll-target="#feature">Feature</a></li>
+  <li><a href="#geojson" id="toc-geojson" class="nav-link" data-scroll-target="#geojson">GeoJSON</a></li>
+  <li><a href="#geopackage" id="toc-geopackage" class="nav-link" data-scroll-target="#geopackage">GeoPackage</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry">Geometry</a></li>
+  <li><a href="#geotiff" id="toc-geotiff" class="nav-link" data-scroll-target="#geotiff">GeoTIFF</a></li>
+  <li><a href="#nodata-value" id="toc-nodata-value" class="nav-link" data-scroll-target="#nodata-value">NoData Value</a></li>
+  <li><a href="#pixel-resolution-spatial-resolution" id="toc-pixel-resolution-spatial-resolution" class="nav-link" data-scroll-target="#pixel-resolution-spatial-resolution">Pixel Resolution (Spatial Resolution)</a></li>
+  <li><a href="#projection" id="toc-projection" class="nav-link" data-scroll-target="#projection">Projection</a></li>
+  <li><a href="#raster-data" id="toc-raster-data" class="nav-link" data-scroll-target="#raster-data">Raster Data</a></li>
+  <li><a href="#reproject" id="toc-reproject" class="nav-link" data-scroll-target="#reproject">Reproject</a></li>
+  <li><a href="#shapefile" id="toc-shapefile" class="nav-link" data-scroll-target="#shapefile">Shapefile</a></li>
+  <li><a href="#spatial-join" id="toc-spatial-join" class="nav-link" data-scroll-target="#spatial-join">Spatial Join</a></li>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link" data-scroll-target="#vector-data">Vector Data</a></li>
+  <li><a href="#well-known-text-wkt" id="toc-well-known-text-wkt" class="nav-link" data-scroll-target="#well-known-text-wkt">Well-Known Text (WKT)</a></li>
+  </ul></li>
+  <li><a href="#satellite-sensor-terms" id="toc-satellite-sensor-terms" class="nav-link" data-scroll-target="#satellite-sensor-terms">Satellite &amp; Sensor Terms</a>
+  <ul class="collapse">
+  <li><a href="#active-sensor" id="toc-active-sensor" class="nav-link" data-scroll-target="#active-sensor">Active Sensor</a></li>
+  <li><a href="#aperture" id="toc-aperture" class="nav-link" data-scroll-target="#aperture">Aperture</a></li>
+  <li><a href="#atmospheric-correction" id="toc-atmospheric-correction" class="nav-link" data-scroll-target="#atmospheric-correction">Atmospheric Correction</a></li>
+  <li><a href="#c-band" id="toc-c-band" class="nav-link" data-scroll-target="#c-band">C-band</a></li>
+  <li><a href="#electromagnetic-spectrum" id="toc-electromagnetic-spectrum" class="nav-link" data-scroll-target="#electromagnetic-spectrum">Electromagnetic Spectrum</a></li>
+  <li><a href="#geometric-correction" id="toc-geometric-correction" class="nav-link" data-scroll-target="#geometric-correction">Geometric Correction</a></li>
+  <li><a href="#level-1c-l1c" id="toc-level-1c-l1c" class="nav-link" data-scroll-target="#level-1c-l1c">Level 1C (L1C)</a></li>
+  <li><a href="#level-2a-l2a" id="toc-level-2a-l2a" class="nav-link" data-scroll-target="#level-2a-l2a">Level 2A (L2A)</a></li>
+  <li><a href="#lidar" id="toc-lidar" class="nav-link" data-scroll-target="#lidar">LiDAR</a></li>
+  <li><a href="#multispectral" id="toc-multispectral" class="nav-link" data-scroll-target="#multispectral">Multispectral</a></li>
+  <li><a href="#near-infrared-nir" id="toc-near-infrared-nir" class="nav-link" data-scroll-target="#near-infrared-nir">Near Infrared (NIR)</a></li>
+  <li><a href="#optical-sensor" id="toc-optical-sensor" class="nav-link" data-scroll-target="#optical-sensor">Optical Sensor</a></li>
+  <li><a href="#orbit" id="toc-orbit" class="nav-link" data-scroll-target="#orbit">Orbit</a></li>
+  <li><a href="#panchromatic" id="toc-panchromatic" class="nav-link" data-scroll-target="#panchromatic">Panchromatic</a></li>
+  <li><a href="#passive-sensor" id="toc-passive-sensor" class="nav-link" data-scroll-target="#passive-sensor">Passive Sensor</a></li>
+  <li><a href="#polarization" id="toc-polarization" class="nav-link" data-scroll-target="#polarization">Polarization</a></li>
+  <li><a href="#radiometric-calibration" id="toc-radiometric-calibration" class="nav-link" data-scroll-target="#radiometric-calibration">Radiometric Calibration</a></li>
+  <li><a href="#sar-synthetic-aperture-radar" id="toc-sar-synthetic-aperture-radar" class="nav-link" data-scroll-target="#sar-synthetic-aperture-radar">SAR (Synthetic Aperture Radar)</a></li>
+  <li><a href="#short-wave-infrared-swir" id="toc-short-wave-infrared-swir" class="nav-link" data-scroll-target="#short-wave-infrared-swir">Short-Wave Infrared (SWIR)</a></li>
+  <li><a href="#spectral-resolution" id="toc-spectral-resolution" class="nav-link" data-scroll-target="#spectral-resolution">Spectral Resolution</a></li>
+  <li><a href="#sun-synchronous-orbit" id="toc-sun-synchronous-orbit" class="nav-link" data-scroll-target="#sun-synchronous-orbit">Sun-Synchronous Orbit</a></li>
+  <li><a href="#swath-width" id="toc-swath-width" class="nav-link" data-scroll-target="#swath-width">Swath Width</a></li>
+  <li><a href="#temporal-resolution" id="toc-temporal-resolution" class="nav-link" data-scroll-target="#temporal-resolution">Temporal Resolution</a></li>
+  <li><a href="#thermal-infrared-tir" id="toc-thermal-infrared-tir" class="nav-link" data-scroll-target="#thermal-infrared-tir">Thermal Infrared (TIR)</a></li>
+  </ul></li>
+  <li><a href="#philippine-eo-organizations" id="toc-philippine-eo-organizations" class="nav-link" data-scroll-target="#philippine-eo-organizations">Philippine EO Organizations</a>
+  <ul class="collapse">
+  <li><a href="#cophil-programme" id="toc-cophil-programme" class="nav-link" data-scroll-target="#cophil-programme">CoPhil Programme</a></li>
+  <li><a href="#denr" id="toc-denr" class="nav-link" data-scroll-target="#denr">DENR</a></li>
+  <li><a href="#dost" id="toc-dost" class="nav-link" data-scroll-target="#dost">DOST</a></li>
+  <li><a href="#dost-asti" id="toc-dost-asti" class="nav-link" data-scroll-target="#dost-asti">DOST-ASTI</a></li>
+  <li><a href="#lipad" id="toc-lipad" class="nav-link" data-scroll-target="#lipad">LiPAD</a></li>
+  <li><a href="#namria" id="toc-namria" class="nav-link" data-scroll-target="#namria">NAMRIA</a></li>
+  <li><a href="#ndrrmc" id="toc-ndrrmc" class="nav-link" data-scroll-target="#ndrrmc">NDRRMC</a></li>
+  <li><a href="#pagasa" id="toc-pagasa" class="nav-link" data-scroll-target="#pagasa">PAGASA</a></li>
+  <li><a href="#philgis" id="toc-philgis" class="nav-link" data-scroll-target="#philgis">PhilGIS</a></li>
+  <li><a href="#philsa" id="toc-philsa" class="nav-link" data-scroll-target="#philsa">PhilSA</a></li>
+  <li><a href="#siyasat-portal" id="toc-siyasat-portal" class="nav-link" data-scroll-target="#siyasat-portal">SIYASAT Portal</a></li>
+  </ul></li>
+  <li><a href="#technical-acronyms" id="toc-technical-acronyms" class="nav-link" data-scroll-target="#technical-acronyms">Technical Acronyms</a>
+  <ul class="collapse">
+  <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a></li>
+  <li><a href="#aster" id="toc-aster" class="nav-link" data-scroll-target="#aster">ASTER</a></li>
+  <li><a href="#boa" id="toc-boa" class="nav-link" data-scroll-target="#boa">BOA</a></li>
+  <li><a href="#cca" id="toc-cca" class="nav-link" data-scroll-target="#cca">CCA</a></li>
+  <li><a href="#cnn" id="toc-cnn" class="nav-link" data-scroll-target="#cnn">CNN</a></li>
+  <li><a href="#crs" id="toc-crs" class="nav-link" data-scroll-target="#crs">CRS</a></li>
+  <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem">DEM</a></li>
+  <li><a href="#dl" id="toc-dl" class="nav-link" data-scroll-target="#dl">DL</a></li>
+  <li><a href="#drr" id="toc-drr" class="nav-link" data-scroll-target="#drr">DRR</a></li>
+  <li><a href="#eo" id="toc-eo" class="nav-link" data-scroll-target="#eo">EO</a></li>
+  <li><a href="#esa" id="toc-esa" class="nav-link" data-scroll-target="#esa">ESA</a></li>
+  <li><a href="#evi" id="toc-evi" class="nav-link" data-scroll-target="#evi">EVI</a></li>
+  <li><a href="#gee" id="toc-gee" class="nav-link" data-scroll-target="#gee">GEE</a></li>
+  <li><a href="#gis" id="toc-gis" class="nav-link" data-scroll-target="#gis">GIS</a></li>
+  <li><a href="#gpu" id="toc-gpu" class="nav-link" data-scroll-target="#gpu">GPU</a></li>
+  <li><a href="#gnss" id="toc-gnss" class="nav-link" data-scroll-target="#gnss">GNSS</a></li>
+  <li><a href="#hdf" id="toc-hdf" class="nav-link" data-scroll-target="#hdf">HDF</a></li>
+  <li><a href="#iw" id="toc-iw" class="nav-link" data-scroll-target="#iw">IW</a></li>
+  <li><a href="#jaxa" id="toc-jaxa" class="nav-link" data-scroll-target="#jaxa">JAXA</a></li>
+  <li><a href="#lidar-1" id="toc-lidar-1" class="nav-link" data-scroll-target="#lidar-1">LiDAR</a></li>
+  <li><a href="#lulc" id="toc-lulc" class="nav-link" data-scroll-target="#lulc">LULC</a></li>
+  <li><a href="#ml" id="toc-ml" class="nav-link" data-scroll-target="#ml">ML</a></li>
+  <li><a href="#modis" id="toc-modis" class="nav-link" data-scroll-target="#modis">MODIS</a></li>
+  <li><a href="#nasa" id="toc-nasa" class="nav-link" data-scroll-target="#nasa">NASA</a></li>
+  <li><a href="#ndbi" id="toc-ndbi" class="nav-link" data-scroll-target="#ndbi">NDBI</a></li>
+  <li><a href="#ndvi" id="toc-ndvi" class="nav-link" data-scroll-target="#ndvi">NDVI</a></li>
+  <li><a href="#ndwi" id="toc-ndwi" class="nav-link" data-scroll-target="#ndwi">NDWI</a></li>
+  <li><a href="#nir" id="toc-nir" class="nav-link" data-scroll-target="#nir">NIR</a></li>
+  <li><a href="#nrm" id="toc-nrm" class="nav-link" data-scroll-target="#nrm">NRM</a></li>
+  <li><a href="#rgb" id="toc-rgb" class="nav-link" data-scroll-target="#rgb">RGB</a></li>
+  <li><a href="#rf" id="toc-rf" class="nav-link" data-scroll-target="#rf">RF</a></li>
+  <li><a href="#rl" id="toc-rl" class="nav-link" data-scroll-target="#rl">RL</a></li>
+  <li><a href="#sar" id="toc-sar" class="nav-link" data-scroll-target="#sar">SAR</a></li>
+  <li><a href="#scl" id="toc-scl" class="nav-link" data-scroll-target="#scl">SCL</a></li>
+  <li><a href="#snap" id="toc-snap" class="nav-link" data-scroll-target="#snap">SNAP</a></li>
+  <li><a href="#swir" id="toc-swir" class="nav-link" data-scroll-target="#swir">SWIR</a></li>
+  <li><a href="#svm" id="toc-svm" class="nav-link" data-scroll-target="#svm">SVM</a></li>
+  <li><a href="#tir" id="toc-tir" class="nav-link" data-scroll-target="#tir">TIR</a></li>
+  <li><a href="#toa" id="toc-toa" class="nav-link" data-scroll-target="#toa">TOA</a></li>
+  <li><a href="#usgs" id="toc-usgs" class="nav-link" data-scroll-target="#usgs">USGS</a></li>
+  <li><a href="#utm" id="toc-utm" class="nav-link" data-scroll-target="#utm">UTM</a></li>
+  <li><a href="#wgs84" id="toc-wgs84" class="nav-link" data-scroll-target="#wgs84">WGS84</a></li>
+  </ul></li>
+  <li><a href="#spectral-indices" id="toc-spectral-indices" class="nav-link" data-scroll-target="#spectral-indices">Spectral Indices</a>
+  <ul class="collapse">
+  <li><a href="#ndvi-normalized-difference-vegetation-index" id="toc-ndvi-normalized-difference-vegetation-index" class="nav-link" data-scroll-target="#ndvi-normalized-difference-vegetation-index">NDVI (Normalized Difference Vegetation Index)</a></li>
+  <li><a href="#ndwi-normalized-difference-water-index" id="toc-ndwi-normalized-difference-water-index" class="nav-link" data-scroll-target="#ndwi-normalized-difference-water-index">NDWI (Normalized Difference Water Index)</a></li>
+  <li><a href="#ndbi-normalized-difference-built-up-index" id="toc-ndbi-normalized-difference-built-up-index" class="nav-link" data-scroll-target="#ndbi-normalized-difference-built-up-index">NDBI (Normalized Difference Built-up Index)</a></li>
+  <li><a href="#evi-enhanced-vegetation-index" id="toc-evi-enhanced-vegetation-index" class="nav-link" data-scroll-target="#evi-enhanced-vegetation-index">EVI (Enhanced Vegetation Index)</a></li>
+  </ul></li>
+  <li><a href="#quick-reference-tables" id="toc-quick-reference-tables" class="nav-link" data-scroll-target="#quick-reference-tables">Quick Reference Tables</a>
+  <ul class="collapse">
+  <li><a href="#sentinel-2-band-summary" id="toc-sentinel-2-band-summary" class="nav-link" data-scroll-target="#sentinel-2-band-summary">Sentinel-2 Band Summary</a></li>
+  <li><a href="#common-crs-for-philippines" id="toc-common-crs-for-philippines" class="nav-link" data-scroll-target="#common-crs-for-philippines">Common CRS for Philippines</a></li>
+  </ul></li>
+  <li><a href="#related-resources" id="toc-related-resources" class="nav-link" data-scroll-target="#related-resources">Related Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources/philippine-eo.html">Reference Materials</a></li><li class="breadcrumb-item"><a href="../resources/glossary.html">Glossary</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Glossary</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Earth Observation &amp; AI/ML Terms</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Date</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 16, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="how-to-use-this-glossary" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-this-glossary">How to Use This Glossary</h2>
+<p>This glossary defines key terms used throughout the CoPhil EO AI/ML Training Programme. Terms are organized alphabetically within categories for easy reference.</p>
+<p><strong>Categories:</strong> - <a href="#earth-observation-terms">Earth Observation Terms</a> - <a href="#aiml-terms">AI/ML Terms</a> - <a href="#geospatial-data-terms">Geospatial Data Terms</a> - <a href="#satellite-sensor-terms">Satellite &amp; Sensor Terms</a> - <a href="#philippine-eo-organizations">Philippine EO Organizations</a> - <a href="#technical-acronyms">Technical Acronyms</a></p>
+<hr>
+</section>
+<section id="earth-observation-terms" class="level2">
+<h2 class="anchored" data-anchor-id="earth-observation-terms">Earth Observation Terms</h2>
+<section id="absorption-band" class="level3">
+<h3 class="anchored" data-anchor-id="absorption-band">Absorption Band</h3>
+<p>Wavelength region where atmospheric gases (water vapor, oxygen, CO2) absorb electromagnetic radiation, limiting remote sensing capabilities.</p>
+</section>
+<section id="backscatter" class="level3">
+<h3 class="anchored" data-anchor-id="backscatter">Backscatter</h3>
+<p>The portion of radar energy reflected back to the sensor from a target. Used in SAR imaging to detect surface properties and moisture.</p>
+</section>
+<section id="cloud-masking" class="level3">
+<h3 class="anchored" data-anchor-id="cloud-masking">Cloud Masking</h3>
+<p>The process of identifying and removing cloud-contaminated pixels from optical satellite imagery to improve data quality.</p>
+</section>
+<section id="composite-image" class="level3">
+<h3 class="anchored" data-anchor-id="composite-image">Composite Image</h3>
+<p>A single image created by combining multiple images from different dates, often using statistical methods (median, mean) to reduce noise and clouds.</p>
+</section>
+<section id="earth-observation-eo" class="level3">
+<h3 class="anchored" data-anchor-id="earth-observation-eo">Earth Observation (EO)</h3>
+<p>The gathering of information about Earth’s physical, chemical, and biological systems through remote sensing technologies, primarily satellites.</p>
+</section>
+<section id="false-color-composite" class="level3">
+<h3 class="anchored" data-anchor-id="false-color-composite">False Color Composite</h3>
+<p>An image display where spectral bands are assigned to RGB colors differently than natural vision (e.g., NIR-Red-Green), revealing features invisible to the human eye.</p>
+</section>
+<section id="ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="ground-truth">Ground Truth</h3>
+<p>Field-collected reference data used to validate remote sensing classifications and train machine learning models.</p>
+</section>
+<section id="image-collection" class="level3">
+<h3 class="anchored" data-anchor-id="image-collection">Image Collection</h3>
+<p>A set of satellite images covering the same geographic area at different times, used for time series analysis.</p>
+</section>
+<section id="pixel" class="level3">
+<h3 class="anchored" data-anchor-id="pixel">Pixel</h3>
+<p>The smallest unit in a raster image, representing a specific ground area (spatial resolution) and spectral value.</p>
+</section>
+<section id="preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
+<p>Steps taken to correct raw satellite data before analysis, including atmospheric correction, geometric correction, and radiometric calibration.</p>
+</section>
+<section id="remote-sensing" class="level3">
+<h3 class="anchored" data-anchor-id="remote-sensing">Remote Sensing</h3>
+<p>The science of obtaining information about objects or areas from a distance, typically using sensors on satellites or aircraft.</p>
+</section>
+<section id="revisit-time" class="level3">
+<h3 class="anchored" data-anchor-id="revisit-time">Revisit Time</h3>
+<p>The frequency with which a satellite can observe the same location on Earth (e.g., Sentinel-2 has 5-day revisit with 3 satellites).</p>
+</section>
+<section id="spectral-signature" class="level3">
+<h3 class="anchored" data-anchor-id="spectral-signature">Spectral Signature</h3>
+<p>The unique reflectance pattern of an object across different wavelengths, used to identify materials and land cover types.</p>
+</section>
+<section id="true-color-composite" class="level3">
+<h3 class="anchored" data-anchor-id="true-color-composite">True Color Composite</h3>
+<p>An image display using red, green, and blue bands to create a natural-looking image similar to human vision.</p>
+<hr>
+</section>
+</section>
+<section id="aiml-terms" class="level2">
+<h2 class="anchored" data-anchor-id="aiml-terms">AI/ML Terms</h2>
+<section id="activation-function" class="level3">
+<h3 class="anchored" data-anchor-id="activation-function">Activation Function</h3>
+<p>Mathematical function in neural networks that introduces non-linearity (e.g., ReLU, Sigmoid, Tanh), enabling learning of complex patterns.</p>
+</section>
+<section id="artificial-intelligence-ai" class="level3">
+<h3 class="anchored" data-anchor-id="artificial-intelligence-ai">Artificial Intelligence (AI)</h3>
+<p>Computer systems capable of performing tasks that typically require human intelligence, including perception, reasoning, and decision-making.</p>
+</section>
+<section id="backpropagation" class="level3">
+<h3 class="anchored" data-anchor-id="backpropagation">Backpropagation</h3>
+<p>Algorithm for training neural networks by calculating gradients of loss and adjusting weights to minimize error.</p>
+</section>
+<section id="batch-size" class="level3">
+<h3 class="anchored" data-anchor-id="batch-size">Batch Size</h3>
+<p>Number of training samples processed before updating model weights. Smaller batches = more updates but noisier; larger batches = smoother but fewer updates.</p>
+</section>
+<section id="classification" class="level3">
+<h3 class="anchored" data-anchor-id="classification">Classification</h3>
+<p>Supervised learning task of assigning input data to predefined categories (e.g., forest, water, urban).</p>
+</section>
+<section id="clustering" class="level3">
+<h3 class="anchored" data-anchor-id="clustering">Clustering</h3>
+<p>Unsupervised learning technique that groups similar data points together without predefined labels (e.g., K-means, DBSCAN).</p>
+</section>
+<section id="confusion-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h3>
+<p>Table showing predicted vs.&nbsp;actual classifications, used to calculate accuracy, precision, recall, and F1-score.</p>
+</section>
+<section id="convolutional-neural-network-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="convolutional-neural-network-cnn">Convolutional Neural Network (CNN)</h3>
+<p>Deep learning architecture specialized for image analysis, using convolutional layers to detect spatial patterns.</p>
+</section>
+<section id="data-augmentation" class="level3">
+<h3 class="anchored" data-anchor-id="data-augmentation">Data Augmentation</h3>
+<p>Technique to artificially increase training data by applying transformations (rotation, flipping, scaling) to existing samples.</p>
+</section>
+<section id="deep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="deep-learning">Deep Learning</h3>
+<p>Subset of machine learning using multi-layer neural networks to learn hierarchical representations of data.</p>
+</section>
+<section id="epoch" class="level3">
+<h3 class="anchored" data-anchor-id="epoch">Epoch</h3>
+<p>One complete pass through the entire training dataset during model training.</p>
+</section>
+<section id="feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h3>
+<p>The process of creating new input variables from raw data to improve model performance.</p>
+</section>
+<section id="feature-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="feature-extraction">Feature Extraction</h3>
+<p>Identifying and extracting relevant patterns or characteristics from raw data for use in machine learning models.</p>
+</section>
+<section id="ground-truth-labels" class="level3">
+<h3 class="anchored" data-anchor-id="ground-truth-labels">Ground Truth Labels</h3>
+<p>Verified, accurate labels for training data, typically from field surveys or expert interpretation.</p>
+</section>
+<section id="hyperparameter" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter">Hyperparameter</h3>
+<p>Model configuration setting chosen before training (e.g., learning rate, number of layers) that affects model performance.</p>
+</section>
+<section id="loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="loss-function">Loss Function</h3>
+<p>Mathematical function measuring the difference between predicted and actual values, used to guide model training.</p>
+</section>
+<section id="machine-learning-ml" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning-ml">Machine Learning (ML)</h3>
+<p>Subset of AI enabling systems to learn and improve from experience without explicit programming.</p>
+</section>
+<section id="neural-network" class="level3">
+<h3 class="anchored" data-anchor-id="neural-network">Neural Network</h3>
+<p>Computing system inspired by biological brains, consisting of interconnected nodes (neurons) organized in layers.</p>
+</section>
+<section id="overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="overfitting">Overfitting</h3>
+<p>When a model learns training data too well, including noise, resulting in poor performance on new data.</p>
+</section>
+<section id="precision" class="level3">
+<h3 class="anchored" data-anchor-id="precision">Precision</h3>
+<p>Proportion of positive predictions that are actually correct. Precision = TP / (TP + FP).</p>
+</section>
+<section id="random-forest" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest">Random Forest</h3>
+<p>Ensemble learning method using multiple decision trees to improve prediction accuracy and reduce overfitting.</p>
+</section>
+<section id="recall-sensitivity" class="level3">
+<h3 class="anchored" data-anchor-id="recall-sensitivity">Recall (Sensitivity)</h3>
+<p>Proportion of actual positives correctly identified. Recall = TP / (TP + FN).</p>
+</section>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p>Supervised learning task of predicting continuous numerical values (e.g., crop yield, temperature).</p>
+</section>
+<section id="supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h3>
+<p>Machine learning where models learn from labeled training data (input-output pairs).</p>
+</section>
+<section id="support-vector-machine-svm" class="level3">
+<h3 class="anchored" data-anchor-id="support-vector-machine-svm">Support Vector Machine (SVM)</h3>
+<p>Classification algorithm that finds the optimal hyperplane separating different classes in feature space.</p>
+</section>
+<section id="training-set" class="level3">
+<h3 class="anchored" data-anchor-id="training-set">Training Set</h3>
+<p>Portion of data used to train a machine learning model (typically 70-80% of total data).</p>
+</section>
+<section id="transfer-learning" class="level3">
+<h3 class="anchored" data-anchor-id="transfer-learning">Transfer Learning</h3>
+<p>Reusing a pre-trained model on a new but related task, reducing training time and data requirements.</p>
+</section>
+<section id="underfitting" class="level3">
+<h3 class="anchored" data-anchor-id="underfitting">Underfitting</h3>
+<p>When a model is too simple to capture the underlying patterns in data, resulting in poor performance.</p>
+</section>
+<section id="unsupervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h3>
+<p>Machine learning where models find patterns in unlabeled data without predefined categories.</p>
+</section>
+<section id="validation-set" class="level3">
+<h3 class="anchored" data-anchor-id="validation-set">Validation Set</h3>
+<p>Data used to evaluate model performance during training and tune hyperparameters (typically 10-15% of data).</p>
+<hr>
+</section>
+</section>
+<section id="geospatial-data-terms" class="level2">
+<h2 class="anchored" data-anchor-id="geospatial-data-terms">Geospatial Data Terms</h2>
+<section id="affine-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="affine-transformation">Affine Transformation</h3>
+<p>Mathematical operation describing the relationship between pixel coordinates and geographic coordinates in raster data.</p>
+</section>
+<section id="bounding-box" class="level3">
+<h3 class="anchored" data-anchor-id="bounding-box">Bounding Box</h3>
+<p>Rectangular area defined by minimum and maximum coordinates [minX, minY, maxX, maxY], used to specify geographic extents.</p>
+</section>
+<section id="coordinate-reference-system-crs" class="level3">
+<h3 class="anchored" data-anchor-id="coordinate-reference-system-crs">Coordinate Reference System (CRS)</h3>
+<p>System defining how coordinates relate to real-world locations, including datum and projection (e.g., WGS84, UTM).</p>
+</section>
+<section id="digital-elevation-model-dem" class="level3">
+<h3 class="anchored" data-anchor-id="digital-elevation-model-dem">Digital Elevation Model (DEM)</h3>
+<p>Raster representation of terrain elevation, with each pixel value representing height above a reference level.</p>
+</section>
+<section id="feature" class="level3">
+<h3 class="anchored" data-anchor-id="feature">Feature</h3>
+<p>In geospatial terms, a vector object (point, line, or polygon) with associated attributes.</p>
+</section>
+<section id="geojson" class="level3">
+<h3 class="anchored" data-anchor-id="geojson">GeoJSON</h3>
+<p>Open standard JSON format for encoding geographic data structures, widely used for web mapping.</p>
+</section>
+<section id="geopackage" class="level3">
+<h3 class="anchored" data-anchor-id="geopackage">GeoPackage</h3>
+<p>Open format for geospatial data storage in SQLite database, supporting both vector and raster data.</p>
+</section>
+<section id="geometry" class="level3">
+<h3 class="anchored" data-anchor-id="geometry">Geometry</h3>
+<p>The spatial component of a geographic feature, defining its shape and location (point, line, polygon).</p>
+</section>
+<section id="geotiff" class="level3">
+<h3 class="anchored" data-anchor-id="geotiff">GeoTIFF</h3>
+<p>Raster image format with embedded geographic metadata (CRS, extent, resolution), standard for geospatial raster data.</p>
+</section>
+<section id="nodata-value" class="level3">
+<h3 class="anchored" data-anchor-id="nodata-value">NoData Value</h3>
+<p>Special value in raster data indicating missing or invalid data (e.g., -9999, NaN).</p>
+</section>
+<section id="pixel-resolution-spatial-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="pixel-resolution-spatial-resolution">Pixel Resolution (Spatial Resolution)</h3>
+<p>Ground area represented by one pixel (e.g., 10m means each pixel covers 10m × 10m on the ground).</p>
+</section>
+<section id="projection" class="level3">
+<h3 class="anchored" data-anchor-id="projection">Projection</h3>
+<p>Mathematical transformation converting 3D Earth coordinates to 2D map coordinates (e.g., Mercator, UTM).</p>
+</section>
+<section id="raster-data" class="level3">
+<h3 class="anchored" data-anchor-id="raster-data">Raster Data</h3>
+<p>Grid-based spatial data where each cell (pixel) contains a value, used for continuous phenomena (elevation, temperature, imagery).</p>
+</section>
+<section id="reproject" class="level3">
+<h3 class="anchored" data-anchor-id="reproject">Reproject</h3>
+<p>Converting geospatial data from one coordinate reference system to another.</p>
+</section>
+<section id="shapefile" class="level3">
+<h3 class="anchored" data-anchor-id="shapefile">Shapefile</h3>
+<p>Popular vector data format for GIS, consisting of multiple files (.shp, .shx, .dbf, .prj).</p>
+</section>
+<section id="spatial-join" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-join">Spatial Join</h3>
+<p>Combining attributes from two geospatial datasets based on their spatial relationship (intersection, within, etc.).</p>
+</section>
+<section id="vector-data" class="level3">
+<h3 class="anchored" data-anchor-id="vector-data">Vector Data</h3>
+<p>Spatial data representing discrete features as points, lines, or polygons with associated attributes.</p>
+</section>
+<section id="well-known-text-wkt" class="level3">
+<h3 class="anchored" data-anchor-id="well-known-text-wkt">Well-Known Text (WKT)</h3>
+<p>Text markup language for representing vector geometry and spatial reference systems.</p>
+<hr>
+</section>
+</section>
+<section id="satellite-sensor-terms" class="level2">
+<h2 class="anchored" data-anchor-id="satellite-sensor-terms">Satellite &amp; Sensor Terms</h2>
+<section id="active-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="active-sensor">Active Sensor</h3>
+<p>Sensor that emits its own energy and measures the reflected signal (e.g., SAR, LiDAR).</p>
+</section>
+<section id="aperture" class="level3">
+<h3 class="anchored" data-anchor-id="aperture">Aperture</h3>
+<p>Opening in a sensor that controls the amount of light collected, affecting image brightness and quality.</p>
+</section>
+<section id="atmospheric-correction" class="level3">
+<h3 class="anchored" data-anchor-id="atmospheric-correction">Atmospheric Correction</h3>
+<p>Processing step removing atmospheric effects (scattering, absorption) to retrieve surface reflectance.</p>
+</section>
+<section id="c-band" class="level3">
+<h3 class="anchored" data-anchor-id="c-band">C-band</h3>
+<p>Radar frequency band (4-8 GHz, wavelength 3.75-7.5 cm) used by Sentinel-1, good for vegetation and soil moisture.</p>
+</section>
+<section id="electromagnetic-spectrum" class="level3">
+<h3 class="anchored" data-anchor-id="electromagnetic-spectrum">Electromagnetic Spectrum</h3>
+<p>Range of all electromagnetic radiation wavelengths, from radio waves to gamma rays, including visible light.</p>
+</section>
+<section id="geometric-correction" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-correction">Geometric Correction</h3>
+<p>Correcting image distortions caused by sensor viewing angle, terrain, and Earth’s curvature.</p>
+</section>
+<section id="level-1c-l1c" class="level3">
+<h3 class="anchored" data-anchor-id="level-1c-l1c">Level 1C (L1C)</h3>
+<p>Sentinel-2 product with Top-of-Atmosphere (TOA) reflectance, geometrically corrected.</p>
+</section>
+<section id="level-2a-l2a" class="level3">
+<h3 class="anchored" data-anchor-id="level-2a-l2a">Level 2A (L2A)</h3>
+<p>Sentinel-2 product with Bottom-of-Atmosphere (BOA) surface reflectance, atmospherically corrected.</p>
+</section>
+<section id="lidar" class="level3">
+<h3 class="anchored" data-anchor-id="lidar">LiDAR</h3>
+<p>Light Detection and Ranging - active sensor using laser pulses to measure distance, creating high-resolution 3D point clouds.</p>
+</section>
+<section id="multispectral" class="level3">
+<h3 class="anchored" data-anchor-id="multispectral">Multispectral</h3>
+<p>Imaging system capturing data in multiple (typically 3-15) wavelength bands across visible and infrared spectrum.</p>
+</section>
+<section id="near-infrared-nir" class="level3">
+<h3 class="anchored" data-anchor-id="near-infrared-nir">Near Infrared (NIR)</h3>
+<p>Electromagnetic radiation with wavelengths 0.7-1.4 μm, strongly reflected by healthy vegetation.</p>
+</section>
+<section id="optical-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="optical-sensor">Optical Sensor</h3>
+<p>Passive sensor detecting reflected sunlight in visible and infrared wavelengths (e.g., Sentinel-2, Landsat).</p>
+</section>
+<section id="orbit" class="level3">
+<h3 class="anchored" data-anchor-id="orbit">Orbit</h3>
+<p>Path of a satellite around Earth, characterized by altitude, inclination, and period.</p>
+</section>
+<section id="panchromatic" class="level3">
+<h3 class="anchored" data-anchor-id="panchromatic">Panchromatic</h3>
+<p>Single-band imagery capturing all visible wavelengths, typically at higher spatial resolution than multispectral bands.</p>
+</section>
+<section id="passive-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="passive-sensor">Passive Sensor</h3>
+<p>Sensor detecting naturally available energy, typically reflected sunlight (e.g., optical cameras).</p>
+</section>
+<section id="polarization" class="level3">
+<h3 class="anchored" data-anchor-id="polarization">Polarization</h3>
+<p>Orientation of radar waves (HH, VV, HV, VH), providing information about surface structure and moisture.</p>
+</section>
+<section id="radiometric-calibration" class="level3">
+<h3 class="anchored" data-anchor-id="radiometric-calibration">Radiometric Calibration</h3>
+<p>Converting raw sensor digital numbers to physical units (radiance or reflectance).</p>
+</section>
+<section id="sar-synthetic-aperture-radar" class="level3">
+<h3 class="anchored" data-anchor-id="sar-synthetic-aperture-radar">SAR (Synthetic Aperture Radar)</h3>
+<p>Active microwave imaging system creating high-resolution images independent of sunlight and clouds.</p>
+</section>
+<section id="short-wave-infrared-swir" class="level3">
+<h3 class="anchored" data-anchor-id="short-wave-infrared-swir">Short-Wave Infrared (SWIR)</h3>
+<p>Electromagnetic radiation with wavelengths 1.4-3.0 μm, useful for detecting moisture and minerals.</p>
+</section>
+<section id="spectral-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="spectral-resolution">Spectral Resolution</h3>
+<p>Ability to distinguish between different wavelengths, determined by number and width of spectral bands.</p>
+</section>
+<section id="sun-synchronous-orbit" class="level3">
+<h3 class="anchored" data-anchor-id="sun-synchronous-orbit">Sun-Synchronous Orbit</h3>
+<p>Satellite orbit maintaining constant local solar time, ensuring consistent illumination conditions.</p>
+</section>
+<section id="swath-width" class="level3">
+<h3 class="anchored" data-anchor-id="swath-width">Swath Width</h3>
+<p>Width of the ground strip imaged by a satellite in a single pass (e.g., Sentinel-2 has 290 km swath).</p>
+</section>
+<section id="temporal-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="temporal-resolution">Temporal Resolution</h3>
+<p>Frequency of repeat observations over the same location (synonymous with revisit time).</p>
+</section>
+<section id="thermal-infrared-tir" class="level3">
+<h3 class="anchored" data-anchor-id="thermal-infrared-tir">Thermal Infrared (TIR)</h3>
+<p>Electromagnetic radiation with wavelengths 8-14 μm, measuring heat emitted by Earth’s surface.</p>
+<hr>
+</section>
+</section>
+<section id="philippine-eo-organizations" class="level2">
+<h2 class="anchored" data-anchor-id="philippine-eo-organizations">Philippine EO Organizations</h2>
+<section id="cophil-programme" class="level3">
+<h3 class="anchored" data-anchor-id="cophil-programme">CoPhil Programme</h3>
+<p>EU-Philippines Copernicus Capacity Support Programme - partnership to strengthen Philippine EO capabilities, establish a Copernicus Mirror Site, and develop AI/ML capacity.</p>
+</section>
+<section id="denr" class="level3">
+<h3 class="anchored" data-anchor-id="denr">DENR</h3>
+<p>Department of Environment and Natural Resources - responsible for forest monitoring, land cover mapping, and natural resource management using EO data.</p>
+</section>
+<section id="dost" class="level3">
+<h3 class="anchored" data-anchor-id="dost">DOST</h3>
+<p>Department of Science and Technology - leads science and technology advancement, co-chairs CoPhil programme, operates PAGASA and ASTI.</p>
+</section>
+<section id="dost-asti" class="level3">
+<h3 class="anchored" data-anchor-id="dost-asti">DOST-ASTI</h3>
+<p>Advanced Science and Technology Institute - ICT research and development, AI platforms (SkAI-Pinas, DIMER, AIPI).</p>
+</section>
+<section id="lipad" class="level3">
+<h3 class="anchored" data-anchor-id="lipad">LiPAD</h3>
+<p>LiDAR Portal for Archiving and Distribution - repository of high-resolution elevation data for the Philippines.</p>
+</section>
+<section id="namria" class="level3">
+<h3 class="anchored" data-anchor-id="namria">NAMRIA</h3>
+<p>National Mapping and Resource Information Authority - official mapping agency, operates GeoPortal and Resource Data Analysis Center.</p>
+</section>
+<section id="ndrrmc" class="level3">
+<h3 class="anchored" data-anchor-id="ndrrmc">NDRRMC</h3>
+<p>National Disaster Risk Reduction and Management Council - coordinates disaster response, uses EO data for assessment and planning.</p>
+</section>
+<section id="pagasa" class="level3">
+<h3 class="anchored" data-anchor-id="pagasa">PAGASA</h3>
+<p>Philippine Atmospheric, Geophysical and Astronomical Services Administration - weather, climate, and astronomical services.</p>
+</section>
+<section id="philgis" class="level3">
+<h3 class="anchored" data-anchor-id="philgis">PhilGIS</h3>
+<p>Philippine GIS Data Clearinghouse - repository of geospatial datasets for the Philippines.</p>
+</section>
+<section id="philsa" class="level3">
+<h3 class="anchored" data-anchor-id="philsa">PhilSA</h3>
+<p>Philippine Space Agency - national space authority, co-chairs CoPhil programme, operates SIYASAT portal and develops Copernicus Mirror Site.</p>
+</section>
+<section id="siyasat-portal" class="level3">
+<h3 class="anchored" data-anchor-id="siyasat-portal">SIYASAT Portal</h3>
+<p>PhilSA’s secure data archive for NovaSAR-1 data and maritime monitoring products.</p>
+<hr>
+</section>
+</section>
+<section id="technical-acronyms" class="level2">
+<h2 class="anchored" data-anchor-id="technical-acronyms">Technical Acronyms</h2>
+<section id="ai" class="level3">
+<h3 class="anchored" data-anchor-id="ai">AI</h3>
+<p>Artificial Intelligence - computer systems performing tasks requiring human intelligence.</p>
+</section>
+<section id="api" class="level3">
+<h3 class="anchored" data-anchor-id="api">API</h3>
+<p>Application Programming Interface - set of functions allowing software to interact with services (e.g., Earth Engine Python API).</p>
+</section>
+<section id="aster" class="level3">
+<h3 class="anchored" data-anchor-id="aster">ASTER</h3>
+<p>Advanced Spaceborne Thermal Emission and Reflection Radiometer - NASA sensor providing multispectral imagery.</p>
+</section>
+<section id="boa" class="level3">
+<h3 class="anchored" data-anchor-id="boa">BOA</h3>
+<p>Bottom of Atmosphere - surface reflectance after atmospheric correction (Level 2A products).</p>
+</section>
+<section id="cca" class="level3">
+<h3 class="anchored" data-anchor-id="cca">CCA</h3>
+<p>Climate Change Adaptation - strategies and actions to adjust to climate change impacts.</p>
+</section>
+<section id="cnn" class="level3">
+<h3 class="anchored" data-anchor-id="cnn">CNN</h3>
+<p>Convolutional Neural Network - deep learning architecture for image analysis.</p>
+</section>
+<section id="crs" class="level3">
+<h3 class="anchored" data-anchor-id="crs">CRS</h3>
+<p>Coordinate Reference System - defines how coordinates relate to Earth’s surface.</p>
+</section>
+<section id="dem" class="level3">
+<h3 class="anchored" data-anchor-id="dem">DEM</h3>
+<p>Digital Elevation Model - raster representation of terrain elevation.</p>
+</section>
+<section id="dl" class="level3">
+<h3 class="anchored" data-anchor-id="dl">DL</h3>
+<p>Deep Learning - subset of ML using multi-layer neural networks.</p>
+</section>
+<section id="drr" class="level3">
+<h3 class="anchored" data-anchor-id="drr">DRR</h3>
+<p>Disaster Risk Reduction - strategies to minimize disaster impacts.</p>
+</section>
+<section id="eo" class="level3">
+<h3 class="anchored" data-anchor-id="eo">EO</h3>
+<p>Earth Observation - gathering information about Earth through remote sensing.</p>
+</section>
+<section id="esa" class="level3">
+<h3 class="anchored" data-anchor-id="esa">ESA</h3>
+<p>European Space Agency - operates Copernicus Sentinel missions.</p>
+</section>
+<section id="evi" class="level3">
+<h3 class="anchored" data-anchor-id="evi">EVI</h3>
+<p>Enhanced Vegetation Index - vegetation index less sensitive to atmospheric effects than NDVI.</p>
+</section>
+<section id="gee" class="level3">
+<h3 class="anchored" data-anchor-id="gee">GEE</h3>
+<p>Google Earth Engine - cloud platform for planetary-scale geospatial analysis.</p>
+</section>
+<section id="gis" class="level3">
+<h3 class="anchored" data-anchor-id="gis">GIS</h3>
+<p>Geographic Information System - software for capturing, managing, and analyzing spatial data.</p>
+</section>
+<section id="gpu" class="level3">
+<h3 class="anchored" data-anchor-id="gpu">GPU</h3>
+<p>Graphics Processing Unit - hardware accelerating deep learning computations.</p>
+</section>
+<section id="gnss" class="level3">
+<h3 class="anchored" data-anchor-id="gnss">GNSS</h3>
+<p>Global Navigation Satellite System - satellite-based positioning (GPS, Galileo, GLONASS).</p>
+</section>
+<section id="hdf" class="level3">
+<h3 class="anchored" data-anchor-id="hdf">HDF</h3>
+<p>Hierarchical Data Format - file format for storing large scientific datasets.</p>
+</section>
+<section id="iw" class="level3">
+<h3 class="anchored" data-anchor-id="iw">IW</h3>
+<p>Interferometric Wide Swath - Sentinel-1 acquisition mode with 250 km swath.</p>
+</section>
+<section id="jaxa" class="level3">
+<h3 class="anchored" data-anchor-id="jaxa">JAXA</h3>
+<p>Japan Aerospace Exploration Agency - operates Japanese Earth observation satellites.</p>
+</section>
+<section id="lidar-1" class="level3">
+<h3 class="anchored" data-anchor-id="lidar-1">LiDAR</h3>
+<p>Light Detection and Ranging - laser-based remote sensing for elevation mapping.</p>
+</section>
+<section id="lulc" class="level3">
+<h3 class="anchored" data-anchor-id="lulc">LULC</h3>
+<p>Land Use Land Cover - classification of Earth’s surface into categories (forest, urban, agriculture, etc.).</p>
+</section>
+<section id="ml" class="level3">
+<h3 class="anchored" data-anchor-id="ml">ML</h3>
+<p>Machine Learning - algorithms enabling systems to learn from data.</p>
+</section>
+<section id="modis" class="level3">
+<h3 class="anchored" data-anchor-id="modis">MODIS</h3>
+<p>Moderate Resolution Imaging Spectroradiometer - NASA sensor providing daily global coverage.</p>
+</section>
+<section id="nasa" class="level3">
+<h3 class="anchored" data-anchor-id="nasa">NASA</h3>
+<p>National Aeronautics and Space Administration - operates Landsat and other EO missions.</p>
+</section>
+<section id="ndbi" class="level3">
+<h3 class="anchored" data-anchor-id="ndbi">NDBI</h3>
+<p>Normalized Difference Built-up Index - spectral index for detecting built-up areas.</p>
+</section>
+<section id="ndvi" class="level3">
+<h3 class="anchored" data-anchor-id="ndvi">NDVI</h3>
+<p>Normalized Difference Vegetation Index - spectral index measuring vegetation health/density.</p>
+</section>
+<section id="ndwi" class="level3">
+<h3 class="anchored" data-anchor-id="ndwi">NDWI</h3>
+<p>Normalized Difference Water Index - spectral index for detecting water bodies.</p>
+</section>
+<section id="nir" class="level3">
+<h3 class="anchored" data-anchor-id="nir">NIR</h3>
+<p>Near Infrared - electromagnetic radiation beyond visible red (0.7-1.4 μm).</p>
+</section>
+<section id="nrm" class="level3">
+<h3 class="anchored" data-anchor-id="nrm">NRM</h3>
+<p>Natural Resource Management - sustainable management of natural resources using EO monitoring.</p>
+</section>
+<section id="rgb" class="level3">
+<h3 class="anchored" data-anchor-id="rgb">RGB</h3>
+<p>Red-Green-Blue - color model using three primary colors, or the corresponding image bands.</p>
+</section>
+<section id="rf" class="level3">
+<h3 class="anchored" data-anchor-id="rf">RF</h3>
+<p>Random Forest - ensemble machine learning algorithm using multiple decision trees.</p>
+</section>
+<section id="rl" class="level3">
+<h3 class="anchored" data-anchor-id="rl">RL</h3>
+<p>Reinforcement Learning - ML paradigm where agents learn through interaction with environment.</p>
+</section>
+<section id="sar" class="level3">
+<h3 class="anchored" data-anchor-id="sar">SAR</h3>
+<p>Synthetic Aperture Radar - active microwave imaging system.</p>
+</section>
+<section id="scl" class="level3">
+<h3 class="anchored" data-anchor-id="scl">SCL</h3>
+<p>Scene Classification Layer - Sentinel-2 cloud and land cover classification mask.</p>
+</section>
+<section id="snap" class="level3">
+<h3 class="anchored" data-anchor-id="snap">SNAP</h3>
+<p>Sentinel Application Platform - ESA’s free software for processing Sentinel data.</p>
+</section>
+<section id="swir" class="level3">
+<h3 class="anchored" data-anchor-id="swir">SWIR</h3>
+<p>Short-Wave Infrared - electromagnetic radiation with wavelengths 1.4-3.0 μm.</p>
+</section>
+<section id="svm" class="level3">
+<h3 class="anchored" data-anchor-id="svm">SVM</h3>
+<p>Support Vector Machine - classification algorithm finding optimal separating hyperplane.</p>
+</section>
+<section id="tir" class="level3">
+<h3 class="anchored" data-anchor-id="tir">TIR</h3>
+<p>Thermal Infrared - electromagnetic radiation measuring surface temperature (8-14 μm).</p>
+</section>
+<section id="toa" class="level3">
+<h3 class="anchored" data-anchor-id="toa">TOA</h3>
+<p>Top of Atmosphere - apparent reflectance before atmospheric correction (Level 1C products).</p>
+</section>
+<section id="usgs" class="level3">
+<h3 class="anchored" data-anchor-id="usgs">USGS</h3>
+<p>United States Geological Survey - distributes Landsat and other EO data.</p>
+</section>
+<section id="utm" class="level3">
+<h3 class="anchored" data-anchor-id="utm">UTM</h3>
+<p>Universal Transverse Mercator - widely-used projected coordinate system dividing Earth into zones.</p>
+</section>
+<section id="wgs84" class="level3">
+<h3 class="anchored" data-anchor-id="wgs84">WGS84</h3>
+<p>World Geodetic System 1984 - global geographic coordinate system (EPSG:4326).</p>
+<hr>
+</section>
+</section>
+<section id="spectral-indices" class="level2">
+<h2 class="anchored" data-anchor-id="spectral-indices">Spectral Indices</h2>
+<section id="ndvi-normalized-difference-vegetation-index" class="level3">
+<h3 class="anchored" data-anchor-id="ndvi-normalized-difference-vegetation-index">NDVI (Normalized Difference Vegetation Index)</h3>
+<p><strong>Formula:</strong> (NIR - Red) / (NIR + Red)</p>
+<p><strong>Range:</strong> -1 to +1</p>
+<p><strong>Interpretation:</strong> - High values (0.6-0.9): Dense vegetation - Moderate (0.2-0.5): Sparse vegetation - Near zero: Bare soil, rock - Negative: Water, clouds</p>
+<p><strong>Sentinel-2 Bands:</strong> (B8 - B4) / (B8 + B4)</p>
+<hr>
+</section>
+<section id="ndwi-normalized-difference-water-index" class="level3">
+<h3 class="anchored" data-anchor-id="ndwi-normalized-difference-water-index">NDWI (Normalized Difference Water Index)</h3>
+<p><strong>McFeeters Formula:</strong> (Green - NIR) / (Green + NIR)</p>
+<p><strong>Gao Formula:</strong> (NIR - SWIR) / (NIR + SWIR)</p>
+<p><strong>Range:</strong> -1 to +1</p>
+<p><strong>Interpretation:</strong> - Positive values: Water bodies - Negative: Land surfaces</p>
+<p><strong>Sentinel-2 (McFeeters):</strong> (B3 - B8) / (B3 + B8)</p>
+<p><strong>Sentinel-2 (Gao):</strong> (B8 - B11) / (B8 + B11)</p>
+<hr>
+</section>
+<section id="ndbi-normalized-difference-built-up-index" class="level3">
+<h3 class="anchored" data-anchor-id="ndbi-normalized-difference-built-up-index">NDBI (Normalized Difference Built-up Index)</h3>
+<p><strong>Formula:</strong> (SWIR - NIR) / (SWIR + NIR)</p>
+<p><strong>Range:</strong> -1 to +1</p>
+<p><strong>Interpretation:</strong> - Positive values: Built-up areas - Negative: Vegetation, water</p>
+<p><strong>Sentinel-2:</strong> (B11 - B8) / (B11 + B8)</p>
+<hr>
+</section>
+<section id="evi-enhanced-vegetation-index" class="level3">
+<h3 class="anchored" data-anchor-id="evi-enhanced-vegetation-index">EVI (Enhanced Vegetation Index)</h3>
+<p><strong>Formula:</strong> 2.5 × ((NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1))</p>
+<p><strong>Range:</strong> -1 to +1</p>
+<p><strong>Advantages:</strong> Less sensitive to atmospheric effects and soil background than NDVI</p>
+<p><strong>Sentinel-2:</strong> 2.5 × ((B8 - B4) / (B8 + 6×B4 - 7.5×B2 + 1))</p>
+<hr>
+</section>
+</section>
+<section id="quick-reference-tables" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference-tables">Quick Reference Tables</h2>
+<section id="sentinel-2-band-summary" class="level3">
+<h3 class="anchored" data-anchor-id="sentinel-2-band-summary">Sentinel-2 Band Summary</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Band</th>
+<th>Name</th>
+<th>Wavelength (nm)</th>
+<th>Resolution (m)</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B1</td>
+<td>Coastal aerosol</td>
+<td>443</td>
+<td>60</td>
+<td>Atmospheric correction</td>
+</tr>
+<tr class="even">
+<td>B2</td>
+<td>Blue</td>
+<td>490</td>
+<td>10</td>
+<td>Bathymetry, soil/vegetation</td>
+</tr>
+<tr class="odd">
+<td>B3</td>
+<td>Green</td>
+<td>560</td>
+<td>10</td>
+<td>Peak vegetation sensitivity</td>
+</tr>
+<tr class="even">
+<td>B4</td>
+<td>Red</td>
+<td>665</td>
+<td>10</td>
+<td>Vegetation discrimination</td>
+</tr>
+<tr class="odd">
+<td>B5</td>
+<td>Red Edge 1</td>
+<td>705</td>
+<td>20</td>
+<td>Vegetation health</td>
+</tr>
+<tr class="even">
+<td>B6</td>
+<td>Red Edge 2</td>
+<td>740</td>
+<td>20</td>
+<td>Vegetation stress</td>
+</tr>
+<tr class="odd">
+<td>B7</td>
+<td>Red Edge 3</td>
+<td>783</td>
+<td>20</td>
+<td>Vegetation stress</td>
+</tr>
+<tr class="even">
+<td>B8</td>
+<td>NIR</td>
+<td>842</td>
+<td>10</td>
+<td>Biomass, water bodies</td>
+</tr>
+<tr class="odd">
+<td>B8A</td>
+<td>Narrow NIR</td>
+<td>865</td>
+<td>20</td>
+<td>Atmospheric correction</td>
+</tr>
+<tr class="even">
+<td>B9</td>
+<td>Water vapor</td>
+<td>945</td>
+<td>60</td>
+<td>Atmospheric correction</td>
+</tr>
+<tr class="odd">
+<td>B11</td>
+<td>SWIR 1</td>
+<td>1610</td>
+<td>20</td>
+<td>Moisture, soil/vegetation</td>
+</tr>
+<tr class="even">
+<td>B12</td>
+<td>SWIR 2</td>
+<td>2190</td>
+<td>20</td>
+<td>Moisture, burned areas</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="common-crs-for-philippines" class="level3">
+<h3 class="anchored" data-anchor-id="common-crs-for-philippines">Common CRS for Philippines</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 33%">
+<col style="width: 18%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>EPSG Code</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WGS84</td>
+<td>4326</td>
+<td>Geographic</td>
+<td>Global datasets, web maps</td>
+</tr>
+<tr class="even">
+<td>UTM Zone 50N</td>
+<td>32650</td>
+<td>Projected</td>
+<td>Western Mindanao</td>
+</tr>
+<tr class="odd">
+<td>UTM Zone 51N</td>
+<td>32651</td>
+<td>Projected</td>
+<td>Luzon, Visayas, most of Philippines</td>
+</tr>
+<tr class="even">
+<td>UTM Zone 52N</td>
+<td>32652</td>
+<td>Projected</td>
+<td>Eastern Mindanao</td>
+</tr>
+<tr class="odd">
+<td>PRS92</td>
+<td>4683</td>
+<td>Geographic</td>
+<td>Philippine Reference System</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="related-resources" class="level2">
+<h2 class="anchored" data-anchor-id="related-resources">Related Resources</h2>
+<p>For more detailed information:</p>
+<ul>
+<li><a href="../resources/setup.html">Setup Guide</a> - Technical setup instructions</li>
+<li><a href="../resources/cheatsheets.html">Cheat Sheets</a> - Quick reference commands</li>
+<li><a href="../resources/faq.html">FAQ</a> - Common questions and troubleshooting</li>
+<li><a href="../resources/philippine-eo.html">Philippine EO Resources</a> - Organizations and platforms</li>
+</ul>
+<hr>
+<p><em>This glossary will be expanded in subsequent training days. Suggest additional terms via training@philsa.gov.ph</em></p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="cophil-training-v1.0" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../resources/cheatsheets.html" class="pagination-link" aria-label="Cheat Sheets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cheat Sheets</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../resources/faq.html" class="pagination-link" aria-label="Frequently Asked Questions">
+        <span class="nav-page-text">Frequently Asked Questions</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Glossary"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Earth Observation &amp; AI/ML Terms"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to Use This Glossary</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>This glossary defines key terms used throughout the CoPhil EO AI/ML Training Programme. Terms are organized alphabetically within categories for easy reference.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>**Categories:**</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Earth Observation Terms</span><span class="co">](#earth-observation-terms)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">AI/ML Terms</span><span class="co">](#aiml-terms)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Geospatial Data Terms</span><span class="co">](#geospatial-data-terms)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Satellite &amp; Sensor Terms</span><span class="co">](#satellite-sensor-terms)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Philippine EO Organizations</span><span class="co">](#philippine-eo-organizations)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Technical Acronyms</span><span class="co">](#technical-acronyms)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Earth Observation Terms</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Absorption Band</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Wavelength region where atmospheric gases (water vapor, oxygen, CO2) absorb electromagnetic radiation, limiting remote sensing capabilities.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Backscatter</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>The portion of radar energy reflected back to the sensor from a target. Used in SAR imaging to detect surface properties and moisture.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cloud Masking</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>The process of identifying and removing cloud-contaminated pixels from optical satellite imagery to improve data quality.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### Composite Image</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>A single image created by combining multiple images from different dates, often using statistical methods (median, mean) to reduce noise and clouds.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### Earth Observation (EO)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>The gathering of information about Earth's physical, chemical, and biological systems through remote sensing technologies, primarily satellites.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### False Color Composite</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>An image display where spectral bands are assigned to RGB colors differently than natural vision (e.g., NIR-Red-Green), revealing features invisible to the human eye.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ground Truth</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>Field-collected reference data used to validate remote sensing classifications and train machine learning models.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Image Collection</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>A set of satellite images covering the same geographic area at different times, used for time series analysis.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pixel</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>The smallest unit in a raster image, representing a specific ground area (spatial resolution) and spectral value.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preprocessing</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Steps taken to correct raw satellite data before analysis, including atmospheric correction, geometric correction, and radiometric calibration.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Remote Sensing</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>The science of obtaining information about objects or areas from a distance, typically using sensors on satellites or aircraft.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### Revisit Time</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>The frequency with which a satellite can observe the same location on Earth (e.g., Sentinel-2 has 5-day revisit with 3 satellites).</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spectral Signature</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>The unique reflectance pattern of an object across different wavelengths, used to identify materials and land cover types.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### True Color Composite</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>An image display using red, green, and blue bands to create a natural-looking image similar to human vision.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## AI/ML Terms</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### Activation Function</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>Mathematical function in neural networks that introduces non-linearity (e.g., ReLU, Sigmoid, Tanh), enabling learning of complex patterns.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### Artificial Intelligence (AI)</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Computer systems capable of performing tasks that typically require human intelligence, including perception, reasoning, and decision-making.</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Backpropagation</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>Algorithm for training neural networks by calculating gradients of loss and adjusting weights to minimize error.</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### Batch Size</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>Number of training samples processed before updating model weights. Smaller batches = more updates but noisier; larger batches = smoother but fewer updates.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Classification</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>Supervised learning task of assigning input data to predefined categories (e.g., forest, water, urban).</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clustering</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>Unsupervised learning technique that groups similar data points together without predefined labels (e.g., K-means, DBSCAN).</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confusion Matrix</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>Table showing predicted vs. actual classifications, used to calculate accuracy, precision, recall, and F1-score.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convolutional Neural Network (CNN)</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>Deep learning architecture specialized for image analysis, using convolutional layers to detect spatial patterns.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Augmentation</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>Technique to artificially increase training data by applying transformations (rotation, flipping, scaling) to existing samples.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Deep Learning</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>Subset of machine learning using multi-layer neural networks to learn hierarchical representations of data.</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Epoch</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>One complete pass through the entire training dataset during model training.</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Feature Engineering</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>The process of creating new input variables from raw data to improve model performance.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Feature Extraction</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>Identifying and extracting relevant patterns or characteristics from raw data for use in machine learning models.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ground Truth Labels</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>Verified, accurate labels for training data, typically from field surveys or expert interpretation.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperparameter</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>Model configuration setting chosen before training (e.g., learning rate, number of layers) that affects model performance.</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Loss Function</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>Mathematical function measuring the difference between predicted and actual values, used to guide model training.</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Machine Learning (ML)</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>Subset of AI enabling systems to learn and improve from experience without explicit programming.</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Neural Network</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>Computing system inspired by biological brains, consisting of interconnected nodes (neurons) organized in layers.</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="fu">### Overfitting</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>When a model learns training data too well, including noise, resulting in poor performance on new data.</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### Precision</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>Proportion of positive predictions that are actually correct. Precision = TP / (TP + FP).</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Forest</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>Ensemble learning method using multiple decision trees to improve prediction accuracy and reduce overfitting.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Recall (Sensitivity)</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>Proportion of actual positives correctly identified. Recall = TP / (TP + FN).</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regression</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>Supervised learning task of predicting continuous numerical values (e.g., crop yield, temperature).</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### Supervised Learning</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>Machine learning where models learn from labeled training data (input-output pairs).</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Support Vector Machine (SVM)</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>Classification algorithm that finds the optimal hyperplane separating different classes in feature space.</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### Training Set</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>Portion of data used to train a machine learning model (typically 70-80% of total data).</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transfer Learning</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>Reusing a pre-trained model on a new but related task, reducing training time and data requirements.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Underfitting</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>When a model is too simple to capture the underlying patterns in data, resulting in poor performance.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### Unsupervised Learning</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>Machine learning where models find patterns in unlabeled data without predefined categories.</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Validation Set</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>Data used to evaluate model performance during training and tune hyperparameters (typically 10-15% of data).</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Geospatial Data Terms</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### Affine Transformation</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>Mathematical operation describing the relationship between pixel coordinates and geographic coordinates in raster data.</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bounding Box</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>Rectangular area defined by minimum and maximum coordinates <span class="co">[</span><span class="ot">minX, minY, maxX, maxY</span><span class="co">]</span>, used to specify geographic extents.</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Coordinate Reference System (CRS)</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>System defining how coordinates relate to real-world locations, including datum and projection (e.g., WGS84, UTM).</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### Digital Elevation Model (DEM)</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>Raster representation of terrain elevation, with each pixel value representing height above a reference level.</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="fu">### Feature</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>In geospatial terms, a vector object (point, line, or polygon) with associated attributes.</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### GeoJSON</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>Open standard JSON format for encoding geographic data structures, widely used for web mapping.</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### GeoPackage</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>Open format for geospatial data storage in SQLite database, supporting both vector and raster data.</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Geometry</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>The spatial component of a geographic feature, defining its shape and location (point, line, polygon).</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### GeoTIFF</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>Raster image format with embedded geographic metadata (CRS, extent, resolution), standard for geospatial raster data.</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="fu">### NoData Value</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>Special value in raster data indicating missing or invalid data (e.g., -9999, NaN).</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pixel Resolution (Spatial Resolution)</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>Ground area represented by one pixel (e.g., 10m means each pixel covers 10m × 10m on the ground).</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### Projection</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>Mathematical transformation converting 3D Earth coordinates to 2D map coordinates (e.g., Mercator, UTM).</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Raster Data</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>Grid-based spatial data where each cell (pixel) contains a value, used for continuous phenomena (elevation, temperature, imagery).</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reproject</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>Converting geospatial data from one coordinate reference system to another.</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="fu">### Shapefile</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>Popular vector data format for GIS, consisting of multiple files (.shp, .shx, .dbf, .prj).</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spatial Join</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>Combining attributes from two geospatial datasets based on their spatial relationship (intersection, within, etc.).</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="fu">### Vector Data</span></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>Spatial data representing discrete features as points, lines, or polygons with associated attributes.</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Well-Known Text (WKT)</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>Text markup language for representing vector geometry and spatial reference systems.</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Satellite &amp; Sensor Terms</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Active Sensor</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>Sensor that emits its own energy and measures the reflected signal (e.g., SAR, LiDAR).</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="fu">### Aperture</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>Opening in a sensor that controls the amount of light collected, affecting image brightness and quality.</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="fu">### Atmospheric Correction</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>Processing step removing atmospheric effects (scattering, absorption) to retrieve surface reflectance.</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="fu">### C-band</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>Radar frequency band (4-8 GHz, wavelength 3.75-7.5 cm) used by Sentinel-1, good for vegetation and soil moisture.</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### Electromagnetic Spectrum</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>Range of all electromagnetic radiation wavelengths, from radio waves to gamma rays, including visible light.</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="fu">### Geometric Correction</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>Correcting image distortions caused by sensor viewing angle, terrain, and Earth's curvature.</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### Level 1C (L1C)</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>Sentinel-2 product with Top-of-Atmosphere (TOA) reflectance, geometrically corrected.</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Level 2A (L2A)</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>Sentinel-2 product with Bottom-of-Atmosphere (BOA) surface reflectance, atmospherically corrected.</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### LiDAR</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>Light Detection and Ranging - active sensor using laser pulses to measure distance, creating high-resolution 3D point clouds.</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="fu">### Multispectral</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>Imaging system capturing data in multiple (typically 3-15) wavelength bands across visible and infrared spectrum.</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### Near Infrared (NIR)</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>Electromagnetic radiation with wavelengths 0.7-1.4 μm, strongly reflected by healthy vegetation.</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### Optical Sensor</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>Passive sensor detecting reflected sunlight in visible and infrared wavelengths (e.g., Sentinel-2, Landsat).</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="fu">### Orbit</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>Path of a satellite around Earth, characterized by altitude, inclination, and period.</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### Panchromatic</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>Single-band imagery capturing all visible wavelengths, typically at higher spatial resolution than multispectral bands.</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Passive Sensor</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>Sensor detecting naturally available energy, typically reflected sunlight (e.g., optical cameras).</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="fu">### Polarization</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>Orientation of radar waves (HH, VV, HV, VH), providing information about surface structure and moisture.</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="fu">### Radiometric Calibration</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>Converting raw sensor digital numbers to physical units (radiance or reflectance).</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="fu">### SAR (Synthetic Aperture Radar)</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>Active microwave imaging system creating high-resolution images independent of sunlight and clouds.</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Short-Wave Infrared (SWIR)</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>Electromagnetic radiation with wavelengths 1.4-3.0 μm, useful for detecting moisture and minerals.</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spectral Resolution</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>Ability to distinguish between different wavelengths, determined by number and width of spectral bands.</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sun-Synchronous Orbit</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>Satellite orbit maintaining constant local solar time, ensuring consistent illumination conditions.</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### Swath Width</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>Width of the ground strip imaged by a satellite in a single pass (e.g., Sentinel-2 has 290 km swath).</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="fu">### Temporal Resolution</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>Frequency of repeat observations over the same location (synonymous with revisit time).</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### Thermal Infrared (TIR)</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>Electromagnetic radiation with wavelengths 8-14 μm, measuring heat emitted by Earth's surface.</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="fu">## Philippine EO Organizations</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="fu">### CoPhil Programme</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>EU-Philippines Copernicus Capacity Support Programme - partnership to strengthen Philippine EO capabilities, establish a Copernicus Mirror Site, and develop AI/ML capacity.</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### DENR</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>Department of Environment and Natural Resources - responsible for forest monitoring, land cover mapping, and natural resource management using EO data.</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### DOST</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>Department of Science and Technology - leads science and technology advancement, co-chairs CoPhil programme, operates PAGASA and ASTI.</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="fu">### DOST-ASTI</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>Advanced Science and Technology Institute - ICT research and development, AI platforms (SkAI-Pinas, DIMER, AIPI).</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### LiPAD</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>LiDAR Portal for Archiving and Distribution - repository of high-resolution elevation data for the Philippines.</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="fu">### NAMRIA</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>National Mapping and Resource Information Authority - official mapping agency, operates GeoPortal and Resource Data Analysis Center.</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDRRMC</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>National Disaster Risk Reduction and Management Council - coordinates disaster response, uses EO data for assessment and planning.</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### PAGASA</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>Philippine Atmospheric, Geophysical and Astronomical Services Administration - weather, climate, and astronomical services.</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="fu">### PhilGIS</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>Philippine GIS Data Clearinghouse - repository of geospatial datasets for the Philippines.</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="fu">### PhilSA</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>Philippine Space Agency - national space authority, co-chairs CoPhil programme, operates SIYASAT portal and develops Copernicus Mirror Site.</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="fu">### SIYASAT Portal</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>PhilSA's secure data archive for NovaSAR-1 data and maritime monitoring products.</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical Acronyms</span></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>Artificial Intelligence - computer systems performing tasks requiring human intelligence.</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="fu">### API</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>Application Programming Interface - set of functions allowing software to interact with services (e.g., Earth Engine Python API).</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="fu">### ASTER</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>Advanced Spaceborne Thermal Emission and Reflection Radiometer - NASA sensor providing multispectral imagery.</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### BOA</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>Bottom of Atmosphere - surface reflectance after atmospheric correction (Level 2A products).</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="fu">### CCA</span></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>Climate Change Adaptation - strategies and actions to adjust to climate change impacts.</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="fu">### CNN</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>Convolutional Neural Network - deep learning architecture for image analysis.</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="fu">### CRS</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>Coordinate Reference System - defines how coordinates relate to Earth's surface.</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="fu">### DEM</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>Digital Elevation Model - raster representation of terrain elevation.</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="fu">### DL</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>Deep Learning - subset of ML using multi-layer neural networks.</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="fu">### DRR</span></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>Disaster Risk Reduction - strategies to minimize disaster impacts.</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### EO</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>Earth Observation - gathering information about Earth through remote sensing.</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="fu">### ESA</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>European Space Agency - operates Copernicus Sentinel missions.</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### EVI</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>Enhanced Vegetation Index - vegetation index less sensitive to atmospheric effects than NDVI.</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="fu">### GEE</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>Google Earth Engine - cloud platform for planetary-scale geospatial analysis.</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a><span class="fu">### GIS</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>Geographic Information System - software for capturing, managing, and analyzing spatial data.</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="fu">### GPU</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>Graphics Processing Unit - hardware accelerating deep learning computations.</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### GNSS</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>Global Navigation Satellite System - satellite-based positioning (GPS, Galileo, GLONASS).</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="fu">### HDF</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>Hierarchical Data Format - file format for storing large scientific datasets.</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="fu">### IW</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>Interferometric Wide Swath - Sentinel-1 acquisition mode with 250 km swath.</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### JAXA</span></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>Japan Aerospace Exploration Agency - operates Japanese Earth observation satellites.</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### LiDAR</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>Light Detection and Ranging - laser-based remote sensing for elevation mapping.</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a><span class="fu">### LULC</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>Land Use Land Cover - classification of Earth's surface into categories (forest, urban, agriculture, etc.).</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="fu">### ML</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>Machine Learning - algorithms enabling systems to learn from data.</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="fu">### MODIS</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>Moderate Resolution Imaging Spectroradiometer - NASA sensor providing daily global coverage.</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="fu">### NASA</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>National Aeronautics and Space Administration - operates Landsat and other EO missions.</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDBI</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>Normalized Difference Built-up Index - spectral index for detecting built-up areas.</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDVI</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>Normalized Difference Vegetation Index - spectral index measuring vegetation health/density.</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDWI</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>Normalized Difference Water Index - spectral index for detecting water bodies.</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="fu">### NIR</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>Near Infrared - electromagnetic radiation beyond visible red (0.7-1.4 μm).</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="fu">### NRM</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>Natural Resource Management - sustainable management of natural resources using EO monitoring.</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="fu">### RGB</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>Red-Green-Blue - color model using three primary colors, or the corresponding image bands.</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="fu">### RF</span></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>Random Forest - ensemble machine learning algorithm using multiple decision trees.</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="fu">### RL</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>Reinforcement Learning - ML paradigm where agents learn through interaction with environment.</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="fu">### SAR</span></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>Synthetic Aperture Radar - active microwave imaging system.</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="fu">### SCL</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>Scene Classification Layer - Sentinel-2 cloud and land cover classification mask.</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="fu">### SNAP</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>Sentinel Application Platform - ESA's free software for processing Sentinel data.</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="fu">### SWIR</span></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>Short-Wave Infrared - electromagnetic radiation with wavelengths 1.4-3.0 μm.</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="fu">### SVM</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>Support Vector Machine - classification algorithm finding optimal separating hyperplane.</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="fu">### TIR</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>Thermal Infrared - electromagnetic radiation measuring surface temperature (8-14 μm).</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="fu">### TOA</span></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>Top of Atmosphere - apparent reflectance before atmospheric correction (Level 1C products).</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="fu">### USGS</span></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>United States Geological Survey - distributes Landsat and other EO data.</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="fu">### UTM</span></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>Universal Transverse Mercator - widely-used projected coordinate system dividing Earth into zones.</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="fu">### WGS84</span></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>World Geodetic System 1984 - global geographic coordinate system (EPSG:4326).</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spectral Indices</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDVI (Normalized Difference Vegetation Index)</span></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>**Formula:** (NIR - Red) / (NIR + Red)</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>**Range:** -1 to +1</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>**Interpretation:**</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>High values (0.6-0.9): Dense vegetation</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Moderate (0.2-0.5): Sparse vegetation</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Near zero: Bare soil, rock</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative: Water, clouds</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>**Sentinel-2 Bands:** (B8 - B4) / (B8 + B4)</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDWI (Normalized Difference Water Index)</span></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>**McFeeters Formula:** (Green - NIR) / (Green + NIR)</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>**Gao Formula:** (NIR - SWIR) / (NIR + SWIR)</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>**Range:** -1 to +1</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>**Interpretation:**</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Positive values: Water bodies</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative: Land surfaces</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>**Sentinel-2 (McFeeters):** (B3 - B8) / (B3 + B8)</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>**Sentinel-2 (Gao):** (B8 - B11) / (B8 + B11)</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="fu">### NDBI (Normalized Difference Built-up Index)</span></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>**Formula:** (SWIR - NIR) / (SWIR + NIR)</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>**Range:** -1 to +1</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>**Interpretation:**</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Positive values: Built-up areas</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative: Vegetation, water</span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>**Sentinel-2:** (B11 - B8) / (B11 + B8)</span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a><span class="fu">### EVI (Enhanced Vegetation Index)</span></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>**Formula:** 2.5 × ((NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1))</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>**Range:** -1 to +1</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>**Advantages:** Less sensitive to atmospheric effects and soil background than NDVI</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>**Sentinel-2:** 2.5 × ((B8 - B4) / (B8 + 6×B4 - 7.5×B2 + 1))</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick Reference Tables</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sentinel-2 Band Summary</span></span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Band <span class="pp">|</span> Name <span class="pp">|</span> Wavelength (nm) <span class="pp">|</span> Resolution (m) <span class="pp">|</span> Typical Use <span class="pp">|</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-----------------|----------------|-------------|</span></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B1 <span class="pp">|</span> Coastal aerosol <span class="pp">|</span> 443 <span class="pp">|</span> 60 <span class="pp">|</span> Atmospheric correction <span class="pp">|</span></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B2 <span class="pp">|</span> Blue <span class="pp">|</span> 490 <span class="pp">|</span> 10 <span class="pp">|</span> Bathymetry, soil/vegetation <span class="pp">|</span></span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B3 <span class="pp">|</span> Green <span class="pp">|</span> 560 <span class="pp">|</span> 10 <span class="pp">|</span> Peak vegetation sensitivity <span class="pp">|</span></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B4 <span class="pp">|</span> Red <span class="pp">|</span> 665 <span class="pp">|</span> 10 <span class="pp">|</span> Vegetation discrimination <span class="pp">|</span></span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B5 <span class="pp">|</span> Red Edge 1 <span class="pp">|</span> 705 <span class="pp">|</span> 20 <span class="pp">|</span> Vegetation health <span class="pp">|</span></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B6 <span class="pp">|</span> Red Edge 2 <span class="pp">|</span> 740 <span class="pp">|</span> 20 <span class="pp">|</span> Vegetation stress <span class="pp">|</span></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B7 <span class="pp">|</span> Red Edge 3 <span class="pp">|</span> 783 <span class="pp">|</span> 20 <span class="pp">|</span> Vegetation stress <span class="pp">|</span></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B8 <span class="pp">|</span> NIR <span class="pp">|</span> 842 <span class="pp">|</span> 10 <span class="pp">|</span> Biomass, water bodies <span class="pp">|</span></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B8A <span class="pp">|</span> Narrow NIR <span class="pp">|</span> 865 <span class="pp">|</span> 20 <span class="pp">|</span> Atmospheric correction <span class="pp">|</span></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B9 <span class="pp">|</span> Water vapor <span class="pp">|</span> 945 <span class="pp">|</span> 60 <span class="pp">|</span> Atmospheric correction <span class="pp">|</span></span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B11 <span class="pp">|</span> SWIR 1 <span class="pp">|</span> 1610 <span class="pp">|</span> 20 <span class="pp">|</span> Moisture, soil/vegetation <span class="pp">|</span></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B12 <span class="pp">|</span> SWIR 2 <span class="pp">|</span> 2190 <span class="pp">|</span> 20 <span class="pp">|</span> Moisture, burned areas <span class="pp">|</span></span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common CRS for Philippines</span></span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Name <span class="pp">|</span> EPSG Code <span class="pp">|</span> Type <span class="pp">|</span> Use Case <span class="pp">|</span></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|-----------|------|----------|</span></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> WGS84 <span class="pp">|</span> 4326 <span class="pp">|</span> Geographic <span class="pp">|</span> Global datasets, web maps <span class="pp">|</span></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> UTM Zone 50N <span class="pp">|</span> 32650 <span class="pp">|</span> Projected <span class="pp">|</span> Western Mindanao <span class="pp">|</span></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> UTM Zone 51N <span class="pp">|</span> 32651 <span class="pp">|</span> Projected <span class="pp">|</span> Luzon, Visayas, most of Philippines <span class="pp">|</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> UTM Zone 52N <span class="pp">|</span> 32652 <span class="pp">|</span> Projected <span class="pp">|</span> Eastern Mindanao <span class="pp">|</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> PRS92 <span class="pp">|</span> 4683 <span class="pp">|</span> Geographic <span class="pp">|</span> Philippine Reference System <span class="pp">|</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related Resources</span></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>For more detailed information:</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Setup Guide</span><span class="co">](setup.qmd)</span> - Technical setup instructions</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Cheat Sheets</span><span class="co">](cheatsheets.qmd)</span> - Quick reference commands</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">FAQ</span><span class="co">](faq.qmd)</span> - Common questions and troubleshooting</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Philippine EO Resources</span><span class="co">](philippine-eo.qmd)</span> - Organizations and platforms</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>*This glossary will be expanded in subsequent training days. Suggest additional terms via training@philsa.gov.ph*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CoPhil EO AI/ML Training Programme</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Funded by the European Union - Global Gateway Initiative</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:info@philsa.gov.ph">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://philsa.gov.ph">
+      <i class="bi bi-globe" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

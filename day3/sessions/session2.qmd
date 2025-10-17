@@ -1,0 +1,1416 @@
+---
+title: "Session 2: Hands-on Flood Mapping with U-Net and Sentinel-1 SAR"
+subtitle: "Practical Implementation for Disaster Risk Reduction"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 3</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 2</span>
+</nav>
+
+::: {.hero}
+# Hands-on Lab: Flood Mapping with U-Net
+
+### Applying Deep Learning to Philippine Disaster Response
+
+Implement semantic segmentation for real-world flood extent mapping using Sentinel-1 SAR data
+:::
+
+## Lab Overview
+
+::: {.session-info}
+**Duration:** 2.5 hours | **Format:** Hands-on Coding Lab | **Platform:** Google Colab with GPU
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/session2_flood_mapping_lab.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+This hands-on session puts the U-Net concepts from Session 1 into practice. You'll build, train, and evaluate a complete flood mapping system using real Sentinel-1 SAR data from a major typhoon event in Central Luzon, Philippines. By the end, you'll have a trained model capable of automatically detecting flood extent from satellite imagery.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this lab, you will be able to:
+
+- **Load and preprocess** Sentinel-1 SAR data for deep learning segmentation
+- **Implement** the U-Net architecture in TensorFlow/PyTorch
+- **Train** a segmentation model with appropriate loss functions (Dice, Combined)
+- **Evaluate** performance using IoU, F1-score, precision, and recall metrics
+- **Visualize** flood predictions and interpret model outputs
+- **Identify** common challenges and debugging strategies
+- **Export** results for GIS integration and operational use
+:::
+
+---
+
+## Case Study: Central Luzon Flood Mapping
+
+::: {.callout-note}
+## Philippine Disaster Context
+
+**Location:** Pampanga River Basin, Central Luzon  
+**Event:** Typhoon Ulysses (Vamco) - November 2020  
+**Impact:** Severe flooding across Bulacan, Pampanga, and surrounding provinces
+
+**Why This Matters:**
+Central Luzon experiences recurring flood events during typhoon season. Rapid, accurate flood extent mapping is critical for:
+- **Emergency response** - Identifying affected communities
+- **Resource allocation** - Directing relief operations
+- **Damage assessment** - Quantifying impact for recovery planning
+- **Early warning** - Improving future prediction systems
+
+**Data Source:** Sentinel-1 SAR (Synthetic Aperture Radar)
+- **Advantage:** Cloud-penetrating capability (works day/night, through clouds)
+- **Resolution:** 10m Ground Range Detected (GRD)
+- **Polarizations:** VV and VH (dual-polarization)
+:::
+
+### The Challenge
+
+Traditional flood mapping methods are slow and labor-intensive. Deep learning with U-Net enables:
+- **Automated detection** from raw SAR imagery
+- **Rapid processing** of large areas within hours
+- **Consistent methodology** across multiple events
+- **Scalable approach** for operational disaster response
+
+---
+
+## Lab Workflow
+
+This hands-on lab follows an 8-step workflow:
+
+```{mermaid}
+%%| fig-cap: "Flood Mapping Workflow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[1. Setup & Data Loading] --> B[2. Data Exploration]
+    B --> C[3. Preprocessing]
+    C --> D[4. U-Net Architecture]
+    D --> E[5. Model Training]
+    E --> F[6. Evaluation]
+    F --> G[7. Visualization]
+    G --> H[8. Export for GIS]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style E fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style H fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+```
+
+---
+
+## Prerequisites and Setup
+
+### Before You Begin
+
+::: {.callout-warning}
+## Required Setup
+
+**Platform:** Google Colab (free tier with GPU)
+
+**Checklist:**
+- [ ] Google account with access to Google Colab
+- [ ] Google Drive with ~500MB free space
+- [ ] Basic Python and NumPy knowledge (from Day 1)
+- [ ] Understanding of U-Net architecture (from Session 1)
+
+**Estimated Total Time:** 2.5 hours (including training time)
+:::
+
+### Access the Notebook
+
+**Option 1: Open in Colab** (Recommended)
+```
+https://colab.research.google.com/drive/[NOTEBOOK_ID]
+```
+
+**Option 2: Download and Upload**
+- Download: [`Day3_Session2_Flood_Mapping_UNet.ipynb`](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb)
+- Upload to your Google Drive
+- Open with Google Colab
+
+### Enable GPU
+
+::: {.callout-tip}
+## GPU Acceleration Required
+
+1. In Colab: **Runtime** → **Change runtime type**
+2. Select **Hardware accelerator:** GPU (T4 or better)
+3. Click **Save**
+4. Verify GPU: Run `!nvidia-smi` in a cell
+
+**Why GPU?** Training U-Net on CPU would take 4-6 hours. With GPU: 15-30 minutes.
+:::
+
+---
+
+## Step 1: Setup and Data Loading
+
+### Import Libraries
+
+The first step in any deep learning project is importing the necessary libraries:
+
+```python
+# Standard libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+from glob import glob
+import random
+
+# Deep learning framework (TensorFlow/Keras)
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers, models, callbacks
+
+# Metrics and evaluation
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+import seaborn as sns
+
+# Set random seeds for reproducibility
+np.random.seed(42)
+tf.random.set_seed(42)
+random.seed(42)
+
+print(f\"TensorFlow version: {tf.__version__}\")
+print(f\"GPU Available: {tf.config.list_physical_devices('GPU')}\")
+```
+
+### Mount Google Drive
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+### Download Dataset
+
+::: {.callout-note}
+## Dataset Information
+
+**Size:** ~450MB compressed  
+**Contents:** 
+- ~800 training image patches (256×256, VV+VH)
+- ~200 validation patches
+- ~200 test patches
+- Binary flood masks for all patches
+
+**Pre-processing Applied:**
+- Speckle filtering (Lee filter, 7×7 window)
+- Radiometric calibration to σ0 (dB)
+- Geometric terrain correction
+- Resampling to 10m resolution
+:::
+
+```python
+# Dataset download (example - replace with actual URL)
+!wget -O flood_dataset.zip "https://[DATASET_URL]/flood_mapping_central_luzon.zip"
+!unzip -q flood_dataset.zip -d /content/data/
+
+# Dataset structure
+DATA_DIR = "/content/data/flood_mapping_dataset"
+print("Dataset structure:")
+!tree -L 2 {DATA_DIR}
+```
+
+---
+
+## Step 2: Data Exploration
+
+### Load Sample Data
+
+Understanding your data is crucial before training. Let's explore the SAR imagery and flood masks:
+
+```python
+def load_sample_data(data_dir, subset='train', n_samples=5):
+    """Load sample SAR images and masks"""
+    img_dir = os.path.join(data_dir, subset, 'images')
+    mask_dir = os.path.join(data_dir, subset, 'masks')
+    
+    img_files = sorted(glob(os.path.join(img_dir, '*.npy')))[:n_samples]
+    mask_files = sorted(glob(os.path.join(mask_dir, '*.npy')))[:n_samples]
+    
+    images = [np.load(f) for f in img_files]
+    masks = [np.load(f) for f in mask_files]
+    
+    return np.array(images), np.array(masks)
+
+# Load samples
+sample_images, sample_masks = load_sample_data(DATA_DIR, 'train', n_samples=5)
+print(f"Sample images shape: {sample_images.shape}")  # (5, 256, 256, 2)
+print(f"Sample masks shape: {sample_masks.shape}")    # (5, 256, 256, 1)
+```
+
+### Visualize SAR Data
+
+::: {.callout-tip}
+## Understanding SAR Backscatter
+
+**VV Polarization:** Vertical transmit, vertical receive
+- Better for detecting open water (low backscatter)
+- Values typically -30 to 10 dB
+
+**VH Polarization:** Vertical transmit, horizontal receive  
+- Sensitive to volume scattering (vegetation, urban areas)
+- Helps distinguish water from wet soil
+
+**Flood Detection:** Flooded areas appear **dark** (low backscatter) in both polarizations
+:::
+
+```python
+def visualize_sar_samples(images, masks, n_samples=3):
+    """Visualize SAR images (VV, VH) and flood masks"""
+    fig, axes = plt.subplots(n_samples, 4, figsize=(16, n_samples*4))
+    
+    for i in range(n_samples):
+        # VV polarization
+        axes[i, 0].imshow(images[i, :, :, 0], cmap='gray', vmin=-25, vmax=5)
+        axes[i, 0].set_title(f'Sample {i+1}: VV (dB)')
+        axes[i, 0].axis('off')
+        
+        # VH polarization
+        axes[i, 1].imshow(images[i, :, :, 1], cmap='gray', vmin=-30, vmax=0)
+        axes[i, 1].set_title(f'Sample {i+1}: VH (dB)')
+        axes[i, 1].axis('off')
+        
+        # Flood mask (ground truth)
+        axes[i, 2].imshow(masks[i, :, :, 0], cmap='Blues', vmin=0, vmax=1)
+        axes[i, 2].set_title(f'Ground Truth Mask')
+        axes[i, 2].axis('off')
+        
+        # Overlay on VV
+        overlay = images[i, :, :, 0].copy()
+        overlay_rgb = plt.cm.gray((overlay + 25) / 30)[:, :, :3]
+        mask_overlay = masks[i, :, :, 0]
+        overlay_rgb[mask_overlay > 0.5] = [0, 0.5, 1]  # Blue for flood
+        axes[i, 3].imshow(overlay_rgb)
+        axes[i, 3].set_title(f'Overlay: Flood in Blue')
+        axes[i, 3].axis('off')
+    
+    plt.tight_layout()
+    plt.show()
+
+visualize_sar_samples(sample_images, sample_masks, n_samples=3)
+```
+
+### Data Statistics
+
+```python
+print("SAR Data Statistics:")
+print(f"VV min: {sample_images[:,:,:,0].min():.2f} dB")
+print(f"VV max: {sample_images[:,:,:,0].max():.2f} dB")
+print(f"VV mean: {sample_images[:,:,:,0].mean():.2f} dB")
+print(f"VH min: {sample_images[:,:,:,1].min():.2f} dB")
+print(f"VH max: {sample_images[:,:,:,1].max():.2f} dB")
+print(f"VH mean: {sample_images[:,:,:,1].mean():.2f} dB")
+
+print("\nFlood Mask Statistics:")
+flood_ratio = sample_masks.mean() * 100
+print(f"Flood pixels: {flood_ratio:.2f}%")
+print(f"Non-flood pixels: {100-flood_ratio:.2f}%")
+print(f"Class imbalance ratio: 1:{(100-flood_ratio)/flood_ratio:.1f}")
+```
+
+---
+
+## Step 3: Data Preprocessing
+
+### Normalization Strategy
+
+SAR data requires proper normalization for neural network training:
+
+```python
+def normalize_sar(image, method='minmax'):
+    """
+    Normalize SAR backscatter values
+    
+    Methods:
+    - 'minmax': Scale to [0, 1] based on typical SAR range
+    - 'zscore': Standardize to mean=0, std=1
+    """
+    if method == 'minmax':
+        # Typical SAR range: -30 to 10 dB
+        vv_normalized = (image[:, :, 0] + 30) / 40  # Scale VV
+        vh_normalized = (image[:, :, 1] + 35) / 35  # Scale VH
+        return np.stack([vv_normalized, vh_normalized], axis=-1)
+    
+    elif method == 'zscore':
+        # Standardize each channel
+        mean = image.mean(axis=(0, 1), keepdims=True)
+        std = image.std(axis=(0, 1), keepdims=True)
+        return (image - mean) / (std + 1e-8)
+
+# Test normalization
+normalized_sample = normalize_sar(sample_images[0], method='minmax')
+print(f"Normalized range: [{normalized_sample.min():.3f}, {normalized_sample.max():.3f}]")
+```
+
+### Data Augmentation
+
+::: {.callout-important}
+## Critical: Augment Image AND Mask Together
+
+For segmentation, **both the image and mask must receive identical transformations**. Augmenting only the image will cause misalignment.
+:::
+
+```python
+def augment_data(image, mask, augment=True):
+    """Apply data augmentation to image and mask"""
+    if not augment:
+        return image, mask
+    
+    # Random horizontal flip
+    if np.random.random() > 0.5:
+        image = np.fliplr(image)
+        mask = np.fliplr(mask)
+    
+    # Random vertical flip
+    if np.random.random() > 0.5:
+        image = np.flipud(image)
+        mask = np.flipud(mask)
+    
+    # Random 90-degree rotations (valid for nadir satellite views)
+    k = np.random.randint(0, 4)  # 0, 90, 180, 270 degrees
+    image = np.rot90(image, k)
+    mask = np.rot90(mask, k)
+    
+    return image, mask
+```
+
+### Create TensorFlow Datasets
+
+```python
+def create_tf_dataset(data_dir, subset='train', batch_size=16, augment=False):
+    """Create TensorFlow dataset with preprocessing"""
+    img_dir = os.path.join(data_dir, subset, 'images')
+    mask_dir = os.path.join(data_dir, subset, 'masks')
+    
+    img_files = sorted(glob(os.path.join(img_dir, '*.npy')))
+    mask_files = sorted(glob(os.path.join(mask_dir, '*.npy')))
+    
+    def load_and_preprocess(img_path, mask_path):
+        # Load
+        img = np.load(img_path.numpy().decode('utf-8'))
+        mask = np.load(mask_path.numpy().decode('utf-8'))
+        
+        # Normalize
+        img = normalize_sar(img, method='minmax')
+        
+        # Augment
+        if augment:
+            img, mask = augment_data(img, mask, augment=True)
+        
+        return img.astype(np.float32), mask.astype(np.float32)
+    
+    dataset = tf.data.Dataset.from_tensor_slices((img_files, mask_files))
+    dataset = dataset.map(
+        lambda x, y: tf.py_function(
+            load_and_preprocess, [x, y], [tf.float32, tf.float32]
+        ),
+        num_parallel_calls=tf.data.AUTOTUNE
+    )
+    dataset = dataset.batch(batch_size)
+    dataset = dataset.prefetch(tf.data.AUTOTUNE)
+    
+    return dataset
+
+# Create datasets
+BATCH_SIZE = 16
+
+train_dataset = create_tf_dataset(DATA_DIR, 'train', BATCH_SIZE, augment=True)
+val_dataset = create_tf_dataset(DATA_DIR, 'val', BATCH_SIZE, augment=False)
+test_dataset = create_tf_dataset(DATA_DIR, 'test', BATCH_SIZE, augment=False)
+
+print(f"Train batches: {len(list(train_dataset))}")
+print(f"Val batches: {len(list(val_dataset))}")
+print(f"Test batches: {len(list(test_dataset))}")
+```
+
+---
+
+## Step 4: U-Net Model Implementation
+
+Now we'll implement the U-Net architecture from Session 1. This is where theory meets practice.
+
+### Define Model Architecture
+
+```python
+def unet_model(input_shape=(256, 256, 2), num_classes=1):
+    """
+    U-Net architecture for binary flood segmentation
+    
+    Args:
+        input_shape: (height, width, channels) - (256, 256, 2) for VV+VH
+        num_classes: 1 for binary segmentation (sigmoid output)
+    
+    Returns:
+        Keras Model
+    """
+    inputs = keras.Input(shape=input_shape)
+    
+    # Encoder (Contracting Path)
+    # Block 1
+    c1 = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
+    c1 = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(c1)
+    p1 = layers.MaxPooling2D((2, 2))(c1)
+    
+    # Block 2
+    c2 = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(p1)
+    c2 = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(c2)
+    p2 = layers.MaxPooling2D((2, 2))(c2)
+    
+    # Block 3
+    c3 = layers.Conv2D(256, (3, 3), activation='relu', padding='same')(p2)
+    c3 = layers.Conv2D(256, (3, 3), activation='relu', padding='same')(c3)
+    p3 = layers.MaxPooling2D((2, 2))(c3)
+    
+    # Block 4
+    c4 = layers.Conv2D(512, (3, 3), activation='relu', padding='same')(p3)
+    c4 = layers.Conv2D(512, (3, 3), activation='relu', padding='same')(c4)
+    p4 = layers.MaxPooling2D((2, 2))(c4)
+    
+    # Bottleneck
+    c5 = layers.Conv2D(1024, (3, 3), activation='relu', padding='same')(p4)
+    c5 = layers.Conv2D(1024, (3, 3), activation='relu', padding='same')(c5)
+    
+    # Decoder (Expansive Path)
+    # Block 6
+    u6 = layers.Conv2DTranspose(512, (2, 2), strides=(2, 2), padding='same')(c5)
+    u6 = layers.concatenate([u6, c4])  # Skip connection
+    c6 = layers.Conv2D(512, (3, 3), activation='relu', padding='same')(u6)
+    c6 = layers.Conv2D(512, (3, 3), activation='relu', padding='same')(c6)
+    
+    # Block 7
+    u7 = layers.Conv2DTranspose(256, (2, 2), strides=(2, 2), padding='same')(c6)
+    u7 = layers.concatenate([u7, c3])  # Skip connection
+    c7 = layers.Conv2D(256, (3, 3), activation='relu', padding='same')(u7)
+    c7 = layers.Conv2D(256, (3, 3), activation='relu', padding='same')(c7)
+    
+    # Block 8
+    u8 = layers.Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(c7)
+    u8 = layers.concatenate([u8, c2])  # Skip connection
+    c8 = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(u8)
+    c8 = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(c8)
+    
+    # Block 9
+    u9 = layers.Conv2DTranspose(64, (2, 2), strides=(2, 2), padding='same')(c8)
+    u9 = layers.concatenate([u9, c1])  # Skip connection
+    c9 = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(u9)
+    c9 = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(c9)
+    
+    # Output layer
+    outputs = layers.Conv2D(num_classes, (1, 1), activation='sigmoid')(c9)
+    
+    model = keras.Model(inputs=[inputs], outputs=[outputs], name='U-Net')
+    return model
+
+# Build model
+model = unet_model(input_shape=(256, 256, 2), num_classes=1)
+model.summary()
+```
+
+### Loss Functions
+
+Implementing the loss functions from Session 1:
+
+```python
+def dice_coefficient(y_true, y_pred, smooth=1e-6):
+    """Dice coefficient for evaluation"""
+    y_true_f = tf.keras.backend.flatten(y_true)
+    y_pred_f = tf.keras.backend.flatten(y_pred)
+    intersection = tf.keras.backend.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (tf.keras.backend.sum(y_true_f) + tf.keras.backend.sum(y_pred_f) + smooth)
+
+def dice_loss(y_true, y_pred):
+    """Dice loss for training"""
+    return 1 - dice_coefficient(y_true, y_pred)
+
+def combined_loss(y_true, y_pred):
+    """Combined Binary Cross-Entropy + Dice Loss"""
+    bce = tf.keras.losses.binary_crossentropy(y_true, y_pred)
+    dice = dice_loss(y_true, y_pred)
+    return 0.5 * bce + 0.5 * dice
+
+def iou_score(y_true, y_pred, smooth=1e-6):
+    """IoU metric (Intersection over Union)"""
+    y_true_f = tf.keras.backend.flatten(y_true)
+    y_pred_f = tf.keras.backend.flatten(y_pred)
+    intersection = tf.keras.backend.sum(y_true_f * y_pred_f)
+    union = tf.keras.backend.sum(y_true_f) + tf.keras.backend.sum(y_pred_f) - intersection
+    return (intersection + smooth) / (union + smooth)
+```
+
+---
+
+## Step 5: Model Training
+
+### Compile Model
+
+```python
+# Compile with combined loss
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-4),
+    loss=combined_loss,
+    metrics=['accuracy', dice_coefficient, iou_score]
+)
+```
+
+### Setup Callbacks
+
+```python
+# Create directories
+os.makedirs('/content/models', exist_ok=True)
+os.makedirs('/content/logs', exist_ok=True)
+
+# Callbacks for training
+checkpoint_cb = callbacks.ModelCheckpoint(
+    '/content/models/unet_flood_best.h5',
+    monitor='val_iou_score',
+    mode='max',
+    save_best_only=True,
+    verbose=1
+)
+
+early_stop_cb = callbacks.EarlyStopping(
+    monitor='val_loss',
+    patience=10,
+    restore_best_weights=True,
+    verbose=1
+)
+
+reduce_lr_cb = callbacks.ReduceLROnPlateau(
+    monitor='val_loss',
+    factor=0.5,
+    patience=5,
+    min_lr=1e-7,
+    verbose=1
+)
+
+tensorboard_cb = callbacks.TensorBoard(
+    log_dir='/content/logs',
+    histogram_freq=1
+)
+
+callback_list = [checkpoint_cb, early_stop_cb, reduce_lr_cb, tensorboard_cb]
+```
+
+### Train the Model
+
+::: {.callout-warning}
+## Training Time Estimate
+
+- **With GPU (T4):** 15-25 minutes for 50 epochs
+- **With CPU:** 4-6 hours (not recommended)
+
+The model will likely converge in 20-30 epochs with early stopping.
+:::
+
+```python
+# Train model
+EPOCHS = 50
+
+history = model.fit(
+    train_dataset,
+    validation_data=val_dataset,
+    epochs=EPOCHS,
+    callbacks=callback_list,
+    verbose=1
+)
+```
+
+### Visualize Training History
+
+```python
+def plot_training_history(history):
+    """Plot training and validation metrics"""
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    
+    # Loss
+    axes[0, 0].plot(history.history['loss'], label='Train Loss')
+    axes[0, 0].plot(history.history['val_loss'], label='Val Loss')
+    axes[0, 0].set_title('Model Loss')
+    axes[0, 0].set_xlabel('Epoch')
+    axes[0, 0].set_ylabel('Loss')
+    axes[0, 0].legend()
+    axes[0, 0].grid(True)
+    
+    # Dice Coefficient
+    axes[0, 1].plot(history.history['dice_coefficient'], label='Train Dice')
+    axes[0, 1].plot(history.history['val_dice_coefficient'], label='Val Dice')
+    axes[0, 1].set_title('Dice Coefficient')
+    axes[0, 1].set_xlabel('Epoch')
+    axes[0, 1].set_ylabel('Dice')
+    axes[0, 1].legend()
+    axes[0, 1].grid(True)
+    
+    # IoU Score
+    axes[1, 0].plot(history.history['iou_score'], label='Train IoU')
+    axes[1, 0].plot(history.history['val_iou_score'], label='Val IoU')
+    axes[0, 1].set_title('IoU Score')
+    axes[1, 0].set_xlabel('Epoch')
+    axes[1, 0].set_ylabel('IoU')
+    axes[1, 0].legend()
+    axes[1, 0].grid(True)
+    
+    # Accuracy
+    axes[1, 1].plot(history.history['accuracy'], label='Train Acc')
+    axes[1, 1].plot(history.history['val_accuracy'], label='Val Acc')
+    axes[1, 1].set_title('Pixel Accuracy')
+    axes[1, 1].set_xlabel('Epoch')
+    axes[1, 1].set_ylabel('Accuracy')
+    axes[1, 1].legend()
+    axes[1, 1].grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+
+plot_training_history(history)
+```
+
+---
+
+## Step 6: Model Evaluation
+
+### Load Best Model
+
+After training completes, load the best model weights (saved by ModelCheckpoint):
+
+```python
+# Load the best model
+best_model = keras.models.load_model(
+    '/content/models/unet_flood_best.h5',
+    custom_objects={
+        'combined_loss': combined_loss,
+        'dice_coefficient': dice_coefficient,
+        'iou_score': iou_score
+    }
+)
+
+print("✓ Best model loaded successfully")
+```
+
+### Evaluate on Test Set
+
+```python
+# Evaluate on test dataset
+test_results = best_model.evaluate(test_dataset, verbose=1)
+
+print("\n" + "="*50)
+print("TEST SET RESULTS")
+print("="*50)
+print(f"Loss: {test_results[0]:.4f}")
+print(f"Pixel Accuracy: {test_results[1]:.4f}")
+print(f"Dice Coefficient: {test_results[2]:.4f}")
+print(f"IoU Score: {test_results[3]:.4f}")
+print("="*50)
+```
+
+### Detailed Metrics Calculation
+
+Calculate per-class precision, recall, and F1-score:
+
+```python
+def calculate_detailed_metrics(model, dataset):
+    """Calculate comprehensive segmentation metrics"""
+    y_true_all = []
+    y_pred_all = []
+    
+    for images, masks in dataset:
+        predictions = model.predict(images, verbose=0)
+        y_true_all.append(masks.numpy().flatten())
+        y_pred_all.append((predictions > 0.5).astype(np.float32).flatten())
+    
+    y_true = np.concatenate(y_true_all)
+    y_pred = np.concatenate(y_pred_all)
+    
+    # Calculate metrics
+    from sklearn.metrics import precision_score, recall_score, f1_score
+    
+    precision = precision_score(y_true, y_pred, zero_division=0)
+    recall = recall_score(y_true, y_pred, zero_division=0)
+    f1 = f1_score(y_true, y_pred, zero_division=0)
+    
+    # Confusion matrix components
+    tp = np.sum((y_true == 1) & (y_pred == 1))
+    tn = np.sum((y_true == 0) & (y_pred == 0))
+    fp = np.sum((y_true == 0) & (y_pred == 1))
+    fn = np.sum((y_true == 1) & (y_pred == 0))
+    
+    return {
+        'precision': precision,
+        'recall': recall,
+        'f1_score': f1,
+        'true_positives': tp,
+        'true_negatives': tn,
+        'false_positives': fp,
+        'false_negatives': fn
+    }
+
+# Calculate metrics
+metrics = calculate_detailed_metrics(best_model, test_dataset)
+
+print("\nDETAILED METRICS (Flood Class)")
+print("="*50)
+print(f"Precision: {metrics['precision']:.4f}")
+print(f"Recall: {metrics['recall']:.4f}")
+print(f"F1-Score: {metrics['f1_score']:.4f}")
+print(f"\nTrue Positives: {metrics['true_positives']:,}")
+print(f"True Negatives: {metrics['true_negatives']:,}")
+print(f"False Positives: {metrics['false_positives']:,}")
+print(f"False Negatives: {metrics['false_negatives']:,}")
+```
+
+### Confusion Matrix
+
+```python
+def plot_confusion_matrix(metrics):
+    """Plot confusion matrix"""
+    cm = np.array([
+        [metrics['true_negatives'], metrics['false_positives']],
+        [metrics['false_negatives'], metrics['true_positives']]
+    ])
+    
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt=',d', cmap='Blues', 
+                xticklabels=['Non-Flood', 'Flood'],
+                yticklabels=['Non-Flood', 'Flood'])
+    plt.title('Confusion Matrix - Flood Detection')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    plt.show()
+
+plot_confusion_matrix(metrics)
+```
+
+::: {.callout-note}
+## Interpreting Results
+
+**Good Performance Indicators:**
+- **IoU > 0.70:** Strong overlap between prediction and ground truth
+- **High Precision:** Few false alarms (predicted flood where there's none)
+- **High Recall:** Catches most actual floods (few missed floods)
+- **F1 > 0.75:** Balanced performance
+
+**For Disaster Response:**
+- **Precision matters:** Avoid sending resources to non-flooded areas
+- **Recall matters more:** Don't miss flooded communities needing help
+- Trade-off depends on operational priorities
+:::
+
+---
+
+## Step 7: Visualization and Interpretation
+
+### Predict on Test Samples
+
+```python
+def visualize_predictions(model, dataset, n_samples=5):
+    """Visualize model predictions vs ground truth"""
+    # Get samples
+    images, masks = next(iter(dataset))
+    predictions = model.predict(images[:n_samples], verbose=0)
+    
+    fig, axes = plt.subplots(n_samples, 4, figsize=(20, n_samples*5))
+    
+    for i in range(n_samples):
+        # Original SAR VV
+        axes[i, 0].imshow(images[i, :, :, 0], cmap='gray', vmin=0, vmax=1)
+        axes[i, 0].set_title(f'SAR VV (Normalized)')
+        axes[i, 0].axis('off')
+        
+        # Ground Truth
+        axes[i, 1].imshow(masks[i, :, :, 0], cmap='Blues', vmin=0, vmax=1)
+        axes[i, 1].set_title('Ground Truth Mask')
+        axes[i, 1].axis('off')
+        
+        # Prediction
+        axes[i, 2].imshow(predictions[i, :, :, 0], cmap='Blues', vmin=0, vmax=1)
+        axes[i, 2].set_title(f'Prediction (IoU: {iou_score(masks[i:i+1], predictions[i:i+1]).numpy():.3f})')
+        axes[i, 2].axis('off')
+        
+        # Overlay: Green=Correct, Red=FP, Yellow=FN
+        overlay = np.zeros((256, 256, 3))
+        gt = masks[i, :, :, 0] > 0.5
+        pred = predictions[i, :, :, 0] > 0.5
+        
+        # True Positives (Green)
+        overlay[gt & pred] = [0, 1, 0]
+        # False Positives (Red)
+        overlay[~gt & pred] = [1, 0, 0]
+        # False Negatives (Yellow)
+        overlay[gt & ~pred] = [1, 1, 0]
+        
+        axes[i, 3].imshow(overlay)
+        axes[i, 3].set_title('Overlay: Green=TP, Red=FP, Yellow=FN')
+        axes[i, 3].axis('off')
+    
+    plt.tight_layout()
+    plt.show()
+
+visualize_predictions(best_model, test_dataset, n_samples=5)
+```
+
+### Error Analysis
+
+```python
+def analyze_errors(model, dataset):
+    """Analyze common error patterns"""
+    total_samples = 0
+    high_iou = 0  # IoU > 0.8
+    medium_iou = 0  # 0.5 < IoU <= 0.8
+    low_iou = 0  # IoU <= 0.5
+    
+    for images, masks in dataset:
+        predictions = model.predict(images, verbose=0)
+        
+        for i in range(len(images)):
+            iou = iou_score(masks[i:i+1], predictions[i:i+1]).numpy()
+            total_samples += 1
+            
+            if iou > 0.8:
+                high_iou += 1
+            elif iou > 0.5:
+                medium_iou += 1
+            else:
+                low_iou += 1
+    
+    print(f"\nERROR ANALYSIS (n={total_samples} patches)")
+    print("="*50)
+    print(f"High Quality (IoU > 0.8): {high_iou} ({high_iou/total_samples*100:.1f}%)")
+    print(f"Medium Quality (0.5 < IoU ≤ 0.8): {medium_iou} ({medium_iou/total_samples*100:.1f}%)")
+    print(f"Poor Quality (IoU ≤ 0.5): {low_iou} ({low_iou/total_samples*100:.1f}%)")
+    print("="*50)
+
+analyze_errors(best_model, test_dataset)
+```
+
+::: {.callout-tip}
+## Common Error Patterns
+
+**False Positives (Red areas):**
+- Wet soil after rain (similar backscatter to water)
+- Shadows in mountainous terrain
+- Very calm water bodies (pre-flood)
+
+**False Negatives (Yellow areas):**
+- Flooded vegetation (volume scattering increases backscatter)
+- Mixed pixels at flood boundaries
+- Speckle noise in SAR data
+
+**Improvement Strategies:**
+- Use multi-temporal data (before/after comparison)
+- Incorporate DEM (elevation-based flood likelihood)
+- Ensemble multiple models
+- Post-processing with GIS constraints
+:::
+
+---
+
+## Step 8: Export and GIS Integration
+
+### Save Trained Model
+
+```python
+# Save model in different formats
+best_model.save('/content/models/unet_flood_final.h5')  # Full model
+best_model.save('/content/models/unet_flood_final.keras')  # New Keras format
+
+# Save to Google Drive for persistence
+!cp /content/models/unet_flood_final.h5 /content/drive/MyDrive/flood_mapping/
+
+print("✓ Model saved successfully")
+```
+
+### Export Predictions
+
+```python
+def export_predictions(model, dataset, output_dir='/content/outputs'):
+    """Export predictions as NumPy arrays"""
+    os.makedirs(output_dir, exist_ok=True)
+    
+    batch_idx = 0
+    for images, masks in dataset:
+        predictions = model.predict(images, verbose=0)
+        
+        for i in range(len(images)):
+            # Save prediction
+            pred_file = os.path.join(output_dir, f'prediction_{batch_idx:04d}.npy')
+            np.save(pred_file, predictions[i])
+            
+            # Save binary mask (threshold at 0.5)
+            binary_file = os.path.join(output_dir, f'binary_mask_{batch_idx:04d}.npy')
+            binary_mask = (predictions[i] > 0.5).astype(np.uint8)
+            np.save(binary_file, binary_mask)
+            
+            batch_idx += 1
+    
+    print(f"✓ Exported {batch_idx} predictions to {output_dir}")
+
+export_predictions(best_model, test_dataset)
+```
+
+### Create Flood Polygons (Conceptual)
+
+::: {.callout-note}
+## GIS Integration Workflow
+
+**For operational use, follow these steps:**
+
+1. **Georeferencing:**
+   - Match predictions back to original SAR geocoordinates
+   - Use metadata from Sentinel-1 GRD products
+
+2. **Vectorization:**
+   ```python
+   # Pseudocode - requires rasterio and geopandas
+   import rasterio
+   from rasterio.features import shapes
+   import geopandas as gpd
+   
+   # Convert binary mask to polygons
+   mask = (prediction > 0.5).astype(np.uint8)
+   shapes_gen = shapes(mask, transform=affine_transform)
+   polygons = [shape(s) for s, v in shapes_gen if v == 1]
+   
+   # Create GeoDataFrame
+   gdf = gpd.GeoDataFrame({'geometry': polygons}, crs='EPSG:4326')
+   gdf.to_file('flood_extent.geojson')
+   ```
+
+3. **Export Formats:**
+   - **GeoTIFF:** Raster format for GIS software
+   - **Shapefile/GeoJSON:** Vector format for flood polygons
+   - **KML:** For Google Earth visualization
+
+4. **Integration with QGIS/ArcGIS:**
+   - Load flood extent layer
+   - Overlay with administrative boundaries
+   - Calculate affected area and population
+   - Generate maps for disaster response teams
+:::
+
+### Download Results
+
+```python
+# Zip outputs for download
+!zip -r /content/flood_mapping_results.zip /content/outputs /content/models
+
+# Copy to Google Drive
+!cp /content/flood_mapping_results.zip /content/drive/MyDrive/
+
+print("✓ Results ready for download from Google Drive")
+```
+
+---
+
+## Troubleshooting Guide
+
+### Common Issues and Solutions
+
+::: {.callout-warning}
+## Issue 1: Out of Memory (OOM) Errors
+
+**Symptoms:**
+- "ResourceExhaustedError: OOM when allocating tensor"
+- Training crashes during forward/backward pass
+
+**Solutions:**
+1. **Reduce batch size:**
+   ```python
+   BATCH_SIZE = 8  # Instead of 16
+   ```
+
+2. **Use mixed precision training:**
+   ```python
+   from tensorflow.keras import mixed_precision
+   policy = mixed_precision.Policy('mixed_float16')
+   mixed_precision.set_global_policy(policy)
+   ```
+
+3. **Clear memory between runs:**
+   ```python
+   from tensorflow.keras import backend as K
+   K.clear_session()
+   ```
+
+4. **Use smaller model:**
+   - Reduce filters in U-Net layers (64→32, 128→64, etc.)
+:::
+
+::: {.callout-warning}
+## Issue 2: Model Not Learning (Loss Plateau)
+
+**Symptoms:**
+- Loss stuck at high value (>0.5)
+- Validation metrics don't improve
+- Model predicts all zeros or all ones
+
+**Solutions:**
+1. **Check data normalization:**
+   ```python
+   # Verify normalized range
+   print(f"Min: {images.min()}, Max: {images.max()}")
+   # Should be in [0, 1] range
+   ```
+
+2. **Verify labels are correct:**
+   ```python
+   # Check mask values
+   print(f"Unique mask values: {np.unique(masks)}")
+   # Should be [0, 1] for binary
+   ```
+
+3. **Adjust learning rate:**
+   ```python
+   # Try higher initial LR
+   optimizer = keras.optimizers.Adam(learning_rate=5e-4)
+   ```
+
+4. **Use stronger loss function:**
+   ```python
+   # Switch to pure Dice loss if class imbalance is severe
+   model.compile(optimizer=optimizer, loss=dice_loss, ...)
+   ```
+:::
+
+::: {.callout-warning}
+## Issue 3: Overfitting (High Train, Low Val Accuracy)
+
+**Symptoms:**
+- Training accuracy > 95%, validation < 80%
+- Large gap between train and val metrics
+- Model memorizes training data
+
+**Solutions:**
+1. **Increase data augmentation:**
+   ```python
+   # Add more aggressive augmentation
+   if augment:
+       # Add brightness adjustment
+       image = image * np.random.uniform(0.8, 1.2)
+       # Add Gaussian noise
+       image += np.random.normal(0, 0.05, image.shape)
+   ```
+
+2. **Add dropout layers:**
+   ```python
+   c1 = layers.Dropout(0.2)(c1)  # After conv blocks
+   ```
+
+3. **Reduce model complexity:**
+   ```python
+   # Use fewer filters or fewer blocks
+   ```
+
+4. **Get more training data:**
+   - Extract more patches from available imagery
+   - Use data from different typhoon events
+:::
+
+::: {.callout-warning}
+## Issue 4: Predictions All Black or All White
+
+**Symptoms:**
+- Model outputs all 0s or all 1s
+- No meaningful segmentation
+
+**Solutions:**
+1. **Check output activation:**
+   ```python
+   # Ensure sigmoid for binary
+   outputs = layers.Conv2D(1, 1, activation='sigmoid')(c9)
+   ```
+
+2. **Verify loss handles imbalance:**
+   ```python
+   # Use Dice or combined loss, not pure BCE
+   loss = combined_loss
+   ```
+
+3. **Check threshold:**
+   ```python
+   # Try different thresholds
+   binary_pred = (prediction > 0.3).astype(np.uint8)
+   ```
+
+4. **Inspect raw predictions:**
+   ```python
+   print(f"Prediction range: {predictions.min():.3f} to {predictions.max():.3f}")
+   # Should vary, not all same value
+   ```
+:::
+
+::: {.callout-warning}
+## Issue 5: Colab Disconnections
+
+**Symptoms:**
+- Session times out during training
+- "Runtime disconnected" message
+- Lost training progress
+
+**Solutions:**
+1. **Keep browser active:**
+   - Don't minimize tab
+   - Use Colab Pro for longer runtimes
+
+2. **Save checkpoints frequently:**
+   ```python
+   # Already configured in ModelCheckpoint callback
+   checkpoint_cb = callbacks.ModelCheckpoint(
+       filepath='model.h5',
+       save_freq='epoch'  # Save every epoch
+   )
+   ```
+
+3. **Save to Google Drive:**
+   ```python
+   # Mount Drive and save there
+   drive.mount('/content/drive')
+   model.save('/content/drive/MyDrive/checkpoints/model_epoch_{epoch}.h5')
+   ```
+
+4. **Use console keepalive (JavaScript):**
+   ```javascript
+   // Run in browser console
+   function ClickConnect(){
+     console.log("Keeping alive");
+     document.querySelector("colab-toolbar-button#connect").click()
+   }
+   setInterval(ClickConnect, 60000)
+   ```
+:::
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## What You've Accomplished
+
+**Technical Skills:**
+✅ Loaded and preprocessed Sentinel-1 SAR data for deep learning  
+✅ Implemented complete U-Net architecture from scratch  
+✅ Trained a segmentation model with appropriate loss functions  
+✅ Evaluated performance using multiple metrics (IoU, Dice, F1)  
+✅ Visualized and interpreted model predictions  
+✅ Exported results for GIS integration
+
+**Conceptual Understanding:**
+✅ How SAR backscatter relates to flood detection  
+✅ Why skip connections are critical for precise segmentation  
+✅ How to handle class imbalance in segmentation tasks  
+✅ Trade-offs between precision and recall for disaster response  
+✅ Common error patterns and improvement strategies
+
+**Philippine DRR Context:**
+✅ Applied deep learning to real Typhoon Ulysses flood data  
+✅ Understood operational requirements for disaster response  
+✅ Prepared outputs for integration with PAGASA/DOST systems
+:::
+
+### Critical Lessons
+
+1. **Data Quality >> Model Complexity**
+   - Well-prepared SAR data is more important than model tweaks
+   - Ground truth quality directly impacts performance
+
+2. **Loss Function Selection Matters**
+   - Combined loss (BCE + Dice) works best for imbalanced flood data
+   - Pure cross-entropy fails when flood pixels are <10%
+
+3. **Evaluation Beyond Accuracy**
+   - Pixel accuracy misleading for imbalanced classes
+   - IoU and Dice give true performance picture
+   - Confusion matrix reveals error types
+
+4. **Operational Considerations**
+   - For disaster response, recall > precision (catch all floods)
+   - Speed matters: Train once, inference in minutes
+   - GIS integration essential for actionable outputs
+
+---
+
+## Resources and Further Learning
+
+### Datasets
+
+**Flood Mapping:**
+- [Sen1Floods11](https://github.com/cloudtostreet/Sen1Floods11) - Global flood dataset with Sentinel-1
+- [FloodNet](https://github.com/BinaLab/FloodNet-Supervised_v1.0) - High-resolution flood imagery
+- [UNOSAT Flood Portal](https://flood.unosat.org/) - Validated flood extent maps
+
+**SAR Data:**
+- [Copernicus Open Access Hub](https://scihub.copernicus.eu/) - Download Sentinel-1 GRD
+- [Alaska Satellite Facility (ASF)](https://search.asf.alaska.edu/) - SAR data archive
+- [Google Earth Engine](https://earthengine.google.com/) - Cloud-based SAR processing
+
+### Papers and Tutorials
+
+**U-Net and Segmentation:**
+- [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597) - Original paper (Ronneberger et al., 2015)
+- [TensorFlow Image Segmentation Tutorial](https://www.tensorflow.org/tutorials/images/segmentation)
+- [PyTorch Semantic Segmentation](https://pytorch.org/vision/stable/models.html#semantic-segmentation)
+
+**SAR Flood Mapping:**
+- [Flood Detection with SAR: A Review](https://doi.org/10.3390/rs12020304) - Comprehensive review
+- [Deep Learning for SAR Image Analysis](https://arxiv.org/abs/2006.10027)
+- [Automated Flood Mapping Using Sentinel-1](https://doi.org/10.1016/j.isprsjprs.2020.08.012)
+
+**Loss Functions:**
+- [Dice Loss for Imbalanced Segmentation](https://arxiv.org/abs/1707.03237)
+- [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002)
+- [Combo Loss: Handling Input and Output Imbalance](https://arxiv.org/abs/1805.02798)
+
+### Code Repositories
+
+- [Segmentation Models](https://github.com/qubvel/segmentation_models) - Pre-built architectures
+- [TorchGeo](https://github.com/microsoft/torchgeo) - PyTorch for geospatial data
+- [RasterVision](https://github.com/azavea/raster-vision) - End-to-end pipeline for EO
+
+### Philippine EO Context
+
+- **PhilSA Space+ Data Dashboard:** [https://data.philsa.gov.ph](https://data.philsa.gov.ph)
+- **DOST-ASTI DATOS:** Rapid mapping for disasters
+- **NAMRIA GeoPortal:** Hazard maps and basemaps
+- **PAGASA:** Weather and climate data
+
+---
+
+## Discussion Questions
+
+Before moving to Session 3, reflect on these questions:
+
+1. **Real-World Application:**
+   - How would you deploy this flood mapping system for real-time disaster response in your agency?
+   - What infrastructure and data pipelines would you need?
+
+2. **Model Limitations:**
+   - What types of floods might this model miss (based on SAR characteristics)?
+   - How would you validate predictions in areas with no ground truth?
+
+3. **Improvements:**
+   - If you had multi-temporal data (before and after), how would you modify the approach?
+   - How could you incorporate elevation data (DEM) to improve predictions?
+
+4. **Operational Challenges:**
+   - What's the acceptable latency for flood mapping in disaster response?
+   - How would you handle uncertainty quantification for decision-makers?
+
+5. **Ethical Considerations:**
+   - What happens if the model misses a flooded community (false negative)?
+   - How do you balance automation with human expertise in critical decisions?
+
+---
+
+## Expected Results Summary
+
+After completing this lab, you should achieve:
+
+| Metric | Expected Range | Interpretation |
+|--------|----------------|----------------|
+| **IoU (Test)** | 0.65 - 0.80 | Good to excellent overlap |
+| **Dice Coefficient** | 0.70 - 0.85 | Strong agreement with ground truth |
+| **Precision** | 0.70 - 0.90 | Few false flood alarms |
+| **Recall** | 0.75 - 0.95 | Catches most actual floods |
+| **F1-Score** | 0.72 - 0.88 | Balanced performance |
+| **Training Time** | 15-30 min | With GPU (T4) |
+
+::: {.callout-tip}
+## If Your Results Are Lower
+
+**IoU < 0.60:**
+- Check data quality and normalization
+- Increase training epochs or adjust learning rate
+- Try different loss function combinations
+- Ensure adequate training data diversity
+
+**High Precision, Low Recall:**
+- Model is too conservative (missing floods)
+- Increase weight on positive class
+- Use Dice loss instead of BCE
+
+**High Recall, Low Precision:**
+- Model predicting too much flood
+- Add more negative examples to training
+- Use stricter threshold (>0.6 instead of >0.5)
+:::
+
+---
+
+## Next Steps
+
+::: {.callout-important}
+## Preparation for Session 3: Object Detection
+
+**Session 3** will introduce object detection techniques for identifying and localizing specific features in EO imagery.
+
+**Topics:**
+- R-CNN, YOLO, and SSD architectures
+- Bounding box regression
+- Anchor boxes and non-maximum suppression
+- Applications: Ship detection, building detection, vehicle counting
+
+**Preparation:**
+- Review CNN concepts from Day 2
+- Understand difference between segmentation (pixel-wise) and detection (bounding boxes)
+- Consider: What EO applications need object detection vs segmentation?
+
+[Preview Session 3 →](session3.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+## Lab Completion Checklist
+
+Before finishing, ensure you've completed:
+
+- [ ] Successfully trained U-Net model
+- [ ] Achieved IoU > 0.60 on test set
+- [ ] Visualized predictions vs ground truth
+- [ ] Analyzed error patterns
+- [ ] Saved trained model to Google Drive
+- [ ] Exported predictions
+- [ ] Understood key troubleshooting strategies
+- [ ] Thought about operational deployment
+
+::: {.callout-success}
+## Congratulations! 🎉
+
+You've completed a full deep learning pipeline for flood mapping using Sentinel-1 SAR and U-Net. This is a **production-ready workflow** used by disaster response agencies worldwide.
+
+**What You Built:**
+- A trained semantic segmentation model
+- Automated flood detection system
+- Export pipeline for GIS integration
+- Performance evaluation framework
+
+**Impact:**
+Your skills can now contribute to saving lives through rapid, accurate flood extent mapping for Philippine disaster response operations.
+:::
+
+---
+
+::: {.session-nav}
+[← Back to Session 1](session1.qmd){.btn .btn-outline-secondary}
+[Next: Session 3 - Object Detection →](session3.qmd){.btn .btn-primary}
+:::
+
+---
+
+*This hands-on lab is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative. Materials developed in collaboration with PhilSA, DOST-ASTI, and the European Space Agency.*

@@ -1,0 +1,196 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - images/**
+
+website:
+  title: "CoPhil EO AI/ML Training"
+  site-url: https://DimitrisKasabalis.github.io/cophil-training-v1.0
+  description: "4-Day Advanced Training on AI/ML for Earth Observation - A comprehensive training program for Philippine EO professionals"
+  favicon: images/favicon.png
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Training Days"
+        menu:
+          - text: "Day 1: EO Data & Fundamentals"
+            href: day1/index.qmd
+          - text: "Day 2: Machine Learning"
+            href: day2/index.qmd
+          - text: "Day 3: Deep Learning"
+            href: day3/index.qmd
+          - text: "Day 4: Advanced Topics"
+            href: day4/index.qmd
+      - text: "Resources"
+        menu:
+          - text: "Setup Guide"
+            href: resources/setup.qmd
+          - text: "Philippine EO Links"
+            href: resources/philippine-eo.qmd
+          - text: "Cheat Sheets"
+            href: resources/cheatsheets.qmd
+          - text: "FAQ"
+            href: resources/faq.qmd
+          - text: "Glossary"
+            href: resources/glossary.qmd
+    right:
+      - icon: github
+        href: https://github.com/cophil-training-v1.0
+        aria-label: GitHub
+      - icon: download
+        text: "Materials"
+        href: resources/downloads.qmd
+
+  sidebar:
+    - id: day1
+      title: "Day 1"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - day1/index.qmd
+        - section: "Sessions"
+          contents:
+            - day1/sessions/session1.qmd
+            - day1/sessions/session2.qmd
+            - day1/sessions/session3.qmd
+            - day1/sessions/session4.qmd
+        - section: "Notebooks"
+          contents:
+            - day1/notebooks/notebook1.qmd
+            - day1/notebooks/notebook2.qmd
+            - day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb
+            - day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb
+
+    - id: day2
+      title: "Day 2"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - day2/index.qmd
+        - section: "Sessions"
+          contents:
+            - day2/sessions/session1.qmd
+            - day2/sessions/session2.qmd
+            - day2/sessions/session3.qmd
+            - day2/sessions/session4.qmd
+        - section: "Notebooks"
+          contents:
+            - day2/notebooks/session1_theory_notebook_STUDENT.ipynb
+            - day2/notebooks/session1_hands_on_lab_student.ipynb
+            - day2/notebooks/session2_extended_lab_STUDENT.ipynb
+            - day2/notebooks/session3_theory_interactive.ipynb
+            - day2/notebooks/session4_cnn_classification_STUDENT.ipynb
+            - day2/notebooks/session4_transfer_learning_STUDENT.ipynb
+
+    - id: day3
+      title: "Day 3"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - day3/index.qmd
+        - section: "Sessions"
+          contents:
+            - day3/sessions/session1.qmd
+            - day3/sessions/session2.qmd
+            - day3/sessions/session3.qmd
+            - day3/sessions/session4.qmd
+        - section: "Notebooks"
+          contents:
+            - day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb
+            - day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb
+
+    - id: day4
+      title: "Day 4"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - day4/index.qmd
+        - section: "Sessions"
+          contents:
+            - day4/sessions/session1.qmd
+            - day4/sessions/session2.qmd
+            - day4/sessions/session3.qmd
+            - day4/sessions/session4.qmd
+        - section: "Notebooks"
+          contents:
+            - day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb
+            - day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb
+
+    - id: resources
+      title: "Resources"
+      style: "floating"
+      contents:
+        - section: "Getting Started"
+          contents:
+            - resources/setup.qmd
+        - section: "Reference Materials"
+          contents:
+            - resources/philippine-eo.qmd
+            - resources/cheatsheets.qmd
+            - resources/glossary.qmd
+        - section: "Help & Downloads"
+          contents:
+            - resources/faq.qmd
+            - resources/downloads.qmd
+
+  page-navigation: true
+
+  page-footer:
+    left: |
+      CoPhil EO AI/ML Training Programme
+    center: |
+      Funded by the European Union - Global Gateway Initiative
+    right:
+      - icon: envelope
+        href: mailto:info@philsa.gov.ph
+      - icon: globe
+        href: https://philsa.gov.ph
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles/custom.scss]
+      dark: [darkly, styles/custom.scss]
+    css:
+      - styles/custom.css
+      - styles/phase2-enhancements.css
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    toc-title: "On This Page"
+    code-copy: true
+    code-fold: false
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    number-sections: false
+    smooth-scroll: true
+    link-external-icon: true
+    link-external-newwindow: true
+    anchor-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    citations-hover: true
+    footnotes-hover: true
+
+comments:
+  hypothesis: false
+  utterances:
+    repo: cophil-training-v1.0
+
+filters:
+  - include-code-files
+
+execute:
+  freeze: auto
+  cache: true
+
+language:
+  title-block-author-single: "Instructor"
+  title-block-published: "Date"
+  toc-title-document: "Contents"

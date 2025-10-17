@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>instructor_guide – CoPhil EO AI/ML Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4a074efccdeff27617fbc72d37c1244e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a15f5dce5650fb3fe5aba34e3b6df9a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../styles/custom.css">
+<link rel="stylesheet" href="../../styles/phase2-enhancements.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CoPhil EO AI/ML Training</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-training-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Training Days</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-training-days">    
+        <li>
+    <a class="dropdown-item" href="../../day1/index.html">
+ <span class="dropdown-text">Day 1: EO Data &amp; Fundamentals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day2/index.html">
+ <span class="dropdown-text">Day 2: Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day3/index.html">
+ <span class="dropdown-text">Day 3: Deep Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day4/index.html">
+ <span class="dropdown-text">Day 4: Advanced Topics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../resources/setup.html">
+ <span class="dropdown-text">Setup Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/philippine-eo.html">
+ <span class="dropdown-text">Philippine EO Links</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/cheatsheets.html">
+ <span class="dropdown-text">Cheat Sheets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/faq.html">
+ <span class="dropdown-text">FAQ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cophil-training-v1.0"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources/downloads.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Materials</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#day-1-presentations---instructor-guide" id="toc-day-1-presentations---instructor-guide" class="nav-link active" data-scroll-target="#day-1-presentations---instructor-guide">Day 1 Presentations - Instructor Guide</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#pre-course-preparation" id="toc-pre-course-preparation" class="nav-link" data-scroll-target="#pre-course-preparation">Pre-Course Preparation</a>
+  <ul class="collapse">
+  <li><a href="#technical-setup-1-week-before" id="toc-technical-setup-1-week-before" class="nav-link" data-scroll-target="#technical-setup-1-week-before"><strong>Technical Setup (1 Week Before)</strong></a></li>
+  <li><a href="#participant-setup-3-days-before" id="toc-participant-setup-3-days-before" class="nav-link" data-scroll-target="#participant-setup-3-days-before"><strong>Participant Setup (3 Days Before)</strong></a></li>
+  <li><a href="#day-of-setup-morning" id="toc-day-of-setup-morning" class="nav-link" data-scroll-target="#day-of-setup-morning"><strong>Day-Of Setup (Morning)</strong></a></li>
+  </ul></li>
+  <li><a href="#session-by-session-guide" id="toc-session-by-session-guide" class="nav-link" data-scroll-target="#session-by-session-guide">Session-by-Session Guide</a></li>
+  <li><a href="#pre-course-orientation-45-60-minutes" id="toc-pre-course-orientation-45-60-minutes" class="nav-link" data-scroll-target="#pre-course-orientation-45-60-minutes"><strong>Pre-Course Orientation</strong> (45-60 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#key-sections" id="toc-key-sections" class="nav-link" data-scroll-target="#key-sections">Key Sections</a></li>
+  <li><a href="#instructor-tips" id="toc-instructor-tips" class="nav-link" data-scroll-target="#instructor-tips">Instructor Tips</a></li>
+  </ul></li>
+  <li><a href="#session-1-copernicus-philippine-eo-120-minutes" id="toc-session-1-copernicus-philippine-eo-120-minutes" class="nav-link" data-scroll-target="#session-1-copernicus-philippine-eo-120-minutes"><strong>Session 1: Copernicus &amp; Philippine EO</strong> (120 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#timing-breakdown" id="toc-timing-breakdown" class="nav-link" data-scroll-target="#timing-breakdown">Timing Breakdown</a></li>
+  <li><a href="#key-teaching-points" id="toc-key-teaching-points" class="nav-link" data-scroll-target="#key-teaching-points">Key Teaching Points</a></li>
+  <li><a href="#live-demo-instructions" id="toc-live-demo-instructions" class="nav-link" data-scroll-target="#live-demo-instructions">Live Demo Instructions</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  <li><a href="#transition-to-session-2" id="toc-transition-to-session-2" class="nav-link" data-scroll-target="#transition-to-session-2">Transition to Session 2</a></li>
+  </ul></li>
+  <li><a href="#session-2-aiml-fundamentals-120-minutes" id="toc-session-2-aiml-fundamentals-120-minutes" class="nav-link" data-scroll-target="#session-2-aiml-fundamentals-120-minutes"><strong>Session 2: AI/ML Fundamentals</strong> (120 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#timing-breakdown-1" id="toc-timing-breakdown-1" class="nav-link" data-scroll-target="#timing-breakdown-1">Timing Breakdown</a></li>
+  <li><a href="#key-teaching-points-1" id="toc-key-teaching-points-1" class="nav-link" data-scroll-target="#key-teaching-points-1">Key Teaching Points</a></li>
+  <li><a href="#teaching-strategy" id="toc-teaching-strategy" class="nav-link" data-scroll-target="#teaching-strategy">Teaching Strategy</a></li>
+  <li><a href="#common-questions-answers" id="toc-common-questions-answers" class="nav-link" data-scroll-target="#common-questions-answers">Common Questions &amp; Answers</a></li>
+  <li><a href="#transition-to-session-3" id="toc-transition-to-session-3" class="nav-link" data-scroll-target="#transition-to-session-3">Transition to Session 3</a></li>
+  </ul></li>
+  <li><a href="#session-3-python-geospatial-120-minutes" id="toc-session-3-python-geospatial-120-minutes" class="nav-link" data-scroll-target="#session-3-python-geospatial-120-minutes"><strong>Session 3: Python Geospatial</strong> (120 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#timing-breakdown-2" id="toc-timing-breakdown-2" class="nav-link" data-scroll-target="#timing-breakdown-2">Timing Breakdown</a></li>
+  <li><a href="#jupyter-notebook" id="toc-jupyter-notebook" class="nav-link" data-scroll-target="#jupyter-notebook">Jupyter Notebook</a></li>
+  <li><a href="#session-flow" id="toc-session-flow" class="nav-link" data-scroll-target="#session-flow">Session Flow</a></li>
+  <li><a href="#troubleshooting-protocol" id="toc-troubleshooting-protocol" class="nav-link" data-scroll-target="#troubleshooting-protocol">Troubleshooting Protocol</a></li>
+  <li><a href="#instructor-tips-1" id="toc-instructor-tips-1" class="nav-link" data-scroll-target="#instructor-tips-1">Instructor Tips</a></li>
+  <li><a href="#transition-to-session-4" id="toc-transition-to-session-4" class="nav-link" data-scroll-target="#transition-to-session-4">Transition to Session 4</a></li>
+  </ul></li>
+  <li><a href="#session-4-google-earth-engine-120-minutes" id="toc-session-4-google-earth-engine-120-minutes" class="nav-link" data-scroll-target="#session-4-google-earth-engine-120-minutes"><strong>Session 4: Google Earth Engine</strong> (120 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#timing-breakdown-3" id="toc-timing-breakdown-3" class="nav-link" data-scroll-target="#timing-breakdown-3">Timing Breakdown</a></li>
+  <li><a href="#critical-pre-session-check" id="toc-critical-pre-session-check" class="nav-link" data-scroll-target="#critical-pre-session-check">Critical Pre-Session Check</a></li>
+  <li><a href="#jupyter-notebook-1" id="toc-jupyter-notebook-1" class="nav-link" data-scroll-target="#jupyter-notebook-1">Jupyter Notebook</a></li>
+  <li><a href="#authentication-process-critical" id="toc-authentication-process-critical" class="nav-link" data-scroll-target="#authentication-process-critical">Authentication Process (CRITICAL)</a></li>
+  <li><a href="#live-coding-exercises" id="toc-live-coding-exercises" class="nav-link" data-scroll-target="#live-coding-exercises">Live Coding Exercises</a></li>
+  <li><a href="#key-concepts-to-emphasize" id="toc-key-concepts-to-emphasize" class="nav-link" data-scroll-target="#key-concepts-to-emphasize">Key Concepts to Emphasize</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues">Common Issues</a></li>
+  <li><a href="#philippine-example-deep-dive" id="toc-philippine-example-deep-dive" class="nav-link" data-scroll-target="#philippine-example-deep-dive">Philippine Example Deep Dive</a></li>
+  <li><a href="#transition-to-day-2" id="toc-transition-to-day-2" class="nav-link" data-scroll-target="#transition-to-day-2">Transition to Day 2</a></li>
+  </ul></li>
+  <li><a href="#general-teaching-best-practices" id="toc-general-teaching-best-practices" class="nav-link" data-scroll-target="#general-teaching-best-practices">General Teaching Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#timing-management" id="toc-timing-management" class="nav-link" data-scroll-target="#timing-management">Timing Management</a></li>
+  <li><a href="#participant-engagement" id="toc-participant-engagement" class="nav-link" data-scroll-target="#participant-engagement">Participant Engagement</a></li>
+  <li><a href="#accessibility" id="toc-accessibility" class="nav-link" data-scroll-target="#accessibility">Accessibility</a></li>
+  <li><a href="#error-handling" id="toc-error-handling" class="nav-link" data-scroll-target="#error-handling">Error Handling</a></li>
+  <li><a href="#cultural-sensitivity" id="toc-cultural-sensitivity" class="nav-link" data-scroll-target="#cultural-sensitivity">Cultural Sensitivity</a></li>
+  <li><a href="#energy-management" id="toc-energy-management" class="nav-link" data-scroll-target="#energy-management">Energy Management</a></li>
+  </ul></li>
+  <li><a href="#day-1-schedule-summary" id="toc-day-1-schedule-summary" class="nav-link" data-scroll-target="#day-1-schedule-summary">Day 1 Schedule Summary</a></li>
+  <li><a href="#technical-requirements-checklist" id="toc-technical-requirements-checklist" class="nav-link" data-scroll-target="#technical-requirements-checklist">Technical Requirements Checklist</a>
+  <ul class="collapse">
+  <li><a href="#for-instructors" id="toc-for-instructors" class="nav-link" data-scroll-target="#for-instructors">For Instructors</a></li>
+  <li><a href="#for-participants" id="toc-for-participants" class="nav-link" data-scroll-target="#for-participants">For Participants</a></li>
+  <li><a href="#platform-access" id="toc-platform-access" class="nav-link" data-scroll-target="#platform-access">Platform Access</a></li>
+  </ul></li>
+  <li><a href="#backup-plans" id="toc-backup-plans" class="nav-link" data-scroll-target="#backup-plans">Backup Plans</a>
+  <ul class="collapse">
+  <li><a href="#internet-failure" id="toc-internet-failure" class="nav-link" data-scroll-target="#internet-failure">Internet Failure</a></li>
+  <li><a href="#gee-authentication-issues" id="toc-gee-authentication-issues" class="nav-link" data-scroll-target="#gee-authentication-issues">GEE Authentication Issues</a></li>
+  <li><a href="#notebook-failures" id="toc-notebook-failures" class="nav-link" data-scroll-target="#notebook-failures">Notebook Failures</a></li>
+  </ul></li>
+  <li><a href="#post-session-actions" id="toc-post-session-actions" class="nav-link" data-scroll-target="#post-session-actions">Post-Session Actions</a>
+  <ul class="collapse">
+  <li><a href="#after-each-session" id="toc-after-each-session" class="nav-link" data-scroll-target="#after-each-session">After Each Session</a></li>
+  <li><a href="#end-of-day-1" id="toc-end-of-day-1" class="nav-link" data-scroll-target="#end-of-day-1">End of Day 1</a></li>
+  </ul></li>
+  <li><a href="#instructor-tips-by-session" id="toc-instructor-tips-by-session" class="nav-link" data-scroll-target="#instructor-tips-by-session">Instructor Tips by Session</a>
+  <ul class="collapse">
+  <li><a href="#session-1-keep-energy-high" id="toc-session-1-keep-energy-high" class="nav-link" data-scroll-target="#session-1-keep-energy-high">Session 1: Keep Energy High</a></li>
+  <li><a href="#session-2-build-intuition" id="toc-session-2-build-intuition" class="nav-link" data-scroll-target="#session-2-build-intuition">Session 2: Build Intuition</a></li>
+  <li><a href="#session-3-patient-debugging" id="toc-session-3-patient-debugging" class="nav-link" data-scroll-target="#session-3-patient-debugging">Session 3: Patient Debugging</a></li>
+  <li><a href="#session-4-pull-it-all-together" id="toc-session-4-pull-it-all-together" class="nav-link" data-scroll-target="#session-4-pull-it-all-together">Session 4: Pull It All Together</a></li>
+  </ul></li>
+  <li><a href="#emergency-contacts-resources" id="toc-emergency-contacts-resources" class="nav-link" data-scroll-target="#emergency-contacts-resources">Emergency Contacts &amp; Resources</a></li>
+  <li><a href="#success-metrics" id="toc-success-metrics" class="nav-link" data-scroll-target="#success-metrics">Success Metrics</a></li>
+  <li><a href="#final-reminders" id="toc-final-reminders" class="nav-link" data-scroll-target="#final-reminders">Final Reminders</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+
+<section id="day-1-presentations---instructor-guide" class="level1">
+<h1>Day 1 Presentations - Instructor Guide</h1>
+<p><strong>CoPhil EO AI/ML Training</strong><br>
+<strong>Last Updated:</strong> January 14, 2025</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This guide provides comprehensive instructions for delivering the five Day 1 presentations. Each session is designed for 2-hour delivery with integrated timing markers, speaker notes, and hands-on exercises.</p>
+<hr>
+</section>
+<section id="pre-course-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="pre-course-preparation">Pre-Course Preparation</h2>
+<section id="technical-setup-1-week-before" class="level3">
+<h3 class="anchored" data-anchor-id="technical-setup-1-week-before"><strong>Technical Setup (1 Week Before)</strong></h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Test all presentations render correctly</label></li>
+<li><label><input type="checkbox">Verify custom.scss loads properly</label></li>
+<li><label><input type="checkbox">Upload notebooks to Google Drive</label></li>
+<li><label><input type="checkbox">Create shareable links for notebooks</label></li>
+<li><label><input type="checkbox">Test GEE authentication process</label></li>
+<li><label><input type="checkbox">Verify Copernicus Browser access</label></li>
+<li><label><input type="checkbox">Prepare backup internet connection</label></li>
+</ul>
+</section>
+<section id="participant-setup-3-days-before" class="level3">
+<h3 class="anchored" data-anchor-id="participant-setup-3-days-before"><strong>Participant Setup (3 Days Before)</strong></h3>
+<p>Email participants with:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Google Earth Engine signup link (approve accounts)</label></li>
+<li><label><input type="checkbox">Google Colab access verification</label></li>
+<li><label><input type="checkbox">Zoom/meeting platform test</label></li>
+<li><label><input type="checkbox">Course materials access links</label></li>
+<li><label><input type="checkbox">Pre-course orientation slide deck</label></li>
+</ul>
+</section>
+<section id="day-of-setup-morning" class="level3">
+<h3 class="anchored" data-anchor-id="day-of-setup-morning"><strong>Day-Of Setup (Morning)</strong></h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Load all presentations</label></li>
+<li><label><input type="checkbox">Test screen sharing</label></li>
+<li><label><input type="checkbox">Share notebook links in chat</label></li>
+<li><label><input type="checkbox">Have backup slides ready</label></li>
+<li><label><input type="checkbox">Start recording (if applicable)</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="session-by-session-guide" class="level2">
+<h2 class="anchored" data-anchor-id="session-by-session-guide">Session-by-Session Guide</h2>
+<hr>
+</section>
+<section id="pre-course-orientation-45-60-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="pre-course-orientation-45-60-minutes"><strong>Pre-Course Orientation</strong> (45-60 minutes)</h2>
+<p><strong>File:</strong> <code>00_precourse_orientation.qmd</code><br>
+<strong>When:</strong> Before Day 1 or early morning Day 1<br>
+<strong>Format:</strong> Presentation only</p>
+<section id="key-sections" class="level3">
+<h3 class="anchored" data-anchor-id="key-sections">Key Sections</h3>
+<ol type="1">
+<li><strong>Welcome &amp; Introductions (10 min)</strong>
+<ul>
+<li>Instructor introductions</li>
+<li>Participant introductions (if small group)</li>
+<li>Icebreaker activity</li>
+</ul></li>
+<li><strong>Technical Setup (15 min)</strong>
+<ul>
+<li>Google Earth Engine account verification</li>
+<li>Colab access test</li>
+<li>Zoom features walkthrough</li>
+</ul></li>
+<li><strong>Course Overview (15 min)</strong>
+<ul>
+<li>4-day structure</li>
+<li>Daily topics</li>
+<li>Expected outcomes</li>
+</ul></li>
+<li><strong>Logistics &amp; Expectations (10 min)</strong>
+<ul>
+<li>Schedule (breaks, lunch)</li>
+<li>Code of conduct</li>
+<li>How to ask questions</li>
+<li>Recording/screenshot policies</li>
+</ul></li>
+</ol>
+</section>
+<section id="instructor-tips" class="level3">
+<h3 class="anchored" data-anchor-id="instructor-tips">Instructor Tips</h3>
+<ul>
+<li><strong>Go slow</strong> - participants may be anxious about technology</li>
+<li><strong>Do live checks</strong> - “Raise hand if GEE approved”</li>
+<li><strong>Set expectations</strong> - coding errors are normal and expected</li>
+<li><strong>Build rapport</strong> - create supportive learning environment</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="session-1-copernicus-philippine-eo-120-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="session-1-copernicus-philippine-eo-120-minutes"><strong>Session 1: Copernicus &amp; Philippine EO</strong> (120 minutes)</h2>
+<p><strong>File:</strong> <code>01_session1_copernicus_philippine_eo.qmd</code><br>
+<strong>Format:</strong> Presentation with live demos<br>
+<strong>Slides:</strong> ~70 slides</p>
+<section id="timing-breakdown" class="level3">
+<h3 class="anchored" data-anchor-id="timing-breakdown">Timing Breakdown</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Time</th>
+<th>Cumulative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Introduction &amp; Roadmap</td>
+<td>12 min</td>
+<td>12 min</td>
+</tr>
+<tr class="even">
+<td>Copernicus Overview</td>
+<td>7 min</td>
+<td>19 min</td>
+</tr>
+<tr class="odd">
+<td>Sentinel-1 SAR</td>
+<td>30 min</td>
+<td>50 min</td>
+</tr>
+<tr class="even">
+<td><strong>Live Demo: Sentinel-1</strong></td>
+<td>5 min</td>
+<td>55 min</td>
+</tr>
+<tr class="odd">
+<td>Sentinel-2 Optical</td>
+<td>10 min</td>
+<td>65 min</td>
+</tr>
+<tr class="even">
+<td><strong>Live Demo: Sentinel-2</strong></td>
+<td>5 min</td>
+<td>70 min</td>
+</tr>
+<tr class="odd">
+<td><strong>☕ Break</strong></td>
+<td>5 min</td>
+<td>75 min</td>
+</tr>
+<tr class="even">
+<td>Philippine EO Landscape</td>
+<td>3 min</td>
+<td>78 min</td>
+</tr>
+<tr class="odd">
+<td>PhilSA &amp; SIYASAT</td>
+<td>8 min</td>
+<td>86 min</td>
+</tr>
+<tr class="even">
+<td>NAMRIA</td>
+<td>4 min</td>
+<td>90 min</td>
+</tr>
+<tr class="odd">
+<td>DOST-ASTI &amp; SkAI-Pinas</td>
+<td>6 min</td>
+<td>96 min</td>
+</tr>
+<tr class="even">
+<td>CoPhil Programme</td>
+<td>10 min</td>
+<td>106 min</td>
+</tr>
+<tr class="odd">
+<td>Data Access Methods</td>
+<td>12 min</td>
+<td>118 min</td>
+</tr>
+<tr class="even">
+<td>Summary &amp; Q&amp;A</td>
+<td>3 min</td>
+<td>121 min</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-teaching-points" class="level3">
+<h3 class="anchored" data-anchor-id="key-teaching-points">Key Teaching Points</h3>
+<p><strong>Sentinel-1 (SAR):</strong> - All-weather, day-night capability - VV polarization for water detection - Sentinel-1C launched December 2024 (NEW!) - 6-day repeat cycle with constellation</p>
+<p><strong>Sentinel-2 (Optical):</strong> - 13 spectral bands, 10m resolution - Sentinel-2C operational January 2025 (NEW!) - 5-day repeat cycle - L2A = analysis-ready (atmospherically corrected)</p>
+<p><strong>Philippine Context:</strong> - PhilSA: National space agency, CoPhil co-chair - SIYASAT: Operational NovaSAR-1 data portal - DOST P2.6B AI investment (2024-2028) - SkAI-Pinas: 300+ institutions supported</p>
+</section>
+<section id="live-demo-instructions" class="level3">
+<h3 class="anchored" data-anchor-id="live-demo-instructions">Live Demo Instructions</h3>
+<p><strong>Demo 1: Sentinel-1 Flood Monitoring (5 min)</strong></p>
+<ol type="1">
+<li>Open Copernicus Browser: https://dataspace.copernicus.eu</li>
+<li>Navigate to Philippines (recent typhoon area if available)</li>
+<li>Select Sentinel-1 GRD IW</li>
+<li>Choose date before typhoon</li>
+<li>Add comparison date after typhoon</li>
+<li>Show VV band - dark areas = water</li>
+<li>Use time slider for animation</li>
+<li>Explain bright (urban/rough) vs dark (water/smooth)</li>
+</ol>
+<p><strong>Common Questions:</strong> - Q: “Why grainy?” A: Speckle is inherent to SAR - Q: “Can we download?” A: Yes, covered in Session 4</p>
+<p><strong>Demo 2: Sentinel-2 True Color &amp; Indices (5 min)</strong></p>
+<ol type="1">
+<li>Navigate to Palawan or Metro Manila</li>
+<li>Select Sentinel-2 L2A</li>
+<li>Filter cloud cover &lt;20%</li>
+<li>Show True Color RGB (B4-B3-B2)</li>
+<li>Switch to False Color (B8-B4-B3) - vegetation = RED</li>
+<li>Show SWIR composite (B12-B8-B4)</li>
+<li>Calculate NDVI: (B8-B4)/(B8+B4)</li>
+<li>Use time slider to show change</li>
+</ol>
+<p><strong>Common Questions:</strong> - Q: “Which bands?” A: Depends on application (Day 2 topic) - Q: “Clouds?” A: Use cloud masks (Session 4)</p>
+</section>
+<section id="troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h3>
+<ul>
+<li><strong>Browser slow?</strong> Use lower resolution preview</li>
+<li><strong>Can’t find area?</strong> Use search box or coordinates</li>
+<li><strong>Demo fails?</strong> Have backup screenshots ready</li>
+</ul>
+</section>
+<section id="transition-to-session-2" class="level3">
+<h3 class="anchored" data-anchor-id="transition-to-session-2">Transition to Session 2</h3>
+<p>“We’ve covered WHERE data comes from and WHAT satellites collect. Next: HOW to use AI/ML to extract information from this data.”</p>
+<hr>
+</section>
+</section>
+<section id="session-2-aiml-fundamentals-120-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="session-2-aiml-fundamentals-120-minutes"><strong>Session 2: AI/ML Fundamentals</strong> (120 minutes)</h2>
+<p><strong>File:</strong> <code>02_session2_ai_ml_fundamentals.qmd</code><br>
+<strong>Format:</strong> Conceptual presentation<br>
+<strong>Slides:</strong> ~80 slides</p>
+<section id="timing-breakdown-1" class="level3">
+<h3 class="anchored" data-anchor-id="timing-breakdown-1">Timing Breakdown</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Time</th>
+<th>Cumulative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Objectives &amp; Roadmap</td>
+<td>4 min</td>
+<td>4 min</td>
+</tr>
+<tr class="even">
+<td>What is AI/ML?</td>
+<td>6 min</td>
+<td>10 min</td>
+</tr>
+<tr class="odd">
+<td>EO ML Workflow</td>
+<td>25 min</td>
+<td>35 min</td>
+</tr>
+<tr class="even">
+<td>Supervised Learning</td>
+<td>25 min</td>
+<td>60 min</td>
+</tr>
+<tr class="odd">
+<td><strong>☕ Break</strong></td>
+<td>5 min</td>
+<td>65 min</td>
+</tr>
+<tr class="even">
+<td>Unsupervised Learning</td>
+<td>5 min</td>
+<td>70 min</td>
+</tr>
+<tr class="odd">
+<td>Deep Learning &amp; CNNs</td>
+<td>20 min</td>
+<td>90 min</td>
+</tr>
+<tr class="even">
+<td>Data-Centric AI</td>
+<td>7 min</td>
+<td>97 min</td>
+</tr>
+<tr class="odd">
+<td><strong>2025 Innovations</strong></td>
+<td>10 min</td>
+<td>107 min</td>
+</tr>
+<tr class="even">
+<td>Summary &amp; Q&amp;A</td>
+<td>13 min</td>
+<td>120 min</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-teaching-points-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-teaching-points-1">Key Teaching Points</h3>
+<p><strong>Foundational Concepts:</strong> - AI &gt; ML &gt; DL (nested relationship) - ML learns from data, not hard-coded rules - EO workflow: Problem → Data → Preprocessing → Features → Model → Validation → Deployment</p>
+<p><strong>Supervised vs Unsupervised:</strong> - Supervised: Labeled data (classification, regression) - Unsupervised: No labels (clustering, anomaly detection) - Most EO applications use supervised learning</p>
+<p><strong>Deep Learning:</strong> - Neural networks with many layers - CNNs excel at image analysis - Data-hungry (1000s of samples) - GPU required for training</p>
+<p><strong>2025 Updates (CRITICAL):</strong> - <strong>Foundation Models:</strong> NASA-IBM, Prithvi, Clay - <strong>Key benefit:</strong> 100s of samples vs 1000s needed - <strong>On-board AI:</strong> ESA Φsat-2 (2024), Satellogic - <strong>Philippine relevance:</strong> Reduce labeling burden</p>
+</section>
+<section id="teaching-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="teaching-strategy">Teaching Strategy</h3>
+<p><strong>This session is CONCEPTUAL.</strong> Focus on: - Building intuition, not math - Real EO examples throughout - Philippine disaster response scenarios - Setting up mental models for hands-on Days 2-4</p>
+</section>
+<section id="common-questions-answers" class="level3">
+<h3 class="anchored" data-anchor-id="common-questions-answers">Common Questions &amp; Answers</h3>
+<p><strong>Q:</strong> “Do I need a GPU?”<br>
+<strong>A:</strong> Not for Random Forest (Day 2). Yes for deep learning (Day 3).</p>
+<p><strong>Q:</strong> “How many labeled samples?”<br>
+<strong>A:</strong> Depends: - Random Forest: 100-500 per class - CNN from scratch: 1000s per class - Foundation model fine-tuning: 100-200 per class</p>
+<p><strong>Q:</strong> “Which algorithm should I use?”<br>
+<strong>A:</strong> Start simple (Random Forest), move to DL if needed and you have data/compute.</p>
+<p><strong>Q:</strong> “Can we use foundation models for Philippines?”<br>
+<strong>A:</strong> YES! They’re global and open-source. Perfect for low-resource scenarios.</p>
+</section>
+<section id="transition-to-session-3" class="level3">
+<h3 class="anchored" data-anchor-id="transition-to-session-3">Transition to Session 3</h3>
+<p>“Now you understand ML concepts. Next: Learn the Python tools to actually implement these workflows.”</p>
+<hr>
+</section>
+</section>
+<section id="session-3-python-geospatial-120-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="session-3-python-geospatial-120-minutes"><strong>Session 3: Python Geospatial</strong> (120 minutes)</h2>
+<p><strong>File:</strong> <code>03_session3_python_geospatial.qmd</code><br>
+<strong>Format:</strong> Brief intro + HANDS-ON coding<br>
+<strong>Slides:</strong> ~30 slides + Jupyter notebook</p>
+<section id="timing-breakdown-2" class="level3">
+<h3 class="anchored" data-anchor-id="timing-breakdown-2">Timing Breakdown</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Time</th>
+<th>Cumulative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Objectives &amp; Roadmap</td>
+<td>7 min</td>
+<td>7 min</td>
+</tr>
+<tr class="even">
+<td>Python Basics Recap</td>
+<td>8 min</td>
+<td>15 min</td>
+</tr>
+<tr class="odd">
+<td><strong>GeoPandas HANDS-ON</strong></td>
+<td>40 min</td>
+<td>55 min</td>
+</tr>
+<tr class="even">
+<td><strong>☕ Break</strong></td>
+<td>5 min</td>
+<td>60 min</td>
+</tr>
+<tr class="odd">
+<td><strong>Rasterio HANDS-ON</strong></td>
+<td>50 min</td>
+<td>110 min</td>
+</tr>
+<tr class="even">
+<td>Summary &amp; Q&amp;A</td>
+<td>10 min</td>
+<td>120 min</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="jupyter-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebook">Jupyter Notebook</h3>
+<p><strong>File:</strong> <code>Day1_Session3_Python_Geospatial_Data.ipynb</code></p>
+<p><strong>Critical:</strong> Share link at start of session!</p>
+</section>
+<section id="session-flow" class="level3">
+<h3 class="anchored" data-anchor-id="session-flow">Session Flow</h3>
+<p><strong>1. Introduction (7 min)</strong> - Learning objectives - Roadmap - Notebook access instructions</p>
+<p><strong>2. Setup (5 min)</strong> - Participants open notebook - Save copy to Drive - Run installation cell - Verify packages load</p>
+<p><strong>3. GeoPandas Section (40 min)</strong></p>
+<p><strong>Instructor demonstrates, participants follow:</strong></p>
+<ul>
+<li>Load Philippine boundaries shapefile</li>
+<li>Explore GeoDataFrame (<code>.head()</code>, <code>.crs</code>, <code>.plot()</code>)</li>
+<li>Filter by region</li>
+<li>Reproject to UTM</li>
+<li>Calculate area</li>
+<li>Spatial join with points</li>
+<li>Export to GeoJSON</li>
+</ul>
+<p><strong>Pacing:</strong> - Demonstrate each cell - Wait for participants to run - Check for errors in chat - Pause every 5-10 minutes for questions</p>
+<p><strong>4. Break (5 min)</strong></p>
+<p><strong>5. Rasterio Section (50 min)</strong></p>
+<p><strong>Instructor demonstrates, participants follow:</strong></p>
+<ul>
+<li>Read Sentinel-2 GeoTIFF</li>
+<li>Examine metadata (<code>.meta</code>, <code>.crs</code>, <code>.bounds</code>)</li>
+<li>Read specific bands</li>
+<li>Visualize with matplotlib</li>
+<li>Calculate NDVI</li>
+<li>Mask by vector boundary</li>
+<li>Crop raster</li>
+<li>Export processed raster</li>
+</ul>
+<p><strong>Common Errors &amp; Solutions:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Error</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ModuleNotFoundError</td>
+<td>Restart runtime, reinstall</td>
+</tr>
+<tr class="even">
+<td>FileNotFoundError</td>
+<td>Check file path, mount Drive</td>
+</tr>
+<tr class="odd">
+<td>CRS mismatch warning</td>
+<td>Reproject before operations</td>
+</tr>
+<tr class="even">
+<td>MemoryError</td>
+<td>Use windowed reading</td>
+</tr>
+<tr class="odd">
+<td>NoData not handled</td>
+<td>Use <code>.masked_array</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="troubleshooting-protocol" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-protocol">Troubleshooting Protocol</h3>
+<p><strong>Level 1: Self-Help</strong> - Check previous cells ran successfully - Verify variable names match - Look for typos</p>
+<p><strong>Level 2: Peer Help</strong> - Encourage participants to help each other in breakout rooms</p>
+<p><strong>Level 3: TA/Instructor</strong> - Teaching assistant monitors chat - Screen share for debugging - Create breakout room if needed</p>
+</section>
+<section id="instructor-tips-1" class="level3">
+<h3 class="anchored" data-anchor-id="instructor-tips-1">Instructor Tips</h3>
+<ul>
+<li><strong>Code together</strong> - don’t rush ahead</li>
+<li><strong>Explain output</strong> - what does each cell produce?</li>
+<li><strong>Live debugging</strong> - when errors occur, debug together</li>
+<li><strong>Encourage exploration</strong> - “Try changing the band numbers”</li>
+<li><strong>No shame in errors</strong> - normalize mistakes</li>
+</ul>
+</section>
+<section id="transition-to-session-4" class="level3">
+<h3 class="anchored" data-anchor-id="transition-to-session-4">Transition to Session 4</h3>
+<p>“You can now work with geospatial data in Python. Next: Scale up to planetary analysis with Google Earth Engine.”</p>
+<hr>
+</section>
+</section>
+<section id="session-4-google-earth-engine-120-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="session-4-google-earth-engine-120-minutes"><strong>Session 4: Google Earth Engine</strong> (120 minutes)</h2>
+<p><strong>File:</strong> <code>04_session4_google_earth_engine.qmd</code><br>
+<strong>Format:</strong> Brief intro + HANDS-ON coding (Python only)<br>
+<strong>Slides:</strong> ~60 slides + Jupyter notebook</p>
+<section id="timing-breakdown-3" class="level3">
+<h3 class="anchored" data-anchor-id="timing-breakdown-3">Timing Breakdown</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Time</th>
+<th>Cumulative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GEE Overview</td>
+<td>7 min</td>
+<td>7 min</td>
+</tr>
+<tr class="even">
+<td>Authentication</td>
+<td>8 min</td>
+<td>15 min</td>
+</tr>
+<tr class="odd">
+<td>Core Concepts</td>
+<td>18 min</td>
+<td>33 min</td>
+</tr>
+<tr class="even">
+<td><strong>Sentinel Access HANDS-ON</strong></td>
+<td>15 min</td>
+<td>48 min</td>
+</tr>
+<tr class="odd">
+<td><strong>☕ Break</strong></td>
+<td>5 min</td>
+<td>60 min</td>
+</tr>
+<tr class="even">
+<td><strong>Cloud Masking HANDS-ON</strong></td>
+<td>10 min</td>
+<td>70 min</td>
+</tr>
+<tr class="odd">
+<td><strong>Indices &amp; Composites HANDS-ON</strong></td>
+<td>20 min</td>
+<td>90 min</td>
+</tr>
+<tr class="even">
+<td><strong>Time Series HANDS-ON</strong></td>
+<td>11 min</td>
+<td>101 min</td>
+</tr>
+<tr class="odd">
+<td>Export Workflows</td>
+<td>9 min</td>
+<td>110 min</td>
+</tr>
+<tr class="even">
+<td>Summary &amp; Q&amp;A</td>
+<td>10 min</td>
+<td>120 min</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="critical-pre-session-check" class="level3">
+<h3 class="anchored" data-anchor-id="critical-pre-session-check">Critical Pre-Session Check</h3>
+<p><strong>⚠️ IMPORTANT:</strong> Verify all participants have GEE accounts approved!</p>
+<ul>
+<li>Email reminder 3 days before</li>
+<li>Check status at session start</li>
+<li>Have fallback plan for unapproved accounts</li>
+</ul>
+</section>
+<section id="jupyter-notebook-1" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebook-1">Jupyter Notebook</h3>
+<p><strong>File:</strong> <code>Day1_Session4_Google_Earth_Engine.ipynb</code></p>
+</section>
+<section id="authentication-process-critical" class="level3">
+<h3 class="anchored" data-anchor-id="authentication-process-critical">Authentication Process (CRITICAL)</h3>
+<p><strong>First Time Setup (8 min):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Authenticate (opens browser)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ee.Authenticate()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Steps:</strong> 1. Run <code>ee.Authenticate()</code> 2. Browser tab opens 3. Sign in with Google account 4. Allow Earth Engine access 5. Copy verification code 6. Paste back in notebook 7. Run <code>ee.Initialize()</code></p>
+<p><strong>Troubleshooting:</strong> - “Not approved” → Account pending, follow along for now - “Token invalid” → Re-authenticate - “Module not found” → <code>pip install geemap</code></p>
+</section>
+<section id="live-coding-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="live-coding-exercises">Live Coding Exercises</h3>
+<p><strong>Exercise 1: Load Sentinel-2 (5 min)</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Explain collection ID</li>
+<li>Show filtering (spatial, temporal, cloud)</li>
+<li>Print collection size</li>
+</ul>
+<p><strong>Exercise 2: Visualize True Color (5 min)</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Map.addLayer(image, vis_params, <span class="st">'S2 RGB'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Create interactive map</li>
+<li>Add layer with visualization parameters</li>
+<li>Explore (zoom, pan, inspect)</li>
+</ul>
+<p><strong>Exercise 3: False Color (5 min)</strong> - Change band combination to NIR-R-G - Vegetation appears red - Discuss band combinations</p>
+<p><strong>Exercise 4: Sentinel-1 SAR (5 min)</strong> - Load S1 GRD collection - Filter by polarization (VV) - Visualize median composite - Dark = water, Bright = urban</p>
+<p><strong>BREAK (5 min)</strong></p>
+<p><strong>Exercise 5: Cloud Masking (10 min)</strong> - Define cloud mask function using QA60 - Apply to collection with <code>.map()</code> - Create median composite - Compare masked vs unmasked</p>
+<p><strong>Exercise 6: NDVI Calculation (5 min)</strong> - Use <code>.normalizedDifference(['B8', 'B4'])</code> - Visualize with green palette - Interpret values</p>
+<p><strong>Exercise 7: Other Indices (5 min)</strong> - NDWI for water - NDBI for built-up areas - Add multiple layers to map</p>
+<p><strong>Exercise 8: Temporal Compositing (10 min)</strong> - Filter by seasons (dry vs wet) - Calculate NDVI for both - Compute change - Visualize difference</p>
+<p><strong>Exercise 9: Time Series (11 min)</strong> - Define point of interest - Extract NDVI time series - Convert to pandas DataFrame - Plot with matplotlib</p>
+<p><strong>Exercise 10: Export (9 min)</strong> - Export image to Google Drive - Check task status - Discuss export parameters</p>
+</section>
+<section id="key-concepts-to-emphasize" class="level3">
+<h3 class="anchored" data-anchor-id="key-concepts-to-emphasize">Key Concepts to Emphasize</h3>
+<p><strong>Server-Side vs Client-Side:</strong> - Most computation on Google servers (fast) - Only download final results (small) - Never download petabytes!</p>
+<p><strong>Filtering Best Practices:</strong> - Filter spatial first (most efficient) - Then temporal - Then property (cloud cover)</p>
+<p><strong>Reducers:</strong> - <code>.median()</code> for cloud-free composites - <code>.mean()</code> for average conditions - <code>.min()</code> / <code>.max()</code> for extremes</p>
+<p><strong>Python vs JavaScript:</strong> - Same concepts, different syntax - Python better for ML integration - JavaScript better for quick prototyping</p>
+</section>
+<section id="common-issues" class="level3">
+<h3 class="anchored" data-anchor-id="common-issues">Common Issues</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Computation timeout”</td>
+<td>Reduce area or resolution</td>
+</tr>
+<tr class="even">
+<td>“User memory exceeded”</td>
+<td>Use <code>.limit()</code> or sample</td>
+</tr>
+<tr class="odd">
+<td>“No features in collection”</td>
+<td>Check filters (too restrictive?)</td>
+</tr>
+<tr class="even">
+<td>“Tile error”</td>
+<td>Refresh map</td>
+</tr>
+<tr class="odd">
+<td>“Export fails”</td>
+<td>Check maxPixels, region size</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="philippine-example-deep-dive" class="level3">
+<h3 class="anchored" data-anchor-id="philippine-example-deep-dive">Philippine Example Deep Dive</h3>
+<p><strong>Rice Monitoring Workflow (10 min):</strong></p>
+<ol type="1">
+<li>Define rice-growing region (Central Luzon)</li>
+<li>Load one year of Sentinel-2</li>
+<li>Apply cloud masking</li>
+<li>Create monthly composites</li>
+<li>Calculate NDVI for each month</li>
+<li>Visualize seasonal pattern</li>
+<li>Export time series</li>
+</ol>
+<p><strong>Teaching points:</strong> - This workflow applies to ANY EO application - Pattern: AOI → Filter → Mask → Composite → Calculate → Visualize → Export - Students will use this pattern all week</p>
+</section>
+<section id="transition-to-day-2" class="level3">
+<h3 class="anchored" data-anchor-id="transition-to-day-2">Transition to Day 2</h3>
+<p>“You now have all the tools: Data access (GEE), Processing (Python), Concepts (ML). Tomorrow: Build actual ML models for real problems!”</p>
+<hr>
+</section>
+</section>
+<section id="general-teaching-best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="general-teaching-best-practices">General Teaching Best Practices</h2>
+<section id="timing-management" class="level3">
+<h3 class="anchored" data-anchor-id="timing-management">Timing Management</h3>
+<ul>
+<li><strong>Use timing markers</strong> - displayed on every slide</li>
+<li><strong>Set timer on phone</strong> - stay on track</li>
+<li><strong>Build in buffer</strong> - 5-10 min extra per session</li>
+<li><strong>Skip if needed</strong> - mark optional slides</li>
+<li><strong>Never skip breaks</strong> - participant attention suffers</li>
+</ul>
+</section>
+<section id="participant-engagement" class="level3">
+<h3 class="anchored" data-anchor-id="participant-engagement">Participant Engagement</h3>
+<p><strong>Questions:</strong> - Pause regularly: “Questions so far?” - Normalize questions: “Great question!” - Defer if needed: “Let’s cover that in Session X” - Answer in chat if off-topic</p>
+<p><strong>Hands-On Sessions:</strong> - <strong>Code together</strong> - don’t rush ahead - <strong>Screen share</strong> - show your notebook - <strong>Wait for slowest</strong> - check progress regularly - <strong>Celebrate success</strong> - “Nice work everyone!”</p>
+<p><strong>Interactivity:</strong> - Polls: “Have you used GEE before?” - Chat responses: “Type your primary application area” - Show of hands: “Who got the same result?”</p>
+</section>
+<section id="accessibility" class="level3">
+<h3 class="anchored" data-anchor-id="accessibility">Accessibility</h3>
+<ul>
+<li><strong>Speak clearly</strong> - pace yourself</li>
+<li><strong>Describe visuals</strong> - don’t assume everyone can see</li>
+<li><strong>Provide transcripts</strong> - for recordings</li>
+<li><strong>Multiple formats</strong> - slides + notebooks + documentation</li>
+<li><strong>Record sessions</strong> - for review</li>
+</ul>
+</section>
+<section id="error-handling" class="level3">
+<h3 class="anchored" data-anchor-id="error-handling">Error Handling</h3>
+<p><strong>When something breaks:</strong> 1. <strong>Stay calm</strong> - model debugging mindset 2. <strong>Explain error</strong> - teach what it means 3. <strong>Debug together</strong> - walk through solution 4. <strong>Have backup</strong> - screenshots of expected output 5. <strong>Move on</strong> - don’t spend 10 min on one person’s issue</p>
+<p><strong>Common Fixes:</strong> - Restart kernel/runtime - Clear output and re-run - Check previous cells executed - Verify file paths - Check internet connection</p>
+</section>
+<section id="cultural-sensitivity" class="level3">
+<h3 class="anchored" data-anchor-id="cultural-sensitivity">Cultural Sensitivity</h3>
+<p><strong>Philippine Context:</strong> - Use local examples (typhoons, provinces, crops) - Respect naming conventions (e.g., use “Philippines” not “PI”) - Acknowledge local expertise (participants may know regions better) - Highlight Philippine agencies (PhilSA, NAMRIA, DOST-ASTI)</p>
+</section>
+<section id="energy-management" class="level3">
+<h3 class="anchored" data-anchor-id="energy-management">Energy Management</h3>
+<p><strong>Instructor Self-Care:</strong> - Hydrate during breaks - Stand during presentations (energy) - Sit during hands-on (less tiring) - Tag-team with co-instructor if possible</p>
+<p><strong>Participant Energy:</strong> - Morning: High energy, conceptual content - Pre-lunch: Hands-on (engagement) - Post-lunch: Lighter content, more interaction - Late afternoon: Hands-on, peer learning</p>
+<hr>
+</section>
+</section>
+<section id="day-1-schedule-summary" class="level2">
+<h2 class="anchored" data-anchor-id="day-1-schedule-summary">Day 1 Schedule Summary</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Session</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>08:00-09:00</td>
+<td>Pre-Course Orientation</td>
+<td>Presentation</td>
+</tr>
+<tr class="even">
+<td>09:00-11:00</td>
+<td>Session 1: Copernicus &amp; PH EO</td>
+<td>Presentation + Demos</td>
+</tr>
+<tr class="odd">
+<td>11:00-11:15</td>
+<td><strong>Break</strong></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>11:15-13:15</td>
+<td>Session 2: AI/ML Fundamentals</td>
+<td>Presentation</td>
+</tr>
+<tr class="odd">
+<td>13:15-14:15</td>
+<td><strong>Lunch</strong></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>14:15-16:15</td>
+<td>Session 3: Python Geospatial</td>
+<td>Hands-On</td>
+</tr>
+<tr class="odd">
+<td>16:15-16:30</td>
+<td><strong>Break</strong></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>16:30-18:30</td>
+<td>Session 4: Google Earth Engine</td>
+<td>Hands-On</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td><strong>~8 hours</strong></td>
+<td><strong>(excluding breaks/lunch)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="technical-requirements-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="technical-requirements-checklist">Technical Requirements Checklist</h2>
+<section id="for-instructors" class="level3">
+<h3 class="anchored" data-anchor-id="for-instructors">For Instructors</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Laptop with HDMI output</label></li>
+<li><label><input type="checkbox">Backup laptop</label></li>
+<li><label><input type="checkbox">Reliable internet (wired preferred)</label></li>
+<li><label><input type="checkbox">Mobile hotspot backup</label></li>
+<li><label><input type="checkbox">Presentation remote/clicker</label></li>
+<li><label><input type="checkbox">Second monitor (helpful)</label></li>
+<li><label><input type="checkbox">Google account with GEE access</label></li>
+<li><label><input type="checkbox">All notebooks tested and working</label></li>
+</ul>
+</section>
+<section id="for-participants" class="level3">
+<h3 class="anchored" data-anchor-id="for-participants">For Participants</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Laptop (Windows/Mac/Linux)</label></li>
+<li><label><input type="checkbox">Modern web browser (Chrome recommended)</label></li>
+<li><label><input type="checkbox">Internet connection (5+ Mbps)</label></li>
+<li><label><input type="checkbox">Google account</label></li>
+<li><label><input type="checkbox">GEE account (approved)</label></li>
+<li><label><input type="checkbox">Zoom client installed</label></li>
+<li><label><input type="checkbox">Microphone and camera (optional but encouraged)</label></li>
+</ul>
+</section>
+<section id="platform-access" class="level3">
+<h3 class="anchored" data-anchor-id="platform-access">Platform Access</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Zoom/meeting room tested</label></li>
+<li><label><input type="checkbox">Screen sharing permissions</label></li>
+<li><label><input type="checkbox">Recording enabled (if desired)</label></li>
+<li><label><input type="checkbox">Breakout rooms configured</label></li>
+<li><label><input type="checkbox">Waiting room settings</label></li>
+<li><label><input type="checkbox">Chat enabled</label></li>
+<li><label><input type="checkbox">Polls prepared (if using)</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="backup-plans" class="level2">
+<h2 class="anchored" data-anchor-id="backup-plans">Backup Plans</h2>
+<section id="internet-failure" class="level3">
+<h3 class="anchored" data-anchor-id="internet-failure">Internet Failure</h3>
+<p><strong>Instructor:</strong> - Switch to mobile hotspot - Use backup internet connection - Have offline copy of slides - Share pre-recorded demo videos</p>
+<p><strong>Participant:</strong> - Provided recorded sessions for later review - Share download links for offline notebooks - Email homework assignments</p>
+</section>
+<section id="gee-authentication-issues" class="level3">
+<h3 class="anchored" data-anchor-id="gee-authentication-issues">GEE Authentication Issues</h3>
+<ul>
+<li>Follow along with instructor screen</li>
+<li>Work on authentication during break/after session</li>
+<li>Provide authenticated notebook outputs as reference</li>
+<li>Revisit in Day 2 morning if needed</li>
+</ul>
+</section>
+<section id="notebook-failures" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-failures">Notebook Failures</h3>
+<ul>
+<li>Share Google Drive backup copies</li>
+<li>Provide Binder/Colab alternative links</li>
+<li>Have downloadable .ipynb files</li>
+<li>Screen share instructor notebook as fallback</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="post-session-actions" class="level2">
+<h2 class="anchored" data-anchor-id="post-session-actions">Post-Session Actions</h2>
+<section id="after-each-session" class="level3">
+<h3 class="anchored" data-anchor-id="after-each-session">After Each Session</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Save chat log (questions, links)</label></li>
+<li><label><input type="checkbox">Note timing (over/under?)</label></li>
+<li><label><input type="checkbox">Identify confusing sections</label></li>
+<li><label><input type="checkbox">List common errors encountered</label></li>
+<li><label><input type="checkbox">Send follow-up email with resources</label></li>
+</ul>
+</section>
+<section id="end-of-day-1" class="level3">
+<h3 class="anchored" data-anchor-id="end-of-day-1">End of Day 1</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Send Day 2 preview</label></li>
+<li><label><input type="checkbox">Share all notebook links again</label></li>
+<li><label><input type="checkbox">Provide optional homework (review exercises)</label></li>
+<li><label><input type="checkbox">Remind about Day 2 start time</label></li>
+<li><label><input type="checkbox">Ask for feedback (short survey)</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="instructor-tips-by-session" class="level2">
+<h2 class="anchored" data-anchor-id="instructor-tips-by-session">Instructor Tips by Session</h2>
+<section id="session-1-keep-energy-high" class="level3">
+<h3 class="anchored" data-anchor-id="session-1-keep-energy-high">Session 1: Keep Energy High</h3>
+<ul>
+<li>This sets the tone for entire week</li>
+<li>Show enthusiasm for Copernicus data</li>
+<li>Make demos engaging (zoom, pan, compare)</li>
+<li>Connect to Philippine examples</li>
+</ul>
+</section>
+<section id="session-2-build-intuition" class="level3">
+<h3 class="anchored" data-anchor-id="session-2-build-intuition">Session 2: Build Intuition</h3>
+<ul>
+<li>Don’t get lost in math</li>
+<li>Use analogies and metaphors</li>
+<li>Draw diagrams on whiteboard/annotate slides</li>
+<li>Emphasize “why” over “what”</li>
+</ul>
+</section>
+<section id="session-3-patient-debugging" class="level3">
+<h3 class="anchored" data-anchor-id="session-3-patient-debugging">Session 3: Patient Debugging</h3>
+<ul>
+<li>First hands-on session - expect hiccups</li>
+<li>Slow down for errors</li>
+<li>Model good debugging practices</li>
+<li>Celebrate small wins</li>
+</ul>
+</section>
+<section id="session-4-pull-it-all-together" class="level3">
+<h3 class="anchored" data-anchor-id="session-4-pull-it-all-together">Session 4: Pull It All Together</h3>
+<ul>
+<li>Show how GEE connects to previous sessions</li>
+<li>Reference Session 1 (data), Session 2 (ML), Session 3 (Python)</li>
+<li>Preview Day 2 (using GEE for ML training data)</li>
+<li>End on high note (exciting preview)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="emergency-contacts-resources" class="level2">
+<h2 class="anchored" data-anchor-id="emergency-contacts-resources">Emergency Contacts &amp; Resources</h2>
+<p><strong>Technical Support:</strong> - Google Earth Engine Support: https://developers.google.com/earth-engine/help - Colab Help: https://colab.research.google.com/ - geemap Issues: https://github.com/giswqs/geemap/issues</p>
+<p><strong>Content Resources:</strong> - CoPhil Programme: https://www.cophil.eu - Copernicus Data Space: https://dataspace.copernicus.eu - PhilSA: https://philsa.gov.ph</p>
+<p><strong>Instructor Notes:</strong> - Keep this guide handy during delivery - Mark your own notes in margins - Update after each delivery (lessons learned) - Share improvements with co-instructors</p>
+<hr>
+</section>
+<section id="success-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="success-metrics">Success Metrics</h2>
+<p><strong>By end of Day 1, participants should be able to:</strong></p>
+<p>✅ Explain what Copernicus provides and why it’s valuable<br>
+✅ Describe Philippine EO infrastructure<br>
+✅ Differentiate supervised vs unsupervised ML<br>
+✅ Understand data-centric AI principles<br>
+✅ Load and visualize geospatial data in Python<br>
+✅ Authenticate and use Google Earth Engine<br>
+✅ Access and process Sentinel data in GEE<br>
+✅ Feel confident for Day 2 ML implementation</p>
+<p><strong>Indicators of Success:</strong> - Questions in chat (engagement) - Code running successfully (technical proficiency) - Positive feedback (satisfaction) - Enthusiasm for Day 2 (motivation)</p>
+<hr>
+</section>
+<section id="final-reminders" class="level2">
+<h2 class="anchored" data-anchor-id="final-reminders">Final Reminders</h2>
+<p>🎯 <strong>Be flexible</strong> - adapt to participant needs<br>
+🎯 <strong>Be encouraging</strong> - celebrate progress<br>
+🎯 <strong>Be patient</strong> - learning takes time<br>
+🎯 <strong>Be enthusiastic</strong> - your energy is contagious<br>
+🎯 <strong>Be prepared</strong> - test everything beforehand</p>
+<p><strong>Good luck and enjoy the training! 🚀</strong></p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="cophil-training-v1.0" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Day 1 Presentations - Instructor Guide</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>**CoPhil EO AI/ML Training**  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>**Last Updated:** January 14, 2025</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>This guide provides comprehensive instructions for delivering the five Day 1 presentations. Each session is designed for 2-hour delivery with integrated timing markers, speaker notes, and hands-on exercises.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pre-Course Preparation</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Technical Setup (1 Week Before)**</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Test all presentations render correctly</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Verify custom.scss loads properly</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Upload notebooks to Google Drive</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Create shareable links for notebooks</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Test GEE authentication process</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Verify Copernicus Browser access</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Prepare backup internet connection</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Participant Setup (3 Days Before)**</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>Email participants with:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Google Earth Engine signup link (approve accounts)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Google Colab access verification</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Zoom/meeting platform test</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Course materials access links</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Pre-course orientation slide deck</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Day-Of Setup (Morning)**</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Load all presentations</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Test screen sharing</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Share notebook links in chat</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Have backup slides ready</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Start recording (if applicable)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session-by-Session Guide</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Pre-Course Orientation** (45-60 minutes)</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`00_precourse_orientation.qmd`</span>  </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>**When:** Before Day 1 or early morning Day 1  </span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>**Format:** Presentation only</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Sections</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Welcome &amp; Introductions (10 min)**</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Instructor introductions</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Participant introductions (if small group)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Icebreaker activity</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Technical Setup (15 min)**</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Google Earth Engine account verification</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Colab access test</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Zoom features walkthrough</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Course Overview (15 min)**</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>4-day structure</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Daily topics</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Expected outcomes</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Logistics &amp; Expectations (10 min)**</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Schedule (breaks, lunch)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Code of conduct</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How to ask questions</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Recording/screenshot policies</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### Instructor Tips</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Go slow** - participants may be anxious about technology</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Do live checks** - "Raise hand if GEE approved"</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Set expectations** - coding errors are normal and expected</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Build rapport** - create supportive learning environment</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Session 1: Copernicus &amp; Philippine EO** (120 minutes)</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`01_session1_copernicus_philippine_eo.qmd`</span>  </span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>**Format:** Presentation with live demos  </span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>**Slides:** ~70 slides</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing Breakdown</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Section <span class="pp">|</span> Time <span class="pp">|</span> Cumulative <span class="pp">|</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|------|------------|</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Introduction &amp; Roadmap <span class="pp">|</span> 12 min <span class="pp">|</span> 12 min <span class="pp">|</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Copernicus Overview <span class="pp">|</span> 7 min <span class="pp">|</span> 19 min <span class="pp">|</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sentinel-1 SAR <span class="pp">|</span> 30 min <span class="pp">|</span> 50 min <span class="pp">|</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Live Demo: Sentinel-1** <span class="pp">|</span> 5 min <span class="pp">|</span> 55 min <span class="pp">|</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sentinel-2 Optical <span class="pp">|</span> 10 min <span class="pp">|</span> 65 min <span class="pp">|</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Live Demo: Sentinel-2** <span class="pp">|</span> 5 min <span class="pp">|</span> 70 min <span class="pp">|</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **☕ Break** <span class="pp">|</span> 5 min <span class="pp">|</span> 75 min <span class="pp">|</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Philippine EO Landscape <span class="pp">|</span> 3 min <span class="pp">|</span> 78 min <span class="pp">|</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> PhilSA &amp; SIYASAT <span class="pp">|</span> 8 min <span class="pp">|</span> 86 min <span class="pp">|</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> NAMRIA <span class="pp">|</span> 4 min <span class="pp">|</span> 90 min <span class="pp">|</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> DOST-ASTI &amp; SkAI-Pinas <span class="pp">|</span> 6 min <span class="pp">|</span> 96 min <span class="pp">|</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CoPhil Programme <span class="pp">|</span> 10 min <span class="pp">|</span> 106 min <span class="pp">|</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data Access Methods <span class="pp">|</span> 12 min <span class="pp">|</span> 118 min <span class="pp">|</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Summary &amp; Q&amp;A <span class="pp">|</span> 3 min <span class="pp">|</span> 121 min <span class="pp">|</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Teaching Points</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>**Sentinel-1 (SAR):**</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All-weather, day-night capability</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>VV polarization for water detection</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sentinel-1C launched December 2024 (NEW!)</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6-day repeat cycle with constellation</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>**Sentinel-2 (Optical):**</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>13 spectral bands, 10m resolution</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sentinel-2C operational January 2025 (NEW!)</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>5-day repeat cycle</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>L2A = analysis-ready (atmospherically corrected)</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>**Philippine Context:**</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>PhilSA: National space agency, CoPhil co-chair</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SIYASAT: Operational NovaSAR-1 data portal</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DOST P2.6B AI investment (2024-2028)</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SkAI-Pinas: 300+ institutions supported</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Live Demo Instructions</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>**Demo 1: Sentinel-1 Flood Monitoring (5 min)**</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Open Copernicus Browser: https://dataspace.copernicus.eu</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Navigate to Philippines (recent typhoon area if available)</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Select Sentinel-1 GRD IW</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Choose date before typhoon</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Add comparison date after typhoon</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Show VV band - dark areas = water</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Use time slider for animation</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Explain bright (urban/rough) vs dark (water/smooth)</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>**Common Questions:**</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q: "Why grainy?" A: Speckle is inherent to SAR</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q: "Can we download?" A: Yes, covered in Session 4</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>**Demo 2: Sentinel-2 True Color &amp; Indices (5 min)**</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Navigate to Palawan or Metro Manila</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Select Sentinel-2 L2A</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Filter cloud cover &lt;20%</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Show True Color RGB (B4-B3-B2)</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Switch to False Color (B8-B4-B3) - vegetation = RED</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Show SWIR composite (B12-B8-B4)</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Calculate NDVI: (B8-B4)/(B8+B4)</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Use time slider to show change</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>**Common Questions:**</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q: "Which bands?" A: Depends on application (Day 2 topic)</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q: "Clouds?" A: Use cloud masks (Session 4)</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### Troubleshooting</span></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Browser slow?** Use lower resolution preview</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Can't find area?** Use search box or coordinates</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Demo fails?** Have backup screenshots ready</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition to Session 2</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>"We've covered WHERE data comes from and WHAT satellites collect. Next: HOW to use AI/ML to extract information from this data."</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Session 2: AI/ML Fundamentals** (120 minutes)</span></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`02_session2_ai_ml_fundamentals.qmd`</span>  </span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>**Format:** Conceptual presentation  </span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>**Slides:** ~80 slides</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing Breakdown</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Section <span class="pp">|</span> Time <span class="pp">|</span> Cumulative <span class="pp">|</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|------|------------|</span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Objectives &amp; Roadmap <span class="pp">|</span> 4 min <span class="pp">|</span> 4 min <span class="pp">|</span></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> What is AI/ML? <span class="pp">|</span> 6 min <span class="pp">|</span> 10 min <span class="pp">|</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EO ML Workflow <span class="pp">|</span> 25 min <span class="pp">|</span> 35 min <span class="pp">|</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Supervised Learning <span class="pp">|</span> 25 min <span class="pp">|</span> 60 min <span class="pp">|</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **☕ Break** <span class="pp">|</span> 5 min <span class="pp">|</span> 65 min <span class="pp">|</span></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Unsupervised Learning <span class="pp">|</span> 5 min <span class="pp">|</span> 70 min <span class="pp">|</span></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Deep Learning &amp; CNNs <span class="pp">|</span> 20 min <span class="pp">|</span> 90 min <span class="pp">|</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data-Centric AI <span class="pp">|</span> 7 min <span class="pp">|</span> 97 min <span class="pp">|</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **2025 Innovations** <span class="pp">|</span> 10 min <span class="pp">|</span> 107 min <span class="pp">|</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Summary &amp; Q&amp;A <span class="pp">|</span> 13 min <span class="pp">|</span> 120 min <span class="pp">|</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Teaching Points</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>**Foundational Concepts:**</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI &gt; ML &gt; DL (nested relationship)</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ML learns from data, not hard-coded rules</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>EO workflow: Problem → Data → Preprocessing → Features → Model → Validation → Deployment</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>**Supervised vs Unsupervised:**</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Supervised: Labeled data (classification, regression)</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Unsupervised: No labels (clustering, anomaly detection)</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Most EO applications use supervised learning</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>**Deep Learning:**</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Neural networks with many layers</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CNNs excel at image analysis</span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data-hungry (1000s of samples)</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GPU required for training</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>**2025 Updates (CRITICAL):**</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Foundation Models:** NASA-IBM, Prithvi, Clay</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Key benefit:** 100s of samples vs 1000s needed</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**On-board AI:** ESA Φsat-2 (2024), Satellogic</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Philippine relevance:** Reduce labeling burden</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### Teaching Strategy</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>**This session is CONCEPTUAL.** Focus on:</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Building intuition, not math</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Real EO examples throughout</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Philippine disaster response scenarios</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Setting up mental models for hands-on Days 2-4</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Questions &amp; Answers</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>**Q:** "Do I need a GPU?"  </span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>**A:** Not for Random Forest (Day 2). Yes for deep learning (Day 3).</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>**Q:** "How many labeled samples?"  </span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a>**A:** Depends:</span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Random Forest: 100-500 per class</span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CNN from scratch: 1000s per class</span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Foundation model fine-tuning: 100-200 per class</span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a>**Q:** "Which algorithm should I use?"  </span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>**A:** Start simple (Random Forest), move to DL if needed and you have data/compute.</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>**Q:** "Can we use foundation models for Philippines?"  </span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>**A:** YES! They're global and open-source. Perfect for low-resource scenarios.</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition to Session 3</span></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>"Now you understand ML concepts. Next: Learn the Python tools to actually implement these workflows."</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Session 3: Python Geospatial** (120 minutes)</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`03_session3_python_geospatial.qmd`</span>  </span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>**Format:** Brief intro + HANDS-ON coding  </span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>**Slides:** ~30 slides + Jupyter notebook</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing Breakdown</span></span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Section <span class="pp">|</span> Time <span class="pp">|</span> Cumulative <span class="pp">|</span></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|------|------------|</span></span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Objectives &amp; Roadmap <span class="pp">|</span> 7 min <span class="pp">|</span> 7 min <span class="pp">|</span></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Python Basics Recap <span class="pp">|</span> 8 min <span class="pp">|</span> 15 min <span class="pp">|</span></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **GeoPandas HANDS-ON** <span class="pp">|</span> 40 min <span class="pp">|</span> 55 min <span class="pp">|</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **☕ Break** <span class="pp">|</span> 5 min <span class="pp">|</span> 60 min <span class="pp">|</span></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Rasterio HANDS-ON** <span class="pp">|</span> 50 min <span class="pp">|</span> 110 min <span class="pp">|</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Summary &amp; Q&amp;A <span class="pp">|</span> 10 min <span class="pp">|</span> 120 min <span class="pp">|</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="fu">### Jupyter Notebook</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`Day1_Session3_Python_Geospatial_Data.ipynb`</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>**Critical:** Share link at start of session!</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session Flow</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>**1. Introduction (7 min)**</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Learning objectives</span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Roadmap</span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notebook access instructions</span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>**2. Setup (5 min)**</span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Participants open notebook</span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Save copy to Drive</span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run installation cell</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Verify packages load</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>**3. GeoPandas Section (40 min)**</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>**Instructor demonstrates, participants follow:**</span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load Philippine boundaries shapefile</span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explore GeoDataFrame (<span class="in">`.head()`</span>, <span class="in">`.crs`</span>, <span class="in">`.plot()`</span>)</span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter by region</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reproject to UTM</span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate area</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spatial join with points</span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Export to GeoJSON</span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>**Pacing:**</span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Demonstrate each cell</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wait for participants to run</span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check for errors in chat</span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pause every 5-10 minutes for questions</span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>**4. Break (5 min)**</span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>**5. Rasterio Section (50 min)**</span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>**Instructor demonstrates, participants follow:**</span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read Sentinel-2 GeoTIFF</span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examine metadata (<span class="in">`.meta`</span>, <span class="in">`.crs`</span>, <span class="in">`.bounds`</span>)</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read specific bands</span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visualize with matplotlib</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate NDVI</span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mask by vector boundary</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Crop raster</span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Export processed raster</span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>**Common Errors &amp; Solutions:**</span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Error <span class="pp">|</span> Solution <span class="pp">|</span></span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|----------|</span></span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ModuleNotFoundError <span class="pp">|</span> Restart runtime, reinstall <span class="pp">|</span></span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> FileNotFoundError <span class="pp">|</span> Check file path, mount Drive <span class="pp">|</span></span>
+<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CRS mismatch warning <span class="pp">|</span> Reproject before operations <span class="pp">|</span></span>
+<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MemoryError <span class="pp">|</span> Use windowed reading <span class="pp">|</span></span>
+<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> NoData not handled <span class="pp">|</span> Use <span class="in">`.masked_array`</span> <span class="pp">|</span></span>
+<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Troubleshooting Protocol</span></span>
+<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>**Level 1: Self-Help**</span>
+<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check previous cells ran successfully</span>
+<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Verify variable names match</span>
+<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Look for typos</span>
+<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>**Level 2: Peer Help**</span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Encourage participants to help each other in breakout rooms</span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>**Level 3: TA/Instructor**</span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Teaching assistant monitors chat</span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Screen share for debugging</span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create breakout room if needed</span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a><span class="fu">### Instructor Tips</span></span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Code together** - don't rush ahead</span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Explain output** - what does each cell produce?</span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Live debugging** - when errors occur, debug together</span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Encourage exploration** - "Try changing the band numbers"</span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**No shame in errors** - normalize mistakes</span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition to Session 4</span></span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>"You can now work with geospatial data in Python. Next: Scale up to planetary analysis with Google Earth Engine."</span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Session 4: Google Earth Engine** (120 minutes)</span></span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`04_session4_google_earth_engine.qmd`</span>  </span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a>**Format:** Brief intro + HANDS-ON coding (Python only)  </span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a>**Slides:** ~60 slides + Jupyter notebook</span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing Breakdown</span></span>
+<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Section <span class="pp">|</span> Time <span class="pp">|</span> Cumulative <span class="pp">|</span></span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|------|------------|</span></span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GEE Overview <span class="pp">|</span> 7 min <span class="pp">|</span> 7 min <span class="pp">|</span></span>
+<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Authentication <span class="pp">|</span> 8 min <span class="pp">|</span> 15 min <span class="pp">|</span></span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Core Concepts <span class="pp">|</span> 18 min <span class="pp">|</span> 33 min <span class="pp">|</span></span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Sentinel Access HANDS-ON** <span class="pp">|</span> 15 min <span class="pp">|</span> 48 min <span class="pp">|</span></span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **☕ Break** <span class="pp">|</span> 5 min <span class="pp">|</span> 60 min <span class="pp">|</span></span>
+<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Cloud Masking HANDS-ON** <span class="pp">|</span> 10 min <span class="pp">|</span> 70 min <span class="pp">|</span></span>
+<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Indices &amp; Composites HANDS-ON** <span class="pp">|</span> 20 min <span class="pp">|</span> 90 min <span class="pp">|</span></span>
+<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Time Series HANDS-ON** <span class="pp">|</span> 11 min <span class="pp">|</span> 101 min <span class="pp">|</span></span>
+<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Export Workflows <span class="pp">|</span> 9 min <span class="pp">|</span> 110 min <span class="pp">|</span></span>
+<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Summary &amp; Q&amp;A <span class="pp">|</span> 10 min <span class="pp">|</span> 120 min <span class="pp">|</span></span>
+<span id="cb4-381"><a href="#cb4-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-382"><a href="#cb4-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### Critical Pre-Session Check</span></span>
+<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a>**⚠️ IMPORTANT:** Verify all participants have GEE accounts approved!</span>
+<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Email reminder 3 days before</span>
+<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check status at session start</span>
+<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Have fallback plan for unapproved accounts</span>
+<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### Jupyter Notebook</span></span>
+<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a>**File:** <span class="in">`Day1_Session4_Google_Earth_Engine.ipynb`</span></span>
+<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### Authentication Process (CRITICAL)</span></span>
+<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>**First Time Setup (8 min):**</span>
+<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap</span>
+<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a><span class="co"># Authenticate (opens browser)</span></span>
+<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a>ee.Authenticate()</span>
+<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize</span></span>
+<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span>
+<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a>**Steps:**</span>
+<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Run <span class="in">`ee.Authenticate()`</span></span>
+<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Browser tab opens</span>
+<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Sign in with Google account</span>
+<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Allow Earth Engine access</span>
+<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Copy verification code</span>
+<span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Paste back in notebook</span>
+<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Run <span class="in">`ee.Initialize()`</span></span>
+<span id="cb4-417"><a href="#cb4-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-418"><a href="#cb4-418" aria-hidden="true" tabindex="-1"></a>**Troubleshooting:**</span>
+<span id="cb4-419"><a href="#cb4-419" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Not approved" → Account pending, follow along for now</span>
+<span id="cb4-420"><a href="#cb4-420" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Token invalid" → Re-authenticate</span>
+<span id="cb4-421"><a href="#cb4-421" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Module not found" → <span class="in">`pip install geemap`</span></span>
+<span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a><span class="fu">### Live Coding Exercises</span></span>
+<span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a>**Exercise 1: Load Sentinel-2 (5 min)**</span>
+<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>)</span>
+<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explain collection ID</span>
+<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show filtering (spatial, temporal, cloud)</span>
+<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Print collection size</span>
+<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a>**Exercise 2: Visualize True Color (5 min)**</span>
+<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a>Map.addLayer(image, vis_params, <span class="st">'S2 RGB'</span>)</span>
+<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create interactive map</span>
+<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add layer with visualization parameters</span>
+<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explore (zoom, pan, inspect)</span>
+<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a>**Exercise 3: False Color (5 min)**</span>
+<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Change band combination to NIR-R-G</span>
+<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vegetation appears red</span>
+<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss band combinations</span>
+<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a>**Exercise 4: Sentinel-1 SAR (5 min)**</span>
+<span id="cb4-448"><a href="#cb4-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load S1 GRD collection</span>
+<span id="cb4-449"><a href="#cb4-449" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter by polarization (VV)</span>
+<span id="cb4-450"><a href="#cb4-450" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visualize median composite</span>
+<span id="cb4-451"><a href="#cb4-451" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dark = water, Bright = urban</span>
+<span id="cb4-452"><a href="#cb4-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a>**BREAK (5 min)**</span>
+<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a>**Exercise 5: Cloud Masking (10 min)**</span>
+<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Define cloud mask function using QA60</span>
+<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apply to collection with <span class="in">`.map()`</span></span>
+<span id="cb4-458"><a href="#cb4-458" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create median composite</span>
+<span id="cb4-459"><a href="#cb4-459" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare masked vs unmasked</span>
+<span id="cb4-460"><a href="#cb4-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-461"><a href="#cb4-461" aria-hidden="true" tabindex="-1"></a>**Exercise 6: NDVI Calculation (5 min)**</span>
+<span id="cb4-462"><a href="#cb4-462" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`.normalizedDifference(['B8', 'B4'])`</span></span>
+<span id="cb4-463"><a href="#cb4-463" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visualize with green palette</span>
+<span id="cb4-464"><a href="#cb4-464" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Interpret values</span>
+<span id="cb4-465"><a href="#cb4-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-466"><a href="#cb4-466" aria-hidden="true" tabindex="-1"></a>**Exercise 7: Other Indices (5 min)**</span>
+<span id="cb4-467"><a href="#cb4-467" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NDWI for water</span>
+<span id="cb4-468"><a href="#cb4-468" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NDBI for built-up areas</span>
+<span id="cb4-469"><a href="#cb4-469" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add multiple layers to map</span>
+<span id="cb4-470"><a href="#cb4-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-471"><a href="#cb4-471" aria-hidden="true" tabindex="-1"></a>**Exercise 8: Temporal Compositing (10 min)**</span>
+<span id="cb4-472"><a href="#cb4-472" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter by seasons (dry vs wet)</span>
+<span id="cb4-473"><a href="#cb4-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate NDVI for both</span>
+<span id="cb4-474"><a href="#cb4-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compute change</span>
+<span id="cb4-475"><a href="#cb4-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visualize difference</span>
+<span id="cb4-476"><a href="#cb4-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-477"><a href="#cb4-477" aria-hidden="true" tabindex="-1"></a>**Exercise 9: Time Series (11 min)**</span>
+<span id="cb4-478"><a href="#cb4-478" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Define point of interest</span>
+<span id="cb4-479"><a href="#cb4-479" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Extract NDVI time series</span>
+<span id="cb4-480"><a href="#cb4-480" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Convert to pandas DataFrame</span>
+<span id="cb4-481"><a href="#cb4-481" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Plot with matplotlib</span>
+<span id="cb4-482"><a href="#cb4-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-483"><a href="#cb4-483" aria-hidden="true" tabindex="-1"></a>**Exercise 10: Export (9 min)**</span>
+<span id="cb4-484"><a href="#cb4-484" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Export image to Google Drive</span>
+<span id="cb4-485"><a href="#cb4-485" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check task status</span>
+<span id="cb4-486"><a href="#cb4-486" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss export parameters</span>
+<span id="cb4-487"><a href="#cb4-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-488"><a href="#cb4-488" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Concepts to Emphasize</span></span>
+<span id="cb4-489"><a href="#cb4-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-490"><a href="#cb4-490" aria-hidden="true" tabindex="-1"></a>**Server-Side vs Client-Side:**</span>
+<span id="cb4-491"><a href="#cb4-491" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Most computation on Google servers (fast)</span>
+<span id="cb4-492"><a href="#cb4-492" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Only download final results (small)</span>
+<span id="cb4-493"><a href="#cb4-493" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never download petabytes!</span>
+<span id="cb4-494"><a href="#cb4-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-495"><a href="#cb4-495" aria-hidden="true" tabindex="-1"></a>**Filtering Best Practices:**</span>
+<span id="cb4-496"><a href="#cb4-496" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter spatial first (most efficient)</span>
+<span id="cb4-497"><a href="#cb4-497" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Then temporal</span>
+<span id="cb4-498"><a href="#cb4-498" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Then property (cloud cover)</span>
+<span id="cb4-499"><a href="#cb4-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-500"><a href="#cb4-500" aria-hidden="true" tabindex="-1"></a>**Reducers:**</span>
+<span id="cb4-501"><a href="#cb4-501" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.median()`</span> for cloud-free composites</span>
+<span id="cb4-502"><a href="#cb4-502" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.mean()`</span> for average conditions</span>
+<span id="cb4-503"><a href="#cb4-503" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.min()`</span> / <span class="in">`.max()`</span> for extremes</span>
+<span id="cb4-504"><a href="#cb4-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-505"><a href="#cb4-505" aria-hidden="true" tabindex="-1"></a>**Python vs JavaScript:**</span>
+<span id="cb4-506"><a href="#cb4-506" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Same concepts, different syntax</span>
+<span id="cb4-507"><a href="#cb4-507" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python better for ML integration</span>
+<span id="cb4-508"><a href="#cb4-508" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>JavaScript better for quick prototyping</span>
+<span id="cb4-509"><a href="#cb4-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-510"><a href="#cb4-510" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Issues</span></span>
+<span id="cb4-511"><a href="#cb4-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-512"><a href="#cb4-512" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Issue <span class="pp">|</span> Solution <span class="pp">|</span></span>
+<span id="cb4-513"><a href="#cb4-513" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|----------|</span></span>
+<span id="cb4-514"><a href="#cb4-514" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "Computation timeout" <span class="pp">|</span> Reduce area or resolution <span class="pp">|</span></span>
+<span id="cb4-515"><a href="#cb4-515" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "User memory exceeded" <span class="pp">|</span> Use <span class="in">`.limit()`</span> or sample <span class="pp">|</span></span>
+<span id="cb4-516"><a href="#cb4-516" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "No features in collection" <span class="pp">|</span> Check filters (too restrictive?) <span class="pp">|</span></span>
+<span id="cb4-517"><a href="#cb4-517" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "Tile error" <span class="pp">|</span> Refresh map <span class="pp">|</span></span>
+<span id="cb4-518"><a href="#cb4-518" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> "Export fails" <span class="pp">|</span> Check maxPixels, region size <span class="pp">|</span></span>
+<span id="cb4-519"><a href="#cb4-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-520"><a href="#cb4-520" aria-hidden="true" tabindex="-1"></a><span class="fu">### Philippine Example Deep Dive</span></span>
+<span id="cb4-521"><a href="#cb4-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-522"><a href="#cb4-522" aria-hidden="true" tabindex="-1"></a>**Rice Monitoring Workflow (10 min):**</span>
+<span id="cb4-523"><a href="#cb4-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-524"><a href="#cb4-524" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Define rice-growing region (Central Luzon)</span>
+<span id="cb4-525"><a href="#cb4-525" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Load one year of Sentinel-2</span>
+<span id="cb4-526"><a href="#cb4-526" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Apply cloud masking</span>
+<span id="cb4-527"><a href="#cb4-527" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Create monthly composites</span>
+<span id="cb4-528"><a href="#cb4-528" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate NDVI for each month</span>
+<span id="cb4-529"><a href="#cb4-529" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Visualize seasonal pattern</span>
+<span id="cb4-530"><a href="#cb4-530" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Export time series</span>
+<span id="cb4-531"><a href="#cb4-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-532"><a href="#cb4-532" aria-hidden="true" tabindex="-1"></a>**Teaching points:**</span>
+<span id="cb4-533"><a href="#cb4-533" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This workflow applies to ANY EO application</span>
+<span id="cb4-534"><a href="#cb4-534" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pattern: AOI → Filter → Mask → Composite → Calculate → Visualize → Export</span>
+<span id="cb4-535"><a href="#cb4-535" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Students will use this pattern all week</span>
+<span id="cb4-536"><a href="#cb4-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-537"><a href="#cb4-537" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition to Day 2</span></span>
+<span id="cb4-538"><a href="#cb4-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-539"><a href="#cb4-539" aria-hidden="true" tabindex="-1"></a>"You now have all the tools: Data access (GEE), Processing (Python), Concepts (ML). Tomorrow: Build actual ML models for real problems!"</span>
+<span id="cb4-540"><a href="#cb4-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-541"><a href="#cb4-541" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-542"><a href="#cb4-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-543"><a href="#cb4-543" aria-hidden="true" tabindex="-1"></a><span class="fu">## General Teaching Best Practices</span></span>
+<span id="cb4-544"><a href="#cb4-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-545"><a href="#cb4-545" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing Management</span></span>
+<span id="cb4-546"><a href="#cb4-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-547"><a href="#cb4-547" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Use timing markers** - displayed on every slide</span>
+<span id="cb4-548"><a href="#cb4-548" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Set timer on phone** - stay on track</span>
+<span id="cb4-549"><a href="#cb4-549" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Build in buffer** - 5-10 min extra per session</span>
+<span id="cb4-550"><a href="#cb4-550" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Skip if needed** - mark optional slides</span>
+<span id="cb4-551"><a href="#cb4-551" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Never skip breaks** - participant attention suffers</span>
+<span id="cb4-552"><a href="#cb4-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-553"><a href="#cb4-553" aria-hidden="true" tabindex="-1"></a><span class="fu">### Participant Engagement</span></span>
+<span id="cb4-554"><a href="#cb4-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-555"><a href="#cb4-555" aria-hidden="true" tabindex="-1"></a>**Questions:**</span>
+<span id="cb4-556"><a href="#cb4-556" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pause regularly: "Questions so far?"</span>
+<span id="cb4-557"><a href="#cb4-557" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Normalize questions: "Great question!"</span>
+<span id="cb4-558"><a href="#cb4-558" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Defer if needed: "Let's cover that in Session X"</span>
+<span id="cb4-559"><a href="#cb4-559" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Answer in chat if off-topic</span>
+<span id="cb4-560"><a href="#cb4-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-561"><a href="#cb4-561" aria-hidden="true" tabindex="-1"></a>**Hands-On Sessions:**</span>
+<span id="cb4-562"><a href="#cb4-562" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Code together** - don't rush ahead</span>
+<span id="cb4-563"><a href="#cb4-563" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Screen share** - show your notebook</span>
+<span id="cb4-564"><a href="#cb4-564" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Wait for slowest** - check progress regularly</span>
+<span id="cb4-565"><a href="#cb4-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Celebrate success** - "Nice work everyone!"</span>
+<span id="cb4-566"><a href="#cb4-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-567"><a href="#cb4-567" aria-hidden="true" tabindex="-1"></a>**Interactivity:**</span>
+<span id="cb4-568"><a href="#cb4-568" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Polls: "Have you used GEE before?"</span>
+<span id="cb4-569"><a href="#cb4-569" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chat responses: "Type your primary application area"</span>
+<span id="cb4-570"><a href="#cb4-570" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show of hands: "Who got the same result?"</span>
+<span id="cb4-571"><a href="#cb4-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-572"><a href="#cb4-572" aria-hidden="true" tabindex="-1"></a><span class="fu">### Accessibility</span></span>
+<span id="cb4-573"><a href="#cb4-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-574"><a href="#cb4-574" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Speak clearly** - pace yourself</span>
+<span id="cb4-575"><a href="#cb4-575" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Describe visuals** - don't assume everyone can see</span>
+<span id="cb4-576"><a href="#cb4-576" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Provide transcripts** - for recordings</span>
+<span id="cb4-577"><a href="#cb4-577" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Multiple formats** - slides + notebooks + documentation</span>
+<span id="cb4-578"><a href="#cb4-578" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Record sessions** - for review</span>
+<span id="cb4-579"><a href="#cb4-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-580"><a href="#cb4-580" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error Handling</span></span>
+<span id="cb4-581"><a href="#cb4-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-582"><a href="#cb4-582" aria-hidden="true" tabindex="-1"></a>**When something breaks:**</span>
+<span id="cb4-583"><a href="#cb4-583" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Stay calm** - model debugging mindset</span>
+<span id="cb4-584"><a href="#cb4-584" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Explain error** - teach what it means</span>
+<span id="cb4-585"><a href="#cb4-585" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Debug together** - walk through solution</span>
+<span id="cb4-586"><a href="#cb4-586" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Have backup** - screenshots of expected output</span>
+<span id="cb4-587"><a href="#cb4-587" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Move on** - don't spend 10 min on one person's issue</span>
+<span id="cb4-588"><a href="#cb4-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-589"><a href="#cb4-589" aria-hidden="true" tabindex="-1"></a>**Common Fixes:**</span>
+<span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Restart kernel/runtime</span>
+<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clear output and re-run</span>
+<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check previous cells executed</span>
+<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Verify file paths</span>
+<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check internet connection</span>
+<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cultural Sensitivity</span></span>
+<span id="cb4-597"><a href="#cb4-597" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-598"><a href="#cb4-598" aria-hidden="true" tabindex="-1"></a>**Philippine Context:**</span>
+<span id="cb4-599"><a href="#cb4-599" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use local examples (typhoons, provinces, crops)</span>
+<span id="cb4-600"><a href="#cb4-600" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Respect naming conventions (e.g., use "Philippines" not "PI")</span>
+<span id="cb4-601"><a href="#cb4-601" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Acknowledge local expertise (participants may know regions better)</span>
+<span id="cb4-602"><a href="#cb4-602" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Highlight Philippine agencies (PhilSA, NAMRIA, DOST-ASTI)</span>
+<span id="cb4-603"><a href="#cb4-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-604"><a href="#cb4-604" aria-hidden="true" tabindex="-1"></a><span class="fu">### Energy Management</span></span>
+<span id="cb4-605"><a href="#cb4-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-606"><a href="#cb4-606" aria-hidden="true" tabindex="-1"></a>**Instructor Self-Care:**</span>
+<span id="cb4-607"><a href="#cb4-607" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hydrate during breaks</span>
+<span id="cb4-608"><a href="#cb4-608" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Stand during presentations (energy)</span>
+<span id="cb4-609"><a href="#cb4-609" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sit during hands-on (less tiring)</span>
+<span id="cb4-610"><a href="#cb4-610" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tag-team with co-instructor if possible</span>
+<span id="cb4-611"><a href="#cb4-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-612"><a href="#cb4-612" aria-hidden="true" tabindex="-1"></a>**Participant Energy:**</span>
+<span id="cb4-613"><a href="#cb4-613" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Morning: High energy, conceptual content</span>
+<span id="cb4-614"><a href="#cb4-614" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pre-lunch: Hands-on (engagement)</span>
+<span id="cb4-615"><a href="#cb4-615" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Post-lunch: Lighter content, more interaction</span>
+<span id="cb4-616"><a href="#cb4-616" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Late afternoon: Hands-on, peer learning</span>
+<span id="cb4-617"><a href="#cb4-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-618"><a href="#cb4-618" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-619"><a href="#cb4-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-620"><a href="#cb4-620" aria-hidden="true" tabindex="-1"></a><span class="fu">## Day 1 Schedule Summary</span></span>
+<span id="cb4-621"><a href="#cb4-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-622"><a href="#cb4-622" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Time <span class="pp">|</span> Session <span class="pp">|</span> Format <span class="pp">|</span></span>
+<span id="cb4-623"><a href="#cb4-623" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|--------|</span></span>
+<span id="cb4-624"><a href="#cb4-624" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 08:00-09:00 <span class="pp">|</span> Pre-Course Orientation <span class="pp">|</span> Presentation <span class="pp">|</span></span>
+<span id="cb4-625"><a href="#cb4-625" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 09:00-11:00 <span class="pp">|</span> Session 1: Copernicus &amp; PH EO <span class="pp">|</span> Presentation + Demos <span class="pp">|</span></span>
+<span id="cb4-626"><a href="#cb4-626" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11:00-11:15 <span class="pp">|</span> **Break** <span class="pp">|</span> - <span class="pp">|</span></span>
+<span id="cb4-627"><a href="#cb4-627" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11:15-13:15 <span class="pp">|</span> Session 2: AI/ML Fundamentals <span class="pp">|</span> Presentation <span class="pp">|</span></span>
+<span id="cb4-628"><a href="#cb4-628" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 13:15-14:15 <span class="pp">|</span> **Lunch** <span class="pp">|</span> - <span class="pp">|</span></span>
+<span id="cb4-629"><a href="#cb4-629" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 14:15-16:15 <span class="pp">|</span> Session 3: Python Geospatial <span class="pp">|</span> Hands-On <span class="pp">|</span></span>
+<span id="cb4-630"><a href="#cb4-630" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 16:15-16:30 <span class="pp">|</span> **Break** <span class="pp">|</span> - <span class="pp">|</span></span>
+<span id="cb4-631"><a href="#cb4-631" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 16:30-18:30 <span class="pp">|</span> Session 4: Google Earth Engine <span class="pp">|</span> Hands-On <span class="pp">|</span></span>
+<span id="cb4-632"><a href="#cb4-632" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Total** | **~8 hours** | **(excluding breaks/lunch)** <span class="pp">|</span></span>
+<span id="cb4-633"><a href="#cb4-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-634"><a href="#cb4-634" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-635"><a href="#cb4-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-636"><a href="#cb4-636" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical Requirements Checklist</span></span>
+<span id="cb4-637"><a href="#cb4-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-638"><a href="#cb4-638" aria-hidden="true" tabindex="-1"></a><span class="fu">### For Instructors</span></span>
+<span id="cb4-639"><a href="#cb4-639" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-640"><a href="#cb4-640" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Laptop with HDMI output</span>
+<span id="cb4-641"><a href="#cb4-641" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Backup laptop</span>
+<span id="cb4-642"><a href="#cb4-642" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Reliable internet (wired preferred)</span>
+<span id="cb4-643"><a href="#cb4-643" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Mobile hotspot backup</span>
+<span id="cb4-644"><a href="#cb4-644" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Presentation remote/clicker</span>
+<span id="cb4-645"><a href="#cb4-645" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Second monitor (helpful)</span>
+<span id="cb4-646"><a href="#cb4-646" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Google account with GEE access</span>
+<span id="cb4-647"><a href="#cb4-647" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> All notebooks tested and working</span>
+<span id="cb4-648"><a href="#cb4-648" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-649"><a href="#cb4-649" aria-hidden="true" tabindex="-1"></a><span class="fu">### For Participants</span></span>
+<span id="cb4-650"><a href="#cb4-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-651"><a href="#cb4-651" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Laptop (Windows/Mac/Linux)</span>
+<span id="cb4-652"><a href="#cb4-652" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Modern web browser (Chrome recommended)</span>
+<span id="cb4-653"><a href="#cb4-653" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Internet connection (5+ Mbps)</span>
+<span id="cb4-654"><a href="#cb4-654" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Google account</span>
+<span id="cb4-655"><a href="#cb4-655" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> GEE account (approved)</span>
+<span id="cb4-656"><a href="#cb4-656" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Zoom client installed</span>
+<span id="cb4-657"><a href="#cb4-657" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Microphone and camera (optional but encouraged)</span>
+<span id="cb4-658"><a href="#cb4-658" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-659"><a href="#cb4-659" aria-hidden="true" tabindex="-1"></a><span class="fu">### Platform Access</span></span>
+<span id="cb4-660"><a href="#cb4-660" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-661"><a href="#cb4-661" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Zoom/meeting room tested</span>
+<span id="cb4-662"><a href="#cb4-662" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Screen sharing permissions</span>
+<span id="cb4-663"><a href="#cb4-663" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Recording enabled (if desired)</span>
+<span id="cb4-664"><a href="#cb4-664" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Breakout rooms configured</span>
+<span id="cb4-665"><a href="#cb4-665" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Waiting room settings</span>
+<span id="cb4-666"><a href="#cb4-666" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Chat enabled</span>
+<span id="cb4-667"><a href="#cb4-667" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Polls prepared (if using)</span>
+<span id="cb4-668"><a href="#cb4-668" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-669"><a href="#cb4-669" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-670"><a href="#cb4-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-671"><a href="#cb4-671" aria-hidden="true" tabindex="-1"></a><span class="fu">## Backup Plans</span></span>
+<span id="cb4-672"><a href="#cb4-672" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-673"><a href="#cb4-673" aria-hidden="true" tabindex="-1"></a><span class="fu">### Internet Failure</span></span>
+<span id="cb4-674"><a href="#cb4-674" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-675"><a href="#cb4-675" aria-hidden="true" tabindex="-1"></a>**Instructor:**</span>
+<span id="cb4-676"><a href="#cb4-676" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Switch to mobile hotspot</span>
+<span id="cb4-677"><a href="#cb4-677" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use backup internet connection</span>
+<span id="cb4-678"><a href="#cb4-678" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Have offline copy of slides</span>
+<span id="cb4-679"><a href="#cb4-679" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Share pre-recorded demo videos</span>
+<span id="cb4-680"><a href="#cb4-680" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-681"><a href="#cb4-681" aria-hidden="true" tabindex="-1"></a>**Participant:**</span>
+<span id="cb4-682"><a href="#cb4-682" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provided recorded sessions for later review</span>
+<span id="cb4-683"><a href="#cb4-683" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Share download links for offline notebooks</span>
+<span id="cb4-684"><a href="#cb4-684" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Email homework assignments</span>
+<span id="cb4-685"><a href="#cb4-685" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-686"><a href="#cb4-686" aria-hidden="true" tabindex="-1"></a><span class="fu">### GEE Authentication Issues</span></span>
+<span id="cb4-687"><a href="#cb4-687" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-688"><a href="#cb4-688" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Follow along with instructor screen</span>
+<span id="cb4-689"><a href="#cb4-689" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Work on authentication during break/after session</span>
+<span id="cb4-690"><a href="#cb4-690" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide authenticated notebook outputs as reference</span>
+<span id="cb4-691"><a href="#cb4-691" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revisit in Day 2 morning if needed</span>
+<span id="cb4-692"><a href="#cb4-692" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-693"><a href="#cb4-693" aria-hidden="true" tabindex="-1"></a><span class="fu">### Notebook Failures</span></span>
+<span id="cb4-694"><a href="#cb4-694" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-695"><a href="#cb4-695" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Share Google Drive backup copies</span>
+<span id="cb4-696"><a href="#cb4-696" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide Binder/Colab alternative links</span>
+<span id="cb4-697"><a href="#cb4-697" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Have downloadable .ipynb files</span>
+<span id="cb4-698"><a href="#cb4-698" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Screen share instructor notebook as fallback</span>
+<span id="cb4-699"><a href="#cb4-699" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-700"><a href="#cb4-700" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-701"><a href="#cb4-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-702"><a href="#cb4-702" aria-hidden="true" tabindex="-1"></a><span class="fu">## Post-Session Actions</span></span>
+<span id="cb4-703"><a href="#cb4-703" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-704"><a href="#cb4-704" aria-hidden="true" tabindex="-1"></a><span class="fu">### After Each Session</span></span>
+<span id="cb4-705"><a href="#cb4-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-706"><a href="#cb4-706" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Save chat log (questions, links)</span>
+<span id="cb4-707"><a href="#cb4-707" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Note timing (over/under?)</span>
+<span id="cb4-708"><a href="#cb4-708" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Identify confusing sections</span>
+<span id="cb4-709"><a href="#cb4-709" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> List common errors encountered</span>
+<span id="cb4-710"><a href="#cb4-710" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Send follow-up email with resources</span>
+<span id="cb4-711"><a href="#cb4-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-712"><a href="#cb4-712" aria-hidden="true" tabindex="-1"></a><span class="fu">### End of Day 1</span></span>
+<span id="cb4-713"><a href="#cb4-713" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-714"><a href="#cb4-714" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Send Day 2 preview</span>
+<span id="cb4-715"><a href="#cb4-715" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Share all notebook links again</span>
+<span id="cb4-716"><a href="#cb4-716" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Provide optional homework (review exercises)</span>
+<span id="cb4-717"><a href="#cb4-717" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Remind about Day 2 start time</span>
+<span id="cb4-718"><a href="#cb4-718" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Ask for feedback (short survey)</span>
+<span id="cb4-719"><a href="#cb4-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-720"><a href="#cb4-720" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-721"><a href="#cb4-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-722"><a href="#cb4-722" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instructor Tips by Session</span></span>
+<span id="cb4-723"><a href="#cb4-723" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-724"><a href="#cb4-724" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session 1: Keep Energy High</span></span>
+<span id="cb4-725"><a href="#cb4-725" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This sets the tone for entire week</span>
+<span id="cb4-726"><a href="#cb4-726" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show enthusiasm for Copernicus data</span>
+<span id="cb4-727"><a href="#cb4-727" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make demos engaging (zoom, pan, compare)</span>
+<span id="cb4-728"><a href="#cb4-728" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Connect to Philippine examples</span>
+<span id="cb4-729"><a href="#cb4-729" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-730"><a href="#cb4-730" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session 2: Build Intuition</span></span>
+<span id="cb4-731"><a href="#cb4-731" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Don't get lost in math</span>
+<span id="cb4-732"><a href="#cb4-732" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use analogies and metaphors</span>
+<span id="cb4-733"><a href="#cb4-733" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Draw diagrams on whiteboard/annotate slides</span>
+<span id="cb4-734"><a href="#cb4-734" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Emphasize "why" over "what"</span>
+<span id="cb4-735"><a href="#cb4-735" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-736"><a href="#cb4-736" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session 3: Patient Debugging</span></span>
+<span id="cb4-737"><a href="#cb4-737" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First hands-on session - expect hiccups</span>
+<span id="cb4-738"><a href="#cb4-738" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Slow down for errors</span>
+<span id="cb4-739"><a href="#cb4-739" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Model good debugging practices</span>
+<span id="cb4-740"><a href="#cb4-740" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Celebrate small wins</span>
+<span id="cb4-741"><a href="#cb4-741" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-742"><a href="#cb4-742" aria-hidden="true" tabindex="-1"></a><span class="fu">### Session 4: Pull It All Together</span></span>
+<span id="cb4-743"><a href="#cb4-743" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show how GEE connects to previous sessions</span>
+<span id="cb4-744"><a href="#cb4-744" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reference Session 1 (data), Session 2 (ML), Session 3 (Python)</span>
+<span id="cb4-745"><a href="#cb4-745" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Preview Day 2 (using GEE for ML training data)</span>
+<span id="cb4-746"><a href="#cb4-746" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>End on high note (exciting preview)</span>
+<span id="cb4-747"><a href="#cb4-747" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-748"><a href="#cb4-748" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-749"><a href="#cb4-749" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-750"><a href="#cb4-750" aria-hidden="true" tabindex="-1"></a><span class="fu">## Emergency Contacts &amp; Resources</span></span>
+<span id="cb4-751"><a href="#cb4-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-752"><a href="#cb4-752" aria-hidden="true" tabindex="-1"></a>**Technical Support:**</span>
+<span id="cb4-753"><a href="#cb4-753" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Google Earth Engine Support: https://developers.google.com/earth-engine/help</span>
+<span id="cb4-754"><a href="#cb4-754" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Colab Help: https://colab.research.google.com/</span>
+<span id="cb4-755"><a href="#cb4-755" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>geemap Issues: https://github.com/giswqs/geemap/issues</span>
+<span id="cb4-756"><a href="#cb4-756" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-757"><a href="#cb4-757" aria-hidden="true" tabindex="-1"></a>**Content Resources:**</span>
+<span id="cb4-758"><a href="#cb4-758" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CoPhil Programme: https://www.cophil.eu</span>
+<span id="cb4-759"><a href="#cb4-759" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Copernicus Data Space: https://dataspace.copernicus.eu</span>
+<span id="cb4-760"><a href="#cb4-760" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>PhilSA: https://philsa.gov.ph</span>
+<span id="cb4-761"><a href="#cb4-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-762"><a href="#cb4-762" aria-hidden="true" tabindex="-1"></a>**Instructor Notes:**</span>
+<span id="cb4-763"><a href="#cb4-763" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Keep this guide handy during delivery</span>
+<span id="cb4-764"><a href="#cb4-764" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mark your own notes in margins</span>
+<span id="cb4-765"><a href="#cb4-765" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Update after each delivery (lessons learned)</span>
+<span id="cb4-766"><a href="#cb4-766" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Share improvements with co-instructors</span>
+<span id="cb4-767"><a href="#cb4-767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-768"><a href="#cb4-768" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-769"><a href="#cb4-769" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-770"><a href="#cb4-770" aria-hidden="true" tabindex="-1"></a><span class="fu">## Success Metrics</span></span>
+<span id="cb4-771"><a href="#cb4-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-772"><a href="#cb4-772" aria-hidden="true" tabindex="-1"></a>**By end of Day 1, participants should be able to:**</span>
+<span id="cb4-773"><a href="#cb4-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-774"><a href="#cb4-774" aria-hidden="true" tabindex="-1"></a>✅ Explain what Copernicus provides and why it's valuable  </span>
+<span id="cb4-775"><a href="#cb4-775" aria-hidden="true" tabindex="-1"></a>✅ Describe Philippine EO infrastructure  </span>
+<span id="cb4-776"><a href="#cb4-776" aria-hidden="true" tabindex="-1"></a>✅ Differentiate supervised vs unsupervised ML  </span>
+<span id="cb4-777"><a href="#cb4-777" aria-hidden="true" tabindex="-1"></a>✅ Understand data-centric AI principles  </span>
+<span id="cb4-778"><a href="#cb4-778" aria-hidden="true" tabindex="-1"></a>✅ Load and visualize geospatial data in Python  </span>
+<span id="cb4-779"><a href="#cb4-779" aria-hidden="true" tabindex="-1"></a>✅ Authenticate and use Google Earth Engine  </span>
+<span id="cb4-780"><a href="#cb4-780" aria-hidden="true" tabindex="-1"></a>✅ Access and process Sentinel data in GEE  </span>
+<span id="cb4-781"><a href="#cb4-781" aria-hidden="true" tabindex="-1"></a>✅ Feel confident for Day 2 ML implementation</span>
+<span id="cb4-782"><a href="#cb4-782" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-783"><a href="#cb4-783" aria-hidden="true" tabindex="-1"></a>**Indicators of Success:**</span>
+<span id="cb4-784"><a href="#cb4-784" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Questions in chat (engagement)</span>
+<span id="cb4-785"><a href="#cb4-785" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Code running successfully (technical proficiency)</span>
+<span id="cb4-786"><a href="#cb4-786" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Positive feedback (satisfaction)</span>
+<span id="cb4-787"><a href="#cb4-787" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Enthusiasm for Day 2 (motivation)</span>
+<span id="cb4-788"><a href="#cb4-788" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-789"><a href="#cb4-789" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-790"><a href="#cb4-790" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-791"><a href="#cb4-791" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Reminders</span></span>
+<span id="cb4-792"><a href="#cb4-792" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-793"><a href="#cb4-793" aria-hidden="true" tabindex="-1"></a>🎯 **Be flexible** - adapt to participant needs  </span>
+<span id="cb4-794"><a href="#cb4-794" aria-hidden="true" tabindex="-1"></a>🎯 **Be encouraging** - celebrate progress  </span>
+<span id="cb4-795"><a href="#cb4-795" aria-hidden="true" tabindex="-1"></a>🎯 **Be patient** - learning takes time  </span>
+<span id="cb4-796"><a href="#cb4-796" aria-hidden="true" tabindex="-1"></a>🎯 **Be enthusiastic** - your energy is contagious  </span>
+<span id="cb4-797"><a href="#cb4-797" aria-hidden="true" tabindex="-1"></a>🎯 **Be prepared** - test everything beforehand</span>
+<span id="cb4-798"><a href="#cb4-798" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-799"><a href="#cb4-799" aria-hidden="true" tabindex="-1"></a>**Good luck and enjoy the training! 🚀**</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CoPhil EO AI/ML Training Programme</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Funded by the European Union - Global Gateway Initiative</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:info@philsa.gov.ph">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://philsa.gov.ph">
+      <i class="bi bi-globe" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,444 @@
+---
+title: "🚀 Start Here: Complete Setup Guide"
+subtitle: "Getting Ready for the CoPhil EO AI/ML Training"
+date: last-modified
+---
+
+::: {.hero}
+# 🚀 Start Here: Complete Setup Guide
+
+### Your First Stop Before Day 1
+
+This is the **only setup guide** you need to complete before starting the training. Follow these steps in order, and you'll be ready for Day 1!
+:::
+
+::: {.callout-important}
+## ⏰ Complete This BEFORE Training Starts
+
+**Time Required:** 20-30 minutes
+**When:** At least **2 days before Day 1** (Google Earth Engine approval takes 24-48 hours)
+
+**What You'll Do:**
+1. ✅ Set up Google account
+2. ✅ Test Google Colab
+3. ✅ Register for Google Earth Engine (requires approval)
+4. ✅ Verify all systems work
+
+**Already done?** Jump to [Verification Tests](#final-verification) to confirm you're ready.
+:::
+
+---
+
+## Quick Check: Do You Have These?
+
+Before we begin, let's check if you already have the basics:
+
+::: {.prerequisites-checklist}
+- [ ] **Google account (Gmail)** - If yes, skip to [Step 2](#step-2-google-colaboratory-setup)
+- [ ] **Reliable internet** (5+ Mbps) - [Test your speed](https://fast.com)
+- [ ] **Modern web browser** (Chrome, Firefox, Safari, Edge - updated in last 6 months)
+- [ ] **Computer/laptop** (4GB+ RAM recommended)
+:::
+
+**All checked?** Great! Let's continue. 👇
+
+**Missing something?** No problem - we'll walk you through each step below.
+
+---
+
+## Prerequisites Checklist
+
+Before starting the training, ensure you have:
+
+::: {.prerequisites-checklist}
+- [ ] A Google account (Gmail)
+- [ ] Google Earth Engine access (registration required)
+- [ ] Stable internet connection (minimum 5 Mbps recommended)
+- [ ] Modern web browser (Chrome, Firefox, Safari, or Edge)
+- [ ] Headphones/speakers for audio
+:::
+
+---
+
+## Step 1: Google Account Setup
+
+### 1.1 Create or Verify Google Account
+
+You need a Google account to access Google Colaboratory and Google Earth Engine.
+
+::: {.callout-tip}
+## Already Have Gmail?
+If you have a Gmail account, you're all set! Skip to Step 2.
+:::
+
+**To create a new account:**
+
+1. Go to [accounts.google.com](https://accounts.google.com)
+2. Click **"Create account"**
+3. Follow the registration process
+4. Verify your email address
+
+---
+
+## Step 2: Google Colaboratory Setup
+
+### 2.1 What is Google Colab?
+
+Google Colaboratory (Colab) is a free cloud service that lets you write and execute Python code in your browser. It provides:
+
+- Free access to GPUs (Graphics Processing Units)
+- Pre-installed Python libraries (NumPy, Pandas, Matplotlib, etc.)
+- Cloud storage integration with Google Drive
+- Shareable notebooks
+
+### 2.2 Access Google Colab
+
+1. Go to [colab.research.google.com](https://colab.research.google.com)
+2. Sign in with your Google account
+3. You'll see the welcome screen with example notebooks
+
+### 2.3 Test Your Colab Setup
+
+Let's verify everything works:
+
+1. **Create a new notebook:**
+   - Click **"File" → "New notebook"**
+   - A new notebook opens with an empty code cell
+
+2. **Run a test:**
+   - Copy and paste this code into the first cell:
+
+   ```python
+   import sys
+   print(f"Python version: {sys.version}")
+   print("Google Colab is working!")
+   ```
+
+   - Press **Shift + Enter** to run the cell
+   - You should see the Python version and success message
+
+3. **Test package installation:**
+
+   ```python
+   # Test common geospatial packages
+   import numpy as np
+   import pandas as pd
+   import matplotlib.pyplot as plt
+
+   print("✓ NumPy:", np.__version__)
+   print("✓ Pandas:", pd.__version__)
+   print("✓ Matplotlib:", plt.matplotlib.__version__)
+   ```
+
+::: {.callout-warning}
+## First Run Takes Longer
+The first time you run code in a new Colab session, it may take 30-60 seconds to allocate resources. This is normal.
+:::
+
+---
+
+## Step 3: Google Earth Engine Registration
+
+### 3.1 What is Google Earth Engine?
+
+Google Earth Engine (GEE) is a cloud platform for planetary-scale geospatial analysis. It provides:
+
+- Access to **petabytes** of satellite imagery (Landsat, Sentinel, MODIS, etc.)
+- Cloud-based processing (no downloads needed)
+- Python and JavaScript APIs
+- Fast analysis over large areas and time periods
+
+### 3.2 Register for Earth Engine
+
+::: {.callout-important}
+## Registration Required
+Earth Engine registration can take **24-48 hours** for approval. Register well before the training starts!
+:::
+
+**Registration steps:**
+
+1. **Go to:** [earthengine.google.com](https://earthengine.google.com)
+
+2. **Click "Get Started"** or **"Sign Up"**
+
+3. **Sign in** with your Google account
+
+4. **Choose account type:**
+   - Select **"Register a Noncommercial or Commercial Cloud project"**
+   - For this training, select **"Noncommercial"** if applicable
+
+5. **Complete the registration form:**
+   - **Project type:** Education/Research
+   - **Organization:** Your institution (e.g., "DOST-ASTI", "NAMRIA", "University of the Philippines")
+   - **Project description:** "CoPhil EO AI/ML Training - Earth Observation data analysis for DRR/CCA/NRM applications"
+   - **Intended use:** Describe your interest in using EO data
+
+6. **Submit and wait for approval**
+   - You'll receive an email when approved (usually within 24-48 hours)
+   - Check your spam folder if you don't see the approval email
+
+### 3.3 Verify Earth Engine Access
+
+Once approved, test your access:
+
+1. **Open Google Colab:** [colab.research.google.com](https://colab.research.google.com)
+
+2. **Create a new notebook**
+
+3. **Authenticate Earth Engine:**
+
+```python
+# Install Earth Engine API (if needed)
+!pip install earthengine-api --quiet
+
+# Import and authenticate
+import ee
+
+# Authenticate (first time only)
+ee.Authenticate()
+
+# Initialize Earth Engine
+ee.Initialize()
+
+# Test: Get an image
+image = ee.Image('COPERNICUS/S2/20230101T000000_20230101T000000_T48PYS')
+print("✓ Earth Engine is working!")
+print(f"Image ID: {image.id().getInfo()}")
+```
+
+4. **Follow authentication prompts:**
+   - Click the link that appears
+   - Sign in with your Google account
+   - Copy the authorization code
+   - Paste it back into Colab
+
+::: {.callout-tip}
+## Authentication Only Once
+After the first authentication, Earth Engine will remember your credentials in future Colab sessions.
+:::
+
+---
+
+## Step 4: Install Geospatial Python Packages
+
+In Google Colab, most packages are pre-installed. For specialized geospatial libraries, we'll install them when needed.
+
+### Common packages we'll use:
+
+| Package | Purpose | Pre-installed? |
+|---------|---------|----------------|
+| `numpy` | Numerical computing | Yes ✓ |
+| `pandas` | Data manipulation | Yes ✓ |
+| `matplotlib` | Visualization | Yes ✓ |
+| `geopandas` | Vector data | **No** (we'll install) |
+| `rasterio` | Raster data | **No** (we'll install) |
+| `earthengine-api` | Google Earth Engine | **No** (we'll install) |
+| `folium` | Interactive maps | Yes ✓ |
+
+### Installation template for notebooks:
+
+Each training notebook will include installation cells like this:
+
+```python
+# Install geospatial packages
+!pip install geopandas rasterio earthengine-api --quiet
+
+# Import packages
+import geopandas as gpd
+import rasterio
+import ee
+
+print("✓ All packages installed successfully!")
+```
+
+---
+
+## Step 5: Google Drive Integration (Optional)
+
+To save your work and access datasets, you can mount Google Drive in Colab:
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+**Benefits:**
+- Save notebooks directly to Drive
+- Access datasets stored in Drive
+- Work persists between sessions
+
+::: {.callout-note}
+## Storage Limits
+Free Google accounts get 15 GB of Drive storage. For large datasets, we'll stream data directly from Earth Engine instead.
+:::
+
+---
+
+## Step 6: Download Training Notebooks
+
+All training notebooks will be provided during the sessions. You can:
+
+1. **Access via shared links** (provided by instructors)
+2. **Download from the training portal** (see [Downloads](downloads.qmd))
+3. **Clone from GitHub** (if repository is available)
+
+---
+
+## Troubleshooting Common Issues
+
+### Issue 1: "Runtime disconnected" in Colab
+
+**Cause:** Colab sessions timeout after 90 minutes of inactivity (12 hours maximum)
+
+**Solution:**
+- Reconnect by clicking **"Reconnect"** button
+- Re-run setup cells (imports, authentication)
+- Consider using Colab Pro for longer sessions
+
+### Issue 2: Earth Engine authentication fails
+
+**Cause:** Not registered or registration not approved
+
+**Solution:**
+- Verify registration status at [earthengine.google.com](https://earthengine.google.com)
+- Wait for approval email (24-48 hours)
+- Check spam folder for approval notification
+
+### Issue 3: Package installation fails
+
+**Cause:** Network issues or package conflicts
+
+**Solution:**
+```python
+# Force reinstall
+!pip install --upgrade --force-reinstall geopandas
+
+# Or use specific versions
+!pip install geopandas==0.14.0
+```
+
+### Issue 4: Slow performance in Colab
+
+**Cause:** Limited free resources
+
+**Solutions:**
+- Close other browser tabs
+- Restart runtime: **Runtime → Restart runtime**
+- Use GPU acceleration: **Runtime → Change runtime type → GPU**
+- Reduce data processing scope
+
+### Issue 5: Cannot access Google Drive
+
+**Cause:** Permission not granted
+
+**Solution:**
+- Re-run the mount command
+- Click the authorization link
+- Grant access to Google Drive
+
+---
+
+## System Requirements
+
+### Minimum Requirements
+
+- **Internet:** 5 Mbps download speed
+- **Browser:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **RAM:** 4 GB (8 GB recommended)
+- **Screen:** 1280x720 resolution minimum
+
+### Recommended Setup
+
+- **Internet:** 10+ Mbps for smooth streaming
+- **Browser:** Latest version of Chrome (best compatibility)
+- **RAM:** 8+ GB for comfortable multitasking
+- **Screen:** Dual monitors (one for presentation, one for coding)
+
+---
+
+## Pre-Training Checklist
+
+Before Day 1 starts, ensure:
+
+::: {.final-checklist}
+- [ ] Google account created and verified
+- [ ] Google Colab accessible and tested
+- [ ] Google Earth Engine registered and approved
+- [ ] Test notebook runs successfully
+- [ ] Earth Engine authentication completed
+- [ ] Browser and internet connection tested
+- [ ] Headphones/speakers working
+- [ ] Quiet workspace prepared
+:::
+
+---
+
+## Getting Help
+
+### During Training
+
+- Ask questions in the live session chat
+- Consult teaching assistants
+- Check the [FAQ](faq.qmd) for common issues
+
+### Before Training
+
+- Review this setup guide thoroughly
+- Test all components at least 1 day before
+- Contact training coordinators if you encounter issues
+
+::: {.callout-important}
+## Technical Support Contacts
+
+For urgent setup issues:
+- **Email:** training@philsa.gov.ph
+- **Slack/Discord:** Check invitation email for links
+- **WhatsApp Group:** Join via link in confirmation email
+:::
+
+---
+
+## Additional Resources
+
+### Google Colab Tutorials
+- [Official Colab Welcome Notebook](https://colab.research.google.com/notebooks/welcome.ipynb)
+- [Colab Markdown Guide](https://colab.research.google.com/notebooks/markdown_guide.ipynb)
+
+### Google Earth Engine Resources
+- [Earth Engine Guides](https://developers.google.com/earth-engine/guides)
+- [Python API Documentation](https://developers.google.com/earth-engine/guides/python_install)
+- [Community Forum](https://groups.google.com/g/google-earth-engine-developers)
+
+### Python for Geospatial
+- [GeoPandas Documentation](https://geopandas.org/)
+- [Rasterio Documentation](https://rasterio.readthedocs.io/)
+- [Geospatial Python Workshop](https://autogis-site.readthedocs.io/)
+
+---
+
+## Ready to Start?
+
+Once you've completed all setup steps, you're ready for the training!
+
+::: {.session-nav}
+::: {.session-nav-link href="../index.qmd"}
+::: {.session-nav-label}
+Back
+:::
+::: {.session-nav-title}
+← Return to Home
+:::
+:::
+::: {.session-nav-link href="../sessions/session1.qmd"}
+::: {.session-nav-label}
+Next
+:::
+::: {.session-nav-title}
+Session 1: Copernicus & Philippine EO →
+:::
+:::
+:::
+
+---
+
+*Setup questions? Contact the training coordinators or check the [FAQ](faq.qmd).*

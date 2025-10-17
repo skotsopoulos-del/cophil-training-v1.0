@@ -1,0 +1,178 @@
+/* Custom styles for CoPhil Training */
+
+:root {
+  --copphil-primary: #003399;
+  --copphil-secondary: #0066cc;
+  --copphil-accent: #ff9900;
+  --copphil-success: #28a745;
+  --copphil-warning: #ffc107;
+}
+
+/* Header styling */
+.navbar-brand {
+  font-weight: 600;
+}
+
+/* Card styling for session blocks */
+.session-card {
+  border-left: 4px solid var(--copphil-primary);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+}
+
+.session-card h3 {
+  color: var(--copphil-primary);
+  margin-top: 0;
+}
+
+/* Learning objectives */
+.learning-objectives {
+  background-color: #e7f3ff;
+  border-left: 4px solid var(--copphil-secondary);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.learning-objectives h4 {
+  color: var(--copphil-secondary);
+  margin-top: 0;
+}
+
+/* Callout boxes */
+.callout-note {
+  border-left-color: var(--copphil-primary) !important;
+}
+
+.callout-tip {
+  border-left-color: var(--copphil-success) !important;
+}
+
+.callout-warning {
+  border-left-color: var(--copphil-warning) !important;
+}
+
+.callout-important {
+  border-left-color: var(--copphil-accent) !important;
+}
+
+/* Code blocks */
+pre {
+  border-radius: 0.5rem;
+  border: 1px solid #dee2e6;
+}
+
+/* Colab button */
+.colab-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #f9ab00;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.colab-button:hover {
+  background-color: #e09600;
+  color: white;
+  text-decoration: none;
+}
+
+/* Resource links */
+.resource-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.resource-link:hover {
+  background-color: #e9ecef;
+}
+
+.resource-link i {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: var(--copphil-primary);
+}
+
+/* Schedule table */
+.schedule-table {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.schedule-table th {
+  background-color: var(--copphil-primary);
+  color: white;
+  padding: 0.75rem;
+}
+
+.schedule-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Progress indicator */
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  margin: 0 0.5rem;
+}
+
+.progress-step.active {
+  background-color: var(--copphil-primary);
+  color: white;
+}
+
+/* Philippine context highlight */
+.philippine-context {
+  background-color: #fff3cd;
+  border-left: 4px solid var(--copphil-accent);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+}
+
+/* Agency logos */
+.agency-logos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.agency-logos img {
+  height: 60px;
+  margin: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.agency-logos img:hover {
+  opacity: 1;
+}
+
+/* Footer */
+.page-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+}

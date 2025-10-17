@@ -1,0 +1,148 @@
+/*-- scss:defaults --*/
+
+// Color palette
+$primary-color: #2C5F77;
+$secondary-color: #4A90E2;
+$accent-color: #FBC02D;
+$success-color: #4CAF50;
+$warning-color: #FF9800;
+$danger-color: #F44336;
+
+// Fonts
+$font-family-sans-serif: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$presentation-font-size-root: 36px;
+$presentation-h1-font-size: 2.5em;
+$presentation-h2-font-size: 1.8em;
+$presentation-h3-font-size: 1.4em;
+
+// Slide backgrounds
+$background-color: #FFFFFF;
+$section-bg-color: $primary-color;
+
+/*-- scss:rules --*/
+
+// Title slide
+.reveal .slide-background.title-slide {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+}
+
+// Section dividers
+.reveal .slide-background[data-background-color="#{$primary-color}"] {
+  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+}
+
+// Callout boxes
+.callout-note {
+  border-left-color: $secondary-color !important;
+  background-color: lighten($secondary-color, 45%) !important;
+}
+
+.callout-tip {
+  border-left-color: $success-color !important;
+  background-color: lighten($success-color, 45%) !important;
+}
+
+.callout-important {
+  border-left-color: $warning-color !important;
+  background-color: lighten($warning-color, 40%) !important;
+}
+
+.callout-warning {
+  border-left-color: $danger-color !important;
+  background-color: lighten($danger-color, 40%) !important;
+}
+
+// Code blocks
+.reveal pre {
+  font-size: 0.6em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.reveal code {
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+// Tables
+.reveal table {
+  font-size: 0.7em;
+  border-collapse: collapse;
+
+  th {
+    background-color: $primary-color;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+// Columns
+.reveal .columns {
+  display: flex;
+  gap: 2rem;
+}
+
+// Smaller text
+.smaller {
+  font-size: 0.85em;
+}
+
+// Fit text to slide
+.r-fit-text {
+  font-size: 5em !important;
+  font-weight: bold;
+}
+
+// Incremental lists
+.reveal .incremental li {
+  margin-bottom: 0.5em;
+}
+
+// Mermaid diagrams
+.reveal .mermaid {
+  font-size: 0.7em;
+}
+
+// Links
+.reveal a {
+  color: $secondary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($secondary-color, 15%);
+    text-decoration: underline;
+  }
+}
+
+// Emphasis
+.reveal strong {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+// Panel tabs
+.panel-tabset {
+  .panel-tabs {
+    background-color: $primary-color;
+
+    .panel-tab {
+      color: white;
+
+      &.active {
+        background-color: white;
+        color: $primary-color;
+      }
+    }
+  }
+}

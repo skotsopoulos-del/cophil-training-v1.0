@@ -1,0 +1,838 @@
+---
+title: "Welcome to CoPhil EO AI/ML Training"
+subtitle: "Pre-Course Orientation & Setup Guide"
+author: "EU-Philippines CoPhil Programme"
+date: "2025"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: images/copphil_logo.png
+    footer: "CoPhil Training | Pre-Course Orientation | 20-23 October 2025"
+    navigation-mode: vertical
+    controls: true
+    progress: true
+    history: true
+    center: true
+    transition: slide
+    background-transition: fade
+    width: 1920
+    height: 1080
+---
+
+# Welcome! {background-color="#1e3a8a"}
+
+## About This Training
+
+::: {.columns}
+::: {.column width="50%"}
+**4-Day Advanced Programme**
+
+- AI/ML for Earth Observation
+- Online delivery
+- Hands-on focused
+- Philippine context
+:::
+
+::: {.column width="50%"}
+**Focus Areas**
+
+- Disaster Risk Reduction (DRR)
+- Climate Change Adaptation (CCA)
+- Natural Resource Management (NRM)
+:::
+:::
+
+::: {.notes}
+Welcome to the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation. This is an intensive, hands-on programme designed specifically for Philippine EO professionals.
+:::
+
+---
+
+## Course Overview
+
+**Day 1:** EO Data & AI/ML Fundamentals  
+**Day 2:** Machine Learning (Random Forest & CNNs)  
+**Day 3:** Advanced Deep Learning  
+**Day 4:** Applications & Project Work
+
+::: {.fragment}
+**Total:** 32 hours of training + self-paced exercises
+:::
+
+::: {.notes}
+The course is structured to progress from fundamentals to advanced applications, with each day building on previous knowledge.
+:::
+
+---
+
+# EU Global Gateway Initiative {background-color="#003399"}
+
+## Partnership for Progress
+
+::: {.incremental}
+- **EU-Philippines** space cooperation flagship
+- Building **sustainable** digital infrastructure
+- Strengthening **research** and **education** systems
+- **Open data** for societal benefit
+:::
+
+::: {.notes}
+This training is part of the EU Global Gateway Initiative, representing Europe's commitment to building smart, clean, and secure partnerships worldwide.
+:::
+
+---
+
+## CoPhil Programme
+
+::: {.columns}
+::: {.column width="60%"}
+**Mission**
+
+Support **PhilSA** and **DOST** to enhance use of Earth Observation data for disaster response, climate adaptation, and resource management.
+:::
+
+::: {.column width="40%"}
+**Key Outputs**
+
+- Copernicus Mirror Site
+- Digital Space Campus
+- Capacity building programmes
+- Pilot services development
+:::
+:::
+
+::: {.notes}
+CoPhil positions the Philippines as a pioneer in the EU's international cooperation on Copernicus Earth Observation.
+:::
+
+---
+
+# What You'll Learn {background-color="#0f766e"}
+
+## Day 1: Foundations
+
+::: {.incremental}
+- **Session 1 (2h):** Copernicus Sentinel Data & Philippine EO Ecosystem
+- **Session 2 (2h):** Core Concepts of AI/ML for Earth Observation
+- **Session 3 (2h):** Hands-on Python for Geospatial Data
+- **Session 4 (2h):** Introduction to Google Earth Engine
+:::
+
+::: {.notes}
+Day 1 establishes the foundation you'll need for the entire programme.
+:::
+
+---
+
+## Day 2: Machine Learning
+
+::: {.incremental}
+- **Session 1 (3h):** Random Forest Theory & Practice
+- **Session 2 (2h):** Palawan Land Cover Classification Lab
+- **Session 3 (2.5h):** Introduction to Deep Learning & CNNs
+- **Session 4 (2.5h):** CNN Hands-on Lab with TensorFlow
+:::
+
+::: {.notes}
+Day 2 covers both traditional machine learning and introduces deep learning fundamentals.
+:::
+
+---
+
+## Day 3: Advanced Deep Learning
+
+::: {.incremental}
+- **Session 1:** U-Net for Semantic Segmentation
+- **Session 2:** Object Detection for EO
+- **Session 3:** Time Series Analysis with RNNs
+- **Session 4:** Multi-modal Data Fusion
+:::
+
+::: {.notes}
+Day 3 explores advanced deep learning architectures for specialized EO tasks.
+:::
+
+---
+
+## Day 4: Applications & Projects
+
+::: {.incremental}
+- **Session 1:** Model Deployment & MLOps
+- **Session 2:** Real-world Case Studies
+- **Session 3:** Capstone Project Work
+- **Session 4:** Presentations & Wrap-up
+:::
+
+::: {.notes}
+Day 4 brings everything together with practical applications and your own project work.
+:::
+
+---
+
+# Technical Requirements {background-color="#9333ea"}
+
+## What You Need
+
+### ✅ **Required (FREE)**
+
+::: {.incremental}
+1. **Google Account** (Gmail) for Colab access
+2. **Google Earth Engine Account** (sign up at [earthengine.google.com](https://earthengine.google.com))
+3. **Stable Internet Connection** (2 Mbps+ recommended)
+4. **Modern Web Browser** (Chrome, Firefox, Edge - latest version)
+5. **Computer/Laptop** (4GB+ RAM recommended)
+:::
+
+::: {.notes}
+All tools we use are cloud-based and free. No software installation required!
+:::
+
+---
+
+## Optional but Helpful
+
+::: {.incremental}
+- **Google Drive** with 5-10 GB free space (for saving outputs)
+- **Dual monitors** or large screen (easier for following along)
+- **Headphones** with microphone (better audio quality)
+- **Note-taking app** (OneNote, Notion, Evernote, paper!)
+:::
+
+::: {.notes}
+These aren't strictly required but will enhance your learning experience.
+:::
+
+---
+
+# Setup Instructions {background-color="#dc2626"}
+
+## Step 1: Google Account
+
+::: {.columns}
+::: {.column width="50%"}
+**If you have Gmail:**
+
+✅ You're all set!
+
+Just make sure you can access [colab.research.google.com](https://colab.research.google.com)
+:::
+
+::: {.column width="50%"}
+**If you don't have Gmail:**
+
+1. Go to [accounts.google.com](https://accounts.google.com)
+2. Click "Create account"
+3. Follow the prompts
+4. Verify your email
+:::
+:::
+
+::: {.notes}
+Most participants already have a Google account, but if not, it takes just 5 minutes to create one.
+:::
+
+---
+
+## Step 2: Google Earth Engine
+
+### Sign Up Process
+
+1. Visit [signup.earthengine.google.com](https://signup.earthengine.google.com)
+2. Sign in with your Google account
+3. Fill out registration form:
+   - ✅ Select **"Non-commercial"** use
+   - ✅ Project type: **"Education/Research"**
+   - ✅ Organization: Your agency (PhilSA, NAMRIA, DOST, University, etc.)
+4. Submit and wait for approval email (usually 1-2 days)
+
+::: {.fragment}
+**⚠️ Do this NOW if you haven't already!**
+:::
+
+::: {.notes}
+GEE approval can take 24-48 hours, so sign up immediately. We'll need it for Sessions 4, Day 2, and beyond.
+:::
+
+---
+
+## Step 3: Test Google Colab
+
+### Quick Test
+
+1. Go to [colab.research.google.com](https://colab.research.google.com)
+2. Click **"New Notebook"**
+3. In the first cell, type:
+
+```python
+print("Hello, CoPhil Training!")
+```
+
+4. Press **Shift+Enter** to run
+5. You should see the output below the cell
+
+::: {.fragment}
+✅ If you see "Hello, CoPhil Training!" — you're ready!
+:::
+
+::: {.notes}
+Colab is where we'll do all our hands-on work. Make sure it works before Day 1.
+:::
+
+---
+
+## Step 4: Join Course Platforms
+
+### Access the Course Site
+
+- **Course Website:** [URL will be provided]
+- **Discussion Forum:** [URL will be provided]
+- **Zoom/Meeting Link:** [Will be sent before each session]
+
+::: {.fragment}
+📧 **Check your email** for access links and calendar invites
+:::
+
+::: {.notes}
+We'll share all access information via email before the course begins.
+:::
+
+---
+
+# Course Format {background-color="#0891b2"}
+
+## Daily Schedule
+
+| Time | Activity | Format |
+|------|----------|--------|
+| 09:00-11:00 | Session 1 | Lecture + Demo |
+| 11:00-11:15 | ☕ **Break** | - |
+| 11:15-13:00 | Session 2 | Lecture + Demo |
+| 13:00-14:00 | 🍱 **Lunch** | - |
+| 14:00-16:00 | Session 3 | Hands-on Lab |
+| 16:00-16:15 | ☕ **Break** | - |
+| 16:15-18:00 | Session 4 | Hands-on Lab |
+
+::: {.notes}
+Each day follows this consistent schedule. Plan your day accordingly and protect this time.
+:::
+
+---
+
+## Session Structure
+
+### Typical 2-Hour Session
+
+::: {.incremental}
+- **10 min:** Introduction & objectives
+- **60 min:** Core content with live demonstrations
+- **40 min:** Hands-on exercises OR Q&A
+- **10 min:** Summary & next steps
+:::
+
+::: {.notes}
+We balance theory with practice. You'll spend roughly 50% of time doing hands-on work.
+:::
+
+---
+
+## Learning Methods
+
+::: {.columns}
+::: {.column width="50%"}
+**Instructor-Led**
+
+- Live presentations
+- Code demonstrations
+- Guided exercises
+- Real-time Q&A
+:::
+
+::: {.column width="50%"}
+**Self-Paced**
+
+- Jupyter notebooks
+- Practice exercises
+- Optional challenges
+- Take-home assignments
+:::
+:::
+
+::: {.fragment}
+**Blended approach:** Learn together, practice at your own pace
+:::
+
+::: {.notes}
+We combine live instruction with self-paced practice for maximum flexibility and learning.
+:::
+
+---
+
+# Expectations & Etiquette {background-color="#7c3aed"}
+
+## During Live Sessions
+
+### ✅ **Please DO:**
+
+::: {.incremental}
+- Keep your **camera on** (when possible) — builds community
+- Ask questions via **chat** or **unmute**
+- Share your screen if you need help
+- Participate in polls and exercises
+- Take breaks when scheduled
+:::
+
+::: {.notes}
+Active participation makes the training more engaging for everyone.
+:::
+
+---
+
+## During Live Sessions
+
+### ⛔ **Please AVOID:**
+
+::: {.incremental}
+- Multitasking (emails, other work) — you'll miss key concepts
+- Eating during lectures (breaks are scheduled)
+- Side conversations on unmuted mics
+- Recording without permission
+- Sharing course materials publicly (check license)
+:::
+
+::: {.notes}
+Respect everyone's learning experience and focus on the material.
+:::
+
+---
+
+## Code of Conduct
+
+::: {.incremental}
+- **Respectful:** All questions are welcome
+- **Collaborative:** Help your fellow participants
+- **Professional:** Maintain work-appropriate language and behavior
+- **Inclusive:** Value diverse perspectives and experiences
+- **Curious:** Embrace mistakes as learning opportunities
+:::
+
+::: {.fragment}
+**We're all here to learn together! 🌟**
+:::
+
+::: {.notes}
+This is a supportive learning environment. Everyone starts somewhere, and questions help everyone learn.
+:::
+
+---
+
+# Getting Help {background-color="#059669"}
+
+## During Sessions
+
+::: {.columns}
+::: {.column width="50%"}
+**Technical Issues**
+
+- Share your screen
+- Describe the error
+- Check chat for solutions
+- Use breakout rooms
+:::
+
+::: {.column width="50%"}
+**Conceptual Questions**
+
+- Ask in chat anytime
+- Unmute and ask verbally
+- Use Q&A sessions
+- Post in discussion forum
+:::
+:::
+
+::: {.notes}
+Don't suffer in silence! We're here to help you succeed.
+:::
+
+---
+
+## Outside of Sessions
+
+### Support Resources
+
+1. **Course Website:** FAQs, troubleshooting, cheat sheets
+2. **Discussion Forum:** Post questions, share insights
+3. **Email Support:** [instructor email]
+4. **Office Hours:** [Schedule TBA]
+5. **Peer Study Groups:** Connect with other participants
+
+::: {.fragment}
+**Response time:** Usually within 24 hours
+:::
+
+::: {.notes}
+We provide multiple channels for support. Use whatever works best for you.
+:::
+
+---
+
+# Materials & Resources {background-color="#ea580c"}
+
+## What You'll Receive
+
+::: {.incremental}
+- 📊 **Presentation Slides** (all sessions)
+- 📓 **Jupyter Notebooks** (with exercises and solutions)
+- 📚 **Handouts & Cheat Sheets**
+- 📁 **Sample Datasets** (Philippine examples)
+- 🔗 **Resource Links** (documentation, tutorials, papers)
+- 🎓 **Certificate** (upon completion)
+:::
+
+::: {.notes}
+All materials are yours to keep and use after the course.
+:::
+
+---
+
+## Accessing Materials
+
+### During the Course
+
+- **Course Website:** Browse all content
+- **GitHub Repository:** Download notebooks and code
+- **Google Drive:** Shared datasets and resources
+
+### After the Course
+
+- Materials remain accessible for **6 months**
+- Fork/clone GitHub repository for permanent access
+- Download everything you need before access expires
+
+::: {.notes}
+Make sure to download materials you want to keep permanently.
+:::
+
+---
+
+# Assessment & Certificate {background-color="#0284c7"}
+
+## Completion Requirements
+
+To receive your certificate, you must:
+
+::: {.incremental}
+1. ✅ Attend **at least 75%** of live sessions (24/32 hours)
+2. ✅ Complete **hands-on exercises** (Day 1-3)
+3. ✅ Submit **capstone project** (Day 4)
+4. ✅ Fill out **feedback survey** (end of course)
+:::
+
+::: {.notes}
+The certificate documents your participation and skill development.
+:::
+
+---
+
+## Capstone Project
+
+### Final Day Project
+
+- **Individual or Team:** Your choice (teams of 2-3)
+- **Topic:** Philippine DRR/CCA/NRM application
+- **Duration:** 3-4 hours work time
+- **Deliverable:** 10-min presentation + Jupyter notebook
+- **Assessment:** Peer review + instructor feedback
+
+::: {.fragment}
+**Goal:** Apply everything you've learned to a real problem
+:::
+
+::: {.notes}
+The capstone lets you demonstrate your new skills on a problem relevant to your work.
+:::
+
+---
+
+# Prerequisites & Preparation {background-color="#dc2626"}
+
+## What You Should Know
+
+### ✅ **Required Knowledge**
+
+::: {.incremental}
+- **Python Basics:** Variables, lists, loops, functions
+- **Remote Sensing Concepts:** Bands, resolution, spectral signatures
+- **Basic Statistics:** Mean, standard deviation, correlation
+:::
+
+::: {.fragment}
+**Don't worry!** We'll review Python basics in Day 1, Session 3
+:::
+
+::: {.notes}
+We assume you have basic Python knowledge. If you're rusty, review before the course.
+:::
+
+---
+
+## What You DON'T Need to Know
+
+### ❌ **NOT Required**
+
+::: {.incremental}
+- Advanced math (linear algebra, calculus) — we explain intuitively
+- Deep learning experience — we teach from scratch
+- Google Earth Engine — we start with basics
+- Specific ML libraries — we'll install and introduce everything
+:::
+
+::: {.fragment}
+**We teach what you need when you need it!**
+:::
+
+::: {.notes}
+This is an introductory course. We don't expect prior ML or GEE experience.
+:::
+
+---
+
+## Recommended Pre-Work
+
+### 📚 **Optional Reading**
+
+If you want a head start:
+
+1. **Python Refresh:** [Python for Beginners](https://www.python.org/about/gettingstarted/)
+2. **Remote Sensing:** Review Sentinel-1 and Sentinel-2 basics
+3. **Colab Tutorial:** [Welcome to Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb)
+4. **GEE Intro:** [Earth Engine guides](https://developers.google.com/earth-engine/guides/getstarted)
+
+::: {.fragment}
+⏱️ **Time:** 2-3 hours total (optional!)
+:::
+
+::: {.notes}
+These are optional but can make Day 1 easier if you have time.
+:::
+
+---
+
+# Tips for Success {background-color="#16a34a"}
+
+## Maximizing Your Learning
+
+::: {.incremental}
+1. **Dedicate Time:** Block your calendar, minimize distractions
+2. **Take Notes:** Write down key concepts and "aha" moments
+3. **Practice Immediately:** Run code as we demo it
+4. **Ask Questions:** No question is too basic
+5. **Connect Concepts:** Relate to your own work and data
+6. **Experiment:** Modify code, try variations, break things!
+7. **Network:** Connect with other participants
+8. **Follow Up:** Review materials after each session
+:::
+
+::: {.notes}
+Active learning beats passive watching every time.
+:::
+
+---
+
+## Common Pitfalls to Avoid
+
+### ⚠️ **Watch Out For:**
+
+::: {.incremental}
+- **Rushing ahead:** Follow along step-by-step
+- **Copy-pasting without understanding:** Read and modify code
+- **Falling behind:** Ask for help immediately
+- **Skipping breaks:** Your brain needs rest
+- **Working in isolation:** Collaborate and discuss
+:::
+
+::: {.notes}
+Learn from others' mistakes. These are the most common issues we see.
+:::
+
+---
+
+# Philippine Context {background-color="#0891b2"}
+
+## Why This Training Matters
+
+::: {.columns}
+::: {.column width="50%"}
+**Challenges**
+
+- 20+ typhoons per year
+- Climate change impacts
+- Deforestation & biodiversity loss
+- Rapid urbanization
+- Food security
+:::
+
+::: {.column width="50%"}
+**Solutions**
+
+- Early warning systems
+- Land cover monitoring
+- Disaster response mapping
+- Agricultural monitoring
+- Coastal zone management
+:::
+:::
+
+::: {.fragment}
+**EO + AI/ML = Better decisions, faster response, lives saved**
+:::
+
+::: {.notes}
+This isn't just academic - these skills directly support Philippine resilience and development.
+:::
+
+---
+
+## Philippine EO Ecosystem
+
+### Key Agencies
+
+::: {.incremental}
+- **PhilSA:** Philippine Space Agency (SIYASAT portal, Diwata missions)
+- **NAMRIA:** National mapping and geoportal
+- **DOST-ASTI:** AI platforms (SkAI-Pinas, PANDA, DIMER)
+- **PAGASA:** Weather forecasting and climate monitoring
+- **DENR:** Environmental management and forest monitoring
+- **DA:** Agricultural applications
+:::
+
+::: {.notes}
+You'll learn to work with data and tools from these agencies throughout the course.
+:::
+
+---
+
+## Course Examples Feature
+
+::: {.incremental}
+- **Palawan** land cover classification
+- **Metro Manila** flood mapping
+- **Typhoon** damage assessment
+- **Coral reef** health monitoring
+- **Rice paddy** mapping
+- **Forest fire** detection
+:::
+
+::: {.fragment}
+**Real data. Real problems. Real impact.** 🇵🇭
+:::
+
+::: {.notes}
+Every example is chosen to be relevant to Philippine EO professionals.
+:::
+
+---
+
+# Timeline & Next Steps {background-color="#7c3aed"}
+
+## Before Day 1
+
+### ✅ **Action Items**
+
+::: {.incremental}
+- **NOW:** Sign up for Google Earth Engine (takes 1-2 days for approval)
+- **1 Week Before:** Test Colab, check equipment
+- **3 Days Before:** Review Python basics (if needed)
+- **1 Day Before:** Join course platforms, note Zoom links
+- **Morning Of:** Join 10 minutes early for tech check
+:::
+
+::: {.notes}
+Following this timeline ensures a smooth start on Day 1.
+:::
+
+---
+
+## Course Timeline
+
+| Date | Day | Focus |
+|------|-----|-------|
+| [TBA] | Day 1 | Foundations |
+| [TBA] | Day 2 | Machine Learning |
+| [TBA] | Day 3 | Deep Learning |
+| [TBA] | Day 4 | Applications & Projects |
+
+::: {.fragment}
+📧 **Calendar invites sent to your registered email**
+:::
+
+::: {.notes}
+Exact dates will be in your calendar invite. Add them to your calendar now!
+:::
+
+---
+
+# Questions? {background-color="#1e3a8a"}
+
+## Contact Information
+
+**Email:** [course-email@copphil.ph]  
+**Website:** [URL]  
+**Discussion Forum:** [URL]
+
+::: {.fragment}
+### Can't wait to start?
+
+- Explore the course website
+- Join the discussion forum
+- Connect with other participants
+- Review setup instructions again
+:::
+
+::: {.notes}
+We're here to help. Reach out if you have any questions or concerns.
+:::
+
+---
+
+# We're Excited to Have You! {background-color="#059669"}
+
+## What's Next
+
+::: {.incremental}
+1. Complete setup steps (GEE signup, Colab test)
+2. Mark your calendar for all 4 days
+3. Prepare your workspace (quiet, distraction-free)
+4. Review any optional pre-work
+5. Get excited — this will be amazing! 🚀
+:::
+
+::: {.fragment}
+### **See you on Day 1, Session 1!**
+
+**Copernicus Sentinel Data & Philippine EO Ecosystem**
+:::
+
+::: {.notes}
+We're thrilled to have you join us. This is going to be an incredible learning experience!
+:::
+
+---
+
+# Welcome Aboard! {background-image="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=1920" background-opacity="0.3"}
+
+::: {.r-fit-text}
+**CoPhil EO AI/ML Training**
+
+🇪🇺 🤝 🇵🇭
+:::
+
+::: {.fragment}
+*Building capacity. Saving lives. Protecting our planet.*
+:::
+
+::: {.notes}
+Thank you! We look forward to an amazing 4 days of learning together.
+:::

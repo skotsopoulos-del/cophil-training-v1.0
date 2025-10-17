@@ -1,0 +1,499 @@
+---
+title: "Session 3: Emerging AI Trends in Earth Observation"
+subtitle: "Foundation Models, Self-Supervised Learning, and Explainable AI"
+date: last-modified
+author: "Stylianos Kotsopoulos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 4</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 3</span>
+</nav>
+
+::: {.hero}
+# Session 3: Emerging AI Trends in Earth Observation
+
+### Foundation Models, Self-Supervised Learning, and Explainable AI
+
+Explore cutting-edge AI technologies transforming Earth observation analysis
+:::
+
+## Session Overview
+
+This 2-hour session introduces three revolutionary AI trends reshaping Earth observation: **Geospatial Foundation Models** (pre-trained on massive satellite archives), **Self-Supervised Learning** (learning from unlabeled data), and **Explainable AI** (understanding model decisions). These technologies address key challenges in EO: limited labeled data, model interpretability, and generalization across diverse regions.
+
+---
+
+::: {.callout-note}
+## Learning Objectives
+
+By the end of this session, you will be able to:
+
+1. **Explain** what foundation models are and why they're transformative for EO
+2. **Identify** major geospatial foundation models (Prithvi, Clay, SatMAE, DOFA)
+3. **Understand** self-supervised learning approaches for unlabeled satellite data
+4. **Apply** explainable AI techniques (SHAP, LIME, Grad-CAM) to interpret models
+5. **Assess** how these trends address Philippine EO challenges
+6. **Evaluate** when to use foundation models vs. training from scratch
+:::
+
+## Presentation Slides
+
+<iframe src="../presentations/session3_emerging_ai.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Session Details
+
+::: {.session-info}
+**Duration:** 2 hours (120 minutes) | **Format:** Theory + Demonstrations | **Difficulty:** Advanced
+
+**Prerequisites:**
+- Understanding of CNNs and LSTMs (Days 2-4)
+- Transfer learning concepts
+- Basic model training experience
+- Familiarity with overfitting and generalization
+
+**Materials Provided:**
+- Presentation slides
+- Foundation model comparison guide
+- XAI demonstration examples
+- Integration roadmap for Philippine agencies
+:::
+
+---
+
+## Part 1: Geospatial Foundation Models (40 minutes)
+
+### What Are Foundation Models?
+
+**Foundation Models** are large-scale AI models pre-trained on vast amounts of diverse data that can be adapted (fine-tuned) to many downstream tasks with minimal task-specific labeled data.
+
+**Analogy:** Like a medical student who studies general anatomy before specializing in cardiology, a foundation model learns general patterns from millions of images before being fine-tuned for specific tasks like flood mapping or crop classification.
+
+**Key Characteristics:**
+- **Pre-trained** on massive datasets (millions to billions of images)
+- **General-purpose** representations applicable to multiple tasks
+- **Transfer learning** enables fast adaptation with limited labels
+- **Few-shot learning** capability (learn from few examples)
+
+::: {.callout-tip}
+## Why Foundation Models Matter for Philippines
+
+**Traditional Approach Problems:**
+- Limited labeled Philippine satellite imagery
+- Models trained on US/European data don't transfer well
+- Each new task requires thousands of labeled samples
+- Small agencies can't afford massive labeling efforts
+
+**Foundation Model Solution:**
+- Pre-trained on global satellite data (includes Philippine regions)
+- Fine-tune with just 100-500 labeled samples
+- One model → multiple applications
+- Democratizes advanced AI for resource-limited agencies
+:::
+
+### Major Geospatial Foundation Models
+
+**1. Prithvi (IBM-NASA, 2023)**
+
+- **Architecture:** Temporal Vision Transformer (ViT)
+- **Training Data:** NASA's Harmonized Landsat-Sentinel (HLS) data
+  - 1 billion image patches
+  - Multi-temporal sequences (time series)
+  - 6 spectral bands
+- **Pre-training Task:** Masked Autoencoding
+- **Applications:** Flood mapping, wildfire detection, crop classification
+- **Key Innovation:** Handles temporal sequences, not just single images
+
+**2. Clay (Clay Foundation, 2024)**
+
+- **Architecture:** Multi-modal Transformer
+- **Training Data:** Sentinel-1, Sentinel-2, Landsat, DEM
+- **Pre-training Task:** Contrastive learning + masked reconstruction
+- **Applications:** Land cover, change detection, disaster response
+- **Key Innovation:** Handles multiple sensor types simultaneously
+
+**3. SatMAE (Microsoft, 2022)**
+
+- **Architecture:** Masked Autoencoder for satellite imagery
+- **Training Data:** Sentinel-2 imagery (10+ million images)
+- **Pre-training Task:** Mask 75% of patches, reconstruct
+- **Applications:** Scene classification, object detection
+- **Key Innovation:** Temporal masking captures seasonal patterns
+
+**4. DOFA (Geographic Foundation Model, 2024)**
+
+- **Architecture:** Dynamic One-For-All (multi-task)
+- **Training Data:** Diverse EO datasets (optical + SAR)
+- **Pre-training Task:** Multi-task learning
+- **Applications:** Generalist model for any EO task
+- **Key Innovation:** Single model handles radar and optical
+
+### How Foundation Models Work
+
+```{mermaid}
+flowchart TB
+    subgraph PreTraining["Pre-Training Phase"]
+        A[Massive Satellite Archive<br/>Millions of Images] --> B[Self-Supervised Learning<br/>No Labels Needed]
+        B --> C[Foundation Model<br/>Learns General Features]
+    end
+    
+    subgraph FineTuning["Fine-Tuning Phase"]
+        C --> D[Your Small Labeled Dataset<br/>100-500 samples]
+        D --> E[Task-Specific Model<br/>Flood/Drought/Crops]
+    end
+    
+    subgraph Deployment["Deployment"]
+        E --> F[Predict on New Data<br/>Operational Use]
+    end
+    
+    style PreTraining fill:#e1f5ff
+    style FineTuning fill:#fff4e1
+    style Deployment fill:#e8f5e9
+```
+
+**Comparison: Traditional vs. Foundation Model Approach**
+
+| Aspect | Traditional CNN | Foundation Model |
+|--------|----------------|------------------|
+| **Training Data** | 10,000+ labeled samples | 100-500 labeled samples |
+| **Training Time** | Days to weeks | Hours |
+| **Compute Cost** | High (multi-GPU) | Low (single GPU) |
+| **Performance** | Task-specific | Multi-task capable |
+| **Generalization** | Limited | Global knowledge |
+
+### Philippine Use Cases
+
+**1. Rapid Disaster Response**
+- **Challenge:** Flood maps within 6 hours of typhoon
+- **Solution:** Pre-trained Prithvi + 200 Philippine flood samples
+- **Result:** 15-minute flood extent generation
+
+**2. National Agricultural Monitoring**
+- **Challenge:** Map crops for 12M hectares
+- **Solution:** Clay model (multi-sensor) + regional samples
+- **Result:** Nationwide coverage with transfer learning
+
+**3. Mangrove Conservation**
+- **Challenge:** Monitor 280K hectares on limited budget
+- **Solution:** SatMAE + 400 DENR samples
+- **Result:** Quarterly monitoring, minimal manual work
+
+---
+
+## Part 2: Self-Supervised Learning (30 minutes)
+
+### What is Self-Supervised Learning?
+
+**Self-Supervised Learning (SSL)** enables models to learn from **unlabeled data** by creating automatic tasks that require understanding data structure.
+
+**Key Idea:** Instead of human labels, create "pretext tasks" that force the model to learn meaningful patterns.
+
+### Why SSL Matters for EO
+
+**The Labeling Problem:**
+- Copernicus: 10 TB of satellite data per day
+- Only ~0.01% is labeled
+- Labeling cost: ₱50-200 per image
+- Domain experts are scarce
+
+**SSL Solution:**
+- Learn from unlabeled data (99.99% available)
+- Reduces labeling needs by 10-100x
+- Transfers knowledge to labeled tasks
+
+### Common SSL Approaches
+
+#### 1. Masked Autoencoding (MAE)
+
+**Concept:** Mask 60-75% of image patches, train model to reconstruct
+
+**Process:**
+1. Divide Sentinel-2 image into patches
+2. Hide 75% randomly
+3. Model predicts hidden patches
+4. Learns spatial patterns, context, spectral signatures
+
+```{mermaid}
+flowchart LR
+    A[Original Image] --> B[Mask 75%]
+    B --> C[Encoder]
+    C --> D[Decoder:<br/>Reconstruct]
+    D --> E[Compare<br/>Calculate Loss]
+    
+    style A fill:#e8f5e9
+    style B fill:#fff4e1
+    style C fill:#e1f5ff
+```
+
+#### 2. Contrastive Learning
+
+**Concept:** Learn by comparing similar vs. dissimilar images
+
+**Process:**
+1. Take one image → create augmented versions
+2. Train to recognize same image
+3. Distinguish from other images
+4. Learn invariant features
+
+**Applications:**
+- Change detection
+- Multi-season crop mapping
+- Cross-sensor alignment
+
+#### 3. Temporal Self-Supervision
+
+**Concept:** Predict temporal order or future states
+
+**Tasks:**
+- Sort images by date
+- Predict next time step
+- Temporal interpolation
+
+**Value:** Learns seasonal patterns crucial for agriculture
+
+### SSL Success: Philippine Mangrove Mapping
+
+**Traditional:** 2,000 labels, 3 months, ₱300K
+**SSL:** Pre-train on 50K unlabeled + 200 labels, 3 weeks, ₱50K
+**Result:** Same accuracy, 80% cost reduction
+
+---
+
+## Part 3: Explainable AI (XAI) (35 minutes)
+
+### Why Explainability Matters
+
+**The Black Box Problem:**
+- Modern models are powerful but opaque
+- We know inputs/outputs, not reasoning
+- Critical for operational deployment
+
+**Philippine Scenarios Requiring XAI:**
+
+**1. Disaster Response**
+- NDRRMC prioritizes evacuations based on AI
+- **Need:** Explain flood risk predictions to LGUs
+
+**2. Agricultural Subsidies**
+- DA allocates ₱10B in crop insurance
+- **Need:** Defend AI decisions, avoid bias
+
+**3. Environmental Enforcement**
+- DENR detects illegal logging
+- **Need:** Legal evidence for prosecution
+
+**4. Scientific Credibility**
+- PhilSA publishes forecasts
+- **Need:** Build trust with stakeholders
+
+### Major XAI Techniques
+
+#### 1. SHAP (SHapley Additive exPlanations)
+
+**What:** Quantifies each feature's contribution
+
+**Example: Drought LSTM**
+```
+Predicted drought: 0.72 (high)
+
+Contributions:
+  NDVI (t-3):     -0.25  ← Low NDVI 3 months ago
+  ONI (t-1):      +0.18  ← El Niño signal
+  Rainfall (t-6): -0.12  ← Low rainfall 6 months ago
+  
+Final: 0.48 + 0.24 = 0.72
+```
+
+**Value:** Farmers understand why forecast was made
+
+#### 2. LIME (Local Interpretable Model-agnostic Explanations)
+
+**What:** Creates simple local approximations
+
+**Process:**
+1. Take one prediction
+2. Generate similar inputs
+3. Fit simple linear model
+4. Use coefficients as explanations
+
+**Use Case:** Verify land cover classifications
+
+#### 3. Grad-CAM (Gradient-weighted Class Activation Mapping)
+
+**What:** Visualizes CNN spatial attention
+
+**Output:** Heatmap showing which image regions matter
+
+**Example: Building Detection**
+- Red regions: Model focuses (rooftops, edges)
+- Blue regions: Model ignores (vegetation)
+
+**Use Case:** Debug false positives
+
+### XAI Comparison
+
+| Technique | Best For | Output | Limitation |
+|-----------|----------|--------|------------|
+| **SHAP** | Feature importance | Numeric values | Slow for large models |
+| **LIME** | Local explanations | Simplified model | Approximations |
+| **Grad-CAM** | Spatial attention | Heatmap | CNNs only |
+
+---
+
+## Part 4: Integration & Best Practices (15 minutes)
+
+### Decision Framework
+
+**When to use Foundation Models:**
+- ✅ Limited labeled data (<1,000 samples)
+- ✅ Need rapid deployment
+- ✅ Task similar to pre-training data
+- ❌ Highly specialized Philippine-only task
+- ❌ Extreme data privacy concerns
+
+**When to use Self-Supervised Learning:**
+- ✅ Abundant unlabeled data
+- ✅ Expensive labeling process
+- ✅ Want 5-10x label reduction
+- ❌ Already have large labeled set
+- ❌ Simple rule-based task
+
+**When to use Explainable AI:**
+- ✅ High-stakes decisions (disaster, finance)
+- ✅ Need stakeholder trust
+- ✅ Regulatory requirements
+- ✅ Model debugging and improvement
+- ❌ Internal R&D only
+- ❌ Model already transparent (e.g., decision tree)
+
+### Implementation Roadmap for Philippine Agencies
+
+**Phase 1: Assessment (1-2 months)**
+1. Identify high-value use cases
+2. Evaluate available labeled data
+3. Select appropriate foundation model
+4. Test on pilot region
+
+**Phase 2: Fine-Tuning (2-3 months)**
+1. Collect 200-500 Philippine samples
+2. Fine-tune foundation model
+3. Validate on held-out regions
+4. Implement XAI for key predictions
+
+**Phase 3: Deployment (3-6 months)**
+1. Integrate with existing systems (DATOS, Space+)
+2. Train staff on model interpretation
+3. Establish monitoring and retraining schedule
+4. Document for stakeholders
+
+**Phase 4: Scaling (6-12 months)**
+1. Expand to additional regions
+2. Add new tasks using same foundation model
+3. Build community of practice
+4. Contribute Philippine data to global efforts
+
+### Resources and Next Steps
+
+**Foundation Model Repositories:**
+- Prithvi: [HuggingFace Model Hub](https://huggingface.co/ibm-nasa-geospatial)
+- Clay: [Clay Foundation](https://clay-foundation.github.io/)
+- SatMAE: [GitHub](https://github.com/sustainlab-group/SatMAE)
+
+**XAI Tools:**
+- SHAP: [shap.readthedocs.io](https://shap.readthedocs.io/)
+- LIME: [github.com/marcotcr/lime](https://github.com/marcotcr/lime)
+- Captum (PyTorch): [captum.ai](https://captum.ai/)
+
+**Philippine Platforms:**
+- DOST-ASTI DATOS: [asti.dost.gov.ph](https://asti.dost.gov.ph/)
+- PhilSA Space+ Dashboard
+- DIMER (Model Repository)
+- AIPI (AI Processing Interface)
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 3 Summary
+
+**Foundation Models:**
+- Pre-trained on billions of images globally
+- Fine-tune with 100-500 Philippine samples
+- Democratize advanced AI for small agencies
+- Reduce cost and time by 80-90%
+
+**Self-Supervised Learning:**
+- Learn from unlabeled satellite archives
+- Reduce labeling needs by 10-100x
+- Critical for Philippine EO scaling
+- Powers foundation models
+
+**Explainable AI:**
+- Essential for operational deployment
+- Build stakeholder trust
+- Debug model failures
+- Meet regulatory requirements
+- SHAP, LIME, Grad-CAM are key tools
+
+**Philippine Impact:**
+- Overcome limited labeled data challenge
+- Rapid disaster response deployment
+- Cost-effective national monitoring
+- Transparent AI for government use
+:::
+
+---
+
+## Looking Ahead to Session 4
+
+::: {.callout-note}
+## Course Synthesis
+
+**Session 4 Topics:**
+- Recap of all 4 days (Random Forest → Foundation Models)
+- Best practices for Philippine EO deployment
+- Building a Community of Practice
+- CoPhil Digital Space Campus
+- Your next steps in EO AI/ML
+
+**Reflection Questions for Session 4:**
+1. Which AI/ML technique fits your agency's priority use case?
+2. What are your biggest deployment barriers?
+3. How can you contribute to the Philippine EO community?
+
+[Continue to Session 4 →](session4.qmd){.btn .btn-primary}
+:::
+
+---
+
+## Additional Resources
+
+**Academic Papers:**
+- Prithvi: Jakubik et al. (2023). "Foundation Models for Generalist Geospatial Artificial Intelligence"
+- SatMAE: Cong et al. (2022). "SatMAE: Pre-training Transformers for Temporal and Multi-Spectral Satellite Imagery"
+- XAI Survey: Lundberg & Lee (2017). "A Unified Approach to Interpreting Model Predictions"
+
+**Tutorials:**
+- [Fine-tuning Prithvi for Flood Mapping](https://github.com/NASA-IMPACT/hls-foundation-os)
+- [SHAP for Time Series](https://shap.readthedocs.io/en/latest/example_notebooks/tabular_examples/model_agnostic/Time%20Series%20Classification.html)
+- [Grad-CAM Implementation](https://keras.io/examples/vision/grad_cam/)
+
+**Philippine Initiatives:**
+- SkAI-Pinas Program
+- DIMER Model Repository
+- PhilSA-DOST Collaboration
+
+---
+
+*This session is part of Day 4: Time Series Analysis, Emerging Trends, and Sustainable Learning - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

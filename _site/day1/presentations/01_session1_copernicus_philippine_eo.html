@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Stylianos Kotsopoulos">
+  <title>CoPhil EO AI/ML Training – Copernicus Sentinel Data &amp; Philippine EO Ecosystem</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="custom.scss">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Copernicus Sentinel Data &amp; Philippine EO Ecosystem</h1>
+  <p class="subtitle">CoPhil EO AI/ML Training - Day 1, Session 1</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Stylianos Kotsopoulos 
+</div>
+        <p class="quarto-title-affiliation">
+            EU-Philippines CoPhil Programme
+          </p>
+    </div>
+</div>
+
+</section>
+<section>
+<section id="welcome" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Welcome</h1>
+
+</section>
+<section id="course-introduction" class="slide level2 center">
+<h2>Course Introduction</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>4-Day Advanced Training</strong></p>
+<ul>
+<li>AI/ML for Earth Observation</li>
+<li>Philippine EO Professionals</li>
+<li>Focus: DRR, CCA, NRM</li>
+<li>Online format</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Today’s Goals</strong></p>
+<ul>
+<li>Understand Copernicus data</li>
+<li>Explore Philippine EO ecosystem</li>
+<li>Learn AI/ML fundamentals</li>
+<li>Hands-on Python and GEE</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Welcome participants to the 4-day advanced training. Emphasize that this is part of the EU-Philippines partnership and will provide practical skills for disaster risk reduction, climate change adaptation, and natural resource management.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="eu-global-gateway-initiative" class="slide level2 center">
+<h2>EU Global Gateway Initiative</h2>
+<ul>
+<li class="fragment">EU-Philippines space cooperation flagship</li>
+<li class="fragment">Building strong partnerships</li>
+<li class="fragment">Smart, clean, secure digital links</li>
+<li class="fragment">Strengthening health, education, research systems globally</li>
+</ul>
+
+<img data-src="images/eu_global_gateway.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><aside class="notes">
+<p>The Global Gateway strategy represents the EU’s commitment to building partnerships that boost smart, clean and secure infrastructure globally. CoPhil is a unique flagship initiative within this framework.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cophil-programme-overview" class="slide level2 center">
+<h2>CoPhil Programme Overview</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Mission</strong></p>
+<p>Support Philippine Space Agency (PhilSA) and DOST to improve use of Earth Observation data for:</p>
+<ul>
+<li>Disaster Risk Reduction (DRR)</li>
+<li>Climate Change Adaptation (CCA)</li>
+<li>Natural Resource Management (NRM)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><strong>Key Outputs</strong></p>
+<ul>
+<li>Copernicus Mirror Site</li>
+<li>Digital Space Campus</li>
+<li>Capacity building</li>
+<li>Pilot services</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>CoPhil is an EU-funded Technical Assistance programme positioning the Philippines as a pioneer in the EU’s international cooperation on Copernicus.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="philsa-dost-partnership" class="slide level2 center">
+<h2>PhilSA &amp; DOST Partnership</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Philippine Space Agency</strong></p>
+<p><img data-src="images/philsa_logo.png" width="200"></p>
+<ul>
+<li>Established 2019</li>
+<li>Central civilian space agency</li>
+<li>Space+ Data Dashboard</li>
+<li>Co-chair of CoPhil</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Department of Science and Technology</strong></p>
+<p><img data-src="images/dost_logo.png" width="200"></p>
+<ul>
+<li>ASTI AI initiatives</li>
+<li>SkAI-Pinas program</li>
+<li>National AI investments</li>
+<li>Co-chair of CoPhil</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Both PhilSA and DOST are co-chairs of the CoPhil programme, demonstrating strong national commitment to building EO and AI capacity.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="session-1-roadmap" class="slide level2 center">
+<h2>Session 1 Roadmap</h2>
+<ol type="1">
+<li class="fragment">Copernicus Programme Overview</li>
+<li class="fragment">Sentinel-1 Mission (SAR)</li>
+<li class="fragment">Sentinel-2 Mission (Optical)</li>
+<li class="fragment">Data Access Methods</li>
+<li class="fragment">Philippine EO Ecosystem</li>
+<li class="fragment">CoPhil Infrastructure</li>
+</ol>
+<p><strong>Duration:</strong> 2 hours</p>
+<aside class="notes">
+<p>This session provides the foundation for understanding where EO data comes from and how Philippine agencies complement Copernicus data.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="part-1-the-copernicus-programme" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Part 1: The Copernicus Programme</h1>
+
+</section>
+<section id="what-is-copernicus" class="slide level2 center">
+<h2>What is Copernicus?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Europe’s Eyes on Earth</strong></p>
+<ul>
+<li>EU flagship Earth Observation program</li>
+<li>Family of Sentinel satellites</li>
+<li><strong>Free and open data policy</strong></li>
+<li>Operational since 2014</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/copernicus_overview.jpg" style="width:100.0%"></p>
+</div></div>
+<div class="fragment">
+<p><strong>“Looking at our planet and its environment for the benefit of all European citizens”</strong></p>
+</div>
+<aside class="notes">
+<p>Copernicus is the European Union’s Earth Observation program, providing free and open satellite data globally. It comprises a fleet of Sentinel satellites designed for environmental monitoring.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-sentinel-family" class="slide level2 center">
+<h2>The Sentinel Family</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Sentinel-1</strong> (SAR)</p>
+<ul>
+<li>C-band radar imaging</li>
+<li>All-weather, day/night</li>
+<li>1A operational, <strong>1C launched Dec 2024</strong></li>
+<li>6-day repeat (dual constellation)</li>
+</ul>
+<p><strong>Sentinel-2</strong> (Optical)</p>
+<ul>
+<li>Multispectral imaging</li>
+<li>13 spectral bands</li>
+<li>2A, 2B, <strong>2C operational Jan 2025</strong></li>
+<li>5-day repeat (three satellites)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Sentinel-3</strong> (Ocean/Land)</p>
+<ul>
+<li>Ocean and land monitoring</li>
+<li>Sea surface temperature</li>
+<li>Ocean color, vegetation</li>
+</ul>
+<p><strong>Sentinel-5P</strong> (Atmosphere)</p>
+<ul>
+<li>Air quality monitoring</li>
+<li>Atmospheric composition</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p><strong>Timing:</strong> 4 minutes</p>
+<p><strong>Key Points:</strong> - Six Sentinel missions operational (1, 2, 3, 5P, 6) with 4, 7-12 planned - <strong>2025 Update:</strong> Sentinel-1C launched December 2024, restoring 6-day global repeat - <strong>2025 Update:</strong> Sentinel-2C operational January 2025, creating 3-satellite constellation with 5-day repeat - Today we focus on Sentinel-1 and Sentinel-2 - most relevant for Philippine DRR/CCA/NRM - Sentinel-3 important for marine/coastal applications - Sentinel-5P monitors air pollution (useful for Manila air quality)</p>
+<p><strong>Transition:</strong> “These missions generate petabytes of free data. Let’s see how this data is used…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="copernicus-applications" class="slide level2 center">
+<h2>Copernicus Applications</h2>
+
+<img data-src="images/copernicus_applications.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Emergency Management</strong></p>
+<ul>
+<li>Flood mapping</li>
+<li>Fire detection</li>
+<li>Disaster response</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Climate &amp; Environment</strong></p>
+<ul>
+<li>Deforestation monitoring</li>
+<li>Agricultural monitoring</li>
+<li>Water quality assessment</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Copernicus supports applications in emergency management, health care, agriculture, and environment, with crucial impact on society, climate, and economy.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="sentinel-1-sar-mission" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Sentinel-1: SAR Mission</h1>
+
+</section>
+<section id="sentinel-1-overview" class="slide level2 center">
+<h2>Sentinel-1 Overview</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Mission Configuration (2025)</strong></p>
+<ul>
+<li><strong>Sensor:</strong> C-band Synthetic Aperture Radar</li>
+<li><strong>Satellites:</strong> 1A, <strong>1C (operational 2025)</strong></li>
+<li><strong>Orbit:</strong> Polar sun-synchronous</li>
+<li><strong>All-weather, day/night capability</strong></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/sentinel1_satellite.jpg" style="width:100.0%"></p>
+</div></div>
+<div class="fragment">
+<p><strong>Key Advantage:</strong> Penetrates clouds and works at night</p>
+</div>
+<aside class="notes">
+<p>Sentinel-1 is a radar imaging mission with C-band SAR enabling all-weather, day-and-night observations unaffected by clouds - crucial in tropical regions like the Philippines.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-technical-specifications" class="slide level2 center">
+<h2>Sentinel-1 Technical Specifications</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Parameter</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sensor Type</strong></td>
+<td>C-band SAR (5.405 GHz)</td>
+</tr>
+<tr class="even">
+<td><strong>Revisit Time</strong></td>
+<td>6-12 days (constellation)</td>
+</tr>
+<tr class="odd">
+<td><strong>Swath Width</strong></td>
+<td>250 km (IW mode)</td>
+</tr>
+<tr class="even">
+<td><strong>Spatial Resolution</strong></td>
+<td>5m × 20m (IW mode)</td>
+</tr>
+<tr class="odd">
+<td><strong>Polarization</strong></td>
+<td>VV + VH or HH + HV</td>
+</tr>
+<tr class="even">
+<td><strong>Orbit</strong></td>
+<td>693 km altitude</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Sentinel-1 operates in Interferometric Wide (IW) mode with ~5m by 20m spatial resolution. With two satellites, the revisit cycle is 6 days globally. Note: Sentinel-1B became inoperative in 2022; Sentinel-1C launched in 2024 to restore 6-day revisit.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sar-how-it-works" class="slide level2 center">
+<h2>SAR: How It Works</h2>
+
+<img data-src="images/sar_principle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ol type="1">
+<li class="fragment">Satellite sends <strong>microwave pulses</strong> to Earth</li>
+<li class="fragment">Signal <strong>reflects</strong> from surface</li>
+<li class="fragment">Sensor measures <strong>backscatter intensity</strong></li>
+<li class="fragment">Different surfaces = different backscatter</li>
+</ol>
+<aside class="notes">
+<p>SAR satellites send microwave signals and measure the backscatter. Water appears dark (low backscatter), urban areas appear bright (strong backscatter), and vegetation shows moderate backscatter.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-polarization" class="slide level2 center">
+<h2>Sentinel-1 Polarization</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>What is Polarization?</strong></p>
+<ul>
+<li>Orientation of radar wave</li>
+<li>VV: Vertical send/receive</li>
+<li>VH: Vertical send/Horizontal receive</li>
+<li>HH: Horizontal send/receive</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Applications</strong></p>
+<ul>
+<li><strong>VV:</strong> Good for water/flood mapping</li>
+<li><strong>VH:</strong> Sensitive to volume scattering (vegetation)</li>
+<li><strong>VV/VH Ratio:</strong> Discriminates surface types</li>
+</ul>
+</div></div>
+
+<img data-src="images/polarization_comparison.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><aside class="notes">
+<p>Sentinel-1 IW mode over land typically provides VV and VH polarizations. Different polarizations are sensitive to different surface characteristics.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="backscatter-characteristics-by-target" class="slide level2 center">
+<h2>Backscatter Characteristics by Target</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Surface Type</strong></th>
+<th><strong>Backscatter</strong></th>
+<th><strong>Appearance</strong></th>
+<th><strong>Reason</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Water (smooth)</strong></td>
+<td>Very Low</td>
+<td>Dark/Black</td>
+<td>Specular reflection</td>
+</tr>
+<tr class="even">
+<td><strong>Urban/Buildings</strong></td>
+<td>Very High</td>
+<td>Bright White</td>
+<td>Corner reflectors</td>
+</tr>
+<tr class="odd">
+<td><strong>Forest/Vegetation</strong></td>
+<td>Medium-High</td>
+<td>Gray</td>
+<td>Volume scattering</td>
+</tr>
+<tr class="even">
+<td><strong>Agricultural Fields</strong></td>
+<td>Medium</td>
+<td>Light Gray</td>
+<td>Surface roughness</td>
+</tr>
+<tr class="odd">
+<td><strong>Bare Soil (dry)</strong></td>
+<td>Low-Medium</td>
+<td>Dark Gray</td>
+<td>Smooth surface</td>
+</tr>
+<tr class="even">
+<td><strong>Bare Soil (wet)</strong></td>
+<td>Medium</td>
+<td>Medium Gray</td>
+<td>Increased dielectric</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Key Insight:</strong> Water appears dark, structures appear bright - the basis for flood mapping!</p>
+</div>
+<aside class="notes">
+<p>Understanding backscatter is crucial for interpreting SAR imagery. Smooth surfaces (water) reflect signals away = dark. Rough surfaces and structures reflect signals back = bright.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-imaging-modes" class="slide level2 center">
+<h2>Sentinel-1 Imaging Modes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Interferometric Wide Swath (IW)</strong> - <strong>250 km swath</strong> - 5m × 20m resolution - <strong>Default over land</strong> - Philippine standard mode</p>
+<p><strong>Extra Wide Swath (EW)</strong> - 400 km swath - 20m × 40m resolution - Maritime/polar regions</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Strip Map (SM)</strong> - 80 km swath - 5m × 5m resolution - Emergency response - High detail needed</p>
+<p><strong>Wave (WV)</strong> - Ocean waves - Not used for land</p>
+</div></div>
+<aside class="notes">
+<p>Interferometric Wide (IW) mode is used over land and provides the best balance of resolution and coverage. All Philippine acquisitions use IW mode.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-data-products" class="slide level2 center">
+<h2>Sentinel-1 Data Products</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Level-1 GRD (Ground Range Detected)</strong></p>
+<ul>
+<li>Multi-looked (reduced speckle)</li>
+<li>Projected to ground range</li>
+<li><strong>Most commonly used</strong></li>
+<li>Faster to process</li>
+<li>Smaller file size</li>
+<li><strong>Applications:</strong>
+<ul>
+<li>Change detection</li>
+<li>Classification</li>
+<li>Flood mapping</li>
+<li>Ship detection</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Level-1 SLC (Single Look Complex)</strong></p>
+<ul>
+<li>Preserves phase information</li>
+<li>Complex-valued pixels</li>
+<li>Required for InSAR</li>
+<li>Larger files</li>
+<li><strong>Applications:</strong>
+<ul>
+<li>Ground deformation</li>
+<li>Interferometry</li>
+<li>Coherence analysis</li>
+<li>Subsidence monitoring</li>
+</ul></li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>For most applications including flood mapping and land cover, GRD products are sufficient. SLC products are needed for advanced interferometric applications like volcano monitoring.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="grd-vs-slc---which-to-choose" class="slide level2 center">
+<h2>GRD vs SLC - Which to Choose?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><strong>Factor</strong></th>
+<th><strong>GRD</strong></th>
+<th><strong>SLC</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Use Case</strong></td>
+<td>Most applications</td>
+<td>Interferometry only</td>
+</tr>
+<tr class="even">
+<td><strong>Processing</strong></td>
+<td>Ready to use</td>
+<td>Complex processing</td>
+</tr>
+<tr class="odd">
+<td><strong>File Size</strong></td>
+<td>~1 GB</td>
+<td>~4 GB</td>
+</tr>
+<tr class="even">
+<td><strong>Speckle</strong></td>
+<td>Reduced</td>
+<td>Full speckle</td>
+</tr>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td>Not preserved</td>
+<td>Preserved</td>
+</tr>
+<tr class="even">
+<td><strong>Typical User</strong></td>
+<td>Most analysts</td>
+<td>Advanced specialists</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>For this training and most Philippine applications: Use GRD</strong></p>
+</div>
+<aside class="notes">
+<p>Unless you specifically need interferometry (earthquake/volcano deformation), always use GRD products. They’re easier to work with and sufficient for 90% of applications.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-pre-processing-under-the-hood" class="slide level2 center" data-background-color="#1e40af">
+<h2>Sentinel-1 Pre-Processing “Under the Hood”</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What Happens Before You See SAR Data?</strong></p>
+</div>
+<div class="callout-content">
+<p>For this training, we use <strong>pre-processed Sentinel-1 GRD data</strong>. Here’s what happens “under the hood”:</p>
+</div>
+</div>
+</div>
+<p><strong>S1 Processing Pipeline:</strong></p>
+<ol type="1">
+<li><strong>GRD Download</strong> → Raw ground-range detected amplitude</li>
+<li><strong>Radiometric Calibration</strong> → Convert to backscatter coefficient (σ⁰)</li>
+<li><strong>Terrain Correction (RTC)</strong> → Remove topographic distortions using DEM</li>
+<li><strong>Speckle Filtering</strong> → Reduce SAR noise (Lee, Refined Lee, or Gamma-MAP filters)</li>
+<li><strong>Conversion to dB</strong> → γ⁰ (gamma-naught) in decibels for visual interpretation</li>
+<li><strong>Tiling/Clipping</strong> → Extract area of interest</li>
+</ol>
+<div class="fragment">
+<p><strong>For Day 3 flood mapping labs:</strong> We provide analysis-ready patches with these steps already applied</p>
+</div>
+<aside class="notes">
+<p><strong>P0 IMPROVEMENT APPLIED:</strong> Explicit S1 pre-processing assumptions before U-Net flood lab (Day 3).</p>
+<p><strong>Key Teaching Points:</strong> - Participants need to understand what “analysis-ready” means - RTC removes terrain effects - critical in mountainous Philippines - Gamma-naught (γ⁰) in dB is standard for land applications - Speckle filtering is essential but can blur edges - These steps are computationally intensive - we pre-process for efficiency</p>
+<p><strong>Timing:</strong> 3 minutes</p>
+<p><strong>Transition:</strong> “Now let’s look at Sentinel-2 optical data…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-1-applications" class="slide level2 center">
+<h2>Sentinel-1 Applications</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Flood Mapping</strong></p>
+<p><img data-src="images/s1_flood_mapping.jpg" style="width:100.0%"></p>
+<ul>
+<li>Water appears dark in SAR</li>
+<li>Works through clouds</li>
+<li>Near real-time monitoring</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Deformation Monitoring</strong></p>
+<p><img data-src="images/s1_insar.jpg" style="width:100.0%"></p>
+<ul>
+<li>InSAR technique</li>
+<li>Millimeter precision</li>
+<li>Volcano and earthquake monitoring</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Sentinel-1’s ability to penetrate clouds makes it invaluable for flood mapping during typhoons. InSAR can detect ground deformation from earthquakes or volcanoes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="philippine-example-flood-monitoring" class="slide level2 center">
+<h2>Philippine Example: Flood Monitoring</h2>
+
+<img data-src="images/sentinel1_flood_ph.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>November 2020: Typhoon Ulysses</strong></p>
+<ul>
+<li>Extensive flooding in Luzon</li>
+<li>Sentinel-1 detected flood extent</li>
+<li>Rapid mapping capability</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Key Benefits</strong></p>
+<ul>
+<li>No cloud interference</li>
+<li>Quick response time</li>
+<li>Used for rapid damage assessment</li>
+<li>Supported emergency response</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>During Typhoon Ulysses, Sentinel-1 provided crucial flood extent mapping when optical satellites couldn’t see through clouds. This data supported PAGASA and NDRRMC response efforts.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="live-demo-sentinel-1-data" class="slide level2 center" data-background-color="#1e40af">
+<h2>Live Demo: Sentinel-1 Data</h2>
+<h3 id="copernicus-browser-demonstration">Copernicus Browser Demonstration</h3>
+<p><strong>We’ll explore:</strong></p>
+<ul>
+<li>Accessing Sentinel-1 imagery for Philippines</li>
+<li>Before/after typhoon comparison</li>
+<li>VV polarization for water detection</li>
+<li>Change detection visualization</li>
+</ul>
+<aside class="notes">
+<p><strong>Timing:</strong> 5 minutes</p>
+<p><strong>Demo Steps:</strong> 1. Open Copernicus Browser (dataspace.copernicus.eu) 2. Navigate to Philippines (zoom to recent typhoon-affected area) 3. Select Sentinel-1 IW product 4. Choose date before typhoon 5. Add date after typhoon using compare feature 6. Show VV band - dark areas indicate water 7. Demonstrate time slider for animation 8. Explain bright (urban/rough) vs dark (water/smooth) returns</p>
+<p><strong>Key Teaching Points:</strong> - SAR works regardless of clouds/time of day - VV polarization excellent for water detection - Rapid revisit enables quick response - Free and open data accessible to all</p>
+<p><strong>Common Questions:</strong> - “Why does it look grainy?” - Speckle is inherent to SAR imaging - “Can we download this?” - Yes, we’ll learn export in Session 4</p>
+<p><strong>P1 IMPROVEMENT - Concept Check Coming:</strong> After Session 2 (AI/ML), we’ll pause for a 5-minute concept check with 3 questions to reduce cognitive load.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="sentinel-2-optical-mission" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Sentinel-2: Optical Mission</h1>
+
+</section>
+<section id="sentinel-2-overview" class="slide level2 center">
+<h2>Sentinel-2 Overview</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Key Specifications:</strong></p>
+<ul>
+<li class="fragment"><strong>13 spectral bands</strong> (visible, NIR, SWIR)</li>
+<li class="fragment"><strong>10m to 60m</strong> spatial resolution</li>
+<li class="fragment"><strong>290 km swath</strong> width</li>
+<li class="fragment"><strong>5-day revisit</strong> (three satellites operational 2025)</li>
+<li class="fragment"><strong>L1C &amp; L2A</strong> processing levels</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Philippine Example: Mayon Volcano</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/sentinel2_mayon.jpg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+<p><strong>Sentinel-2 monitoring of 2018 eruption</strong></p>
+<ul>
+<li>False-color composite highlighting lava flows</li>
+<li>10m resolution captures detail</li>
+<li>5-day revisit enables continuous monitoring</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>This Sentinel-2 false-color image of Mayon Volcano from 2018 shows recent lava flows. With Sentinel-2C operational in 2025, the three-satellite constellation provides 5-day global revisit.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-2-spectral-bands" class="slide level2 center">
+<h2>Sentinel-2 Spectral Bands</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 20%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Band</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Wavelength (nm)</strong></th>
+<th><strong>Resolution</strong></th>
+<th><strong>Application</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>B2</strong></td>
+<td>Blue</td>
+<td>490</td>
+<td>10m</td>
+<td>Water bodies, atmospheric</td>
+</tr>
+<tr class="even">
+<td><strong>B3</strong></td>
+<td>Green</td>
+<td>560</td>
+<td>10m</td>
+<td>Vegetation health</td>
+</tr>
+<tr class="odd">
+<td><strong>B4</strong></td>
+<td>Red</td>
+<td>665</td>
+<td>10m</td>
+<td>Vegetation discrimination</td>
+</tr>
+<tr class="even">
+<td><strong>B8</strong></td>
+<td>NIR</td>
+<td>842</td>
+<td>10m</td>
+<td>Biomass, water bodies</td>
+</tr>
+<tr class="odd">
+<td><strong>B5-B7</strong></td>
+<td><strong>Red Edge</strong></td>
+<td>705-783</td>
+<td>20m</td>
+<td><strong>Vegetation stress</strong></td>
+</tr>
+<tr class="even">
+<td><strong>B11-B12</strong></td>
+<td>SWIR</td>
+<td>1610-2190</td>
+<td>20m</td>
+<td>Moisture, fire detection</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Sentinel-2 has 13 spectral bands spanning visible to shortwave infrared. The 10m bands (B2, B3, B4, B8) are most commonly used for land applications.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="red-edge-bands---sentinel-2s-special-capability" class="slide level2 center">
+<h2>Red Edge Bands - Sentinel-2’s Special Capability</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>What is Red Edge?</strong></p>
+<ul>
+<li>Transition zone between red and NIR (700-780nm)</li>
+<li><strong>Three dedicated bands (B5, B6, B7)</strong></li>
+<li>Sensitive to chlorophyll content</li>
+<li>Unique to Sentinel-2 among free satellites</li>
+</ul>
+<p><strong>Applications:</strong></p>
+<ul>
+<li>Early vegetation stress detection</li>
+<li>Crop health monitoring</li>
+<li>Forest disease identification</li>
+<li>Pre-harvest yield estimation</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/red_edge_spectrum.png" style="width:100.0%"></p>
+<p><strong>Philippine Use:</strong> - Rice crop assessment - Coconut disease detection - Mangrove health monitoring</p>
+</div></div>
+<aside class="notes">
+<p>Red Edge bands are Sentinel-2’s superpower. They detect vegetation stress weeks before visible bands show changes - crucial for precision agriculture and forest health monitoring.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-2-data-products" class="slide level2 center">
+<h2>Sentinel-2 Data Products</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Level-1C (L1C)</strong></p>
+<ul>
+<li>Top-of-Atmosphere reflectance</li>
+<li>Radiometrically corrected</li>
+<li>Geometrically refined</li>
+<li>No atmospheric correction</li>
+<li><strong>Use:</strong> If you need raw data for custom processing</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Level-2A (L2A)</strong></p>
+<ul>
+<li>Bottom-of-Atmosphere (surface) reflectance</li>
+<li>Atmospherically corrected</li>
+<li><strong>Analysis-ready</strong></li>
+<li>Scene Classification Layer included</li>
+<li><strong>Use:</strong> For most applications - RECOMMENDED</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Always use Level-2A when available - it’s analysis-ready!</strong></p>
+</div>
+<aside class="notes">
+<p>L2A data is atmospherically corrected and ready for analysis. Unless you have a specific reason to use L1C, always choose L2A products.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentinel-2-band-combinations" class="slide level2 center">
+<h2>Sentinel-2 Band Combinations</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>True Color (Natural)</strong> - <strong>RGB:</strong> B4-B3-B2 (Red-Green-Blue) - Looks like a photograph - Good for visual inspection</p>
+<p><strong>False Color Infrared</strong> - <strong>RGB:</strong> B8-B4-B3 (NIR-Red-Green) - <strong>Vegetation appears RED</strong> - Classic for vegetation assessment</p>
+</div><div class="column" style="width:50%;">
+<p><strong>SWIR Composite (Agriculture)</strong> - <strong>RGB:</strong> B11-B8-B2 - Highlights crop moisture - Soil moisture visible</p>
+<p><strong>SWIR-NIR-Red (Burn/Fire)</strong> - <strong>RGB:</strong> B12-B8-B4 - <strong>Active fires appear BRIGHT</strong> - Burn scars dark purple</p>
+</div></div>
+<aside class="notes">
+<p>Different band combinations highlight different features. False Color (NIR-Red-Green) is the most common for vegetation mapping - healthy vegetation appears bright red.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="live-demo-sentinel-2-data" class="slide level2 center" data-background-color="#1e40af">
+<h2>Live Demo: Sentinel-2 Data</h2>
+<h3 id="copernicus-browser-demonstration-1">Copernicus Browser Demonstration</h3>
+<p><strong>We’ll explore:</strong></p>
+<ul>
+<li>Finding cloud-free Sentinel-2 imagery</li>
+<li>Band combinations (True Color, False Color, SWIR)</li>
+<li>NDVI vegetation index</li>
+<li>Time-series comparison (deforestation/urban growth)</li>
+</ul>
+<aside class="notes">
+<p><strong>Timing:</strong> 5 minutes</p>
+<p><strong>Demo Steps:</strong> 1. Open Copernicus Browser 2. Navigate to Palawan or Metro Manila 3. Select Sentinel-2 L2A (atmospherically corrected) 4. Filter by cloud cover (&lt;20%) 5. Show True Color RGB (B4-B3-B2) 6. Switch to False Color (B8-B4-B3) - vegetation is RED 7. Show SWIR composite (B12-B8-B4) - good for fires/moisture 8. Calculate NDVI: (B8-B4)/(B8+B4) 9. Use time slider to show change (e.g., deforestation, urban expansion)</p>
+<p><strong>Key Teaching Points:</strong> - 13 bands provide rich information - Different band combinations highlight different features - L2A data is analysis-ready - 10m resolution excellent for detailed mapping - 5-day repeat increases cloud-free acquisition chances</p>
+<p><strong>Common Questions:</strong> - “Which bands should I use?” - Depends on application (we’ll cover in Day 2) - “What about clouds?” - <strong>Use Scene Classification Layer (SCL)</strong> - Session 4 topic</p>
+<p><strong>P0 IMPROVEMENT - SCL vs QA60:</strong> We’ll use <strong>SCL masking</strong> (not QA60) in Session 4 for better cloud AND shadow removal. SCL classes: clouds (low/medium/high prob), cirrus, cloud shadows, snow/ice - much more comprehensive than basic QA60 bitmasks.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="sentinel-1-vs-sentinel-2" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Sentinel-1 vs Sentinel-2</h1>
+
+</section>
+<section id="complementary-capabilities" class="slide level2 center">
+<h2>Complementary Capabilities</h2>
+<div class="line-block"><strong>Aspect</strong> | <strong>Sentinel-1</strong> | <strong>Sentinel-2</strong> |</div>
+<p>{{ … }} |————|—————-|—————-| | <strong>Sensor Type</strong> | Radar (SAR) | Optical (MSI) | | <strong>Weather</strong> | All-weather | Cloud-affected | | <strong>Time</strong> | Day &amp; night | Daytime only | | <strong>Resolution</strong> | 5m × 20m | 10m / 20m / 60m | | <strong>Revisit</strong> | 6-12 days | 5 days | | <strong>Bands</strong> | Polarizations (2) | Spectral bands (13) | | <strong>Best For</strong> | Water, structure, moisture | Vegetation, land cover, color |</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>S1 Flood Mapping Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>VV polarization shows dark water</strong> (low backscatter from smooth surfaces)</p>
+<p><strong>Best practice:</strong> Compare <strong>pre-event vs post-event</strong> delta for reliability</p>
+<p><strong>Synergy:</strong> Pair S1 (flood extent through clouds) with S2 (vegetation damage when clear) for complete impact assessment</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Sentinel-1 and Sentinel-2 are complementary. SAR penetrates clouds and works at night, while optical provides rich spectral information about surface properties.</p>
+<p><strong>MICRO-EDIT APPLIED:</strong> Added S1 vs S2 flood tip to set up Day 3 logic - VV dark water, pre/post comparison, and S1+S2 synergy.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="synergistic-use-cases" class="slide level2 center">
+<h2>Synergistic Use Cases</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Flood Mapping</strong></p>
+<ul>
+<li><strong>S1:</strong> Detect water extent (through clouds)</li>
+<li><strong>S2:</strong> Assess damage to vegetation/crops (when clear)</li>
+<li><strong>Combined:</strong> Complete flood impact assessment</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Forest Monitoring</strong></p>
+<ul>
+<li><strong>S1:</strong> Detect structural changes, biomass</li>
+<li><strong>S2:</strong> Identify tree species, health</li>
+<li><strong>Combined:</strong> Comprehensive forest mapping</li>
+</ul>
+</div></div>
+
+<img data-src="images/s1_s2_synergy.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><aside class="notes">
+<p>Using both missions together provides more complete information. After a typhoon, S1 maps floods under clouds while S2 assesses vegetation damage where it’s clear.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="minute-break" class="slide level2 center" data-background-color="#7c3aed">
+<h2>☕ 5-Minute Break</h2>
+<div class="r-fit-text">
+<p><strong>Stretch Break</strong></p>
+<p>Stand up • Grab water • Back in 5 minutes</p>
+</div>
+<aside class="notes">
+<p><strong>Timing:</strong> 5 minutes</p>
+<p><strong>Instructor Actions:</strong> - Announce break clearly - Mention return time - Leave slides/browser open for questions - Be available for quick questions during break</p>
+<p><strong>When Resuming:</strong> - Wait 1-2 minutes for everyone to return - Quick recap: “We’ve covered Sentinel-1 SAR and Sentinel-2 optical. Now we’ll explore the Philippine EO ecosystem.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 center">
+
+</section></section>
+<section>
+<section id="data-access-methods" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Data Access Methods</h1>
+
+</section>
+<section id="platform-choices-for-this-training" class="slide level2 center" data-background-color="#1e40af">
+<h2>Platform Choices for This Training</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Which Platform for Which Task?</strong></p>
+</div>
+<div class="callout-content">
+<p>Understanding where to work is crucial - don’t try to train deep models on GEE or download 100GB in Colab!</p>
+</div>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 18%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Task</strong></th>
+<th><strong>Platform</strong></th>
+<th><strong>Why</strong></th>
+<th><strong>Limitations</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Prep &amp; Exploration</strong></td>
+<td><strong>Google Earth Engine</strong></td>
+<td>Petabyte catalog, no download, cloud composites</td>
+<td>Export limit 32 MB (tile large areas), no deep learning training</td>
+</tr>
+<tr class="even">
+<td><strong>ML Training (RF, shallow)</strong></td>
+<td><strong>GEE or Colab</strong></td>
+<td>RF works in GEE; small data in Colab</td>
+<td>GEE memory limits; Colab free tier quotas</td>
+</tr>
+<tr class="odd">
+<td><strong>Deep Learning (CNN, U-Net)</strong></td>
+<td><strong>Local GPU / Colab Pro</strong></td>
+<td>Requires PyTorch/TensorFlow</td>
+<td>Colab free = limited GPU time; large models need local resources</td>
+</tr>
+<tr class="even">
+<td><strong>Large-Scale Processing</strong></td>
+<td><strong>CoPhil Mirror Site / COARE</strong></td>
+<td>400TB local data, HPC resources</td>
+<td>Requires account; learning curve for APIs</td>
+</tr>
+<tr class="odd">
+<td><strong>Quick Viz &amp; Download</strong></td>
+<td><strong>Copernicus Browser</strong></td>
+<td>Interactive, fast previews</td>
+<td>Manual selection; bulk downloads tedious</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Quotas/Pitfalls to know:</strong> - GEE: Memory errors with large computations (tile exports!) - Colab Free: GPU disconnects after inactivity; limited sessions/day - <strong>CoPhil/Digital Space Campus</strong>: Hosts this training’s materials + local data access</p>
+</div>
+<aside class="notes">
+<p><strong>P1 IMPROVEMENT APPLIED:</strong> Explicit platform choices table prevents common mistakes.</p>
+<p><strong>Key Teaching Points:</strong> - GEE is NOT for training U-Nets or downloading GBs - Colab free tier has GPU quotas - manage expectations - CoPhil infrastructure enables local processing - Choose the right tool for the right job</p>
+<p><strong>Timing:</strong> 3 minutes</p>
+<p><strong>Transition:</strong> “Let’s look at these platforms in detail…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="copernicus-data-space-ecosystem-2025" class="slide level2 center">
+<h2>Copernicus Data Space Ecosystem (2025)</h2>
+
+<img data-src="images/dataspace_portal.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>New Platform (2023+)</strong></p>
+<ul>
+<li>Replaced SciHub</li>
+<li>Modern interface</li>
+<li>API access</li>
+<li>Free registration</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Features</strong></p>
+<ul>
+<li>Search by location/date</li>
+<li>Preview before download</li>
+<li>Direct download</li>
+<li>Bulk processing</li>
+</ul>
+</div></div>
+<p><strong>URL:</strong> <a href="https://dataspace.copernicus.eu" class="uri">https://dataspace.copernicus.eu</a></p>
+<aside class="notes">
+<p>The Copernicus Data Space Ecosystem is the new portal replacing the legacy SciHub. All Sentinel data are free and open.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="sentiboard-dashboard-october-2025" class="slide level2 center">
+<h2>SentiBoard Dashboard (October 2025)</h2>
+
+<img data-src="images/sentiboard.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ul>
+<li class="fragment"><strong>Real-time mission status</strong></li>
+<li class="fragment">Data availability insights</li>
+<li class="fragment">Acquisition plans</li>
+<li class="fragment">Quality metrics</li>
+<li class="fragment">Interactive dashboard</li>
+</ul>
+<aside class="notes">
+<p>SentiBoard is a new feature (October 2025) providing real-time insights into Copernicus Sentinel missions and data availability.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="google-earth-engine" class="slide level2 center">
+<h2>Google Earth Engine</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Planetary-Scale Platform</strong></p>
+<ul>
+<li>Petabyte-scale data catalog</li>
+<li>All Sentinel-1 &amp; Sentinel-2 data</li>
+<li>Cloud-based processing</li>
+<li>Free for research/education</li>
+<li><strong>No download needed!</strong></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/gee_logo.png" style="width:100.0%"></p>
+</div></div>
+<div class="fragment">
+<p><strong>We’ll use GEE extensively in this training</strong></p>
+</div>
+<p><strong>URL:</strong> <a href="https://earthengine.google.com" class="uri">https://earthengine.google.com</a></p>
+<aside class="notes">
+<p>Google Earth Engine provides ready access to all Sentinel data with cloud-based processing. We’ll use GEE extensively for data access and preprocessing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="alternative-data-sources" class="slide level2 center">
+<h2>Alternative Data Sources</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Alaska Satellite Facility (ASF)</strong></p>
+<ul>
+<li>Sentinel-1 specialist</li>
+<li>User-friendly interface</li>
+<li>Preprocessing tools</li>
+<li><a href="https://asf.alaska.edu" class="uri">https://asf.alaska.edu</a></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>AWS Open Data</strong></p>
+<ul>
+<li>Sentinel-2 on AWS</li>
+<li>Cloud-optimized</li>
+<li>Pay for compute only</li>
+<li>Programmatic access</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Now Available: CoPhil Mirror Site in the Philippines!</strong> (Operational 2024-2025)</p>
+</div>
+<aside class="notes">
+<p><strong>MICRO-EDIT APPLIED:</strong> Mirror Site is NOW operational (not “coming soon”).</p>
+<p>Multiple platforms provide Sentinel data access. The CoPhil Mirror Site provides <strong>local data access in the Philippines for faster downloads</strong> - critical for reducing international bandwidth bottlenecks.</p>
+<p><strong>Key Point:</strong> 400TB capacity, focused on PH scenes, free for government/academia/researchers</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="part-2-philippine-eo-ecosystem" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Part 2: Philippine EO Ecosystem</h1>
+
+</section>
+<section id="overview-of-philippine-eo-landscape" class="slide level2 center">
+<h2>Overview of Philippine EO Landscape</h2>
+
+<img data-src="images/ph_eo_ecosystem.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
+<li class="fragment"><strong>PhilSA:</strong> Space data and operations</li>
+<li class="fragment"><strong>NAMRIA:</strong> National mapping and geospatial data</li>
+<li class="fragment"><strong>DOST-ASTI:</strong> AI and remote sensing R&amp;D</li>
+<li class="fragment"><strong>PAGASA:</strong> Climate and weather data</li>
+</ul>
+<aside class="notes">
+<p>Beyond European satellites, the Philippines has its own geospatial data platforms and agencies that provide crucial complementary data and support.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="philippine-space-agency-philsa" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Philippine Space Agency (PhilSA)</h1>
+
+</section>
+<section id="philsa-national-space-agency" class="slide level2 center">
+<h2>PhilSA: National Space Agency</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Established:</strong> August 2019</p>
+<p><strong>Mandate:</strong></p>
+<ul>
+<li>Central civilian space agency</li>
+<li>Promote space data use</li>
+<li>Build national capacity</li>
+<li>Support DRR, CCA, NRM</li>
+<li>Co-chair CoPhil programme</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/philsa_building.jpg" style="width:100.0%"></p>
+</div></div>
+<p><strong>Website:</strong> <a href="https://philsa.gov.ph" class="uri">https://philsa.gov.ph</a></p>
+<aside class="notes">
+<p>PhilSA is the central civilian space agency established in 2019. As co-chair of CoPhil, PhilSA is leading national efforts to leverage Copernicus data.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="siyasat-data-portal" class="slide level2 center">
+<h2>SIYASAT Data Portal</h2>
+
+<img data-src="images/siyasat_portal.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Purpose (2025)</strong></p>
+<ul>
+<li>Secure data archive <strong>operational</strong></li>
+<li>Visualization system</li>
+<li>Data distribution</li>
+<li>Maritime &amp; terrestrial monitoring</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Data Types</strong></p>
+<ul>
+<li>NovaSAR-1 radar imagery</li>
+<li>AIS ship tracking data</li>
+<li>Processed products</li>
+<li>Analysis-ready data</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p><strong>Timing:</strong> 3 minutes</p>
+<p><strong>Key Points:</strong> - SIYASAT (Secure Interactive Yield-Assessment &amp; SAR Analytics Tools) is PhilSA’s operational data portal - <strong>2025 Status:</strong> Fully operational with NovaSAR-1 data access - Provides secure archive for Philippine government agencies - Critical for maritime security (illegal fishing, territorial monitoring) - Registration required - priority for government agencies</p>
+<p><strong>Transition:</strong> “Beyond PhilSA, DOST-ASTI is leading AI innovation for EO applications…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="space-data-dashboard" class="slide level2 center">
+<h2>Space+ Data Dashboard</h2>
+
+<img data-src="images/space_plus_dashboard.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ul>
+<li class="fragment"><strong>User-friendly web portal</strong></li>
+<li class="fragment">Browse satellite imagery</li>
+<li class="fragment">Visualization tools</li>
+<li class="fragment">Download datasets</li>
+<li class="fragment"><strong>No programming required</strong></li>
+<li class="fragment">Open to government, researchers, public</li>
+</ul>
+<aside class="notes">
+<p>The Space+ Data Dashboard democratizes access to satellite data, making it available to local governments, researchers, and even students without requiring programming skills.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="philsa-2025-initiatives" class="slide level2 center">
+<h2>PhilSA 2025 Initiatives</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Space Business Innovation Challenge</strong></p>
+<ul>
+<li>Empowers Filipino innovators</li>
+<li>Free satellite data access</li>
+<li>Build solutions for local needs</li>
+<li>Earth observation focus</li>
+<li>Weather &amp; environmental data</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Training Programs</strong></p>
+<ul>
+<li>Downstream data utilization</li>
+<li>Practical applications</li>
+<li>Capacity building nationwide</li>
+<li>Partnership with DOST</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>PhilSA’s 2025 initiatives focus on empowering innovators and building capacity across the Philippines to use satellite data effectively.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="coare-infrastructure" class="slide level2 center">
+<h2>COARE Infrastructure</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Computing and Archiving Research Environment</strong></p>
+<ul>
+<li>High-performance computing</li>
+<li>Data archiving capabilities</li>
+<li>Science cloud facilities</li>
+<li>Supports data-intensive research</li>
+<li>Enables AI/ML workflows</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/coare_infrastructure.jpg" style="width:100.0%"></p>
+</div></div>
+<aside class="notes">
+<p>COARE provides the computational infrastructure needed for processing large satellite datasets and running AI/ML models at scale.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="namria" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>NAMRIA</h1>
+
+</section>
+<section id="namria-national-mapping-authority" class="slide level2 center">
+<h2>NAMRIA: National Mapping Authority</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>National Mapping and Resource Information Authority</strong></p>
+<p><strong>Role:</strong></p>
+<ul>
+<li>Official mapping agency</li>
+<li>Authoritative geospatial data</li>
+<li>Topographic maps</li>
+<li>Hazard maps</li>
+<li>Land cover datasets</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/namria_logo.png" width="150"></p>
+</div></div>
+<p><strong>Website:</strong> <a href="https://www.geoportal.gov.ph" class="uri">https://www.geoportal.gov.ph</a></p>
+<aside class="notes">
+<p>NAMRIA is the national mapping agency responsible for topographic maps, hydrographic data, and authoritative geospatial datasets.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="namria-geoportal" class="slide level2 center">
+<h2>NAMRIA Geoportal</h2>
+
+<img data-src="images/namria_geoportal.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p><strong>One-Stop Shop for Philippine Geospatial Data</strong></p>
+<ul>
+<li class="fragment">National basemaps (1:50,000 scale)</li>
+<li class="fragment">Administrative boundaries</li>
+<li class="fragment">Topographic maps</li>
+<li class="fragment">Thematic maps</li>
+<li class="fragment"><strong>Downloadable shapefiles and rasters</strong></li>
+</ul>
+<aside class="notes">
+<p>The NAMRIA Geoportal is the go-to source for official Philippine spatial data including boundaries, topographic maps, and land cover data.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="land-cover-mapping-project" class="slide level2 center">
+<h2>Land Cover Mapping Project</h2>
+
+<img data-src="images/namria_landcover.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Latest:</strong> 2020 National Land Cover</p>
+<p><strong>Classes:</strong></p>
+<ul>
+<li>Forest types</li>
+<li>Agriculture</li>
+<li>Built-up areas</li>
+<li>Water bodies</li>
+<li>Wetlands</li>
+<li>Barren land</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Data Formats:</strong></p>
+<ul>
+<li>Shapefile</li>
+<li>GeoTIFF</li>
+<li>CSV</li>
+<li>GeoJSON</li>
+<li>KML</li>
+<li>PNG</li>
+</ul>
+</div></div>
+<p><strong>Portal:</strong> <a href="https://land-cover-mapping-project-namria.hub.arcgis.com" class="uri">https://land-cover-mapping-project-namria.hub.arcgis.com</a></p>
+<aside class="notes">
+<p>NAMRIA’s land cover datasets are valuable for validation and comparison with satellite-derived classifications. The 2020 national land cover map is available in multiple formats.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="hazardhunterph-portal" class="slide level2 center">
+<h2>HazardHunterPH Portal</h2>
+
+<img data-src="images/hazardhunter.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p><strong>Comprehensive Hazard Assessment Platform</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Hazard Types:</strong></p>
+<ul>
+<li>Earthquake-induced hazards</li>
+<li>Active fault lines</li>
+<li>Tsunami susceptibility</li>
+<li>Liquefaction zones</li>
+<li>Landslide hazards</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Applications:</strong></p>
+<ul>
+<li>Disaster risk assessment</li>
+<li>Land use planning</li>
+<li>Infrastructure siting</li>
+<li>Emergency preparedness</li>
+</ul>
+</div></div>
+<p><strong>URL:</strong> <a href="https://hazardhunter.georisk.gov.ph/map" class="uri">https://hazardhunter.georisk.gov.ph/map</a></p>
+<aside class="notes">
+<p>HazardHunterPH provides critical hazard data for DRR planning. These maps can be overlaid with satellite data for vulnerability assessments.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-namria-complements-sentinel-data" class="slide level2 center">
+<h2>How NAMRIA Complements Sentinel Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Sentinel Imagery Provides:</strong></p>
+<ul>
+<li>Current conditions</li>
+<li>Frequent updates</li>
+<li>Large-area coverage</li>
+<li>Multi-temporal analysis</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>NAMRIA Data Provides:</strong></p>
+<ul>
+<li><strong>Ground truth for validation</strong></li>
+<li><strong>Training labels for ML models</strong></li>
+<li>Historical baselines</li>
+<li>Official classifications</li>
+<li>Hazard context</li>
+</ul>
+</div></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>MICRO-EDIT: Using NAMRIA/Space+ as Label Sources</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>For Day 2 Palawan RF lab:</strong> 1. Download NAMRIA land cover shapefile (authoritative classes) 2. Overlay on Sentinel-2 imagery 3. Extract training points per class (forest, agriculture, water, etc.) 4. Train Random Forest classifier 5. Validate predictions against NAMRIA hold-out samples</p>
+<p><strong>Space+ Dashboard</strong> also provides admin boundaries and infrastructure layers for context in all visualizations.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Example:</strong> Use Sentinel-2 to map current land cover, validate against NAMRIA’s official 2020 map, detect changes</p>
+</div>
+<aside class="notes">
+<p><strong>MICRO-EDIT APPLIED:</strong> Explicit link between NAMRIA/Space+ as <strong>label sources &amp; validation layers</strong>, not just context.</p>
+<p>NAMRIA data provides essential ground truth and context for satellite-based analysis. Official boundaries and hazard maps enhance satellite data interpretation.</p>
+<p><strong>Show one example overlay:</strong> NAMRIA training polygons (land cover classes) overlaid on S2 RGB composite.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="dost-asti-ai-initiatives" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>DOST-ASTI AI Initiatives</h1>
+
+</section>
+<section id="dost-asti-overview" class="slide level2 center">
+<h2>DOST-ASTI Overview</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Advanced Science and Technology Institute</strong></p>
+<ul>
+<li>Lead agency for EO and AI R&amp;D</li>
+<li>Remote sensing expertise</li>
+<li>Machine learning development</li>
+<li>National AI infrastructure</li>
+<li><strong>P2.6 billion investment until 2028</strong></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/dost_asti_logo.png" width="150"></p>
+</div></div>
+<p><strong>Website:</strong> <a href="https://asti.dost.gov.ph" class="uri">https://asti.dost.gov.ph</a></p>
+<aside class="notes">
+<p>DOST-ASTI leads several projects at the intersection of remote sensing, AI, and big data, with significant national investment of P2.6 billion through 2028.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="datos-remote-sensing-help-desk" class="slide level2 center">
+<h2>DATOS: Remote Sensing Help Desk</h2>
+
+<img data-src="images/datos_logo.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"><ul>
+<li class="fragment"><strong>Remote Sensing and Data Science Help Desk</strong></li>
+<li class="fragment">Rapid analytics during disasters</li>
+<li class="fragment">Flood mapping from satellite imagery</li>
+<li class="fragment">Damage assessment</li>
+<li class="fragment">Crop mapping (rice, sugarcane)</li>
+<li class="fragment">Road network detection</li>
+<li class="fragment">Supports emergency response agencies</li>
+</ul>
+<aside class="notes">
+<p>During past typhoons, DATOS used satellite images to produce flood maps and give them to disaster response agencies within hours. They also worked on crop mapping and infrastructure detection using AI.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="skai-pinas-programme" class="slide level2 center">
+<h2>SkAI-Pinas Programme</h2>
+
+<img data-src="images/skai_pinas.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Philippine Sky AI Program (2021-2028)</strong></p>
+<ul>
+<li>Flagship AI R&amp;D programme</li>
+<li><strong>Part of P2.6B DOST AI investment</strong></li>
+<li>Democratize AI across Philippines</li>
+<li>Remote sensing &amp; big data focus</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Impact (2025)</strong></p>
+<ul>
+<li>300+ institutions supported</li>
+<li>Universities &amp; colleges</li>
+<li>SMEs &amp; research teams</li>
+<li>Local government units</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p><strong>Timing:</strong> 3 minutes</p>
+<p><strong>Key Points:</strong> - <strong>2025 Update:</strong> SkAI-Pinas is part of DOST’s P2.6 billion AI investment (2024-2028) - Focuses on democratizing AI for EO applications - Provides infrastructure, training, and support - Successfully engaged 300+ institutions nationwide - Critical for building national AI capacity</p>
+<p><strong>Examples:</strong> - Universities using SkAI for flood mapping research - LGUs leveraging AI for disaster preparedness - SMEs building EO-based agricultural solutions</p>
+<p><strong>Transition:</strong> “SkAI provides the platform. DIMER provides the models. PANDA brings it all together…”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="dimer-ai-model-hub" class="slide level2 center">
+<h2>DIMER: AI Model Hub</h2>
+
+<img data-src="images/dimer_interface.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Democratized Intelligent Model Exchange Repository</strong></p>
+<ul>
+<li>Digital “model store”</li>
+<li>Pre-trained AI models</li>
+<li>Ready-to-use</li>
+<li>Filipino-specific challenges</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Available Models</strong></p>
+<ul>
+<li>Landslide detection</li>
+<li>Traffic surveys</li>
+<li>Crop monitoring</li>
+<li>Land cover classification</li>
+<li>Flood detection</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>DIMER lowers barriers to AI by enabling end-users to reuse optimized AI models. If you need a model for land cover or flood detection, check DIMER first before building from scratch.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="aipi-ai-processing-interface" class="slide level2 center">
+<h2>AIPI: AI Processing Interface</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Purpose</strong></p>
+<ul>
+<li>Streamline large-scale remote sensing tasks</li>
+<li>Reduce computational barriers</li>
+<li>Run AI models on ASTI servers</li>
+<li>Process hundreds of images efficiently</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/aipi_workflow.png" style="width:100.0%"></p>
+</div></div>
+<div class="fragment">
+<p><strong>Example:</strong> Apply an AI model to 100 Sentinel-2 images over entire region without your laptop</p>
+</div>
+<aside class="notes">
+<p>AIPI allows users to run large computations on ASTI’s servers without heavy local processing. This is especially valuable when processing many satellite images with AI models.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="alam-automated-labeling-machine" class="slide level2 center">
+<h2>ALaM: Automated Labeling Machine</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Challenge</strong></p>
+<p>Creating labeled training data is:</p>
+<ul>
+<li>Time-consuming</li>
+<li>Expensive</li>
+<li>Requires expertise</li>
+<li>Major bottleneck for AI</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>ALaM Solution</strong></p>
+<ul>
+<li>Automate labeling process</li>
+<li>Crowdsourcing capabilities</li>
+<li>Expert validation</li>
+<li>Build training datasets</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Result:</strong> Faster creation of high-quality training data for Filipino contexts</p>
+</div>
+<aside class="notes">
+<p>Creating labeled data is a big challenge in EO AI. ALaM tries to address this through automation and crowdsourcing, making it easier to build training datasets for Philippine applications.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-dost-asti-tools-work-together" class="slide level2 center">
+<h2>How DOST-ASTI Tools Work Together</h2>
+
+<img data-src="images/asti_ecosystem.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ol type="1">
+<li class="fragment"><strong>ALaM</strong> creates training data</li>
+<li class="fragment">Train models and share via <strong>DIMER</strong></li>
+<li class="fragment">Process large datasets with <strong>AIPI</strong></li>
+<li class="fragment">Deploy for operational use via <strong>SkAI-Pinas</strong></li>
+<li class="fragment">Support disaster response through <strong>DATOS</strong></li>
+</ol>
+<aside class="notes">
+<p>These initiatives work together to create a complete ecosystem from data labeling through model development to operational deployment.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="pagasa-other-data-sources" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>PAGASA &amp; Other Data Sources</h1>
+
+</section>
+<section id="pagasa-weather-climate-data" class="slide level2 center">
+<h2>PAGASA: Weather &amp; Climate Data</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Philippine Atmospheric, Geophysical and Astronomical Services Administration</strong></p>
+<p><strong>Data Types:</strong></p>
+<ul>
+<li>Historical rainfall</li>
+<li>Temperature records</li>
+<li>Typhoon tracks</li>
+<li>Climate forecasts</li>
+<li>Weather observations</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/pagasa_logo.png" width="150"></p>
+</div></div>
+<div class="fragment">
+<p><strong>Integration:</strong> Combine with satellite data for climate analysis</p>
+</div>
+<aside class="notes">
+<p>PAGASA provides meteorological and climate data that can be integrated with satellite observations for comprehensive analysis. Rainfall data + flood maps, for example.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="synergy-satellite-ground-data" class="slide level2 center">
+<h2>Synergy: Satellite + Ground Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Satellite Data (Sentinel)</strong></p>
+<ul>
+<li>Spatial coverage</li>
+<li>Consistent acquisition</li>
+<li>Multiple variables</li>
+<li>Time series</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Ground Data (Philippine agencies)</strong></p>
+<ul>
+<li>Point validation</li>
+<li>Ground truth</li>
+<li>Meteorological context</li>
+<li>Local expertise</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Combined = More robust analysis and higher confidence</strong></p>
+</div>
+<aside class="notes">
+<p>The Philippines is developing a rich EO ecosystem. The goal of CoPhil is to ensure you can leverage both international (Sentinel) and national data together effectively.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="cophil-infrastructure" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>CoPhil Infrastructure</h1>
+
+</section>
+<section id="cophil-mirror-site" class="slide level2 center">
+<h2>CoPhil Mirror Site</h2>
+
+<img data-src="images/mirror_site_concept.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li class="fragment"><strong>Philippines-based Copernicus data repository</strong></li>
+<li class="fragment">Local mirror of Sentinel data</li>
+<li class="fragment">Focus on Philippine region</li>
+<li class="fragment">Faster access (no international bandwidth)</li>
+<li class="fragment">Reliable availability</li>
+<li class="fragment"><strong>Operational by 2025</strong></li>
+<li class="fragment">Hosted by PhilSA with CloudFerro support</li>
+</ul>
+<aside class="notes">
+<p>The CoPhil Mirror Site will locally store Sentinel data focused on the Philippines, enabling much faster downloads than from European servers.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="digital-space-campus" class="slide level2 center">
+<h2>Digital Space Campus</h2>
+
+<img data-src="images/digital_campus.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Purpose</strong></p>
+<ul>
+<li>Online learning portal</li>
+<li>Training materials repository</li>
+<li>Self-paced learning</li>
+<li>Community of practice</li>
+<li>Knowledge sharing</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Content</strong></p>
+<ul>
+<li>Course presentations</li>
+<li>Jupyter notebooks</li>
+<li>Datasets</li>
+<li>Guides &amp; tutorials</li>
+<li>Forum discussions</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>All materials from this 4-day training will be available on the Digital Space Campus for future reference and for colleagues who couldn’t attend.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="building-a-sustainable-eo-ecosystem" class="slide level2 center">
+<h2>Building a Sustainable EO Ecosystem</h2>
+<ol type="1">
+<li class="fragment"><strong>Data Access:</strong> Mirror Site + Data Space Ecosystem</li>
+<li class="fragment"><strong>Processing:</strong> COARE + AIPI + Google Earth Engine</li>
+<li class="fragment"><strong>Models:</strong> DIMER repository</li>
+<li class="fragment"><strong>Training:</strong> Digital Space Campus</li>
+<li class="fragment"><strong>Operations:</strong> DATOS + Agency integration</li>
+<li class="fragment"><strong>Community:</strong> SkAI-Pinas network</li>
+</ol>
+<div class="fragment">
+<p><strong>Result:</strong> Complete infrastructure for operational EO AI/ML**</p>
+</div>
+<aside class="notes">
+<p>CoPhil is building sustainable infrastructure ensuring you can continue working with Sentinel data and AI/ML tools after this training, without starting from scratch.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="summary-integration" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Summary &amp; Integration</h1>
+
+</section>
+<section id="key-takeaways" class="slide level2 center">
+<h2>Key Takeaways</h2>
+<ol type="1">
+<li class="fragment"><strong>Copernicus</strong> provides free, high-quality satellite data globally</li>
+<li class="fragment"><strong>Sentinel-1</strong> (SAR) works day/night, all-weather - essential for tropics</li>
+<li class="fragment"><strong>Sentinel-2</strong> (optical) provides rich spectral information - 5 day revisit</li>
+<li class="fragment"><strong>Multiple access methods</strong> available (Data Space, GEE, Mirror Site)</li>
+<li class="fragment"><strong>Philippine agencies</strong> provide complementary data and expertise</li>
+<li class="fragment"><strong>CoPhil infrastructure</strong> supports sustainable capacity building</li>
+</ol>
+<aside class="notes">
+<p>You now understand the full picture from data sources through national infrastructure. This foundation supports all subsequent AI/ML work.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-it-all-connects" class="slide level2 center">
+<h2>How It All Connects</h2>
+
+<img data-src="images/integration_diagram.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"><aside class="notes">
+<p>Satellite data + Philippine ground truth + AI models + processing infrastructure = Operational applications for DRR, CCA, and NRM</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="example-workflow-flood-mapping" class="slide level2 center">
+<h2>Example Workflow: Flood Mapping</h2>
+<ol type="1">
+<li class="fragment"><strong>Acquire</strong> Sentinel-1 SAR data (GEE or Mirror Site)</li>
+<li class="fragment"><strong>Validate</strong> with PAGASA rainfall data</li>
+<li class="fragment"><strong>Process</strong> using AI model from DIMER</li>
+<li class="fragment"><strong>Scale</strong> processing via AIPI</li>
+<li class="fragment"><strong>Combine</strong> with NAMRIA hazard maps</li>
+<li class="fragment"><strong>Deliver</strong> to NDRRMC via DATOS</li>
+</ol>
+<div class="fragment">
+<p><strong>This is what integrated EO capacity looks like!</strong></p>
+</div>
+<aside class="notes">
+<p>A real-world workflow leverages multiple data sources, AI tools, and institutional partnerships. This is exactly what CoPhil aims to enable.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="operational-cautions" class="slide level2 center" data-background-color="#dc2626">
+<h2>Operational Cautions</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>“Don’t Do This” - Common Pitfalls</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Quality &amp; Governance additions</strong> to prevent common mistakes:</p>
+</div>
+</div>
+</div>
+<p><strong>Model Applicability:</strong> - ❌ <strong>Don’t</strong> apply a Palawan RF land cover model to Mindanao without re-sampling - Why: Different climate, vegetation types, seasonality - Do: Collect local training samples from Mindanao - ❌ <strong>Don’t</strong> use un-calibrated SAR (digital numbers only) - Why: Meaningless for quantitative analysis - Do: Always calibrate to σ⁰ or γ⁰ in dB</p>
+<p><strong>Processing Assumptions:</strong> - ❌ <strong>Don’t</strong> skip terrain correction (RTC) for SAR in mountainous areas - Why: Topographic distortions create false changes - Do: Apply RTC using SRTM or better DEM - ❌ <strong>Don’t</strong> mix Sentinel-2 processing baselines without harmonization - Why: DN offset of 1000 after Jan 2022 breaks time series - Do: Use HARMONIZED collections in GEE</p>
+<p><strong>Evaluation:</strong> - ❌ <strong>Don’t</strong> train and test on the same tile/province - Why: Inflated accuracy, poor generalization - Do: Geographic hold-out (different tiles/provinces for test)</p>
+<aside class="notes">
+<p><strong>P2 IMPROVEMENT APPLIED:</strong> Operational cautions slide with “don’t do this” examples.</p>
+<p>These are real mistakes participants WILL make without explicit warnings. One slide can save hours of debugging and poor results.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pre-flight-checklist" class="slide level2 center" data-background-color="#1e40af">
+<h2>Pre-Flight Checklist</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>P1 IMPROVEMENT: Before Day 1 Hands-On Sessions</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Send this checklist 1 week before training:</strong></p>
+</div>
+</div>
+</div>
+<p><strong>✅ Accounts &amp; Access:</strong> - [ ] Google Earth Engine account enabled (<a href="https://signup.earthengine.google.com">signup.earthengine.google.com</a>) - [ ] Google Drive with ≥5 GB free space - [ ] Google Colab tested (login with same Google account) - [ ] CoPhil Infrastructure registration (<a href="https://application.infra.copphil.philsa.gov.ph">application.infra.copphil.philsa.gov.ph</a>)</p>
+<p><strong>✅ Software &amp; Data:</strong> - [ ] Downloaded sample vector/raster bundle (link provided via email) - [ ] Confirmed zip file extracts correctly - [ ] Python 3.8+ installed (if working locally) - [ ] Jupyter notebook tested (if working locally)</p>
+<p><strong>✅ Troubleshooting Contacts:</strong> - [ ] Have training support email/chat details - [ ] Know how to access Digital Space Campus materials</p>
+<div class="fragment">
+<p><strong>If any issues:</strong> Contact training organizers BEFORE Day 1 to resolve access problems!</p>
+</div>
+<aside class="notes">
+<p><strong>P1 IMPROVEMENT APPLIED:</strong> Pre-flight checklist (send 1 week before).</p>
+<p><strong>Action Item for Organizers:</strong> - Create downloadable “sample bundle” (small GeoPackage + COG) - Set up support email/chat channel - Send checklist email 7 days before training - Follow up 2 days before to confirm readiness</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="whats-next-in-day-1" class="slide level2 center">
+<h2>What’s Next in Day 1?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Session 2 (Next)</strong></p>
+<ul>
+<li>AI/ML fundamentals</li>
+<li>Supervised vs unsupervised learning</li>
+<li>Neural networks basics</li>
+<li>Data-centric AI</li>
+<li><strong>→ 5-min Concept Check</strong> (3 questions)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Sessions 3 &amp; 4</strong></p>
+<ul>
+<li>Hands-on Python (GeoPandas, Rasterio)
+<ul>
+<li><strong>Pre-run pip installs</strong> to save time</li>
+</ul></li>
+<li>Google Earth Engine tutorial
+<ul>
+<li><strong>Start from ready script</strong>, modify filters only</li>
+</ul></li>
+<li>Access real Sentinel data</li>
+<li><strong>SCL cloud/shadow masking</strong> (not QA60)</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Now that you understand where data comes from, we’ll learn how AI/ML can extract information from these data, then get hands-on with actual satellite imagery.</p>
+<p><strong>P1 IMPROVEMENTS NOTED:</strong> - Concept check after Session 2 - Pre-run installations in Session 3 - Ready GEE script in Session 4 (modify filters live, don’t type from scratch)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="session-summary" class="slide level2 center">
+<h2>Session Summary</h2>
+<p><strong>What We Covered:</strong></p>
+<p>✅ Copernicus Programme &amp; free/open data policy<br>
+✅ Sentinel-1 (SAR) - all-weather monitoring<br>
+✅ Sentinel-2 (Optical) - 13 bands, 10m resolution<br>
+✅ <strong>2025 Updates:</strong> 1C &amp; 2C operational<br>
+✅ Philippine EO infrastructure (PhilSA, NAMRIA, DOST-ASTI)<br>
+✅ Data access platforms (SIYASAT, Geoportal, SkAI-Pinas)</p>
+<aside class="notes">
+<p><strong>Timing:</strong> 2 minutes</p>
+<p><strong>Key Takeaways:</strong> - You now understand WHERE EO data comes from - You know WHAT satellites provide what data - You know HOW to access data (both EU and PH platforms) - Ready for Session 2: Learning WHAT to do with this data using AI/ML</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qa" class="slide level2 center">
+<h2>Q&amp;A</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Copernicus &amp; Sentinel</strong></p>
+<ul>
+<li>Mission specifications?</li>
+<li>Data products &amp; formats?</li>
+<li>Access methods?</li>
+<li>Processing levels?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Philippine EO Ecosystem</strong></p>
+<ul>
+<li>Agency roles &amp; mandates?</li>
+<li>Data access procedures?</li>
+<li>Integration with Copernicus?</li>
+<li>P2.6B AI investment details?</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p><strong>Timing:</strong> 3-5 minutes for Q&amp;A</p>
+<p><strong>Facilitation Tips:</strong> - Encourage questions from different agency participants - Share knowledge across government, academic, private sectors - If technical question about access, note for Session 4 (GEE hands-on) - Keep responses brief - detailed hands-on coming in Sessions 3-4</p>
+<p><strong>Common Questions &amp; Answers:</strong> - “How do I sign up for GEE?” → Will cover in Session 4 - “Which satellite should I use?” → Depends on application (Day 2 topic) - “Is SIYASAT public?” → Registration required, priority for gov agencies - “Can I combine Sentinel-1 and -2?” → Yes! Synergistic use cases discussed today</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="next-session-2" class="title-slide slide level1 center" data-background-color="#0f766e">
+<h1>Next: Session 2</h1>
+
+</section>
+<section id="core-concepts-of-aiml-for-earth-observation" class="slide level2 center">
+<h2>Core Concepts of AI/ML for Earth Observation</h2>
+<p><strong>Coming up after break:</strong></p>
+<ul>
+<li>What is AI/ML and why for EO?</li>
+<li>The EO AI/ML workflow</li>
+<li>Supervised vs unsupervised learning</li>
+<li>Introduction to deep learning</li>
+<li>Data-centric AI approaches</li>
+</ul>
+<div class="fragment">
+<p><strong>See you in Session 2! 🚀</strong></p>
+</div>
+</section>
+<section class="slide level2 center">
+
+</section></section>
+<section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Thank You!</h1>
+
+</section>
+<section id="contact-resources" class="slide level2 center">
+<h2>Contact &amp; Resources</h2>
+<p><strong>European Platforms:</strong><br>
+Copernicus Data Space: <a href="https://dataspace.copernicus.eu" class="uri">https://dataspace.copernicus.eu</a><br>
+CoPhil Programme: <a href="https://www.cophil.eu" class="uri">https://www.cophil.eu</a></p>
+<p><strong>Philippine Platforms:</strong><br>
+PhilSA: <a href="https://philsa.gov.ph" class="uri">https://philsa.gov.ph</a><br>
+NAMRIA Geoportal: <a href="https://www.geoportal.gov.ph" class="uri">https://www.geoportal.gov.ph</a><br>
+DOST-ASTI: <a href="https://asti.dost.gov.ph" class="uri">https://asti.dost.gov.ph</a></p>
+<aside class="notes">
+<p><strong>Session 1 Complete!</strong></p>
+<p>Total timing: ~120 minutes including breaks and Q&amp;A</p>
+<p><strong>Before Session 2:</strong> - Short bio break (5-10 minutes) - Check that all participants are ready - Ensure presentation materials for Session 2 are loaded</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 center">
+
+<p><strong>15-minute break before Session 2</strong></p>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Day 1 Session 1 | Copernicus &amp; Philippine EO | 20-23 October 2025</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'h.v',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script src="https://utteranc.es/client.js" repo="cophil-training-v1.0" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,2288 @@
+---
+title: "Core Concepts of AI/ML for Earth Observation"
+subtitle: "CoPhil EO AI/ML Training - Day 1, Session 2"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: default
+    css: custom.scss
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    footer: "Day 1 Session 2 | AI/ML Fundamentals | 20-23 October 2025"
+    navigation-mode: vertical
+    controls: true
+    progress: true
+    history: true
+    center: true
+    transition: slide
+    background-transition: fade
+    width: 1920
+    height: 1080
+---
+
+# Welcome to Session 2 {background-color="#1e3a8a"}
+
+## Session Objectives
+
+::: {.incremental}
+- Understand **what AI/ML means** in Earth Observation context
+- Learn the **end-to-end workflow** for ML projects
+- Distinguish **supervised** vs **unsupervised** learning
+- Grasp **deep learning** and neural network basics
+- Explore **2025 AI innovations** (foundation models, data-centric AI)
+:::
+
+::: {.fragment}
+**Duration:** 2 hours
+:::
+
+::: {.notes}
+This session covers fundamental AI/ML concepts tailored to EO applications. Mostly conceptual, but essential foundation for hands-on work in Sessions 3-4 and throughout Day 2-4.
+:::
+
+---
+
+## Session Roadmap
+
+| Time | Topic | Duration |
+|------|-------|----------|
+| 00-10 min | What is AI/ML? | 10 min |
+| 10-35 min | EO Workflow & Data Pipeline | 25 min |
+| 35-60 min | Supervised vs Unsupervised Learning | 25 min |
+| **60-65 min** | **☕ Break** | **5 min** |
+| 65-90 min | Deep Learning & Neural Networks | 25 min |
+| 90-110 min | Data-Centric AI & 2025 Updates | 20 min |
+| 110-120 min | Q&A & Summary | 10 min |
+
+::: {.notes}
+**Timing:** 2 minutes
+
+This session is more conceptual than Session 1. Focus on building intuition and mental models. Hands-on practice comes in Sessions 3-4 and Days 2-4.
+:::
+
+## Why AI/ML for Earth Observation?
+
+::: {.columns}
+::: {.column width="50%"}
+**Traditional Approach**
+
+- Manual interpretation
+- Rule-based classification
+- Simple thresholds
+- Time-consuming
+- Hard to scale
+:::
+
+::: {.column width="50%"}
+**AI/ML Approach**
+
+- Automated pattern recognition
+- Learn from examples
+- Complex decision boundaries
+- Fast processing
+- Scalable to large areas
+:::
+:::
+
+::: {.fragment}
+**ML can process years of satellite data in hours!**
+:::
+
+::: {.notes}
+Machine learning allows us to automatically recognize patterns in satellite imagery without hard-coding rules for every scenario. This is transformative for large-area, time-series analysis.
+:::
+
+# What is AI/ML? {background-color="#0f766e"}
+
+## Defining the Terms
+
+![](images/ai_ml_dl_venn.png){fig-align="center" width="60%"}
+
+::: {.incremental}
+- **Artificial Intelligence (AI):** Broad field of making machines "smart"
+- **Machine Learning (ML):** Subset of AI where algorithms learn from data
+- **Deep Learning (DL):** Subset of ML using neural networks with many layers
+:::
+
+::: {.notes}
+AI is the broadest term. Machine Learning is a subset where computer algorithms learn patterns from data without being explicitly programmed. Deep Learning uses neural networks.
+:::
+
+## Machine Learning in Simple Terms
+
+::: {.columns}
+::: {.column width="50%"}
+**Traditional Programming**
+
+```
+Rules + Data → Results
+```
+
+- Programmer writes explicit rules
+- Fixed logic
+- Hard to handle complexity
+:::
+
+::: {.column width="50%"}
+**Machine Learning**
+
+```
+Data + Results → Rules
+```
+
+- Algorithm learns rules from examples
+- Adaptive
+- Handles complex patterns
+:::
+:::
+
+::: {.notes}
+In traditional programming, we tell computers what to do step-by-step. In ML, we show examples and the algorithm figures out the pattern.
+:::
+
+## ML in Earth Observation Context
+
+::: {.columns}
+::: {.column width="50%"}
+**Example: Forest vs Non-Forest**
+
+**Traditional:**
+
+```
+IF NDVI > 0.6 THEN Forest
+ELSE Non-Forest
+```
+
+Simple, but breaks easily
+:::
+
+::: {.column width="50%"}
+**Machine Learning:**
+
+- Show 1000 examples of forest pixels
+- Show 1000 examples of non-forest
+- Algorithm learns complex patterns
+- Works in diverse conditions
+:::
+:::
+
+![](images/ml_classification_example.jpg){fig-align="center" width="60%"}
+
+::: {.notes}
+A simple NDVI threshold might work in one region but fail in another. ML can learn the nuanced patterns that distinguish forest from non-forest across different conditions.
+:::
+
+# The AI/ML Workflow for EO {background-color="#0f766e"}
+
+## End-to-End ML Workflow
+
+![](images/ml_workflow.png){fig-align="center" width="90%"}
+
+::: {.notes}
+This is the typical workflow for any ML project in Earth Observation. Understanding these steps is crucial for successful implementation.
+:::
+
+## Step 1: Problem Definition
+
+::: {.columns}
+::: {.column width="50%"}
+**Key Questions**
+
+- What exactly are we trying to achieve?
+- What decisions will this support?
+- What level of accuracy is needed?
+- What resources are available?
+:::
+
+::: {.column width="50%"}
+**EO Examples**
+
+- Map rice paddy extent
+- Detect flooded areas after typhoon
+- Classify land cover types
+- Estimate crop yield
+- Monitor deforestation
+:::
+:::
+
+::: {.fragment}
+**Clear problem definition = 50% of success**
+:::
+
+::: {.notes}
+Being clear on the question helps design the solution. "We want to classify land cover in Palawan" is much more actionable than "We want to use AI."
+:::
+
+## Step 2: Data Acquisition
+
+::: {.columns}
+::: {.column width="50%"}
+**Satellite Imagery**
+
+- Sentinel-1/2 (covered in Session 1!)
+- Landsat
+- Planet
+- High-resolution commercial
+- Multiple dates/seasons
+:::
+
+::: {.column width="50%"}
+**Ground Truth / Labels**
+
+- Field surveys
+- GPS points
+- Existing maps
+- Photo interpretation
+- Expert knowledge
+:::
+:::
+
+::: {.fragment}
+**Challenge:** Getting quality labels is often hardest part
+:::
+
+::: {.notes}
+Data acquisition includes both satellite images and the ground truth labels needed to train supervised models. The quality and quantity of labels directly impact model performance.
+:::
+
+## Step 3: Data Preprocessing
+
+::: {.incremental}
+**For Satellite Imagery:**
+
+- Atmospheric correction (use Level-2A!)
+- Cloud masking
+- Geometric correction
+- Radiometric calibration
+- Co-registration (multiple sensors)
+- Temporal compositing
+:::
+
+::: {.fragment}
+**"Garbage In, Garbage Out"** - preprocessing matters!
+:::
+
+::: {.notes}
+Well-prepared input data is crucial. Even the best model will fail if fed cloudy, misaligned, or uncorrected images.
+:::
+
+## Preprocessing Example
+
+::: {.columns}
+::: {.column width="50%"}
+**Before Preprocessing**
+
+![](images/before_preprocessing.jpg){width="100%"}
+
+- Clouds present
+- Atmospheric haze
+- Different dates
+:::
+
+::: {.column width="50%"}
+**After Preprocessing**
+
+![](images/after_preprocessing.jpg){width="100%"}
+
+- Clouds masked
+- Atmospherically corrected
+- Temporal composite
+:::
+:::
+
+::: {.notes}
+Preprocessing transforms raw satellite data into analysis-ready products. This often involves cloud masking and creating composites.
+:::
+
+## Step 4: Feature Engineering
+
+::: {.columns}
+::: {.column width="50%"}
+**What are Features?**
+
+- Input variables for the model
+- Derived from raw data
+- Informative for the task
+:::
+
+::: {.column width="50%"}
+**EO Features**
+
+- Spectral bands (Blue, Red, NIR, etc.)
+- Spectral indices (NDVI, NDWI)
+- Texture measures
+- Temporal statistics
+- Topography (elevation, slope)
+:::
+:::
+
+::: {.fragment}
+**Deep Learning:** Often learns features automatically!
+:::
+
+::: {.notes}
+For traditional ML like Random Forest, we engineer features. For deep learning, the network learns features automatically from raw pixels.
+:::
+
+## Common EO Features
+
+| **Feature Type** | **Examples** | **What They Capture** |
+|------------------|--------------|------------------------|
+| **Spectral Bands** | B2, B3, B4, B8 | Reflectance at different wavelengths |
+| **Vegetation Indices** | NDVI, EVI, SAVI | Vegetation health, density |
+| **Water Indices** | NDWI, MNDWI | Water presence, moisture |
+| **Texture** | GLCM variance, entropy | Spatial patterns |
+| **Temporal** | Mean, std over time | Phenology, seasonality |
+| **Topographic** | Elevation, slope, aspect | Terrain characteristics |
+
+::: {.notes}
+Different features highlight different aspects of the landscape. Vegetation indices emphasize green biomass, water indices highlight water bodies, etc.
+:::
+
+## Step 5: Model Selection & Training
+
+::: {.columns}
+::: {.column width="50%"}
+**Model Selection**
+
+Choose based on:
+
+- Problem type (classification vs regression)
+- Data size
+- Interpretability needs
+- Computational resources
+:::
+
+::: {.column width="50%"}
+**Common EO Models**
+
+- Random Forest
+- Support Vector Machines
+- Convolutional Neural Networks
+- U-Net (segmentation)
+- Recurrent networks (time series)
+:::
+:::
+
+::: {.notes}
+Model choice depends on your specific problem, available data, and resources. We'll cover Random Forest on Day 2 and CNNs on Day 3.
+:::
+
+## Training Process
+
+![](images/training_process.png){fig-align="center" width="75%"}
+
+::: {.incremental}
+1. **Split data:** Training set (70-80%) & Validation set (20-30%)
+2. **Feed training data** to model
+3. **Model learns patterns** by adjusting internal parameters
+4. **Validate** on unseen validation data
+5. **Iterate:** Adjust model or data if needed
+:::
+
+::: {.notes}
+Training involves feeding labeled examples to the model. The model adjusts its internal parameters to minimize errors on the training data.
+:::
+
+## Step 6: Validation & Evaluation
+
+::: {.columns}
+::: {.column width="50%"}
+**Why Validate?**
+
+- Ensure model generalizes
+- Detect overfitting
+- Compare different models
+- Build confidence
+:::
+
+::: {.column width="50%"}
+**Evaluation Metrics**
+
+- Overall Accuracy
+- Confusion Matrix
+- Precision & Recall
+- F1-Score
+- Kappa coefficient
+:::
+:::
+
+::: {.fragment}
+**Use independent test data - never validate on training data!**
+:::
+
+::: {.notes}
+Rigorous validation using held-out data ensures the model works on new, unseen examples - not just memorizing training data.
+:::
+
+## Confusion Matrix Example
+
+![](images/confusion_matrix.png){fig-align="center" width="60%"}
+
+::: {.columns}
+::: {.column width="50%"}
+**What it shows:**
+
+- True Positives (correct predictions)
+- False Positives (type I error)
+- False Negatives (type II error)
+- True Negatives
+:::
+
+::: {.column width="50%"}
+**Derived Metrics:**
+
+- Precision = TP / (TP + FP)
+- Recall = TP / (TP + FN)
+- Accuracy = (TP + TN) / Total
+:::
+:::
+
+::: {.notes}
+The confusion matrix shows where your model is making mistakes. This helps identify which classes are being confused.
+:::
+
+## Step 7: Deployment
+
+::: {.columns}
+::: {.column width="50%"}
+**Deployment Options**
+
+- Generate full maps
+- Near real-time monitoring
+- Operational pipelines
+- Decision support systems
+- Web applications
+:::
+
+::: {.column width="50%"}
+**Considerations**
+
+- Model retraining schedule
+- Computational requirements
+- User interface
+- Data updates
+- Maintenance plan
+:::
+:::
+
+::: {.notes}
+If the model is satisfactory, deploy it for operational use. This might mean generating maps for entire regions or setting up automatic processing of new satellite images.
+:::
+
+## Workflow is Iterative
+
+![](images/iterative_workflow.png){fig-align="center" width="70%"}
+
+::: {.incremental}
+- **Poor validation?** → Go back to data acquisition or model selection
+- **New data available?** → Retrain model
+- **Requirements change?** → Redefine problem
+- **Continuous improvement** is key
+:::
+
+::: {.notes}
+Real projects are iterative. You often loop back: if validation is poor, you might need more data, different features, or a different model.
+:::
+
+# Types of Machine Learning {background-color="#1e3a8a"}
+
+## Main ML Paradigms
+
+![](images/ml_types.png){fig-align="center" width="75%"}
+
+::: {.incremental}
+1. **Supervised Learning** (most common in EO)
+2. **Unsupervised Learning** (exploratory analysis)
+3. **Semi-supervised Learning** (combines both)
+4. **Reinforcement Learning** (less common in EO)
+:::
+
+::: {.notes}
+We'll focus on supervised and unsupervised learning as these are most relevant for Earth Observation applications.
+:::
+
+# Supervised Learning {background-color="#0f766e"}
+
+## What is Supervised Learning?
+
+::: {.columns}
+::: {.column width="50%"}
+**Definition**
+
+- Learning from **labeled data**
+- Known input-output pairs
+- Model learns mapping from inputs to outputs
+- Like learning with an answer key
+:::
+
+::: {.column width="50%"}
+![](images/supervised_learning.png){width="100%"}
+:::
+:::
+
+::: {.fragment}
+**Requires ground truth labels for training**
+:::
+
+::: {.notes}
+Supervised learning is the most common in EO. The algorithm is given examples with known outcomes (labels) and learns to predict labels for new, unseen data.
+:::
+
+## Two Types of Supervised Learning
+
+::: {.columns}
+::: {.column width="50%"}
+**Classification**
+
+- Predict **categorical** labels
+- Discrete classes
+- Example outputs: "Forest", "Water", "Urban"
+
+![](images/classification.jpg){width="100%"}
+:::
+
+::: {.column width="50%"}
+**Regression**
+
+- Predict **continuous** values
+- Numeric outputs
+- Example outputs: 25.3 tons/hectare, 15.2°C
+
+![](images/regression.jpg){width="100%"}
+:::
+:::
+
+::: {.notes}
+Classification assigns data to categories. Regression predicts numeric values. Both require labeled training data.
+:::
+
+## Classification Examples in EO
+
+::: {.columns}
+::: {.column width="50%"}
+**Land Cover Classification**
+
+![](images/land_cover_classification.jpg){width="100%"}
+
+- Forest, agriculture, urban, water
+- Pixel-wise or object-based
+- Multi-class problem
+:::
+
+::: {.column width="50%"}
+**Crop Type Mapping**
+
+![](images/crop_type_map.jpg){width="100%"}
+
+- Rice, corn, sugarcane
+- Seasonal patterns important
+- Supports agricultural planning
+:::
+:::
+
+::: {.notes}
+Land cover classification is the classic EO supervised learning task. Each pixel or region is assigned to a class like forest, water, or urban.
+:::
+
+## Regression Examples in EO
+
+::: {.columns}
+::: {.column width="50%"}
+**Biomass Estimation**
+
+![](images/biomass_estimation.jpg){width="100%"}
+
+- Predict tons of biomass per hectare
+- Important for carbon accounting
+- Uses SAR and optical data
+:::
+
+::: {.column width="50%"}
+**Crop Yield Prediction**
+
+![](images/yield_prediction.jpg){width="100%"}
+
+- Predict tons per hectare
+- Seasonal NDVI time series
+- Supports food security planning
+:::
+:::
+
+::: {.notes}
+Regression tasks predict continuous values like biomass density, crop yield, soil moisture, or sea surface temperature from satellite data.
+:::
+
+## Common Supervised Algorithms
+
+| **Algorithm** | **Strengths** | **EO Applications** |
+|---------------|---------------|---------------------|
+| **Random Forest** | Handles high dimensions, robust | Land cover, crop classification |
+| **SVM** | Effective in high dimensions | Binary classification, change detection |
+| **Neural Networks** | Learns complex patterns | Image classification, segmentation |
+| **Decision Trees** | Interpretable | Quick classifications |
+| **k-NN** | Simple, non-parametric | Local classifications |
+
+::: {.notes}
+Different algorithms have different strengths. Random Forest is popular in EO for its robustness and ability to handle many features.
+:::
+
+## Supervised Learning Requirements
+
+::: {.incremental}
+**Essential:**
+
+1. **Training data** with known labels
+2. **Representative samples** covering all classes
+3. **Sufficient quantity** (varies by algorithm)
+4. **Quality labels** (accurate, consistent)
+5. **Independent validation** data
+:::
+
+::: {.fragment}
+**Challenge:** Getting quality labels is often the bottleneck!
+:::
+
+::: {.notes}
+Supervised learning needs ground truth. For land cover, this might be field surveys, GPS points, or careful photo interpretation. Quality matters more than quantity!
+:::
+
+# Unsupervised Learning {background-color="#0f766e"}
+
+## What is Unsupervised Learning?
+
+::: {.columns}
+::: {.column width="50%"}
+**Definition**
+
+- Learning from **unlabeled data**
+- No known outputs
+- Discover hidden patterns
+- Like sorting without instructions
+:::
+
+::: {.column width="50%"}
+![](images/unsupervised_learning.png){width="100%"}
+:::
+:::
+
+::: {.fragment}
+**Useful for exploratory analysis and finding structure**
+:::
+
+::: {.notes}
+Unsupervised learning finds patterns or groupings inherent in the data without being told what to look for.
+:::
+
+## Clustering: Main Unsupervised Technique
+
+![](images/clustering_example.png){fig-align="center" width="70%"}
+
+::: {.incremental}
+- **Group similar pixels** based on spectral characteristics
+- Algorithm decides number of clusters (or you specify)
+- **Analyst interprets** what each cluster means
+- Example: "Cluster 3 looks like water, Cluster 7 looks like forest"
+:::
+
+::: {.notes}
+K-means clustering is a common unsupervised method. It groups pixels with similar reflectance, but you have to interpret what those groups mean.
+:::
+
+## Unsupervised EO Applications
+
+::: {.columns}
+::: {.column width="50%"}
+**Change Detection**
+
+- Cluster "before" and "after" images
+- Identify changed areas
+- No labels needed
+
+**Anomaly Detection**
+
+- Find unusual pixels
+- Potential forest disturbance
+- Data quality issues
+:::
+
+::: {.column width="50%"}
+**Initial Exploration**
+
+- Quick overview of spectral classes
+- Inform supervised approach
+- Generate training samples
+
+**Dimensionality Reduction**
+
+- PCA, t-SNE
+- Visualize high-dimensional data
+- Feature extraction
+:::
+:::
+
+::: {.notes}
+Unsupervised methods are useful for quick initial analysis or when you don't have ground truth labels. Results need interpretation though.
+:::
+
+## Supervised vs Unsupervised
+
+| **Aspect** | **Supervised** | **Unsupervised** |
+|------------|----------------|------------------|
+| **Labels** | Required | Not needed |
+| **Accuracy** | Generally higher | Lower, needs interpretation |
+| **Use Case** | Precise classification | Exploration, pattern discovery |
+| **Effort** | High (collecting labels) | Low (no labels) |
+| **Output** | Predefined classes | Discovered clusters |
+| **Control** | High (you define classes) | Low (algorithm decides groups) |
+
+::: {.notes}
+Supervised methods generally yield more accurate results when good training data is available. Unsupervised is useful when labels are unavailable or for exploratory work.
+:::
+
+## Which to Choose?
+
+::: {.columns}
+::: {.column width="50%"}
+**Use Supervised When:**
+
+- You have ground truth labels
+- Need specific classes
+- Accuracy is critical
+- Operational application
+:::
+
+::: {.column width="50%"}
+**Use Unsupervised When:**
+
+- No labels available
+- Exploratory analysis
+- Discovering unknown patterns
+- Quick initial assessment
+:::
+:::
+
+::: {.fragment}
+**In practice:** Often combine both approaches!
+:::
+
+::: {.notes}
+Most operational EO applications use supervised learning because accuracy and specific class definitions are important. Unsupervised helps with initial exploration.
+:::
+
+---
+
+## ☕ 5-Minute Break {background-color="#7c3aed"}
+
+::: {.r-fit-text}
+**Stretch Break**
+
+Stand up • Grab water • Back in 5 minutes
+:::
+
+::: {.notes}
+**Timing:** 5 minutes
+
+**Instructor Actions:**
+- Announce break
+- Mention we'll dive into deep learning next
+- Be available for quick questions
+
+**When Resuming:**
+- Quick recap: "We've covered ML basics, workflow, supervised/unsupervised. Now: deep learning!"
+:::
+
+---
+
+# Introduction to Deep Learning {background-color="#1e3a8a"}
+
+## What is Deep Learning?
+
+::: {.columns}
+::: {.column width="60%"}
+**Deep Learning = Neural Networks with Many Layers**
+
+- Subset of machine learning
+- "Deep" refers to multiple layers
+- Automatically learns features
+- Excels at image analysis
+- Data-hungry
+:::
+
+::: {.column width="40%"}
+![](images/deep_learning_layers.png){width="100%"}
+:::
+:::
+
+::: {.notes}
+Deep learning is essentially about neural networks with many layers (dozens or even hundreds). These "deep" networks can capture very complex relationships.
+:::
+
+## Neural Networks: Building Blocks
+
+![](images/neuron_diagram.png){fig-align="center" width="70%"}
+
+::: {.incremental}
+**Artificial Neuron:**
+
+1. Takes multiple inputs
+2. Multiplies each by a **weight**
+3. Adds a **bias**
+4. Applies **activation function**
+5. Produces output
+:::
+
+::: {.notes}
+A single neuron is like a logistic regression unit. It takes inputs, applies weights, and uses an activation function to produce an output.
+:::
+
+## Neural Network Architecture
+
+![](images/neural_network_architecture.png){fig-align="center" width="80%"}
+
+::: {.columns}
+::: {.column width="50%"}
+**Layers:**
+
+- **Input Layer:** Receives data (e.g., pixel values)
+- **Hidden Layers:** Process and transform
+- **Output Layer:** Final prediction
+:::
+
+::: {.column width="50%"}
+**Connections:**
+
+- Each neuron connects to next layer
+- Weights on connections
+- Information flows forward
+:::
+:::
+
+::: {.notes}
+Neurons are organized into layers. The input layer receives data (pixel values), hidden layers progressively extract features, and the output layer makes predictions.
+:::
+
+## Key Concepts
+
+::: {.incremental}
+**Activation Functions**
+
+- Introduce non-linearity
+- Common: ReLU, Sigmoid, Tanh
+- Allow network to learn complex patterns
+
+**Weights and Biases**
+
+- Parameters the network learns
+- Millions of parameters in deep networks
+- Adjusted during training
+
+**Forward Propagation**
+
+- Data flows input → output
+- Generate prediction
+:::
+
+::: {.notes}
+Activation functions are crucial - they allow neural networks to learn non-linear relationships. Without them, the network would just be linear regression!
+:::
+
+## How Neural Networks Learn
+
+![](images/training_loop.png){fig-align="center" width="75%"}
+
+::: {.incremental}
+1. **Forward pass:** Input data, get prediction
+2. **Calculate loss:** How wrong is the prediction?
+3. **Backpropagation:** Calculate gradients
+4. **Update weights:** Adjust to reduce error
+5. **Repeat:** Thousands of times (epochs)
+:::
+
+::: {.notes}
+Training adjusts weights to minimize error. This happens through backpropagation - computing gradients and updating weights in the direction that reduces loss.
+:::
+
+## Loss Functions
+
+::: {.columns}
+::: {.column width="50%"}
+**Classification**
+
+**Cross-Entropy Loss**
+
+- Measures classification error
+- Higher penalty for confident wrong predictions
+- Standard for multi-class problems
+:::
+
+::: {.column width="50%"}
+**Regression**
+
+**Mean Squared Error**
+
+$$MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$
+
+- Measures prediction error
+- Squared difference from true value
+:::
+:::
+
+::: {.notes}
+Loss functions quantify "how bad" predictions are. The training process tries to minimize this loss by adjusting weights.
+:::
+
+## Optimizers
+
+::: {.columns}
+::: {.column width="50%"}
+**Stochastic Gradient Descent (SGD)**
+
+- Basic optimizer
+- Updates weights based on gradients
+- Learning rate controls step size
+:::
+
+::: {.column width="50%"}
+**Adam Optimizer**
+
+- Adaptive learning rates
+- Faster convergence
+- Most popular for deep learning
+- Generally works well
+:::
+:::
+
+::: {.fragment}
+**You don't need to implement these - frameworks do it for you!**
+:::
+
+::: {.notes}
+Optimizers determine how weights are updated. Adam is the most popular because it adapts learning rates automatically and generally converges faster than SGD.
+:::
+
+## Convolutional Neural Networks (CNNs)
+
+![](images/cnn_architecture.png){fig-align="center" width="85%"}
+
+::: {.incremental}
+**Specialized for images:**
+
+- **Convolutional layers:** Detect spatial patterns
+- **Pooling layers:** Reduce dimensionality
+- **Fully connected layers:** Final classification
+- Automatically learn features (edges, textures, objects)
+:::
+
+::: {.notes}
+CNNs are neural networks specialized for grid data like images. They use convolutional layers to automatically extract spatial features.
+:::
+
+## How CNNs Process Images
+
+![](images/cnn_feature_extraction.png){fig-align="center" width="80%"}
+
+::: {.incremental}
+**Hierarchical Feature Learning:**
+
+- **Early layers:** Detect edges, simple patterns
+- **Middle layers:** Detect textures, parts
+- **Later layers:** Detect objects, scenes
+- **No manual feature engineering needed!**
+:::
+
+::: {.notes}
+CNNs learn increasingly complex features at each layer. Early layers detect edges, later layers detect whole objects. This happens automatically during training!
+:::
+
+## CNNs in Earth Observation
+
+::: {.columns}
+::: {.column width="50%"}
+**Applications:**
+
+- Image classification
+- Object detection (ships, buildings)
+- Semantic segmentation (pixel-wise)
+- Change detection
+- Super-resolution
+:::
+
+::: {.column width="50%"}
+**Advantages:**
+
+- Learn features automatically
+- Handle spatial context
+- State-of-the-art performance
+- Transfer learning possible
+:::
+:::
+
+![](images/cnn_eo_examples.jpg){fig-align="center" width="70%"}
+
+::: {.notes}
+CNNs have achieved state-of-the-art results in many EO tasks. They can learn to recognize complex patterns without manual feature engineering.
+:::
+
+## Popular CNN Architectures for EO
+
+| **Architecture** | **Year** | **Key Innovation** | **EO Use Cases** |
+|------------------|----------|-------------------|------------------|
+| **ResNet** | 2015 | Residual connections | Classification, backbone for detection |
+| **U-Net** | 2015 | Skip connections | Semantic segmentation, flood mapping |
+| **EfficientNet** | 2019 | Compound scaling | Efficient classification, mobile deployment |
+| **DeepLabv3+** | 2018 | Atrous convolution | Land cover segmentation |
+| **YOLOv8** | 2023 | Real-time detection | Object detection, ship/vehicle counting |
+
+::: {.fragment}
+**ResNet and EfficientNet are most popular backbones for EO**
+:::
+
+::: {.notes}
+These are proven architectures widely used in EO. ResNet-50 is often the starting point for transfer learning. U-Net dominates semantic segmentation tasks.
+:::
+
+## ResNet: Residual Networks
+
+![](images/resnet_residual_block.png){fig-align="center" width="70%"}
+
+::: {.columns}
+::: {.column width="60%"}
+**Key Innovation: Skip Connections**
+
+- Allows training very deep networks (50, 101, 152 layers)
+- Solves vanishing gradient problem
+- Identity mapping preserves information
+
+**Common Variants:**
+- ResNet-50 (25M parameters)
+- ResNet-101 (44M parameters)
+- ResNet-152 (60M parameters)
+:::
+
+::: {.column width="40%"}
+**EO Applications:**
+
+- Pre-trained on ImageNet
+- Fine-tune for EO tasks
+- Backbone for object detection
+- Transfer learning baseline
+
+**Performance:**
+- Top-5 error: 3.57% (ImageNet)
+- Works well with 10k+ images
+:::
+:::
+
+::: {.notes}
+ResNet revolutionized deep learning by enabling training of very deep networks. Skip connections allow gradients to flow directly through the network.
+:::
+
+## U-Net for Semantic Segmentation
+
+![](images/unet_architecture.png){fig-align="center" width="80%"}
+
+::: {.incremental}
+**Architecture:**
+- **Encoder (contracting path):** Captures context
+- **Decoder (expanding path):** Enables precise localization
+- **Skip connections:** Combine low & high-level features
+
+**Why Dominant in EO:**
+- Works with small datasets (hundreds of images)
+- Precise pixel-wise predictions
+- Perfect for segmentation tasks
+:::
+
+::: {.fragment}
+**EO Applications:** Flood mapping, land cover, building footprints, crop fields
+:::
+
+::: {.notes}
+U-Net is THE architecture for semantic segmentation in EO. Originally designed for biomedical image segmentation, it's now standard for pixel-wise classification tasks.
+:::
+
+## Deep Learning Frameworks
+
+::: {.columns}
+::: {.column width="50%"}
+**TensorFlow / Keras**
+
+![](images/tensorflow_logo.png){width="150px"}
+
+- Google's framework
+- High-level Keras API
+- Production-ready
+- Large ecosystem
+:::
+
+::: {.column width="50%"}
+**PyTorch**
+
+![](images/pytorch_logo.png){width="150px"}
+
+- Facebook's framework
+- Pythonic and intuitive
+- Popular in research
+- Flexible
+:::
+:::
+
+::: {.fragment}
+**We'll use TensorFlow/Keras in this training**
+:::
+
+::: {.notes}
+You don't implement backpropagation yourself - frameworks like TensorFlow and PyTorch handle the math. You just define the architecture and provide data.
+:::
+
+## Deep Learning Considerations
+
+::: {.columns}
+::: {.column width="50%"}
+**Advantages:**
+
+- Automatic feature learning
+- State-of-the-art accuracy
+- Handles complex patterns
+- Scales to big data
+:::
+
+::: {.column width="50%"}
+**Challenges:**
+
+- Requires lots of training data
+- Computationally intensive (need GPUs)
+- Less interpretable ("black box")
+- Harder to debug
+:::
+:::
+
+::: {.fragment}
+**Start simple (Random Forest), move to DL when you have data and compute**
+:::
+
+::: {.notes}
+Deep learning is powerful but data-hungry and computationally expensive. For many EO tasks, simpler models like Random Forest work well with less data.
+:::
+
+# Benchmark Datasets for EO {background-color="#0f766e"}
+
+## Why Benchmark Datasets Matter
+
+::: {.incremental}
+1. **Standardized Evaluation** - Compare algorithms objectively
+2. **Training Resources** - Pre-labeled data for model training
+3. **Transfer Learning** - Pre-train on large datasets, fine-tune locally
+4. **Research Reproducibility** - Enable comparison across studies
+5. **Community Building** - Shared resources accelerate progress
+:::
+
+::: {.fragment}
+**You don't need to label everything from scratch!**
+:::
+
+::: {.notes}
+Benchmark datasets are crucial for EO ML. They provide labeled training data and enable fair comparison of methods across research groups worldwide.
+:::
+
+## EuroSAT: Land Cover Classification
+
+::: {.columns}
+::: {.column width="60%"}
+**Specifications:**
+- **Images:** 27,000 labeled patches
+- **Classes:** 10 land cover types
+- **Size:** 64×64 pixels
+- **Bands:** All 13 Sentinel-2 bands
+- **Source:** European cities
+
+**10 Classes:**
+Annual Crop • Forest • Herbaceous Vegetation • Highway • Industrial • Pasture • Permanent Crop • Residential • River • Sea/Lake
+:::
+
+::: {.column width="40%"}
+![](images/eurosat_classes.png){width="100%"}
+
+**Achievement:**
+**98.57% accuracy** with CNNs
+
+**Why Popular:**
+- Sentinel-2 based
+- Balanced classes
+- Easy to use
+:::
+:::
+
+::: {.notes}
+EuroSAT is one of the most popular benchmarks for EO classification. Based on Sentinel-2, making it highly relevant for operational applications. Great starting point for CNN experiments.
+:::
+
+## BigEarthNet: Large-Scale Multi-Label
+
+::: {.columns}
+::: {.column width="50%"}
+**Massive Scale:**
+- **Images:** 590,326 Sentinel-2 patches
+- **Coverage:** 10 European countries
+- **Labels:** 43 land cover classes
+- **Multi-label:** Multiple classes per image
+- **Multi-modal:** Optical + SAR version
+
+**Real-World Complexity:**
+- Forest + Water
+- Urban + Agricultural
+- Reflects actual landscapes
+:::
+
+::: {.column width="50%"}
+![](images/bigearth_multilabel.jpg){width="100%"}
+
+**Why Different:**
+
+Unlike EuroSAT (single label), BigEarthNet has multiple overlapping classes - more realistic!
+
+**Access:**
+- bigearth.net
+- TensorFlow Datasets
+- Papers With Code
+:::
+:::
+
+::: {.notes}
+BigEarthNet's multi-label nature makes it more challenging but also more realistic. Essential for semantic segmentation research and testing advanced architectures.
+:::
+
+## xView: Object Detection Benchmark
+
+::: {.columns}
+::: {.column width="50%"}
+**Specifications:**
+- **Objects:** >1 million annotated
+- **Classes:** 60 object types
+- **Resolution:** 0.3m (WorldView-3)
+- **Area:** >1,400 km²
+- **Annotations:** Bounding boxes
+
+**Object Categories:**
+- Buildings & infrastructure
+- Vehicles (cars, trucks, aircraft)
+- Ships & maritime
+- Storage tanks
+- Construction equipment
+:::
+
+::: {.column width="50%"}
+![](images/xview_samples.jpg){width="100%"}
+
+**Created for disaster response**
+
+**Applications:**
+- YOLO training
+- Faster R-CNN
+- Small object detection
+- Infrastructure mapping
+:::
+:::
+
+::: {.notes}
+xView is THE benchmark for object detection in satellite imagery. Created for disaster response applications, now widely used for testing detection algorithms like YOLO and Faster R-CNN.
+:::
+
+## Philippine Data Resources
+
+::: {.columns}
+::: {.column width="50%"}
+**PRiSM (PhilRice)**
+- Rice area maps (wet/dry season)
+- Planting dates & growth stages
+- Yield estimates
+- Since 2014
+- https://prism.philrice.gov.ph/
+
+**PhilSA Products**
+- Flood extent maps (DATOS)
+- Mangrove extent mapping
+- Land cover classifications
+- Disaster damage assessments
+:::
+
+::: {.column width="50%"}
+**DOST-ASTI Outputs**
+- DATOS rapid flood mapping
+- Hazard susceptibility maps
+- AI-powered damage assessment
+- hazardhunter.georisk.gov.ph
+
+**NAMRIA Geoportal**
+- National land cover (2020)
+- Topographic basemaps
+- Administrative boundaries
+- Digital Elevation Models
+- www.geoportal.gov.ph
+:::
+:::
+
+::: {.fragment}
+**Use these as training/validation data - don't start from scratch!**
+:::
+
+::: {.notes}
+Philippine agencies have produced operational EO products that can serve as training or validation data for your ML models. Leverage existing work!
+:::
+
+# Data-Centric AI & 2025 Innovations {background-color="#1e3a8a"}
+
+## Paradigm Shift: Model-Centric vs Data-Centric
+
+![](images/model_vs_data_centric.png){fig-align="center" width="80%"}
+
+::: {.columns}
+::: {.column width="50%"}
+**Model-Centric (Traditional)**
+
+- Focus on improving algorithms
+- Keep data fixed
+- Try different models
+- Tune hyperparameters
+:::
+
+::: {.column width="50%"}
+**Data-Centric (Modern)**
+
+- Focus on improving data
+- Keep model fixed
+- Clean and augment data
+- Better annotations
+:::
+:::
+
+::: {.notes}
+A lot of early ML progress focused on model algorithms. Data-Centric AI, popularized by Andrew Ng, advocates that improving your data often yields bigger gains.
+:::
+
+## Why Data-Centric Matters for EO
+
+::: {.incremental}
+**EO-Specific Data Challenges:**
+
+- Cloud contamination
+- Atmospheric effects
+- Sensor artifacts and noise
+- Label uncertainty
+- Geographic variability
+- Temporal dynamics
+- Class imbalance
+:::
+
+::: {.fragment}
+**"Better data beats a cleverer model" in most cases**
+:::
+
+::: {.notes}
+In EO, the "food" you feed your AI matters more than fancy model tweaks. Cloudy images, mislabeled points, or biased samples can derail any model.
+:::
+
+## 2025 Research: Data Efficiency
+
+![](images/data_efficiency_research.png){fig-align="center" width="70%"}
+
+**Key Finding (ArXiv 2025):**
+
+::: {.incremental}
+- Some EO datasets reach **optimal accuracy with <20% of temporal instances**
+- **Single band** from single modality can be sufficient
+- Data efficiency crucial for operational systems
+- Quality over quantity
+:::
+
+::: {.notes}
+Recent research shows you don't always need all available data. Smart selection of temporal instances and bands can achieve similar accuracy with much less data.
+:::
+
+## Four Pillars of Data-Centric AI
+
+::: {.columns}
+::: {.column width="50%"}
+**1. Data Quality**
+
+![](images/data_quality.jpg){width="100%"}
+
+- Cloud/shadow removal
+- Atmospheric correction
+- Sensor calibration
+- Geometric accuracy
+:::
+
+::: {.column width="50%"}
+**2. Data Quantity**
+
+![](images/data_quantity.jpg){width="100%"}
+
+- Sufficient training samples
+- Balanced classes
+- Data augmentation
+- Transfer learning
+:::
+:::
+
+## Four Pillars (Continued)
+
+::: {.columns}
+::: {.column width="50%"}
+**3. Data Diversity**
+
+![](images/data_diversity.jpg){width="100%"}
+
+- Multiple seasons
+- Different regions
+- Various conditions
+- Class variations
+:::
+
+::: {.column width="50%"}
+**4. Label Quality**
+
+![](images/label_quality.jpg){width="100%"}
+
+- Clear definitions
+- Consistent protocols
+- Expert validation
+- Accurate geolocation
+:::
+:::
+
+::: {.notes}
+These four aspects - quality, quantity, diversity, and labels - determine model success more than architectural choices.
+:::
+
+# Data Quality {background-color="#0f766e"}
+
+## Data Quality in EO
+
+::: {.columns}
+::: {.column width="50%"}
+**Common Issues:**
+
+- Clouds and shadows
+- Haze and aerosols
+- Sensor artifacts (striping, banding)
+- Geometric misalignment
+- Radiometric inconsistencies
+- Mixed pixels at boundaries
+:::
+
+::: {.column width="50%"}
+**Solutions:**
+
+- Use Level-2A products
+- Rigorous cloud masking
+- Quality flag filtering
+- Multi-temporal compositing
+- Validation checks
+- Document preprocessing
+:::
+:::
+
+::: {.notes}
+Satellite data can be noisy. Cloud masking, using atmospherically corrected products, and careful preprocessing are essential.
+:::
+
+## Quality Example: Cloud Masking
+
+::: {.columns}
+::: {.column width="50%"}
+**Without Cloud Masking**
+
+![](images/with_clouds.jpg){width="100%"}
+
+- Clouds misclassified
+- Shadows cause errors
+- Poor model performance
+:::
+
+::: {.column width="50%"}
+**With Proper Masking**
+
+![](images/clouds_masked.jpg){width="100%"}
+
+- Clean training data
+- Accurate classifications
+- Better generalization
+:::
+:::
+
+::: {.fragment}
+**One cloudy image can ruin your training data!**
+:::
+
+::: {.notes}
+Even a few cloudy training samples can teach the model wrong patterns. Rigorous cloud masking is non-negotiable.
+:::
+
+# Data Quantity {background-color="#0f766e"}
+
+## How Much Data Do You Need?
+
+::: {.incremental}
+**Depends on:**
+
+- Model complexity (DL needs more)
+- Problem difficulty
+- Class separability
+- Available features
+
+**General Guidelines:**
+
+- **Traditional ML:** 100s to 1000s of samples per class
+- **Deep Learning:** 1000s to 10,000s per class
+- **Transfer Learning:** Can work with 100s per class
+:::
+
+::: {.notes}
+Deep learning is data-hungry. Random Forest can work with smaller datasets. Transfer learning (starting from pre-trained models) reduces data requirements.
+:::
+
+## Data Augmentation
+
+![](images/data_augmentation.jpg){fig-align="center" width="80%"}
+
+::: {.incremental}
+**Techniques:**
+
+- Rotation (90°, 180°, 270°)
+- Flipping (horizontal, vertical)
+- Brightness/contrast adjustment
+- Adding noise
+- Elastic deformations
+:::
+
+::: {.fragment}
+**Result:** 10x more training samples from existing data!
+:::
+
+::: {.notes}
+Data augmentation synthetically increases dataset size by creating modified versions of existing samples. This helps models generalize better.
+:::
+
+## Transfer Learning
+
+![](images/transfer_learning.png){fig-align="center" width="75%"}
+
+::: {.columns}
+::: {.column width="50%"}
+**Concept:**
+
+- Start with model pre-trained on large dataset
+- Fine-tune on your specific task
+- Requires much less data
+:::
+
+::: {.column width="50%"}
+**EO Applications:**
+
+- Use ImageNet pre-trained models
+- NASA-IBM Geospatial Foundation Model
+- Domain-specific pre-training
+:::
+:::
+
+::: {.notes}
+Transfer learning leverages knowledge learned on large datasets and adapts it to your specific problem with much less data.
+:::
+
+# Data Diversity {background-color="#0f766e"}
+
+## Why Diversity Matters
+
+::: {.columns}
+::: {.column width="50%"}
+**Problem: Biased Training**
+
+![](images/biased_training.jpg){width="100%"}
+
+- All samples from one season
+- One geographic region only
+- Similar conditions
+- **Result:** Model fails elsewhere
+:::
+
+::: {.column width="50%"}
+**Solution: Diverse Training**
+
+![](images/diverse_training.jpg){width="100%"}
+
+- Multiple seasons
+- Different regions
+- Various conditions
+- **Result:** Model generalizes
+:::
+:::
+
+::: {.notes}
+Models trained on narrow datasets often fail when deployed in different conditions. Diversity in training data leads to better generalization.
+:::
+
+## Sources of Diversity Needed
+
+::: {.incremental}
+**Temporal Diversity:**
+
+- Different seasons (wet/dry)
+- Multiple years
+- Phenological stages
+
+**Geographic Diversity:**
+
+- Different regions
+- Various elevations
+- Coastal vs inland
+
+**Atmospheric Diversity:**
+
+- Clear vs hazy days
+- Different solar angles
+- Seasonal lighting
+
+**Class Diversity:**
+
+- Variations within classes
+- Edge cases
+- Transitional zones
+:::
+
+::: {.notes}
+For robust models, ensure your training data covers the range of conditions the model will encounter in operational use.
+:::
+
+## Example: Urban Classification
+
+::: {.columns}
+::: {.column width="50%"}
+**Poor Diversity**
+
+- Only Metro Manila samples
+- Only concrete roofs
+- Only high-density areas
+- **Fails** in other cities
+:::
+
+::: {.column width="50%"}
+**Good Diversity**
+
+- Large cities, small towns
+- Various roof materials (concrete, metal, nipa)
+- Different architectural styles
+- Different densities
+- **Works** across Philippines
+:::
+:::
+
+::: {.notes}
+If training only on Metro Manila, the model might not recognize small towns or rural settlements with different characteristics.
+:::
+
+# Label Quality {background-color="#0f766e"}
+
+## Label Quality is Critical
+
+::: {.columns}
+::: {.column width="50%"}
+**Common Label Issues:**
+
+- Mislabeled samples
+- Positional errors (GPS drift)
+- Temporal mismatch (old labels, new image)
+- Ambiguous classes
+- Inconsistent definitions
+- Mixed pixels
+:::
+
+::: {.column width="50%"}
+**Impact:**
+
+- Model learns wrong patterns
+- Contradictory signals
+- Poor generalization
+- Low confidence predictions
+- Wasted compute
+:::
+:::
+
+::: {.fragment}
+**One bad label can corrupt model learning!**
+:::
+
+::: {.notes}
+Ground truth labels might have errors - GPS inaccuracy, outdated information, or human mistakes. These errors propagate to model predictions.
+:::
+
+## Label Quality Best Practices
+
+::: {.incremental}
+**1. Clear Class Definitions**
+
+- Write explicit criteria
+- Provide examples
+- Define edge cases
+- Document ambiguities
+
+**2. Consistent Protocols**
+
+- Standard operating procedures
+- Same interpretation rules
+- Calibration sessions
+- Regular training for labelers
+
+**3. Multiple Annotators**
+
+- Independent labeling
+- Compare for consistency
+- Resolve disagreements
+- Build consensus labels
+
+**4. Expert Validation**
+
+- Domain experts review samples
+- Random quality checks
+- Iterative improvement
+:::
+
+::: {.notes}
+Invest time in defining classes clearly and training labelers. Consistency matters more than speed.
+:::
+
+## Label Quality Example
+
+::: {.columns}
+::: {.column width="50%"}
+**Poor Labels**
+
+![](images/poor_labels.jpg){width="100%"}
+
+- "Forest" defined inconsistently
+- Mixed with shrubland
+- Temporal mismatch
+- Positional errors
+:::
+
+::: {.column width="50%"}
+**High-Quality Labels**
+
+![](images/good_labels.jpg){width="100%"}
+
+- Clear forest definition
+- Careful boundary delineation
+- Image-label temporal match
+- Validated position
+:::
+:::
+
+::: {.notes}
+High-quality labels are worth the effort. A smaller dataset with accurate labels often outperforms a larger dataset with noisy labels.
+:::
+
+## ALaM Project: Addressing Labels
+
+![](images/alam_project.jpg){fig-align="center" width="70%"}
+
+::: {.incremental}
+**DOST-ASTI's Automated Labeling Machine**
+
+- Automates labeling process
+- Crowdsourcing capabilities
+- Expert validation workflow
+- **Addresses EO's biggest bottleneck**
+:::
+
+::: {.notes}
+Remember from Session 1: DOST-ASTI's ALaM project specifically addresses the label quality and quantity challenge through automation and crowdsourcing.
+:::
+
+# Practical Data-Centric Tips {background-color="#0f766e"}
+
+## Data-Centric Workflow
+
+::: {.incremental}
+**Before Training:**
+
+1. **Audit your data:** Visualize samples, check distributions
+2. **Clean aggressively:** Remove clouds, fix labels, filter outliers
+3. **Balance classes:** Address imbalances through sampling or augmentation
+4. **Document everything:** Track data sources, preprocessing, versions
+
+**During Training:**
+
+5. **Analyze errors:** Which samples does model get wrong?
+6. **Identify patterns:** Are errors systematic? (e.g., all in one region)
+7. **Fix data:** Add more diverse samples, improve labels
+8. **Iterate:** Retrain with better data
+:::
+
+::: {.notes}
+Data-centric approach means continuously improving data quality based on model feedback. Look at errors to understand what data you're missing.
+:::
+
+## Data Quality Checklist
+
+::: {.incremental}
+- [ ] Atmospherically corrected (Level-2A)?
+- [ ] Clouds and shadows masked?
+- [ ] Geometric alignment verified?
+- [ ] Temporal consistency checked?
+- [ ] Label accuracy validated?
+- [ ] Classes clearly defined?
+- [ ] Training data balanced?
+- [ ] Geographic diversity ensured?
+- [ ] Seasonal coverage adequate?
+- [ ] Edge cases included?
+- [ ] Quality flags documented?
+:::
+
+::: {.notes}
+Use this checklist before training any model. Addressing data issues upfront saves time and improves results.
+:::
+
+## Case Study: Better Data = Better Results
+
+::: {.columns}
+::: {.column width="50%"}
+**Scenario:**
+
+Coral reef mapping project
+
+**Initial Results:**
+
+- 70% accuracy
+- Fails in turbid water
+- Confuses reef with sand
+
+**Problem Identified:**
+
+All training data from clear water
+:::
+
+::: {.column width="50%"}
+**Data-Centric Solution:**
+
+1. Add turbid water samples
+2. Include reef-sand transition zones
+3. More diverse depths
+4. Improve label precision
+
+**New Results:**
+
+- **90% accuracy**
+- Works in turbid water
+- Better boundary detection
+:::
+:::
+
+::: {.fragment}
+**10x improvement from better data, same model!**
+:::
+
+::: {.notes}
+Real example of how data improvements had bigger impact than model tuning. The data was the key, not the algorithm.
+:::
+
+# 2025 Developments {background-color="#1e3a8a"}
+
+## Foundation Models for EO
+
+![](images/foundation_models.png){fig-align="center" width="75%"}
+
+::: {.incremental}
+**What are Foundation Models?**
+
+- Large models pre-trained on massive EO datasets
+- Learn general representations
+- Fine-tune for specific tasks
+- **Dramatically reduce labeled data needs**
+
+**Examples (2025):**
+
+- **NASA-IBM Geospatial Foundation Model** (open-source, Aug 2024)
+- **Prithvi** (IBM/NASA/ESA collaboration)
+- **Clay Foundation Model** (open-source)
+- Planet Labs + Anthropic Claude integration
+:::
+
+::: {.notes}
+**Timing:** 4 minutes
+
+**Key Points:**
+- **2025 Update:** Foundation models are THE major innovation in EO AI
+- NASA-IBM model released August 2024 as open-source
+- Trained on massive Sentinel-2 datasets (1 billion parameters)
+- Can be fine-tuned with just hundreds of labeled samples (vs thousands before)
+- **Philippine Application:** Use foundation models to jumpstart projects with limited labeled data
+
+**Example:**
+"Instead of manually labeling 10,000 images for rice mapping, fine-tune Prithvi with just 500 samples and achieve similar accuracy"
+:::
+
+## On-Board AI Processing
+
+![](images/onboard_ai.jpg){fig-align="center" width="70%"}
+
+::: {.columns}
+::: {.column width="50%"}
+**ESA Φsat-2 (Launched 2024)**
+
+- 22×10×33 cm CubeSat
+- Onboard AI computer (Intel Myriad X VPU)
+- Real-time cloud detection
+- Process before downlink
+- **Saves bandwidth**
+:::
+
+::: {.column width="50%"}
+**Satellogic Edge Computing**
+
+- "AI First" satellites
+- Onboard GPUs
+- Real-time processing
+- Immediate insights
+- Ship/object detection
+:::
+:::
+
+::: {.notes}
+**Timing:** 3 minutes
+
+**Key Points:**
+- **2025 Update:** On-board AI is operational on multiple satellites
+- ESA's Φsat-2 launched 2024 with Intel AI chip
+- Processes images on-orbit before transmitting
+- Use case: Only download cloud-free portions, save 90% bandwidth
+- Future: Real-time disaster detection from space
+
+**Philippine Relevance:**
+"Imagine typhoon damage detected and reported automatically from orbit within minutes, not hours"
+:::
+
+## Self-Supervised Learning
+
+::: {.columns}
+::: {.column width="60%"}
+**Concept:**
+
+- Learn from **unlabeled data**
+- Define pretext tasks (e.g., predict missing patches)
+- Model learns useful representations
+- Fine-tune with small labeled dataset
+
+**Why Important for EO:**
+
+- Abundance of unlabeled satellite imagery
+- High cost of labeling
+- Improves transferability
+:::
+
+::: {.column width="40%"}
+![](images/self_supervised.png){width="100%"}
+:::
+:::
+
+::: {.notes}
+Self-supervised learning is particularly relevant for EO due to abundance of unlabeled imagery. Models learn useful features without expensive labeling.
+:::
+
+## Explainable AI (XAI)
+
+![](images/xai_methods.png){fig-align="center" width="75%"}
+
+::: {.incremental}
+**Why XAI Matters:**
+
+- Understand model decisions
+- Build trust in AI systems
+- Debug and improve models
+- Regulatory compliance
+
+**Methods:**
+
+- **SHAP:** Feature importance
+- **LIME:** Local explanations
+- **Grad-CAM:** Visual attention maps
+- **Saliency Maps:** What pixels matter?
+:::
+
+::: {.notes}
+As AI systems make important decisions (disaster response, resource allocation), understanding why they make those decisions becomes crucial.
+:::
+
+# Summary & Key Takeaways {background-color="#1e3a8a"}
+
+## What We Covered
+
+::: {.incremental}
+1. **AI/ML Basics:** What it is and why it's powerful for EO
+2. **ML Workflow:** 7-step process from problem to deployment
+3. **Supervised Learning:** Classification and regression with labeled data
+4. **Unsupervised Learning:** Clustering and pattern discovery
+5. **Deep Learning:** Neural networks and CNNs for images
+6. **Data-Centric AI:** Quality, quantity, diversity, labels
+7. **2025 Trends:** Foundation models, on-board AI, XAI
+:::
+
+::: {.notes}
+We've covered the fundamental concepts you need to understand before diving into hands-on implementation.
+:::
+
+## Key Takeaways
+
+::: {.incremental}
+**1. Focus on Data First**
+
+- Quality beats quantity
+- Diversity enables generalization
+- Good labels are gold
+
+**2. Start Simple**
+
+- Try traditional ML before deep learning
+- Random Forest is often enough
+- Add complexity only when needed
+
+**3. Iterate Continuously**
+
+- Analyze errors
+- Improve data
+- Retrain models
+- Deployment is not the end
+:::
+
+::: {.notes}
+These principles will serve you well throughout your AI/ML journey. Data quality and iterative improvement are more important than fancy algorithms.
+:::
+
+## Practical Advice
+
+::: {.incremental}
+**For Your Projects:**
+
+- **Define the problem clearly** before collecting data
+- **Invest in high-quality training data** - it's worth it
+- **Validate rigorously** on independent data
+- **Document everything** (data sources, preprocessing, model versions)
+- **Start with baselines** (simple models, existing methods)
+- **Iterate based on errors** - let failures guide improvements
+- **Consider operational constraints** early
+:::
+
+::: {.notes}
+These practical tips come from real-world experience. Following them will save you time and frustration.
+:::
+
+## The Data-Centric Mindset
+
+::: {.columns}
+::: {.column width="50%"}
+**When model performs poorly, ask:**
+
+1. Is my data clean?
+2. Are labels accurate?
+3. Is training data representative?
+4. Do I have enough diversity?
+5. Are there systematic biases?
+:::
+
+::: {.column width="50%"}
+**Before trying:**
+
+- More complex model
+- More epochs
+- Different hyperparameters
+- New architecture
+
+**Check your data first!**
+:::
+:::
+
+::: {.fragment}
+**"Better data beats a cleverer model" - Andrew Ng**
+:::
+
+::: {.notes}
+Adopt a data-centric mindset. When models underperform, investigate data issues before blaming the algorithm.
+:::
+
+## Connection to Sessions 3 & 4
+
+::: {.columns}
+::: {.column width="50%"}
+**Session 3: Python Basics**
+
+- Load and explore data
+- GeoPandas (vector)
+- Rasterio (raster)
+- **Foundation for all ML work**
+:::
+
+::: {.column width="50%"}
+**Session 4: Google Earth Engine**
+
+- Access Sentinel data at scale
+- Cloud masking (data quality!)
+- Temporal compositing
+- Export for ML workflows
+:::
+:::
+
+::: {.fragment}
+**Everything builds on these concepts!**
+:::
+
+::: {.notes}
+The hands-on sessions this afternoon put these concepts into practice. You'll actually work with data and see these principles in action.
+:::
+
+## Looking Ahead: Days 2-4
+
+::: {.columns}
+::: {.column width="50%"}
+**Day 2:**
+
+- Random Forest classification
+- Land cover mapping
+- CNN basics
+- TensorFlow/Keras intro
+:::
+
+::: {.column width="50%"}
+**Days 3-4:**
+
+- U-Net for segmentation
+- Flood mapping (DRR focus)
+- Time series with LSTMs
+- Foundation models
+- Explainable AI
+:::
+:::
+
+::: {.notes}
+Over the next three days, we'll implement these concepts in real EO applications for DRR, CCA, and NRM.
+:::
+
+## Resources for Continued Learning
+
+::: {.incremental}
+**Online Courses:**
+
+- NASA ARSET: ML for Earth Science
+- EO College: Introduction to ML for EO
+- Coursera: Machine Learning (Andrew Ng)
+- Fast.ai: Practical Deep Learning
+
+**Papers & Tutorials:**
+
+- "Data-Centric ML for Earth Observation" (ArXiv 2025)
+- Google Earth Engine tutorials
+- TensorFlow Earth Observation tutorials
+
+**Communities:**
+
+- SkAI-Pinas network
+- Digital Space Campus (CoPhil)
+- DIMER model repository
+:::
+
+::: {.notes}
+These resources will support your continued learning after the training. The Digital Space Campus will have all our materials for reference.
+:::
+
+## Session Summary
+
+**What We Covered:**
+
+::: {.incremental}
+✅ AI/ML/DL definitions and relationships  
+✅ End-to-end ML workflow for EO  
+✅ Supervised learning (classification, regression)  
+✅ Unsupervised learning (clustering)  
+✅ Deep learning & CNNs for satellite imagery  
+✅ Data-centric AI philosophy  
+✅ **2025 innovations:** Foundation models, on-board AI  
+:::
+
+::: {.notes}
+**Timing:** 2 minutes
+
+You now have conceptual foundation for all ML work in this course. Sessions 3-4 today and Days 2-4 will implement these concepts.
+:::
+
+---
+
+## Q&A
+
+::: {.columns}
+::: {.column width="50%"}
+**AI/ML Concepts**
+
+- Supervised vs unsupervised?
+- When to use deep learning?
+- Foundation models for my use case?
+:::
+
+::: {.column width="50%"}
+**Practical Questions**
+
+- Data quality challenges?
+- Label collection strategies?
+- Computing requirements?
+:::
+:::
+
+::: {.notes}
+**Timing:** 5-8 minutes for Q&A
+
+**Common Questions:**
+- "Do I need a GPU?" → Not for Random Forest, yes for deep learning
+- "How many labels do I need?" → Depends: 100s with foundation models, 1000s for CNN from scratch
+- "Which algorithm should I use?" → Start simple (RF), then deep learning if needed
+- "Can I use foundation models for Philippines?" → Yes! They're global and open-source
+:::
+
+# Next: Session 3 {background-color="#0f766e"}
+
+## Hands-on Python for Geospatial Data
+
+**Coming up after 15-minute break:**
+
+- Google Colab environment setup
+- GeoPandas for vector data
+- Rasterio for raster data
+- Work with Philippine boundaries
+- Load and visualize Sentinel-2 imagery
+- Calculate NDVI
+
+::: {.fragment}
+**Get ready to code! 💻**
+:::
+
+# Thank You! {background-color="#1e3a8a"}
+
+## Resources
+
+**Foundation Models:**  
+NASA-IBM Geospatial: <https://huggingface.co/ibm-nasa-geospatial>  
+Prithvi: <https://github.com/NASA-IMPACT/Prithvi>  
+Clay: <https://clay-foundation.github.io>
+
+**Learning:**  
+NASA ARSET: <https://appliedsciences.nasa.gov/arset>  
+EO College: <https://eo-college.org>  
+SkAI-Pinas: <https://asti.dost.gov.ph/skai-pinas>
+
+::: {.notes}
+**Session 2 Complete!**
+
+15-minute break before Session 3. Make sure participants have:
+- Google Colab access working
+- GEE account registration started (will finalize in Session 4)
+:::

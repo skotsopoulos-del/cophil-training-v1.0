@@ -1,0 +1,52 @@
+{
+  "training_polygons": 80,
+  "validation_polygons": 40,
+  "total_polygons": 120,
+  "classes": 8,
+  "polygons_per_class_training": 10,
+  "polygons_per_class_validation": 5,
+  "study_area": "Palawan, Philippines",
+  "crs": "EPSG:4326",
+  "class_distribution": {
+    "Primary Forest": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Secondary Forest": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Mangroves": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Agricultural Land": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Grassland/Scrubland": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Water Bodies": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Urban/Built-up": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    },
+    "Bare Soil/Mining": {
+      "training": 10,
+      "validation": 5,
+      "total": 15
+    }
+  }
+}

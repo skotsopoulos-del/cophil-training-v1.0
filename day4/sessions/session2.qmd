@@ -1,0 +1,1244 @@
+---
+title: "Session 2: LSTM Drought Monitoring Lab"
+subtitle: "Hands-on Implementation of LSTM Time Series Forecasting for Mindanao"
+date: last-modified
+author: "Stylianos Kotsopoulos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 4</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 2</span>
+</nav>
+
+::: {.hero}
+# Session 2: LSTM Drought Monitoring Lab
+
+### Hands-on Implementation of LSTM Time Series Forecasting for Mindanao
+
+Build an operational LSTM model to predict drought conditions 1-3 months ahead using real Sentinel-2 data
+:::
+
+## Session Overview
+
+This intensive 2.5-hour hands-on lab puts LSTM theory into practice. You'll build a complete drought forecasting system for Mindanao provinces (Bukidnon and South Cotabato) using multi-year Sentinel-2 NDVI time series, weather data, and climate indices. By the end, you'll have a trained model capable of predicting vegetation stress months in advance.
+
+---
+
+::: {.callout-note}
+## Learning Objectives
+
+By the end of this session, you will be able to:
+
+1. **Acquire and preprocess** multi-year Sentinel-2 NDVI time series for a study area
+2. **Create training sequences** using sliding window approach for time series forecasting
+3. **Build LSTM models** using TensorFlow/Keras with appropriate architecture
+4. **Train and validate** models with proper temporal data splitting
+5. **Evaluate forecast accuracy** using RMSE, MAE, and visual diagnostics
+6. **Interpret predictions** in the context of drought monitoring
+7. **Deploy** models for operational early warning systems
+:::
+
+## Presentation Slides
+
+<iframe src="../presentations/session2_drought_lab.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Session Details
+
+::: {.session-info}
+**Duration:** 2.5 hours (150 minutes) | **Format:** Hands-on Lab | **Difficulty:** Intermediate to Advanced
+
+**Prerequisites:**
+- Completion of Session 1 (LSTM theory)
+- Python programming experience
+- Understanding of time series concepts
+- Familiarity with TensorFlow/Keras basics
+- Google Earth Engine account (optional, data provided)
+
+**What You'll Build:**
+- Multi-input LSTM drought forecasting model
+- Training pipeline with temporal cross-validation
+- Evaluation framework with visualization
+- Operational deployment considerations
+
+**Materials Provided:**
+- 📓 Interactive Jupyter notebooks (student + instructor versions)
+- 📊 Synthetic Mindanao drought data (generated in notebook)
+- 💻 Complete working code for LSTM model
+- 📈 Visualization and evaluation tools
+:::
+
+::: {.callout-important}
+## 🚀 Get Started with the Lab
+
+This is a hands-on session - you'll build a complete LSTM drought forecasting system from scratch!
+
+**Download the notebook:**
+- 📓 [Student Version](../notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb) - Guided exercises with TODO sections
+- 📓 [Instructor Solution](../notebooks/day4_session2_lstm_drought_lab_INSTRUCTOR.ipynb) - Complete working code
+
+**What you'll build:**
+- Multi-variate LSTM model (NDVI, rainfall, temperature, ONI)
+- Training pipeline with temporal validation
+- Drought prediction system with 1-month lead time
+- Operational deployment framework
+
+**Requirements:**
+- Python 3.8+
+- TensorFlow 2.x (GPU recommended but not required)
+- Google Colab account (or local Jupyter)
+
+Open the notebook now and follow along!
+:::
+
+---
+
+## Case Study: Mindanao Drought Monitoring
+
+### Why Mindanao?
+
+**Bukidnon and South Cotabato** are critical agricultural provinces in Mindanao producing:
+- Corn (major crop)
+- Rice
+- Coffee
+- Pineapple
+- Vegetables
+- Livestock
+
+**Climate Challenges:**
+- Pronounced dry season (November-April)
+- Strong El Niño impacts (reduced rainfall, delayed planting)
+- Inter-annual variability in monsoon intensity
+- Increasing climate change pressures
+
+**2015-2016 El Niño Impact:**
+- Severe drought affecting 2.5 million people in Mindanao
+- Crop losses estimated at billions of pesos
+- Water shortages in urban and rural areas
+- Increased food insecurity
+
+::: {.callout-important}
+## Climate Change Adaptation (CCA) Context
+
+The Department of Agriculture (DA) and PAGASA need **3-month lead time** for effective drought response:
+- Adjust planting calendars
+- Activate irrigation systems
+- Distribute drought-resistant seed varieties
+- Pre-position crop insurance programs
+- Issue agricultural advisories to farmers
+
+LSTM-based early warning systems can provide this critical lead time.
+:::
+
+### Study Area Specifications
+
+**Geographic Extent:**
+- **Bukidnon Province:** 10,498 km²
+- **South Cotabato Province:** 3,935 km²
+- **Total Area:** ~14,433 km²
+
+**Land Use:**
+- Agricultural land: ~60%
+- Forest cover: ~30%
+- Urban/built-up: ~5%
+- Other: ~5%
+
+**Elevation Range:**
+- Lowlands: 0-500m
+- Highlands: 500-2,000m (Bukidnon plateau)
+
+**Data Coverage:**
+- Sentinel-2 tiles: 51PVT, 51PWT, 51PWS
+- Temporal coverage: 2015-2021 (7 years)
+- Temporal resolution: 10-day NDVI composites (cloud-masked)
+
+---
+
+## Lab Workflow
+
+### Part 1: Setup and Data Loading (20 minutes)
+
+#### 1.1 Environment Setup
+
+**Import Libraries:**
+
+```python
+# Core libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Geospatial
+import geopandas as gpd
+import rasterio
+from rasterio.mask import mask
+
+# Machine Learning
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+# Deep Learning
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+
+# Visualization
+from matplotlib.dates import DateFormatter
+import plotly.express as px
+import plotly.graph_objects as go
+
+# Utilities
+from datetime import datetime, timedelta
+import warnings
+warnings.filterwarnings('ignore')
+
+# Set random seeds for reproducibility
+np.random.seed(42)
+tf.random.set_seed(42)
+```
+
+**Check TensorFlow Setup:**
+
+```python
+# Check TensorFlow version
+print(f"TensorFlow version: {tf.__version__}")
+
+# Check GPU availability
+print(f"GPU available: {tf.config.list_physical_devices('GPU')}")
+print(f"Built with CUDA: {tf.test.is_built_with_cuda()}")
+```
+
+**Recommended:** Use GPU if available for faster training. Google Colab provides free GPU access.
+
+#### 1.2 Load Pre-processed Data
+
+**Option A: Use Provided Dataset (Recommended for Lab)**
+
+```python
+# Load pre-processed NDVI time series
+# Shape: (n_pixels, n_timesteps) or aggregated to region average
+ndvi_data = pd.read_csv('data/mindanao_ndvi_2015_2021.csv', parse_dates=['date'])
+rainfall_data = pd.read_csv('data/pagasa_rainfall_2015_2021.csv', parse_dates=['date'])
+temperature_data = pd.read_csv('data/pagasa_temperature_2015_2021.csv', parse_dates=['date'])
+oni_data = pd.read_csv('data/oni_index_2015_2021.csv', parse_dates=['date'])
+
+# Display data structure
+print(ndvi_data.head())
+print(f"NDVI data shape: {ndvi_data.shape}")
+print(f"Date range: {ndvi_data['date'].min()} to {ndvi_data['date'].max()}")
+```
+
+**Option B: Download from Google Earth Engine (Optional)**
+
+```python
+import ee
+ee.Initialize()
+
+# Define study area (Bukidnon + South Cotabato)
+aoi = ee.FeatureCollection('FAO/GAUL/2015/level1') \
+    .filter(ee.Filter.inList('ADM1_NAME', ['Bukidnon', 'South Cotabato']))
+
+# Load Sentinel-2 collection
+s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
+    .filterBounds(aoi) \
+    .filterDate('2015-06-23', '2021-12-31') \
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+
+# Function to compute NDVI
+def add_ndvi(image):
+    ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+    return image.addBands(ndvi)
+
+# Apply NDVI calculation
+s2_ndvi = s2.map(add_ndvi)
+
+# Create 10-day composites
+def create_composite(start_date):
+    end_date = start_date.advance(10, 'day')
+    composite = s2_ndvi.filterDate(start_date, end_date).median()
+    return composite.set('system:time_start', start_date.millis())
+
+# Generate composite dates
+start_date = ee.Date('2015-06-23')
+dates = ee.List.sequence(0, 240, 10).map(lambda d: start_date.advance(d, 'day'))
+composites = ee.ImageCollection.fromImages(dates.map(create_composite))
+
+# Extract time series for AOI
+def extract_ndvi(image):
+    stats = image.select('NDVI').reduceRegion(
+        reducer=ee.Reducer.mean(),
+        geometry=aoi.geometry(),
+        scale=100,
+        maxPixels=1e9
+    )
+    return ee.Feature(None, {
+        'date': image.date().format('YYYY-MM-dd'),
+        'ndvi': stats.get('NDVI')
+    })
+
+ndvi_timeseries = composites.map(extract_ndvi)
+# Export or download results...
+```
+
+#### 1.3 Merge and Align Data
+
+```python
+# Merge all data sources on date
+df = ndvi_data.merge(rainfall_data, on='date', how='left')
+df = df.merge(temperature_data, on='date', how='left')
+df = df.merge(oni_data, on='date', how='left')
+
+# Handle missing values (interpolate)
+df = df.set_index('date')
+df = df.interpolate(method='time')
+df = df.reset_index()
+
+# Add temporal features
+df['month'] = df['date'].dt.month
+df['year'] = df['date'].dt.year
+df['doy'] = df['date'].dt.dayofyear  # day of year for seasonality
+
+# Display merged data
+print(df.head())
+print(f"Final data shape: {df.shape}")
+print(f"Missing values: {df.isnull().sum()}")
+```
+
+**Expected Data Columns:**
+- `date`: Timestamp
+- `ndvi`: Mean NDVI value [0-1]
+- `rainfall`: Monthly rainfall (mm)
+- `temperature`: Monthly mean temperature (°C)
+- `oni`: Oceanic Niño Index (El Niño indicator)
+- `month`, `year`, `doy`: Temporal features
+
+---
+
+### Part 2: Exploratory Data Analysis (25 minutes)
+
+#### 2.1 Visualize NDVI Time Series
+
+```python
+# Plot full NDVI time series
+fig, ax = plt.subplots(figsize=(15, 5))
+ax.plot(df['date'], df['ndvi'], linewidth=1, color='green')
+ax.set_title('Mindanao NDVI Time Series (2015-2021)', fontsize=14, fontweight='bold')
+ax.set_xlabel('Date')
+ax.set_ylabel('NDVI')
+ax.grid(True, alpha=0.3)
+
+# Highlight drought period (2015-2016 El Niño)
+drought_start = pd.Timestamp('2015-06-01')
+drought_end = pd.Timestamp('2016-06-01')
+ax.axvspan(drought_start, drought_end, alpha=0.2, color='red', label='2015-16 El Niño Drought')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+**Observations:**
+- Clear seasonal pattern (dry season dips)
+- 2015-2016 drought visible as prolonged low NDVI
+- Recovery in wet seasons
+
+#### 2.2 Seasonal Decomposition
+
+```python
+from statsmodels.tsa.seasonal import seasonal_decompose
+
+# Resample to monthly frequency for decomposition
+df_monthly = df.set_index('date').resample('M').mean()
+
+# Perform seasonal decomposition
+decomposition = seasonal_decompose(df_monthly['ndvi'], model='additive', period=12)
+
+# Plot components
+fig, axes = plt.subplots(4, 1, figsize=(15, 10))
+decomposition.observed.plot(ax=axes[0], title='Observed NDVI')
+decomposition.trend.plot(ax=axes[1], title='Trend')
+decomposition.seasonal.plot(ax=axes[2], title='Seasonal')
+decomposition.resid.plot(ax=axes[3], title='Residual')
+plt.tight_layout()
+plt.show()
+```
+
+**Interpretation:**
+- **Trend:** Long-term changes (climate shifts, land use change)
+- **Seasonal:** Annual dry/wet cycle
+- **Residual:** Noise and anomalies (droughts, floods)
+
+#### 2.3 Correlation Analysis
+
+```python
+# Compute correlation matrix
+correlation_matrix = df[['ndvi', 'rainfall', 'temperature', 'oni']].corr()
+
+# Heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
+            square=True, linewidths=1, cbar_kws={"shrink": 0.8})
+plt.title('Feature Correlation Matrix', fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Expected Correlations:**
+- NDVI vs. Rainfall: Positive (more rain → greener vegetation)
+- NDVI vs. Temperature: Weak or negative (heat stress)
+- NDVI vs. ONI: Negative (El Niño → drought → lower NDVI)
+
+#### 2.4 Lagged Correlations
+
+```python
+# Compute lagged correlations (rainfall effect with delay)
+lags = range(0, 6)  # 0-5 months lag
+lagged_corr = [df['ndvi'].corr(df['rainfall'].shift(lag)) for lag in lags]
+
+plt.figure(figsize=(10, 5))
+plt.bar(lags, lagged_corr, color='steelblue')
+plt.xlabel('Lag (months)')
+plt.ylabel('Correlation with NDVI')
+plt.title('Lagged Correlation: Rainfall → NDVI', fontsize=14, fontweight='bold')
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+**Insight:** Rainfall typically affects NDVI with 1-2 month delay (vegetation growth response time)
+
+::: {.callout-note}
+## Exercise 1: Data Exploration
+
+**Tasks:**
+1. Identify the lowest NDVI period in the time series. Does it correspond to the 2015-2016 El Niño?
+2. Calculate the mean NDVI for dry season (Nov-Apr) vs. wet season (May-Oct)
+3. Plot NDVI vs. Rainfall as a scatter plot. Is the relationship linear?
+4. What is the strongest predictor of NDVI based on correlation analysis?
+
+**Time:** 10 minutes
+:::
+
+---
+
+### Part 3: Sequence Creation (30 minutes)
+
+#### 3.1 Define Sequence Parameters
+
+```python
+# Hyperparameters
+LOOKBACK_WINDOW = 12  # Use 12 months of history
+FORECAST_HORIZON = 1   # Predict 1 month ahead (can extend to 3 months)
+
+# Features to use
+feature_columns = ['ndvi', 'rainfall', 'temperature', 'oni']
+target_column = 'ndvi'
+
+# Normalization
+scaler = MinMaxScaler(feature_range=(0, 1))
+df_scaled = df.copy()
+df_scaled[feature_columns] = scaler.fit_transform(df[feature_columns])
+
+print(f"Lookback window: {LOOKBACK_WINDOW} months")
+print(f"Forecast horizon: {FORECAST_HORIZON} month(s)")
+print(f"Features: {feature_columns}")
+```
+
+#### 3.2 Create Training Sequences
+
+```python
+def create_sequences(data, features, target, lookback, horizon):
+    """
+    Create input-output sequences for LSTM training.
+
+    Args:
+        data: DataFrame with features
+        features: List of feature column names
+        target: Target column name
+        lookback: Number of time steps to look back
+        horizon: Number of time steps to forecast ahead
+
+    Returns:
+        X: Input sequences (samples, lookback, n_features)
+        y: Target values (samples,)
+        dates: Corresponding dates for sequences
+    """
+    X, y, dates = [], [], []
+
+    feature_data = data[features].values
+    target_data = data[target].values
+    date_data = data['date'].values
+
+    for i in range(lookback, len(data) - horizon + 1):
+        # Input sequence: [i-lookback : i]
+        X.append(feature_data[i - lookback:i])
+
+        # Target value: i + horizon - 1
+        y.append(target_data[i + horizon - 1])
+
+        # Date of prediction
+        dates.append(date_data[i + horizon - 1])
+
+    return np.array(X), np.array(y), np.array(dates)
+
+# Create sequences
+X, y, dates = create_sequences(
+    df_scaled,
+    feature_columns,
+    target_column,
+    LOOKBACK_WINDOW,
+    FORECAST_HORIZON
+)
+
+print(f"X shape: {X.shape} (samples, time_steps, features)")
+print(f"y shape: {y.shape} (samples,)")
+print(f"Total sequences: {len(X)}")
+```
+
+**Example:**
+- Sequence 1: [Jan 2015 - Dec 2015] → Predict Jan 2016 NDVI
+- Sequence 2: [Feb 2015 - Jan 2016] → Predict Feb 2016 NDVI
+- ...and so on
+
+#### 3.3 Temporal Train-Validation-Test Split
+
+**Critical:** Use temporal splits (not random) to avoid data leakage!
+
+```python
+# Define split points
+train_end = pd.Timestamp('2019-12-31')
+val_end = pd.Timestamp('2020-12-31')
+
+# Get indices
+train_mask = dates <= train_end
+val_mask = (dates > train_end) & (dates <= val_end)
+test_mask = dates > val_end
+
+# Split data
+X_train, y_train = X[train_mask], y[train_mask]
+X_val, y_val = X[val_mask], y[val_mask]
+X_test, y_test = X[test_mask], y[test_mask]
+
+dates_train = dates[train_mask]
+dates_val = dates[val_mask]
+dates_test = dates[test_mask]
+
+print("Data Split:")
+print(f"  Train: {len(X_train)} sequences ({dates_train[0]} to {dates_train[-1]})")
+print(f"  Val:   {len(X_val)} sequences ({dates_val[0]} to {dates_val[-1]})")
+print(f"  Test:  {len(X_test)} sequences ({dates_test[0]} to {dates_test[-1]})")
+```
+
+**Expected Split:**
+- Training: 2015-2019 (~80%)
+- Validation: 2020 (~10%)
+- Test: 2021 (~10%)
+
+::: {.callout-warning}
+## Avoid Data Leakage!
+
+**Never** use random train-test split for time series!
+
+**Why?** Random splits allow the model to "see the future" during training, leading to unrealistically high performance that fails in operational deployment.
+
+**Always** split temporally: train on past, validate on recent past, test on future.
+:::
+
+---
+
+### Part 4: LSTM Model Building (30 minutes)
+
+#### 4.1 Define LSTM Architecture
+
+```python
+def build_lstm_model(input_shape, lstm_units=[64, 32], dropout=0.2, learning_rate=0.001):
+    """
+    Build LSTM model for time series forecasting.
+
+    Args:
+        input_shape: (time_steps, n_features)
+        lstm_units: List of units for each LSTM layer
+        dropout: Dropout rate for regularization
+        learning_rate: Optimizer learning rate
+
+    Returns:
+        Compiled Keras model
+    """
+    model = Sequential(name='LSTM_Drought_Forecaster')
+
+    # First LSTM layer (return sequences for stacking)
+    model.add(LSTM(
+        units=lstm_units[0],
+        return_sequences=True if len(lstm_units) > 1 else False,
+        input_shape=input_shape,
+        name='LSTM_Layer_1'
+    ))
+    model.add(Dropout(dropout, name='Dropout_1'))
+
+    # Additional LSTM layers
+    for i, units in enumerate(lstm_units[1:], start=2):
+        return_seq = (i < len(lstm_units))
+        model.add(LSTM(
+            units=units,
+            return_sequences=return_seq,
+            name=f'LSTM_Layer_{i}'
+        ))
+        model.add(Dropout(dropout, name=f'Dropout_{i}'))
+
+    # Dense layers for output
+    model.add(Dense(16, activation='relu', name='Dense_1'))
+    model.add(Dense(1, activation='linear', name='Output'))
+
+    # Compile model
+    optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
+    model.compile(
+        optimizer=optimizer,
+        loss='mean_squared_error',
+        metrics=['mae', 'mse']
+    )
+
+    return model
+
+# Build model
+input_shape = (LOOKBACK_WINDOW, len(feature_columns))
+model = build_lstm_model(
+    input_shape=input_shape,
+    lstm_units=[64, 32],
+    dropout=0.2,
+    learning_rate=0.001
+)
+
+# Display architecture
+model.summary()
+```
+
+**Architecture Summary:**
+- Input: (12, 4) - 12 time steps, 4 features
+- LSTM Layer 1: 64 units
+- Dropout: 0.2
+- LSTM Layer 2: 32 units
+- Dropout: 0.2
+- Dense: 16 units (ReLU)
+- Output: 1 unit (linear, NDVI prediction)
+
+**Total Parameters:** ~30,000
+
+#### 4.2 Configure Callbacks
+
+```python
+# Define callbacks
+callbacks = [
+    # Early stopping: stop if validation loss doesn't improve
+    EarlyStopping(
+        monitor='val_loss',
+        patience=20,
+        restore_best_weights=True,
+        verbose=1
+    ),
+
+    # Model checkpoint: save best model
+    ModelCheckpoint(
+        filepath='models/lstm_drought_best.h5',
+        monitor='val_loss',
+        save_best_only=True,
+        verbose=1
+    ),
+
+    # Learning rate reduction: reduce LR on plateau
+    ReduceLROnPlateau(
+        monitor='val_loss',
+        factor=0.5,
+        patience=10,
+        min_lr=1e-6,
+        verbose=1
+    )
+]
+
+print("Callbacks configured:")
+print("  - Early stopping (patience=20)")
+print("  - Model checkpoint (save best)")
+print("  - Learning rate reduction")
+```
+
+---
+
+### Part 5: Model Training (20 minutes)
+
+```python
+# Training parameters
+BATCH_SIZE = 32
+EPOCHS = 100
+
+# Train model
+print("Starting training...")
+history = model.fit(
+    X_train, y_train,
+    validation_data=(X_val, y_val),
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
+    callbacks=callbacks,
+    verbose=1
+)
+
+print("\nTraining complete!")
+```
+
+**Expected Training Time:**
+- CPU: 5-10 minutes
+- GPU: 1-3 minutes
+
+#### 5.1 Plot Training History
+
+```python
+# Plot training curves
+fig, axes = plt.subplots(1, 2, figsize=(15, 5))
+
+# Loss
+axes[0].plot(history.history['loss'], label='Train Loss')
+axes[0].plot(history.history['val_loss'], label='Validation Loss')
+axes[0].set_xlabel('Epoch')
+axes[0].set_ylabel('MSE Loss')
+axes[0].set_title('Training and Validation Loss', fontweight='bold')
+axes[0].legend()
+axes[0].grid(alpha=0.3)
+
+# MAE
+axes[1].plot(history.history['mae'], label='Train MAE')
+axes[1].plot(history.history['val_mae'], label='Validation MAE')
+axes[1].set_xlabel('Epoch')
+axes[1].set_ylabel('MAE')
+axes[1].set_title('Training and Validation MAE', fontweight='bold')
+axes[1].legend()
+axes[1].grid(alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Interpretation:**
+- Both train and validation loss should decrease
+- Validation loss should stabilize (early stopping prevents overfitting)
+- Gap between train and val indicates overfitting degree
+
+::: {.callout-note}
+## Exercise 2: Training Analysis
+
+**Questions:**
+1. At what epoch did early stopping trigger?
+2. Is there evidence of overfitting (large train-val gap)?
+3. What final validation MAE was achieved?
+4. How might you improve the model?
+
+**Time:** 5 minutes
+:::
+
+---
+
+### Part 6: Model Evaluation (30 minutes)
+
+#### 6.1 Make Predictions
+
+```python
+# Predictions on all sets
+y_train_pred = model.predict(X_train).flatten()
+y_val_pred = model.predict(X_val).flatten()
+y_test_pred = model.predict(X_test).flatten()
+
+print("Predictions generated for train, validation, and test sets.")
+```
+
+#### 6.2 Calculate Metrics
+
+```python
+def calculate_metrics(y_true, y_pred, set_name):
+    """Calculate and print evaluation metrics."""
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+    mae = mean_absolute_error(y_true, y_pred)
+    r2 = r2_score(y_true, y_pred)
+
+    print(f"\n{set_name} Metrics:")
+    print(f"  RMSE: {rmse:.4f}")
+    print(f"  MAE:  {mae:.4f}")
+    print(f"  R²:   {r2:.4f}")
+
+    return {'rmse': rmse, 'mae': mae, 'r2': r2}
+
+# Calculate metrics
+train_metrics = calculate_metrics(y_train, y_train_pred, "Training")
+val_metrics = calculate_metrics(y_val, y_val_pred, "Validation")
+test_metrics = calculate_metrics(y_test, y_test_pred, "Test")
+```
+
+**Expected Performance:**
+- RMSE: < 0.05 (on normalized 0-1 scale)
+- MAE: < 0.03
+- R²: > 0.85
+
+**Interpretation:**
+- RMSE of 0.05 means ±0.05 error on NDVI scale
+- For typical NDVI range [0.3-0.8], this is ~10% relative error
+- Acceptable for early warning (trend detection matters more than exact values)
+
+#### 6.3 Visualize Predictions vs. Actual
+
+```python
+# Inverse transform predictions to original scale
+def inverse_transform_ndvi(values, scaler, feature_columns):
+    """Inverse transform NDVI values back to original scale."""
+    # Create dummy array with all features
+    dummy = np.zeros((len(values), len(feature_columns)))
+    # Place NDVI values in correct column
+    ndvi_idx = feature_columns.index('ndvi')
+    dummy[:, ndvi_idx] = values
+    # Inverse transform
+    inverse = scaler.inverse_transform(dummy)
+    return inverse[:, ndvi_idx]
+
+# Inverse transform
+y_test_actual = inverse_transform_ndvi(y_test, scaler, feature_columns)
+y_test_pred_original = inverse_transform_ndvi(y_test_pred, scaler, feature_columns)
+
+# Plot time series comparison
+fig, ax = plt.subplots(figsize=(15, 6))
+ax.plot(dates_test, y_test_actual, label='Actual NDVI', color='green', linewidth=2, marker='o', markersize=4)
+ax.plot(dates_test, y_test_pred_original, label='Predicted NDVI', color='red', linewidth=2, linestyle='--', marker='x', markersize=4)
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('NDVI', fontsize=12)
+ax.set_title('LSTM Drought Forecasting: Predicted vs. Actual (Test Set 2021)', fontsize=14, fontweight='bold')
+ax.legend(fontsize=11)
+ax.grid(alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+**Analysis:**
+- How well does the model capture seasonal dips?
+- Does it predict drought onset (rapid NDVI decline)?
+- Are there systematic errors (consistent over/under-prediction)?
+
+#### 6.4 Scatter Plot (Predicted vs. Actual)
+
+```python
+# Scatter plot
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.scatter(y_test_actual, y_test_pred_original, alpha=0.6, edgecolors='k', linewidths=0.5)
+ax.plot([y_test_actual.min(), y_test_actual.max()],
+        [y_test_actual.min(), y_test_actual.max()],
+        'r--', linewidth=2, label='Perfect Prediction')
+ax.set_xlabel('Actual NDVI', fontsize=12)
+ax.set_ylabel('Predicted NDVI', fontsize=12)
+ax.set_title('Predicted vs. Actual NDVI (Test Set)', fontsize=14, fontweight='bold')
+ax.legend()
+ax.grid(alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+**Ideal Result:** Points clustered tightly along the red diagonal line
+
+#### 6.5 Residual Analysis
+
+```python
+# Calculate residuals
+residuals = y_test_actual - y_test_pred_original
+
+# Plot residuals over time
+fig, axes = plt.subplots(2, 1, figsize=(15, 10))
+
+# Residuals time series
+axes[0].plot(dates_test, residuals, color='purple', linewidth=1)
+axes[0].axhline(0, color='red', linestyle='--', linewidth=2)
+axes[0].fill_between(dates_test, residuals, 0, alpha=0.3, color='purple')
+axes[0].set_xlabel('Date')
+axes[0].set_ylabel('Residual (Actual - Predicted)')
+axes[0].set_title('Prediction Residuals Over Time', fontweight='bold')
+axes[0].grid(alpha=0.3)
+
+# Residuals histogram
+axes[1].hist(residuals, bins=30, edgecolor='black', alpha=0.7, color='purple')
+axes[1].axvline(0, color='red', linestyle='--', linewidth=2)
+axes[1].set_xlabel('Residual')
+axes[1].set_ylabel('Frequency')
+axes[1].set_title('Residual Distribution', fontweight='bold')
+axes[1].grid(axis='y', alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+# Print residual statistics
+print(f"Residual mean: {residuals.mean():.4f} (should be ~0)")
+print(f"Residual std: {residuals.std():.4f}")
+```
+
+**Good Model Indicators:**
+- Residuals centered around 0 (no systematic bias)
+- Residuals normally distributed
+- No patterns in residual time series (random noise)
+
+::: {.callout-note}
+## Exercise 3: Model Evaluation
+
+**Tasks:**
+1. Identify the period with largest prediction errors. What might cause this?
+2. Is the model better at predicting high NDVI (wet season) or low NDVI (dry season)?
+3. Calculate the percentage of predictions within ±0.05 NDVI error
+4. Would this model be useful for operational drought warning? Why or why not?
+
+**Time:** 10 minutes
+:::
+
+---
+
+### Part 7: Multi-Step Forecasting (15 minutes)
+
+**Extending to 3-Month Ahead Forecasts:**
+
+```python
+def forecast_multistep(model, initial_sequence, scaler, feature_columns, n_steps=3):
+    """
+    Perform multi-step ahead forecasting.
+
+    Args:
+        model: Trained LSTM model
+        initial_sequence: Initial input sequence (lookback, n_features)
+        scaler: Fitted scaler for inverse transform
+        feature_columns: List of feature names
+        n_steps: Number of steps to forecast ahead
+
+    Returns:
+        List of predictions
+    """
+    predictions = []
+    current_sequence = initial_sequence.copy()
+
+    for step in range(n_steps):
+        # Predict next value
+        pred = model.predict(current_sequence[np.newaxis, :, :], verbose=0)[0, 0]
+        predictions.append(pred)
+
+        # Update sequence: shift left, add prediction
+        # Note: In practice, you'd need to forecast other features too (rainfall, temp)
+        # Here we assume they're known or use climatology
+        current_sequence = np.roll(current_sequence, -1, axis=0)
+
+        # Set predicted NDVI in last position
+        ndvi_idx = feature_columns.index('ndvi')
+        current_sequence[-1, ndvi_idx] = pred
+
+        # For other features, use last known values (simplified)
+        # In production, use weather forecasts
+
+    return predictions
+
+# Example: Forecast 3 months ahead from last test sequence
+initial_seq = X_test[-1]
+multi_step_preds = forecast_multistep(model, initial_seq, scaler, feature_columns, n_steps=3)
+
+print("3-Month Ahead Forecast:")
+for i, pred in enumerate(multi_step_preds, start=1):
+    pred_original = inverse_transform_ndvi(np.array([pred]), scaler, feature_columns)[0]
+    print(f"  Month +{i}: NDVI = {pred_original:.3f}")
+```
+
+**Challenges:**
+- Prediction uncertainty compounds over multiple steps
+- Need forecasts of input features (rainfall, temperature)
+- Alternative: Use ensemble models or probabilistic forecasting
+
+---
+
+### Part 8: Operational Deployment Considerations (10 minutes)
+
+#### 8.1 Integration with Philippine Agencies
+
+**Data Pipeline:**
+
+1. **Automated Data Acquisition:**
+   - Sentinel-2 NDVI: Download from CoPhil Infrastructure or Google Earth Engine
+   - PAGASA data: API access to rainfall and temperature
+   - NOAA ONI: Monthly updates
+
+2. **Preprocessing:**
+   - Cloud masking (QA bands)
+   - Temporal aggregation (10-day composites)
+   - Spatial aggregation (province/municipality means)
+
+3. **Model Inference:**
+   - Run monthly predictions
+   - Generate 1-month and 3-month forecasts
+   - Calculate confidence intervals
+
+4. **Alerting:**
+   - Define drought threshold (e.g., NDVI < 0.4 for 2 consecutive months)
+   - Trigger alerts when predicted NDVI falls below threshold
+   - Send notifications to DA, PAGASA, LGUs
+
+5. **Visualization:**
+   - Dashboard showing historical NDVI + predictions
+   - Maps of drought risk by municipality
+   - Trend analysis and anomaly detection
+
+**Example Integration with PAGASA:**
+
+```python
+# Pseudo-code for operational system
+def monthly_drought_forecast():
+    """
+    Automated monthly drought forecasting workflow.
+    """
+    # Step 1: Acquire latest data
+    latest_ndvi = download_sentinel2_ndvi(region='Mindanao', days=10)
+    latest_rainfall = fetch_pagasa_rainfall()
+    latest_temp = fetch_pagasa_temperature()
+    latest_oni = fetch_noaa_oni()
+
+    # Step 2: Preprocess
+    df_latest = merge_and_preprocess(latest_ndvi, latest_rainfall, latest_temp, latest_oni)
+
+    # Step 3: Create sequence
+    X_latest = create_sequence(df_latest, lookback=12)
+
+    # Step 4: Predict
+    prediction = model.predict(X_latest)
+    prediction_ndvi = inverse_transform(prediction)
+
+    # Step 5: Check threshold
+    DROUGHT_THRESHOLD = 0.40
+    if prediction_ndvi < DROUGHT_THRESHOLD:
+        send_alert(
+            recipients=['DA', 'PAGASA', 'LGUs'],
+            message=f"Drought warning: Predicted NDVI {prediction_ndvi:.2f} for next month",
+            severity='HIGH'
+        )
+
+    # Step 6: Update dashboard
+    update_dashboard(historical=df_latest, prediction=prediction_ndvi)
+
+    return prediction_ndvi
+```
+
+#### 8.2 Model Maintenance
+
+**Retraining Schedule:**
+- Retrain annually with new data
+- Monitor performance drift
+- Update if accuracy degrades
+
+**Validation:**
+- Compare predictions with ground truth each month
+- Track RMSE, MAE over time
+- Engage with stakeholders for qualitative feedback (did farmers report drought?)
+
+**Version Control:**
+- Track model versions (architecture, hyperparameters, training data)
+- A/B testing of model updates
+- Rollback capability
+
+::: {.callout-important}
+## Success Metrics for Operational System
+
+**Quantitative:**
+- Forecast accuracy: RMSE < 0.05 NDVI
+- Lead time: 1-3 months
+- Spatial coverage: All major agricultural regions
+
+**Qualitative:**
+- User adoption by DA and LGUs
+- Actionable warnings (early interventions taken)
+- Reduction in drought-related crop losses (longitudinal assessment)
+
+**Target:** Achieve 80% detection rate for drought events with < 20% false alarm rate
+:::
+
+---
+
+## Troubleshooting Guide
+
+### Common Issues and Solutions
+
+**Issue 1: Model overfitting (train loss << val loss)**
+
+**Solutions:**
+- Increase dropout rate (0.3-0.4)
+- Reduce LSTM units (32, 16 instead of 64, 32)
+- Add L2 regularization
+- Increase training data (longer time series, more locations)
+
+**Issue 2: Poor convergence (loss not decreasing)**
+
+**Solutions:**
+- Reduce learning rate (0.0001)
+- Increase batch size (64, 128)
+- Check data normalization (should be [0, 1] or standardized)
+- Simplify architecture (fewer layers)
+
+**Issue 3: Predictions lag behind actual values**
+
+**Explanation:** Model learns to predict "tomorrow will be like today"
+
+**Solutions:**
+- Add more features (lagged rainfall, soil moisture)
+- Increase lookback window (18-24 months)
+- Use attention mechanisms (advanced)
+- Try bidirectional LSTM
+
+**Issue 4: High error during extreme events (droughts)**
+
+**Solutions:**
+- Oversample drought periods in training data
+- Use weighted loss function (higher weight on drought)
+- Add drought-specific features (El Niño strength)
+- Ensemble with other models (Random Forest, GRU)
+
+---
+
+## Extensions and Advanced Topics
+
+::: {.callout-tip}
+## Going Further
+
+**1. Spatial LSTM:**
+Extend model to predict drought across multiple locations simultaneously using ConvLSTM
+
+**2. Ensemble Models:**
+Combine LSTM with Random Forest and gradient boosting for robust predictions
+
+**3. Attention Mechanisms:**
+Add attention layers to identify which historical time steps are most important
+
+**4. Uncertainty Quantification:**
+Use Bayesian LSTM or Monte Carlo dropout to estimate prediction confidence intervals
+
+**5. Multi-Output Forecasting:**
+Predict NDVI, rainfall, and temperature simultaneously (multi-task learning)
+
+**6. Transfer Learning:**
+Train on Mindanao, fine-tune for other Philippine regions (Luzon, Visayas)
+
+**7. Explainability:**
+Use SHAP or LIME to interpret which features drive predictions
+:::
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 2 Summary
+
+**Lab Achievements:**
+- Built end-to-end LSTM drought forecasting system for Mindanao
+- Processed 7 years of Sentinel-2 NDVI time series
+- Integrated multi-source data (satellite, weather, climate indices)
+- Achieved operational-grade forecast accuracy (RMSE < 0.05)
+
+**Technical Skills:**
+- Time series sequence creation with sliding windows
+- LSTM model architecture design and training
+- Proper temporal data splitting (avoid leakage)
+- Model evaluation and interpretation
+- Deployment considerations for operational systems
+
+**Philippine Context:**
+- Mindanao drought vulnerability and agricultural importance
+- 2015-2016 El Niño case study
+- Integration with DA and PAGASA early warning systems
+- 3-month lead time for climate change adaptation
+
+**Operational Readiness:**
+- Automated data pipelines feasible
+- Monthly forecast updates practical
+- Alert thresholds definable
+- Stakeholder engagement critical
+
+**Next Steps:**
+Session 3 explores emerging AI trends (foundation models, self-supervised learning, explainable AI) that could further improve drought monitoring systems.
+:::
+
+---
+
+## Additional Resources
+
+### Code and Data
+
+**Lab Materials:**
+- 📓 [Student Jupyter Notebook](../notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb) - Guided lab with exercises
+- 📓 [Instructor Solution Notebook](../notebooks/day4_session2_lstm_drought_lab_INSTRUCTOR.ipynb) - Complete solutions
+- 📊 Data: Synthetic data generated within notebooks (no separate download needed)
+
+### Further Reading
+
+**LSTM for EO:**
+- Ndikumana et al. (2018). "Deep Recurrent Neural Network for Agricultural Classification using SAR Sentinel-1." *Remote Sensing*.
+- Ru et al. (2020). "Deep Learning for Crop Yield Prediction Using LSTM." *Computers and Electronics in Agriculture*.
+
+**Drought Monitoring:**
+- AghaKouchak et al. (2015). "Remote Sensing of Drought: Progress, Challenges and Opportunities." *Reviews of Geophysics*.
+- Philippine PAGASA: [Drought Monitoring Reports](https://www.pagasa.dost.gov.ph)
+
+**TensorFlow/Keras:**
+- [Keras Time Series Tutorial](https://keras.io/examples/timeseries/)
+- [TensorFlow LSTM Guide](https://www.tensorflow.org/tutorials/structured_data/time_series)
+
+### Philippine EO Platforms
+
+- [CoPhil Infrastructure](https://infra.copphil.philsa.gov.ph)
+- [Google Earth Engine](https://earthengine.google.com)
+- [PAGASA Climate Data](https://www.pagasa.dost.gov.ph)
+
+---
+
+## Session Feedback
+
+::: {.callout-note}
+## Reflect on Your Learning
+
+**Questions for Discussion:**
+1. How confident are you in building LSTM models for other EO time series problems?
+2. What challenges did you encounter during the lab?
+3. What Philippine applications could benefit from LSTM forecasting?
+4. How would you explain LSTM predictions to non-technical stakeholders (farmers, LGU officials)?
+
+**Feedback Form:** [Submit anonymous feedback](https://forms.gle/copphil-day4-session2)
+
+**Instructor Email:** [training@copphil.philsa.gov.ph](mailto:training@copphil.philsa.gov.ph)
+:::
+
+---
+
+## Preparation for Session 3
+
+::: {.callout-tip}
+## Looking Ahead
+
+**Session 3: Emerging AI Trends in EO**
+
+Topics:
+- Geospatial foundation models (Prithvi, Clay, SatMAE)
+- Self-supervised learning for limited labeled data
+- Explainable AI (SHAP, LIME, Grad-CAM) for transparency
+
+**Relevance to This Lab:**
+- Foundation models could improve drought prediction with less training data
+- Self-supervised pre-training on unlabeled Sentinel-2 archive
+- XAI methods to explain which months/features drive drought predictions
+
+**No advance preparation needed** - Session 3 is theory and discussion-based
+
+[Session 3 Preview →](session3.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+*This session is part of Day 4: Time Series Analysis, Emerging Trends, and Sustainable Learning - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

@@ -1,0 +1,3036 @@
+---
+title: "Session 2: Core Concepts of AI/ML for Earth Observation"
+subtitle: "Understanding the fundamentals of machine learning for satellite data analysis"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 1</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 2</span>
+</nav>
+
+::: {.session-info}
+**Duration:** 2 hours | **Format:** Lecture + Conceptual Exercises | **Platform:** Presentation
+:::
+
+## Session Overview
+
+This session provides a comprehensive introduction to Artificial Intelligence and Machine Learning concepts specifically tailored for Earth Observation applications. You'll learn the complete AI/ML workflow, understand different learning paradigms, explore deep learning architectures including CNNs, Vision Transformers, and temporal models, discover benchmark datasets, and understand why data quality matters more than model complexity in 2025's data-centric AI paradigm.
+
+---
+
+The session integrates cutting-edge methodologies with concrete Philippine case studies, from DOST-ASTI's 10-20 minute flood detection using AI to PhilSA's mangrove mapping efforts, demonstrating operational AI/ML systems already serving disaster risk reduction and natural resource management needs.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Define** AI and ML in the context of Earth Observation
+- **Describe** the complete AI/ML workflow from problem definition to deployment
+- **Distinguish** between supervised and unsupervised learning with EO examples
+- **Explain** classification vs. regression tasks in satellite data analysis
+- **Identify** major deep learning architectures: CNNs, U-Net, Vision Transformers, RNNs/LSTMs, object detection networks
+- **Understand** key components: neurons, layers, activation functions, loss functions, optimizers
+- **Compare** different model architectures and when to apply each
+- **Recognize** benchmark datasets used for training and evaluation
+- **Articulate** the data-centric AI paradigm and its importance for EO
+- **Apply** best practices for data quality, quantity, diversity, and annotation
+- **Explain** Explainable AI (XAI) and why it matters for operational systems
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/02_session2_ai_ml_fundamentals.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: What is AI/ML?
+
+### Defining the Terms
+
+**Artificial Intelligence (AI):**
+
+- Broad field focused on creating intelligent machines
+- Systems that can perceive, reason, learn, and act
+- Includes everything from rule-based systems to machine learning
+- In EO: Enables automated interpretation of petabytes of satellite data
+
+**Machine Learning (ML):**
+
+- Subset of AI focused on learning from data
+- Algorithms that improve performance through experience
+- **Key distinction:** No explicit programming of rules
+- **Deep Learning:** Subset of ML using multi-layered neural networks
+
+```{mermaid}
+%%| fig-cap: "AI, Machine Learning, and Deep Learning Relationship"
+%%| fig-width: 100%
+
+graph TB
+    subgraph AI["ARTIFICIAL INTELLIGENCE<br/>Creating intelligent machines"]
+        subgraph ML["MACHINE LEARNING<br/>Learning from data without explicit programming"]
+            subgraph DL["DEEP LEARNING<br/>Multi-layered neural networks"]
+                DL1[Convolutional<br/>Neural Networks<br/>CNNs]
+                DL2[Recurrent<br/>Neural Networks<br/>RNNs/LSTMs]
+                DL3[Transformers<br/>Vision Transformers]
+                DL4[GANs & VAEs<br/>Generative Models]
+            end
+            ML1[Random Forest]
+            ML2[Support Vector<br/>Machines]
+            ML3[Decision Trees]
+            ML4[K-Means<br/>Clustering]
+        end
+        AI1[Expert Systems<br/>Rule-based]
+        AI2[Fuzzy Logic]
+        AI3[Genetic<br/>Algorithms]
+    end
+
+    DL1 -.->|EO Apps| EO1[Land Cover<br/>Classification]
+    DL1 -.->|EO Apps| EO2[Semantic<br/>Segmentation]
+    DL2 -.->|EO Apps| EO3[Time Series<br/>Crop Monitoring]
+    DL3 -.->|EO Apps| EO4[Change<br/>Detection]
+
+    style AI fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
+    style ML fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style DL fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style DL1 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff
+    style DL2 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff
+    style DL3 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff
+```
+
+::: {.callout-note}
+## The ML Difference
+
+**Traditional Programming:**
+
+```
+Rules + Data → Output
+```
+
+**Machine Learning:**
+
+```
+Data + Desired Output → Rules (Model)
+```
+
+In EO: Instead of coding "if NIR > 0.6 and Red < 0.3, then forest", ML learns the pattern from labeled examples.
+:::
+
+### Why ML for Earth Observation?
+
+**Challenges that ML addresses:**
+
+1. **Scale:** NASA's Earth Science Data Systems exceeded 148 PB in 2023, projected 250 PB in 2025 - impossible to manually analyze
+2. **Complexity:** Multispectral, multi-temporal, spatial patterns humans can't easily detect
+3. **Consistency:** Automated processing ensures reproducible results across time and space
+4. **Speed:** Real-time disaster mapping requires immediate analysis (DOST-ASTI DATOS: 10-20 minute flood response)
+5. **Multi-modal fusion:** Integrating optical, SAR, LiDAR data for robust monitoring
+
+**Traditional vs. ML approaches:**
+
+| Task | Traditional | ML Approach |
+|------|-------------|-------------|
+| **Water detection** | Manual NDWI threshold | Learn optimal threshold + texture from examples |
+| **Land cover** | Rule-based classification | Random Forest or CNN with training samples |
+| **Flood mapping** | Expert visual interpretation | U-Net segmentation trained on labeled floods |
+| **Crop monitoring** | Fixed vegetation index thresholds | LSTM time series model learning phenology |
+| **Building detection** | Manual digitization | YOLO or Faster R-CNN object detection |
+| **Deforestation** | Visual comparison of dates | Siamese networks for change detection |
+
+::: {.philippine-context}
+**Philippine Operational Systems:**
+
+The Philippines demonstrates successful AI/ML deployment:
+
+- **DATOS (DOST-ASTI):** AI-powered flood mapping from Sentinel-1 SAR achieves 10-20 minute response time during typhoons
+- **PRiSM (PhilRice-IRRI):** Operational since 2014, first satellite-based rice monitoring in Southeast Asia
+- **SkAI-Pinas (DOST):** National AI framework addressing the gap between abundant remote sensing data and sustainable AI pipelines
+- **DIMER Model Repository (DOST-ASTI):** Democratizing access to trained models for Philippine contexts
+:::
+
+---
+
+## Part 2: The AI/ML Workflow for Earth Observation
+
+Understanding the complete workflow is essential for successful EO projects. Each step matters, and according to 2024 research, most underperforming models suffer from data issues rather than algorithm deficiencies.
+
+```{mermaid}
+%%| fig-cap: "Complete AI/ML Workflow for Earth Observation"
+%%| fig-width: 100%
+
+flowchart TD
+    A[1. Problem Definition<br/>What question?<br/>What output?] --> B[2. Data Acquisition<br/>Satellite imagery<br/>Ground truth<br/>Ancillary data]
+
+    B --> C[3. Data Preprocessing<br/>Atmospheric correction<br/>Cloud masking<br/>Normalization]
+
+    C --> D[4. Data Annotation<br/>Label training samples<br/>Quality control<br/>Class balancing]
+
+    D --> E[5. Feature Engineering<br/>Spectral indices<br/>Texture features<br/>Temporal metrics]
+
+    E --> F{6. Train/Val/Test<br/>Split}
+    F -->|70%| G[Training Set]
+    F -->|15%| H[Validation Set]
+    F -->|15%| I[Test Set]
+
+    G --> J[7. Model Training<br/>Select architecture<br/>Set hyperparameters<br/>Train on GPU]
+
+    H --> K[8. Model Validation<br/>Tune hyperparameters<br/>Monitor overfitting<br/>Early stopping]
+
+    J --> K
+    K -->|Iterate| J
+
+    K --> L{Performance<br/>Acceptable?}
+    L -->|No| M[Improve Data<br/>More samples<br/>Better labels<br/>Data augmentation]
+    M --> D
+
+    L -->|Yes| N[9. Model Testing<br/>Final evaluation<br/>Unseen test set<br/>Confusion matrix]
+
+    I --> N
+
+    N --> O[10. Deployment<br/>Production system<br/>Monitoring<br/>Maintenance]
+
+    O --> P{Model Drift?<br/>Performance<br/>degraded?}
+    P -->|Yes| Q[Retrain with<br/>new data]
+    Q --> D
+    P -->|No| O
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style B fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style D fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style J fill:#cc00cc,stroke:#880088,stroke-width:2px,color:#fff
+    style K fill:#cc00cc,stroke:#880088,stroke-width:2px,color:#fff
+    style O fill:#009999,stroke:#006666,stroke-width:2px,color:#fff
+```
+
+### Step 1: Problem Definition
+
+**Define clearly what you want to achieve:**
+
+- What question are you answering? (e.g., "Where are mangroves declining?")
+- What output do you need? (map, time series, alert system?)
+- What accuracy is acceptable?
+- What constraints exist? (time, computational resources, data availability)
+- What is the operational context and who will use the outputs?
+
+::: {.philippine-context}
+**Philippine Example: PRiSM Rice Monitoring**
+
+**Problem:** Provide timely rice area and production estimates for food security planning and disaster response
+
+**Clear definition:**
+- Multi-class: rice wet season, rice dry season, non-rice agriculture, non-agriculture
+- 10m spatial resolution (Sentinel-1 SAR + Sentinel-2 optical)
+- Temporal: Per-season mapping (wet: June-Nov, dry: Dec-May)
+- Accuracy target: >90% for policy-level decisions
+- Operational: Automated processing, quarterly updates to DA/PCIC
+- Cloud-penetrating capability essential for monsoon season
+:::
+
+### Step 2: Data Acquisition
+
+**Gather all necessary data:**
+
+- **Satellite imagery:** Sentinel-1/2, Landsat, commercial VHR, hyperspectral
+- **Ground truth:** Field surveys, high-res imagery interpretation, existing maps, crowdsourced data
+- **Ancillary data:** DEM, climate, administrative boundaries, road networks, socioeconomic data
+
+**Data volume considerations:**
+- NASA's Earth Science Data Systems: 148 PB (2023) → 205 PB (2024) → 250 PB (2025)
+- Sentinel constellation generates thousands of terabytes daily
+- 1,052 active EO satellites as of 2024
+
+**Data sources for Philippines:**
+
+- **CoPhil Mirror Site (2025):** Local, high-bandwidth access to Sentinel data covering entire archipelago
+- **Copernicus Data Space Ecosystem:** STAC-compliant catalogues, API-driven access
+- **Google Earth Engine:** Harmonized Sentinel-2 surface reflectance, Sentinel-1 GRD collections
+- **PhilSA SIYASAT:** NovaSAR-1 X-band SAR data
+- **Diwata-1/2 microsatellites:** Philippine-operated disaster monitoring
+- **NAMRIA Geoportal:** Land cover basemaps, topographic data
+- **PAGASA:** Climate and meteorological data
+
+### Step 3: Data Pre-processing
+
+**Critical step - "Garbage in, garbage out"**
+
+Data pre-processing is foundational and directly impacts downstream analysis accuracy. Proper preprocessing ensures data quality, consistency, and comparability across time and sensors.
+
+**For satellite imagery:**
+
+**Atmospheric Correction:**
+- **Purpose:** Remove atmospheric effects (scattering, absorption)
+- **Convert:** Top-of-Atmosphere (TOA) reflectance → Surface reflectance (SR)
+- **Sentinel-2:** Use Level-2A products (Sen2Cor algorithm)
+- **HLS Products:** NASA's Harmonized Landsat Sentinel-2 applies LaSRC + BRDF normalization
+- **Essential for:** Multi-temporal comparisons, quantitative biophysical parameter retrieval
+
+**Cloud Masking:**
+- **Sentinel-2 SCL:** Scene Classification Layer (clouds, shadows, snow, water, vegetation)
+- **Machine learning approaches:** U-Net architectures for pixel-wise cloud segmentation
+- **Multi-temporal approaches:** Leverage temporal patterns to identify clouds
+- **Gap filling:** Temporal interpolation, spatial interpolation, deep learning reconstruction (Prithvi-EO-2.0)
+
+**SAR-Specific Preprocessing (Sentinel-1):**
+- **Orbit file application:** Precise geolocation
+- **Radiometric calibration:** Convert DN to sigma nought (σ⁰), beta nought (β⁰), or gamma nought (γ⁰)
+- **De-bursting:** Remove black boundaries between sub-swaths in TOPS mode
+- **Speckle filtering:** Lee, Frost, Gamma-MAP filters; CNN-based despecklers preserve edges
+- **Terrain correction (RTC):** Orthorectification using DEM (SRTM, Copernicus DEM)
+- **Multi-temporal filtering:** Leverage temporal stack to reduce speckle
+
+**Normalization and Scaling:**
+- **Min-max normalization:** Scale to [0, 1] range
+- **Z-score standardization:** Center to mean=0, std=1 (common for deep learning)
+- **Percentile clipping:** Reduce impact of outliers (e.g., 2nd and 98th percentiles)
+- **Per-band normalization:** Account for different dynamic ranges across spectral bands
+
+**For training labels:**
+
+- **Quality control:** Verify label accuracy through multiple reviewers
+- **Coordinate alignment:** Ensure labels match imagery timing and location
+- **Class balancing:** Ensure adequate samples per class
+- **Format standardization:** Convert to ML-ready format (GeoTIFF, TFRecord, COG)
+
+::: {.callout-warning}
+## Pre-processing Pitfalls
+
+**Common errors that degrade model performance:**
+
+- Using Top-of-Atmosphere instead of surface reflectance
+- Temporal mismatch: 2020 imagery with 2018 labels
+- Incomplete cloud masking leaving cloud shadows
+- Mixed pixels at boundaries (especially for validation)
+- Inconsistent band ordering across scenes
+- Ignoring spatial autocorrelation (random train-test splits can lead to 28% overoptimistic performance)
+- Not applying same preprocessing to training and deployment data
+:::
+
+### Step 4: Feature Engineering
+
+**Deriving informative variables from raw data**
+
+Feature engineering transforms raw satellite data into informative representations that enhance model performance. This step is crucial for traditional ML algorithms and beneficial even for deep learning.
+
+**For traditional ML (Random Forest, SVM):**
+
+**Spectral Indices:**
+- **Vegetation:** NDVI, EVI, SAVI, NDRE, GNDVI, LAI
+- **Water:** NDWI, MNDWI, NDMI
+- **Built-up:** NDBI, Bare Soil Index (BSI)
+- **Burn:** NBR, dNBR
+
+**Textural Features (GLCM):**
+- Contrast, Correlation, Energy, Homogeneity, Entropy, Dissimilarity, Variance
+- Window sizes: 3×3, 5×5, 7×7
+- Multiple directions: 0°, 45°, 90°, 135°
+
+**Temporal Features:**
+- Statistical: Mean, median, std dev, min, max, percentiles (10th, 25th, 75th, 90th)
+- Coefficient of Variation (CV): Normalized variability measure
+- Amplitude: Difference between peak and minimum
+- Phenological: Start of season (SOS), Peak of season (POS), End of season (EOS)
+- Trends: Linear regression slopes, breakpoint detection
+
+**Multi-Modal Features:**
+- **Optical-SAR fusion:** Concatenate optical indices with SAR backscatter
+- **Derived ratios:** VV/VH polarization ratio, optical/SAR combinations
+- **SAR texture:** GLCM features from backscatter
+- **Interferometric:** Coherence from InSAR
+
+**Example: Forest classification features**
+
+```python
+# Spectral indices
+NDVI = (NIR - Red) / (NIR + Red)
+NDWI = (Green - NIR) / (Green + NIR)
+EVI = 2.5 * (NIR - Red) / (NIR + 6*Red - 7.5*Blue + 1)
+
+# SAR features
+VV_VH_ratio = VV_backscatter / VH_backscatter
+SAR_texture = GLCM_contrast(VH_backscatter)
+
+# Temporal
+NDVI_mean = mean(NDVI_time_series)
+NDVI_cv = std(NDVI_time_series) / NDVI_mean
+
+# Topographic
+Elevation, Slope, Aspect
+
+# Result: Input feature vector per pixel
+X = [Red, Green, Blue, NIR, SWIR1, SWIR2, NDVI, EVI, NDWI,
+     VV, VH, VV_VH_ratio, SAR_texture, NDVI_mean, NDVI_cv,
+     Elevation, Slope, Aspect]
+```
+
+**For deep learning (CNNs, U-Net, Vision Transformers):**
+
+- Less manual feature engineering needed
+- Networks automatically learn features from raw pixels
+- Still benefit from good input data (cloud-free, calibrated, normalized)
+- Multi-spectral bands as input channels
+- Consider temporal stacking for multi-date analysis
+
+::: {.callout-tip}
+## 2024 Research Insight: Feature Selection
+
+Seven unsupervised dimensionality reduction algorithms tested on hyperspectral data from HYPSO-1 satellite showed that:
+
+- Careful feature selection can achieve optimal accuracy with <20% of temporal instances
+- Single band from single sensor can be sufficient for specific tasks
+- **Implication:** Smart data selection > brute force data collection
+- Use PCA, MNF, or tree-based feature importance for efficient selection
+:::
+
+### Step 5: Model Selection and Training
+
+**Choose appropriate algorithm:**
+
+**Consider:**
+
+- Task type (classification, regression, segmentation, object detection)
+- Data size (deep learning needs more data; transfer learning reduces requirements)
+- Interpretability requirements (operational systems often need explainability)
+- Computational resources (edge devices vs. cloud platforms)
+- Deployment constraints (inference speed, model size)
+
+**Common EO algorithms:**
+
+| Algorithm | Type | Best For | Data Needs | Key Strengths |
+|-----------|------|----------|------------|---------------|
+| **Random Forest** | Ensemble | Classification, feature importance, baseline | Medium (100s-1000s) | Robust, interpretable, handles high dimensions |
+| **SVM** | Kernel | Binary classification, small data | Small-Medium | Effective high-dimensional spaces |
+| **XGBoost/LightGBM** | Gradient Boosting | Tabular features, yield prediction | Medium | High performance on structured data |
+| **CNN** | Deep Learning | Image classification, automatic features | Large (10,000s+) | Spatial awareness, hierarchical learning |
+| **U-Net** | Deep Learning | Semantic segmentation (pixel-wise) | Large | Skip connections, works with limited data |
+| **ResNet** | Deep Learning | Very deep networks, complex classification | Large | Residual connections avoid vanishing gradients |
+| **Vision Transformer** | Deep Learning | Global context, spatial relationships | Very Large | Attention mechanisms, long-range dependencies |
+| **LSTM/GRU** | Deep Learning | Time series prediction, phenology | Large | Temporal pattern learning |
+| **YOLO/Faster R-CNN** | Deep Learning | Object detection (buildings, ships) | Large | Real-time detection, bounding boxes |
+
+**Training process:**
+
+1. **Split data:** 70-80% training, 10-15% validation, 10-15% testing
+   - **Spatial cross-validation:** Essential for EO to avoid spatial leakage
+   - Spatial k-fold or buffered leave-one-out
+2. **Feed training data:** Algorithm adjusts parameters to minimize error
+3. **Monitor validation:** Track performance on held-out validation set
+4. **Hyperparameter tuning:** Optimize learning rate, batch size, architecture parameters
+5. **Early stopping:** Stop when validation performance plateaus
+6. **Final evaluation:** Test on completely independent test set
+
+**Transfer Learning:**
+- Pre-train on large dataset (ImageNet, SatViT, Prithvi)
+- Fine-tune on task-specific data
+- Reduces training data requirements by 10-100×
+- Faster convergence and better generalization
+
+::: {.philippine-context}
+**Philippine Example: Poverty Mapping with Transfer Learning**
+
+Study using satellite imagery, nighttime lights, and OpenStreetMap data:
+- Transfer learning from ImageNet improved performance by 14.1% for tropical cyclone impact areas
+- Requires careful hyperparameter tuning for generalization across regions
+- Cost-effective approach for limited labeled data scenarios
+:::
+
+### Step 6: Validation and Evaluation
+
+**Rigorous testing on independent data**
+
+::: {.callout-important}
+## Never Test on Training Data!
+
+Testing on data the model has seen gives falsely optimistic results. Always use held-out test data. For EO, random train-test splits can overestimate performance by up to 28% due to spatial autocorrelation.
+:::
+
+**Classification metrics:**
+
+- **Overall Accuracy (OA):** Percentage of correctly classified pixels
+- **Confusion Matrix:** Shows which classes are confused with each other
+- **Per-Class Metrics:**
+  - Producer's Accuracy (Recall): How many ground truth samples were correctly classified
+  - User's Accuracy (Precision): How many predicted samples are actually correct
+- **F1-Score:** Harmonic mean of precision and recall (2 × Precision × Recall / (Precision + Recall))
+- **Kappa Coefficient:** Agreement accounting for chance
+- **Matthews Correlation Coefficient (MCC):** Balanced measure even for imbalanced classes
+
+**Semantic Segmentation metrics:**
+
+- **IoU (Intersection over Union):** Area of overlap / Area of union
+  - IoU > 0.5: Generally acceptable
+  - IoU > 0.7: High-quality segmentation
+  - IoU > 0.9: Excellent agreement
+- **Mean IoU (mIoU):** Average IoU across all classes
+- **Dice Coefficient:** 2 × IoU / (1 + IoU), less harsh penalty than IoU
+- **Pixel Accuracy:** Simple but biased toward majority class
+- **Boundary F1 Score:** Precision/recall on boundary pixels
+
+**Regression metrics:**
+
+- **RMSE (Root Mean Squared Error):** Average prediction error, penalizes large errors
+- **MAE (Mean Absolute Error):** Average absolute deviation, less sensitive to outliers
+- **R² (Coefficient of Determination):** Proportion of variance explained (0.88 = 88% explained)
+
+**Object Detection metrics:**
+
+- **Precision/Recall:** At various IoU thresholds (0.5, 0.75)
+- **Average Precision (AP):** Area under precision-recall curve
+- **Mean Average Precision (mAP):** Mean AP across classes
+
+**Philippine Example: Flood mapping evaluation**
+
+```
+Confusion Matrix (DOST-ASTI DATOS flood detection):
+                Predicted
+              | Flood | No Flood |
+Actual Flood  |  450  |   50     |  Producer's Acc (Recall): 90%
+Actual No Flood|  30   |  1470    |  Producer's Acc: 98%
+
+User's Accuracy (Precision): 93.8%   96.7%
+Overall Accuracy: 96%
+F1-Score (Flood class): 91.8%
+```
+
+**Spatial Validation Best Practices:**
+
+1. **Spatial k-fold cross-validation:** Divide data into spatially homogeneous clusters
+2. **Buffered leave-one-out:** Create buffer zones around test samples
+3. **Independent geographic testing:** Test on completely different regions
+4. **Temporal validation:** Train on one time period, test on another
+
+### Step 7: Deployment and Operationalization
+
+**Making the model operational:**
+
+**Deployment strategies:**
+
+1. **Batch processing:** Apply model to large archives (entire countries, multi-year time series)
+2. **Near real-time:** Process new satellite acquisitions automatically (disaster response)
+3. **On-demand:** User-triggered analysis (web portals, APIs)
+4. **Edge processing:** On-board satellite AI (ESA Φsat-2, launched 2024)
+
+**On-Board AI Processing (2024 Breakthrough):**
+- ESA Φsat-2: 22cm CubeSat with on-board AI
+- Processes imagery directly in orbit
+- Cloud filtering: Only clear, usable images sent to Earth
+- Reduces data transmission costs, enables real-time event detection
+- **Rationale:** With 1,052 active EO satellites generating thousands of terabytes daily, traditional communication cannot relay this volume
+
+**Operational considerations:**
+
+- **Scalability:** Can it handle regional/national scale?
+- **Automation:** Minimize manual intervention
+- **Performance monitoring:** Track accuracy over time, detect distribution shifts
+- **Model retraining:** Update as conditions change or new data becomes available
+- **Model versioning:** Maintain reproducibility and track improvements
+- **Integration:** Connect to decision support systems, early warning platforms
+- **API development:** Create accessible interfaces for inference
+- **Cloud deployment:** Google Earth Engine, AWS SageMaker, Azure ML, Vertex AI
+
+**Philippine context:**
+
+- **DOST-ASTI AIPI platform:** For model deployment and user-facing AI interfaces
+- **DIMER repository:** For model sharing and democratizing access to trained models
+- **ALaM (Automated Labeling Machine):** Combining automated labeling with crowdsourcing for continuous data quality improvement
+- **Integration with LGU disaster response protocols:** DATOS outputs delivered to local government units
+- **Delivery via PhilSA Digital Space Campus:** Training and capacity building
+- **CoPhil Data Centre (2025):** Cloud-native distribution with API-driven access
+
+---
+
+## Part 3: Types of Machine Learning
+
+```{mermaid}
+%%| fig-cap: "Machine Learning Paradigms for Earth Observation"
+%%| fig-width: 100%
+
+graph TB
+    subgraph Supervised["SUPERVISED LEARNING<br/>Learning from labeled examples"]
+        S1[Classification<br/>Discrete categories]
+        S2[Regression<br/>Continuous values]
+        S3[Object Detection<br/>Locate + classify]
+        S4[Semantic Segmentation<br/>Pixel-wise classification]
+
+        S1 --> S1A[Land Cover<br/>Forest, Water, Urban]
+        S2 --> S2A[Biomass Estimation<br/>Predict AGB in tons/ha]
+        S3 --> S3A[Building Detection<br/>YOLO, Faster R-CNN]
+        S4 --> S4A[Flood Mapping<br/>U-Net segmentation]
+    end
+
+    subgraph Unsupervised["UNSUPERVISED LEARNING<br/>Finding patterns without labels"]
+        U1[Clustering<br/>Group similar pixels]
+        U2[Dimensionality<br/>Reduction]
+        U3[Anomaly<br/>Detection]
+
+        U1 --> U1A[K-Means<br/>ISODATA<br/>Spectral clusters]
+        U2 --> U2A[PCA<br/>MNF Transform<br/>Band reduction]
+        U3 --> U3A[Outlier Detection<br/>Change hotspots]
+    end
+
+    subgraph SemiSupervised["SEMI-SUPERVISED<br/>Combine labeled + unlabeled"]
+        SS1[Self-training<br/>Pseudo-labeling]
+        SS2[Co-training<br/>Multiple views]
+        SS1 --> SS1A[Bootstrap from<br/>limited labels]
+    end
+
+    subgraph Reinforcement["REINFORCEMENT LEARNING<br/>Learn from interaction"]
+        R1[Agent-Environment<br/>Interaction]
+        R1 --> R1A[Drone Path<br/>Planning]
+    end
+
+    style Supervised fill:#e6ffe6,stroke:#00aa44,stroke-width:3px
+    style Unsupervised fill:#ffe6e6,stroke:#cc0044,stroke-width:3px
+    style SemiSupervised fill:#fff4e6,stroke:#ff8800,stroke-width:3px
+    style Reinforcement fill:#e6e6ff,stroke:#6666cc,stroke-width:3px
+```
+
+### Supervised Learning
+
+**Learning from labeled data**
+
+The algorithm is given:
+- **Input:** Satellite image or features
+- **Output:** Known label (class or value)
+- **Goal:** Learn mapping from input to output
+
+Supervised learning is the predominant approach in Earth Observation, where models learn from labeled training data to make predictions on new, unseen data.
+
+#### Classification Tasks
+
+**Predicting categorical labels**
+
+**Common Algorithms:**
+- **Random Forest (RF):** Ensemble method, best performance in object-based classification; robust to noise
+- **Support Vector Machines (SVM):** Effective for high-dimensional spaces; performs well with limited training samples
+- **CNNs (Convolutional Neural Networks):** Deep learning for automatic feature learning and complex patterns
+- **Vision Transformers (ViT):** Attention mechanisms for global context and long-range dependencies
+
+**EO Examples:**
+
+1. **Land Cover Classification**
+   - Input: Sentinel-2 pixel values (13 bands)
+   - Output: Forest, Water, Urban, Agriculture, Bare soil, Wetlands
+   - Algorithm: Random Forest, CNN, Vision Transformer
+   - Datasets: EuroSAT (27,000 images, 10 classes, 98.57% accuracy)
+
+2. **Cloud Detection**
+   - Input: Multi-band imagery (blue, cirrus bands effective)
+   - Output: Cloud vs. Clear, Cloud shadow, Cirrus
+   - Algorithm: Threshold, Random Forest, U-Net for pixel-wise segmentation
+   - Sentinel-2 SCL: Scene Classification Layer with 11 classes
+
+3. **Crop Type Mapping**
+   - Input: Multi-temporal NDVI, SAR backscatter
+   - Output: Rice, Corn, Sugarcane, Coconut, Vegetables
+   - Algorithm: Random Forest, LSTM (for temporal patterns)
+   - Multi-temporal data > single-date imagery for capturing phenology
+
+::: {.philippine-context}
+**Philippine Case Study: PhilSA-DENR Mangrove Mapping**
+
+**Task:** AI-based mangrove forest identification nationwide
+
+**Technology:**
+- Google Earth Engine platform
+- Mangrove Vegetation Index (MVI)
+- Sentinel-1 and Sentinel-2 fusion
+- Multi-temporal Landsat 8 and Sentinel-2 data
+
+**Approach:**
+- U-Net deep learning architecture
+- Binary classification: mangrove vs. non-mangrove
+- SAR for cloud-penetrating capability during monsoon
+
+**Performance:**
+- Accuracy: 99.73% (Myanmar study using similar approach)
+- Random Forest classifier also effective with high temporal resolution (5-day Sentinel-2)
+- Support Vector Machine shows high accuracy for mangrove discrimination
+
+**Applications:**
+- Blue carbon programs and carbon stock monitoring
+- Ecosystem service valuation
+- Conservation planning and restoration monitoring
+- Palawan multi-spatiotemporal analysis with Markov chain future trend prediction
+
+**Result:** Operational nationwide mangrove extent maps with regular updates
+:::
+
+**Object Detection:**
+
+Unlike pixel-level classification, object detection identifies and localizes specific objects of interest with bounding boxes.
+
+**Popular Architectures:**
+- **YOLO (You Only Look Once):** Real-time detection, single-stage architecture, fast inference
+- **Faster R-CNN:** Two-stage detector with region proposals, high accuracy
+- **RetinaNet:** Single-stage with focal loss for handling class imbalance
+- **EfficientDet:** Scalable architecture balancing accuracy and efficiency
+
+**Key Considerations:**
+- Scale variation: Objects appear at different sizes depending on altitude and resolution
+- Dense object detection: Multiple overlapping objects in urban or agricultural scenes
+- Small object detection: Challenging for standard architectures (e.g., individual trees, vehicles)
+
+**Applications:**
+- Building footprint extraction (SpaceNet, xView datasets)
+- Ship detection in maritime surveillance
+- Vehicle counting in traffic monitoring
+- Individual tree crown delineation
+
+**Benchmark Dataset: xView**
+- >1 million objects
+- 60 classes
+- >1,400 km² coverage
+- 0.3m resolution (WorldView-3)
+- Purpose: Disaster response, overhead imagery analysis
+
+#### Regression Tasks
+
+**Predicting continuous values**
+
+**EO Examples:**
+
+1. **Biomass Estimation**
+   - Input: Sentinel-1 SAR backscatter, Sentinel-2 vegetation indices, LiDAR (GEDI)
+   - Output: Forest biomass (tons per hectare), Above-ground biomass (AGB)
+   - Algorithm: Random Forest Regression (most popular: R² = 0.70, RMSE = 25.38 Mg C ha⁻¹)
+   - Multi-sensor integration: LiDAR + SAR + Optical improves accuracy
+   - **Note:** SAR saturates at high biomass levels; LiDAR methods achieve ~90% agreement with field data
+
+2. **Soil Moisture Prediction**
+   - Input: Sentinel-1 VV/VH polarization, temperature, NDVI
+   - Output: Volumetric soil moisture (%)
+   - Algorithm: Neural network regression, Random Forest
+
+3. **Crop Yield Forecasting**
+   - Input: NDVI time series, EVI, NDMI, weather data (temperature, precipitation), soil properties
+   - Output: Expected yield (tons per hectare)
+   - Algorithm: LSTM regression (preferred in >40% of studies), Random Forest
+   - Performance: R² > 0.93 for corn and soybean, RMSE < 0.075 for NDVI estimation
+   - Temporal considerations: Early-season (higher uncertainty) vs. end-of-season (more accurate, less actionable)
+
+::: {.philippine-context}
+**Philippine Operational System: PRiSM Rice Yield Prediction**
+
+**Overview:** Philippine Rice Information System, operational since 2014
+
+**Technology:**
+- Synthetic Aperture Radar (SAR): Day and night, cloud-penetrating
+- Crop modeling and cloud computing
+- UAV imagery and smartphone field surveys
+- Statistical data integration
+
+**Data Sources:**
+- Remote sensing satellites (Sentinel-1, RADARSAT)
+- Vegetation indices (NDVI, EVI)
+- Weather data from PAGASA
+- Historical yield records
+
+**Modeling:**
+- LSTM networks for temporal modeling of SAR backscatter and vegetation indices
+- Random Forest for integrating multi-source data
+- Phenology-based models
+
+**Partners:**
+- International Rice Research Institute (IRRI) - technology development
+- Philippine Rice Research Institute (PhilRice) - operations since 2018
+- Department of Agriculture (DA) - policy formulation and planning
+
+**Applications:**
+- Food security planning and policy formulation
+- Disaster response (typhoon impact assessment)
+- Crop insurance (PCIC integration)
+- Per-season mapping: Wet season (June-Nov), Dry season (Dec-May)
+
+**Significance:** First satellite-based rice monitoring system in Southeast Asia, model for regional applications
+:::
+
+**Key difference from classification:**
+- Output is a number on a continuous scale rather than discrete classes
+- Loss functions measure distance from true value (MSE, MAE, RMSE)
+- Evaluation uses regression metrics (R², RMSE, MAE)
+- Predictions can be interpolated and extrapolated
+
+### Unsupervised Learning
+
+**Finding patterns in unlabeled data**
+
+The algorithm receives:
+- **Input:** Satellite imagery or features
+- **No labels provided**
+- **Goal:** Discover inherent structure or groupings
+
+Unsupervised learning techniques do not require labeled training data, making them valuable for exploratory analysis, data reduction, and scenarios where ground-truth is unavailable or expensive to obtain.
+
+#### Clustering
+
+**Grouping similar pixels/regions together**
+
+**Common algorithm: k-means**
+
+1. Specify number of clusters (k)
+2. Algorithm iteratively groups pixels with similar spectral characteristics
+3. Result: Image segmented into k clusters
+4. **Human interpretation needed:** "Cluster 1 looks like water, Cluster 2 like forest..."
+
+**Other Clustering Methods:**
+
+**Hierarchical Clustering:**
+- Builds tree-like structure (dendrogram) of nested clusters
+- Agglomerative (bottom-up) or Divisive (top-down)
+- No need to specify number of clusters a priori
+- Applications: Multi-scale land cover analysis, ecological zone identification
+
+**DBSCAN (Density-Based Spatial Clustering):**
+- Groups points based on density
+- Identifies clusters of arbitrary shape
+- Robust to outliers
+- Applications: Urban area detection, anomaly detection in satellite imagery
+
+**EO Applications:**
+
+- **Exploratory analysis:** "How many distinct spectral classes in this region?"
+- **Change detection:** Cluster before/after images to find anomalies
+- **Image segmentation:** Group similar pixels for object-based analysis
+- **InSAR time series:** K-means with PCA for identifying spatially and temporally coherent displacement phenomena
+
+#### Dimensionality Reduction
+
+**Principal Component Analysis (PCA):**
+- Linear transformation projecting high-dimensional data onto orthogonal axes of maximum variance
+- Applications: Hyperspectral data compression, feature extraction, noise reduction, change detection
+- **Workflow:** Center data → Compute covariance → Calculate eigenvalues/eigenvectors → Select top K components
+- **Benefits:** Reduces computational requirements, removes redundancy, enhances signal-to-noise ratio
+- First few PCs capture most variance
+
+**Independent Component Analysis (ICA):**
+- Separates multivariate signal into independent, non-Gaussian components
+- Applications: Mixed pixel decomposition, blind source separation, endmember extraction in hyperspectral imagery
+
+**t-SNE and UMAP:**
+- Non-linear dimensionality reduction for visualization and exploratory analysis
+- Preserves local structure, reveals clusters and patterns in 2D/3D
+- Applications: Visualization of high-dimensional feature spaces, exploration of spectral diversity
+- **Limitations:** Computationally expensive, hyperparameter sensitive, not suitable for new data projection (t-SNE)
+
+::: {.callout-tip}
+## When to Use Unsupervised Learning
+
+**Advantages:**
+- No need for expensive labeled data
+- Can discover unexpected patterns
+- Good for initial data exploration
+- Data reduction for preprocessing
+
+**Limitations:**
+- Results need interpretation
+- No guarantee clusters match desired classes
+- Often less accurate than supervised methods for specific tasks
+- Difficult to evaluate objectively without labels
+- Determining optimal number of clusters can be challenging
+
+**Best Practice:** Use unsupervised methods for exploration, then refine with supervised learning for operational applications
+:::
+
+**Comparison Example:**
+
+**Supervised (Land Cover Classification):**
+- Provide 1000 labeled samples: forest, water, urban
+- Train Random Forest
+- Result: Every pixel assigned forest/water/urban
+- Evaluation: 90% accuracy against test labels
+
+**Unsupervised (k-means Clustering):**
+- No labels provided
+- Run k-means with k=3
+- Result: Three clusters emerge
+- Interpretation: Cluster A=water, B=vegetation, C=mixed urban/bare
+- Evaluation: Subjective or requires labels anyway
+
+**Integration Strategy:**
+1. Use clustering to create initial training samples
+2. Apply dimensionality reduction (PCA) before classification
+3. Combine unsupervised pre-training with supervised fine-tuning
+4. Use clustering for quality control of labeled data
+
+---
+
+## Part 4: Deep Learning Architectures for Earth Observation
+
+### What is Deep Learning?
+
+**Deep Learning = Neural Networks with Many Layers**
+
+- Subset of machine learning
+- Inspired by biological neurons
+- Multiple processing layers extract progressively abstract features
+- Dominant approach for image analysis since ~2012
+- Revolutionized Earth Observation, enabling automated feature learning and state-of-the-art performance
+
+**Why "deep"?**
+- Refers to depth: many hidden layers
+- Modern networks: 10s to 100s of layers (ResNet-152 has 152 layers)
+- Enables learning complex, hierarchical representations
+- Lower layers: Edges, textures
+- Middle layers: Patterns, shapes
+- Higher layers: Semantic concepts, objects
+
+**Key Advantages for EO:**
+- Automatic feature extraction from raw pixels
+- Spatial awareness through convolutional operations
+- Multi-scale analysis capabilities
+- Handles large, complex datasets
+- Transfer learning reduces data requirements
+
+### Neural Network Fundamentals
+
+#### The Artificial Neuron
+
+**Building block of neural networks:**
+
+```
+Inputs (x1, x2, x3) → [Weighted Sum + Bias] → Activation Function → Output
+```
+
+**Mathematical operation:**
+
+1. **Weighted sum:** `z = w1*x1 + w2*x2 + w3*x3 + b`
+2. **Activation function:** `output = activation(z)`
+
+**Example: Detecting bright pixels**
+
+```
+Inputs: [Red=0.8, Green=0.7, NIR=0.9]
+Weights: [w1=1.0, w2=1.0, w3=1.0]
+Bias: b = -2.0
+
+z = 1.0*0.8 + 1.0*0.7 + 1.0*0.9 - 2.0 = 0.4
+output = ReLU(0.4) = 0.4  (indicates moderately bright)
+```
+
+#### Network Architecture
+
+**Layers of neurons:**
+
+1. **Input Layer:** Receives raw data (e.g., pixel values from all spectral bands)
+2. **Hidden Layers:** Process and transform data through learned representations
+3. **Output Layer:** Produces final prediction (class probabilities or continuous values)
+
+**For a simple image classification:**
+
+```
+Input Layer (256 neurons = 16×16 image)
+   ↓
+Hidden Layer 1 (128 neurons with ReLU)
+   ↓
+Hidden Layer 2 (64 neurons with ReLU)
+   ↓
+Output Layer (5 neurons = 5 classes, softmax activation)
+```
+
+Each connection has a **weight** - the network learns optimal weights through training via backpropagation.
+
+#### Activation Functions
+
+**Introduce non-linearity - crucial for learning complex patterns**
+
+**Common activation functions:**
+
+| Function | Equation | Range | Use Case | Properties |
+|----------|----------|-------|----------|------------|
+| **ReLU** | `max(0, x)` | [0, ∞) | Hidden layers (most common) | Simple, efficient, avoids vanishing gradient |
+| **Sigmoid** | `1 / (1 + e^-x)` | (0, 1) | Binary classification output | Smooth, probabilistic interpretation |
+| **Softmax** | `e^xi / Σe^xj` | (0, 1), sum=1 | Multi-class classification output | Converts logits to probabilities |
+| **Tanh** | `(e^x - e^-x) / (e^x + e^-x)` | (-1, 1) | Hidden layers (older networks) | Zero-centered, smooth |
+| **LeakyReLU** | `max(αx, x), α=0.01` | (-∞, ∞) | Hidden layers | Allows small negative gradient |
+| **GELU** | `x * Φ(x)` | (-∞, ∞) | Transformers | Smooth, stochastic regularization |
+
+**Why activation functions matter:**
+
+Without non-linearity, multiple layers would collapse to a single linear transformation - no benefit from depth! Networks would only learn linear decision boundaries.
+
+::: {.callout-note}
+## ReLU: The Default Choice
+
+**ReLU (Rectified Linear Unit)** has become standard for hidden layers because:
+
+- Simple: `f(x) = max(0, x)`
+- Computationally efficient
+- Avoids vanishing gradient problem that plagued sigmoid/tanh
+- Empirically performs very well across diverse problems
+- Sparsity: ~50% of neurons set to zero, acting as automatic feature selection
+:::
+
+#### Loss Functions
+
+**Measure how wrong the model's predictions are**
+
+The model's objective: **minimize the loss function** through gradient descent optimization.
+
+**For classification:**
+
+**Categorical Cross-Entropy (Log Loss):**
+
+```
+Loss = -Σ(y_true * log(y_pred))
+```
+
+- Penalizes confident wrong predictions heavily
+- Encourages high probability for correct class
+- Standard for multi-class classification
+
+**Example:**
+```
+True class: Forest (encoded as [1, 0, 0, 0, 0])
+Prediction: [0.7, 0.1, 0.1, 0.05, 0.05]  ← Good, 70% on forest
+Loss = -1*log(0.7) = 0.36
+
+Prediction: [0.2, 0.3, 0.4, 0.05, 0.05]  ← Bad, only 20% on forest
+Loss = -1*log(0.2) = 1.61  (much higher penalty)
+```
+
+**Binary Cross-Entropy:**
+- For binary classification (e.g., flood vs. no-flood)
+- Similar principle, optimized for two classes
+
+**Focal Loss:**
+- Addresses class imbalance by down-weighting well-classified examples
+- Focuses training on hard examples
+- Used in RetinaNet object detection
+
+**For semantic segmentation:**
+
+**Dice Loss:**
+- Based on Dice coefficient: 2×IoU / (1 + IoU)
+- Differentiable, suitable for optimization
+- More balanced for small objects
+- Often used in medical imaging and EO segmentation
+
+**IoU Loss:**
+- Directly optimizes intersection over union
+- Less strict than Dice for small discrepancies
+
+**For regression:**
+
+**Mean Squared Error (MSE):**
+
+```
+Loss = (1/n) * Σ(y_true - y_pred)²
+```
+
+**Example: Biomass prediction:**
+```
+True: 150 tons/ha
+Prediction: 140 tons/ha
+Error: 10 tons/ha
+Squared Error: 100
+MSE = 100 (if single sample)
+```
+
+**Mean Absolute Error (MAE):**
+- Less sensitive to outliers than MSE
+- More robust when errors follow non-Gaussian distribution
+
+**Huber Loss:**
+- Combination of MSE (small errors) and MAE (large errors)
+- Robust to outliers while maintaining smooth gradient
+
+#### Optimizers
+
+**Algorithms that adjust weights to minimize loss**
+
+**The process:**
+
+1. Calculate loss on current batch of data
+2. Compute gradients (via backpropagation): how should each weight change?
+3. Update weights in direction that reduces loss
+4. Repeat thousands/millions of times across epochs
+
+**Common optimizers:**
+
+| Optimizer | Description | Learning Rate | When to Use |
+|-----------|-------------|---------------|-------------|
+| **SGD** | Stochastic Gradient Descent | Constant or scheduled | Simple, well-understood, good for fine-tuning |
+| **Adam** | Adaptive Moment Estimation | Adaptive per parameter | Default choice, usually works well |
+| **AdamW** | Adam with Weight Decay | Adaptive | Improved generalization, Transformers |
+| **RMSprop** | Root Mean Square Propagation | Adaptive | Good for RNNs/LSTMs |
+| **AdaGrad** | Adaptive Gradient | Adaptive | Features vary in frequency |
+
+**Adam is most popular** because:
+- Adapts learning rate per parameter
+- Combines benefits of momentum (accelerates convergence) and adaptive learning
+- Requires minimal tuning
+- Works well across diverse problems
+- Default hyperparameters (lr=0.001, β1=0.9, β2=0.999) often sufficient
+
+**Learning Rate Scheduling:**
+- **Step Decay:** Reduce learning rate at fixed intervals
+- **Cosine Annealing:** Smooth decay following cosine function
+- **Warm-up:** Gradually increase learning rate at beginning
+- **ReduceLROnPlateau:** Reduce when validation loss plateaus
+
+::: {.callout-tip}
+## Training Terminology
+
+**Epoch:** One complete pass through the entire training dataset
+
+**Batch:** Subset of training data processed together before updating weights
+
+**Iteration:** One weight update (one batch processed)
+
+**Example:**
+- Training data: 10,000 samples
+- Batch size: 100
+- 1 epoch = 100 iterations (10,000 / 100)
+- Training for 50 epochs = 5,000 iterations
+
+**Typical batch sizes for EO:**
+- Images: 16-64 (limited by GPU memory)
+- Patches: 32-128
+- Time series samples: 64-256
+:::
+
+#### The Training Process
+
+**Iterative improvement:**
+
+```
+1. Initialize weights (random or pre-trained)
+2. For each epoch:
+    For each batch:
+        a. Forward pass: Compute predictions
+        b. Calculate loss
+        c. Backward pass: Compute gradients (backpropagation)
+        d. Update weights using optimizer
+    e. Evaluate on validation set
+    f. Save checkpoint if best performance
+3. Stop when validation performance plateaus (early stopping)
+```
+
+**Monitoring training:**
+
+- **Training loss should decrease** - model learning patterns in training data
+- **Validation loss should decrease** - model generalizing to new data
+- **If validation loss increases while training loss decreases:** Overfitting! Apply regularization.
+- **If both losses remain high:** Underfitting. Need more capacity or better features.
+
+**Regularization techniques:**
+- **Dropout:** Randomly deactivate neurons during training
+- **Weight Decay (L2):** Penalize large weights
+- **Data Augmentation:** Artificially expand training data
+- **Early Stopping:** Stop training when validation loss stops improving
+- **Batch Normalization:** Normalize activations, improves stability
+
+### Convolutional Neural Networks (CNNs)
+
+**CNNs are the foundation of modern computer vision and EO analysis**
+
+#### Why CNNs Excel at EO
+
+**Traditional ML:**
+- Manual feature engineering needed (NDVI, GLCM textures)
+- Limited ability to capture spatial patterns
+- Each pixel treated somewhat independently
+- Features fixed before training
+
+**CNNs:**
+- **Automatic feature extraction** from raw pixels
+- **Spatial awareness** through convolutional filters
+- **Hierarchical learning:** edges → textures → objects → scenes
+- **Translation invariance:** Detects patterns anywhere in image
+- **Parameter sharing:** Same filters applied across entire image (efficiency)
+- **Multi-scale analysis:** Through pooling and different kernel sizes
+
+#### CNN Architecture Components
+
+```{mermaid}
+%%| fig-cap: "Convolutional Neural Network Architecture for Land Cover Classification"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Input Image<br/>Sentinel-2<br/>64x64x13 bands] --> B[Conv Layer 1<br/>32 filters 3x3<br/>ReLU activation]
+
+    B --> C[Max Pooling<br/>2x2<br/>32x32x32]
+
+    C --> D[Conv Layer 2<br/>64 filters 3x3<br/>ReLU activation]
+
+    D --> E[Max Pooling<br/>2x2<br/>16x16x64]
+
+    E --> F[Conv Layer 3<br/>128 filters 3x3<br/>ReLU activation]
+
+    F --> G[Max Pooling<br/>2x2<br/>8x8x128]
+
+    G --> H[Flatten<br/>8192 neurons]
+
+    H --> I[Dense Layer<br/>256 neurons<br/>ReLU + Dropout]
+
+    I --> J[Output Layer<br/>Softmax<br/>6 classes]
+
+    J --> K[Predictions<br/>Forest: 0.85<br/>Water: 0.05<br/>Urban: 0.03<br/>Agriculture: 0.04<br/>Bare: 0.02<br/>Wetlands: 0.01]
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style B fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style C fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style D fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style E fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style F fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style G fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style I fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style J fill:#e6e6ff,stroke:#6666cc,stroke-width:2px
+    style K fill:#ccffcc,stroke:#00aa44,stroke-width:2px
+```
+
+**Convolutional Layers:**
+- Apply learnable filters (kernels) across image
+- Each filter detects specific patterns (edges, textures, shapes)
+- Example: 3×3 kernel slides across image, computing dot product
+- Multiple filters per layer (e.g., 64, 128, 256 filters)
+- Stride controls movement (stride=1: every pixel, stride=2: every other pixel)
+- Padding preserves spatial dimensions
+
+**Pooling Layers:**
+- Reduce spatial dimensions
+- Max pooling: Take maximum value in window (common)
+- Average pooling: Take average value
+- Increases receptive field
+- Provides translation invariance
+- Reduces computational cost
+
+**Fully Connected Layers:**
+- Traditional neural network layers at end
+- Flatten spatial features
+- Perform final classification
+- Often replaced by Global Average Pooling in modern architectures
+
+#### Popular CNN Architectures for EO
+
+**VGG Networks (VGG16, VGG19):**
+- Deep architecture with small (3×3) convolutional filters
+- Simple, uniform design
+- 16 or 19 layers
+- Large memory footprint
+- **EO Application:** VGG16 with instance normalization applied for LULC classification
+- Good for transfer learning from ImageNet
+
+**ResNet (Residual Networks):**
+- **Innovation:** Skip connections address vanishing gradient problem
+- Enables very deep networks (50, 101, 152 layers)
+- Residual blocks: `output = F(x) + x`
+- **Performance:** ResNet-18 and ResNet-50 widely used as encoders in semantic segmentation
+- **EO Success:** U-Net with ResNet encoder achieved precision 0.943 and recall 0.954 for building extraction
+- Winner architecture in many EO competitions
+
+**Inception/GoogLeNet:**
+- Multi-scale feature extraction
+- Parallel convolutions with different kernel sizes (1×1, 3×3, 5×5)
+- Computationally efficient through 1×1 bottleneck layers
+- **EO Application:** Multi-scale land cover classification
+
+**EfficientNet:**
+- **Innovation:** Compound scaling of depth, width, and resolution
+- Optimal balance between accuracy and computational efficiency
+- EfficientNet-B0 to B7 variants
+- **EO Application:** Increasingly popular for resource-constrained applications
+- Mobile deployment, edge computing
+
+::: {.callout-note}
+## Transfer Learning for EO
+
+Pre-trained CNNs (trained on ImageNet) are widely used in EO:
+
+**Advantages:**
+- Reduce training time
+- Improve performance with limited data
+- Lower layers learn generic features (edges, textures) applicable across domains
+
+**Considerations:**
+- ImageNet uses RGB images; EO often has more bands
+- Solutions: Use only RGB bands, or initialize additional channels with pre-trained weights
+- Fine-tune all layers or freeze early layers
+
+**Recent Research (2024):**
+Self-supervised pre-training on RS data (SatMAE, SatViT) offers modest improvements over ImageNet in few-shot settings, especially when pre-trained on domain-specific EO data.
+:::
+
+### U-Net and Semantic Segmentation
+
+#### U-Net Architecture
+
+**Description:** Encoder-decoder architecture with skip connections, originally designed for biomedical image segmentation but widely adopted for Earth Observation.
+
+```{mermaid}
+%%| fig-cap: "U-Net Architecture for Semantic Segmentation (Flood Mapping Example)"
+%%| fig-width: 100%
+
+flowchart TD
+    subgraph Encoder["ENCODER (Contracting Path)"]
+        A[Input<br/>SAR Image<br/>256x256x2<br/>VV, VH] --> B[Conv 3x3<br/>ReLU<br/>64 filters]
+        B --> C[Conv 3x3<br/>ReLU<br/>64 filters]
+        C --> D[Max Pool 2x2<br/>128x128x64]
+
+        D --> E[Conv 3x3<br/>128 filters]
+        E --> F[Conv 3x3<br/>128 filters]
+        F --> G[Max Pool 2x2<br/>64x64x128]
+
+        G --> H[Conv 3x3<br/>256 filters]
+        H --> I[Conv 3x3<br/>256 filters]
+        I --> J[Max Pool 2x2<br/>32x32x256]
+    end
+
+    subgraph Bottleneck["BOTTLENECK"]
+        J --> K[Conv 3x3<br/>512 filters]
+        K --> L[Conv 3x3<br/>512 filters]
+    end
+
+    subgraph Decoder["DECODER (Expanding Path)"]
+        L --> M[Up-Conv 2x2<br/>256 filters<br/>64x64x256]
+        M --> N[Concatenate<br/>with I]
+        N --> O[Conv 3x3<br/>256 filters]
+        O --> P[Conv 3x3<br/>256 filters]
+
+        P --> Q[Up-Conv 2x2<br/>128 filters<br/>128x128x128]
+        Q --> R[Concatenate<br/>with F]
+        R --> S[Conv 3x3<br/>128 filters]
+        S --> T[Conv 3x3<br/>128 filters]
+
+        T --> U[Up-Conv 2x2<br/>64 filters<br/>256x256x64]
+        U --> V[Concatenate<br/>with C]
+        V --> W[Conv 3x3<br/>64 filters]
+        W --> X[Conv 3x3<br/>64 filters]
+    end
+
+    X --> Y[Conv 1x1<br/>2 classes<br/>Sigmoid]
+    Y --> Z[Output<br/>Flood Mask<br/>256x256x2<br/>Water/No-Water]
+
+    I -.->|Skip Connection| N
+    F -.->|Skip Connection| R
+    C -.->|Skip Connection| V
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style Encoder fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Bottleneck fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Decoder fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Z fill:#ccffcc,stroke:#00aa44,stroke-width:3px
+```
+
+**Architecture:**
+- **Encoder (Contracting Path):** Progressively downsamples input (convolutional + pooling), capturing context
+- **Decoder (Expanding Path):** Upsamples features (transpose convolution), enabling precise localization
+- **Skip Connections:** Concatenate encoder features with decoder at same resolution, preserving spatial information
+- Fully symmetric structure
+
+**Why U-Net Works Well:**
+- Skip connections preserve fine-grained spatial information lost during downsampling
+- Works with relatively small training datasets (important for EO where labels are expensive)
+- End-to-end pixel-wise predictions
+- Multi-scale feature fusion
+
+**Applications in EO:**
+- Land cover semantic segmentation
+- Building footprint extraction
+- Road network mapping
+- Crop field delineation
+- Water body detection
+- Flood extent mapping
+
+::: {.philippine-context}
+**Philippine Case Study: Benguet Province Deforestation**
+
+**Study Details:**
+- Location: Benguet Province tropical montane forest
+- Time period: 2015 to early 2022
+- Total deforestation detected: 417.93 km²
+- **Significance:** First deep learning application in Southeast Asian montane forests
+
+**Methods:**
+- Sentinel-1 SAR and Sentinel-2 optical fusion
+- U-Net deep learning architecture
+- Comparison with Random Forest and K-Nearest Neighbors
+
+**Performance:**
+- **Accuracy: 99.73%** for binary forest/non-forest classification
+- Outperformed traditional ML methods
+- Validated effectiveness of multi-sensor data fusion
+- Demonstrated U-Net suitability for tropical conditions
+
+**Technology Advantages:**
+- SAR cloud-penetrating capability fills observational gap in tropics
+- Multi-temporal analysis detects gradual and abrupt changes
+- Automated processing enables continuous monitoring
+- Scalable to national level
+:::
+
+**U-Net Variants and Improvements:**
+
+**UNet++:**
+- Nested skip connections for improved gradient flow
+- Dense skip pathways
+- Better feature aggregation
+
+**Attention U-Net:**
+- Incorporates attention mechanisms to focus on relevant features
+- Attention gates highlight salient features
+- Improved performance on complex scenes
+
+**3D U-Net:**
+- Extends to volumetric data or multi-temporal stacks
+- Temporal convolutions for time series
+- Applications: Crop monitoring, change detection
+
+**U-Net with Advanced Encoders:**
+- **U-Net with ResNet encoder:** Combines U-Net decoder with ResNet encoder
+- **U-Net with SK-ResNeXt encoder:** Integrates selective kernel and ResNeXt for enhanced feature extraction
+- **UNetFormer:** Hybrid CNN encoder + Transformer decoder (discussed below)
+
+**Performance Metrics:**
+- Mean IoU (mIoU): Average IoU across all classes
+- F1-Score per class
+- Boundary accuracy for precise delineation
+
+### DeepLab Family
+
+**DeepLab:** State-of-the-art semantic segmentation architecture family
+
+**Key Innovations:**
+
+**Atrous (Dilated) Convolutions:**
+- Enlarge receptive field without losing resolution
+- Insert "holes" in convolution kernel
+- Capture multi-scale context efficiently
+
+**Atrous Spatial Pyramid Pooling (ASPP):**
+- Parallel atrous convolutions with different rates
+- Captures features at multiple scales
+- Aggregates information from different receptive fields
+
+**Encoder-Decoder Structure (DeepLabv3+):**
+- Similar to U-Net philosophy
+- Combines ASPP with decoder for refined boundaries
+
+**Performance:**
+- DeepLabv3+ shows superior performance compared to standard U-Net on many benchmarks
+- Improved Mean IoU
+- Better boundary delineation
+
+**EO Applications:**
+- Large-scale land cover mapping
+- Urban scene segmentation
+- Agricultural field boundaries
+
+**Comparison: U-Net vs. DeepLab**
+- **U-Net:** Better with limited data, simpler architecture, faster training
+- **DeepLab:** Better overall performance, more complex, requires more data
+- **Both:** Widely used in EO, choice depends on data availability and computational resources
+
+### Vision Transformers (ViTs)
+
+**Paradigm shift from convolutions to self-attention mechanisms**
+
+#### Fundamentals
+
+**Architecture:**
+
+1. **Patch Embedding:** Divide image into fixed-size patches (e.g., 16×16 pixels)
+2. **Linear Projection:** Flatten patches and project to embedding dimension (e.g., 768-D)
+3. **Positional Encoding:** Add learnable position information to preserve spatial relationships
+4. **Transformer Encoder:** Stack of multi-head self-attention and feed-forward layers
+5. **Classification Head:** MLP (Multi-Layer Perceptron) for final prediction
+
+**Self-Attention Mechanism:**
+- Models relationships between all image patches
+- Each patch "attends to" all other patches
+- Learns which patches are relevant for prediction
+- Captures long-range dependencies
+- Adaptively focuses on informative regions
+
+**Mathematical Formulation:**
+```
+Attention(Q, K, V) = softmax(QK^T / √d_k) V
+
+Q = Query (what am I looking for?)
+K = Key (what do I contain?)
+V = Value (what information do I pass?)
+```
+
+**Multi-Head Attention:**
+- Multiple attention mechanisms in parallel
+- Each head learns different relationships
+- Aggregate outputs for richer representation
+
+#### Advantages for EO
+
+**Global Context Modeling:**
+- Attention mechanism captures relationships across entire image from early layers
+- CNNs build up receptive field gradually through layers
+- Particularly valuable for EO where context matters (e.g., urban vs. rural forest)
+
+**Long-Range Dependencies:**
+- Can relate distant image regions
+- Example: Recognizing rice paddy requires context of surrounding infrastructure, water bodies
+
+**Effective for Large-Scale Imagery:**
+- Scales well to high-resolution satellite images
+- Efficient self-attention variants reduce computational cost
+
+**Strong Transfer Learning:**
+- Pre-trained ViTs transfer well across tasks
+- SatViT: Pre-trained on 1.3 million satellite-derived RS images
+
+**Handles Variable Input Sizes:**
+- Flexible patch-based approach
+- Can adapt to different image resolutions
+
+#### Variants for Remote Sensing
+
+**Swin Transformer:**
+- **Innovation:** Hierarchical architecture with shifted windows
+- Local attention within windows (efficient computation)
+- Shifted window scheme enables cross-window connections
+- Multi-scale feature representation (like CNN feature pyramids)
+- State-of-the-art performance on many EO benchmarks
+
+**ViT with Spectral Adaptation:**
+- Modified patch embedding for multi-spectral inputs
+- Handles variable number of spectral bands (not just RGB)
+- Pre-training on large satellite image datasets
+- Applications: Hyperspectral classification, multi-sensor fusion
+
+**SatViT:**
+- Pre-trained on 1.3 million satellite-derived RS images
+- Domain-specific Vision Transformer for remote sensing
+- Improved transfer learning performance over ImageNet pre-training
+- Publicly available for EO community
+
+**MS-CLIP (IBM, 2024):**
+- First vision-language model for multi-spectral Sentinel-2 data
+- Adapts CLIP dual-encoder architecture for 10+ spectral bands
+- Enables zero-shot classification and image-text retrieval
+- **Example:** "Show me images with dense vegetation" without explicit classification
+
+#### Challenges
+
+**Data Requirements:**
+- ViTs require large training datasets (millions of samples)
+- Less effective with small datasets compared to CNNs
+- Solution: Transfer learning from pre-trained models (SatViT, ImageNet)
+
+**Computational Cost:**
+- Self-attention quadratic complexity in number of patches
+- Memory intensive for high-resolution images
+- Solutions: Swin Transformer (local attention), efficient attention mechanisms
+
+**Interpretability:**
+- Attention maps provide some interpretability
+- Can visualize which patches model focuses on
+- Still less intuitive than CNN filter visualizations
+
+### Hybrid Architectures: UNetFormer
+
+**UNetFormer:** Combines CNN encoders with Transformer decoders
+
+**Description:**
+Hybrid architecture leveraging strengths of both CNNs and Transformers
+
+**Key Features:**
+- **CNN Encoder:** ResNet18 captures local spatial features efficiently
+- **Transformer Decoder:** Models global context and long-range dependencies
+- **Hybrid Design:** Balances computational efficiency with modeling capacity
+- Skip connections from encoder to decoder (like U-Net)
+
+**Performance:**
+- State-of-the-art on remote sensing semantic segmentation benchmarks
+- Particularly effective for urban scene imagery
+- Outperforms pure CNN and pure Transformer approaches on many tasks
+
+**Related Architectures:**
+- **UNeXt:** Efficient network optimizing depth, width, and resolution
+- **UNetFormer with boundary enhancement:** Multi-scale approach for improved edge detection
+- **Segformer:** Transformer encoder + lightweight decoder
+
+**When to Use:**
+- Complex EO scenes requiring both local detail and global context
+- Semantic segmentation tasks with diverse object scales
+- When computational resources allow (more expensive than standard U-Net)
+
+### Temporal Models for Time Series
+
+**Multi-temporal satellite data captures dynamic processes - temporal models extract these patterns**
+
+#### LSTM and GRU
+
+**LSTM (Long Short-Term Memory):**
+- **Purpose:** Temporal pattern learning in sequential data
+- **Architecture:** Recurrent neural network with gating mechanisms
+- **Gates:** Input gate, forget gate, output gate, cell state
+- **Advantage:** Learns long-term dependencies, avoids vanishing gradient problem of vanilla RNNs
+
+**Applications in EO:**
+- **Time series classification:** Crop type mapping from multi-temporal NDVI
+- **Phenology monitoring:** Extracting growing season characteristics
+- **Yield prediction:** Forecasting crop yields from vegetation index time series
+- **Change detection:** Detecting disturbances in forest time series
+- **Weather forecasting:** Climate variables prediction
+
+**GRU (Gated Recurrent Unit):**
+- Simplified version of LSTM
+- Fewer parameters (faster training)
+- Often comparable performance to LSTM
+- Good choice when computational resources are limited
+
+**Performance:**
+- **Most Used:** RNNs applied in >22% of EO time series studies
+- **LSTMs Preferred:** Used in >40% of crop yield prediction studies
+- **Accuracy:** R² > 0.93 for corn and soybean yield prediction
+
+::: {.philippine-context}
+**Philippine Application: Crop Yield Forecasting with LSTM**
+
+**PRiSM Enhanced with Deep Learning:**
+
+**Data:**
+- Multi-temporal Sentinel-1 SAR backscatter (VV, VH polarizations)
+- Sentinel-2 NDVI time series
+- PAGASA weather data (rainfall, temperature)
+- Historical yield records from PhilRice
+
+**Approach:**
+- LSTM network processes time series sequentially
+- Captures phenological patterns (planting, vegetative growth, reproductive phase, maturity)
+- Integrates weather variables as auxiliary inputs
+- Trained on multi-year data across provinces
+
+**Performance:**
+- Earlier and more accurate yield forecasts than statistical models
+- Mid-season prediction (2-3 months before harvest) with acceptable accuracy
+- Integration with PRiSM for operational deployment
+
+**Applications:**
+- Food security early warning
+- Crop insurance (PCIC)
+- Agricultural planning and market stabilization
+- Disaster impact assessment
+:::
+
+#### ConvLSTM
+
+**ConvLSTM:** Combines spatial convolutions with temporal LSTM
+
+**Architecture:**
+- Replaces matrix multiplications in LSTM with convolutional operations
+- Preserves spatial structure throughout temporal modeling
+- Input: 3D tensor (time, height, width)
+- Output: Spatial predictions over time
+
+**Advantages:**
+- Captures both spatial and temporal patterns simultaneously
+- More parameter efficient than separate spatial and temporal models
+- End-to-end learning
+
+**Applications:**
+- Weather forecasting and precipitation nowcasting
+- Flood prediction from time series of meteorological variables
+- Crop monitoring with spatial context
+- Spatiotemporal land cover change
+
+#### Temporal Attention
+
+**Lightweight Temporal Attention Encoder (L-TAE):**
+- **Innovation:** Distributes channels among compact attention heads operating in parallel
+- Outperforms RNNs with fewer parameters and reduced computational complexity
+- Particularly effective for satellite image time series (SITS) classification
+
+**Multi-Head Temporal Attention:**
+- Each head attends to different temporal patterns
+- Learn complementary temporal representations
+- Aggregate outputs for final prediction
+
+**Advantages over LSTMs:**
+- Parallelizable (faster training)
+- Direct access to all time steps (no sequential bottleneck)
+- Attention weights provide interpretability (which dates are important?)
+
+**Applications:**
+- Crop type classification from Sentinel-2 time series
+- Land cover change detection
+- Phenology extraction
+
+#### Temporal Transformers
+
+**Transformer for Time Series:**
+- Self-attention over temporal sequence
+- Positional encoding preserves temporal order
+- Can model arbitrarily long sequences
+
+**TiMo (2025):**
+- **Description:** Spatiotemporal vision transformer foundation model
+- **Innovation:** Hierarchical gyroscope attention mechanism
+- Captures evolving multi-scale patterns across time and space
+- Pre-trained on large satellite image time series datasets
+
+**Advantages:**
+- Global temporal context from first layer
+- Handles variable-length sequences
+- State-of-the-art performance on temporal EO tasks
+
+**Challenges:**
+- Requires large amounts of training data
+- Computationally expensive
+- Best suited for long time series (many observations)
+
+### Object Detection Architectures
+
+**Object detection identifies and localizes specific objects with bounding boxes**
+
+#### YOLO (You Only Look Once)
+
+**Characteristics:**
+- **Real-time detection:** Single-pass architecture, processes entire image once
+- **Fast inference:** 30-60+ FPS depending on variant
+- **Good accuracy-speed trade-off:** Suitable for operational systems
+- **Single-stage detector:** Predicts bounding boxes and class probabilities directly
+
+**Versions:**
+- **YOLOv3:** Introduced multi-scale predictions
+- **YOLOv4:** Enhanced training techniques, better accuracy
+- **YOLOv5:** Popular, well-documented, easy to use (Ultralytics implementation)
+- **YOLOv6-v8:** Latest, best performance, improved small object detection
+- **YOLO-NAS:** Neural Architecture Search, state-of-the-art accuracy
+
+**Applications in EO:**
+- **Building detection:** Rapid mapping of structures for disaster damage assessment
+- **Vehicle detection:** Traffic monitoring, parking lot analysis
+- **Ship detection:** Maritime surveillance, illegal fishing monitoring
+- **Small object detection:** Improved in recent versions (important for vehicles, individual trees)
+
+**Advantages:**
+- Fast training and inference
+- Good generalization
+- Easy to deploy
+- Active community and pre-trained models
+
+#### R-CNN Family
+
+**Faster R-CNN:**
+- **Architecture:** Two-stage detector
+- **Stage 1:** Region Proposal Network (RPN) generates candidate object locations
+- **Stage 2:** Classifies proposals and refines bounding boxes
+- **Advantage:** High accuracy, especially for diverse object sizes
+- **Disadvantage:** Slower than single-stage detectors like YOLO
+
+**Mask R-CNN:**
+- **Extension of Faster R-CNN:** Adds instance segmentation branch
+- **Output:** Bounding box + pixel-level mask for each object
+- **Applications:**
+  - Building footprints with precise boundaries
+  - Individual tree crown delineation
+  - Object-level change detection
+  - Counting objects (vehicles, animals) with high precision
+
+**Performance:**
+- Generally higher accuracy than YOLO
+- Better for complex scenes with occlusions
+- Preferred when accuracy is more important than speed
+
+#### RetinaNet
+
+**Key Innovation:**
+- **Focal Loss:** Addresses class imbalance by down-weighting well-classified examples
+- Focuses training on hard examples
+- Single-stage detector
+
+**Advantages:**
+- Excellent for imbalanced datasets (common in EO: rare objects like ships, rare land cover classes)
+- Competitive accuracy with two-stage detectors
+- Faster than R-CNN family
+
+**Applications:**
+- Rare object detection (e.g., informal settlements, landslides)
+- Multi-class detection with imbalanced classes
+
+#### EfficientDet
+
+**Key Innovation:**
+- **Compound scaling:** Jointly scales resolution, depth, and width
+- **BiFPN (Bi-directional Feature Pyramid Network):** Efficient multi-scale feature fusion
+
+**Advantages:**
+- Optimal balance between accuracy and efficiency
+- Scalable (EfficientDet-D0 to D7)
+- Suitable for deployment on resource-constrained devices
+
+**Applications:**
+- Edge computing and mobile deployment
+- Operational systems requiring fast inference
+
+**Comparison Table:**
+
+| Architecture | Speed | Accuracy | Best For |
+|--------------|-------|----------|----------|
+| **YOLO** | Very Fast | Good | Real-time applications, rapid mapping |
+| **Faster R-CNN** | Slow | High | High-accuracy requirements, diverse object sizes |
+| **Mask R-CNN** | Slow | High | Instance segmentation, precise boundaries |
+| **RetinaNet** | Moderate | High | Imbalanced datasets, rare objects |
+| **EfficientDet** | Fast-Moderate | High | Balanced accuracy/speed, deployment |
+
+### Multi-Modal Architectures
+
+**Integrating data from multiple sensors for robust monitoring**
+
+#### Optical-SAR Fusion
+
+**Complementary Information:**
+- **Optical:** Rich spectral information (13 bands for Sentinel-2), sensitive to biochemical properties
+- **SAR:** Structural information (backscatter), penetrates clouds, sensitive to moisture and geometry
+
+**Fusion Strategies:**
+
+**Early Fusion (Input-level):**
+- Concatenate inputs at beginning
+- Example: Stack Sentinel-2 bands with Sentinel-1 VV/VH as additional channels
+- Simple, but assumes features align semantically
+- **Advantage:** Single model processes all modalities
+- **Disadvantage:** May not capture modality-specific patterns optimally
+
+**Late Fusion (Decision-level):**
+- Separate models for each modality
+- Combine predictions (average, weighted average, voting)
+- **Advantage:** Each modality processed optimally
+- **Disadvantage:** Doesn't exploit inter-modality relationships
+
+**Intermediate Fusion (Feature-level):**
+- Merge features at middle layers
+- Learn joint representations
+- **Advantage:** Balances early and late fusion benefits
+- **Disadvantage:** More complex architecture design
+
+**Recent Approaches:**
+
+**Progressive Fusion Learning:**
+- Gradually integrates multimodal information
+- Addresses semantic misalignment between modalities
+- Applications: Building extraction with optical + SAR
+
+**M2Caps (Multi-modal Capsule Networks, 2024):**
+- Capsule networks for optical-SAR fusion
+- Applications: Land cover classification
+- Handles appearance disparities between modalities
+
+**Bi-modal Contrastive Learning:**
+- Self-supervised approach for joint representation
+- Pre-training on unlabeled optical-SAR pairs
+- Fine-tune for specific tasks (crop classification, change detection)
+
+**Transformer Temporal-Spatial Model (TTSM):**
+- Synergizes SAR and optical time-series for vegetation monitoring
+- **Performance:** R² > 0.88 for vegetation reconstruction
+- Handles missing data in one modality
+
+::: {.philippine-context}
+**Philippine Application: All-Weather Rice Monitoring**
+
+**PRiSM Multi-Sensor Approach:**
+
+**Challenge:** Philippines has >60% cloud cover during monsoon season (June-November)
+
+**Solution:** Sentinel-1 SAR + Sentinel-2 optical fusion
+
+**Methodology:**
+- **Sentinel-1 SAR:** Primary data source during wet season (cloud-penetrating)
+- **Sentinel-2 optical:** Complementary data during dry season and cloud-free periods
+- **Feature-level fusion:** Combine SAR backscatter (VV, VH) with optical indices (NDVI, EVI)
+- **Random Forest classifier:** Trained on fused features
+
+**Benefits:**
+- Year-round monitoring regardless of weather
+- Higher accuracy than single-sensor approach
+- Reduced data gaps
+- Continuous rice area tracking
+
+**Operational Impact:**
+- Reliable per-season mapping even during typhoons
+- Supports disaster damage assessment
+- Improved yield prediction with temporal SAR backscatter patterns
+:::
+
+**Challenges:**
+- Modality alignment: Different imaging mechanisms (reflectance vs. backscatter)
+- Semantic misalignment: Features may not correspond across modalities
+- Optimal fusion level depends on task and data availability
+- Increased computational cost
+
+**Applications:**
+- All-weather land cover classification
+- Crop monitoring during cloudy seasons
+- Building extraction (optical for spectral, SAR for structure)
+- Flood mapping (SAR for water extent, optical for pre-event land cover)
+- Forest biomass estimation (optical for species, SAR for structure)
+
+### Foundation Models for Earth Observation
+
+**Foundation models are large, pre-trained models adaptable to various downstream tasks**
+
+Emerged as transformative trend in EO 2023-2025, dramatically reducing resources required for environmental monitoring.
+
+#### Prithvi Family (IBM-NASA)
+
+**Prithvi-EO-1.0 (August 2023):**
+- **Scale:** 100 million parameters
+- **Training Data:** NASA's Harmonized Landsat Sentinel-2 (HLS) dataset
+- **Pre-training Strategy:** Masked autoencoder (MAE) - self-supervised learning on unlabeled imagery
+- **Significance:** World's largest geospatial AI model at release
+- **Availability:** Open-source on Hugging Face
+
+**Prithvi-EO-2.0 (December 2024):**
+- **Scale:** 600 million parameters (6× larger than predecessor)
+- **Training Data:** 4.2 million global time series samples from HLS at 30m resolution
+- **Architecture:** Temporal transformer with location and temporal embeddings
+- **Performance:** 75.6% average score on GEO-bench framework (8% improvement over 1.0)
+- **Availability:** Hugging Face and IBM's TerraTorch toolkit
+
+**Applications Demonstrated:**
+- **Flood Mapping:** Valencia, Spain floods (October 2024) using Sentinel-1 + Sentinel-2
+- **Burn Scar Detection:** Wildfire impact assessment
+- **Cloud Gap Reconstruction:** Filling missing data in cloudy imagery
+- **Multi-Temporal Crop Segmentation:** Mapping crop types across United States
+
+**Fine-Tuning Workflow:**
+1. Load pre-trained Prithvi model
+2. Replace classification head for specific task
+3. Fine-tune on small labeled dataset (hundreds to thousands of samples)
+4. Deploy for inference
+
+**Impact:**
+- Enables users with limited ML expertise to deploy state-of-the-art models
+- Reduces labeled data requirements by 10-100×
+- Democratizes access to advanced AI for EO
+- Foundation for operational systems in resource-constrained settings
+
+**Deployment:**
+- Integrated into IBM's TerraTorch toolkit for easy fine-tuning
+- Model zoo with pre-trained variants
+- Tutorials and example notebooks
+
+#### Other Foundation Models
+
+**SatMAE:**
+- Masked autoencoding for satellite imagery
+- Self-supervised pre-training on unlabeled data
+- Transfer learning for downstream tasks
+- Competitive with ImageNet pre-training in few-shot scenarios
+
+**SatViT:**
+- Pre-trained Vision Transformer on 1.3 million satellite-derived RS images
+- Domain-specific for remote sensing
+- Improved transfer learning over ImageNet pre-training
+- Publicly available for EO community
+
+**MS-CLIP (IBM, 2024):**
+- First vision-language model for multi-spectral Sentinel-2 data
+- Dual encoder architecture adapted from CLIP
+- Handles 10+ spectral bands (not just RGB)
+- **Capabilities:**
+  - Zero-shot classification: Classify without task-specific training
+  - Image-text retrieval: "Find images with rice paddies"
+  - Semantic search: Natural language queries over satellite archives
+
+**TiMo (2025):**
+- Spatiotemporal vision transformer foundation model for satellite image time series
+- Hierarchical gyroscope attention mechanism
+- Captures evolving multi-scale patterns across time and space
+- Pre-trained on large temporal satellite datasets
+
+**Why Foundation Models Matter:**
+
+1. **Data Efficiency:** Pre-training on massive unlabeled data, fine-tune with small labeled sets
+2. **Generalization:** Learn robust representations applicable across tasks and regions
+3. **Democratization:** Lower barrier to entry for EO AI applications
+4. **Rapid Deployment:** Quickly adapt to new applications without training from scratch
+5. **Transfer Across Domains:** Models pre-trained globally applicable to local Philippine contexts
+
+::: {.callout-note}
+## Self-Supervised Learning
+
+Foundation models typically use **self-supervised learning** for pre-training:
+
+**Masked Autoencoding (MAE):**
+- Randomly mask patches of input image
+- Model learns to reconstruct masked patches
+- Forces model to learn semantic representations
+- No labels needed - learns from structure of data itself
+
+**Contrastive Learning (MoCo, SimCLR):**
+- Learn representations by contrasting positive and negative pairs
+- Augmented views of same image are positive pairs
+- Different images are negative pairs
+- Model learns invariance to augmentations
+
+**SSL4EO-S12 Dataset:**
+- Large-scale, global, multimodal corpus from Sentinel-1 and Sentinel-2
+- Supports self-supervised pre-training research
+- Multi-seasonal coverage
+- Enables research on contrastive learning for remote sensing
+:::
+
+### Training Strategies
+
+**Transfer Learning:**
+- **Approach:** Pre-train on large dataset (ImageNet, SatViT, Prithvi), fine-tune on task-specific data
+- **Benefits:** Reduces training time, improves performance with limited data
+- **Best Practice:** Freeze early layers (generic features), fine-tune later layers (task-specific features)
+- **Recent Research (2024):** Self-supervised pre-training on RS data offers modest improvements over ImageNet in few-shot settings
+
+**Data Augmentation:**
+- **Rotation and flipping:** Particularly suitable for satellite imagery (no canonical orientation)
+- **Color jittering:** Simulate atmospheric variations
+- **Random crops:** Increase spatial diversity
+- **Mixup and CutMix:** Regularization techniques for classification
+- **Caution:** Ensure augmentations are realistic for EO (e.g., don't vertically flip landscapes with clear sky/ground distinction)
+
+**Self-Supervised Learning:**
+- **Contrastive learning:** MoCo, SimCLR for learning representations
+- **Masked image modeling:** MAE for learning to reconstruct images
+- **Multi-modal alignment:** CLIP-style vision-language pre-training
+- **SSL4EO-2024 Summer School:** First summer school on self-supervised learning for EO (July 2024, Copenhagen)
+
+**Few-Shot Learning:**
+- **Motivation:** Limited labeled data, expensive annotation
+- **Methods:** Metric learning, meta-learning, prototypical networks
+- **Applications:** Novel land cover classes, rare object detection, new geographic regions
+- **Example:** Gerry Roxas Foundation deforestation classification achieved 43% accuracy with only 8% training data
+
+**Active Learning:**
+- **Strategy:** Iteratively select most informative samples for labeling
+- **Process:** Train model → Find uncertain predictions → Label those → Retrain
+- **Benefits:** Reduced annotation cost (27% improvement in mIoU with only 2% labeled data)
+- **WeakAL Framework:** Combines active learning and weak supervision, computing >90% of labels automatically while maintaining competitive performance
+
+**Best Practices:**
+- Start with pre-trained weights when available (Prithvi, SatViT, ImageNet)
+- Use appropriate learning rate schedules (cosine annealing with warm-up)
+- Apply batch normalization or layer normalization for training stability
+- Monitor overfitting through validation metrics (gap between train and validation loss)
+- Implement early stopping and model checkpointing
+- Use mixed-precision training (FP16) for faster training on modern GPUs
+
+---
+
+## Part 5: Benchmark Datasets for Training and Validation
+
+**Benchmark datasets enable standardized comparison of algorithms and serve as training resources**
+
+### Patch-Level Classification Datasets
+
+#### EuroSAT
+
+**Specifications:**
+- **Images:** 27,000 labeled images
+- **Classes:** 10 land cover types
+- **Size:** 64×64 pixel patches
+- **Bands:** 13 (Sentinel-2 multispectral)
+- **Coverage:** Europe
+- **Classification Accuracy:** 98.57% achieved with CNNs
+
+**Classes:**
+Annual Crop, Forest, Herbaceous Vegetation, Highway, Industrial Buildings, Pasture, Permanent Crop, Residential Buildings, River, Sea/Lake
+
+**Access:**
+- GitHub: https://github.com/phelber/EuroSAT
+- TensorFlow Datasets
+- PyTorch datasets
+- Commonly used for benchmarking deep learning architectures
+
+#### BigEarthNet v2.0
+
+**Specifications:**
+- **Patches:** 549,488 paired Sentinel-1 and Sentinel-2 patches
+- **Size:** 1.2×1.2 km on ground
+- **Classes:** 19 (CORINE Land Cover nomenclature)
+- **Type:** Multi-label classification (multiple classes per patch)
+- **Coverage:** 10 European countries (Austria, Belgium, Finland, Ireland, Kosovo, Lithuania, Luxembourg, Portugal, Serbia, Switzerland)
+
+**Key Features:**
+- Multi-modal (optical + SAR)
+- Multi-label annotations (real-world complexity)
+- Large-scale (largest Sentinel dataset)
+
+**Access:**
+- Website: https://bigearth.net/
+- TensorFlow Datasets
+- Papers With Code
+
+**Applications:**
+- Multi-label land cover classification
+- Multi-modal fusion research
+- Benchmark for semantic segmentation
+
+#### LandCoverNet
+
+**Specifications:**
+- Global coverage
+- Sentinel-2 based
+- Multi-temporal (annual)
+- Multiple continents
+
+**Applications:**
+- Global land cover mapping benchmark
+- Multi-temporal classification
+- Seasonal analysis and phenology
+
+### Object Detection Datasets
+
+#### xView
+
+**Specifications:**
+- **Objects:** >1 million annotated objects
+- **Classes:** 60
+- **Area:** >1,400 km²
+- **Resolution:** 0.3m (WorldView-3 satellite)
+- **Format:** Bounding boxes
+
+**Purpose:**
+- Disaster response applications
+- Overhead imagery analysis
+- Object detection benchmarking
+- Small object detection
+
+**Access:**
+- Website: http://xviewdataset.org/
+- Papers With Code
+- Challenge competitions
+
+#### DOTA (Dataset for Object Detection in Aerial Images)
+
+**Specifications:**
+- **Instances:** 1,793,658 annotated objects
+- **Categories:** 18 object types
+- **Images:** 11,268
+- **Annotation:** Oriented bounding boxes (OBB)
+- **Sources:** Google Earth, GF-2 Satellite, aerial platforms
+
+**Key Feature:**
+- **Oriented annotations:** Captures object rotation (important for buildings, ships, aircraft)
+- Various object orientations and aspect ratios
+- Multiple sensors and resolutions
+
+**Access:**
+- Website: https://captain-whu.github.io/DOTA/
+- Papers With Code
+- GitHub repositories
+
+### Semantic Segmentation Datasets
+
+#### OpenEarthMap
+
+**Specifications:**
+- Global high-resolution land cover mapping benchmark
+- Multiple continents represented
+- Semantic segmentation annotations
+- High-resolution imagery
+
+**Purpose:**
+- Global mapping challenges
+- Multi-region training and generalization testing
+- Standardized semantic segmentation evaluation
+
+#### SpaceNet
+
+**Overview:**
+Foundation dataset for building footprints and road networks
+
+**Versions:**
+- SpaceNet 1-7: Multiple cities, different tasks
+- Building footprint extraction
+- Road network mapping
+- Flood impact assessment (SpaceNet 8)
+- Open competition with benchmark results
+
+**Applications:**
+- Building extraction algorithms
+- Road network detection
+- Multi-sensor fusion (optical + SAR for SpaceNet 6)
+
+### Scene Classification Datasets
+
+#### AID (Aerial Image Dataset)
+
+**Specifications:**
+- **Images:** 10,000
+- **Categories:** 30 scene categories
+- **Size:** 600×600 pixels
+- **Resolution:** 0.5-8m spatial resolution
+- **Source:** Google Earth imagery
+
+**Purpose:**
+- Scene classification benchmarking
+- Transfer learning evaluation
+- Feature extraction research
+
+#### NWPU-RESISC45
+
+**Specifications:**
+- **Categories:** 45 scene types
+- **Images:** 31,500 (700 per class)
+- **Size:** 256×256 pixels
+- **Source:** High-resolution aerial images
+
+**Applications:**
+- Scene recognition
+- Transfer learning source
+- Benchmark comparisons
+
+### Time Series Datasets
+
+#### TiSeLaC (Time Series Land Cover)
+
+**Purpose:**
+- Multi-temporal classification
+- Phenology analysis
+- Temporal pattern learning
+
+**Applications:**
+- Crop type mapping from time series
+- Vegetation dynamics
+- Seasonal change detection
+
+#### Satellite Image Time Series (SITS) Datasets
+
+**Various Sources:**
+- MODIS time series (daily, 250m-1km)
+- Sentinel-2 time series (5-day, 10-20m)
+- Landsat time series (16-day, 30m)
+
+**Applications:**
+- LSTM and temporal attention training
+- Phenology extraction
+- Land cover trajectory analysis
+
+### Philippine-Specific Data Resources
+
+**Available Operational Data:**
+
+**PRiSM Products:**
+- Rice area maps (per season: wet and dry)
+- Seasonality information (planting dates, growth stages)
+- Yield estimates
+- Historical archive since 2014
+- Website: https://prism.philrice.gov.ph/
+
+**PhilSA Products:**
+- Flood extent maps from DATOS system
+- Mangrove extent maps (PhilSA-DENR collaboration)
+- Land cover maps
+- Disaster damage assessment outputs
+- Website: https://philsa.gov.ph/
+
+**DOST-ASTI:**
+- DATOS disaster response maps
+- Hazard maps (flood, landslide susceptibility)
+- AI-powered rapid assessments
+- Website: https://hazardhunter.georisk.gov.ph/map
+
+**NAMRIA Geoportal:**
+- Topographic maps
+- Land cover basemaps
+- Administrative boundaries
+- Digital Elevation Models
+
+**Importance of Benchmark Datasets:**
+1. **Standardized Evaluation:** Compare algorithms objectively
+2. **Training Resources:** Pre-labeled data for model training
+3. **Transfer Learning:** Pre-train on large datasets, fine-tune for specific applications
+4. **Research Reproducibility:** Enable comparison across studies
+5. **Community Building:** Shared resources accelerate progress
+
+---
+
+## Part 6: Data-Centric AI in Earth Observation
+
+### The Paradigm Shift (2025)
+
+::: {.callout-important}
+## Data > Models
+
+**Old paradigm (Model-Centric AI):**
+- Focus on developing better algorithms
+- Keep data fixed, iterate on model architecture
+- "Our new model achieves 92% accuracy!"
+- Endless hyperparameter tuning
+
+**New paradigm (Data-Centric AI):**
+- Focus on improving data quality and curation
+- Keep model fixed (use proven architectures), iterate on data
+- "Better data improved our model from 85% to 95% accuracy!"
+- Systematic data improvement
+
+**Van der Schaar Lab's DC-Check Framework:** Argues that reliable ML hinges on characterizing, evaluating, and monitoring training data across the pipeline - not just model complexity.
+:::
+
+**Why the shift?**
+
+1. **Model architectures have matured:** ResNet, U-Net, LSTM, Transformers are well-established and publicly available
+2. **Biggest gains come from data:** Research shows most underperforming models suffer from data issues, not algorithm deficiencies
+3. **Real-world deployment:** Data quality determines operational success and trustworthiness
+4. **Diminishing returns:** Incremental model improvements yield smaller gains than data improvements
+5. **Foundation models:** Pre-trained models (Prithvi, SatViT) reduce need for architecture innovation
+
+**Data-Centric Principles:**
+
+From van der Schaar Lab's DC-Check framework:
+- **Characterizing:** Understand training data distribution, coverage, biases
+- **Evaluating:** Assess data quality, label accuracy, representation
+- **Monitoring:** Track data drift, performance on subgroups, uncertainty
+- **Stratification:** Easy/Ambiguous/Hard samples require different treatment
+- **Data-SUITE:** Suitability, Usefulness, Insufficiency, Thoroughness, Expressiveness checks
+
+```{mermaid}
+%%| fig-cap: "Data-Centric AI Framework for Earth Observation"
+%%| fig-width: 100%
+
+flowchart TB
+    subgraph ModelCentric["MODEL-CENTRIC AI (Old Paradigm)"]
+        MC1[Fixed Data] --> MC2[Iterate Models]
+        MC2 --> MC3[Tune Hyperparameters]
+        MC3 --> MC4[Try New Architectures]
+        MC4 --> MC5[85% → 87% → 88%<br/>Diminishing Returns]
+    end
+
+    subgraph DataCentric["DATA-CENTRIC AI (2025 Paradigm)"]
+        DC1[Proven Architecture<br/>ResNet, U-Net, ViT] --> DC2[Improve Data Quality]
+        DC2 --> DC3[Increase Data Quantity]
+        DC3 --> DC4[Enhance Data Diversity]
+        DC4 --> DC5[Refine Annotations]
+        DC5 --> DC6[85% → 92% → 95%<br/>Significant Gains]
+    end
+
+    subgraph Pillars["FOUR PILLARS OF DATA-CENTRIC AI"]
+        P1[1. Quality<br/>Accurate, consistent<br/>Cloud-free<br/>Atmospherically corrected]
+        P2[2. Quantity<br/>Sufficient samples<br/>Per class balance<br/>Training data scale]
+        P3[3. Diversity<br/>Geographic coverage<br/>Temporal variation<br/>Seasonal representation]
+        P4[4. Annotation<br/>Label accuracy<br/>Boundary precision<br/>Class consistency]
+    end
+
+    DC2 --> P1
+    DC3 --> P2
+    DC4 --> P3
+    DC5 --> P4
+
+    subgraph DCCheck["DC-CHECK FRAMEWORK"]
+        DCC1[Characterize<br/>Data distribution<br/>Coverage, biases]
+        DCC2[Evaluate<br/>Label quality<br/>Representation]
+        DCC3[Monitor<br/>Data drift<br/>Performance tracking]
+    end
+
+    P1 --> DCC1
+    P2 --> DCC1
+    P3 --> DCC2
+    P4 --> DCC2
+    DCC1 --> DCC3
+    DCC2 --> DCC3
+
+    DCC3 --> Result[Robust,<br/>Operational<br/>Models]
+
+    style ModelCentric fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style DataCentric fill:#e6ffe6,stroke:#00aa44,stroke-width:3px
+    style Pillars fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style DCCheck fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Result fill:#ccffcc,stroke:#00aa44,stroke-width:3px,color:#000
+```
+
+### Pillar 1: Data Quality
+
+**High-quality data is accurate, consistent, and properly processed**
+
+**For satellite imagery:**
+
+**Quality issues to address:**
+
+- **Cloud contamination:** Use Level-2A with SCL cloud masks, aggressive filtering
+- **Atmospheric effects:** Always use atmospherically corrected data (surface reflectance, not TOA)
+- **Sensor artifacts:** Check for striping, banding, saturation, dead pixels
+- **Geometric accuracy:** Ensure sub-pixel registration across time and sensors
+- **Radiometric consistency:** Calibrate across sensors and acquisition times
+- **Temporal alignment:** Match acquisition dates to ground conditions (phenology, seasonal changes)
+
+::: {.philippine-context}
+**Philippine Challenge: Cloud Cover**
+
+Philippines has one of highest cloud cover frequencies globally (>60% during monsoon season).
+
+**Data quality solutions:**
+- **Multi-temporal compositing:** Median over 3-6 months to reduce cloud impact
+- **Multi-sensor fusion:** Combine optical (Sentinel-2) + SAR (Sentinel-1) which penetrates clouds
+- **Aggressive cloud masking:** Accept fewer images for higher quality (quality > quantity)
+- **Leverage dry season:** December-May for optical data acquisition
+- **Deep learning reconstruction:** Prithvi-EO-2.0 demonstrated cloud gap reconstruction
+- **Temporal interpolation:** Fill gaps using adjacent clear observations
+
+**DATOS System Approach:**
+- Prioritize Sentinel-1 SAR during typhoon season (cloud-independent)
+- Rapid processing (10-20 minutes) for disaster response
+- Multi-temporal composites for flood extent mapping
+- Integration with pre-event optical data for context
+:::
+
+**For training labels:**
+
+**Quality issues:**
+
+- **Positional error:** GPS drift (±5-10m common), georeferencing mismatch
+- **Temporal mismatch:** 2018 labels with 2020 imagery (land cover changes)
+- **Class ambiguity:** Unclear definitions (shrub vs. sparse forest? informal settlement vs. slum?)
+- **Mixed pixels:** Polygon boundaries include multiple classes (especially at coarse resolutions)
+- **Labeling inconsistency:** Different interpreters apply different criteria
+- **Edge effects:** Boundaries between classes often have high uncertainty
+- **Scale mismatch:** Labels created at different resolution than imagery
+
+**Best practices:**
+
+1. **Clear class definitions:** Document what each class includes/excludes with examples
+2. **Consistent methodology:** Same interpreter(s), same time of year, same reference imagery
+3. **Quality control:** Multiple reviewers, consensus protocols, inter-annotator agreement metrics
+4. **Temporal alignment:** Labels contemporary with imagery (within months for dynamic classes)
+5. **Positional accuracy:** Use high-resolution reference imagery (VHR, Google Earth)
+6. **Buffer boundaries:** Consider excluding mixed pixels at class boundaries from training
+7. **Metadata:** Record labeling conditions, interpreter, date, confidence level
+8. **Iterative refinement:** Use model predictions to identify and correct label errors
+
+**Training Data Errors Impact:**
+
+Research shows training data errors cause substantial errors in final predictions. Example scenarios:
+- Mislabeled rice paddies → Model confuses rice with other crops
+- Temporal mismatch → Model learns outdated patterns
+- Positional errors → Model learns from wrong pixels
+- Inconsistent labels → Model learns noise rather than signal
+
+### Pillar 2: Data Quantity
+
+**More data (usually) improves performance, but quality matters more!**
+
+**How much data do you need?**
+
+| Algorithm | Typical Requirements | With Transfer Learning |
+|-----------|---------------------|------------------------|
+| Random Forest | 100s - 1000s samples per class | Same |
+| SVM | 100s - 1000s samples | Same |
+| Simple CNN | 1000s - 10,000s samples | 100s - 1000s |
+| Deep CNN (ResNet, U-Net) | 10,000s - 100,000s samples | 1000s - 10,000s |
+| Vision Transformer | 100,000s - millions | 10,000s - 100,000s |
+| Foundation Models (pre-training) | Millions - billions | N/A (already pre-trained) |
+| Foundation Models (fine-tuning) | N/A | 100s - 1000s |
+
+**Strategies when labeled data is limited:**
+
+**1. Data Augmentation**
+   - **Geometric:** Rotation, flipping, cropping, scaling, translation
+   - **Photometric:** Brightness, contrast, saturation adjustments
+   - **Noise addition:** Gaussian noise, salt-and-pepper
+   - **Spectral:** Band dropout, mixup between spectral signatures
+   - **Caution:** Ensure augmentations are realistic for EO (e.g., don't flip images with clear up/down orientation)
+
+**2. Transfer Learning**
+   - Use model pre-trained on large dataset (ImageNet, SatMAE, Prithvi)
+   - Fine-tune on your small dataset
+   - Leverages learned features from similar tasks
+   - **Reduces data requirements by 10-100×**
+   - Philippine poverty mapping example: 14.1% improvement using transfer learning
+
+**3. Active Learning**
+   - **Process:** Iteratively train model → find uncertain predictions → label those → retrain
+   - Efficiently focuses labeling effort where it matters most
+   - Research shows 27% improvement in mIoU with only 2% labeled data
+   - Prioritize samples near decision boundaries
+
+**4. Few-Shot Learning**
+   - **Methods:** Metric learning, meta-learning, prototypical networks
+   - Learn from very few examples per class
+   - Gerry Roxas Foundation deforestation: 43% accuracy with only 8% training data
+   - Useful for rare classes or novel geographic regions
+
+**5. Weak Supervision**
+   - Leverage noisy or incomplete labels
+   - **WeakAL framework:** Combines active learning and weak supervision
+   - Computes >90% of labels automatically while maintaining competitive performance
+   - Trade-off: Lower individual label quality, but much larger quantity
+
+**6. Synthetic Data**
+   - Generate training data via simulation or GANs
+   - Example: Simulated SAR scenes for flood detection
+   - Useful when real data is dangerous/expensive to collect
+   - Caution: Domain gap between synthetic and real data
+
+**7. Self-Supervised Pre-training**
+   - Pre-train on unlabeled data (masked autoencoding, contrastive learning)
+   - Fine-tune on small labeled dataset
+   - Foundation models (Prithvi) exemplify this approach
+   - **SSL4EO-S12:** Large-scale dataset for self-supervised learning
+
+::: {.callout-note}
+## 2024 Research: Data Efficiency
+
+**Findings from "Data-Centric Machine Learning for Earth Observation" (arXiv 2024):**
+
+- Some EO tasks reach optimal accuracy with **<20% of temporal instances**
+- **Single band** from single sensor can be sufficient for specific tasks
+- **Implication:** Smart data selection > brute force data collection
+- Feature selection and dimensionality reduction crucial
+- Use PCA, tree-based feature importance, or domain knowledge to identify essential features
+
+**Takeaway:** Focus on acquiring diverse, high-quality samples rather than maximizing quantity indiscriminately.
+:::
+
+::: {.philippine-context}
+**Philippine Solution: ALaM Project (DOST-ASTI)**
+
+**Automated Labeling Machine (ALaM)** addresses annotation bottleneck:
+
+**Approach:**
+- **Automated labeling:** ML models generate initial labels
+- **Crowdsourcing:** Distributed verification and correction
+- **Human-in-the-loop quality control:** Expert review of uncertain labels
+- **Active learning integration:** Prioritize samples for human review
+
+**Benefits:**
+- Significantly reduces labeling time and cost
+- Scales to national coverage
+- Integration with DIMER model repository for continuous improvement
+- Democratizes access to labeled training data
+
+**Integration with SkAI-Pinas:**
+- Part of national AI framework
+- Addresses gap between abundant remote sensing data and sustainable AI pipelines
+- Supports operational systems like DATOS and PRiSM
+:::
+
+### Pillar 3: Data Diversity
+
+**Representative data covers the full range of scenarios the model will encounter**
+
+Models trained on narrow data distributions fail when deployed in diverse real-world conditions. Diversity ensures robustness and generalization.
+
+**Dimensions of diversity:**
+
+**1. Geographic diversity**
+   - Different regions (Luzon, Visayas, Mindanao)
+   - Different ecosystems (lowland rainforest, montane cloud forest, mangrove, coral reef)
+   - Different climate zones (Type I-IV Philippine climate classification)
+   - Urban, peri-urban, rural contexts
+   - Different topography (flat, hilly, mountainous)
+
+**2. Temporal diversity**
+   - Different seasons (wet season: June-Nov, dry season: Dec-May)
+   - Different years (inter-annual variability, El Niño vs. La Niña)
+   - Different phenological stages (rice: planting, vegetative, reproductive, maturity)
+   - Different times of day (for SAR: morning vs. evening passes)
+   - Historical baselines and recent conditions
+
+**3. Class diversity**
+   - Multiple examples per class capturing intra-class variability
+   - Edge cases and rare types (e.g., burned forest, flooded agriculture)
+   - Transitional zones (forest-agriculture boundary, urban-rural fringe)
+   - Different sub-types (e.g., rice varieties, mangrove species, building materials)
+
+**4. Sensor diversity**
+   - Different satellites (Sentinel-2A, 2B, 2C)
+   - Different atmospheric conditions (clear, hazy, dusty)
+   - Different viewing angles (SAR: ascending vs. descending)
+   - Different processing baselines (if applicable)
+   - Multi-sensor when relevant (optical + SAR)
+
+**5. Socioeconomic diversity**
+   - Different development contexts (high-density urban, informal settlements, rural villages)
+   - Different agricultural practices (mechanized, traditional, mixed)
+   - Different infrastructure quality (paved roads, dirt tracks)
+
+**Example: Urban classification**
+
+**Poor diversity:** All training samples from Metro Manila CBD (Central Business District)
+
+**Result:** Model fails on:
+- Small provincial towns (different building density, height, materials)
+- Informal settlements (different patterns, materials, roof types)
+- Peri-urban areas (mixed land cover, agriculture near buildings)
+- Historical centers (older building styles)
+
+**Good diversity:** Samples from:
+- **Large cities:** Manila, Cebu, Davao (high-density, modern buildings)
+- **Medium towns:** Baguio, Iloilo, Cagayan de Oro (mixed density)
+- **Small municipalities:** Various provinces
+- **Different building materials:** Concrete, metal roofing, nipa huts, wood
+- **Different periods:** Capture urban growth and change
+- **Informal settlements:** Slums, squatter areas
+- **Peri-urban:** Transition zones
+
+**Result:** Model generalizes well across Philippines
+
+**Validation of Diversity:**
+
+Test model performance on stratified subsets:
+- Per-region accuracy (does it work in all islands?)
+- Per-season accuracy (dry vs. wet season)
+- Per-class accuracy (all classes represented equally well?)
+- Cross-region generalization (train on Luzon, test on Mindanao)
+
+### Pillar 4: Annotation Strategy
+
+**How you label data profoundly impacts model performance**
+
+Annotation is often the most expensive and time-consuming part of ML workflow. Strategic annotation maximizes value.
+
+**Annotation approaches:**
+
+1. **Point sampling:** Fast, but limited context, suitable for classification
+2. **Polygon delineation:** More information, more time-consuming, required for semantic segmentation
+3. **Pixel-level labeling:** Maximum detail, most expensive, essential for precise segmentation
+4. **Image-level labels:** Easiest, suitable for scene classification, limited spatial information
+5. **Bounding boxes:** For object detection, faster than pixel-level masks
+
+**Best practices:**
+
+**1. Expert involvement**
+- Use domain experts for complex classes (forest types, crop stages, mangrove species)
+- Train labelers thoroughly on class definitions with examples
+- Regular calibration sessions to maintain consistency
+- Document difficult cases and edge cases
+
+**2. Quality over quantity**
+- **500 high-quality labels > 5000 noisy labels**
+- Invest in review and correction processes
+- Document difficult cases and ambiguous examples
+- Use confidence scores to flag uncertain labels
+
+**3. Class balance**
+- Ensure adequate representation of minority classes
+- Stratified sampling by class (not just random)
+- Consider class weights in training if imbalanced
+- Oversampling rare classes or undersampling common classes
+- **Imbalanced classes:** Major challenge in EO (e.g., rare disasters, rare land cover types)
+
+**4. Consensus protocols**
+- Multiple labelers per sample (especially for ambiguous cases)
+- Majority vote or adjudication for disagreements
+- Measure inter-annotator agreement (Cohen's Kappa, Krippendorff's Alpha)
+- Establish minimum agreement threshold (e.g., 80%)
+
+**5. Iterative refinement**
+- Use model predictions to find label errors (disagreement between model and label)
+- Retrain after improving labels (data-centric iteration)
+- Focus effort on low-confidence predictions
+- **Model-in-the-loop labeling:** Model suggests labels, humans verify
+
+**6. Annotation tools and platforms**
+- Use efficient labeling tools (LabelMe, CVAT, Label Studio, Labelbox)
+- For EO: Tools supporting geospatial formats (GeoTIFF, shapefiles)
+- Integration with cloud platforms (Google Earth Engine, QGIS)
+- Export to ML-ready formats
+
+**7. Crowdsourcing considerations**
+- Clear instructions and examples
+- Quality control through redundancy and expert review
+- Gamification to maintain engagement
+- Examples: Humanitarian OpenStreetMap Team (HOT OSM) for disaster mapping
+
+**EO-Specific Annotation Challenges:**
+
+From Kili Technology's Earth Observation Data Labeling Guide:
+- **Sensor diversity:** Different spectral bands, resolutions, formats
+- **Massive data volumes:** Petabyte-scale archives ("four Vs": Volume, Velocity, Variety, Veracity)
+- **Domain expertise requirements:** Complex classes require specialized knowledge
+- **Weak labeling approaches:** Leverage noisy labels, distant supervision
+- **Active learning integration:** Prioritize informative samples
+- **Stakeholder-friendly tooling:** Tools accessible to non-ML experts
+
+::: {.philippine-context}
+**Philippine Annotation Ecosystem:**
+
+**ALaM (Automated Labeling Machine - DOST-ASTI):**
+- Combines automated labeling with crowdsourcing
+- Human-in-the-loop quality control
+- Integration with DIMER model repository
+- Reduces labeling time and cost significantly
+- **Workflow:** Automated labels → Crowdsourced verification → Expert review → Training data
+
+**DATOS (DOST-ASTI):**
+- Rapid disaster mapping (10-20 minute response)
+- On-the-fly labeling during disaster response
+- Iterative refinement based on ground validation
+- Integration with LGU feedback
+
+**Academic Partnerships:**
+- University of the Philippines - remote sensing courses with labeling components
+- PhilRice - rice field delineation and crop stage labeling
+- DENR - forest and mangrove mapping with expert foresters
+
+**International Support:**
+- Humanitarian OpenStreetMap Team (HOT OSM) for disaster mapping
+- CoPhil training programs on labeling best practices
+- European Copernicus expertise transfer
+:::
+
+### 2025 Examples: Data-Centric Success Stories
+
+#### NASA-IBM Geospatial Foundation Model (Prithvi)
+
+**Open-source model trained on massive HLS dataset (Harmonized Landsat-Sentinel-2)**
+
+**Data-centric approach:**
+- **Scale:** Millions of satellite images from HLS (30m resolution, global coverage)
+- **Self-supervised pre-training:** Masked autoencoding (no labels needed)
+- **Data quality:** HLS provides analysis-ready data (atmospheric correction, BRDF normalization, co-registration)
+- **Fine-tuned for specific tasks:** With small labeled datasets (100s-1000s samples)
+
+**Result:**
+- State-of-the-art performance on multiple EO tasks (flood mapping, burn scar detection, crop segmentation)
+- **Reduces labeled data requirements by 10-100×**
+- Democratizes access to powerful EO AI
+- Foundation for operational systems worldwide
+
+**Key Insight:** Investment in massive, high-quality pre-training data enables downstream applications with minimal task-specific labels.
+
+#### ESA Φsat-2 On-Board AI (Launched 2024)
+
+**22cm CubeSat with on-board AI processing**
+
+**Data-centric innovation:**
+- Processes imagery directly on satellite
+- **Data quality selection happens in space!**
+- Only transmits actionable information (not raw data)
+- Cloud filtering: Only clear, usable images sent to Earth
+- Reduces bandwidth requirements by orders of magnitude
+- Enables real-time event detection (fires, ships, clouds)
+
+**Rationale:**
+With 1,052 active EO satellites generating thousands of terabytes daily, traditional radio frequency communication cannot relay this volume. On-board AI filters data at source.
+
+**Implication:**
+Data quality and relevance prioritized over quantity. Shift from "collect everything" to "collect intelligently."
+
+#### EarthDaily Constellation
+
+**10-satellite constellation for daily global coverage at 5-10m resolution**
+
+**Focus on AI-ready data:**
+- **Scientific-grade calibration:** Rigorous radiometric accuracy
+- **Consistent, reliable acquisitions:** Predictable revisit times
+- **Optimized spectral bands for ML:** Bands selected based on ML feature importance
+- **Emphasis on data quality for algorithm performance:** Analysis-ready data products
+
+**Philosophy:**
+Data quality and consistency are first-class design criteria, not afterthoughts. Build satellites around AI needs.
+
+#### WeakAL Framework (Active Learning + Weak Supervision)
+
+**Research from remote sensing ML community**
+
+**Approach:**
+- Combines active learning (select informative samples) with weak supervision (leverage noisy labels)
+- Computes **>90% of labels automatically** while maintaining competitive performance
+- Human effort focused on most uncertain/informative samples
+
+**Results:**
+- 27% improvement in mIoU with only 2% manually labeled data
+- Demonstrates data-efficient learning
+- Practical for large-scale operational mapping
+
+**Key Insight:** Strategic data selection and semi-automated labeling can achieve strong performance with minimal human effort.
+
+---
+
+## Part 7: Explainable AI (XAI) for Earth Observation
+
+### Why XAI Matters in EO
+
+**The Problem:**
+
+Deep learning models are often **"black boxes"** - they produce accurate predictions, but we don't understand why. For operational EO systems, this creates challenges:
+
+1. **Scientific Insights:** Can't extract physical understanding from model decisions
+2. **Bias Detection:** Can't identify if model relies on spurious correlations (e.g., cloud shadows, artifacts)
+3. **Trust and Adoption:** Stakeholders reluctant to use models they don't understand
+4. **Debugging:** Difficult to diagnose errors and improve models
+5. **Regulatory/Policy:** Some applications require explainability (e.g., disaster fund allocation)
+
+**Recent Efforts (2023-2025):**
+
+Despite significant advances in deep learning for remote sensing, **lack of explainability remains a major criticism**. The community is increasingly exploring Explainable AI techniques:
+
+- Increasingly intensive exploration of XAI methods for EO
+- Integration of attention visualization in transformer architectures
+- Saliency maps and feature attribution techniques
+- Trade-off studies: accuracy vs. interpretability
+
+### XAI Methods for EO
+
+**Gradient-Based Methods:**
+
+**Grad-CAM (Gradient-weighted Class Activation Mapping):**
+- **Process:** Compute gradients of target class with respect to final convolutional layer
+- **Output:** Heatmap highlighting regions important for prediction
+- **Advantages:** Most interpretable method, computationally efficient, works with any CNN
+- **Applications:** Visualize which parts of satellite image model focuses on (e.g., "model detects water by focusing on blue spectral signature")
+
+**Guided Backpropagation:**
+- Visualizes pixels contributing to prediction
+- Sharper visualizations than Grad-CAM
+- Highlights fine-grained features
+
+**Integrated Gradients:**
+- Accumulates gradients along path from baseline to input
+- More robust attributions than simple gradients
+- Satisfies desirable axioms (sensitivity, implementation invariance)
+
+**Perturbation-Based Methods:**
+
+**Occlusion:**
+- **Process:** Block image regions and observe prediction change
+- **Output:** Sensitivity map showing which regions are critical
+- **Advantages:** High interpretability, intuitive
+- **Disadvantages:** Computationally expensive (must test many occlusions)
+
+**LIME (Local Interpretable Model-agnostic Explanations):**
+- **Process:** Train simple, interpretable model (e.g., linear) to approximate complex model locally
+- **Output:** Feature importances for specific prediction
+- **Advantages:** Model-agnostic, interpretable
+- **Disadvantages:** Expensive computation, local rather than global explanation
+
+**Model-Based Methods:**
+
+**SHAP (SHapley Additive exPlanations):**
+- **Process:** Game theory approach - compute contribution of each feature
+- **Output:** Feature importance values for prediction
+- **Advantages:** Theoretically grounded, consistent
+- **Applications:** Explain which spectral bands, indices, or temporal features drive predictions
+
+**Attention Visualization (for Transformers):**
+- **Process:** Visualize attention weights from self-attention mechanism
+- **Output:** Heatmap showing which patches/regions model attends to
+- **Advantages:** Built into architecture, interpretable
+- **Applications:** Vision Transformers (ViT), UNetFormer - see which spatial regions model focuses on
+
+**Feature Importance (for Tree-Based Models):**
+- Random Forest, XGBoost provide feature importance scores
+- **Output:** Ranking of features by contribution to predictions
+- **Advantages:** Simple, intuitive, built-in
+- **Applications:** Understand which spectral bands, indices, temporal features are most informative
+
+### Applications in EO
+
+**1. Understanding Model Decisions:**
+- Visualize which spectral bands contribute most (e.g., does model rely on SWIR for burn detection?)
+- Identify spatial patterns model focuses on (e.g., texture vs. spectral signature)
+- Discover unexpected correlations (e.g., model using cloud shadows instead of actual land cover)
+
+**2. Discovering Scientific Insights:**
+- Identify which vegetation indices are most predictive for crop types
+- Understand temporal patterns in multi-date imagery (which dates are critical for classification?)
+- Extract biophysical relationships learned by model
+
+**3. Detecting and Mitigating Biases:**
+- Identify if model relies on artifacts (e.g., sensor striping, JPEG compression)
+- Detect geographic biases (model works in training region, fails elsewhere due to spurious features)
+- Ensure model uses physically meaningful features
+
+**4. Building Trust with Stakeholders:**
+- Demonstrate to policymakers that model decisions are reasonable
+- Show LGUs which features drive disaster risk predictions
+- Explain to farmers why certain fields are flagged for attention
+
+**5. Debugging and Improving Models:**
+- Identify when model makes errors (e.g., confuses rice with water due to flooding)
+- Guide data collection (which features need more training samples?)
+- Inform feature engineering (which derived features would help?)
+
+### Challenges and Trade-Offs
+
+**Accuracy vs. Interpretability:**
+- Simple models (decision trees, linear regression) are interpretable but less accurate
+- Complex models (deep CNNs, transformers) are more accurate but less interpretable
+- **Trade-off:** Choose based on application criticality and stakeholder needs
+
+**Computational Cost:**
+- Post-hoc explanation methods (LIME, occlusion) can be expensive
+- Gradient-based methods (Grad-CAM) are fast
+- Consider explanation cost for operational systems
+
+**Faithfulness:**
+- Do explanations truly reflect model's reasoning, or are they misleading?
+- Saliency maps can be noisy or highlight irrelevant features
+- Validation: Compare explanations against domain knowledge
+
+**Global vs. Local:**
+- Local explanations (single prediction) may not generalize
+- Global explanations (entire model behavior) are harder to compute and interpret
+- Need both perspectives for complete understanding
+
+### Best Practices for XAI in EO
+
+1. **Use Multiple Methods:** Different XAI methods can reveal complementary insights
+2. **Validate Explanations:** Check against domain knowledge, physical understanding
+3. **Integrate into Workflow:** Make XAI routine part of model development, not afterthought
+4. **Communicate Effectively:** Visualize explanations clearly for stakeholders (heatmaps, feature importance plots)
+5. **Document Limitations:** Be transparent about what explanations can and cannot tell us
+6. **Balance Complexity:** For operational systems, consider interpretable models when accuracy difference is small
+
+::: {.callout-note}
+## XAI Resources for EO
+
+**Tools:**
+- **Captum (PyTorch):** Library for model interpretability (Grad-CAM, Integrated Gradients, SHAP)
+- **SHAP Library:** SHapley Additive exPlanations for Python
+- **Grad-CAM Implementations:** Available for TensorFlow/Keras and PyTorch
+- **Attention Visualization:** Built into transformer implementations (HuggingFace Transformers)
+
+**Research:**
+- "Explainable AI for Earth Observation: A Review" (ongoing research area)
+- SSL4EO-2024 Summer School included XAI sessions
+- Growing number of papers combining EO and XAI at IGARSS, ISPRS, ML4Earth conferences
+:::
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 2 Summary
+
+### Core Concepts
+1. **AI/ML learns patterns from data** rather than explicit programming - enables automated analysis of massive satellite archives
+2. **The EO workflow** spans problem definition → data acquisition → preprocessing → features → training → validation → deployment
+3. **Supervised learning** (classification & regression) is dominant for EO because we need specific outputs; unsupervised (clustering) useful for exploration
+
+### Deep Learning Architectures
+4. **CNNs** are foundation of EO image analysis - automatic feature extraction, spatial awareness, hierarchical learning
+5. **U-Net** excels at semantic segmentation with encoder-decoder + skip connections (e.g., Benguet deforestation: 99.73% accuracy)
+6. **Vision Transformers** capture global context and long-range dependencies via self-attention (SatViT, MS-CLIP for multi-spectral data)
+7. **LSTMs/RNNs** model temporal patterns in time series (PRiSM rice monitoring, crop yield prediction: R² > 0.93)
+8. **Object Detection** (YOLO, Faster R-CNN) localize objects with bounding boxes (buildings, ships, vehicles)
+9. **Foundation Models** (Prithvi-EO-2.0: 600M parameters) enable fine-tuning with 10-100× less labeled data
+
+### Advanced Techniques
+10. **Multi-modal fusion** combines optical + SAR for all-weather monitoring (critical for Philippine monsoon season)
+11. **Transfer learning** dramatically reduces data requirements - pre-train on large dataset, fine-tune on small task-specific dataset
+12. **Self-supervised learning** pre-trains on unlabeled data via masked autoencoding (Prithvi) or contrastive learning
+
+### Benchmark Datasets
+13. **EuroSAT** (27,000 images, 10 classes, 98.57% accuracy), **BigEarthNet** (549,488 patches, multi-modal), **xView** (>1M objects, 60 classes)
+14. Benchmarks enable standardized evaluation, provide training resources, support transfer learning
+
+### Data-Centric AI (2025 Paradigm)
+15. **Data quality > model complexity:** Improving data from 85% → 95% accuracy beats endless model tuning
+16. **Four Pillars:** Quality (accurate, consistent, properly processed), Quantity (sufficient samples, augmentation), Diversity (geographic, temporal, class, sensor), Annotation (strategic, high-quality labeling)
+17. **Philippine Solutions:** DOST-ASTI ALaM (Automated Labeling Machine), DIMER model repository, active learning
+
+### Explainable AI
+18. **XAI crucial for operational systems:** Builds trust, enables debugging, extracts scientific insights, detects biases
+19. **Methods:** Grad-CAM (heatmaps), SHAP (feature importance), Attention visualization (transformers)
+
+### Philippine Operational Context
+20. **DATOS (DOST-ASTI):** 10-20 minute AI-powered flood mapping from Sentinel-1 SAR
+21. **PRiSM (PhilRice-IRRI):** Operational since 2014, all-weather rice monitoring combining SAR + optical
+22. **PhilSA-DENR:** Nationwide mangrove mapping with U-Net (99.73% accuracy)
+23. **CoPhil Data Centre (2025):** Local, high-bandwidth access to Sentinel data, cloud-native distribution
+24. **Leverage existing infrastructure:** DIMER, AIPI, ALaM, CoPhil to operationalize AI/ML workflows
+
+**Next steps:** Hands-on Python for geospatial data (Session 3) and Google Earth Engine (Session 4) to put these concepts into practice!
+:::
+
+---
+
+## Discussion Questions
+
+::: {.callout-tip}
+## Reflect & Discuss
+
+1. **What EO problem in your work** could benefit from ML? Is it classification, regression, segmentation, or object detection? Which architecture would you choose?
+
+2. **Data quality in Philippine context:** How do you address cloud cover, temporal dynamics, and atmospheric effects in your satellite data?
+
+3. **Foundation models:** How could Prithvi-EO-2.0 or other pre-trained models reduce barriers for your organization? What Philippine-specific fine-tuning would be needed?
+
+4. **Multi-modal fusion:** When would you combine Sentinel-2 optical with Sentinel-1 SAR? What are practical challenges?
+
+5. **Data-centric approach:** What are biggest data quality issues you face? How could ALaM or active learning help?
+
+6. **Benchmark datasets:** Which international datasets could you use for pre-training? How to ensure models generalize to Philippines?
+
+7. **Explainable AI:** For your application, why would explainability matter? Which XAI method would you use?
+
+8. **DIMER and AIPI platforms:** How might these reduce barriers to deploying ML in your organization? What models would you contribute or use?
+
+9. **Temporal modeling:** For what applications would LSTM or temporal attention be valuable? What data would you need?
+
+10. **CoPhil opportunities:** How can you leverage the upcoming Data Centre and training programs? What collaborations would be valuable?
+:::
+
+---
+
+## Further Reading
+
+### Foundational Concepts
+- [NASA ARSET: Fundamentals of Machine Learning for Earth Science](https://appliedsciences.nasa.gov/get-involved/training/english/arset-fundamentals-machine-learning-earth-science)
+- [Data-Centric AI: Better, Not Just More](https://arxiv.org/abs/2312.05327)
+- [Van der Schaar Lab: What is Data-Centric AI?](https://www.vanderschaar-lab.com/dc-check/what-is-data-centric-ai/)
+
+### Deep Learning Architectures
+- [Deep Learning Book (Goodfellow et al.)](https://www.deeplearningbook.org/) - Free online
+- [Neural Networks and Deep Learning (Nielsen)](http://neuralnetworksanddeeplearning.com/) - Interactive tutorial
+- [Satellite Image Deep Learning Techniques](https://github.com/satellite-image-deep-learning/techniques) - Comprehensive GitHub repository
+
+### Deep Learning for EO
+- [Deep Learning for Land Use and Land Cover Classification](https://www.mdpi.com/2072-4292/12/15/2495) - 2020 review
+- [Deep Learning for Remote Sensing Image Segmentation](https://www.tandfonline.com/doi/full/10.1080/17538947.2024.2328827) - 2024 review
+- [Object Detection and Image Segmentation with Deep Learning on EO Data](https://www.mdpi.com/2072-4292/12/10/1667)
+
+### Foundation Models
+- [IBM-NASA Prithvi Models on Hugging Face](https://huggingface.co/ibm-nasa-geospatial)
+- [Prithvi-EO-2.0: A Versatile Multi-Temporal Foundation Model](https://arxiv.org/abs/2412.02732)
+- [IBM Research: Prithvi-EO-2.0 Blog](https://research.ibm.com/blog/prithvi2-geospatial)
+
+### Self-Supervised Learning
+- [SSL4EO-2024 Summer School Review](https://langnico.github.io/posts/SSL4EO-2024-review/)
+- [Multi-Label Guided Soft Contrastive Learning for EO](https://arxiv.org/abs/2405.20462)
+
+### Data-Centric AI
+- [Data-Centric Machine Learning for Earth Observation](https://arxiv.org/html/2408.11384v1)
+- [Kili Technology: Earth Observation Data Labeling Guide](https://kili-technology.com/data-labeling/earth-observation-data-labeling-guide)
+
+### Explainable AI
+- [Captum: Model Interpretability for PyTorch](https://captum.ai/)
+- [SHAP Library Documentation](https://shap.readthedocs.io/)
+
+### EO-Specific ML
+- [EO College: Introduction to Machine Learning for Earth Observation](https://eo-college.org/courses/introduction-to-machine-learning-for-earth-observation/)
+- [ML4Earth Resources](https://ml4earth.de/)
+- [Climate Change AI: Earth Observation & Monitoring](https://www.climatechange.ai/subject_areas/earth_observation_monitoring)
+- [A Review of Practical AI for Remote Sensing in Earth Sciences](https://www.mdpi.com/2072-4292/15/16/4112) - 2023
+
+### Benchmark Datasets
+- [EuroSAT GitHub](https://github.com/phelber/EuroSAT)
+- [BigEarthNet Website](https://bigearth.net/)
+- [xView Dataset](http://xviewdataset.org/)
+- [DOTA: Dataset for Object Detection in Aerial Images](https://captain-whu.github.io/DOTA/)
+
+### Philippine AI Initiatives
+- [DOST-ASTI: Remote Sensing and Data Science (DATOS) Help Desk](https://asti.dost.gov.ph/projects/datos)
+- [Philippine News Agency: DOST AI R&D Projects](https://www.pna.gov.ph/articles/1136226) - SkAI-Pinas, DIMER, AIPI
+- [PRiSM: Philippine Rice Information System](https://prism.philrice.gov.ph/)
+- [PhilSA: Philippine Space Agency](https://philsa.gov.ph/)
+- [CoPhil Centre](https://copphil.philsa.gov.ph/)
+
+### Recent Advances
+- [Artificial Intelligence to Advance Earth Observation: A Review](https://arxiv.org/abs/2305.08413) - 2023
+- [Advancing Earth Observation with AI](https://arxiv.org/html/2501.12030v1) - 2025
+- [ESA AI for Earth Observation](https://ai4eo.eu/)
+- [Awesome Earth Observation Code](https://github.com/acgeospatial/awesome-earthobservation-code)
+
+---

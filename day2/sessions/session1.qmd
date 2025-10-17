@@ -1,0 +1,421 @@
+---
+title: "Session 1: Supervised Classification with Random Forest"
+subtitle: "Theory and Practice for Earth Observation"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 2</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 1</span>
+</nav>
+
+::: {.hero}
+# Session 1: Supervised Classification with Random Forest
+
+### Theory and Practice for Earth Observation
+
+Learn to classify satellite imagery using Random Forest and Google Earth Engine
+:::
+
+## Session Overview
+
+This 3-hour session introduces supervised classification for Earth Observation, focusing on the Random Forest algorithm and its implementation in Google Earth Engine.
+
+---
+
+## Presentation
+
+::: {.callout-tip}
+### Interactive Reveal.js Slides
+[Open Slides →](../presentations/session1_random_forest.html){.btn .btn-primary target="_blank"}
+:::
+
+::: {.callout-note}
+## Learning Objectives
+
+By the end of this session, you will be able to:
+
+1. **Understand** supervised classification workflow for EO data
+2. **Explain** how decision trees and Random Forest work
+3. **Implement** Random Forest classification using Google Earth Engine
+4. **Perform** accuracy assessment and interpret results
+5. **Apply** classification to Palawan land cover mapping
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/session1_random_forest.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part A: Theory (1.5 hours)
+
+### Topics Covered
+
+::: {.feature-grid}
+::: {.feature-card}
+**Supervised Classification Basics**
+
+- Classification workflow
+- Training data requirements
+- Feature extraction
+- Model validation
+:::
+
+::: {.feature-card}
+**Decision Trees**
+
+- Recursive partitioning
+- Splitting criteria (Gini, entropy)
+- Overfitting prevention
+- Tree visualization
+:::
+
+::: {.feature-card}
+**Random Forest Ensemble**
+
+- Bootstrap aggregation (bagging)
+- Random feature selection
+- Voting mechanism
+- Ensemble advantages
+:::
+
+::: {.feature-card}
+**Feature Importance**
+
+- Variable selection
+- Spectral band importance
+- Index contribution
+- Interpretation strategies
+:::
+
+::: {.feature-card}
+**Accuracy Assessment**
+
+- Confusion matrices
+- Producer's accuracy (recall)
+- User's accuracy (precision)
+- Kappa coefficient
+:::
+
+::: {.feature-card}
+**Google Earth Engine**
+
+- Platform capabilities
+- Cloud computing advantages
+- GEE Python API
+- geemap library
+:::
+:::
+
+### Theory Materials
+
+::: {.materials-list}
+**📊 Interactive Theory Notebook**
+
+Step-by-step exploration of Random Forest concepts with visualizations and exercises.
+
+- Decision tree interactive demos
+- Random Forest voting visualization
+- Feature importance analysis
+- Confusion matrix interpretation
+- Concept check quiz
+
+[Open Theory Notebook](../notebooks/session1_theory_notebook_STUDENT.ipynb){.btn .btn-primary}
+
+**⏱️ Estimated Time:** 70 minutes
+:::
+
+---
+
+## Part B: Hands-on Lab (1.5 hours)
+
+### Practical Workflow
+
+This hands-on lab guides you through a complete land cover classification workflow for Palawan using Sentinel-2 imagery and Random Forest.
+
+#### Lab Sections
+
+**1. Setup (10 minutes)**
+- Import libraries (geemap, ee, scikit-learn)
+- Authenticate Google Earth Engine
+- Define Palawan study area
+- Set date range for imagery
+
+**2. Data Acquisition (20 minutes)**
+- Load Sentinel-2 ImageCollection
+- Apply cloud masking (QA60 band)
+- Filter by date and cloud cover
+- Compute spectral indices:
+  - NDVI (vegetation)
+  - NDWI (water)
+  - NDBI (built-up)
+  - EVI (enhanced vegetation)
+- Create median composite
+- Visualize RGB and false color
+
+**3. Training Data (20 minutes)**
+- Load training polygons for land cover classes:
+  - Forest
+  - Agriculture
+  - Water
+  - Urban
+  - Bare soil
+- Visualize training areas on map
+- Sample spectral values
+- Prepare feature matrix
+- Inspect training statistics
+
+**4. Model Training (20 minutes)**
+- Configure Random Forest classifier
+- Set hyperparameters:
+  - Number of trees (e.g., 100)
+  - Variables per split
+  - Min leaf population
+- Train model on Sentinel-2 features
+- Inspect feature importance
+
+**5. Classification (15 minutes)**
+- Apply trained model to study area
+- Generate land cover map
+- Create visualization palette
+- Display results on interactive map
+- Calculate area statistics by class
+
+**6. Validation (25 minutes)**
+- Split data into train/test (80/20)
+- Apply model to validation data
+- Calculate accuracy metrics:
+  - Overall accuracy
+  - Producer's accuracy
+  - User's accuracy
+  - Kappa coefficient
+- Generate confusion matrix
+- Analyze misclassification patterns
+
+**7. Exercises (20 minutes)**
+- Modify number of trees
+- Add/remove spectral indices
+- Classify different Philippine region
+- Export results to Google Drive
+
+### Lab Materials
+
+::: {.materials-list}
+**💻 Hands-on Lab Notebook**
+
+Complete implementation of Random Forest classification workflow with Google Earth Engine.
+
+[Open Lab Notebook](../notebooks/session1_hands_on_lab_student.ipynb){.btn .btn-primary}
+
+**⏱️ Estimated Time:** 120 minutes
+
+**📋 Prerequisites:**
+- Google Earth Engine account ([sign up](https://earthengine.google.com))
+- Basic Python knowledge
+- Understanding of remote sensing concepts
+:::
+
+---
+
+## Philippine Context
+
+This session uses **Palawan** as the study area, a biodiversity hotspot and UNESCO Biosphere Reserve facing challenges from:
+
+- Deforestation and illegal logging
+- Agricultural expansion
+- Mining activities
+- Coastal development
+- Climate change impacts
+
+**Applications for Philippine Agencies:**
+
+- **DENR:** Forest monitoring and protected area management
+- **DA:** Agricultural land mapping and crop monitoring
+- **NDRRMC:** Land cover baseline for disaster risk assessment
+- **PhilSA:** Operational land cover products
+- **LGUs:** Municipal planning and zoning
+
+---
+
+## Key Concepts
+
+### What is Supervised Classification?
+
+Supervised classification assigns labels to pixels based on their spectral characteristics, using **labeled training data** to learn the relationship between spectral signatures and land cover classes.
+
+```{mermaid}
+flowchart LR
+    A[Satellite Imagery] --> B[Preprocessing]
+    B --> C[Feature Extraction]
+    C --> D[Training Data Collection]
+    D --> E[Model Training]
+    E --> F[Classification]
+    F --> G[Accuracy Assessment]
+    G --> H{Acceptable?}
+    H -->|No| D
+    H -->|Yes| I[Final Map]
+    style E fill:#4A90E2
+    style F fill:#4A90E2
+```
+
+### Why Random Forest for EO?
+
+::: {.callout-tip}
+## Random Forest Advantages
+
+**Strengths:**
+- Handles high-dimensional data (many spectral bands/indices)
+- Resistant to overfitting through ensemble averaging
+- Provides feature importance rankings
+- Fast training and prediction
+- No assumptions about data distribution
+- Works well with limited training samples
+
+**Ideal for:**
+- Land cover classification
+- Crop type mapping
+- Forest/non-forest discrimination
+- Urban area detection
+:::
+
+### Common Land Cover Classes
+
+**Natural Ecosystems:**
+- Primary forest (dipterocarp)
+- Secondary forest
+- Mangroves
+- Grasslands
+- Water bodies
+
+**Human-Modified:**
+- Agricultural land (rice, coconut)
+- Urban/built-up areas
+- Bare soil
+- Mining areas
+- Roads and infrastructure
+
+---
+
+## Technical Details
+
+### Google Earth Engine
+
+Google Earth Engine provides:
+
+- **Petabyte-scale** satellite imagery archive
+- **Cloud computing** infrastructure
+- **Pre-processed** analysis-ready data
+- **JavaScript and Python** APIs
+- **Free access** for research and education
+
+**Key GEE Concepts:**
+- ImageCollection: Time series of satellite images
+- Image: Single satellite scene or composite
+- Feature/FeatureCollection: Vector data (training polygons)
+- Reducer: Aggregation operations
+- Classifier: Machine learning algorithms
+
+### Random Forest Hyperparameters
+
+| Parameter | Description | Typical Range | Effect |
+|-----------|-------------|---------------|--------|
+| `numberOfTrees` | Number of trees in ensemble | 50-500 | More trees → better performance, longer training |
+| `variablesPerSplit` | Features to consider per split | √n to n | Lower → more randomness, less correlation |
+| `minLeafPopulation` | Min samples in leaf node | 1-10 | Higher → simpler trees, less overfitting |
+| `bagFraction` | Fraction for bootstrapping | 0.5-1.0 | Lower → more randomness |
+| `maxNodes` | Max nodes per tree | null (unlimited) | Limits tree complexity |
+
+### Spectral Indices for Classification
+
+**Vegetation Indices:**
+- **NDVI:** (NIR - Red) / (NIR + Red) → vegetation vigor
+- **EVI:** 2.5 × (NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1) → improved sensitivity
+
+**Water Indices:**
+- **NDWI:** (Green - NIR) / (Green + NIR) → water bodies
+- **MNDWI:** (Green - SWIR) / (Green + SWIR) → water/wetlands
+
+**Built-up Indices:**
+- **NDBI:** (SWIR - NIR) / (SWIR + NIR) → urban areas
+
+---
+
+## Resources
+
+### Documentation
+
+- [Google Earth Engine Docs](https://developers.google.com/earth-engine)
+- [geemap Library](https://geemap.org)
+- [Sentinel-2 Mission](https://sentinel.esa.int/web/sentinel/missions/sentinel-2)
+- [Random Forest Paper (Breiman, 2001)](https://doi.org/10.1023/A:1010933404324)
+
+### Philippine EO Resources
+
+- [Philippine Space Agency (PhilSA)](https://philsa.gov.ph)
+- [NAMRIA](https://namria.gov.ph)
+- [DOST-ASTI PANDA](https://panda.stamina4space.upd.edu.ph)
+
+### Course Materials
+
+::: {.quick-links}
+[Theory Notebook](../notebooks/session1_theory_notebook_STUDENT.ipynb){.quick-link}
+[Lab Notebook](../notebooks/session1_hands_on_lab_student.ipynb){.quick-link}
+[Setup Guide](../../resources/setup.qmd){.quick-link}
+[FAQ](../../resources/faq.qmd){.quick-link}
+:::
+
+---
+
+## Next Steps
+
+::: {.callout-important}
+## Preparation for Session 2
+
+**Session 2** builds on these fundamentals with advanced Palawan land cover classification:
+
+- Multi-temporal composites (dry/wet season)
+- Advanced feature engineering (GLCM texture, topographic)
+- 8-class detailed classification
+- Hyperparameter tuning
+- Change detection (2020 vs. 2024)
+- Deforestation analysis
+
+**To Prepare:**
+- Complete all Session 1 exercises
+- Review confusion matrix analysis
+- Think about potential classification improvements
+- Consider additional features that might help
+
+[Preview Session 2 →](session2.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+## Questions & Support
+
+**During Session:**
+- Ask questions in chat or unmute
+- Use breakout rooms for small group help
+- Teaching assistants available
+
+**After Session:**
+- Review [FAQ](../../resources/faq.qmd)
+- Post in discussion forum
+- Email instructors
+- Office hours: [schedule]
+
+---
+
+*This session is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

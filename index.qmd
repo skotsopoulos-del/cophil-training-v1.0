@@ -1,0 +1,340 @@
+---
+title: "CoPhil EO AI/ML Training"
+subtitle: "4-Day Advanced Training on AI/ML for Earth Observation"
+date: last-modified
+---
+
+::: {.hero}
+# CoPhil EO AI/ML Training Programme
+
+### 4-Day Advanced Training on AI/ML for Earth Observation
+
+Advanced training for Philippine EO professionals on AI/ML applications for Disaster Risk Reduction, Climate Change Adaptation, and Natural Resource Management
+:::
+
+## About This Training
+
+Welcome to the **4-Day Advanced Online Training on AI/ML for Earth Observation** for Philippine EO Professionals. This comprehensive training is part of the **CoPhil Programme** (EU-Philippines Copernicus Capacity Support Programme), a flagship initiative under the European Union's Global Gateway strategy.
+
+::: {.callout-note}
+## Training Details
+
+**Dates:** October 20-23, 2025
+**Instructor:** Stylianos Kotsopoulos
+**Programme:** EU-Philippines CoPhil Programme
+
+This course strengthens the Philippines' capacity to use Copernicus Earth Observation data for:
+
+- **Disaster Risk Reduction (DRR)** - Flood mapping, typhoon monitoring, landslide assessment
+- **Climate Change Adaptation (CCA)** - Drought monitoring, agricultural resilience, coastal changes
+- **Natural Resource Management (NRM)** - Forest monitoring, land cover mapping, marine resources
+:::
+
+## Course Curriculum
+
+This intensive 4-day program takes you from EO data fundamentals to deploying operational AI/ML solutions. Each day builds on previous concepts through hands-on exercises using Philippine case studies.
+
+**Format:** 4 days × 4 sessions × 2 hours = 32 hours total | **Mode:** Online via Google Colab | **Level:** Intermediate to Advanced
+
+### Learning Journey
+
+```{mermaid}
+%%| fig-width: 10
+%%| fig-align: center
+graph LR
+    A[Day 1<br/>EO Data &<br/>Fundamentals] --> B[Day 2<br/>Machine<br/>Learning]
+    B --> C[Day 3<br/>Deep<br/>Learning]
+    C --> D[Day 4<br/>Advanced<br/>Topics]
+
+    style A fill:#003399,stroke:#003399,stroke-width:3px,color:#fff
+    style B fill:#f8f9fa,stroke:#dee2e6,stroke-width:2px,color:#495057
+    style C fill:#f8f9fa,stroke:#dee2e6,stroke-width:2px,color:#495057
+    style D fill:#f8f9fa,stroke:#dee2e6,stroke-width:2px,color:#495057
+```
+
+### What You'll Achieve
+
+By completing this training, you will:
+
+::: {.learning-objectives}
+**🎯 Master EO Data** - Work confidently with Sentinel-1 SAR and Sentinel-2 optical data, understanding their characteristics and Philippine EO infrastructure (SIYASAT, NAMRIA, DOST-ASTI). Navigate the Copernicus Data Space Ecosystem and implement preprocessing pipelines.
+
+**🤖 Build AI/ML Models** - Design, train, and evaluate machine learning (Random Forest, SVM) and deep learning models (CNNs, U-Net, YOLO) for land cover classification, flood mapping, and disaster monitoring. Master model validation, hyperparameter tuning, and deployment workflows.
+
+**🚀 Deploy Solutions** - Create scalable processing pipelines using cloud platforms and integrate with Philippine operational systems. Implement real-time monitoring solutions for DRR, CCA, and NRM applications.
+
+**🌏 Apply to Real Challenges** - Complete hands-on projects addressing Philippine environmental priorities using real datasets from Palawan (land cover), Central Luzon (flood mapping), Mindanao (drought monitoring), and Metro Manila (urban monitoring).
+:::
+
+### Daily Breakdown
+
+::: {.curriculum-timeline}
+::: {.day-section}
+<div class="day-header">
+<div class="day-number">01</div>
+<div class="day-info">
+<h3>EO Data & AI/ML Fundamentals</h3>
+<span class="duration"><i class="bi bi-clock"></i> 4 sessions × 2 hours</span>
+</div>
+</div>
+
+<div class="day-content">
+**What you'll learn:** Copernicus Sentinel missions • Philippine EO ecosystem (PhilSA, DOST-ASTI, NAMRIA) • AI/ML core concepts • Python geospatial libraries (GeoPandas, Rasterio) • Google Earth Engine
+
+**Hands-on practice:** Python geospatial data processing, GEE data access, visualization workflows
+
+[Start Day 1 →](day1/index.qmd){.btn .btn-primary}
+</div>
+:::
+
+::: {.day-section}
+<div class="day-header">
+<div class="day-number">02</div>
+<div class="day-info">
+<h3>Machine Learning for EO</h3>
+<span class="duration"><i class="bi bi-clock"></i> 4 sessions × 2 hours</span>
+</div>
+</div>
+
+<div class="day-content">
+**What you'll learn:** Random Forest & SVM classification • K-means clustering • Feature engineering for spectral indices • CNN fundamentals • Transfer learning concepts
+
+**Hands-on practice:** Palawan land cover classification, model evaluation, feature importance analysis
+
+[Start Day 2 →](day2/index.qmd){.btn .btn-primary}
+</div>
+:::
+
+::: {.day-section}
+<div class="day-header">
+<div class="day-number">03</div>
+<div class="day-info">
+<h3>Deep Learning for EO</h3>
+<span class="duration"><i class="bi bi-clock"></i> 4 sessions × 2 hours</span>
+</div>
+</div>
+
+<div class="day-content">
+**What you'll learn:** U-Net semantic segmentation • Object detection (YOLO, Faster R-CNN) • SAR flood mapping (Central Luzon) • Building detection & damage assessment • Transfer learning strategies
+
+**Hands-on practice:** U-Net flood mapping implementation, YOLO building detection, model fine-tuning
+
+[Start Day 3 →](day3/index.qmd){.btn .btn-primary}
+</div>
+:::
+
+::: {.day-section}
+<div class="day-header">
+<div class="day-number">04</div>
+<div class="day-info">
+<h3>Advanced Topics & Projects</h3>
+<span class="duration"><i class="bi bi-clock"></i> 4 sessions × 2 hours</span>
+</div>
+</div>
+
+<div class="day-content">
+**What you'll learn:** LSTMs for time series • Drought monitoring (Mindanao) • Foundation models (NASA-IBM Prithvi, Clay) • Self-supervised learning • Explainable AI (XAI)
+
+**Hands-on practice:** Time series forecasting, foundation model fine-tuning, capstone project development
+
+[Start Day 4 →](day4/index.qmd){.btn .btn-primary}
+</div>
+:::
+:::
+
+## Prerequisites
+
+Get ready for the training with these simple requirements:
+
+::: {.prereq-container}
+::: {.prereq-section .prereq-required}
+<div class="prereq-header">
+<i class="bi bi-check-circle-fill"></i>
+<h3>Required</h3>
+</div>
+
+<div class="prereq-content">
+**Technical Setup:**
+
+- Google account (for Colab and Earth Engine)
+- [Google Earth Engine account](https://earthengine.google.com) (free signup)
+- Basic Python knowledge (variables, loops, functions)
+- Modern web browser (Chrome or Firefox)
+
+::: {.callout-tip collapse="false"}
+## No Installation Needed!
+All exercises run in Google Colaboratory. No local software installation required.
+:::
+</div>
+:::
+
+::: {.prereq-section .prereq-recommended}
+<div class="prereq-header">
+<i class="bi bi-star-fill"></i>
+<h3>Recommended Background</h3>
+</div>
+
+<div class="prereq-content">
+**Helpful Knowledge:**
+
+- Basic remote sensing concepts (bands, resolution, sensors)
+- Familiarity with machine learning terminology
+- Understanding of Philippine geography and environmental challenges
+- Experience with Jupyter notebooks (helpful but not required)
+
+::: {.callout-note collapse="false"}
+## New to EO or ML?
+Don't worry! Day 1 covers all foundational concepts. We start from the basics.
+:::
+</div>
+:::
+:::
+
+<div class="prereq-cta">
+<p><strong>Ready to get started?</strong> Follow our step-by-step setup guide to prepare your environment.</p>
+[Complete Setup Guide →](resources/setup.qmd){.btn .btn-primary .btn-lg}
+</div>
+
+## Course Resources
+
+Everything you need for a successful learning experience:
+
+::: {.feature-grid}
+::: {.resource-card}
+<i class="bi bi-gear-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Setup Guide
+Complete technical setup instructions for Google Colab, Earth Engine, and required accounts.
+
+[View Guide →](resources/setup.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.resource-card}
+<i class="bi bi-flag-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Philippine EO Resources
+Directory of Philippine EO platforms, agencies, and data access portals.
+
+[Explore Resources →](resources/philippine-eo.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.resource-card}
+<i class="bi bi-download" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Download Materials
+Access all course notebooks, datasets, presentations, and supplementary materials.
+
+[Download →](resources/downloads.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.resource-card}
+<i class="bi bi-question-circle-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### FAQ
+Common questions and troubleshooting tips for technical issues and course content.
+
+[Browse FAQ →](resources/faq.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.resource-card}
+<i class="bi bi-book-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Glossary
+Comprehensive definitions of EO, AI/ML, and geospatial terminology used throughout the course.
+
+[View Glossary →](resources/glossary.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+
+::: {.resource-card}
+<i class="bi bi-file-earmark-text-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Cheat Sheets
+Quick reference guides for Python, geospatial libraries, and machine learning workflows.
+
+[Get Cheat Sheets →](resources/cheatsheets.qmd){.btn .btn-outline-primary .btn-sm}
+:::
+:::
+
+## About CoPhil Programme
+
+::: {.callout-tip}
+## Technical Assistance for Philippines' Copernicus Capacity Support
+
+The **CoPhil Programme** is part of the EU-Philippines cooperation programme and the EU's Global Gateway strategy.
+
+**Key Partners:**
+
+- **Philippine Space Agency (PhilSA)** - Co-chair and space data authority
+- **Department of Science and Technology (DOST)** - Co-chair and technology advancement
+- **European Union** - Funding and technical cooperation
+- **European Space Agency (ESA)** - Copernicus programme expertise
+
+**Programme Objectives:**
+
+- Establish Copernicus Mirror Site in the Philippines
+- Build capacity in EO data analysis and AI/ML applications
+- Co-develop pilot services for DRR, CCA, and NRM
+- Create sustainable Digital Space Campus for continued learning
+- Foster Philippine EO community of practice
+:::
+
+## Course Delivery
+
+::: {.callout-note}
+## Training Format
+
+- **Language:** English
+- **Certificate:** Issued upon completion of all days and capstone project
+- **Support:** Live instructors, teaching assistants, and community forum
+:::
+
+## Getting Started
+
+::: {.callout-important}
+## Ready to Begin?
+
+1. **Complete Setup** - Follow our [Setup Guide](resources/setup.qmd)
+2. **Review Prerequisites** - Ensure you have the required accounts
+3. **Start Day 1** - Begin with foundational concepts
+4. **Ask Questions** - Use FAQ and instructor support throughout
+
+[Start with Setup Guide →](resources/setup.qmd){.btn .btn-primary}
+[Jump to Day 1 →](day1/index.qmd){.btn .btn-outline-primary}
+:::
+
+## Need Help?
+
+Throughout the training, you can:
+
+- Ask questions during live sessions
+- Consult the [FAQ](resources/faq.qmd) for common issues
+- Check the [Glossary](resources/glossary.qmd) for term definitions
+- Download [Cheat Sheets](resources/cheatsheets.qmd) for quick reference
+- Access the [Philippine EO Resources](resources/philippine-eo.qmd) directory
+- Contact instructors or teaching assistants
+
+## Technical Support
+
+::: {.callout-note}
+## Getting Help
+
+For technical issues:
+- **Google Colab problems:** See [Setup Guide](resources/setup.qmd)
+- **Data access issues:** Check session-specific troubleshooting
+- **Course questions:** Contact instructors during sessions
+- **Email support:** info@philsa.gov.ph
+:::
+
+## Acknowledgments
+
+This training is made possible through the partnership between:
+
+- European Union (Global Gateway Initiative)
+- Philippine Space Agency (PhilSA)
+- Department of Science and Technology (DOST)
+- European Space Agency (ESA)
+- CoPhil Programme Consortium
+
+---
+
+*Funded by the European Union under the Global Gateway initiative and delivered in partnership with the Philippine Space Agency (PhilSA) and the Department of Science and Technology (DOST).*

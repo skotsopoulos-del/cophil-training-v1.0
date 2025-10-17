@@ -1,0 +1,525 @@
+---
+title: "Session 2: Advanced Palawan Land Cover Lab"
+subtitle: "Multi-temporal Classification and Change Detection"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 2</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 2</span>
+</nav>
+
+::: {.hero}
+# Session 2: Advanced Palawan Land Cover Lab
+
+### Multi-temporal Classification and Change Detection
+
+Advanced feature engineering and real-world NRM applications
+:::
+
+## Session Overview
+
+**Duration:** 2 hours | **Type:** Hands-on Lab | **Difficulty:** Intermediate
+
+---
+
+This session builds on Session 1 by implementing advanced classification techniques for a real-world Philippine conservation scenario: detailed land cover mapping of Palawan Biosphere Reserve.
+
+## Presentation Slides
+
+<iframe src="../presentations/session2_palawan_lab.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+::: {.callout-important}
+## Prerequisites
+
+- ✓ Complete Session 1 (Supervised Classification with Random Forest)
+- ✓ Google Earth Engine account authenticated
+- ✓ Python environment with geemap, ee, scikit-learn
+- ✓ Understanding of Random Forest basics
+:::
+
+---
+
+## What You'll Learn
+
+After completing this session, you will be able to:
+
+1. **Engineer Advanced Features**
+   - Calculate GLCM texture features (contrast, correlation, entropy)
+   - Create multi-temporal composites
+   - Integrate topographic data (DEM, slope, aspect)
+   - Stack comprehensive feature sets
+
+2. **Implement Multi-temporal Analysis**
+   - Process dry and wet season imagery
+   - Calculate temporal indices and metrics
+   - Detect seasonal patterns
+
+3. **Optimize Classification Models**
+   - Perform hyperparameter tuning
+   - Implement cross-validation strategies
+   - Handle class imbalance
+   - Apply post-processing techniques
+
+4. **Conduct Change Detection**
+   - Compare multi-temporal classifications
+   - Quantify deforestation rates
+   - Identify change hotspots
+   - Generate transition matrices
+
+5. **Support NRM Decision-Making**
+   - Monitor protected areas
+   - Detect encroachment
+   - Generate stakeholder reports
+   - Export results for GIS analysis
+
+---
+
+## Lab Structure
+
+### Part A: Advanced Feature Engineering (30 minutes)
+
+Learn to extract and combine multiple feature types for improved classification accuracy.
+
+::: {.feature-grid}
+::: {.feature-card}
+**🌿 Texture Features (GLCM)**
+
+Calculate Gray-Level Co-occurrence Matrix features:
+- Contrast (local variation)
+- Correlation (pixel relationships)
+- Entropy (randomness)
+- Homogeneity (uniformity)
+
+*Useful for:* Distinguishing forest types, urban texture
+:::
+
+::: {.feature-card}
+**📅 Temporal Features**
+
+Create seasonal composites:
+- Dry season (Jan-May)
+- Wet season (Jun-Nov)
+- NDVI differences
+- Phenological signals
+
+*Useful for:* Agriculture identification, seasonal wetlands
+:::
+
+::: {.feature-card}
+**⛰️ Topographic Features**
+
+Extract from SRTM DEM:
+- Elevation
+- Slope
+- Aspect
+- Hillshade
+
+*Useful for:* Forest/agriculture separation, land use patterns
+:::
+
+::: {.feature-card}
+**🎯 Feature Stacking**
+
+Combine all features:
+- Spectral bands (6)
+- Indices (4)
+- Texture (4)
+- Temporal (4)
+- Topographic (3)
+
+Total: ~20 features
+:::
+:::
+
+### Part B: Palawan Case Study (45 minutes)
+
+Apply advanced classification to Palawan Biosphere Reserve using the 8-class scheme developed in Session 1.
+
+**Study Area:** 11,655 km² UNESCO Biosphere Reserve
+
+**Classification Scheme:**
+
+| Class | Description | Key Features |
+|-------|-------------|--------------|
+| 🌳 Primary Forest | Dense dipterocarp, closed canopy | High NDVI, low texture variation |
+| 🌲 Secondary Forest | Regenerating, mixed canopy | Moderate NDVI, medium texture |
+| 🌊 Mangroves | Coastal, tidal influence | High NDVI + high NDWI |
+| 🌾 Agricultural | Rice, coconut plantations | Seasonal NDVI patterns |
+| 🌿 Grassland | Open areas, sparse vegetation | Low-moderate NDVI |
+| 💧 Water | Rivers, lakes, coastal | Very low NIR, high NDWI |
+| 🏘️ Urban | Settlements, infrastructure | High NDBI, low NDVI |
+| ⛏️ Bare Soil | Mining, cleared land | Bright reflectance, low NDVI |
+
+### Part C: Model Optimization (30 minutes)
+
+Fine-tune your Random Forest classifier for maximum accuracy.
+
+**Optimization Techniques:**
+
+1. **Hyperparameter Tuning**
+   - Number of trees (50, 100, 200, 500)
+   - Variables per split (sqrt, log2, all)
+   - Minimum samples per leaf (1, 2, 5)
+
+2. **Cross-Validation**
+   - K-fold validation (k=5)
+   - Stratified sampling
+   - Out-of-bag error estimation
+
+3. **Class Balancing**
+   - Handle imbalanced classes
+   - Weighted training samples
+   - SMOTE (if needed)
+
+4. **Post-Processing**
+   - Majority filtering (reduce salt-and-pepper noise)
+   - Minimum mapping unit enforcement
+   - Edge smoothing
+
+### Part D: NRM Applications (15 minutes)
+
+Apply your classification to real conservation challenges in Palawan.
+
+::: {.feature-grid}
+::: {.feature-card}
+**🚨 Deforestation Detection**
+
+Compare 2020 vs 2024:
+- Forest loss hotspots
+- Conversion patterns
+- Quantify area changes
+- Generate alerts
+:::
+
+::: {.feature-card}
+**🌾 Agricultural Expansion**
+
+Track land conversion:
+- Forest → Agriculture
+- Grassland → Agriculture
+- Expansion rates
+- Proximity to roads
+:::
+
+::: {.feature-card}
+**🛡️ Protected Area Monitoring**
+
+Assess threats:
+- Boundary encroachment
+- Internal degradation
+- Buffer zone changes
+- Compliance tracking
+:::
+
+::: {.feature-card}
+**📊 Stakeholder Reports**
+
+Generate outputs:
+- Area statistics by class
+- Change matrices
+- Maps (GeoTIFF, PNG)
+- CSV summary tables
+:::
+:::
+
+---
+
+## Key Concepts
+
+### GLCM Texture Analysis
+
+**What is GLCM?**  
+Gray-Level Co-occurrence Matrix measures spatial relationships between pixel pairs, capturing image texture.
+
+**Why use it?**
+- Distinguishes primary vs secondary forest (canopy structure)
+- Separates urban from bare soil (heterogeneity)
+- Identifies mangrove stands (unique texture)
+
+**GEE Implementation:**
+```python
+# Add NIR texture features
+texture = image.select('B8').glcmTexture(size=3)
+contrast = texture.select('B8_contrast')
+entropy = texture.select('B8_ent')
+```
+
+### Multi-temporal Composites
+
+**Philippine Seasons:**
+- **Dry (Dec-May):** Best for forest mapping, less cloud cover
+- **Wet (Jun-Nov):** Shows maximum vegetation, agricultural phenology
+
+**Temporal Indices:**
+- **NDVI Difference:** Wet NDVI - Dry NDVI  
+  *Positive:* Seasonal crops (rice)  
+  *Near zero:* Evergreen forest  
+  *Negative:* Dry season crops
+
+**Benefits:**
+- Reduce cloud impacts (median compositing)
+- Capture phenological cycles
+- Improve agricultural separation
+- Detect irrigated vs rainfed
+
+### Hyperparameter Tuning
+
+**Key Random Forest Parameters:**
+
+| Parameter | Effect | Recommended Range |
+|-----------|--------|-------------------|
+| `numberOfTrees` | More trees = better but slower | 100-500 |
+| `variablesPerSplit` | Features per split | sqrt(n) for classification |
+| `minLeafPopulation` | Minimum samples in leaf | 1-5 |
+| `bagFraction` | Training sample fraction | 0.5-0.7 |
+
+**Optimization Strategy:**
+1. Start with defaults
+2. Grid search on key parameters
+3. Use out-of-bag error for evaluation
+4. Validate on independent test set
+
+---
+
+## Palawan Conservation Context
+
+### Why Palawan Matters
+
+**Biodiversity Hotspot:**
+- 252 bird species (15 endemic)
+- 95 mammal species
+- Last Philippine frontier forest
+- Critically endangered species habitat
+
+**Threats:**
+- Mining (nickel, chromite)
+- Agricultural expansion
+- Infrastructure development
+- Illegal logging
+- Tourism pressure
+
+**Conservation Status:**
+- UNESCO Biosphere Reserve (1990)
+- Multiple protected areas
+- Strategic Environmental Plan (SEP) framework
+- National government priority
+
+### NRM Applications
+
+**DENR Monitoring:**
+- Annual forest cover updates
+- REDD+ MRV requirements
+- Protected area assessments
+- Permit compliance checking
+
+**Local Government:**
+- Land use planning
+- Infrastructure siting
+- Agricultural zoning
+- Disaster risk assessment
+
+**NGO Conservation:**
+- Deforestation alerts
+- Community monitoring
+- Baseline assessments
+- Impact evaluation
+
+---
+
+## Hands-On Notebook
+
+### Access the Lab
+
+::: {.callout-tip}
+## 📓 Jupyter Notebook
+
+The complete hands-on lab is available as an interactive Jupyter notebook:
+
+**Student Version** (with exercises):  
+[`session2_extended_lab_STUDENT.ipynb`](../notebooks/session2_extended_lab_STUDENT.ipynb)
+
+**Instructor Version** (with solutions):  
+`session2_extended_lab_INSTRUCTOR.ipynb`
+
+**Google Colab:**  
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session2_extended_lab_STUDENT.ipynb)
+:::
+
+### Code Templates
+
+Reusable Python functions for advanced features:
+
+1. **GLCM Texture:** [`glcm_template.py`](../code/templates/glcm_template.py)
+2. **Temporal Composites:** [`temporal_composite_template.py`](../code/templates/temporal_composite_template.py)
+3. **Change Detection:** [`change_detection_template.py`](../code/templates/change_detection_template.py)
+
+---
+
+## Expected Outcomes
+
+### Classification Performance
+
+**Target Accuracy Metrics:**
+- Overall Accuracy: **>85%**
+- Kappa Coefficient: **>0.80**
+- Per-class accuracy: **>80%** for most classes
+
+**Common Confusion:**
+- Primary ↔ Secondary Forest (canopy density gradient)
+- Mangroves ↔ Agriculture (wet season similarity)
+- Urban ↔ Bare Soil (bright surfaces)
+
+### Deliverables
+
+By the end of this session, you will produce:
+
+✅ High-resolution land cover map (10m)  
+✅ Accuracy assessment report  
+✅ Feature importance analysis  
+✅ 2020-2024 change detection map  
+✅ Area statistics by class  
+✅ Deforestation hotspot map  
+✅ Exported GeoTIFF for GIS  
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+**"Computation timed out"**
+- Reduce study area size
+- Use smaller GLCM window (3x3 instead of 5x5)
+- Process in tiles
+
+**"Memory limit exceeded"**
+- Export intermediate results
+- Use `.aside()` sparingly
+- Reduce feature count
+
+**"Low classification accuracy"**
+- Check training data quality
+- Add more training samples
+- Try different feature combinations
+- Adjust class definitions
+
+**"GEE authentication failed"**
+```python
+import ee
+ee.Authenticate()
+ee.Initialize()
+```
+
+### Getting Help
+
+- 📖 [Troubleshooting Guide](../documentation/TROUBLESHOOTING.md)
+- 💬 [GEE Community Forum](https://groups.google.com/g/google-earth-engine-developers)
+- 📧 Instructor support during lab hours
+
+---
+
+## Additional Resources
+
+### Documentation
+- [GEE Classification Guide](https://developers.google.com/earth-engine/guides/classification)
+- [Random Forest Parameters](https://developers.google.com/earth-engine/apidocs/ee-classifier-smilerandomforest)
+- [GLCM Texture](https://developers.google.com/earth-engine/apidocs/ee-image-glcmtexture)
+
+### Datasets
+- [ESRI 2020 Land Cover](https://livingatlas.arcgis.com/landcover/) (10m global)
+- [Copernicus Land Cover](https://land.copernicus.eu/global/) (100m global)
+- [Philippine GIS Portal](https://data.gov.ph)
+
+### Scientific Papers
+- Karra et al. (2021). Global LULC with Sentinel-2 and deep learning. *IGARSS*
+- Phiri et al. (2020). Sentinel-2 LULC classification: A review. *Remote Sensing*
+- Belgiu & Drăguţ (2016). Random Forest in remote sensing. *ISPRS*
+
+---
+
+## Assessment
+
+### Formative Assessment
+- ✓ Complete all TODO exercises in notebook
+- ✓ Achieve >80% classification accuracy
+- ✓ Generate all required outputs
+- ✓ Answer concept check questions
+
+### Summative Assessment
+- Classification map quality (40%)
+- Accuracy metrics achieved (30%)
+- Change detection analysis (20%)
+- Written interpretation (10%)
+
+---
+
+## Next Steps
+
+::: {.callout-note}
+## After Session 2
+
+You're now ready for deep learning approaches!
+
+**Session 3** introduces Convolutional Neural Networks (CNNs) for Earth observation, building on your classification experience.
+
+[Continue to Session 3 →](session3.qmd){.btn .btn-primary}
+:::
+
+### Extended Projects
+
+Want to go further? Try these:
+
+1. **Expand Study Area:** Apply to entire Palawan or other Philippine regions
+2. **Add Classes:** Separate coconut vs rice, primary forest sub-types
+3. **Time Series:** Analyze annual trends (2017-2024)
+4. **Integration:** Combine with field data or local knowledge
+5. **Automation:** Build monitoring pipeline with regular updates
+
+---
+
+## Quick Links
+
+::: {.quick-links}
+[← Session 1](session1.qmd){.quick-link}
+[Session 3 →](session3.qmd){.quick-link}
+[Day 2 Home](../index.qmd){.quick-link}
+[All Notebooks](../notebooks/){.quick-link}
+[Setup Guide](../../resources/setup.qmd){.quick-link}
+[Training Data](../data/){.quick-link}
+:::
+
+---
+
+::: {.callout-tip collapse="true"}
+## 💡 Instructor Notes
+
+**Timing Management:**
+- Part A (Features): Often takes 35-40 min (GLCM is computationally intensive)
+- Part B (Classification): 45-50 min is realistic
+- Part C (Optimization): Can be shortened to 20 min if needed
+- Part D (NRM): Good extension for fast finishers
+
+**Common Student Questions:**
+- "Why is GLCM slow?" → Explain computational complexity, suggest smaller windows
+- "Can I use my own study area?" → Yes, provide bbox coordinates
+- "What if accuracy is low?" → Check training data, try feature selection
+- "How to export large areas?" → Demonstrate tiling strategy
+
+**Teaching Tips:**
+- Demo complete workflow before exercises
+- Use pair programming for debugging
+- Show parameter exploration interactively
+- Gallery walk to share results
+:::

@@ -1,0 +1,230 @@
+---
+title: "Day 3: Deep Learning for Earth Observation"
+subtitle: "CNNs, U-Net, and Transfer Learning for Satellite Imagery"
+date: last-modified
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Day 3: Deep Learning for EO</span>
+</nav>
+
+::: {.hero}
+# Day 3: Deep Learning for Earth Observation
+
+### CNNs, U-Net, and Transfer Learning for Satellite Imagery
+
+Leveraging neural networks for advanced EO image analysis
+:::
+
+## Day 3 Overview
+
+Day 3 explores **advanced deep learning techniques** for Earth Observation, focusing on semantic segmentation and object detection. You'll master the U-Net architecture for pixel-wise classification tasks like flood mapping, and learn modern object detection methods (YOLO, Faster R-CNN) for identifying and counting objects in satellite imagery. Hands-on sessions use Philippine case studies including Central Luzon flood mapping and Metro Manila urban monitoring.
+
+::: {.callout-tip}
+## Available Sessions
+
+**✅ Session 1:** Semantic Segmentation with U-Net - Complete
+**✅ Session 2:** Flood Mapping Lab (U-Net + SAR) - Complete
+**✅ Session 3:** Object Detection Techniques - Complete
+**✅ Session 4:** Object Detection Lab (Transfer Learning) - Complete
+
+**All Day 3 sessions are now ready for delivery!**
+:::
+
+## Learning Objectives
+
+By the end of Day 3, you will be able to:
+
+::: {.learning-objectives}
+- **Understand** U-Net encoder-decoder architecture and skip connections for semantic segmentation
+- **Explain** the differences between semantic segmentation, instance segmentation, and object detection
+- **Implement** U-Net models from scratch using TensorFlow/Keras for pixel-wise classification
+- **Process** Sentinel-1 SAR imagery for flood detection and disaster response applications
+- **Train** semantic segmentation models with dice loss and IoU metrics
+- **Apply** U-Net to real-world flood mapping scenarios in Central Luzon
+- **Comprehend** object detection architectures (YOLO, Faster R-CNN, RetinaNet)
+- **Calculate** object detection metrics including mAP, IoU, precision, and recall
+- **Implement** transfer learning with pre-trained backbone networks (ResNet, EfficientNet)
+- **Fine-tune** pre-trained object detection models for building footprint extraction
+- **Design** data augmentation strategies appropriate for EO tasks
+- **Handle** imbalanced datasets using weighted loss functions and sampling strategies
+- **Evaluate** segmentation quality using confusion matrices, IoU, and F1-scores
+- **Visualize** model predictions, feature maps, and attention mechanisms
+- **Deploy** operational workflows for disaster mapping and urban monitoring
+:::
+
+## Today's Schedule
+
+| Time | Session | Topic | Materials |
+|------|:-------:|-------|-----------|
+| 09:00-10:30 | **[1](sessions/session1.qmd)** | Semantic Segmentation with U-Net | Theory + Demos |
+| 10:30-13:00 | **[2](sessions/session2.qmd)** | Flood Mapping Lab (Central Luzon) | [Hands-on Lab](notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb) |
+| 14:00-15:30 | **[3](sessions/session3.qmd)** | Object Detection Techniques for EO | Theory + Case Studies |
+| 15:30-18:00 | **[4](sessions/session4.qmd)** | Building Detection Lab (Metro Manila) | [Hands-on Lab](notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb) |
+
+## Training Sessions
+
+::: {.feature-grid}
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-bounding-box-circles"></i>
+:::
+
+### Session 1
+**Semantic Segmentation with U-Net**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 1.5 hours</span>
+</div>
+
+- U-Net architecture fundamentals
+- Encoder-decoder networks
+- Skip connections explained
+- Semantic vs instance segmentation
+- EO applications
+
+[Start Session 1 <i class="bi bi-arrow-right"></i>](sessions/session1.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-water"></i>
+:::
+
+### Session 2
+**Flood Mapping Lab (Central Luzon)**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2.5 hours</span>
+</div>
+
+- Sentinel-1 SAR flood mapping
+- U-Net implementation in TensorFlow
+- Training pipeline development
+- Performance evaluation
+- Operational deployment
+
+[Start Session 2 <i class="bi bi-arrow-right"></i>](sessions/session2.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-search"></i>
+:::
+
+### Session 3
+**Object Detection Techniques for EO**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 1.5 hours</span>
+</div>
+
+- R-CNN family overview
+- YOLO architecture
+- Object detection metrics (mAP, IoU)
+- Transfer learning strategies
+- Philippine use cases
+
+[Start Session 3 <i class="bi bi-arrow-right"></i>](sessions/session3.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-buildings"></i>
+:::
+
+### Session 4
+**Building Detection Lab (Metro Manila)**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2.5 hours</span>
+</div>
+
+- Transfer learning with ResNet backbone
+- Fine-tuning pre-trained models
+- Building footprint detection
+- Model evaluation and visualization
+- Deployment considerations
+
+[Start Session 4 <i class="bi bi-arrow-right"></i>](sessions/session4.qmd){.btn .btn-start}
+:::
+:::
+
+---
+
+## Prerequisites
+
+::: {.prerequisites}
+### From Previous Days
+
+Before Day 3, you should have completed:
+
+- [ ] Day 1: EO Data & AI/ML Fundamentals
+- [ ] Day 2: Machine Learning for Earth Observation
+- [ ] Understanding of neural network basics (from Day 1, Session 2)
+- [ ] Experience with ML model training (from Day 2)
+
+### Technical Setup
+
+- [ ] Google Colab access with GPU runtime
+- [ ] TensorFlow/Keras familiarity
+- [ ] Understanding of convolutional layers
+- [ ] Python programming proficiency
+
+[Complete Setup Guide →](../resources/setup.qmd){.btn .btn-outline-primary}
+:::
+
+## What's Next?
+
+After Day 3, you'll progress to:
+
+**Day 4: Advanced Topics & Capstone Projects** - Time series analysis, multi-modal data fusion, foundation models, and hands-on project work.
+
+---
+
+## Quick Links
+
+::: {.quick-links}
+[Session 1: Semantic Segmentation](sessions/session1.qmd){.quick-link}
+[Session 2: Flood Mapping Lab](sessions/session2.qmd){.quick-link}
+[Session 3: Object Detection](sessions/session3.qmd){.quick-link}
+[Session 4: Building Detection Lab](sessions/session4.qmd){.quick-link}
+[Slides: Session 1](presentations/session1_unet_segmentation.qmd){.quick-link}
+[Slides: Session 2](presentations/session2_flood_mapping_lab.qmd){.quick-link}
+[Slides: Session 3](presentations/session3_object_detection.qmd){.quick-link}
+[Slides: Session 4](presentations/session4_object_detection_lab.qmd){.quick-link}
+[Data Acquisition Guide](DATA_GUIDE.md){.quick-link}
+[Back to Course Home](../index.qmd){.quick-link}
+:::
+
+---
+
+::: {.session-nav}
+[← Back to Day 2](../day2/index.qmd){.btn .btn-outline-primary}
+[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
+:::
+
+---
+
+::: {.callout-note}
+## 🎓 Using Synthetic Data for Immediate Learning
+
+**Sessions 2 & 4** use **synthetic/demo data** for immediate execution and hands-on learning. This approach:
+
+- ✅ Allows you to run labs immediately (no downloads or preprocessing)
+- ✅ Focuses on deep learning methodology and workflows
+- ✅ Teaches production-ready code (same code works with real data)
+- ✅ Matches industry best practices (e.g., Kaggle, academic courses)
+
+**For production applications:** See the [Data Acquisition Guide](DATA_GUIDE.md) for obtaining real Sentinel-1 SAR and Sentinel-2 optical data, including Google Earth Engine scripts and annotation tools.
+:::
+
+---
+
+*Day 3 is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative and delivered in partnership with PhilSA and DOST.*

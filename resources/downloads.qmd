@@ -1,0 +1,558 @@
+---
+title: "Downloads"
+subtitle: "Training Materials & Resources"
+date: last-modified
+---
+
+## Overview
+
+Download all training materials for Day 1 of the CoPhil EO AI/ML Training. All materials are provided under open licenses for educational use.
+
+::: {.callout-note}
+## Download Package
+For convenience, you can download all Day 1 materials as a single ZIP file, or download individual components below.
+:::
+
+---
+
+## Complete Day 1 Package
+
+::: {.download-box}
+### All-in-One Download
+
+**Package Contents:**
+- All 4 session notebooks (Jupyter .ipynb)
+- Presentation slides (PDF)
+- Cheat sheets (PDF)
+- Sample datasets
+- Session handouts
+
+**Size:** ~150 MB
+
+[Download Complete Package (ZIP)](#){.btn .btn-primary .btn-lg}
+
+*Last updated: 2025-01-15*
+:::
+
+---
+
+## Jupyter Notebooks
+
+Download interactive notebooks for hands-on practice:
+
+### Session 3: Python for Geospatial Data
+
+::: {.download-item}
+**Day1_Session3_Python_Geospatial_Data.ipynb**
+
+Learn to work with vector data (GeoPandas) and raster data (Rasterio) in Python.
+
+**Topics Covered:**
+- GeoPandas for vector data
+- Reading shapefiles, GeoJSON, and GeoPackages
+- Coordinate reference systems and reprojection
+- Rasterio for raster data
+- Reading GeoTIFF files
+- Band operations and visualization
+- Philippine case study: Palawan land cover
+
+**Requirements:**
+- Google Colab (recommended)
+- Or local Jupyter with geopandas, rasterio installed
+
+[Download Notebook](../day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-primary}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-outline}
+:::
+
+### Session 4: Google Earth Engine
+
+::: {.download-item}
+**Day1_Session4_Google_Earth_Engine.ipynb**
+
+Master Google Earth Engine for accessing and processing Copernicus data.
+
+**Topics Covered:**
+- Earth Engine authentication and initialization
+- ImageCollection filtering (spatial, temporal, metadata)
+- Sentinel-1 SAR data access
+- Sentinel-2 optical data access
+- Cloud masking techniques
+- Temporal compositing
+- Data export workflows
+- Philippine case study: Metro Manila monitoring
+
+**Requirements:**
+- Google Earth Engine account (register at earthengine.google.com)
+- Google Colab
+
+[Download Notebook](#){.btn .btn-primary}
+[Open in Colab](#){.btn .btn-outline}
+:::
+
+---
+
+## Presentation Slides
+
+Download presentation slides for reference:
+
+### Session 1: Copernicus Sentinel Data & Philippine EO Ecosystem
+
+::: {.download-item}
+**Topics:**
+- Copernicus Programme overview
+- Sentinel-1 SAR characteristics
+- Sentinel-2 optical specifications
+- 2025 updates (Sentinel-2C, Sentinel-1C)
+- Philippine EO agencies (PhilSA, NAMRIA, DOST-ASTI)
+- CoPhil Mirror Site introduction
+
+**Format:** PDF (slides with notes)
+
+**Size:** ~15 MB
+
+[Download PDF](#){.btn .btn-primary}
+[View Online](#){.btn .btn-outline}
+:::
+
+### Session 2: AI/ML Fundamentals for Earth Observation
+
+::: {.download-item}
+**Topics:**
+- What is AI/ML and the EO workflow
+- Supervised vs. Unsupervised learning
+- Classification and regression examples
+- Introduction to neural networks
+- Convolutional Neural Networks (CNNs)
+- Data-centric AI paradigm
+- EO-specific considerations
+
+**Format:** PDF (slides with notes)
+
+**Size:** ~12 MB
+
+[Download PDF](#){.btn .btn-primary}
+[View Online](#){.btn .btn-outline}
+:::
+
+### Session 3: Python for Geospatial Data (Intro)
+
+::: {.download-item}
+**Topics:**
+- Google Colab setup
+- Python environment for geospatial
+- Vector data concepts
+- Raster data concepts
+- Coordinate reference systems
+
+**Format:** PDF (slides with notes)
+
+**Size:** ~8 MB
+
+[Download PDF](#){.btn .btn-primary}
+[View Online](#){.btn .btn-outline}
+:::
+
+### Session 4: Introduction to Google Earth Engine (Coming Soon)
+
+::: {.download-item}
+**Topics:**
+- Earth Engine architecture
+- Python API overview
+- Data catalog navigation
+- Philippine EO applications
+
+**Format:** PDF (slides with notes)
+
+**Status:** In preparation
+
+[Coming Soon](#){.btn .btn-secondary .disabled}
+:::
+
+---
+
+## Cheat Sheets (PDF)
+
+Print-friendly quick reference guides:
+
+::: {.downloads-grid}
+::: {.download-card}
+### Python Basics
+Essential Python syntax and operations
+
+[Download PDF](#){.btn .btn-sm}
+:::
+
+::: {.download-card}
+### GeoPandas Reference
+Vector data operations
+
+[Download PDF](#){.btn .btn-sm}
+:::
+
+::: {.download-card}
+### Rasterio Commands
+Raster data handling
+
+[Download PDF](#){.btn .btn-sm}
+:::
+
+::: {.download-card}
+### Earth Engine API
+GEE Python commands
+
+[Download PDF](#){.btn .btn-sm}
+:::
+
+::: {.download-card}
+### Sentinel Missions
+Band specifications
+
+[Download PDF](#){.btn .btn-sm}
+:::
+
+::: {.download-card}
+### Spectral Indices
+Common formulas
+
+[Download PDF](#){.btn .btn-sm}
+:::
+:::
+
+---
+
+## Sample Datasets
+
+Practice datasets for offline work:
+
+### Philippine Administrative Boundaries
+
+::: {.download-item}
+**Description:** Provincial and municipal boundaries for the Philippines
+
+**Format:** GeoPackage (.gpkg)
+
+**Size:** ~5 MB
+
+**Source:** PhilGIS / NAMRIA
+
+**License:** Open Data
+
+[Download Dataset](#){.btn .btn-primary}
+
+**Contents:**
+- Regions (17)
+- Provinces (81)
+- Municipalities and Cities
+- Attribute table with population data
+:::
+
+### Palawan Land Cover Sample
+
+::: {.download-item}
+**Description:** Sentinel-2 true color composite and land cover classification
+
+**Format:** GeoTIFF (.tif)
+
+**Size:** ~80 MB
+
+**Area:** Palawan Province subset
+
+**Date:** 2024 dry season composite
+
+[Download Dataset](#){.btn .btn-primary}
+
+**Files:**
+- `palawan_s2_composite.tif` (RGB composite)
+- `palawan_landcover.tif` (Classification)
+- `palawan_boundary.gpkg` (Vector boundary)
+- `README.txt` (Metadata)
+:::
+
+### Metro Manila Sentinel-1 Time Series (Sample)
+
+::: {.download-item}
+**Description:** Sentinel-1 VV/VH polarization samples
+
+**Format:** GeoTIFF (.tif)
+
+**Size:** ~40 MB
+
+**Area:** Metro Manila subset
+
+**Dates:** Monthly composites (Jan-Dec 2024)
+
+[Download Dataset](#){.btn .btn-primary}
+
+**Use Cases:**
+- Urban monitoring
+- Flood detection practice
+- Time series analysis
+:::
+
+---
+
+## Session Handouts
+
+Printed materials for participants:
+
+::: {.download-item}
+### Day 1 Participant Handbook
+
+**Contents:**
+- Session summaries
+- Learning objectives
+- Key concepts
+- Exercise instructions
+- Note-taking space
+
+**Format:** PDF (A4, printable)
+
+**Size:** ~3 MB
+
+[Download PDF](#){.btn .btn-primary}
+:::
+
+::: {.download-item}
+### Glossary of Terms
+
+**Contents:**
+- EO terminology
+- AI/ML concepts
+- Acronyms and abbreviations
+- Philippine EO agencies
+
+**Format:** PDF (booklet style)
+
+**Size:** ~2 MB
+
+[Download PDF](#){.btn .btn-primary}
+:::
+
+---
+
+## Code Examples Repository
+
+Access all code examples and utilities:
+
+::: {.github-box}
+### GitHub Repository
+
+**Repository:** `copphil-training/day1-materials`
+
+**Contents:**
+- Jupyter notebooks (latest versions)
+- Python utility functions
+- Data processing scripts
+- Example workflows
+- Troubleshooting guides
+
+[Visit Repository](#){.btn .btn-dark}
+[Clone via Git](#){.btn .btn-outline}
+
+```bash
+# Clone repository
+git clone https://github.com/copphil-training/day1-materials.git
+
+# Or download ZIP
+wget https://github.com/copphil-training/day1-materials/archive/main.zip
+```
+:::
+
+---
+
+## Google Colab Links
+
+Direct links to open notebooks in Google Colab:
+
+::: {.colab-links}
+**Session 3: Python for Geospatial Data**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb)
+
+---
+
+**Session 4: Google Earth Engine**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb)
+:::
+
+::: {.callout-tip}
+## Working in Colab
+Opening notebooks in Colab requires no local installation. All code runs in the cloud with access to GPUs and pre-installed libraries.
+
+**First Time?** See the [Setup Guide](setup.qmd) for authentication instructions.
+:::
+
+---
+
+## Additional Resources
+
+### Recommended Reading
+
+::: {.reading-list}
+**Earth Observation:**
+- [Copernicus Open Access Hub User Guide](https://scihub.copernicus.eu/userguide/)
+- [Sentinel-1 Toolbox Documentation](https://step.esa.int/main/toolboxes/snap/)
+- [Sentinel-2 User Handbook](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi)
+
+**Python for Geospatial:**
+- [GeoPandas User Guide](https://geopandas.org/en/stable/getting_started.html)
+- [Rasterio Quickstart](https://rasterio.readthedocs.io/en/latest/quickstart.html)
+- [Python Geospatial Development](https://www.oreilly.com/library/view/python-geospatial-development/9781800203679/)
+
+**Google Earth Engine:**
+- [Earth Engine Python API Guide](https://developers.google.com/earth-engine/guides/python_install)
+- [Earth Engine Community Tutorials](https://developers.google.com/earth-engine/tutorials/community/explore)
+- [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE)
+
+**AI/ML for EO:**
+- [Deep Learning for Earth Observation (Springer)](https://link.springer.com/book/10.1007/978-3-030-82327-6)
+- [Fundamentals of Machine Learning for Predictive Data Analytics](https://mitpress.mit.edu/9780262044691/)
+- [Data-Centric AI Resource Hub](https://datacentricai.org/)
+:::
+
+### Video Tutorials
+
+::: {.video-list}
+- **Copernicus Programme Introduction** (15 min) - [Watch](#)
+- **Getting Started with Google Earth Engine** (30 min) - [Watch](#)
+- **GeoPandas Tutorial for Beginners** (45 min) - [Watch](#)
+- **Philippine EO Ecosystem Overview** (20 min) - [Watch](#)
+:::
+
+---
+
+## Installation Scripts
+
+### Local Python Environment Setup
+
+For participants who want to work locally (not in Colab):
+
+::: {.code-download}
+**requirements.txt**
+
+```txt
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+geopandas>=0.13.0
+rasterio>=1.3.0
+earthengine-api>=0.1.350
+folium>=0.14.0
+geemap>=0.30.0
+jupyter>=1.0.0
+```
+
+[Download requirements.txt](#){.btn .btn-primary}
+
+**Installation:**
+```bash
+# Create virtual environment
+python -m venv eo-env
+source eo-env/bin/activate  # On Windows: eo-env\Scripts\activate
+
+# Install packages
+pip install -r requirements.txt
+
+# Verify installation
+python -c "import geopandas; print('GeoPandas installed successfully!')"
+```
+:::
+
+### Conda Environment (Alternative)
+
+::: {.code-download}
+**environment.yml**
+
+```yaml
+name: copphil-day1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - matplotlib
+  - geopandas
+  - rasterio
+  - jupyter
+  - pip
+  - pip:
+    - earthengine-api
+    - geemap
+```
+
+[Download environment.yml](#){.btn .btn-primary}
+
+**Installation:**
+```bash
+conda env create -f environment.yml
+conda activate copphil-day1
+```
+:::
+
+---
+
+## License & Attribution
+
+::: {.callout-important}
+## Usage Terms
+
+**Training Materials License:**
+- Licensed under **Creative Commons BY-SA 4.0**
+- Free to use for educational purposes
+- Attribution required: "CoPhil EO AI/ML Training Programme"
+
+**Code Examples:**
+- Licensed under **MIT License**
+- Free to use, modify, and distribute
+
+**Sample Datasets:**
+- Copernicus Sentinel data: **Free and open** (Copernicus Data Policy)
+- Philippine administrative boundaries: **Open Data** (government sources)
+- Processed derivatives: **CC BY-SA 4.0**
+
+**Citation:**
+```
+CoPhil Training Programme (2025). Day 1: EO Data, AI/ML Fundamentals &
+Geospatial Python. EU-Philippines Copernicus Capacity Support Programme.
+```
+:::
+
+---
+
+## Support & Feedback
+
+### Having Issues?
+
+- Check the [FAQ](faq.qmd) for common problems
+- Review the [Setup Guide](setup.qmd) for installation help
+- Contact training coordinators: training@philsa.gov.ph
+
+### Suggest Improvements
+
+- Report broken links or errors
+- Request additional materials
+- Share feedback on content
+
+**GitHub Issues:** [Report Issue](#)
+
+---
+
+## Download Statistics
+
+::: {.stats-box}
+**Most Downloaded:**
+1. Complete Day 1 Package (ZIP)
+2. Session 3 Jupyter Notebook
+3. GeoPandas Cheat Sheet
+4. Session 4 Jupyter Notebook
+5. Palawan Land Cover Dataset
+
+**Total Downloads This Month:** 1,247
+:::
+
+---
+
+*All materials are regularly updated. Check back for new resources and improved versions.*

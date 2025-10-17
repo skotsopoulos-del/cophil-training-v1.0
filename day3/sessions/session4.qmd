@@ -1,0 +1,608 @@
+---
+title: "Session 4: Hands-on Object Detection from Sentinel Imagery"
+subtitle: "Urban Monitoring with Transfer Learning and Pre-trained Models"
+date: last-modified
+author: "Stylianos Kotsopoulos"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 3</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 4</span>
+</nav>
+
+::: {.hero}
+# Hands-on Lab: Object Detection from Sentinel Imagery
+
+### Building Detection for Urban Monitoring in Metro Manila
+
+Apply transfer learning with pre-trained object detectors to identify buildings and settlements in satellite imagery
+:::
+
+## Lab Overview
+
+::: {.session-info}
+**Duration:** 2.5 hours | **Format:** Hands-on Coding Lab | **Platform:** Google Colab with GPU
+:::
+
+---
+
+This practical session demonstrates object detection for Earth observation using transfer learning. You'll fine-tune a pre-trained object detection model (YOLO or SSD) to detect buildings and informal settlements in Metro Manila from Sentinel-2 optical imagery. This approach minimizes data annotation requirements while achieving operational accuracy.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this lab, you will be able to:
+
+- **Understand** transfer learning for object detection in EO applications
+- **Load and configure** pre-trained models from TensorFlow Hub or PyTorch Hub
+- **Prepare** satellite imagery and annotations for object detection
+- **Fine-tune** pre-trained detectors on custom datasets
+- **Evaluate** model performance using mean Average Precision (mAP)
+- **Visualize** detected bounding boxes on satellite imagery
+- **Interpret** model predictions for urban monitoring
+- **Deploy** object detection for operational Philippine use cases
+:::
+
+## Presentation Slides
+
+<iframe src="../presentations/session4_object_detection_lab.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Case Study: Metro Manila Building Detection
+
+::: {.callout-note}
+## Philippine Urban Monitoring Context
+
+**Location:** Metro Manila - National Capital Region (NCR)  
+**Focus Areas:** Quezon City and Pasig River corridor  
+**Challenge:** Rapid informal settlement growth and urban sprawl
+
+**Why This Matters:**
+Metro Manila's rapid urbanization creates challenges for:
+- **Disaster Risk Reduction** - Identifying vulnerable settlements in flood zones
+- **Urban Planning** - Monitoring informal settlements and infrastructure
+- **Population Estimation** - Building counts for demographic analysis
+- **Resource Allocation** - Targeting social services and infrastructure development
+
+**Data Source:** Sentinel-2 Multispectral Imagery
+- **Advantage:** High spatial resolution (10m RGB) with rich spectral information
+- **Temporal Coverage:** 5-day revisit for change detection
+- **Bands Used:** RGB (B4, B3, B2) + NIR (B8) for enhanced detection
+:::
+
+### The Challenge
+
+Manual building delineation is time-consuming and inconsistent. Object detection with deep learning enables:
+- **Automated identification** of buildings from satellite imagery
+- **Rapid mapping** of large urban areas within hours
+- **Change detection** by comparing detections over time
+- **Scalable monitoring** for growing metropolitan regions
+- **Quantitative analysis** of urban expansion patterns
+
+---
+
+## Lab Workflow
+
+This hands-on lab follows a 7-step transfer learning workflow:
+
+```{mermaid}
+%%| fig-cap: "Object Detection Transfer Learning Workflow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[1. Setup & Pre-trained Model] --> B[2. Load Demo Data]
+    B --> C[3. Data Preparation]
+    C --> D[4. Model Fine-tuning]
+    D --> E[5. Inference & Detection]
+    E --> F[6. Evaluation mAP]
+    F --> G[7. Visualization & Export]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style D fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style G fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+```
+
+---
+
+## Prerequisites and Setup
+
+### Before You Begin
+
+::: {.callout-warning}
+## Required Setup
+
+**Platform:** Google Colab (free tier with GPU)
+
+**Checklist:**
+- [ ] Google account with access to Google Colab
+- [ ] Understanding of CNNs (from Day 2, Session 3)
+- [ ] Familiarity with object detection concepts (from Session 3)
+- [ ] Basic Python and TensorFlow/PyTorch knowledge
+
+**Estimated Total Time:** 2.5 hours (including fine-tuning time)
+:::
+
+### Access the Notebook
+
+**Download and Open:**
+- Download: [`Day3_Session4_Object_Detection_STUDENT.ipynb`](../notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb)
+- Upload to your Google Drive
+- Open with Google Colab
+
+::: {.callout-tip}
+## Transfer Learning Advantage
+
+Instead of training from scratch (requires 10,000+ annotated images), we'll:
+1. Use a pre-trained detector (trained on COCO dataset with 330K images)
+2. Fine-tune on a small urban satellite image dataset (100-500 samples)
+3. Achieve operational accuracy in 30-60 minutes of training
+
+**This is how real-world practitioners work with limited labeled data!**
+:::
+
+### Enable GPU
+
+::: {.callout-tip}
+## GPU Acceleration Required
+
+1. In Colab: **Runtime** → **Change runtime type**
+2. Select **Hardware accelerator:** GPU (T4 or better)
+3. Verify: Run `!nvidia-smi` to confirm GPU availability
+
+**Note:** GPU significantly speeds up fine-tuning (10x faster than CPU)
+:::
+
+---
+
+## Part 1: Understanding Transfer Learning for Object Detection (15 min)
+
+### What is Transfer Learning?
+
+**Concept:** Adapt a model pre-trained on a large dataset to your specific task with minimal additional training data.
+
+**Analogy:** Like a doctor specializing in cardiology after completing general medical training - the foundational knowledge transfers, requiring less time to specialize.
+
+**For Object Detection:**
+- Pre-trained model learned to detect 80 object classes on COCO dataset
+- Model already understands:
+  - What makes an object distinct from background
+  - How to propose bounding boxes
+  - How to classify regions
+- We adapt it to detect buildings/settlements in satellite imagery
+
+### Why Transfer Learning for Philippine EO?
+
+**Challenge:** Limited labeled satellite imagery
+- Annotation is expensive (bounding boxes take time)
+- Philippine-specific datasets are scarce
+- Small agencies can't afford large labeling efforts
+
+**Solution:** Transfer Learning
+- Start with pre-trained model (free, publicly available)
+- Fine-tune with 100-500 labeled satellite images
+- Achieve 75-85% accuracy (operational quality)
+- Training time: 30-60 minutes (vs. days from scratch)
+
+---
+
+## Part 2: Lab Exercises
+
+### Exercise 1: Load Pre-trained Model (20 min)
+
+**Objective:** Load a pre-trained object detector from TensorFlow Hub or PyTorch Hub
+
+**Models Available:**
+- **SSD MobileNet V2** - Fast, lightweight (recommended for EO)
+- **Faster R-CNN ResNet50** - Higher accuracy, slower
+- **YOLO v5/v8** - Good balance of speed and accuracy
+
+**Tasks:**
+```python
+# Load pre-trained SSD MobileNet from TensorFlow Hub
+import tensorflow_hub as hub
+
+model_url = "https://tfhub.dev/tensorflow/ssd_mobilenet_v2/fpnlite_320x320/1"
+detector = hub.load(model_url)
+
+# Test on a sample image
+# Visualize default detections (COCO classes)
+```
+
+**What You'll Learn:**
+- How to load pre-trained models
+- Understanding model input/output format
+- Visualizing detections before fine-tuning
+
+---
+
+### Exercise 2: Prepare Training Data (30 min)
+
+**Objective:** Load and prepare satellite imagery with building annotations
+
+**Data Format:**
+- Images: Sentinel-2 RGB patches (320x320 or 512x512 pixels)
+- Annotations: COCO JSON format with bounding boxes
+  ```json
+  {
+    "images": [...],
+    "annotations": [
+      {
+        "image_id": 1,
+        "bbox": [x, y, width, height],
+        "category_id": 1,  // building
+        "area": 2500
+      }
+    ],
+    "categories": [{"id": 1, "name": "building"}]
+  }
+  ```
+
+**Tasks:**
+1. Load demo urban satellite imagery
+2. Visualize images with bounding boxes
+3. Split data: 70% train, 15% validation, 15% test
+4. Convert to model's expected input format
+
+::: {.callout-note}
+## Demo Data Included
+
+For this lab, we provide a small demo dataset:
+- 100 Sentinel-2 urban patches
+- Pre-annotated buildings (simulated or curated)
+- Ready for immediate fine-tuning
+
+**For production:** See data acquisition guide for collecting real Metro Manila imagery and annotations.
+:::
+
+---
+
+### Exercise 3: Fine-tune Model (40 min)
+
+**Objective:** Adapt the pre-trained detector to recognize buildings in satellite imagery
+
+**Fine-tuning Strategy:**
+- Freeze early layers (keep general feature extractors)
+- Train only the detection head (bounding box prediction)
+- Use small learning rate (0.0001-0.001)
+- Train for 10-30 epochs
+
+**Tasks:**
+```python
+# Configure fine-tuning
+optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001)
+loss_fn = detection_loss  # Combined classification + localization loss
+
+# Train for 20 epochs
+for epoch in range(20):
+    for batch_images, batch_boxes in train_dataset:
+        # Forward pass
+        predictions = model(batch_images)
+        
+        # Calculate loss
+        loss = loss_fn(predictions, batch_boxes)
+        
+        # Backpropagation
+        # Update weights
+        
+    # Validation
+    val_loss = evaluate(model, val_dataset)
+    print(f"Epoch {epoch}: Train Loss={loss:.4f}, Val Loss={val_loss:.4f}")
+```
+
+**What You'll Observe:**
+- Training loss decreases over epochs
+- Validation loss plateaus (indicates convergence)
+- Typical fine-tuning time: 30-45 minutes on Colab GPU
+
+---
+
+### Exercise 4: Evaluate with mAP (25 min)
+
+**Objective:** Calculate mean Average Precision (mAP) - the standard object detection metric
+
+**What is mAP?**
+- **Precision:** Of detected buildings, how many are correct?
+- **Recall:** Of all actual buildings, how many did we detect?
+- **Average Precision (AP):** Area under precision-recall curve
+- **mAP:** Mean AP across all classes (here, just "building")
+
+**IoU Threshold:**
+- Detection "correct" if IoU (Intersection over Union) ≥ 0.5
+- IoU = (Area of Overlap) / (Area of Union)
+
+**Tasks:**
+```python
+# Evaluate on test set
+results = evaluate_model(model, test_dataset)
+
+print(f"mAP@0.5: {results['mAP_50']:.3f}")
+print(f"Precision: {results['precision']:.3f}")
+print(f"Recall: {results['recall']:.3f}")
+```
+
+**Expected Performance:**
+- **Before fine-tuning:** mAP ~0.10-0.20 (not trained for buildings)
+- **After fine-tuning:** mAP ~0.70-0.85 (operational quality)
+
+---
+
+### Exercise 5: Visualize Detections (20 min)
+
+**Objective:** Visualize model predictions on Metro Manila satellite imagery
+
+**Tasks:**
+1. Run inference on test images
+2. Draw bounding boxes with confidence scores
+3. Compare before/after fine-tuning
+4. Analyze false positives and false negatives
+
+**Visualization Code:**
+```python
+# Detect buildings in test image
+image = load_satellite_image("metro_manila_test.tif")
+detections = model.predict(image)
+
+# Visualize
+for bbox in detections:
+    if bbox['score'] > 0.5:  # Confidence threshold
+        draw_box(image, bbox['bbox'], label=f"Building {bbox['score']:.2f}")
+
+plt.imshow(image)
+plt.title("Building Detection - Metro Manila")
+plt.show()
+```
+
+**Analysis:**
+- Count detected buildings per image
+- Compare against ground truth
+- Identify challenging cases (dense urban areas, shadows)
+
+---
+
+## Part 3: Metro Manila Urban Monitoring Applications (15 min)
+
+### Operational Use Cases
+
+**1. Informal Settlement Mapping**
+- **Application:** Identify unplanned settlements in flood-prone areas
+- **Stakeholder:** NDRRMC, Local Government Units (LGUs)
+- **Output:** Building density maps, population estimates
+
+**2. Urban Growth Monitoring**
+- **Application:** Track new construction over time
+- **Method:** Compare detections from multi-temporal imagery
+- **Output:** Change maps showing urban expansion hotspots
+
+**3. Disaster Impact Assessment**
+- **Application:** Post-typhoon damage assessment
+- **Method:** Detect changes in building footprints (collapsed structures)
+- **Output:** Damage severity maps for relief operations
+
+**4. Infrastructure Planning**
+- **Application:** Identify under-served areas (low building density)
+- **Stakeholder:** DPWH, MMDA
+- **Output:** Priority areas for infrastructure development
+
+### Deployment Workflow
+
+```{mermaid}
+%%| fig-cap: "Operational Deployment Pipeline"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Sentinel-2 API] --> B[Pre-processing]
+    B --> C[Object Detection Model]
+    C --> D[Post-processing]
+    D --> E[GIS Export]
+    E --> F[Stakeholder Dashboard]
+    
+    style A fill:#0066cc,color:#fff
+    style C fill:#ff8800,color:#fff
+    style F fill:#00aa44,color:#fff
+```
+
+**Steps:**
+1. Automated download from Copernicus/GEE
+2. Cloud masking and atmospheric correction
+3. Tile into model input size
+4. Run detection inference
+5. Merge tiles and export to GeoJSON/Shapefile
+6. Integrate with QGIS/ArcGIS for analysis
+
+---
+
+## Part 4: Beyond the Lab - Production Considerations (10 min)
+
+### Real Data Acquisition
+
+**For Production Deployment:**
+
+1. **Acquire Sentinel-2 Imagery:**
+   - Google Earth Engine (free, cloud-based)
+   - Copernicus Data Space Ecosystem
+   - PhilSA Mirror Site
+
+2. **Create Annotations:**
+   - Manual: RoboFlow, CVAT, Label Studio
+   - Semi-automated: Use model predictions + human review
+   - Crowdsourced: Engage local communities
+
+3. **Quality Control:**
+   - Ensure consistent annotation guidelines
+   - Review inter-annotator agreement
+   - Validate with field surveys where possible
+
+### Model Improvement Strategies
+
+**To increase accuracy:**
+- Add more training samples (500-1000 recommended)
+- Use multi-temporal imagery (seasonal variations)
+- Ensemble multiple models (YOLO + SSD)
+- Post-process with building footprint databases
+
+**To handle challenges:**
+- **Dense urban areas:** Use higher resolution imagery (Pléiades, SPOT)
+- **Cloud cover:** Combine Sentinel-2 with Sentinel-1 SAR
+- **Small buildings:** Use models with better small object detection (YOLO v8)
+
+---
+
+## Part 5: Lab Summary and Next Steps (10 min)
+
+### What You've Accomplished
+
+::: {.callout-tip}
+## Key Achievements
+
+✅ Loaded and understood pre-trained object detection models  
+✅ Prepared satellite imagery for object detection  
+✅ Fine-tuned a detector on urban building dataset  
+✅ Evaluated performance using mAP metrics  
+✅ Visualized detections on Metro Manila imagery  
+✅ Connected to real-world Philippine urban monitoring applications
+:::
+
+### Comparison with Session 2 (Flood Mapping)
+
+| Aspect | Session 2 (Segmentation) | Session 4 (Object Detection) |
+|--------|-------------------------|------------------------------|
+| **Task** | Pixel-wise classification | Object localization + classification |
+| **Output** | Binary flood mask | Bounding boxes + labels |
+| **Metric** | IoU, F1-score | mAP, Precision, Recall |
+| **Use Case** | Flood extent mapping | Building counting, urban growth |
+| **Data** | Sentinel-1 SAR | Sentinel-2 Optical |
+
+**Both are complementary!**
+- Use segmentation for continuous phenomena (floods, vegetation)
+- Use object detection for discrete objects (buildings, vehicles)
+
+---
+
+## Resources and Further Learning
+
+### Documentation
+
+- **TensorFlow Object Detection API:** [Official Guide](https://tensorflow-object-detection-api-tutorial.readthedocs.io/)
+- **PyTorch Detection Tutorial:** [PyTorch Docs](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)
+- **COCO mAP Explained:** [Research Paper](https://cocodataset.org/#detection-eval)
+
+### Pre-trained Models
+
+- **TensorFlow Hub:** https://tfhub.dev/ (search "object detection")
+- **PyTorch Hub:** https://pytorch.org/hub/ (search "detection")
+- **Ultralytics YOLO:** https://github.com/ultralytics/ultralytics
+
+### Philippine EO Resources
+
+- **PhilSA SIYASAT:** Access Sentinel-2 data for Philippines
+- **NAMRIA Geoportal:** Administrative boundaries for Metro Manila
+- **OpenStreetMap Philippines:** Building footprints for validation
+
+---
+
+## Troubleshooting Guide
+
+### Common Issues
+
+**Issue 1: Out of Memory (OOM) during training**
+- **Solution:** Reduce batch size (try 4 or 8)
+- **Solution:** Use smaller input image size (320x320 instead of 512x512)
+- **Solution:** Restart runtime and clear outputs
+
+**Issue 2: mAP is very low (<0.30)**
+- **Cause:** Model not fine-tuned enough
+- **Solution:** Train for more epochs (30-50)
+- **Solution:** Check if annotations are correct
+- **Solution:** Increase learning rate slightly (0.001)
+
+**Issue 3: Model detects everything as buildings**
+- **Cause:** Confidence threshold too low
+- **Solution:** Increase threshold from 0.3 to 0.5-0.7
+- **Solution:** Add negative examples (non-building areas) to training
+
+**Issue 4: Training is very slow**
+- **Check:** GPU is enabled (Runtime → Change runtime type)
+- **Solution:** Use SSD MobileNet instead of Faster R-CNN
+- **Solution:** Reduce number of training samples (use subset)
+
+---
+
+## Assessment and Deliverables
+
+### Self-Assessment Checklist
+
+By the end of this lab, you should be able to:
+
+- [ ] Explain transfer learning for object detection
+- [ ] Load a pre-trained model from TensorFlow/PyTorch Hub
+- [ ] Prepare annotations in COCO format
+- [ ] Fine-tune a detector on custom satellite imagery
+- [ ] Calculate and interpret mAP metrics
+- [ ] Visualize bounding box detections
+- [ ] Apply object detection to Philippine urban monitoring
+
+### Optional Extensions (If Time Permits)
+
+**Advanced Exercise 1:** Multi-class detection
+- Add "informal settlement" as a second class
+- Train model to distinguish formal vs informal buildings
+
+**Advanced Exercise 2:** Change detection
+- Load imagery from two time periods (e.g., 2020 vs 2024)
+- Compare building counts to quantify urban growth
+
+**Advanced Exercise 3:** Anchor box optimization
+- Analyze building size distribution in Metro Manila
+- Customize anchor boxes for typical building sizes
+
+---
+
+## Conclusion
+
+Object detection is a powerful tool for operational Earth observation. By leveraging transfer learning, even small teams with limited annotation budgets can build production-quality detectors for Philippine-specific applications.
+
+**Key Takeaways:**
+1. Transfer learning dramatically reduces data and training time requirements
+2. Pre-trained models provide strong baselines for fine-tuning
+3. mAP is the standard metric for object detection evaluation
+4. Object detection enables scalable urban monitoring for disaster preparedness
+
+**Next Steps:**
+- Apply this workflow to your own area of interest
+- Collaborate with PhilSA/LGUs to acquire local annotations
+- Integrate detections with GIS workflows
+- Monitor urban changes over time using Sentinel-2 time series
+
+---
+
+::: {.callout-important}
+## Ready to Start the Lab?
+
+**Download the notebook now and begin hands-on object detection!**
+
+📓 [Day3_Session4_Object_Detection_STUDENT.ipynb](../notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb)
+
+**Estimated completion time:** 2-2.5 hours
+
+**Questions?** Refer to the FAQ or ask your instructor during the session.
+:::
+
+---
+
+::: {.session-nav}
+[← Session 3: Object Detection Theory](session3.qmd){.btn .btn-outline-primary}
+[Back to Day 3 Home](../index.qmd){.btn .btn-outline-secondary}
+:::
+
+---
+
+*Session 4: Hands-on Object Detection from Sentinel Imagery - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

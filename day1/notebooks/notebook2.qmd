@@ -1,0 +1,396 @@
+---
+title: "Notebook 2: Google Earth Engine"
+subtitle: "Cloud-based Earth Observation Data Processing"
+date: last-modified
+format:
+  html:
+    code-fold: false
+    code-tools: true
+---
+
+## Session 4 Hands-On Notebooks
+
+This session includes **TWO complementary notebooks** designed for progressive learning:
+
+### 📘 **Notebook 1: GEE Fundamentals** (Start Here)
+Complete introduction to Google Earth Engine with standard cloud masking (QA60)
+
+### 📗 **Notebook 2: Advanced Cloud Masking** (P0 Best Practices)
+Advanced techniques using SCL and s2cloudless for production-quality results
+
+### Combined Learning Objectives
+
+By completing both notebooks, you will:
+
+- Authenticate and initialize Google Earth Engine
+- Access Sentinel-1 SAR and Sentinel-2 optical data
+- Filter ImageCollections by location, date, and metadata
+- **Apply basic (QA60) AND advanced (SCL, s2cloudless) cloud masking**
+- Understand when to use each masking approach
+- Create temporal composites with best practices
+- Calculate vegetation indices (NDVI)
+- Export processed data for ML workflows
+- Apply concepts to Philippine use cases
+
+---
+
+## 📘 Notebook 1: GEE Fundamentals (Start Here)
+
+### What You'll Learn
+
+- Complete GEE setup and authentication
+- Core concepts: Image, ImageCollection, Geometry
+- Filtering by location, date, and metadata
+- **Standard QA60 cloud masking** (simple, fast)
+- Median composite creation
+- NDVI calculation and visualization
+- Basic export workflows
+- Philippine case studies
+
+### Open in Google Colab
+
+::: {.colab-button}
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb)
+:::
+
+::: {.callout-note}
+## First Time Using This Notebook?
+
+If you get a "Not Found" error:
+1. The notebook files need to be pushed to GitHub first
+2. Alternative: Download the notebook below and upload to your own Google Drive
+3. Then open from Drive in Colab
+:::
+
+::: {.callout-important}
+## Earth Engine Account Required
+You must have a registered Google Earth Engine account to run this notebook. If you haven't registered yet, see the [Setup Guide](../../resources/setup.qmd#step-3-google-earth-engine-registration).
+
+Registration takes 24-48 hours for approval.
+:::
+
+**Why Start with Notebook 1:**
+- Covers all GEE fundamentals systematically
+- Standard QA60 masking is easier to understand first
+- Complete workflow from setup to export
+- ~60 cells, ~2 hours
+
+::: {.download-box}
+**Download Option:**
+
+[Download Notebook 1 .ipynb](Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-primary download="Day1_Session4_Google_Earth_Engine.ipynb"}
+:::
+
+---
+
+## 📗 Notebook 2: Advanced Cloud Masking (P0 Best Practices)
+
+### What You'll Learn
+
+**🆕 P0 IMPROVEMENT:** This notebook implements the expert-recommended cloud masking improvements:
+
+- **Scene Classification Layer (SCL) masking**
+  - Detects clouds AND shadows (QA60 misses shadows!)
+  - 12-class comprehensive classification
+  - Better for NDVI time series and land cover
+
+- **s2cloudless integration**
+  - Most accurate ML-based cloud detection
+  - Adjustable probability thresholds
+  - Production-grade quality
+
+- **Comparative analysis**
+  - Visual comparison: QA60 vs SCL vs s2cloudless
+  - When to use each method
+  - Performance trade-offs
+
+- **Export templates**
+  - Optimized for ML training data
+  - Batch export workflows
+  - Sample point extraction
+
+### When to Use This Notebook
+
+✅ **After completing Notebook 1**
+✅ **For operational/production work**
+✅ **When QA60 results have "ghost" clouds or shadows**
+✅ **For ML training data preparation**
+✅ **For NDVI time series analysis**
+
+### Open in Google Colab
+
+::: {.callout-note}
+## Notebook 2 Coming Soon
+The advanced SCL cloud masking notebook is currently under development. For now, use Notebook 1 which covers all essential GEE concepts including QA60 cloud masking.
+:::
+
+**Why Notebook 2 (When Available):**
+- Implements P0 improvement from expert review
+- Cleaner composites for ML training
+- Production-ready workflows
+- Focused and concise (~10-15 cells, ~30 minutes)
+
+---
+
+## Recommended Learning Path
+
+### 🎯 For Beginners / First-Time GEE Users:
+1. ✅ Complete **Notebook 1** in full (2 hours)
+2. ✅ Practice exercises
+3. ✅ (Optional) Try **Notebook 2** to see advanced techniques
+
+### 🎯 For Experienced Users / Refresher:
+1. ✅ Skim **Notebook 1** sections 1-3 (setup and basics)
+2. ✅ Focus on **Notebook 2** for P0 improvements
+3. ✅ Use as reference for production workflows
+
+### 🎯 For Production / Operational Work:
+1. ✅ Use **Notebook 2** as template
+2. ✅ Reference **Notebook 1** for comprehensive examples
+3. ✅ Adapt SCL or s2cloudless masking to your use case
+
+---
+
+## Quick Comparison
+
+| Aspect | Notebook 1 | Notebook 2 |
+|--------|-----------|-----------|
+| **Focus** | Comprehensive GEE introduction | Advanced cloud masking |
+| **Cloud Masking** | QA60 (standard) | SCL + s2cloudless (advanced) |
+| **Length** | ~66 cells, 2 hours | ~10-15 cells, 30 min |
+| **Complexity** | Beginner-friendly | Intermediate |
+| **Use For** | Learning GEE fundamentals | Production workflows |
+| **P0 Alignment** | Standard approach | ✅ Implements P0 improvement |
+
+---
+
+## What's Covered Across Both Notebooks
+
+### Notebook 1 Topics
+
+1. **Earth Engine Fundamentals**
+   - Authentication and initialization
+   - ee.Image and ee.ImageCollection
+   - Geometry definitions
+   - Data catalog navigation
+
+2. **Sentinel-1 & Sentinel-2 Access**
+   - COPERNICUS/S2_SR_HARMONIZED collection
+   - COPERNICUS/S1_GRD collection
+   - Band names and metadata
+
+3. **Filtering & Processing**
+   - Spatial, temporal, metadata filters
+   - QA60 cloud masking
+   - Median composites
+   - NDVI calculation
+
+4. **Philippine Case Studies**
+   - Metro Manila monitoring
+   - Palawan land cover
+   - Flood detection
+   - Agricultural monitoring
+
+5. **Export Workflows**
+   - Google Drive export
+   - Scale and region parameters
+   - Task management
+
+### Notebook 2 Additional Topics
+
+6. **Advanced Cloud Masking (P0)**
+   - SCL 12-class classification
+   - Shadow detection
+   - s2cloudless ML-based detection
+   - Method comparison
+
+7. **Production Optimization**
+   - Export templates for ML
+   - Sample point extraction
+   - Batch processing workflows
+   - Best practices
+
+---
+
+## Prerequisites
+
+Before starting this notebook, ensure you have:
+
+- ✅ Google Earth Engine account (registered and approved)
+- ✅ Completed [Setup Guide](../../resources/setup.qmd)
+- ✅ Understanding of Session 4 concepts
+- ✅ Basic Python knowledge
+- ✅ Familiarity with Jupyter/Colab
+
+---
+
+## Notebook Contents
+
+The full interactive notebook includes:
+
+- **20+ code cells** with step-by-step instructions
+- **15+ visualizations** including interactive maps
+- **4 Philippine case studies** with real-world applications
+- **Export workflows** for downloading processed data
+- **Troubleshooting section** for common errors
+- **Exercises** to reinforce learning
+
+---
+
+## Key Concepts Covered
+
+### Earth Engine Architecture
+
+```python
+# Basic Earth Engine workflow
+import ee
+ee.Initialize()
+
+# Define area of interest
+philippines = ee.Geometry.Rectangle([116.0, 4.0, 127.0, 21.0])
+
+# Access Sentinel-2 collection
+collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
+    .filterBounds(philippines) \
+    .filterDate('2024-01-01', '2024-12-31') \
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+
+# Create composite
+composite = collection.median()
+
+# Calculate NDVI
+ndvi = composite.normalizedDifference(['B8', 'B4'])
+```
+
+### Interactive Mapping with geemap
+
+```python
+import geemap
+
+# Create interactive map
+Map = geemap.Map()
+Map.centerObject(philippines, 6)
+
+# Add layers
+Map.addLayer(composite, {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 3000}, 'True Color')
+Map.addLayer(ndvi, {'min': 0, 'max': 1, 'palette': ['red', 'yellow', 'green']}, 'NDVI')
+
+Map
+```
+
+---
+
+## Philippine Use Cases
+
+### Case Study 1: Metro Manila Urban Monitoring
+Track urban expansion and changes in the National Capital Region using multi-temporal Sentinel-2 data.
+
+### Case Study 2: Palawan Forest Cover
+Monitor forest cover and detect deforestation in Palawan Province using NDVI time series.
+
+### Case Study 3: Central Luzon Flood Mapping
+Detect flood extents using Sentinel-1 SAR backscatter changes before and after typhoon events.
+
+### Case Study 4: Mindanao Agricultural Drought
+Assess agricultural drought impacts using vegetation indices and SWIR bands.
+
+---
+
+## Common Errors & Solutions
+
+### Error: "Please set project ID"
+**Cause:** Earth Engine not authenticated
+
+**Solution:**
+```python
+ee.Authenticate()  # Follow prompts
+ee.Initialize()
+```
+
+### Error: "User memory limit exceeded"
+**Solution:** Reduce spatial or temporal scope, increase scale parameter
+
+### Error: "Too many concurrent aggregations"
+**Solution:** Add `.limit()` to reduce collection size
+
+See the [FAQ](../../resources/faq.qmd#earth-engine-issues) for more troubleshooting help.
+
+---
+
+## Support
+
+### During the Training
+
+- Ask questions in live session
+- Consult teaching assistants
+- Share your results with the group
+
+### After the Training
+
+- Review [Earth Engine Cheat Sheet](../../resources/cheatsheets.qmd#google-earth-engine-python-api-cheat-sheet)
+- Check [FAQ](../../resources/faq.qmd)
+- Join [GEE Community Forum](https://groups.google.com/g/google-earth-engine-developers)
+
+---
+
+## Related Resources
+
+::: {.resource-links}
+**Session Materials:**
+- [Session 4: Introduction to Google Earth Engine](../sessions/session4.qmd)
+- [Session 4 Presentation Slides](#)
+
+**Quick References:**
+- [Earth Engine Python API Cheat Sheet](../../resources/cheatsheets.qmd#google-earth-engine-python-api-cheat-sheet)
+- [Sentinel Missions Reference](../../resources/cheatsheets.qmd#sentinel-mission-quick-reference)
+
+**Official Documentation:**
+- [Earth Engine Python API Guide](https://developers.google.com/earth-engine/guides/python_install)
+- [Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets)
+- [geemap Documentation](https://geemap.org/)
+
+**Community Resources:**
+- [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE)
+- [Earth Engine Tutorials](https://developers.google.com/earth-engine/tutorials)
+:::
+
+---
+
+## Next Steps
+
+After completing this notebook:
+
+1. ✅ Practice with different Philippine regions
+2. ✅ Experiment with other satellites (Landsat, MODIS)
+3. ✅ Prepare for Day 2: Machine Learning for Land Cover Classification
+4. ✅ Export data for your own projects
+
+---
+
+::: {.session-nav}
+::: {.session-nav-link href="notebook1.qmd"}
+::: {.session-nav-label}
+Previous
+:::
+::: {.session-nav-title}
+← Notebook 1: Python Geospatial
+:::
+:::
+::: {.session-nav-link href="../sessions/session4.qmd"}
+::: {.session-nav-label}
+Back
+:::
+::: {.session-nav-title}
+Session 4 Overview →
+:::
+:::
+:::
+
+---
+
+::: {.callout-tip}
+## Ready to Explore Petabytes of Data?
+Open the notebook in Colab and start accessing the entire Sentinel archive from your browser!
+:::
+
+*All processing happens in the cloud - no downloads required!*

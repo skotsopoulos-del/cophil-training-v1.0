@@ -1,0 +1,482 @@
+---
+title: "Philippine EO Resources"
+subtitle: "Navigate the Philippine Earth Observation Ecosystem"
+date: last-modified
+---
+
+## Overview
+
+The Philippines has a growing Earth Observation ecosystem with multiple agencies, platforms, and initiatives dedicated to using satellite data for national development, disaster risk reduction, and environmental monitoring.
+
+::: {.callout-note}
+## CoPhil Programme Context
+This resource directory supports the **EU-Philippines Copernicus Capacity Support Programme (CoPhil)**, strengthening Philippine EO capabilities through international collaboration.
+:::
+
+---
+
+## Key Philippine EO Agencies
+
+### 1. Philippine Space Agency (PhilSA)
+
+::: {.agency-card}
+**Role:** National space authority and co-chair of CoPhil programme
+
+**Established:** 2019 (Republic Act No. 11363)
+
+**Mandate:**
+- Formulate national space policy
+- Establish space infrastructure
+- Promote space science and technology
+- Coordinate space-related activities across government
+
+**Key Platforms & Services:**
+
+#### SIYASAT Portal
+- **URL:** [siyasat.philsa.gov.ph](https://siyasat.philsa.gov.ph)
+- **Description:** Secure data archive for NovaSAR-1 data and maritime monitoring
+- **Access:** Registration required for Philippine government agencies and authorized researchers
+- **Data Available:**
+  - NovaSAR-1 SAR imagery
+  - Maritime domain awareness products
+  - Automatic Identification System (AIS) data
+  - Ship detection and tracking
+
+#### Copernicus Mirror Site (Under Development)
+- **Status:** Being established under CoPhil programme
+- **Purpose:** Local access to Copernicus Sentinel data
+- **Benefits:**
+  - Reduced latency for Philippine users
+  - Guaranteed data availability
+  - Support for real-time applications
+
+**Contact:**
+- **Website:** [philsa.gov.ph](https://philsa.gov.ph)
+- **Email:** info@philsa.gov.ph
+- **Address:** UP Technology Innovation Center, UP Diliman, Quezon City
+:::
+
+---
+
+### 2. Department of Science and Technology (DOST)
+
+::: {.agency-card}
+**Role:** Science and technology advancement, co-chair of CoPhil programme
+
+**Relevant Agencies:**
+
+#### DOST-ASTI (Advanced Science and Technology Institute)
+- **Website:** [asti.dost.gov.ph](https://asti.dost.gov.ph)
+- **Focus:** ICT research and development, AI platforms
+
+**Key Platforms:**
+
+**SkAI-Pinas** (Skills for AI in the Philippines)
+- AI capacity building platform
+- Machine learning training resources
+- Part of ₱2.6 billion AI investment (2024-2028)
+
+**DIMER** (Disaster and Information Management, Early-Warning, and Response)
+- Real-time disaster monitoring
+- Integration of EO data for hazard assessment
+
+**AIPI** (AI Philippines Initiative)
+- National AI strategy implementation
+- AI applications across sectors
+
+#### DOST-PAGASA (Philippine Atmospheric, Geophysical and Astronomical Services Administration)
+- **Website:** [pagasa.dost.gov.ph](https://pagasa.dost.gov.ph)
+- **Focus:** Weather, climate, and astronomical services
+- **EO Applications:**
+  - Weather satellite data (Himawari-8, GOES)
+  - Rainfall estimation
+  - Tropical cyclone monitoring
+  - Flood forecasting
+
+**Contact:**
+- **DOST Main:** [dost.gov.ph](https://dost.gov.ph)
+- **PAGASA Portal:** [bagong.pagasa.dost.gov.ph](https://bagong.pagasa.dost.gov.ph)
+:::
+
+---
+
+### 3. National Mapping and Resource Information Authority (NAMRIA)
+
+::: {.agency-card}
+**Role:** National mapping and geospatial information authority
+
+**Website:** [namria.gov.ph](https://namria.gov.ph)
+
+**Mandate:**
+- National mapping and charting
+- Resource data generation
+- Geospatial information management
+
+**Key Platforms:**
+
+#### NAMRIA GeoPortal
+- **URL:** [geoportal.namria.gov.ph](https://geoportal.namria.gov.ph)
+- **Description:** Access to Philippine geospatial datasets
+- **Data Available:**
+  - Topographic maps
+  - Administrative boundaries
+  - Digital elevation models
+  - Land cover maps
+  - Coastal and bathymetric data
+
+#### Resource Data Analysis Center (RDAC)
+- Satellite data reception and processing
+- Analysis of Landsat, SPOT, and other EO data
+- Custom mapping services for government agencies
+
+**Services:**
+- Map production and printing
+- Geodetic surveys
+- Hydrographic surveys
+- Resource assessment
+
+**Contact:**
+- **Email:** info@namria.gov.ph
+- **Address:** Lawton Avenue, Fort Andres Bonifacio, Taguig City
+:::
+
+---
+
+### 4. Department of Environment and Natural Resources (DENR)
+
+::: {.agency-card}
+**Role:** Natural resource management and environmental protection
+
+**Website:** [denr.gov.ph](https://denr.gov.ph)
+
+**Relevant Offices:**
+
+#### DENR-GSIS (Geographic Information System Services)
+- Forest monitoring using satellite imagery
+- Land cover and land use mapping
+- Biodiversity conservation planning
+
+#### DENR-Forest Management Bureau (FMB)
+- **Website:** [forestry.denr.gov.ph](https://forestry.denr.gov.ph)
+- National Greening Program monitoring
+- Forest health assessment
+- Illegal logging detection using EO
+
+**EO Applications:**
+- Forest cover change detection
+- Mangrove mapping
+- Mining site monitoring
+- Protected area surveillance
+:::
+
+---
+
+### 5. Other Key Agencies
+
+#### National Disaster Risk Reduction and Management Council (NDRRMC)
+- **Website:** [ndrrmc.gov.ph](https://ndrrmc.gov.ph)
+- Coordinates disaster response
+- Uses EO data for damage assessment and evacuation planning
+
+#### Department of Agriculture (DA)
+- **Website:** [da.gov.ph](https://da.gov.ph)
+- Crop monitoring using satellite imagery
+- Agricultural drought assessment
+- Rice production forecasting
+
+#### Local Water Utilities Administration (LWUA)
+- Water resource mapping
+- Watershed monitoring
+- Flood hazard assessment
+
+---
+
+## International Collaboration Platforms
+
+### 1. Copernicus Programme Access
+
+#### Copernicus Data Space Ecosystem
+- **URL:** [dataspace.copernicus.eu](https://dataspace.copernicus.eu)
+- **Description:** Official Copernicus data access platform (launched 2023)
+- **Features:**
+  - Free access to all Sentinel missions
+  - SentiBoard dashboard for data discovery
+  - On-demand processing services
+  - API access for automated workflows
+
+**Philippine Focus:**
+- CoPhil Mirror Site integration (upcoming)
+- Dedicated training resources
+- Local technical support
+
+### 2. ESA Earth Observation Portal
+- **URL:** [earth.esa.int](https://earth.esa.int)
+- Mission information and data access
+- Educational resources
+
+### 3. NASA Earthdata
+- **URL:** [earthdata.nasa.gov](https://earthdata.nasa.gov)
+- Access to NASA EO missions
+- Free data download (registration required)
+
+---
+
+## Philippine EO Data Repositories
+
+### 1. PhilGIS (Philippine GIS Data Clearinghouse)
+- **URL:** [philgis.org](https://philgis.org)
+- **Description:** Repository of Philippine geospatial datasets
+- **Data Types:**
+  - Administrative boundaries (up to barangay level)
+  - Roads and infrastructure
+  - Digital elevation models
+  - Land cover classifications
+
+### 2. LiPAD (LiDAR Portal for Archiving and Distribution)
+- **URL:** [lipad.dream.upd.edu.ph](https://lipad.dream.upd.edu.ph)
+- **Description:** High-resolution LiDAR data for the Philippines
+- **Coverage:** Major river basins and flood-prone areas
+- **Products:**
+  - Digital Terrain Models (DTM)
+  - Digital Surface Models (DSM)
+  - Flood hazard maps
+  - Point clouds
+
+### 3. Philippine Geoportal
+- **URL:** [geoportal.gov.ph](https://geoportal.gov.ph)
+- **Description:** Government geospatial data portal
+- **Data:** Various government datasets
+
+---
+
+## University Research Centers
+
+### 1. UP Training Center for Applied Geodesy and Photogrammetry (TCAGP)
+- **Website:** [tcagp.org](https://tcagp.org)
+- **Focus:** Geomatics training and research
+- **Location:** University of the Philippines, Diliman
+
+### 2. UP Resilience Institute
+- **Website:** [ovpri.upd.edu.ph/resilience-institute](https://ovpri.upd.edu.ph/resilience-institute)
+- **Focus:** Disaster risk reduction research
+- **Projects:** Hazard mapping, vulnerability assessment
+
+### 3. ATENEO Manila Observatory
+- **Website:** [observatory.ph](https://observatory.ph)
+- **Focus:** Climate science, disaster preparedness
+- **EO Applications:** Climate modeling, typhoon research
+
+---
+
+## Training and Capacity Building
+
+### 1. PhilSA Digital Space Campus
+- **Status:** Under development (CoPhil programme)
+- **Purpose:** Sustainable EO training infrastructure
+- **Features:**
+  - Online learning management system
+  - Hands-on workshops
+  - Certification programmes
+  - Community forums
+
+### 2. DOST-ASTI Training Programs
+- Regular workshops on AI/ML
+- Data science bootcamps
+- Online courses via SkAI-Pinas
+
+### 3. NAMRIA Training Center
+- GIS and remote sensing courses
+- Surveying and mapping certification
+- Custom agency training
+
+---
+
+## Philippine EO Applications
+
+### Disaster Risk Reduction (DRR)
+
+**Flood Mapping**
+- SAR-based flood extent detection
+- Risk assessment for urban areas
+- Example: Metro Manila, Cagayan Valley, Central Luzon
+
+**Typhoon Monitoring**
+- Damage assessment using pre/post-event imagery
+- Infrastructure impact evaluation
+- Agricultural loss estimation
+
+**Landslide Detection**
+- Change detection in mountainous regions
+- Vulnerability mapping
+- Early warning systems
+
+### Climate Change Adaptation (CCA)
+
+**Drought Monitoring**
+- Agricultural drought in Mindanao
+- Water resource management
+- Crop stress detection
+
+**Coastal Change**
+- Shoreline erosion monitoring
+- Mangrove forest tracking
+- Sea level rise impacts
+
+**Urban Heat Islands**
+- Temperature mapping in Metro Manila
+- Green space planning
+- Climate adaptation strategies
+
+### Natural Resource Management (NRM)
+
+**Forest Monitoring**
+- Deforestation detection
+- Illegal logging surveillance
+- Reforestation progress tracking
+
+**Land Cover Mapping**
+- National land cover database updates
+- Urban expansion analysis
+- Agricultural land use planning
+
+**Marine Resources**
+- Coral reef health assessment
+- Coastal water quality
+- Marine protected area monitoring
+
+---
+
+## Data Access Guides
+
+### How to Access Philippine EO Data
+
+#### For Government Employees
+1. Register with SIYASAT portal (PhilSA)
+2. Access NAMRIA GeoPortal with agency credentials
+3. Request datasets through official channels
+
+#### For Researchers
+1. Submit data request to PhilSA/NAMRIA
+2. Provide research proposal and intended use
+3. Sign data sharing agreements if required
+
+#### For Students
+1. Access open datasets via PhilGIS
+2. Use LiPAD portal for LiDAR data
+3. Request educational access to restricted datasets
+
+#### For International Collaborators
+1. Coordinate through CoPhil programme channels
+2. Establish memoranda of understanding (MOUs)
+3. Follow data sharing protocols
+
+---
+
+## Philippine Case Studies
+
+### 1. Typhoon Yolanda (Haiyan) Response (2013)
+- Rapid damage mapping using SAR imagery
+- Coordination with international EO community
+- Lessons learned for future disasters
+
+### 2. Marawi Crisis (2017)
+- Satellite-based damage assessment
+- Infrastructure monitoring
+- Post-conflict reconstruction planning
+
+### 3. Taal Volcano Eruption (2020)
+- Ash fall extent mapping
+- Evacuation zone delineation
+- Environmental impact assessment
+
+### 4. COVID-19 Pandemic Monitoring (2020-2023)
+- Urban mobility analysis
+- Air quality changes
+- Land use shifts
+
+---
+
+## Upcoming Initiatives
+
+### CoPhil Programme Milestones (2024-2026)
+
+::: {.timeline}
+**2024-2025:**
+- Copernicus Mirror Site installation
+- Digital Space Campus platform launch
+- Pilot service co-development (DRR, CCA, NRM)
+
+**2025-2026:**
+- Advanced AI/ML training programmes
+- Operational EO services rollout
+- Regional capacity building workshops
+:::
+
+### DOST AI Investment (2024-2028)
+- ₱2.6 billion for AI infrastructure
+- Integration of EO data with AI platforms
+- National AI talent development
+
+---
+
+## Contact Directory
+
+::: {.contact-grid}
+**PhilSA**
+- Email: info@philsa.gov.ph
+- Phone: +63 (2) 8981-8500
+
+**DOST**
+- Email: dostncr@dost.gov.ph
+- Phone: +63 (2) 8837-2071
+
+**NAMRIA**
+- Email: info@namria.gov.ph
+- Phone: +63 (2) 8810-4831
+
+**PAGASA**
+- Email: inquiry@pagasa.dost.gov.ph
+- Phone: +63 (2) 8284-0800
+:::
+
+---
+
+## Additional Resources
+
+### Policy Documents
+- **Republic Act No. 11363** (Philippine Space Act of 2019)
+- **Executive Order No. 358** (NDRRMC Reorganization)
+- **DENR Administrative Orders** on forest monitoring
+
+### Reports and Publications
+- PhilSA Strategic Roadmap 2020-2040
+- Philippine Development Plan 2023-2028
+- National Disaster Risk Reduction and Management Plan
+
+### International Partnerships
+- **JAXA** (Japan Aerospace Exploration Agency) - Data sharing agreements
+- **ESA** (European Space Agency) - CoPhil programme
+- **USGS** (U.S. Geological Survey) - Landsat data access
+- **UNOSAT** - Disaster response support
+
+---
+
+## Stay Updated
+
+Follow Philippine EO developments:
+
+- **PhilSA Newsletter:** Subscribe at [philsa.gov.ph](https://philsa.gov.ph)
+- **CoPhil Updates:** Check training portal announcements
+- **Social Media:** Follow @PhilSpaceAgency on Twitter/Facebook
+
+---
+
+::: {.callout-tip}
+## Contribute to This Directory
+
+Know of additional Philippine EO resources? Contact the training coordinators to suggest additions to this page.
+:::
+
+---
+
+*This resource directory is maintained by the CoPhil Training Programme. Last updated: 2025.*

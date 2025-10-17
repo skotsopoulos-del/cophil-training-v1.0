@@ -1,0 +1,115 @@
+---
+title: "Session 3: Emerging AI Trends in Earth Observation"
+subtitle: "Foundation Models, Self-Supervised Learning, and Explainable AI"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: ../../day1/presentations/images/copphil_logo.png
+    footer: "DAY 4 - Session 3 | Emerging AI in EO | 20-23 October 2025"
+    transition: fade
+    background-transition: fade
+    width: 1920
+    height: 1080
+    margin: 0.1
+---
+
+## Agenda & Pacing {.smaller}
+
+- **Duration:** 2 hours (120 minutes)
+- **Plan:**
+  - 0–10: Session goals & context
+  - 10–50: Foundation Models (GeoFMs)
+  - 50–80: Self-Supervised Learning (SSL)
+  - 80–110: Explainable AI (XAI)
+  - 110–120: Discussion & next steps
+
+---
+
+## Learning Objectives
+
+- Define foundation models and list major GeoFMs (Prithvi, Clay, SatMAE, DOFA)
+- Explain SSL and its value for unlabeled satellite data
+- Apply XAI concepts (SHAP, LIME, Grad-CAM) to EO tasks
+- Decide when to use FM/SSL/XAI in PH contexts
+
+---
+
+# Foundation Models (GeoFMs) {background-color="#2C5F77"}
+
+## What & Why
+
+- Pre-trained on massive EO archives → transferable to many tasks
+- Fewer labels needed (100–500 vs 10,000+)
+
+## Examples
+
+- Prithvi (temporal ViT, HLS)
+- Clay (multi-modal S1/S2/DEM)
+- SatMAE (masked autoencoding)
+- DOFA (generalist optical + SAR)
+
+---
+
+## How FM Works
+
+```mermaid
+flowchart TB
+  A[Massive Archive] --> B[Self-Supervised Pre-training]
+  B --> C[Foundation Model]
+  C --> D[Fine-tune (100–500 labels)]
+  D --> E[Downstream Task]
+```
+
+- Pre-train once (expensive), fine-tune many times (cheap)
+
+---
+
+# Self-Supervised Learning {background-color="#2C5F77"}
+
+## Why SSL for EO
+
+- 99.99% of satellite data unlabeled
+- SSL leverages unlabeled data to learn useful representations
+
+## Techniques
+
+- Masked autoencoding (reconstruct hidden patches)
+- Contrastive learning (positive vs negative pairs)
+- Temporal tasks (ordering, prediction)
+
+---
+
+# Explainable AI (XAI) {background-color="#2C5F77"}
+
+## Why XAI
+
+- Operational trust: disaster, agriculture, enforcement
+- Debug bias and regional drift
+
+## Techniques
+
+- SHAP: feature contributions
+- LIME: local surrogate models
+- Grad-CAM: spatial attention on CNNs
+
+---
+
+## PH Integration & Roadmap
+
+- Disaster response (floods), national agriculture monitoring, mangroves
+- 4-phase roadmap: Assess → Fine-tune → Deploy → Scale
+- Platforms: DIMER, AIPI, Space+ Dashboard, NAMRIA, PAGASA
+
+---
+
+## Discussion & Q&A
+
+- Where can FM/SSL/XAI help your agency most?
+- Data readiness and labeling strategies
+- Risks, governance, and explainability

@@ -1,0 +1,2616 @@
+---
+title: "Session 1: Copernicus Sentinel Data Deep Dive & Philippine EO Ecosystem"
+subtitle: "Understanding Europe's flagship EO program and the Philippines' space data infrastructure"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 1</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 1</span>
+</nav>
+
+
+::: {.session-info}
+**Duration:** 2 hours | **Format:** Lecture + Interactive Demo | **Platform:** Web browser
+:::
+
+## Session Overview
+
+This session introduces the European Copernicus Earth Observation program, focusing on Sentinel-1 (SAR) and Sentinel-2 (Optical) missions with 2025 updates. You'll explore the Philippine EO landscape, including key agencies and data platforms that complement Copernicus data for disaster risk reduction, climate adaptation, and resource management applications.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Describe** the Copernicus programme and its mission for global Earth monitoring
+- **Compare** Sentinel-1 SAR and Sentinel-2 optical satellite characteristics
+- **Identify** 2025 constellation updates (Sentinel-2C operational, Sentinel-1C launched)
+- **Navigate** the Copernicus Data Space Ecosystem and SentiBoard dashboard
+- **Locate** Philippine EO data through PhilSA SIYASAT, NAMRIA Geoportal, and DOST-ASTI platforms
+- **Explain** how CoPhil integrates European and Philippine EO capabilities
+- **Access** the CoPhil Mirror Site and Digital Space Campus for continued learning
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/01_session1_copernicus_philippine_eo.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: The Copernicus Programme
+
+### What is Copernicus?
+
+**Copernicus** is the European Union's flagship Earth Observation programme providing **free and open satellite data** for environmental monitoring and societal applications worldwide. It represents the world's largest single Earth observation programme, with a multi-billion euro investment.
+
+::: {.callout-note}
+## Why "Copernicus"?
+
+Named after Nicolaus Copernicus (1473-1543), the Renaissance astronomer who formulated the heliocentric model of the universe. Just as Copernicus revolutionized our understanding of our place in the cosmos, the Copernicus programme transforms our understanding of Earth systems.
+:::
+
+### Copernicus Components
+
+The programme consists of:
+
+1. **Space Component** - The Sentinel satellite family (1-6) and contributing missions
+2. **In Situ Component** - Ground-based and airborne observations
+3. **Services** - Six thematic information products:
+   - **Atmosphere Monitoring Service (CAMS)** - Air quality, emissions, aerosols
+   - **Marine Environment Monitoring Service (CMEMS)** - Ocean state, sea ice, biogeochemistry
+   - **Land Monitoring Service** - Land cover, vegetation, water bodies
+   - **Climate Change Service (C3S)** - Climate indicators, projections, reanalysis
+   - **Emergency Management Service (CEMS)** - Rapid mapping, early warning, risk assessment
+   - **Security Service** - Border surveillance, maritime security
+
+```{mermaid}
+%%| fig-cap: "Copernicus Programme Architecture"
+%%| fig-width: 100%
+
+graph TD
+    A[Copernicus Programme] --> B[Space Component]
+    A --> C[In Situ Component]
+    A --> D[Services]
+
+    B --> B1[Sentinel Missions 1-6]
+    B --> B2[Contributing Missions]
+
+    C --> C1[Ground Stations]
+    C --> C2[Airborne Sensors]
+    C --> C3[Maritime Buoys]
+
+    D --> D1[CAMS<br/>Atmosphere]
+    D --> D2[CMEMS<br/>Marine]
+    D --> D3[Land Monitoring]
+    D --> D4[C3S<br/>Climate Change]
+    D --> D5[CEMS<br/>Emergency]
+    D --> D6[Security]
+
+    B1 -.->|Data| D
+    C1 -.->|Data| D
+
+    D --> E[End Users]
+    E --> E1[Governments]
+    E --> E2[Researchers]
+    E --> E3[Private Sector]
+    E --> E4[Citizens]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style B fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style D fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style E fill:#cc0066,stroke:#880044,stroke-width:2px,color:#fff
+```
+
+::: {.callout-important}
+## 2024 Climate Highlights from C3S
+
+According to the Copernicus Climate Change Service, **2024 was the hottest year on record** with a global average temperature of **15.10°C**. The year also saw the **highest atmospheric water vapor content on record**, contributing to increased intensity of heavy rainfall events—directly impacting countries like the Philippines.
+:::
+
+### The Sentinel Family
+
+| Sentinel | Type | Primary Application | Status |
+|----------|------|---------------------|--------|
+| **Sentinel-1** | C-band SAR | All-weather radar imaging | **1A operational, 1C launched Dec 2024** |
+| **Sentinel-2** | Multispectral Optical | Land monitoring | **2B operational, 2C operational Jan 2025** |
+| **Sentinel-3** | Ocean & Land | Marine/land surface monitoring | Operational |
+| **Sentinel-4** | Geostationary | Air quality monitoring | In development |
+| **Sentinel-5P** | Atmospheric | Air quality and pollution | Operational |
+| **Sentinel-6** | Radar Altimetry | Ocean surface topography | Operational |
+
+**For this training**, we focus on **Sentinel-1** and **Sentinel-2** - the most widely used for DRR, CCA, and NRM applications.
+
+### Copernicus Expansion Missions
+
+Following the UK's re-entry to the EU Copernicus programme, funding has been confirmed for six expansion missions:
+
+- **Sentinel-7 (CO2M):** Atmospheric CO2 and methane measurement
+- **Sentinel-8 (LSTM):** High-resolution land surface temperature for water scarcity monitoring
+- **Sentinel-9 (CRISTAL):** Polar ice and snow topography (launch 2028)
+- **Sentinel-10 (CHIME):** Hyperspectral imaging for agriculture and resources
+- **Sentinel-11 (CIMR):** Microwave radiometry for sea ice, SST, salinity
+- **Sentinel-12 (ROSE-L):** L-band SAR (no earlier than 2028)
+
+---
+
+## Part 2: Sentinel-1 - Synthetic Aperture Radar
+
+### Mission Overview
+
+::: {.satellite-badge}
+Sentinel-1A (2014)
+:::
+::: {.satellite-badge}
+Sentinel-1B (2016-2022)
+:::
+::: {.satellite-badge}
+Sentinel-1C (Dec 2024)
+:::
+
+**Sentinel-1** is a **C-band Synthetic Aperture Radar (SAR)** mission providing all-weather, day-and-night imaging capability.
+
+### 2024-2025 Constellation Updates
+
+- **Sentinel-1A:** Operational since April 2014, continuing strong performance
+- **Sentinel-1B:** Operational 2016-2022 (anomaly ended operations December 23, 2021)
+- **Sentinel-1C:** **Successfully launched December 5, 2024** aboard Vega-C rocket
+  - Currently in commissioning phase
+  - Will restore dual-satellite constellation with 1A
+  - **Improved AIS (Automatic Identification System)** for enhanced vessel tracking
+- **Sentinel-1D:** Scheduled for launch **November 4, 2025**
+
+::: {.callout-tip}
+## Why SAR Matters for the Philippines
+
+The Philippines experiences:
+
+- Frequent cloud cover (tropical climate)
+- Monsoon seasons with persistent rain
+- Nighttime disasters (earthquakes, floods)
+- ~20 typhoons annually
+
+**SAR sees through clouds and operates at night** - critical for disaster response when optical satellites are blinded. The restored two-satellite constellation will provide **6-day revisit time** over the Philippines, enhancing rapid response capabilities.
+:::
+
+### Key Technical Specifications
+
+| Parameter | Specification |
+|-----------|--------------|
+| **Sensor Type** | C-band Synthetic Aperture Radar |
+| **Frequency** | 5.405 GHz (wavelength ~5.6 cm) |
+| **Orbit** | Sun-synchronous, near-polar |
+| **Altitude** | 693 km |
+| **Inclination** | 98.18° |
+| **Orbital Period** | 98.6 minutes |
+| **Revisit Time** | **6 days (two satellites)**, 12 days (single) |
+| **Swath Width** | Up to 410 km (EW mode), 250 km (IW mode) |
+| **Spatial Resolution** | Down to 5 m × 20 m (range × azimuth, IW mode) |
+| **Polarization** | Dual (VV+VH or HH+HV) or single |
+| **Data Storage** | 1,443 Gbit (168 GiB) onboard |
+| **Downlink Rate** | 520 Mbit/s (X-band) |
+
+### SAR Operating Principle
+
+```{mermaid}
+%%| fig-cap: "Sentinel-1 SAR Imaging Process"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Satellite<br/>693km altitude] -->|Transmit<br/>Radar Pulse| B[Ground Surface]
+    B -->|Backscatter<br/>Returns| A
+
+    A --> C[Signal Processing]
+    C --> D[SAR Image]
+
+    D --> E1[Amplitude<br/>Surface roughness]
+    D --> E2[Phase<br/>InSAR deformation]
+    D --> E3[Polarization<br/>Surface properties]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style B fill:#8b4513,stroke:#654321,stroke-width:2px,color:#fff
+    style C fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style D fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+```
+
+**Key Advantages:**
+
+- **All-weather**: Penetrates clouds, rain, smoke
+- **Day-night**: Active sensor with own illumination
+- **Surface sensitivity**: Detects roughness, moisture, structure
+- **Interferometry**: Measures mm-scale deformation
+
+### Imaging Modes
+
+Sentinel-1 operates in four primary acquisition modes:
+
+```{mermaid}
+%%| fig-cap: "Sentinel-1 Acquisition Modes Comparison"
+%%| fig-width: 100%
+
+graph LR
+    A[Sentinel-1<br/>Imaging Modes] --> B[SM<br/>Strip Map]
+    A --> C[IW<br/>Interferometric<br/>Wide Swath]
+    A --> D[EW<br/>Extra Wide<br/>Swath]
+    A --> E[WV<br/>Wave Mode]
+
+    B --> B1[80 km swath<br/>5m resolution<br/>Specific targets]
+    C --> C1[250 km swath<br/>5x20m resolution<br/>Standard land mode]
+    D --> D1[410 km swath<br/>20x40m resolution<br/>Maritime/ice/polar]
+    E --> E1[20x20 km vignettes<br/>5m resolution<br/>Ocean waves]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style C fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C1 fill:#00aa44,stroke:#006622,stroke-width:1px,color:#fff
+```
+
+#### 1. Interferometric Wide Swath (IW) Mode
+- **Primary Use:** Main land acquisition mode
+- **Swath Width:** 250 km
+- **Spatial Resolution:** 5 m × 20 m (single look)
+- **Pixel Spacing:** 10 m
+- **Technique:** TOPSAR (Terrain Observation with Progressive Scanning SAR)
+- **Polarization:** Dual (VV+VH or HH+HV) or single
+- **Application:** Land monitoring, disaster response, agriculture
+
+**Key Feature:** TOPSAR eliminates scalloping effects and ensures homogeneous image quality across the entire swath.
+
+#### 2. Extra Wide Swath (EW) Mode
+- **Primary Use:** Maritime and polar region monitoring
+- **Swath Width:** 400 km
+- **Spatial Resolution:** 20 m × 40 m
+- **Pixel Spacing:** 40 m
+- **Application:** Wide-area coastal monitoring, sea ice detection
+
+#### 3. Strip Map (SM) Mode
+- **Swath Width:** 80 km
+- **Spatial Resolution:** 5 m × 5 m
+- **Application:** High-resolution applications requiring smaller coverage
+
+#### 4. Wave (WV) Mode
+- **Primary Use:** Ocean wave spectra measurements
+- **Acquisition:** 20 km × 20 km vignettes every 100 km
+- **Application:** Wave height and direction, maritime safety
+
+**For Philippine land applications:** IW mode is standard.
+
+### Understanding Polarization
+
+SAR polarization refers to the orientation of the radar wave's electric field. Different surface types respond differently to different polarizations:
+
+**VV (Vertical-Vertical):**
+- Transmit and receive in vertical polarization
+- Sensitive to surface roughness
+- **Best for:** Ocean monitoring, flood detection, bare soil
+
+**VH (Vertical-Horizontal) - Cross-Polarization:**
+- Transmit vertical, receive horizontal
+- Sensitive to volume scattering
+- **Best for:** Forest biomass, vegetation structure, crop classification
+
+**HH (Horizontal-Horizontal):**
+- Transmit and receive in horizontal polarization
+- Sensitive to surface scattering
+- **Best for:** Sea ice classification, soil moisture
+
+**HV (Horizontal-Vertical) - Cross-Polarization:**
+- Transmit horizontal, receive vertical
+- Volume scattering sensitivity
+- **Best for:** Vegetation monitoring
+
+#### Backscatter Characteristics by Target Type
+
+- **Water (calm):** Very low backscatter (specular reflection) → **very dark**
+- **Water (rough/waves):** Low to moderate backscatter → **dark to medium gray**
+- **Bare soil:** Moderate backscatter → **medium gray**
+- **Vegetation:** Moderate to high backscatter (volume scattering) → **medium to light gray**
+- **Urban/buildings:** Very high backscatter (double-bounce) → **very bright**
+- **Flooded vegetation:** Very high backscatter (double-bounce from water-plant) → **bright**
+
+### Data Products
+
+#### Level-1 Single Look Complex (SLC)
+- **Type:** Complex (amplitude + phase)
+- **Geometry:** Slant range
+- **Use Cases:**
+  - **InSAR (Interferometry)** for ground deformation
+  - Coherence analysis
+  - Advanced polarimetric analysis
+- **Applications:** Earthquake monitoring, volcanic deformation, landslide detection, subsidence
+
+#### Level-1 Ground Range Detected (GRD)
+- **Type:** Detected, multi-looked intensity
+- **Geometry:** Ground range projected (WGS84 ellipsoid)
+- **Processing:** Focused, detected, multi-looked, projected
+- **Values:** Amplitude only (no phase information)
+- **Pixel Spacing:** 10 m (IW, SM), 40 m (EW)
+- **Most common for:** Change detection, flood mapping, land cover classification
+
+#### Level-2 Ocean (OCN)
+- **Type:** Geophysical ocean products
+- **Parameters:** Wind fields, wave spectra, surface radial velocity
+- **Format:** NetCDF
+- **Applications:** Maritime safety, weather forecasting
+
+::: {.callout-note}
+## GRD vs SLC - When to Use Each
+
+**Use GRD when:**
+- Detecting changes in backscatter intensity
+- Mapping floods or water bodies
+- Classifying land cover
+- Working with single-date images
+- You need simpler, faster processing
+
+**Use SLC when:**
+- Measuring ground deformation with InSAR
+- Calculating coherence between image pairs
+- Performing polarimetric analysis
+- You need phase information
+- Precision measurements are critical
+:::
+
+### Sentinel-1 Applications
+
+**Disaster Risk Reduction:**
+- **Flood extent mapping** - Water appears dark due to specular reflection
+- **Earthquake damage assessment** - Coherence change detection
+- **Landslide detection** - Temporal change analysis
+- **Volcanic deformation** - InSAR millimeter-level precision
+
+**Natural Resource Management:**
+- **Deforestation monitoring** - All-weather forest change detection
+- **Rice paddy mapping** - Temporal backscatter analysis
+- **Mangrove extent** - Coastal wetland monitoring
+- **Soil moisture** - Agricultural water management
+
+**Maritime Applications:**
+- **Ship detection and tracking** (enhanced with Sentinel-1C/1D AIS)
+- **Oil spill monitoring** - Dampening of Bragg scattering
+- **Sea ice classification** - Ice type and concentration
+- **Illegal fishing detection**
+
+### Five Powerful Sentinel-1 Use Cases (2024 ESA Report)
+
+According to the Copernicus OBSERVER 2024 report, these are the five key applications leveraging Sentinel-1C:
+
+1. **Arctic Sea Ice Monitoring** - All-season navigation route planning
+2. **Land Subsidence Detection** - InSAR with millimeter-level precision for urban areas
+3. **Agricultural Land Use** - Crop type classification using temporal backscatter signatures
+4. **Oil Spill Detection** - Rapid response for maritime pollution incidents
+5. **Forest Structure Mapping** - Canopy height and biomass assessment
+
+### Example: Sentinel-1 Flood Mapping
+
+SAR backscatter characteristics during flooding:
+
+- **Pre-flood agricultural land:** Moderate backscatter (vegetation) → **medium gray**
+- **During flood:** Low backscatter (water surface) → **dark**
+- **Flooded urban areas:** Very high backscatter (double-bounce) → **bright**
+
+::: {.callout-tip}
+## Flood Mapping Best Practice
+
+**VV polarization** shows dark water (low backscatter from smooth surfaces)
+
+**Key technique:** Compare **pre-event vs post-event** delta for reliability - reduces false positives
+
+**Synergy:** Pair S1 (flood extent through clouds) with S2 (vegetation damage assessment when clear)
+:::
+
+#### Sentinel-1 Pre-Processing "Under the Hood"
+
+::: {.callout-note}
+## P0 Improvement: Understanding Analysis-Ready SAR Data
+
+For Day 3 flood mapping labs, we provide **pre-processed Sentinel-1 patches**. Here's what has been applied:
+:::
+
+**Standard S1 GRD Processing Pipeline:**
+
+1. **GRD Download** → Raw ground-range detected amplitude
+2. **Radiometric Calibration** → Convert to backscatter coefficient (σ⁰)
+3. **Terrain Correction (RTC)** → Remove topographic distortions using DEM (critical in mountainous Philippines)
+4. **Speckle Filtering** → Reduce SAR noise (Lee, Refined Lee, or Gamma-MAP filters)
+5. **Conversion to dB** → γ⁰ (gamma-naught) in decibels for visual interpretation
+6. **Tiling/Clipping** → Extract area of interest
+
+**Why this matters:**
+- RTC is essential for mountainous areas to remove terrain-induced distortions
+- Gamma-naught (γ⁰) in dB is the standard for land applications
+- Speckle filtering improves interpretability but can blur edges
+- These steps are computationally intensive - we pre-process for training efficiency
+
+**Workflow:**
+1. Acquire pre-flood and during-flood Sentinel-1 GRD images
+2. Apply pre-processing pipeline above (or use pre-processed patches)
+3. Change detection or thresholding
+4. Extract flood extent polygon
+5. Deliver map within 10-20 minutes of data availability
+
+**Philippine Example:** DOST-ASTI's DATOS Help Desk uses this approach to provide near-real-time flood maps to disaster response agencies using AI-powered automated processing.
+
+---
+
+## Part 3: Sentinel-2 - Multispectral Optical
+
+### Mission Overview
+
+::: {.satellite-badge}
+Sentinel-2A (2015)
+:::
+::: {.satellite-badge}
+Sentinel-2B (2017)
+:::
+::: {.satellite-badge}
+Sentinel-2C (Jan 2025)
+:::
+
+**Sentinel-2** is a **multispectral optical imaging** mission focused on land monitoring with high spatial, spectral, and temporal resolution.
+
+### 2025 Constellation Update - Three-Satellite Configuration!
+
+**Major Milestone: January 21, 2025** - Sentinel-2C became operational, replacing Sentinel-2A
+
+**Three-Satellite Constellation Trial:**
+For the first time ever, three Sentinel satellites of the same type are working together:
+
+- **Sentinel-2C** at 0° orbital phase (primary operational)
+- **Sentinel-2B** at 180° phase (primary operational)
+- **Sentinel-2A** at 144° phase (**experimental year-long trial mission**)
+
+**Revolutionary Benefits:**
+- Enhanced temporal resolution beyond the standard 5-day revisit
+- Improved probability of cloud-free acquisitions
+- Better monitoring of rapid changes
+- Assessment of three-satellite constellation utility for future missions
+
+::: {.callout-important}
+## What This Means for Philippine EO
+
+With three Sentinel-2 satellites operational:
+
+- **More frequent observations** over the Philippines and Southeast Asia
+- **Higher chance** of capturing cloud-free imagery during monsoon seasons
+- **Better temporal coverage** for crop phenology monitoring
+- **Improved** disaster response and damage assessment capabilities
+- **Enhanced monitoring** of fast-changing events (typhoon impacts, flooding)
+
+This configuration will be studied throughout 2025 to inform future Copernicus expansion decisions.
+:::
+
+### Key Technical Specifications
+
+| Parameter | Specification |
+|-----------|--------------|
+| **Sensor** | MultiSpectral Instrument (MSI) |
+| **Spectral Bands** | 13 (VIS to SWIR: 443-2190 nm) |
+| **Orbit** | Sun-synchronous, polar |
+| **Altitude** | 786 km |
+| **Inclination** | 98.62° |
+| **Orbital Period** | 101 minutes |
+| **Swath Width** | 290 km |
+| **Revisit Time** | **5 days at equator (2 satellites)**, improved with 3rd satellite |
+| **Tile Size** | 100 km × 100 km (MGRS grid, UTM/WGS84) |
+| **Local Overpass Time** | 10:30 AM (descending node) |
+
+### Spectral Bands - The MSI Advantage
+
+Sentinel-2's 13 bands span visible, near-infrared, and shortwave infrared, optimized for land applications:
+
+```{mermaid}
+%%| fig-cap: "Sentinel-2 Spectral Bands Overview"
+%%| fig-width: 100%
+
+graph TB
+    A[Sentinel-2 MSI<br/>13 Spectral Bands] --> B[10m Resolution<br/>TRUE COLOR + NIR]
+    A --> C[20m Resolution<br/>RED EDGE + SWIR]
+    A --> D[60m Resolution<br/>ATMOSPHERIC]
+
+    B --> B1[B2 - Blue<br/>490nm]
+    B --> B2[B3 - Green<br/>560nm]
+    B --> B3[B4 - Red<br/>665nm]
+    B --> B4[B8 - NIR<br/>842nm]
+
+    C --> C1[B5 - RedEdge 1<br/>705nm]
+    C --> C2[B6 - RedEdge 2<br/>740nm]
+    C --> C3[B7 - RedEdge 3<br/>783nm]
+    C --> C4[B8A - Narrow NIR<br/>865nm]
+    C --> C5[B11 - SWIR 1<br/>1610nm]
+    C --> C6[B12 - SWIR 2<br/>2190nm]
+
+    D --> D1[B1 - Coastal<br/>443nm]
+    D --> D2[B9 - Water Vapor<br/>945nm]
+    D --> D3[B10 - Cirrus<br/>1373nm]
+
+    B1 -.->|Applications| E1[RGB Composites<br/>Water mapping]
+    B4 -.->|Applications| E2[Vegetation indices<br/>Biomass estimation]
+    C1 -.->|Applications| E3[Vegetation stress<br/>Crop monitoring]
+    C5 -.->|Applications| E4[Soil moisture<br/>Fire detection]
+    D1 -.->|Applications| E5[Atmospheric<br/>correction]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style B fill:#00cc00,stroke:#008800,stroke-width:2px,color:#fff
+    style C fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style D fill:#6666cc,stroke:#444499,stroke-width:2px,color:#fff
+```
+
+#### 10-meter Resolution Bands (True Color + NIR)
+
+| Band | Name | Wavelength (nm) | Bandwidth (nm) | Primary Application |
+|------|------|----------------|----------------|---------------------|
+| **B2** | Blue | 490 | 98 | Aerosol detection, water body mapping |
+| **B3** | Green | 560 | 45 | Vegetation vigor, water clarity |
+| **B4** | Red | 665 | 38 | Chlorophyll absorption, vegetation discrimination |
+| **B8** | NIR | 842 | 145 | Biomass, vegetation health, water delineation |
+
+#### 20-meter Resolution Bands (Red Edge + SWIR)
+
+| Band | Name | Wavelength (nm) | Bandwidth (nm) | Primary Application |
+|------|------|----------------|----------------|---------------------|
+| **B5** | Red Edge 1 | 705 | 19 | Vegetation classification, chlorophyll |
+| **B6** | Red Edge 2 | 740 | 18 | Vegetation stress detection |
+| **B7** | Red Edge 3 | 783 | 28 | Vegetation monitoring, LAI estimation |
+| **B8A** | Narrow NIR | 865 | 33 | Atmospheric correction, cloud screening |
+| **B11** | SWIR 1 | 1610 | 143 | Snow/ice/cloud discrimination, soil moisture |
+| **B12** | SWIR 2 | 2190 | 242 | Fire detection, vegetation moisture content |
+
+#### 60-meter Resolution Bands (Atmospheric)
+
+| Band | Name | Wavelength (nm) | Bandwidth (nm) | Primary Application |
+|------|------|----------------|----------------|---------------------|
+| **B1** | Coastal Aerosol | 443 | 27 | Aerosol detection, coastal water |
+| **B9** | Water Vapor | 945 | 26 | Water vapor detection, atm. correction |
+| **B10** | Cirrus | 1373 | 75 | Cirrus cloud detection (L1C only) |
+
+::: {.callout-note}
+## Red Edge Bands - Sentinel-2's Special Capability
+
+Bands 5, 6, and 7 (the "red edge" region) are particularly sensitive to:
+- Chlorophyll content variations
+- Early vegetation stress (before visible to human eye)
+- Crop health and disease detection
+- Subtle changes in forest canopy
+
+This makes Sentinel-2 superior to Landsat for agricultural and forest monitoring applications.
+:::
+
+### Data Products
+
+#### Level-1C (Top-of-Atmosphere Reflectance)
+
+**Processing:**
+- Radiometric and geometric corrections applied
+- Orthorectification using DEM
+- Sub-pixel multispectral and multitemporal registration
+
+**Output:**
+- Top-of-atmosphere reflectance
+- 100 km × 100 km tiles (MGRS grid)
+- UTM/WGS84 projection
+- Cloud and land/water masks included
+
+**Format:** JPEG2000 (.jp2) in SAFE archive, or GeoTIFF on some platforms
+
+#### Level-2A (Bottom-of-Atmosphere Surface Reflectance)
+
+**Processing:**
+- Atmospheric correction using Sen2Cor processor
+- Accounts for:
+  - Gaseous absorption (O2, H2O, O3)
+  - Rayleigh scattering
+  - Aerosol scattering and absorption
+  - Cirrus correction
+  - Terrain effects
+
+**Output Products:**
+- **Surface reflectance** for all bands except B10
+- **Scene Classification Layer (SCL)** at 20 m:
+  - No data, saturated/defective, cloud shadows, vegetation, bare soils, water, cloud (low/medium/high probability), cirrus, snow/ice
+- **Aerosol Optical Thickness (AOT)** at 60 m
+- **Water Vapor (WV)** at 60 m
+- **Cloud probability** masks at 60 m
+- **Snow probability** masks at 60 m
+
+**Why Level-2A is Recommended:**
+- Physically meaningful surface reflectance values
+- Directly comparable across dates and seasons
+- Built-in quality masks (clouds, shadows, snow)
+- **CEOS Analysis Ready Data (ARD) compliant** (Processing Baseline 04.00+)
+
+::: {.callout-tip}
+## Always Use Level-2A When Available
+
+For vegetation indices, land cover classification, and change detection:
+- Level-2A removes atmospheric effects
+- Provides consistent reflectance values
+- Includes quality masks (clouds, shadows)
+- Ready for analysis without preprocessing
+
+**Exception:** Use Level-1C only when you need to apply custom atmospheric correction or work with very recent data before Level-2A is available.
+:::
+
+#### Scene Classification Layer (SCL) - Better Cloud Masking
+
+::: {.callout-important}
+## P0 Improvement: Use SCL Instead of QA60
+
+**Why SCL is superior:**
+- **QA60** provides only basic cloud/cirrus detection via bitmasks
+- **SCL** provides comprehensive 20m classification layer with 12 classes:
+  - No data (0), Saturated/defective (1)
+  - Cloud shadows (3) - **QA60 misses these!**
+  - Vegetation (4), Bare soils/rocks (5), Water (6)
+  - Cloud low probability (7), Cloud medium probability (8), Cloud high probability (9)
+  - Cirrus (10), Snow/ice (11)
+
+**In Session 4 GEE lab:**
+We'll mask pixels where `SCL ∉ {3, 8, 9, 10, 11}` (exclude shadows, clouds, cirrus)
+
+**Optional enhancement:** Apply 1-pixel dilation to remove cloud fringes
+:::
+
+**Result:** Cleaner composites with both clouds AND shadows removed - critical for NDVI time series and land cover classification in Day 2.
+
+### Processing Baseline Updates
+
+**Current Baseline: 05.11** (deployed July 23, 2024)
+- Supports Sentinel-2C and future 2D specifications
+- Implements Product Specification Document (PSD) v15.0
+
+**Important Note:** After January 25, 2022 (Processing Baseline 04.00), Sentinel-2 DN values were shifted by 1000 to accommodate improved radiometric performance.
+
+**Solution:** Use **HARMONIZED** collections in Google Earth Engine that correct for this shift, ensuring consistent values across the entire 2015-present time series.
+
+### Sentinel-2 Band Combinations for Visualization
+
+#### Natural Color (True Color)
+**RGB = B4, B3, B2** (Red, Green, Blue)
+- Appears as human eye sees
+- Good for general interpretation
+- Urban areas, water bodies, vegetation
+
+#### False Color Infrared
+**RGB = B8, B4, B3** (NIR, Red, Green)
+- Vegetation appears bright red (high NIR reflectance)
+- Water appears dark blue/black
+- Urban areas appear cyan/gray
+- **Excellent for:** Vegetation health, water body delineation
+
+#### SWIR Composite (Agriculture)
+**RGB = B11, B8, B2** (SWIR1, NIR, Blue)
+- Highlights moisture content
+- Agricultural fields appear in various colors based on crop type and water content
+- **Excellent for:** Crop differentiation, soil moisture assessment
+
+#### SWIR-NIR-Red (Burn Scar)
+**RGB = B12, B8, B4** (SWIR2, NIR, Red)
+- Burned areas appear bright red/magenta
+- Healthy vegetation appears green
+- **Excellent for:** Post-fire assessment, burn severity mapping
+
+#### Bathymetric
+**RGB = B4, B3, B1** (Red, Green, Coastal Aerosol)
+- Penetrates water for shallow bathymetry
+- Coral reefs and seagrass beds visible
+- **Excellent for:** Coastal and marine habitat mapping
+
+### Common Spectral Indices
+
+**NDVI (Normalized Difference Vegetation Index):**
+
+$$
+NDVI = \frac{NIR - Red}{NIR + Red} = \frac{B8 - B4}{B8 + B4}
+$$
+
+- **Range:** -1 to +1
+- **Interpretation:**
+  - < 0: Water, clouds, snow
+  - 0 - 0.2: Bare soil, rock, sand
+  - 0.2 - 0.4: Sparse vegetation (grassland, shrubs)
+  - 0.4 - 0.6: Moderate vegetation (crops, degraded forest)
+  - 0.6 - 0.8: Dense vegetation (healthy crops, forest)
+  - > 0.8: Very dense vegetation
+
+**EVI (Enhanced Vegetation Index):**
+
+$$
+EVI = 2.5 \times \frac{B8 - B4}{B8 + 6 \times B4 - 7.5 \times B2 + 1}
+$$
+
+- Reduces saturation in dense vegetation
+- Better sensitivity in high-biomass areas
+- Corrects for atmospheric and soil background effects
+
+**NDWI (Normalized Difference Water Index):**
+
+$$
+NDWI = \frac{Green - NIR}{Green + NIR} = \frac{B3 - B8}{B3 + B8}
+$$
+
+- **High values (>0.3):** Open water
+- **Low values:** Land surfaces
+- **Use:** Water body mapping, flood detection
+
+**MNDWI (Modified NDWI):**
+
+$$
+MNDWI = \frac{Green - SWIR1}{Green + SWIR1} = \frac{B3 - B11}{B3 + B11}
+$$
+
+- Better than NDWI for built-up areas
+- Suppresses built-up land features
+
+**NBR (Normalized Burn Ratio):**
+
+$$
+NBR = \frac{NIR - SWIR2}{NIR + SWIR2} = \frac{B8 - B12}{B8 + B12}
+$$
+
+- Pre-fire: High values (healthy vegetation)
+- Post-fire: Low values (burned areas)
+- **dNBR (differenced NBR):** NBR_pre - NBR_post = burn severity
+
+**SAVI (Soil-Adjusted Vegetation Index):**
+
+$$
+SAVI = \frac{(NIR - Red)}{(NIR + Red + L)} \times (1 + L)
+$$
+
+where L = 0.5 (general use)
+
+- Reduces soil background effects
+- Better for areas with sparse vegetation
+
+**MSI (Moisture Stress Index):**
+
+$$
+MSI = \frac{SWIR1}{NIR} = \frac{B11}{B8}
+$$
+
+- Indicates vegetation water content
+- Higher values = higher water stress
+
+### Sentinel-2 Applications
+
+**Natural Resource Management:**
+- Land cover/land use classification
+- Forest type and health monitoring
+- Crop type mapping and growth monitoring
+- Agricultural productivity assessment
+- Mangrove and coral reef monitoring
+- Wetland mapping and change detection
+
+**Climate Change Adaptation:**
+- Drought monitoring via vegetation stress indices
+- Crop phenology and growing season tracking
+- Snow cover extent and glacier retreat
+- Coastal erosion and shoreline change
+- Urban heat island identification
+
+**Disaster Risk Reduction:**
+- Post-fire burn severity mapping
+- Landslide identification and mapping
+- Flood impact assessment (damage to vegetation/crops)
+- Earthquake-induced surface changes
+- Infrastructure damage assessment
+
+---
+
+## Part 4: Accessing Copernicus Data (2025)
+
+### Platform Choices for This Training
+
+::: {.callout-important}
+## P1 Improvement: Which Platform for Which Task?
+
+Understanding where to work is crucial - don't try to train deep models on GEE or download 100GB in Colab!
+:::
+
+| **Task** | **Platform** | **Why** | **Limitations** |
+|----------|-------------|---------|-----------------|
+| **Data Prep & Exploration** | **Google Earth Engine** | Petabyte catalog, no download, cloud composites | Export limit 32 MB (tile large areas), no deep learning training |
+| **ML Training (RF, shallow)** | **GEE or Colab** | RF works in GEE; small data in Colab | GEE memory limits; Colab free tier quotas |
+| **Deep Learning (CNN, U-Net)** | **Local GPU / Colab Pro** | Requires PyTorch/TensorFlow | Colab free = limited GPU time; large models need local resources |
+| **Large-Scale Processing** | **CoPhil Mirror Site / COARE** | 400TB local data, HPC resources | Requires account; learning curve for APIs |
+| **Quick Viz & Download** | **Copernicus Browser** | Interactive, fast previews | Manual selection; bulk downloads tedious |
+
+**Quotas/Pitfalls to Know:**
+
+- **GEE:** Memory errors with large computations - tile exports for large areas
+- **Colab Free:** GPU disconnects after inactivity; limited sessions per day; 12-hour max runtime
+- **CoPhil/Digital Space Campus:** Hosts training materials + local data access (400TB)
+
+---
+
+### Copernicus Data Space Ecosystem
+
+**NEW in 2023-2025:** The legacy Copernicus Open Access Hub (SciHub) has been replaced by the comprehensive **Copernicus Data Space Ecosystem**.
+
+::: {.callout-note}
+## Copernicus Data Space Ecosystem
+
+**URL:** [https://dataspace.copernicus.eu](https://dataspace.copernicus.eu)
+
+**Official Launch:** January 2023, with continuous updates through 2024-2025
+
+**Features:**
+- Unified access to all Sentinel missions (1-6)
+- Full archive from mission start to present
+- Interactive Copernicus Browser for visualization
+- Multiple API access methods (STAC, OData, Sentinel Hub, openEO)
+- JupyterHub for cloud-based analysis
+- Direct S3 cloud storage access
+- SentiBoard real-time mission dashboard
+
+**Free Access:** No download limits, free processing quotas for registered users
+:::
+
+### Available Data Collections
+
+The CDSE provides comprehensive access to:
+
+**Sentinel Missions:**
+- **Sentinel-1:** Full archive (2014-present) - GRD, SLC, OCN products
+- **Sentinel-2:** Level-1C and Level-2A (2015-present)
+- **Sentinel-3:** OLCI, SLSTR, SRAL products
+- **Sentinel-5P:** TROPOMI atmospheric products
+- **Sentinel-6:** Poseidon-4 altimetry
+
+**Contributing Missions:**
+- Commercial and partner satellite data
+- High-resolution imagery for validation
+
+### Access Methods
+
+#### 1. Copernicus Browser
+**URL:** [https://browser.dataspace.copernicus.eu](https://browser.dataspace.copernicus.eu)
+
+**Capabilities:**
+- Interactive visualization and exploration
+- Time-slider for temporal analysis
+- Custom band combinations
+- Cloud filtering
+- Compare mode (side-by-side dates)
+- On-the-fly index calculations (NDVI, NDWI, etc.)
+- Export images in various formats
+- No registration required for viewing
+
+#### 2. APIs for Programmatic Access
+
+**OData API:**
+- Full-text search
+- Product metadata retrieval
+- Download links
+
+**STAC API (SpatioTemporal Asset Catalog):**
+- Standardized search interface
+- Integration with modern GIS tools
+- Cloud-native workflows
+
+**Sentinel Hub API:**
+- On-demand processing
+- Custom script execution
+- Statistical API for time-series
+- Batch Processing API for large-scale operations
+
+**openEO API:**
+- Standardized EO data processing
+- Cloud-based analysis workflows
+- Python, R, JavaScript support
+
+#### 3. JupyterHub
+- Cloud-based Python notebooks
+- Pre-configured EO libraries
+- Direct access to Sentinel data
+- 20 GB storage for general users
+- Scalable computing resources
+
+#### 4. S3 Interface
+- Direct cloud storage access
+- High-performance for large-scale processing
+- Integration with cloud computing platforms
+
+### SentiBoard - Real-Time Mission Insights
+
+**SentiBoard** is an interactive dashboard providing real-time insights into Sentinel missions:
+
+**Access:** Via Data Availability page on Copernicus Data Space Ecosystem
+
+**Information Provided:**
+- Current satellite orbital positions
+- Upcoming acquisition schedules
+- Data ingestion status and latency
+- Processing baseline versions
+- System performance metrics
+- Planned maintenance windows
+- Data availability by region
+
+**Benefits:**
+- Plan acquisition dates for your area of interest
+- Understand data delays during emergencies
+- Track when new satellites become operational
+- Monitor data quality indicators
+
+### Recent CDSE Enhancements (2024)
+
+**Sentinel Hub Batch API V2 (December 2024):**
+- Custom tiling grid support
+- Focus on areas of interest
+- Optimized processing unit usage
+- Available to Copernicus Service Level Users
+
+**Sentinel-2 On-Demand Production (September 2024):**
+- Generate Level-2A for historical data
+- Custom processing baseline selection
+- Fill gaps in archive
+
+### Alternative Access Methods
+
+Beyond the Copernicus Data Space, you can access Sentinel data through:
+
+#### Google Earth Engine
+**URL:** [https://earthengine.google.com](https://earthengine.google.com)
+
+**Sentinel Collections:**
+- `COPERNICUS/S1_GRD` - Sentinel-1 Ground Range Detected
+- `COPERNICUS/S2_SR_HARMONIZED` - Sentinel-2 Surface Reflectance (harmonized)
+- `COPERNICUS/S2_HARMONIZED` - Sentinel-2 Top-of-Atmosphere (harmonized)
+- `COPERNICUS/S3/OLCI` - Sentinel-3 Ocean and Land Color
+
+**Advantages:**
+- No data download required
+- Parallel processing in the cloud
+- Massive time-series analysis
+- JavaScript and Python APIs
+
+**Note:** Google Earth Engine will be covered in detail in Session 4.
+
+#### AWS Registry of Open Data
+**Sentinel-2:** [https://registry.opendata.aws/sentinel-2/](https://registry.opendata.aws/sentinel-2/)
+**Sentinel-1:** [https://registry.opendata.aws/sentinel-1/](https://registry.opendata.aws/sentinel-1/)
+
+**Features:**
+- Cloud-Optimized GeoTIFFs (COGs)
+- Direct S3 access
+- STAC API via Earth-Search
+- Integration with AWS services
+
+#### Microsoft Planetary Computer
+- Sentinel-2 Level-2A in cloud-optimized formats
+- Integrated with Azure cloud services
+- Python SDK and STAC API
+
+### Pre-Flight Checklist
+
+::: {.callout-note}
+## P1 Improvement: Before Day 1 Hands-On Sessions
+
+**This checklist should be sent to participants 1 week before training:**
+:::
+
+**✅ Accounts & Access:**
+- [ ] Google Earth Engine account enabled ([signup.earthengine.google.com](https://signup.earthengine.google.com))
+- [ ] Google Drive with ≥5 GB free space
+- [ ] Google Colab tested (login with same Google account)
+- [ ] CoPhil Infrastructure registration ([application.infra.copphil.philsa.gov.ph](https://application.infra.copphil.philsa.gov.ph))
+
+**✅ Software & Data:**
+- [ ] Downloaded sample vector/raster bundle (link provided via email)
+- [ ] Confirmed zip file extracts correctly
+- [ ] Python 3.8+ installed (if working locally)
+- [ ] Jupyter notebook tested (if working locally)
+
+**✅ Troubleshooting Contacts:**
+- [ ] Have training support email/chat details
+- [ ] Know how to access Digital Space Campus materials
+
+**If any issues:** Contact training organizers BEFORE Day 1 to resolve access problems!
+
+**Organizer Action Items:**
+- Create downloadable "sample bundle" (small GeoPackage + COG raster)
+- Set up support email/chat channel
+- Send checklist email 7 days before training
+- Follow up 2 days before to confirm participant readiness
+
+#### ASF DAAC (Alaska Satellite Facility)
+**URL:** [https://search.asf.alaska.edu](https://search.asf.alaska.edu)
+
+**Specialization:**
+- Sentinel-1 archive
+- InSAR processing tools
+- RTC (Radiometric Terrain Correction) products
+- HyP3 on-demand processing
+
+### Platform Comparison
+
+| Feature | CDSE | Google Earth Engine | AWS |
+|---------|------|---------------------|-----|
+| **Registration** | Free | Free (non-commercial) | AWS account |
+| **Data Format** | Original + COG | Analysis-ready | COG |
+| **Processing** | JupyterHub, APIs | Code Editor, Python | User-managed |
+| **Download** | Unlimited | Limited export | S3 direct |
+| **Sentinel-1** | Full archive | GRD (2014+) | GRD COG |
+| **Sentinel-2** | L1C, L2A | Harmonized SR, TOA | L1C, L2A COG |
+| **Best For** | Official access | Large-scale analysis | AWS integration |
+
+---
+
+## Part 5: The Philippine EO Ecosystem
+
+### Overview
+
+The Philippines is building a robust Earth observation ecosystem with multiple agencies and platforms providing complementary data and services. These local resources enhance Copernicus data with Philippine-specific context, ground truth, and operational applications.
+
+```{mermaid}
+%%| fig-cap: "Philippine Earth Observation Ecosystem"
+%%| fig-width: 100%
+
+graph TB
+    subgraph Space["SPACE SEGMENT"]
+        S1[Copernicus Sentinels<br/>EU Programme]
+        S2[Diwata-2<br/>PhilSA]
+        S3[MULA 2026<br/>PhilSA/SSTL]
+        S4[Maya CubeSats<br/>STAMINA4Space]
+    end
+
+    subgraph Agencies["GOVERNMENT AGENCIES"]
+        A1[PhilSA<br/>Space Agency]
+        A2[NAMRIA<br/>Mapping Authority]
+        A3[PAGASA<br/>Weather Service]
+        A4[DOST-ASTI<br/>Science Tech]
+        A5[DENR<br/>Environment]
+        A6[DA<br/>Agriculture]
+    end
+
+    subgraph Platforms["DATA PLATFORMS"]
+        P1[SIYASAT<br/>PhilSA Portal]
+        P2[DATOS<br/>DOST Platform]
+        P3[PRiSM<br/>Rice Monitoring]
+        P4[ALaM<br/>Agri Monitor]
+        P5[CoPhil Mirror<br/>2025]
+    end
+
+    subgraph Apps["APPLICATIONS"]
+        AP1[Disaster Response<br/>NDRRMC/OCD]
+        AP2[Climate Adaptation<br/>PAGASA/CCC]
+        AP3[Agriculture<br/>DA/PhilRice]
+        AP4[Forestry<br/>DENR-FMB]
+        AP5[Urban Planning<br/>LGUs/NEDA]
+    end
+
+    S1 -.->|Free Data| P5
+    S2 -.->|5m Resolution| P1
+    S3 -.->|2026 Launch| P1
+
+    A1 -->|Operates| P1
+    A1 -->|Co-chairs| P5
+    A4 -->|Develops| P2
+    A4 -->|Develops| P4
+
+    P1 -->|Imagery| Agencies
+    P2 -->|Processing| Agencies
+    P5 -->|Sentinel Data| Agencies
+
+    Agencies -->|Services| Apps
+
+    style Space fill:#003d7a,stroke:#001f3d,stroke-width:2px,color:#fff
+    style A1 fill:#cc0000,stroke:#880000,stroke-width:2px,color:#fff
+    style P5 fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style Apps fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+```
+
+---
+
+### Philippine Space Agency (PhilSA)
+
+::: {.agency-card}
+::: {.agency-logo}
+**PhilSA**
+:::
+
+::: {.agency-content}
+#### Philippine Space Agency
+
+**Established:** August 8, 2019 (Republic Act No. 11363)
+**Website:** [https://philsa.gov.ph](https://philsa.gov.ph)
+**Email:** info@philsa.gov.ph
+**Phone:** +632 8568 99 31
+**Current Office:** 29th Floor, Cyber One Building, Eastwood Ave., Quezon City
+**Future HQ:** National Space Center, New Clark City, Capas, Tarlac (under construction)
+
+**Six Mission Areas:**
+1. National Security and Development
+2. Hazard Management and Climate Studies
+3. Space Research and Development
+4. Space Industry Capacity Building
+5. Space Education and Awareness
+6. International Cooperation
+
+**Role in CoPhil:**
+- Programme co-chair with DOST
+- Host of Copernicus Mirror Site infrastructure
+- Provider of training and capacity building
+:::
+:::
+
+#### Philippine Satellite Program
+
+**Diwata Microsatellites:**
+
+**Diwata-1 (PHL-Microsat-1):**
+- Launch: April 27, 2016 (ISS deployment)
+- Mass: 50 kg
+- Significance: First microsatellite designed and constructed by Filipinos
+
+**Diwata-2:**
+- Launch: October 29, 2018 (Tanegashima Space Center, Japan)
+- Mass: 50 kg
+- Images captured: Over 112,049 (as of 2024)
+- Philippine coverage: 94.03% (282,088 km² of landmass)
+- Status: Operational
+
+**Maya CubeSats:**
+- Maya-5 and Maya-6 launched June 5, 2023 to ISS
+- Part of STAMINA4Space program
+
+**MULA Satellite (Upcoming):**
+- **Full Name:** Multispectral Unit for Land Assessment
+- **Planned Launch:** February 2026 (NET - No Earlier Than)
+- **Launch Vehicle:** SpaceX Falcon 9, Transporter-16
+- **Mass:** 130 kg (Philippines' largest satellite to date)
+- **Resolution:** 5-meter TrueColor camera
+- **Swath Width:** 120 km
+- **Spectral Bands:** 9 bands
+- **Status:** Testing phase as of June 2025
+- **Development Partner:** Surrey Satellite Technology Ltd. (SSTL)
+
+**Applications:**
+- Food security monitoring
+- Disaster resilience
+- Environment conservation
+- National security
+- Land use/land cover change mapping
+- Crop monitoring
+- Forestry management
+
+#### SIYASAT Data Portal
+
+**SIYASAT** is PhilSA's **secure data archive, visualization, and distribution system** for satellite data access.
+
+**Full Name:** Surveillance, Identification, and Assessment Using Satellites
+
+**Data Sources:**
+- **NovaSAR-1 satellite** (S-band SAR) - 10% capacity share agreement
+- Diwata-2 optical imagery
+- Partner satellite data (KompSat-3, KompSat-5)
+
+**Coverage:**
+- Maritime domain awareness (4 passes per day over Philippines)
+- Terrestrial monitoring
+- Coastal zone surveillance
+
+**Data Types:**
+- Synthetic Aperture Radar (SAR) imagery
+- Automatic Identification System (AIS) ship tracking data
+- Optical high-resolution imagery
+- Derived products and analytics
+
+**Applications:**
+- Maritime security and illegal fishing monitoring
+- Port and harbor monitoring
+- Coastal zone management
+- Disaster response (floods, landslides)
+- Environmental monitoring
+- Agricultural monitoring
+
+**Access:** Through PhilSA official channels, PEDRO Center, and partner agreements. Free for government agencies, LGUs, and state universities/colleges.
+
+#### PEDRO Center (Philippine Earth Data Resource Observation)
+
+**Status:** Currently operated by DOST-ASTI, scheduled for transition to PhilSA
+
+**Purpose:** Gateway to satellite images and spaceborne data from Philippine and foreign satellites
+
+**Ground Receiving Stations (3 locations):**
+
+1. **Quezon City Station**
+   - Location: DOST-ASTI facility, UP Diliman
+   - Antenna: 3.7 meters satellite tracking
+   - Status: First operational station
+
+2. **Davao Station**
+   - Launch: June 30, 2019
+   - Location: Francisco Bangoy International Airport
+   - Antenna: 7.3 meters satellite tracking
+   - Coverage: Enhanced southern Philippines reception
+
+3. **Iloilo Station**
+   - Launch: August 2022
+   - Location: Dumangas, Iloilo
+   - Funding: Japan International Cooperation Agency (JICA)
+   - Capability: Multi-mission support
+
+**Satellite Data Access:**
+- Direct download: Diwata-1, Diwata-2, KompSat-3, KompSat-5, NovaSAR-1
+- Optical high-resolution and multispectral imagery
+- Radar (SAR) cloud-penetrating, day-night imaging
+
+#### Space Data Dashboard
+
+**Access:** [https://spacedata.philsa.gov.ph](https://spacedata.philsa.gov.ph)
+
+**Description:** Robust platform designed to revolutionize space data access, built using open-source technologies.
+
+**Available Data Types:**
+- Ship traffic monitoring (AIS data)
+- Air quality indicators
+- Water quality monitoring
+- Night lights (urbanization, economic activity)
+- Land cover mapping
+- Traffic monitoring
+
+**Development:** Jointly developed by PhilSA, DOST-ASTI, and STAMINA4Space during COVID-19 pandemic.
+
+**Capacity Building:** Annual Space Data Dashboard Media Workshop training journalists to generate stories using space data.
+
+**Additional Tool:** LEO Satellite Tracker - [https://leo-tracker.philsa.gov.ph/tracker](https://leo-tracker.philsa.gov.ph/tracker)
+
+#### 2025 PhilSA Initiatives
+
+**PINAS Workshops (PhilSA Integrated Network for Space-Enabled Actions):**
+- **April 23-25, 2025:** Malolos City, Bulacan
+- Focus: Disaster Risk Reduction and Management
+- Topics: Flood mapping, drought assessment, ground motion monitoring, impact assessment
+
+**Space Business Innovation Challenge (SBIC) 2025:**
+- Empower Filipino innovators
+- Build solutions using free satellite data
+- Access to EO, weather, and environmental datasets
+
+**Training Course on Downstream Data Utilization:**
+- **Dates:** June 23-27, 2025
+- **Location:** Mandaluyong City
+- **Focus:** Practical application of satellite data for end-users
+
+**PhilSA Ad Astra Scholarship Program:**
+- Space science and technology education scholarships
+- Build national capacity in space sector
+
+#### COARE Infrastructure
+
+**COARE (Computing and Archiving Research Environment)**
+
+**Established:** 2014
+**Location:** DOST-ASTI, UP Diliman campus
+
+**Technical Specifications:**
+- Thousands of CPU cores
+- GPU acceleration for AI/ML
+- Several petabytes of storage
+- 10 Gbps network speed
+
+**Services:**
+1. High-Performance Computing (HPC) for AI model training
+2. Science Cloud for scalable computing
+3. Data Archiving for satellite imagery and research data
+
+**Access Policy:** Free for students, researchers, and data analysts
+
+**Applications:**
+- AI model training and inference
+- Large-scale remote sensing data processing
+- Climate modeling and disaster simulation
+
+**Integration:** Supports DATOS, SkAI-Pinas, DIMER, and academic research
+
+---
+
+### NAMRIA (National Mapping and Resource Information Authority)
+
+::: {.agency-card}
+::: {.agency-logo}
+**NAMRIA**
+:::
+
+::: {.agency-content}
+#### National Mapping and Resource Information Authority
+
+**Parent Agency:** Department of Environment and Natural Resources (DENR)
+**Established:** 1987
+**Website:** [https://www.namria.gov.ph](https://www.namria.gov.ph)
+**Main Portal:** [https://www.geoportal.gov.ph](https://www.geoportal.gov.ph)
+
+**Office Address:** Lawton Avenue, Fort Bonifacio, Taguig City
+**Email:** css.gismb@namria.gov.ph, oss@namria.gov.ph
+**Phone:** (02) 8887-5466, (02) 8810-4831
+
+**Mandate:**
+- National mapping agency
+- Central repository for geospatial data
+- Cartographic and hydrographic services
+- Land administration and resource monitoring support
+
+**Relevance for EO:**
+- Authoritative reference data for validation
+- Base maps for context and visualization
+- Hazard maps for risk assessment
+- Historical land cover data for change detection
+:::
+:::
+
+#### Geoportal Philippines
+
+**Main Portal:** [https://www.geoportal.gov.ph](https://www.geoportal.gov.ph)
+
+**Purpose:** Find and access geospatial data and services for strategic planning, decision making, and situational analysis
+
+**Applications:**
+- Disaster risk management
+- Land use planning
+- Infrastructure management
+- Surveying and mapping
+- Strategic planning
+
+**Available Data:**
+- **Base Maps:** Multiscale topographic maps (1:50,000, 1:250,000)
+- **Administrative Boundaries:** Provinces, municipalities, barangays
+- **Infrastructure:** Roads, bridges, airports, ports
+- **Thematic Layers:** Land cover, geology, soil types
+- **Hazard Information:** Links to HazardHunterPH
+
+**Features:**
+- Web-GIS mapping tools
+- Data discovery and catalog
+- Download services
+- Feedback system for queries
+
+#### NAMRIA eMapa
+
+**URL:** [https://isportal.namria.gov.ph/eMapa](https://isportal.namria.gov.ph/eMapa)
+
+**Description:** Interactive mapping application for visualizing NAMRIA datasets with user-friendly interface.
+
+#### Land Cover Mapping Project
+
+**Portal:** [https://land-cover-mapping-project-namria.hub.arcgis.com](https://land-cover-mapping-project-namria.hub.arcgis.com)
+
+**Data Formats Available:**
+- CSV, KML, Zip
+- GeoJSON
+- GeoTIFF (raster)
+- PNG (visualization)
+- Web services (WMS, WFS)
+
+**Coverage:** National-scale land cover datasets for environmental monitoring and planning
+
+**Time Series:** Historical and recent land cover classifications
+
+**Applications:**
+- Baseline data for change detection
+- Training data for satellite image classification
+- Validation of EO-derived products
+- Environmental assessment
+- Policy and planning support
+
+#### HazardHunterPH
+
+**URL:** [https://hazardhunter.georisk.gov.ph/map](https://hazardhunter.georisk.gov.ph/map)
+
+**Tagline:** "Hazard assessment at your fingertips"
+
+**Purpose:** National hazard assessment and visualization portal
+
+**Hazard Types Covered:**
+- **Earthquake-related:** Ground shaking intensity, liquefaction potential
+- **Tsunami:** Inundation susceptibility zones
+- **Landslide:** Susceptibility maps (high, moderate, low)
+- **Flood:** Hazard maps (collaboration with PAGASA)
+
+**Integration with EO:**
+- Reference hazard zones for satellite-based disaster mapping
+- Validation of EO-derived flood and landslide extents
+- Risk-informed prioritization of monitoring areas
+- Multi-hazard exposure assessment
+
+**Use Case Example:** During flood events, overlay Sentinel-1 flood extent maps with HazardHunterPH flood hazard zones to identify high-risk areas requiring immediate response.
+
+#### Using NAMRIA Data as Training Labels
+
+::: {.callout-tip}
+## Micro-Edit: NAMRIA/Space+ as Label Sources & Validation Layers
+
+NAMRIA data is not just context - it's a **critical source of training labels** for machine learning:
+
+**Example Workflow for Day 2 Palawan RF Lab:**
+1. Download NAMRIA land cover shapefile (authoritative class labels)
+2. Overlay on Sentinel-2 imagery in GEE or QGIS
+3. Extract training points per class:
+   - Forest (closed canopy, open canopy)
+   - Agriculture (crops, plantations)
+   - Water bodies
+   - Built-up areas
+   - Barren land
+4. Train Random Forest classifier on Sentinel-2 bands + indices
+5. Validate predictions against NAMRIA hold-out samples from different tiles
+6. Generate updated land cover map for current date
+
+**Space+ Dashboard** provides:
+- Administrative boundaries for stratified sampling
+- Infrastructure layers for context in visualizations
+- Overlay capabilities for validation
+
+**One Example Visualization:**
+NAMRIA training polygons (color-coded by land cover class) overlaid on Sentinel-2 RGB true-color composite - this is what participants will create in Day 2.
+:::
+
+**Integration Best Practice:**
+Use NAMRIA as **baseline truth** for training, then detect changes with multi-temporal Sentinel data. This combines authoritative national mapping with frequent satellite updates.
+
+#### Recent Collaborations (2024-2025)
+
+**PhilSA-NAMRIA Partnership (February 10, 2025):**
+- Agreement on satellite data utilization
+- Focus Areas:
+  - Land cover mapping and monitoring
+  - Topographic mapping
+  - Bathymetric mapping
+  - Coastal resource monitoring
+  - Environmental monitoring
+  - Natural resource mapping
+- Objectives: Address climate change, biodiversity conservation, scientific research
+
+**DOST-ASTI Collaboration:**
+- Access to COARE computing facilities
+- Remote sensing and GIS expertise (DATOS)
+- Satellite imagery from PEDRO Center
+- Land use/land cover classification projects
+
+#### Bathymetric Mapping Initiative
+
+**Partnership:** Seabed 2030 Project (announced October 2022)
+
+**Objectives:**
+- Map entire ocean floor by 2030
+- Contribute Philippine waters data to GEBCO global grid
+- Support maritime navigation and ocean research
+
+**Data Collection:**
+- Hydrographic surveys of archipelagic waters
+- Port and harbor surveys (40 locations)
+- Municipal waters delineation for LGUs
+
+---
+
+### DOST-ASTI AI Initiatives
+
+::: {.agency-card}
+::: {.agency-logo}
+**ASTI**
+:::
+
+::: {.agency-content}
+#### Department of Science and Technology - Advanced Science and Technology Institute
+
+**Parent Agency:** Department of Science and Technology (DOST)
+**Established:** R&D institute for advanced S&T applications
+**Website:** [https://asti.dost.gov.ph](https://asti.dost.gov.ph)
+
+**Office Address:** ASTI Building, C.P. Garcia Avenue, UP Campus, Diliman, Quezon City
+**Phone:** +63 2 8426 3572, +63 2 8249 8500
+**Email:** franz.deleon@asti.dost.gov.ph
+
+**Focus:**
+- ICT research and development
+- Remote sensing and AI applications
+- Software and systems development
+- Technology innovation and deployment
+
+**National Investment:** **P2.6 billion AI budget (until 2028)** supporting government, academia, industry, and over 300 institutions
+:::
+:::
+
+#### SkAI-Pinas (Sky Artificial Intelligence Program)
+
+**Full Name:** Philippine Sky Artificial Intelligence Program
+
+**Timeline:**
+- 2017: Foundation laid by Dr. Jose Ildefonso U. Rubrico (DOST Balik Scientist)
+- 2021: Prototype evolved into flagship R&D initiative
+- 2024-present: Ongoing expansion with national investment
+
+**Funding:** DOST-PCIEERD (Philippine Council for Industry, Energy, and Emerging Technology Research and Development)
+
+**Mission:** Bridge the gap between massive remote sensing data and sustainable processing frameworks through AI democratization.
+
+**Vision:** Make AI "part of daily decision-making and national progress" across the Philippines
+
+**Impact:**
+- Supports **over 300 institutions**:
+  - State universities and colleges
+  - Small and medium enterprises (SMEs)
+  - Research teams
+  - Local government units
+  - Government agencies
+
+**Components:**
+- **AI Knowledge Base:** Repository of experts, protocols, best practices
+- **AI Model Repository:** Pre-trained models and labeled training images
+- **Training Programs:** Capacity building across sectors
+- **Processing Infrastructure:** Scalable compute via COARE
+
+**Key Statistics (as of 2024):**
+- Over **1 million manually labeled images**
+- **5 million identified objects** in training datasets
+- More than **200 trained AI models**
+- Supporting decision-making across agriculture, disaster response, environment, transportation
+
+**Annual Event:** SkAI-Pinas Congress (3rd Congress held 2024/2025) showcasing innovations and promoting inclusive AI development
+
+#### DIMER (Democratized Intelligent Model Exchange Repository)
+
+**Developer:** ASTI-ALaM Project
+**Nature:** AI Model Hub for the Philippines
+
+**Purpose:** Democratize access to optimized AI models for Filipino researchers, government agencies, and innovators
+
+**Description:** Intuitive "AI model store" designed specifically for Filipino contexts, lowering technical barriers to AI adoption
+
+**Key Features:**
+- Pre-trained AI model repository
+- Model sharing platform
+- Quick deployment capabilities
+- Inference engine for real-time geospatial intelligence
+- Quality assurance and versioning
+
+**Target Users:**
+- AI researchers and engineers
+- Domain experts (agriculture, disaster, environment)
+- Government planners and disaster risk managers
+- Enthusiasts and hobbyists
+
+**Applications:**
+- **Flood detection** from SAR imagery
+- **Landslide detection** from optical and radar data
+- **Traffic pattern analysis** from high-resolution imagery
+- **Crop health monitoring** from multispectral data
+- **Building/infrastructure mapping** for urban planning
+
+**How It Works:**
+1. Browse model catalog by application domain
+2. Select pre-trained model optimized for Philippine conditions
+3. Deploy model via AIPI or local environment
+4. Eliminate need to train from scratch - accelerates deployment
+
+**Impact:** Dramatically reduces time and expertise required to apply AI to Earth observation data
+
+#### AIPI (AI Processing Interface)
+
+**Full Name:** AI Processing Interface
+**Developed by:** ALaM-LSI (Large-Scale Inference) team
+**Status:** Key accomplishment of SkAI-Pinas program
+
+**Purpose:** Streamline large-scale remote sensing processing tasks
+
+**Capabilities:**
+- **Large-scale satellite image processing** - Process entire provinces or regions
+- **Batch inference** on AI models from DIMER
+- **Distributed computing coordination** across COARE infrastructure
+- **User-friendly interface** - No deep coding expertise required
+- **Reduces computational barriers** for users without powerful hardware
+
+**How It Works:**
+1. Upload satellite imagery (Sentinel, Diwata, etc.)
+2. Select AI model from DIMER catalog
+3. AIPI orchestrates processing on backend HPC infrastructure
+4. Download results (classifications, detections, predictions)
+5. Visualize and export geospatial products
+
+**Benefit:** Users can perform complex AI-based remote sensing analysis without:
+- Powerful local computers
+- Deep programming knowledge
+- Manual model deployment
+- Complex infrastructure setup
+
+**Integration:** Seamlessly connected to COARE for compute resources and DIMER for AI models
+
+#### ALaM Project (Automated Labeling Machine)
+
+**Full Name:** ASTI-Automated Labeling Machine
+**Component of:** SkAI-Pinas Program
+
+**Website:** [https://asti.dost.gov.ph/projects/alam-project](https://asti.dost.gov.ph/projects/alam-project)
+
+**Purpose:** Address the training data scarcity bottleneck that limits AI development
+
+**Key Features:**
+- **Automated data labeling** using AI-assisted annotation
+- **Crowdsourcing capabilities** for human-in-the-loop labeling
+- **Quality control mechanisms** ensuring label accuracy
+- **Integration with DIMER** for model training pipelines
+
+**Why It Matters:**
+Creating labeled training data is:
+- Time-consuming (weeks to months)
+- Expensive (requires expert annotators)
+- The main bottleneck in AI development
+
+ALaM dramatically reduces this burden through automation and distributed annotation.
+
+**Evolution:**
+- Initial prototype: Automated labeling for satellite images
+- Expansion: Comprehensive AI development platform
+- Outputs: DIMER platform, AIPI interface, trained models
+
+**Application Domains:**
+- Mapping (land cover, infrastructure)
+- Computer vision (object detection, segmentation)
+- Disaster response (damage assessment)
+- Environmental monitoring (deforestation, coastal changes)
+
+#### DATOS (Remote Sensing and Data Science Help Desk)
+
+**Full Name:** Remote Sensing and Data Science Help Desk
+
+**Website:** [https://asti.dost.gov.ph/projects/datos](https://asti.dost.gov.ph/projects/datos)
+
+**Mission:** Produce and communicate relevant disaster information to agencies and end-users to complement existing government efforts
+
+**Technology Approach:**
+- Integration of **GIS, Remote Sensing, and Data Science**
+- **AI-powered automated mapping system**
+- **Near-real-time disaster response** (10-20 minutes from satellite overpass)
+
+**Core Capabilities:**
+
+##### AI-Based Flood Mapping
+- **Technology:** AI-based near-real-time flood extent mapping
+- **Data Sources:**
+  - C-Band Sentinel-1 SAR images
+  - S-Band NovaSAR-1 images (SARwAIS Project)
+- **Speed:** 10-20 minutes from data acquisition to map distribution
+- **Delivery:** Maps sent to DOST Regional Offices and LGUs
+- **Coverage:** Areas affected by severe weather disturbances
+
+**Process:**
+1. Satellite overpass during typhoon/monsoon
+2. SAR image automatically downloaded
+3. AI model identifies flood extent
+4. Map generated and validated
+5. Distributed to disaster response agencies
+6. Posted to DATOS dashboard
+
+**2024 Enhancement:** NovaSAR-1 integration augments Sentinel-1 for redundancy and improved temporal resolution
+
+##### Other Disaster Mapping Services
+- **Landslide monitoring:** Rain-induced susceptibility mapping
+- **Forest fire detection:** Active fire and burn scar mapping
+- **Drought assessment:** Vegetation stress analysis
+- **Agricultural impact:** Crop damage evaluation
+
+**Operational Model:** On-demand analysis responding to agency requests and automatic triggers during disasters
+
+**Case Study:** Makilala, Cotabato Landslide Response (2019) - PEDRO Center and DATOS provided timely data to government agencies
+
+**Training and Capacity Building:**
+- Regional DOST office training (2021-present)
+- AI and machine learning workshops
+- Flood mapping technology transfer to LGUs
+
+**Publications:**
+- "Near-Realtime Flood Detection from Multi-Temporal Sentinel Radar Images Using Artificial Intelligence" (2020)
+- Multiple ISPRS conference papers (2023-2024)
+
+#### SARwAIS Project
+
+**Full Name:** SAR with Automatic Identification System
+**Start Date:** 2018
+**Duration:** Multi-year project
+
+**Website:** [https://asti.dost.gov.ph/space-technology/sarwais](https://asti.dost.gov.ph/space-technology/sarwais)
+
+**NovaSAR-1 Satellite Partnership:**
+- **Capacity Share:** 10% of NovaSAR-1 imaging capacity
+- **Launch:** September 2018
+- **Developer:** Surrey Satellite Technology Ltd. (SSTL)
+- **Satellite Type:** S-Band SAR minisatellite
+- **Pass Frequency:** 4 times per day over Philippines
+
+**Key Capabilities:**
+- Cloud-penetrating S-band radar imaging
+- Day/night Earth observation
+- Marine vessel detection via AIS receiver
+- Simultaneous SAR and AIS acquisition
+- Flood and disaster mapping
+- Aquaculture monitoring
+
+**Applications:**
+
+**Terrestrial Monitoring:**
+- Land cover classification
+- Environmental monitoring
+- Agricultural monitoring (e.g., sugarcane temporal signatures)
+- Forest change detection
+
+**Disaster Management:**
+- Flood extent mapping (augments Sentinel-1)
+- Landslide detection
+- Infrastructure damage assessment
+
+**Maritime Domain:**
+- Ship detection and tracking
+- Illegal fishing monitoring
+- Maritime security
+- Aquaculture monitoring
+
+**Stakeholder Training Programs:**
+- Bureau of Fisheries and Aquatic Resources (BFAR)
+- Maritime Research and Information Center (MRIC)
+- National Coast Watch Council (NCWC)
+- Philippine Coast Guard (PCG)
+
+**Research Publications:**
+- "Augmenting the Philippines' DOST-ASTI's Potential Flood Extents Mapping Service with S-Band NovaSAR-1 Images" (2024)
+- "Advancing the Philippines' Climate Change Response through DOST-ASTI's SARwAIS Project" (2024)
+
+---
+
+### PAGASA (Philippine Atmospheric, Geophysical and Astronomical Services Administration)
+
+::: {.agency-card}
+::: {.agency-logo}
+**PAGASA**
+:::
+
+::: {.agency-content}
+#### PAGASA
+
+**Parent Agency:** Department of Science and Technology (DOST)
+**Function:** National Meteorological and Hydrological Services (NMHS) agency
+**Website:** [http://www.pagasa.dost.gov.ph](http://www.pagasa.dost.gov.ph)
+
+**Office Address:** PAGASA Science Garden Complex, Sen. Miriam Defensor-Santiago Avenue, Brgy. Central, Diliman, Quezon City
+
+**Phone:** (02) 8284-0800
+**Email:** information@pagasa.dost.gov.ph, cadpagasa@gmail.com (climate data)
+
+**Core Functions:**
+- Flood and typhoon warnings
+- Public weather forecasts and advisories
+- Meteorological, astronomical, and climatological services
+- Geophysical monitoring
+- Climate change analysis
+:::
+:::
+
+#### PANaHON (PAGASA National Hydro-Met Observing Network)
+
+**URL:** [https://www.panahon.gov.ph](https://www.panahon.gov.ph)
+
+**Description:** System showing near real-time information from PAGASA's weather stations across the country
+
+**Station Types:**
+- Automatic weather stations (AWS)
+- Manned observation stations
+
+**Data Displayed:**
+- Rainfall (hourly, daily accumulation)
+- Temperature (current, min/max)
+- Humidity (relative humidity %)
+- Wind speed and direction
+- Atmospheric pressure
+
+**Additional Features:**
+- Weather forecasts using ECMWF data
+- Historical data access
+- Station location mapping
+- Data export capabilities
+
+#### CliMap v2 (Climate Information Map)
+
+**URL:** [https://www.pagasa.dost.gov.ph/climate/climate-change/dynamic-downscaling/climap-v2](https://www.pagasa.dost.gov.ph/climate/climate-change/dynamic-downscaling/climap-v2)
+
+**Description:** Online platform with interactive map for exploring and downloading climate data
+
+**Coverage:** Entire Philippines at municipal level
+
+**Data Types:**
+- Climate projections (temperature, precipitation)
+- Historical climate data
+- Downscaled climate scenarios
+- Temperature trends
+- Precipitation patterns
+- Climate change indicators
+
+**Access Process:**
+1. Click on map over desired municipality
+2. Select needed information
+3. Complete online registration
+4. Receive download links via email
+
+#### Satellite Data Usage by PAGASA
+
+**Earth Observation Capabilities:**
+- Weather satellite imagery analysis (Himawari, GOES, others)
+- Cloud pattern monitoring
+- Typhoon tracking and intensity estimation
+- Sea surface temperature monitoring
+- Precipitation estimation
+
+**Integration with EO:**
+
+**Rainfall + SAR flood mapping:**
+- Validate satellite-derived flood extents
+- Understand precipitation drivers
+- Improve flood forecasting models
+
+**Drought indices + NDVI time series:**
+- Agricultural drought monitoring
+- Crop stress early warning
+- Water resource management
+
+**Typhoon tracks + damage assessment:**
+- Post-disaster prioritization
+- Impact forecasting
+- Recovery planning
+
+**Climate data + land cover change:**
+- Climate change attribution studies
+- Ecosystem vulnerability assessment
+- Adaptation strategy development
+
+#### Climate Services and Publications
+
+**Publications:**
+- **State of the Philippine Climate** (annual reports)
+  - 2022 Report available
+  - Comprehensive climate indicators
+  - Impact assessments
+- Climate assessment reports
+- Climate change impact studies
+
+**Services:**
+- Climate change projections
+- Climate risk management tools
+- Seasonal forecasts
+- Climate variability analysis (ENSO, monsoon)
+- Agrometeorological services
+
+---
+
+## Part 6: CoPhil Programme - Bridging Europe and the Philippines
+
+### CoPhil Overview
+
+**Full Name:** National Copernicus Capacity Support Action Programme for the Philippines (CoPhil)
+
+**Launch Date:** April 24, 2023
+
+**Budget:** €10 million (approximately PHP 624 million)
+
+**Programme Duration:** 2023-2027
+
+**Significance:** First Copernicus Earth observation data storing and processing facility in Asia
+
+::: {.callout-important}
+## CoPhil - A Landmark Cooperation
+
+CoPhil represents a **flagship programme of the EU's Global Gateway strategy**, demonstrating international commitment to space technology for sustainable development. It's the **first space cooperation agreement of its kind in Southeast Asia**, positioning the Philippines as a regional hub for Earth observation.
+:::
+
+### Strategic Objectives
+
+CoPhil focuses on three core pillars:
+
+**1. Infrastructure Development**
+- Establish Copernicus Data Centre in the Philippines
+- Provide free, open, and immediate access to Copernicus EO data
+- Host data focused on Philippine region and Southeast Asia
+
+**2. Service Development**
+- Co-develop Earth Observation pilot services in three thematic areas
+- Tailor services to Philippine needs (DRR, NRM, CCA)
+- Integrate with national monitoring systems
+
+**3. Knowledge Transfer**
+- Conduct awareness-raising activities
+- Provide training and skills development
+- Offer scholarships for advanced EO studies
+- Build sustainable local capacity
+
+### Timeline of Major Milestones
+
+**January 24, 2023:**
+- Contribution Agreement signed in Brussels
+- ESA Director General Josef Aschbacher and EU Commission representatives
+- €10 million funding commitment announced
+
+**April 24, 2023:**
+- Official programme launch in the Philippines
+- PhilSA, DOST, and EU jointly launch CoPhil
+
+**June 30, 2023:**
+- Administrative Arrangement signing
+- PhilSA and European Commission (simultaneous ceremonies in Quezon City and Brussels)
+- Formalized establishment of Copernicus Mirror Site
+
+**October 17, 2024:**
+- **"First Light" Inaugural Event** in Manila
+- Unveiling of Copernicus Data Centre at PhilSA premises
+- First demonstrations of pilot services
+- Launch of CoPhil Infrastructure website
+- Moderated by broadcast journalist Atom Araullo
+
+**November 2024:**
+- CoPhil Infrastructure website fully operational
+- First training courses initiated with 80+ participants
+
+**2025:**
+- Full operational capacity of infrastructure
+- Continuation of training and service development
+- EU CoPhil Scholarship Programme active
+
+### Institutional Framework
+
+**Managing Entities:**
+- **European Union Delegation to the Philippines:** Overall programme management
+- **European Space Agency (ESA):** Technical implementation lead
+
+**Philippine Government Partners:**
+- **Philippine Space Agency (PhilSA):** Primary implementing partner, infrastructure host
+- **Department of Science and Technology (DOST):** Strategic planning and coordination
+
+**Implementation Consortium:**
+- **CloudFerro (Poland):** Infrastructure provider, operates Copernicus Mirror Site
+- **Stantec (Belgium):** Technical assistance, scholarship programme
+- **Paris Lodron University of Salzburg (Austria):** Training and Digital Campus lead
+- **University of Twente ITC (Netherlands):** Ground motion service development
+- **GeoVille (Austria):** Processing environment development
+- **CLS (France):** Service development and transfer lead
+
+---
+
+### CoPhil Infrastructure (Mirror Site)
+
+**Status:** Operational as of late 2024, reaching full capacity in 2025
+
+**Location:** Philippine Space Agency headquarters, Manila
+
+**Purpose:** Philippines-based data center hosting a **mirror of Copernicus data** focused on the Philippine region
+
+**Technical Architecture:**
+- Private cloud environment provided by CloudFerro
+- Fully scalable platform optimized for EO data
+- Built using effective combination of open-source and specialized software
+
+**Capacity:**
+- **Expected storage:** 400 TB of resources
+- State-of-the-art discovery, cataloguing, and serving tools
+- Support for 8 satellite types
+- 5+ Earth Observation data collections
+- Daily updates from Sentinel constellation
+
+**Coverage:**
+- Entire territory of the Philippines
+- Islands and offshore areas
+- Over **1.8 million square kilometers** total coverage
+- Southeast Asian regional context
+
+**Benefits:**
+
+**Faster Access:**
+- Local hosting reduces latency
+- Improved download speeds for Philippine users
+- Reduced dependence on international bandwidth
+
+**Disaster Resilience:**
+- Local backup during regional crises
+- Reliable access during emergencies
+- Critical for rapid disaster response
+
+**Capacity Building:**
+- Local expertise in data management
+- Philippine control of infrastructure
+- Foundation for regional leadership
+
+**Cost Savings:**
+- Free access for Philippine institutions
+- Reduced international data transfer costs
+- Enables larger-scale processing
+
+### Access Methods
+
+#### 1. Data Explorer
+**URL:** [https://explore.infra.copphil.philsa.gov.ph/search](https://explore.infra.copphil.philsa.gov.ph/search)
+
+**Capabilities:**
+- User-friendly search and browsing
+- Browse Copernicus EO data by attributes:
+  - Geographic area (map selection or coordinates)
+  - Date range
+  - Satellite/sensor type
+  - Cloud cover percentage
+  - Processing level
+- Preview thumbnails and quicklooks
+- Download selected products
+- Bulk download via data packages
+
+#### 2. JupyterLab Environment
+**URL:** [https://jupyter.infra.copphil.philsa.gov.ph](https://jupyter.infra.copphil.philsa.gov.ph)
+
+**Features:**
+- Web-based interactive development environment
+- Process Copernicus EO data using Python, Julia, R
+- Access to Copernicus Data Space Ecosystem data
+- Pre-configured with EO libraries (rasterio, geopandas, xarray)
+- Machine learning libraries (scikit-learn, tensorflow)
+- Integrated analysis and visualization tools
+
+#### 3. S3/Zipper Service
+- Cloud data access via object storage (S3 protocol)
+- Zipped download interfaces for bulk data
+- Efficient transfer for large datasets
+- API access for automated workflows
+
+### Registration and Access
+
+**Registration Portal:** [https://application.infra.copphil.philsa.gov.ph](https://application.infra.copphil.philsa.gov.ph)
+
+**Access Levels:**
+- **copphil-registered role:** Immediate minimal access upon registration
+- **eodata-low role:** Basic data access
+- **Organization-level access:** Additional quotas and roles
+
+**Current Status (late 2024):**
+- **184 registered users**
+- Growing community across government, academia, research
+- Multiple organizations actively using platform
+
+**Documentation:**
+**Knowledge Base:** [https://knowledgebase.infra.copphil.philsa.gov.ph](https://knowledgebase.infra.copphil.philsa.gov.ph)
+
+---
+
+### CoPhil Digital Space Campus
+
+**Platform URL:** [https://courses.copphil.philsa.gov.ph](https://courses.copphil.philsa.gov.ph)
+
+**Purpose:** Comprehensive online training platform for Earth Observation capacity building
+
+**Management:** Paris Lodron University of Salzburg (PLUS) leads knowledge and capacity development
+
+**Training Approach:** Mix of online self-paced and hybrid (online + on-site) courses
+
+### CoPhil Pilot Services
+
+CoPhil is co-developing three operational pilot services tailored to Philippine priorities:
+
+#### 1. Ground Motion Monitoring Service
+
+**Objective:** Improve hazard management, reduce risks, support sustainable urban development
+
+**Technology:**
+- InSAR (Interferometric SAR) processing using Sentinel-1 data
+- Open-access tools integrated with GeoVille processing environment
+- Time-series analysis for deformation trends
+
+**Applications:**
+1. **Seismic Activity Monitoring**
+   - Context: 5-20 earthquakes daily in the Philippines
+   - Precise deformation from earthquakes
+   - Early warning support
+   - Post-earthquake damage assessment
+
+2. **Volcanic Deformation**
+   - Context: 53 active volcanoes in the Philippines
+   - Ground swelling detection before eruptions
+   - Evacuation planning support
+
+3. **Landslide Risk Assessment**
+   - Slow-moving landslide detection
+   - Risk mapping for vulnerable areas
+
+4. **Land Subsidence Monitoring**
+   - Urban subsidence detection
+   - Groundwater extraction impacts
+   - Mining-induced subsidence
+
+5. **Mining Area Monitoring**
+   - Ground stability assessment
+   - Illegal mining detection
+   - Environmental impact monitoring
+
+**Target Users:** LGUs, urban planners, DOST, PHIVOLCS, mining agencies, infrastructure developers
+
+#### 2. Land Cover, Forest, and Crop Mapping Service
+
+**Objective:** Support local authorities, farmers, and environmental managers in sustainable land use and agricultural productivity
+
+**Technology:**
+- Multi-temporal Sentinel-1 SAR and Sentinel-2 optical
+- Sen4Stat processor for crop type mapping
+- Machine learning classification
+- Vegetation indices time series
+
+**Sub-Services:**
+
+**A. Crop Monitoring and Mapping**
+- Crop type identification and mapping
+- Crop growth monitoring throughout season
+- Yield prediction and estimation
+- Irrigation monitoring
+- Products: Seasonal crop maps, biophysical parameters, vegetation indices
+
+**B. Forest Monitoring**
+- Forest area and type mapping
+- Tree cover density assessment
+- Deforestation monitoring
+- Illegal logging detection
+- Reforestation planning and monitoring
+
+**2024 Products Developed:**
+- Consolidated Forest Area and Type product
+- Tree Cover Density maps
+- Forest Cover Change product (near completion)
+
+**C. Land Cover Classification**
+- National and regional mapping
+- Urban expansion monitoring
+- Land use planning
+- Environmental monitoring
+
+**Target Users:** Department of Agriculture, farmers, DENR, forest agencies, LGUs, environmental researchers
+
+#### 3. Coastal Marine (Benthic) Habitat Monitoring Service
+
+**Objective:** Support sustainable coastal management, preserve biodiversity, maintain marine habitat health
+
+**Technology:**
+- Sentinel-2 and Sentinel-3 optical data for coastal waters
+- Benthic habitat classification algorithms
+- Water quality indicators
+- Coastal zone change detection
+
+**Applications:**
+1. **Coral Reef Monitoring**
+   - Coral bleaching detection and tracking
+   - Reef health assessment
+   - Climate change impact monitoring
+
+2. **Seagrass Mapping**
+   - Extent and density mapping
+   - Health indicators
+   - Change detection
+
+3. **Water Quality Monitoring**
+   - Turbidity and suspended sediment
+   - Algal bloom detection
+   - Pollution monitoring
+
+4. **Coastal Zone Management**
+   - Shoreline change detection
+   - Erosion monitoring
+   - Mangrove mapping
+
+5. **Marine Protected Areas**
+   - Baseline habitat mapping
+   - Protection effectiveness monitoring
+
+**Target Users:** Marine researchers, DENR, coastal management authorities, MPA managers, fisheries agencies
+
+### Training Series on Digital Campus
+
+The platform offers specialized training across three main thematic areas:
+
+**1. Ground Motion Monitoring Series**
+- InSAR principles and SAR processing
+- Ground deformation analysis
+- Applications in geo-hazard assessment
+- Urban planning and emergency preparedness
+
+**2. Land Cover, Forest, and Crop Monitoring Series**
+- Introduction to Satellite Data and EO
+- Sen4Stat Training for crop monitoring
+- Crop Monitoring Practical Training
+- Forest Monitoring principles and applications
+- Land Cover Classification workflows
+
+**3. Benthic (Coastal Marine) Habitat Monitoring Series**
+- Coastal zone dynamics
+- Marine habitat classification
+- Coral reef and seagrass monitoring
+- Water quality assessment
+
+**Course Structure:**
+- **Part I - Fundamentals:** Theoretical concepts
+- **Part II - Practical:** Hands-on with tools and data
+- **Part III - Application:** Real-world use cases
+
+**Major Training Events (2024):**
+
+**November 25, 2024 - First Training Course:**
+- Hosted at CoPhil Centre
+- **Over 80 participants** from government agencies, academia, other sectors
+- Starting point for ten-course training series
+- Positive feedback from participants
+
+### EU CoPhil Scholarship Programme
+
+**Launch:** Late 2024
+**Implementation:** Stantec-led consortium
+
+**Financial Support:** Up to €33,500 (approximately PHP 2,072,712) per scholarship
+
+**Study Duration:** September 2025 to July 2027 (approximately 2 years)
+
+**Study Level:** Master's degree (MSc) in Earth Observation and Remote Sensing
+
+**Study Location:** European universities in EU Member States
+
+**Eligibility:**
+Filipino citizens working in specific government agencies:
+- Philippine Space Agency (PhilSA)
+- Department of Science and Technology (DOST)
+- Department of Environment and Natural Resources (DENR)
+- Department of Human Settlements and Urban Development (DSHUD)
+- Department of Agriculture
+- Mindanao Development Authority (MinDA)
+
+**Application Deadline:** March 21, 2025
+
+**Objective:** Develop advanced Philippine expertise in EO, create pool of specialists, strengthen institutional capacity for long-term sustainability
+
+### Success Stories and Impact
+
+#### Case Study: MT Terra Nova Oil Spill Response (July 2024)
+
+**Incident:**
+- Philippine tanker MT Terra Nova carrying 1.4 million liters of industrial fuel sank in Manila Bay on July 25, 2024
+- Occurred during Typhoon Gaemi (Typhoon Carina)
+- Significant environmental emergency
+
+**CoPhil Response:**
+- Copernicus satellites activated from Europe
+- Rapid Sentinel-1 SAR data acquisition
+- All-weather monitoring during typhoon conditions
+- Data provided to Philippine authorities
+
+**Collaboration:**
+- DENR, PhilSA, UP Marine Science Institute, other agencies
+
+**Outcomes:**
+- Oil spill extent mapped
+- Trajectory modeling for cleanup
+- Support for containment operations
+- **First major real-world application demonstrating CoPhil's operational readiness**
+
+#### Key Achievements (2024)
+
+**Infrastructure:**
+- First Copernicus facility in Asia operational
+- 400 TB capacity, 184 registered users
+- Support for 8 satellite types
+
+**Service Development:**
+- Forest monitoring products developed
+- Land cover and crop services demonstrated
+- Ground motion InSAR chain established
+
+**Capacity Building:**
+- 80+ professionals trained in first cohort
+- Digital Campus platform launched
+- Hybrid training model proven
+- Growing EO user community
+
+**Recognition:**
+- Featured at UN-SPIDER as model cooperation programme
+- Presented at Asia-Pacific DRR conferences
+- Highlighted in EU Global Gateway communications
+
+---
+
+## Part 7: Synergies - Combining European and Philippine EO Data
+
+### Why Combine Data Sources?
+
+**European Copernicus data** provides:
+- Global coverage and consistency
+- High temporal frequency (5-6 day revisit)
+- Consistent data quality and standards
+- Long-term archives (2014/2015-present)
+- Free and open access policy
+- Multiple spectral and sensor types
+
+**Philippine platforms** provide:
+- National reference datasets (base maps, boundaries)
+- Local hazard information and risk maps
+- Ground truth and validation data
+- Operational AI models tuned for Philippine conditions
+- Weather and climate contextual data
+- Filipino language support and localized services
+- Rapid response infrastructure (DATOS)
+
+### Integrated Workflow Examples
+
+#### Example 1: Flood Mapping After Typhoon
+
+**Data Integration:**
+1. **PAGASA rainfall data** → Understand precipitation drivers and intensity
+2. **Sentinel-1 SAR (via CoPhil)** → Detect flood extent under clouds
+3. **DOST-ASTI DATOS AI** → Rapid processing (10-20 minutes)
+4. **NAMRIA HazardHunterPH** → Identify pre-existing high-risk zones
+5. **NAMRIA Geoportal** → Administrative boundaries and infrastructure context
+
+**Workflow:**
+1. PAGASA issues typhoon warning with rainfall forecast
+2. Sentinel-1 automatically acquired during and after typhoon
+3. DATOS AI processes SAR data, extracts flood extent
+4. Overlay with HazardHunterPH flood hazard zones
+5. Identify affected barangays using NAMRIA boundaries
+6. Deliver maps to NDRRMC, DOST ROs, LGUs within hours
+
+**Value:** Rapid, science-based disaster response with multi-source validation
+
+#### Example 2: Land Cover Change Detection
+
+**Data Integration:**
+1. **Sentinel-2 time series (via CoPhil)** → Multi-temporal optical imagery
+2. **NAMRIA land cover basemap** → Reference classification for baseline
+3. **SkAI-Pinas DIMER models** → Apply pre-trained classification model
+4. **AIPI processing** → Process large areas efficiently
+5. **COARE infrastructure** → High-performance computing
+
+**Workflow:**
+1. Download Sentinel-2 time series for province from CoPhil
+2. Load NAMRIA land cover as training reference
+3. Select land cover classification model from DIMER
+4. Deploy via AIPI for batch processing
+5. Validate changes against NAMRIA basemap
+6. Deliver updated land cover maps to DENR and LGUs
+
+**Value:** Scalable, cost-effective national mapping with local validation
+
+#### Example 3: Agricultural Drought Monitoring
+
+**Data Integration:**
+1. **Sentinel-2 NDVI time series (CoPhil)** → Vegetation health indicator
+2. **PAGASA rainfall and SPEI** → Meteorological drought indices
+3. **SkAI-Pinas models** → Predict crop stress levels
+4. **DOST agencies** → Deliver alerts to DA and LGUs
+
+**Workflow:**
+1. Calculate NDVI anomaly from Sentinel-2 (current vs. historical average)
+2. Integrate PAGASA rainfall deficit data
+3. Apply SkAI-Pinas crop stress model
+4. Generate drought severity map by municipality
+5. Issue early warning to Department of Agriculture
+6. Support targeted agricultural assistance programs
+
+**Value:** Early warning enables proactive intervention, reduces crop losses
+
+#### Example 4: Coral Reef Health Monitoring
+
+**Data Integration:**
+1. **Sentinel-2 coastal imagery (CoPhil)** → Shallow water habitat
+2. **CoPhil Benthic Habitat pilot service** → Classification algorithms
+3. **NAMRIA coastal basemaps** → Reef locations and boundaries
+4. **PhilSA Diwata-2 imagery** → Higher resolution validation
+
+**Workflow:**
+1. Acquire Sentinel-2 Level-2A over coral reef areas
+2. Apply CoPhil benthic habitat classification
+3. Detect bleaching events through spectral change
+4. Validate with NAMRIA reef maps and Diwata-2 imagery
+5. Track recovery over time
+6. Support DENR marine protected area management
+
+**Value:** Cost-effective long-term reef monitoring at national scale
+
+---
+
+## Activity: Exploring the Data Platforms
+
+::: {.callout-tip}
+## Hands-On Exploration (15 minutes)
+
+**Task:** Navigate to the following platforms and explore their interfaces:
+
+**1. Copernicus Data Space Ecosystem**
+   - Go to [https://dataspace.copernicus.eu](https://dataspace.copernicus.eu)
+   - Explore the Browser
+   - Find the SentiBoard (Data Availability page)
+   - Search for a recent Sentinel-2 image over the Philippines
+   - Note the three-satellite constellation status
+
+**2. CoPhil Infrastructure**
+   - Visit [https://copphil.philsa.gov.ph](https://copphil.philsa.gov.ph)
+   - Explore "About" section
+   - Check "First Light" event highlights
+   - Browse pilot services descriptions
+
+**3. PhilSA Website**
+   - Visit [https://philsa.gov.ph](https://philsa.gov.ph)
+   - Explore Space Data Dashboard
+   - Read about MULA satellite
+   - Check recent news and training opportunities
+
+**4. NAMRIA Geoportal**
+   - Go to [https://www.geoportal.gov.ph](https://www.geoportal.gov.ph)
+   - Browse available map layers
+   - Visit [HazardHunterPH](https://hazardhunter.georisk.gov.ph/map)
+   - Explore hazard maps for your province
+
+**5. DOST-ASTI**
+   - Visit [https://asti.dost.gov.ph](https://asti.dost.gov.ph)
+   - Read about SkAI-Pinas, DIMER, and AIPI initiatives
+   - Explore DATOS project page
+   - Check COARE infrastructure description
+
+**Discussion Questions:**
+- What types of data or services are most relevant to your work?
+- How could you combine Copernicus data with Philippine platforms?
+- Which training courses on CoPhil Digital Campus interest you most?
+:::
+
+---
+
+## Operational Cautions
+
+::: {.callout-warning}
+## "Don't Do This" - Common Pitfalls (P2 Quality & Governance)
+
+Prevent common mistakes that will waste time and produce poor results:
+:::
+
+### Model Applicability
+
+**❌ Don't apply a Palawan RF land cover model to Mindanao without re-sampling**
+- **Why:** Different climate zones, vegetation types, rainfall seasonality, and soil properties
+- **Do:** Collect local training samples from target region (Mindanao) or use transfer learning with local fine-tuning
+
+**❌ Don't use un-calibrated SAR (raw digital numbers)**
+- **Why:** Digital numbers are sensor-dependent and meaningless for quantitative analysis or comparison
+- **Do:** Always calibrate to σ⁰ (sigma-naught) or γ⁰ (gamma-naught) in decibels
+
+### Processing Assumptions
+
+**❌ Don't skip terrain correction (RTC) for SAR in mountainous areas**
+- **Why:** Topographic distortions create false changes; slopes appear brighter/darker regardless of surface properties
+- **Do:** Apply Radiometric Terrain Correction (RTC) using SRTM 30m DEM or better (ALOS DEM)
+
+**❌ Don't mix Sentinel-2 processing baselines without harmonization**
+- **Why:** DN offset of +1000 after January 25, 2022 (Processing Baseline 04.00) breaks time series analysis
+- **Do:** Use **HARMONIZED** collections in Google Earth Engine (`COPERNICUS/S2_SR_HARMONIZED`)
+
+**❌ Don't use QA60 for cloud masking (use SCL instead)**
+- **Why:** QA60 misses cloud shadows; leads to "ghost" clouds in composites and contaminated NDVI
+- **Do:** Use Scene Classification Layer (SCL) to mask clouds, shadows, and cirrus
+
+### Evaluation & Validation
+
+**❌ Don't train and test on the same geographic tile or province**
+- **Why:** Inflated accuracy metrics; model doesn't generalize to new areas
+- **Do:** Use **geographic hold-out** - train on tiles from western Luzon, test on eastern Luzon or Visayas
+
+**❌ Don't rely solely on overall accuracy for land cover classification**
+- **Why:** Class imbalance (e.g., 90% forest) inflates accuracy; rare classes perform poorly
+- **Do:** Report **per-class precision/recall**, **F1-scores**, and **area-weighted accuracy**; use stratified sampling
+
+**❌ Don't assume 10m Sentinel-2 resolution is sufficient for building detection**
+- **Why:** Individual buildings are often sub-pixel at 10m; yields poor mAP scores
+- **Do:** Frame as "**built-up / settlement extent detection**" or use higher-resolution data for true building footprints
+
+### Data-Centric Best Practices
+
+**✅ Always check:**
+- Data provenance (where did training labels come from?)
+- Temporal alignment (satellite date matches ground truth collection date?)
+- Class balance (are minority classes adequately sampled?)
+- Spatial autocorrelation (are train/test points truly independent?)
+
+**✅ Document:**
+- Processing steps applied (calibration, filtering, atmospheric correction)
+- Training data sources and collection methods
+- Known limitations and appropriate use cases
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 1 Summary
+
+**Copernicus Programme:**
+1. World's leading Earth observation programme with free Sentinel data globally
+2. **Sentinel-1C launched December 2024**, restoring dual-satellite constellation
+3. **Sentinel-2 three-satellite configuration (2025):** 2C operational, 2B operational, 2A experimental trial
+4. Copernicus Data Space Ecosystem is the 2025 unified access portal with SentiBoard monitoring
+
+**Sentinel-1 SAR:**
+- C-band radar sees through clouds and at night - essential for tropical disaster monitoring
+- 6-day revisit with two satellites, 250 km swath (IW mode)
+- GRD products for change detection, SLC for InSAR deformation
+- Applications: Flood mapping, deforestation, ground motion, maritime surveillance
+
+**Sentinel-2 Optical:**
+- 13 spectral bands (VIS-NIR-SWIR) at 10-60 m resolution
+- **5-day revisit** with improved temporal coverage from three satellites
+- Level-2A surface reflectance recommended (ARD-compliant)
+- Red edge bands unique for vegetation stress detection
+- Applications: Land cover, agriculture, forest monitoring, coral reefs
+
+**Philippine EO Ecosystem:**
+- **PhilSA:** SIYASAT portal, Space Data Dashboard, MULA satellite (2026), COARE HPC
+- **NAMRIA:** Geoportal Philippines, HazardHunterPH, Land Cover Mapping, bathymetry
+- **DOST-ASTI:** SkAI-Pinas, DIMER (AI models), AIPI (processing), ALaM (labeling), DATOS (disaster response)
+- **PAGASA:** PANaHON weather data, CliMap climate projections, typhoon tracking
+- **P2.6 billion DOST AI investment** (until 2028) supporting 300+ institutions
+
+**CoPhil Programme:**
+- **€10 million EU-Philippines cooperation** (2023-2027)
+- **First Copernicus mirror site in Asia** - operational late 2024
+- 400 TB capacity, 184 users, free access for Philippine institutions
+- **Three pilot services:** Ground motion (InSAR), Land/forest/crop mapping, Benthic habitats
+- **Digital Space Campus:** Comprehensive training platform
+- **EU Scholarship Programme:** Master's degrees in EO for government personnel
+- **Success:** MT Terra Nova oil spill response (July 2024) demonstrated operational capability
+
+**Synergies:**
+- Combining European and Philippine data creates powerful DRR, CCA, and NRM applications
+- Integrated workflows leverage global coverage with local context and rapid response
+- CoPhil infrastructure enables local storage, processing, and capacity building
+
+**Your Next Steps:**
+- Register for CoPhil Infrastructure access
+- Explore CoPhil Digital Campus training courses
+- Consider EU CoPhil Scholarship Programme (if eligible)
+- Engage with DOST-ASTI initiatives (SkAI-Pinas, DIMER, DATOS)
+- Integrate Copernicus data into your operational workflows
+:::
+
+---
+
+## Further Reading and Resources
+
+### Copernicus Programme
+- [Copernicus Programme Overview](https://www.copernicus.eu/en)
+- [Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu)
+- [Sentinel Online](https://sentinels.copernicus.eu)
+- [Sentinel-1 User Handbook](https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar)
+- [Sentinel-2 User Handbook](https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi)
+- [ESA Earth Online](https://earth.esa.int)
+
+### CoPhil Programme
+- [CoPhil Main Portal](https://copphil.philsa.gov.ph)
+- [CoPhil Infrastructure](https://infra.copphil.philsa.gov.ph)
+- [CoPhil Digital Campus](https://courses.copphil.philsa.gov.ph)
+- [ESA CoPhil Announcement](https://www.esa.int/Applications/Observing_the_Earth/Copernicus/ESA_and_the_European_Commission_uniting_on_Earth_observation_for_the_Philippines)
+
+### Philippine EO Resources
+- [PhilSA Official Website](https://philsa.gov.ph)
+- [PhilSA Space Data Dashboard](https://spacedata.philsa.gov.ph)
+- [NAMRIA Geoportal Philippines](https://www.geoportal.gov.ph)
+- [NAMRIA HazardHunterPH](https://hazardhunter.georisk.gov.ph/map)
+- [DOST-ASTI Website](https://asti.dost.gov.ph)
+- [DOST-ASTI DATOS Project](https://asti.dost.gov.ph/projects/datos)
+- [PAGASA Website](https://www.pagasa.dost.gov.ph)
+- [PAGASA PANaHON](https://www.panahon.gov.ph)
+
+### Technical Documentation
+- [Sentinel-1 Product Specification](https://sentinel.esa.int/documents/247904/1877131/Sentinel-1-Product-Specification)
+- [Sentinel-2 Product Specification](https://sentinel.esa.int/documents/247904/685211/Sentinel-2-Products-Specification-Document)
+- [Sen2Cor Atmospheric Correction](https://step.esa.int/main/snap-supported-plugins/sen2cor/)
+- [Google Earth Engine Sentinel Data Catalog](https://developers.google.com/earth-engine/datasets/catalog/sentinel)
+
+---

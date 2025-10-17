@@ -1,0 +1,693 @@
+---
+title: "Frequently Asked Questions"
+subtitle: "Common Questions & Troubleshooting"
+date: last-modified
+---
+
+## General Questions
+
+### What is the CoPhil Programme?
+
+The **Technical Assistance for the Philippines' Copernicus Capacity Support Programme (CoPhil)** is an EU-Philippines cooperation initiative under the Global Gateway strategy. It aims to:
+
+- Establish a Copernicus Mirror Site in the Philippines
+- Build capacity in EO data analysis and AI/ML
+- Co-develop pilot services for DRR, CCA, and NRM
+- Create a sustainable Digital Space Campus for training
+
+**Key Partners:** Philippine Space Agency (PhilSA), Department of Science and Technology (DOST), European Union, European Space Agency (ESA)
+
+---
+
+### Who should attend this training?
+
+This training is designed for:
+
+- Philippine government employees working in EO, disaster management, agriculture, or environment
+- Researchers at universities and research institutions
+- GIS professionals looking to expand into AI/ML
+- Data scientists interested in geospatial applications
+- PhilSA, NAMRIA, DOST-ASTI, PAGASA, DENR staff
+
+**Prerequisites:** Basic Python knowledge and familiarity with remote sensing concepts (helpful but not required)
+
+---
+
+### What are the technical requirements?
+
+**Minimum:**
+- Google account (Gmail)
+- Stable internet (5 Mbps+)
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- 4 GB RAM
+
+**Recommended:**
+- 10+ Mbps internet
+- Chrome browser (best compatibility)
+- 8+ GB RAM
+- Dual monitors (one for presentation, one for coding)
+
+**Note:** All exercises run in Google Colaboratory - no local software installation required!
+
+---
+
+### Do I need to install Python locally?
+
+**No!** All hands-on exercises use **Google Colaboratory**, which provides:
+
+- Free cloud computing resources
+- Pre-installed Python libraries
+- Access to GPUs
+- No local installation needed
+
+However, if you prefer working locally, we provide installation guides in the [Setup Guide](setup.qmd).
+
+---
+
+### Is this training free?
+
+Yes! The CoPhil training programme is **fully funded by the European Union** under the Global Gateway initiative. There are no fees for participants.
+
+---
+
+## Setup & Account Issues
+
+### How do I register for Google Earth Engine?
+
+1. Go to [earthengine.google.com](https://earthengine.google.com)
+2. Click **"Get Started"** or **"Sign Up"**
+3. Sign in with your Google account
+4. Select **"Noncommercial"** (for this training)
+5. Fill out the registration form:
+   - **Organization:** Your institution
+   - **Project description:** "CoPhil EO AI/ML Training"
+6. Submit and wait for approval (24-48 hours)
+
+::: {.callout-important}
+Register **at least 2 days before** the training starts to ensure approval!
+:::
+
+For detailed instructions, see the [Setup Guide](setup.qmd).
+
+---
+
+### My Earth Engine registration is taking too long
+
+**Normal approval time:** 24-48 hours
+
+**If it's been longer:**
+1. Check your spam folder for the approval email
+2. Verify registration status at [earthengine.google.com](https://earthengine.google.com)
+3. Re-submit registration if it shows as not received
+4. Contact Earth Engine support: earthengine-support@google.com
+
+---
+
+### I forgot to authenticate Earth Engine in Colab
+
+**Symptoms:** `ee` commands throw errors like "Please set project ID"
+
+**Solution:**
+```python
+import ee
+
+# Authenticate (follow prompts)
+ee.Authenticate()
+
+# Initialize
+ee.Initialize()
+```
+
+This only needs to be done **once per Google account**. Future sessions will remember your credentials.
+
+---
+
+### Google Colab says "Runtime disconnected"
+
+**Causes:**
+- 90 minutes of inactivity
+- Maximum session length (12 hours for free accounts)
+- Browser tab closed or crashed
+
+**Solution:**
+1. Click **"Reconnect"** button
+2. Re-run setup cells (imports, authentication)
+3. Continue from where you left off
+
+::: {.callout-tip}
+**Prevent disconnections:**
+- Keep browser tab active
+- Save work to Google Drive regularly
+- Use `Ctrl/Cmd + S` to save notebooks
+:::
+
+---
+
+### How do I save my work in Google Colab?
+
+**Option 1: Save to Drive (Recommended)**
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Save outputs to Drive
+output_path = '/content/drive/My Drive/CoPhil_Training/'
+```
+
+**Option 2: Download Files**
+- Click folder icon in left sidebar
+- Right-click file → Download
+
+**Option 3: Save Notebook**
+- `File → Save a copy in Drive`
+- `File → Download .ipynb`
+
+---
+
+## Python & Coding Issues
+
+### I'm getting "ModuleNotFoundError"
+
+**Example:** `ModuleNotFoundError: No module named 'geopandas'`
+
+**Cause:** Package not installed in current Colab session
+
+**Solution:**
+```python
+# Install the missing package
+!pip install geopandas
+
+# Then import it
+import geopandas as gpd
+```
+
+**Common packages to install:**
+- `geopandas`
+- `rasterio`
+- `earthengine-api`
+- `geemap`
+
+---
+
+### Package installation is failing
+
+**Error:** `ERROR: Could not find a version that satisfies the requirement...`
+
+**Solutions:**
+
+**1. Update pip first:**
+```python
+!pip install --upgrade pip
+!pip install geopandas
+```
+
+**2. Install specific version:**
+```python
+!pip install geopandas==0.14.0
+```
+
+**3. Use conda (if local):**
+```bash
+conda install -c conda-forge geopandas
+```
+
+**4. Force reinstall:**
+```python
+!pip install --upgrade --force-reinstall geopandas
+```
+
+---
+
+### My code runs locally but fails in Colab
+
+**Common causes:**
+
+**1. File paths:**
+- Local: `C:/Users/name/data.shp`
+- Colab: `/content/data.shp` or from Drive
+
+**2. Package versions:**
+- Check versions: `import package; print(package.__version__)`
+- Install specific version if needed
+
+**3. Missing files:**
+- Upload files: Click folder icon → Upload
+- Or mount Google Drive
+
+---
+
+### "MemoryError" or "Kernel crashed"
+
+**Causes:**
+- Loading too much data
+- Processing large rasters
+- Insufficient RAM
+
+**Solutions:**
+
+**1. Reduce data scope:**
+```python
+# Read smaller window
+window = rasterio.windows.Window(0, 0, 1000, 1000)
+data = src.read(1, window=window)
+
+# Or downsample
+data = src.read(1, out_shape=(src.height // 4, src.width // 4))
+```
+
+**2. Use chunking:**
+```python
+# Process in chunks
+for window in src.block_windows():
+    data = src.read(1, window=window)
+    process(data)
+```
+
+**3. Enable GPU in Colab:**
+- `Runtime → Change runtime type → GPU`
+
+**4. Upgrade to Colab Pro:**
+- More RAM (up to 50 GB)
+- Longer sessions
+- [colab.research.google.com/signup](https://colab.research.google.com/signup)
+
+---
+
+## Earth Engine Issues
+
+### "User memory limit exceeded" in Earth Engine
+
+**Cause:** Trying to process too much data at once
+
+**Solutions:**
+
+**1. Increase scale parameter:**
+```python
+# Before (10m resolution)
+result = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=roi,
+    scale=10  # 10m pixels
+)
+
+# After (100m resolution)
+result = image.reduceRegion(
+    reducer=ee.Reducer.mean(),
+    geometry=roi,
+    scale=100  # 100m pixels
+)
+```
+
+**2. Reduce region size:**
+```python
+# Smaller bounding box
+small_roi = ee.Geometry.Rectangle([120.0, 14.0, 120.5, 14.5])
+```
+
+**3. Filter dates more strictly:**
+```python
+# Shorter time period
+collection = collection.filterDate('2024-01-01', '2024-01-31')  # 1 month instead of 1 year
+```
+
+**4. Use maxPixels parameter:**
+```python
+task = ee.batch.Export.image.toDrive(
+    image=image,
+    scale=10,
+    maxPixels=1e13  # Allow more pixels
+)
+```
+
+---
+
+### Earth Engine export is stuck at "RUNNING"
+
+**Check status:**
+```python
+# Check task status
+print(task.status())
+```
+
+**Possible statuses:**
+- **READY:** Queued, waiting to start
+- **RUNNING:** Currently processing
+- **COMPLETED:** Successfully finished
+- **FAILED:** Error occurred (check status for details)
+
+**If stuck:**
+1. Wait - large exports can take hours
+2. Check [Earth Engine Task Manager](https://code.earthengine.google.com/tasks)
+3. Cancel and restart with smaller parameters
+4. Check Google Drive storage space
+
+---
+
+### Cloud-free composite still has clouds
+
+**Cause:** Cloud masking didn't work perfectly
+
+**Solutions:**
+
+**1. Use better cloud masking:**
+```python
+def aggressive_cloud_mask(image):
+    qa = image.select('QA60')
+    # Mask both cloud and cirrus
+    cloud_mask = qa.bitwiseAnd(1 << 10).eq(0).And(
+                 qa.bitwiseAnd(1 << 11).eq(0))
+    # Also mask cloud shadows
+    scl = image.select('SCL')
+    shadow_mask = scl.neq(3)  # 3 = cloud shadow
+    return image.updateMask(cloud_mask).updateMask(shadow_mask)
+```
+
+**2. Use percentile reduction instead of median:**
+```python
+# Use 20th percentile (darker, less clouds)
+composite = collection.reduce(ee.Reducer.percentile([20]))
+```
+
+**3. Filter by cloud cover first:**
+```python
+collection = collection.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+```
+
+---
+
+## Data & Visualization Issues
+
+### My map doesn't display in Colab
+
+**Cause:** Missing visualization library
+
+**Solution:**
+```python
+# Install geemap for interactive maps
+!pip install geemap
+
+import geemap
+
+# Create map
+Map = geemap.Map()
+Map.centerObject(roi, 10)
+Map.addLayer(image, vis_params, 'Image')
+Map
+```
+
+---
+
+### Colors in my visualization look wrong
+
+**Check visualization parameters:**
+
+```python
+# For Sentinel-2 true color
+vis_params = {
+    'bands': ['B4', 'B3', 'B2'],  # Red, Green, Blue
+    'min': 0,
+    'max': 3000,  # Adjust based on your data
+    'gamma': 1.4
+}
+
+# For NDVI
+ndvi_vis = {
+    'min': -1,
+    'max': 1,
+    'palette': ['red', 'yellow', 'green']
+}
+```
+
+**Adjust min/max:**
+- Too dark → decrease max value
+- Too bright → increase max value
+- Washed out → adjust gamma
+
+---
+
+### GeoPandas plot shows nothing
+
+**Common issues:**
+
+**1. Empty GeoDataFrame:**
+```python
+print(len(gdf))  # Check if it has rows
+print(gdf.head())
+```
+
+**2. Wrong CRS:**
+```python
+print(gdf.crs)  # Check coordinate reference system
+gdf = gdf.to_crs('EPSG:4326')  # Reproject if needed
+```
+
+**3. Data outside visible area:**
+```python
+print(gdf.total_bounds)  # Check bounding box
+gdf.plot(figsize=(10, 10))  # Larger figure size
+```
+
+---
+
+### Rasterio shows "All-NaN slice encountered"
+
+**Cause:** Trying to visualize a band with all nodata values
+
+**Solution:**
+```python
+# Check for valid data
+print(f"Min: {band.min()}, Max: {band.max()}")
+print(f"Valid pixels: {np.count_nonzero(~np.isnan(band))}")
+
+# Mask nodata
+valid_mask = ~np.isnan(band)
+if valid_mask.any():
+    plt.imshow(band, cmap='gray')
+else:
+    print("No valid data in this band")
+```
+
+---
+
+## Philippine-Specific Questions
+
+### Where can I get Philippine administrative boundaries?
+
+**Sources:**
+
+1. **PhilGIS:** [philgis.org](https://philgis.org)
+   - Shapefile format
+   - All administrative levels
+
+2. **NAMRIA GeoPortal:** [geoportal.namria.gov.ph](https://geoportal.namria.gov.ph)
+   - Official government source
+   - Registration may be required
+
+3. **Humanitarian Data Exchange:** [data.humdata.org](https://data.humdata.org/dataset/philippines-administrative-levels-0-to-3)
+   - Open data
+   - GeoJSON and Shapefile
+
+4. **In Earth Engine:**
+```python
+# FAO GAUL administrative boundaries
+philippines = ee.FeatureCollection("FAO/GAUL/2015/level1") \
+    .filter(ee.Filter.eq('ADM0_NAME', 'Philippines'))
+```
+
+---
+
+### How do I get Sentinel data specifically for the Philippines?
+
+**In Google Earth Engine:**
+```python
+# Define Philippines bounding box
+philippines_bbox = ee.Geometry.Rectangle([116.0, 4.0, 127.0, 21.0])
+
+# Filter Sentinel-2 collection
+collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
+    .filterBounds(philippines_bbox) \
+    .filterDate('2024-01-01', '2024-12-31') \
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+
+print(f"Found {collection.size().getInfo()} images")
+```
+
+**Via Copernicus Data Space:**
+1. Go to [dataspace.copernicus.eu](https://dataspace.copernicus.eu)
+2. Use SentiBoard to browse visually
+3. Draw bounding box over Philippines
+4. Filter by date and cloud cover
+5. Download tiles
+
+---
+
+### What are the best satellite data sources for Philippine disasters?
+
+**Floods:**
+- **Sentinel-1 SAR** (works through clouds)
+- **Planet Labs** (daily imagery, commercial)
+- **Landsat-8/9** (free, 16-day revisit)
+
+**Typhoons:**
+- **Sentinel-2** (damage assessment)
+- **MODIS** (rapid assessment)
+- **Himawari-8** (near real-time, via PAGASA)
+
+**Landslides:**
+- **PlanetScope** (3m resolution)
+- **Sentinel-2** (10m, change detection)
+- **LiDAR** (elevation, via LiPAD portal)
+
+**Drought:**
+- **MODIS** (vegetation indices, 8-day)
+- **Sentinel-2** (higher resolution)
+- **SMAP** (soil moisture)
+
+---
+
+## Training-Specific Questions
+
+### Can I get a certificate for completing this training?
+
+Yes! Participants who complete all 4 days and pass the final assessment will receive a **CoPhil Training Programme Certificate** issued by PhilSA and DOST.
+
+**Requirements:**
+- Attend all 4 days
+- Complete hands-on exercises
+- Submit final project
+- Pass assessment (70% minimum)
+
+---
+
+### Will the training materials be available after the course?
+
+Yes! All materials will remain accessible:
+
+- Training portal stays online
+- Notebooks available on GitHub
+- Recorded sessions (if applicable)
+- Ongoing access to Digital Space Campus (under development)
+
+---
+
+### Can I share these materials with colleagues?
+
+Yes! All training materials are licensed under **Creative Commons BY-SA 4.0**, which means you can:
+
+- Share freely
+- Use for teaching
+- Modify and adapt
+- Use commercially
+
+**Requirements:**
+- Provide attribution: "CoPhil EO AI/ML Training Programme"
+- Share derivatives under the same license
+
+---
+
+### What comes after Day 1?
+
+**Day 2: Classical Machine Learning for Land Cover Classification**
+- Random Forests
+- Support Vector Machines
+- Feature engineering
+- Palawan land cover case study
+
+**Day 3: Deep Learning for Flood Mapping & Object Detection**
+- U-Net architecture
+- Sentinel-1 flood detection
+- YOLOv8 for infrastructure
+- Central Luzon flood case study
+
+**Day 4: Advanced Topics & Practical Application**
+- Foundation models for EO
+- Time series analysis
+- Transfer learning
+- Final project
+
+---
+
+## Technical Support
+
+### Who do I contact for technical issues?
+
+**During training:**
+- Ask in the live session chat
+- Consult teaching assistants
+- Check this FAQ first
+
+**Outside training hours:**
+- **Email:** training@philsa.gov.ph
+- **Slack/Discord:** Check invitation email
+- **GitHub Issues:** [Report issue](#)
+
+---
+
+### I found an error in the training materials
+
+Thank you for helping improve the training!
+
+**To report:**
+1. **GitHub Issues:** [Create issue](#)
+2. **Email:** training@philsa.gov.ph
+3. **During session:** Notify instructors
+
+**Include:**
+- Which session/notebook
+- What the error is
+- Steps to reproduce
+- Your environment (Colab or local)
+
+---
+
+## Additional Resources
+
+### Where can I learn more about Earth Observation?
+
+**Online Courses:**
+- [Copernicus Training](https://www.copernicus.eu/en/opportunities/education/copernicus-training)
+- [ESA EO Training](https://eo-college.org/)
+- [Google Earth Engine Tutorials](https://developers.google.com/earth-engine/tutorials)
+
+**Books:**
+- "Remote Sensing and Image Interpretation" - Lillesand et al.
+- "Python for Geospatial Data Analysis" - Garrard
+- "Deep Learning for the Earth Sciences" - Camps-Valls et al.
+
+**Communities:**
+- [Google Earth Engine Developers](https://groups.google.com/g/google-earth-engine-developers)
+- [Stack Exchange GIS](https://gis.stackexchange.com/)
+- [r/gis](https://www.reddit.com/r/gis/)
+
+---
+
+### Where can I get help with Python programming?
+
+**Learning Resources:**
+- [Python.org Tutorial](https://docs.python.org/3/tutorial/)
+- [Real Python](https://realpython.com/)
+- [DataCamp](https://www.datacamp.com/)
+
+**Getting Help:**
+- [Stack Overflow](https://stackoverflow.com/)
+- [Python Discord](https://pythondiscord.com/)
+- [r/learnpython](https://www.reddit.com/r/learnpython/)
+
+---
+
+## Still Have Questions?
+
+::: {.callout-tip}
+## Can't Find Your Answer?
+
+**Contact Us:**
+- **Email:** training@philsa.gov.ph
+- **During training:** Ask instructors directly
+- **Slack/Discord:** Join the community channels
+
+We're here to help ensure your success in the training!
+:::
+
+---
+
+*This FAQ is regularly updated based on participant questions. Last updated: 2025-01-15*

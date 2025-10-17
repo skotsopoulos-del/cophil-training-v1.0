@@ -1,0 +1,225 @@
+---
+title: "Day 1: EO Data & AI/ML Fundamentals"
+subtitle: "Building the foundation for AI-powered Earth Observation"
+date: last-modified
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Day 1: EO Data & AI/ML Fundamentals</span>
+</nav>
+
+::: {.hero}
+# Day 1: EO Data & AI/ML Fundamentals
+
+### Earth Observation Data, AI/ML Fundamentals & Geospatial Python
+
+Building the essential skills for AI-powered satellite data analysis
+:::
+
+## Day 1 Overview
+
+Welcome to Day 1 of the **CoPhil EO AI/ML Training Programme**! Today you'll build a solid foundation in Earth Observation data and AI/ML fundamentals. By the end of the day, you'll understand Copernicus missions, Philippine EO resources, and be ready to start building AI models.
+
+::: {.callout-note}
+## What You'll Learn Today
+
+This day provides the foundation for your AI/ML journey in Earth Observation. You'll gain both theoretical understanding and hands-on experience with the tools and data that power modern EO applications.
+:::
+
+## Learning Objectives
+
+By the end of Day 1, you will be able to:
+
+::: {.learning-objectives}
+- **Identify** the characteristics and applications of Sentinel-1 and Sentinel-2 missions
+- **Navigate** Philippine EO platforms including PhilSA SIYASAT, NAMRIA Geoportal, and DOST-ASTI tools
+- **Explain** the AI/ML workflow for Earth Observation applications
+- **Distinguish** between supervised and unsupervised learning with EO examples
+- **Understand** neural network fundamentals and data-centric AI principles
+- **Load and visualize** vector data using GeoPandas
+- **Read and process** raster imagery using Rasterio
+- **Query and filter** satellite imagery collections in Google Earth Engine
+- **Apply** cloud masking and create temporal composites
+- **Export** processed EO data for AI/ML workflows
+:::
+
+## Today's Schedule
+
+| Time | Session | Topic | Materials |
+|------|:-------:|-------|-----------|
+| 09:00-11:00 | **[1](sessions/session1.qmd)** | Copernicus Sentinel Data & PH EO Ecosystem | Presentation, Demos |
+| 11:00-13:00 | **[2](sessions/session2.qmd)** | Core Concepts of AI/ML for EO | Presentation, Case Studies |
+| 14:00-16:00 | **[3](sessions/session3.qmd)** | Hands-on Python for Geospatial Data | [Notebook 1](notebooks/notebook1.qmd) |
+| 16:00-18:00 | **[4](sessions/session4.qmd)** | Introduction to Google Earth Engine | [Notebook 2](notebooks/notebook2.qmd) |
+
+## Training Sessions
+
+::: {.feature-grid}
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-globe2"></i>
+:::
+
+### Session 1
+
+**Copernicus Sentinel Data & Philippine EO Ecosystem**
+
+Learn about Europe's flagship EO program and the Philippine agencies advancing EO in the country.
+
+[Go to Session 1 <i class="bi bi-arrow-right"></i>](sessions/session1.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-cpu-fill"></i>
+:::
+
+### Session 2
+
+**Core Concepts of AI/ML for Earth Observation**
+
+Demystify AI/ML workflows, supervised vs unsupervised learning, neural networks, and data-centric approaches.
+
+[Go to Session 2 <i class="bi bi-arrow-right"></i>](sessions/session2.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-code-slash"></i>
+:::
+
+### Session 3
+
+**Hands-on Python for Geospatial Data**
+
+<div class="card-meta">
+<span class="status-badge status-completed">Completed</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2 hours</span>
+</div>
+
+Master vector data with GeoPandas and raster data with Rasterio - the foundations of EO data processing.
+
+[Go to Session 3 <i class="bi bi-arrow-right"></i>](sessions/session3.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-cloud-check"></i>
+:::
+
+### Session 4
+
+**Introduction to Google Earth Engine**
+
+<div class="card-meta">
+<span class="status-badge status-completed">Completed</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2 hours</span>
+</div>
+
+Leverage cloud computing power to access, filter, and preprocess petabytes of Earth observation data.
+
+[Go to Session 4 <i class="bi bi-arrow-right"></i>](sessions/session4.qmd){.btn .btn-start}
+:::
+:::
+
+## Prerequisites
+
+::: {.prerequisites}
+### What You Need
+
+**Before starting Day 1:**
+
+- [ ] Complete [setup guide](../resources/setup.qmd)
+- [ ] Google account (for Colab and Earth Engine)
+- [ ] Google Earth Engine account (sign up at [earthengine.google.com](https://earthengine.google.com))
+- [ ] Basic Python knowledge (variables, loops, functions)
+- [ ] Familiarity with remote sensing concepts (helpful but not required)
+
+**Technical Setup:**
+
+All exercises run in Google Colaboratory - no local installation required! See our [Setup Guide](../resources/setup.qmd) for detailed instructions.
+:::
+
+## Hands-on Notebooks
+
+::: {.callout-tip}
+## Interactive Learning
+
+Day 1 includes two comprehensive Jupyter notebooks that you'll work through during Sessions 3 and 4:
+
+- **[Notebook 1: Python for Geospatial Data](notebooks/notebook1.qmd)** - GeoPandas and Rasterio exercises
+- **[Notebook 2: Google Earth Engine](notebooks/notebook2.qmd)** - GEE filtering, compositing, and export
+
+Both notebooks run in Google Colab with all dependencies pre-configured.
+:::
+
+## 2025 Updates Highlighted
+
+This training incorporates the latest 2025 developments in Earth Observation and AI:
+
+- **Sentinel-2C operational** (January 2025) - Three-satellite constellation with 5-day revisit
+- **Sentinel-1C active** - Restored dual-satellite SAR coverage
+- **Copernicus Data Space Ecosystem** - New data access platform with SentiBoard dashboard
+- **PhilSA SIYASAT portal** - Secure data archive for NovaSAR-1 and maritime monitoring
+- **DOST P2.6B AI investment** (until 2028) - SkAI-Pinas, DIMER, AIPI platforms
+- **ESA Φsat-2 mission** - On-board AI processing demonstration
+- **NASA-IBM Geospatial Foundation Model** - Open-source pre-trained model for EO
+- **Data-centric AI paradigm** - Emphasis on data quality over model complexity
+
+## What's Next?
+
+After completing Day 1, you'll have the foundational knowledge to move to:
+
+**[Day 2: Machine Learning for Earth Observation](../day2/index.qmd)** - Where you'll apply supervised and unsupervised learning algorithms to real satellite imagery for land cover classification and change detection.
+
+---
+
+## Quick Links
+
+::: {.quick-links}
+[Session 1: Copernicus & PH EO](sessions/session1.qmd){.quick-link}
+[Session 2: AI/ML Fundamentals](sessions/session2.qmd){.quick-link}
+[Session 3: Python Geospatial](sessions/session3.qmd){.quick-link}
+[Session 4: Google Earth Engine](sessions/session4.qmd){.quick-link}
+[Notebook 1: GeoPandas & Rasterio](notebooks/notebook1.qmd){.quick-link}
+[Notebook 2: Earth Engine](notebooks/notebook2.qmd){.quick-link}
+[Setup Guide](../resources/setup.qmd){.quick-link}
+[Download Materials](../resources/downloads.qmd){.quick-link}
+[Philippine EO Resources](../resources/philippine-eo.qmd){.quick-link}
+[FAQ](../resources/faq.qmd){.quick-link}
+:::
+
+---
+
+## Need Help?
+
+Throughout Day 1, you can:
+
+- Ask questions in the live session
+- Consult the [FAQ](../resources/faq.qmd) for common issues
+- Check the [Glossary](../resources/glossary.qmd) for term definitions
+- Download [Cheat Sheets](../resources/cheatsheets.qmd) for quick reference
+- Access the [Philippine EO Resources](../resources/philippine-eo.qmd) directory
+
+::: {.callout-important}
+## Technical Support
+
+For technical issues during the training:
+
+- **Google Colab issues:** Check [Setup Guide](../resources/setup.qmd)
+- **Data access problems:** See session-specific troubleshooting sections
+- **General questions:** Contact your instructors or teaching assistants
+:::
+
+---
+
+::: {.session-nav}
+[← Back to Course Home](../index.qmd){.btn .btn-outline-primary}
+[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
+:::
+
+---
+
+*Day 1 is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative and delivered in partnership with PhilSA and DOST.*

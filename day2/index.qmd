@@ -1,0 +1,427 @@
+---
+title: "Day 2: Machine Learning for Earth Observation"
+subtitle: "From Random Forest to Convolutional Neural Networks"
+date: last-modified
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Day 2: Machine Learning for EO</span>
+</nav>
+
+::: {.hero}
+# Day 2: Machine Learning for Earth Observation
+
+### From Random Forest to Convolutional Neural Networks
+
+Master classical ML and deep learning techniques for satellite image analysis
+:::
+
+## Day 2 Overview
+
+Day 2 bridges traditional machine learning and deep learning for Earth Observation applications. You'll start with Random Forest classification using Google Earth Engine, then progress to Convolutional Neural Networks (CNNs) for advanced image analysis.
+
+::: {.callout-note}
+## What You'll Learn
+
+**Morning (Classical ML):**
+- Supervised classification with Random Forest
+- Land cover mapping with Sentinel-2
+- Advanced feature engineering
+- Palawan case study with real-world applications
+
+**Afternoon (Deep Learning):**
+- Neural network fundamentals
+- CNN architecture and operations
+- Building and training CNNs with TensorFlow/PyTorch
+- Image classification on EuroSAT dataset
+:::
+
+## Learning Objectives
+
+By the end of Day 2, you will be able to:
+
+::: {.learning-objectives}
+- **Implement** supervised classification workflows using Random Forest in Google Earth Engine
+- **Engineer** advanced features including GLCM texture, multi-temporal composites, and topographic data
+- **Optimize** Random Forest models through hyperparameter tuning and cross-validation
+- **Perform** comprehensive accuracy assessment using confusion matrices and per-class metrics
+- **Conduct** change detection analysis and quantify deforestation rates
+- **Understand** the transition from manual feature engineering to automatic feature learning
+- **Explain** neural network fundamentals including forward/backward propagation and activation functions
+- **Comprehend** CNN architecture components (convolution, pooling, dropout, dense layers)
+- **Build** convolutional neural networks from scratch using TensorFlow/Keras
+- **Train** deep learning models with advanced callbacks and GPU acceleration
+- **Apply** transfer learning techniques using pre-trained models (ResNet, VGG, EfficientNet)
+- **Evaluate** model performance using validation curves, confusion matrices, and error analysis
+- **Compare** traditional machine learning vs deep learning approaches for EO applications
+- **Identify** appropriate architectures for classification vs segmentation tasks
+- **Generate** operational land cover maps and classification reports for stakeholder delivery
+:::
+
+## Today's Schedule
+
+| Time | Session | Topic | Materials |
+|------|:-------:|-------|-----------|
+| 09:00-12:00 | **[1](sessions/session1.qmd)** | Random Forest Theory & Practice | Theory + Hands-on Lab |
+| 13:00-15:00 | **[2](sessions/session2.qmd)** | Palawan Land Cover Lab | Extended Hands-on Lab |
+| 15:15-17:45 | **[3](sessions/session3.qmd)** | Deep Learning & CNNs | Theory + Interactive |
+| 18:00-20:30 | **[4](sessions/session4.qmd)** | CNN Hands-on Lab | EuroSAT Classification |
+
+## Training Sessions
+
+::: {.feature-grid}
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-tree"></i>
+:::
+
+### Session 1
+**Random Forest Theory & Practice**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 3 hours</span>
+</div>
+
+- Supervised classification workflow
+- Decision trees and ensemble methods
+- Google Earth Engine implementation
+- Palawan land cover mapping
+- Accuracy assessment
+
+[Start Session 1 <i class="bi bi-arrow-right"></i>](sessions/session1.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-geo-alt"></i>
+:::
+
+### Session 2
+**Palawan Land Cover Lab**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2 hours</span>
+</div>
+
+- Advanced feature engineering (GLCM, temporal)
+- Multi-temporal composites
+- 8-class detailed classification
+- Hyperparameter tuning
+- Change detection analysis
+
+[Start Session 2 <i class="bi bi-arrow-right"></i>](sessions/session2.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-diagram-3"></i>
+:::
+
+### Session 3
+**Deep Learning & CNNs**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2.5 hours</span>
+</div>
+
+- Neural network fundamentals
+- CNN architecture explained
+- Convolution and pooling operations
+- Classic architectures (VGG, ResNet)
+- CNNs for EO applications
+
+[Start Session 3 <i class="bi bi-arrow-right"></i>](sessions/session3.qmd){.btn .btn-start}
+:::
+
+::: {.feature-card-enhanced}
+::: {.card-icon}
+<i class="bi bi-cpu"></i>
+:::
+
+### Session 4
+**CNN Hands-on Lab**
+
+<div class="card-meta">
+<span class="status-badge status-complete">Available</span>
+<span class="card-duration"><i class="bi bi-clock"></i> 2.5 hours</span>
+</div>
+
+- EuroSAT image classification
+- TensorFlow/Keras implementation
+- PyTorch alternative track
+- Transfer learning with ResNet
+- Model evaluation & optimization
+
+[Start Session 4 <i class="bi bi-arrow-right"></i>](sessions/session4.qmd){.btn .btn-start}
+:::
+:::
+
+## Presentations
+
+::: {.quick-links}
+[Session 1 Slides](presentations/session1_random_forest.html){.quick-link}
+[Session 2 Slides](presentations/session2_palawan_lab.html){.quick-link}
+[Session 3 Slides](presentations/session3_deep_learning.html){.quick-link}
+[Session 4 Slides](presentations/session4_cnn_lab.html){.quick-link}
+:::
+
+---
+
+## Philippine Context: Palawan Case Study
+
+Throughout Day 2, we focus on **Palawan**, a globally significant biodiversity hotspot:
+
+::: {.columns}
+::: {.column width="60%"}
+**Why Palawan?**
+
+- UNESCO Biosphere Reserve
+- Critical habitat for endangered species
+- Faces multiple environmental pressures
+- Representative of broader Philippine challenges
+
+**Conservation Challenges:**
+
+- Deforestation from logging and agriculture
+- Mining activities threatening ecosystems
+- Coastal development impacting mangroves
+- Climate change effects on biodiversity
+- Balancing development and conservation
+
+**Monitoring Needs:**
+
+- Regular land cover mapping
+- Deforestation detection and quantification
+- Protected area encroachment monitoring
+- Agricultural expansion tracking
+- Reporting for REDD+ programs
+:::
+
+::: {.column width="40%"}
+**Land Cover Classes:**
+
+1. Primary forest (dipterocarp)
+2. Secondary forest
+3. Mangroves
+4. Agricultural land
+5. Grassland/scrubland
+6. Water bodies
+7. Urban/built-up
+8. Bare soil/mining
+
+**Stakeholders:**
+
+- DENR (forest management)
+- PhilSA (EO monitoring)
+- LGUs (local planning)
+- NGOs (conservation)
+- REDD+ programs
+- Academic institutions
+:::
+:::
+
+---
+
+## Technical Progression
+
+Day 2 follows a deliberate pedagogical progression:
+
+```{mermaid}
+flowchart TD
+    A[Session 1: RF Theory] --> B[Session 2: RF Practice]
+    B --> C[Session 3: CNN Theory]
+    C --> D[Session 4: CNN Practice]
+    
+    A1[Decision Trees] --> A
+    A2[Ensemble Methods] --> A
+    A3[GEE Platform] --> A
+    
+    B1[Advanced Features] --> B
+    B2[Multi-temporal] --> B
+    B3[Optimization] --> B
+    
+    C1[Neural Networks] --> C
+    C2[Convolution] --> C
+    C3[Architectures] --> C
+    
+    D1[TensorFlow/Keras] --> D
+    D2[Transfer Learning] --> D
+    D3[Evaluation] --> D
+    
+    style A fill:#4A90E2
+    style B fill:#4A90E2
+    style C fill:#E85D75
+    style D fill:#E85D75
+```
+
+**Morning → Afternoon Transition:**
+
+- **Random Forest** provides a strong foundation in supervised classification
+- Understanding **feature importance** prepares for CNN's automatic feature learning
+- **Confusion matrices** and accuracy metrics carry over to deep learning evaluation
+- **GEE's** large-scale processing motivates need for efficient algorithms like CNNs
+
+---
+
+## Prerequisites
+
+::: {.prerequisites}
+### From Day 1
+
+You should have completed Day 1 or have equivalent knowledge:
+
+- [ ] Python programming basics
+- [ ] Understanding of satellite imagery (bands, resolution, spectral signatures)
+- [ ] Basic machine learning concepts
+- [ ] NumPy and pandas fundamentals
+
+### Technical Setup
+
+- [ ] Google Earth Engine account ([sign up](https://earthengine.google.com))
+- [ ] Google Colab access (free GPU)
+- [ ] Stable internet connection
+- [ ] Modern web browser (Chrome/Firefox)
+
+### Recommended Review
+
+- Sentinel-2 band combinations
+- Spectral indices (NDVI, NDWI)
+- Training vs. validation data
+- Classification vs. regression
+
+[Complete Setup Guide →](../resources/setup.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+## Hands-on Materials
+
+All exercises run in **Google Colaboratory** (no local installation required):
+
+::: {.materials-grid}
+**📓 Jupyter Notebooks**
+
+Interactive coding environments with step-by-step instructions and exercises.
+
+**🗺️ Sample Datasets**
+
+Pre-prepared training data for Palawan and standardized benchmark datasets (EuroSAT).
+
+**💻 Code Templates**
+
+Reusable functions for common EO operations and analysis workflows.
+
+**📊 Visualizations**
+
+Interactive maps, charts, and diagrams to understand concepts and results.
+:::
+
+---
+
+## Key Technologies
+
+::: {.tech-stack}
+**Classical ML:**
+- Google Earth Engine (GEE)
+- geemap (Python API for GEE)
+- scikit-learn (Random Forest)
+- Sentinel-2 imagery
+
+**Deep Learning:**
+- TensorFlow / Keras
+- PyTorch (alternative track)
+- EuroSAT dataset
+- GPU acceleration (Colab)
+
+**Data & Visualization:**
+- NumPy, pandas
+- Matplotlib, seaborn
+- Rasterio, GeoPandas
+- Interactive mapping (folium, geemap)
+:::
+
+---
+
+## Expected Outcomes
+
+By the end of Day 2, you will have:
+
+✅ **Completed Projects:**
+- Palawan land cover classification map (5-8 classes)
+- Change detection analysis (multi-temporal)
+- EuroSAT image classifier (10 classes)
+
+✅ **Technical Skills:**
+- GEE Python API proficiency
+- Random Forest implementation and tuning
+- CNN architecture design
+- TensorFlow/Keras model building
+
+✅ **Practical Deliverables:**
+- Working Jupyter notebooks
+- Trained models (RF and CNN)
+- Accuracy assessment reports
+- Exportable classification maps
+
+---
+
+## Resources & Support
+
+::: {.quick-links}
+[Setup Guide](../resources/setup.qmd){.quick-link}
+[GEE Documentation](https://developers.google.com/earth-engine){.quick-link}
+[Download Materials](../resources/downloads.qmd){.quick-link}
+[FAQ](../resources/faq.qmd){.quick-link}
+[Cheat Sheets](../resources/cheatsheets.qmd){.quick-link}
+[Philippine EO Links](../resources/philippine-eo.qmd){.quick-link}
+:::
+
+**Need Help?**
+
+- Live instructor support during sessions
+- Teaching assistants for breakout help
+- Discussion forum for Q&A
+- Office hours (schedule TBA)
+- Email: [instructors@course.ph]
+
+---
+
+## What's Next?
+
+::: {.callout-important}
+## Ready to Begin?
+
+**Start with Session 1** to build your foundation in supervised classification:
+
+[Begin Session 1: Random Forest →](sessions/session1.qmd){.btn .btn-primary .btn-lg}
+
+**Check Your Readiness:**
+- ✓ GEE account activated
+- ✓ Colab accessible
+- ✓ Day 1 concepts reviewed
+- ✓ Ready to code!
+:::
+
+**After Day 2:**
+
+Day 3 builds on these foundations with:
+- Advanced deep learning (U-Net for segmentation)
+- Object detection for EO
+- Time series analysis
+- Multi-modal data fusion
+
+---
+
+::: {.session-nav}
+[← Back to Day 1](../day1/index.qmd){.btn .btn-outline-primary}
+[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
+:::
+
+---
+
+*Day 2 is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative and delivered in partnership with PhilSA and DOST.*

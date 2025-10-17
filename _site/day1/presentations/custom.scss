@@ -1,0 +1,313 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+/*
+ * CoPhil Training - Minimal Clean Presentation Theme
+ * Day 1 Presentations Styling
+ */
+
+/* ============================================
+   TIMING INDICATORS (Minimal)
+   ============================================ */
+
+.timing::after {
+  content: "⏱️ " attr(data-timing) " | Total: " attr(data-cumulative);
+  font-size: 0.5em;
+  color: #666;
+  opacity: 0.7;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-weight: normal;
+}
+
+/* ============================================
+   SLIDE BACKGROUNDS - SIMPLE COLORS
+   ============================================ */
+
+/* Primary blue for section headers */
+.reveal section[data-background-color="#1e3a8a"] h1,
+.reveal section[data-background-color="#003399"] h1,
+.reveal section[data-background-color="#0066cc"] h1 {
+  color: white;
+}
+
+/* Secondary colors for variety */
+.reveal section[data-background-color="#0f766e"] h1,
+.reveal section[data-background-color="#059669"] h1,
+.reveal section[data-background-color="#16a34a"] h1 {
+  color: white;
+}
+
+/* ============================================
+   TYPOGRAPHY - CLEAN & READABLE
+   ============================================ */
+
+.reveal {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+  line-height: 1.6;
+}
+
+.reveal h1 {
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  text-transform: none;
+}
+
+.reveal h2 {
+  font-size: 1.8em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  text-transform: none;
+}
+
+.reveal h3 {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin-bottom: 0.3em;
+}
+
+/* ============================================
+   CODE BLOCKS - CLEAN STYLING
+   ============================================ */
+
+.reveal pre {
+  width: 100%;
+  margin: 1em 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.reveal code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.85em;
+  background-color: #f5f5f5;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.reveal pre code {
+  max-height: 600px;
+  padding: 1em;
+  background-color: #282c34;
+  color: #abb2bf;
+}
+
+/* ============================================
+   TABLES - MINIMAL CLEAN DESIGN
+   ============================================ */
+
+.reveal table {
+  margin: 1em auto;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+
+.reveal table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  padding: 0.8em 1em;
+  border-bottom: 2px solid #ddd;
+}
+
+.reveal table td {
+  padding: 0.6em 1em;
+  border-bottom: 1px solid #eee;
+}
+
+.reveal table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ============================================
+   LISTS - CLEAN SPACING
+   ============================================ */
+
+.reveal ul, .reveal ol {
+  margin: 0.5em 0 0.5em 1em;
+}
+
+.reveal li {
+  margin: 0.4em 0;
+}
+
+/* ============================================
+   CALLOUTS - MINIMAL BOXES
+   ============================================ */
+
+.reveal .callout {
+  border-left: 4px solid #0066cc;
+  padding: 1em;
+  margin: 1em 0;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.reveal .callout-note {
+  border-left-color: #0066cc;
+}
+
+.reveal .callout-warning {
+  border-left-color: #ff8800;
+}
+
+.reveal .callout-important {
+  border-left-color: #dc2626;
+}
+
+.reveal .callout-tip {
+  border-left-color: #16a34a;
+}
+
+/* ============================================
+   COLUMNS - CLEAN LAYOUT
+   ============================================ */
+
+.reveal .columns {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+
+.reveal .column {
+  flex: 1;
+}
+
+/* ============================================
+   SPEAKER NOTES STYLING
+   ============================================ */
+
+.reveal aside.notes {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.reveal aside.notes h4 {
+  margin-top: 0.5em;
+  font-weight: 600;
+  color: #0066cc;
+}
+
+/* ============================================
+   IMAGES - RESPONSIVE & CLEAN
+   ============================================ */
+
+.reveal img {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+/* ============================================
+   FOOTER - MINIMAL
+   ============================================ */
+
+.reveal .slide-number {
+  font-size: 14px;
+  color: #666;
+}
+
+/* ============================================
+   SPECIAL SLIDE TYPES
+   ============================================ */
+
+/* Demo slides - subtle blue tint */
+.reveal section[data-background-color="#1e40af"] {
+  color: white;
+}
+
+.reveal section[data-background-color="#1e40af"] h2,
+.reveal section[data-background-color="#1e40af"] h3 {
+  color: white;
+}
+
+/* Hands-on slides - subtle green accent */
+.hands-on {
+  border-left: 5px solid #16a34a;
+  padding-left: 1em;
+}
+
+/* ============================================
+   PROGRESS BAR (MINIMAL)
+   ============================================ */
+
+.reveal .progress {
+  background-color: rgba(0,0,0,0.1);
+  height: 3px;
+}
+
+.reveal .progress span {
+  background-color: #0066cc;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media screen and (max-width: 1200px) {
+  .reveal {
+    font-size: 28px;
+  }
+  
+  .reveal h1 {
+    font-size: 2.2em;
+  }
+  
+  .reveal h2 {
+    font-size: 1.6em;
+  }
+}
+
+/* ============================================
+   MERMAID DIAGRAMS - CLEAN
+   ============================================ */
+
+.reveal .mermaid {
+  background-color: white;
+  padding: 1em;
+  border-radius: 8px;
+}
+
+/* ============================================
+   FRAGMENTS - SMOOTH TRANSITIONS
+   ============================================ */
+
+.reveal .fragment {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.reveal a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.reveal a:hover {
+  color: #0052a3;
+}
+
+/* High contrast for better readability */
+.reveal strong {
+  font-weight: 600;
+  color: #000;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .reveal .timing::after {
+    display: block;
+    position: relative;
+    text-align: right;
+    margin-top: 0.5em;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,567 @@
+---
+title: "Glossary"
+subtitle: "Earth Observation & AI/ML Terms"
+date: last-modified
+---
+
+## How to Use This Glossary
+
+This glossary defines key terms used throughout the CoPhil EO AI/ML Training Programme. Terms are organized alphabetically within categories for easy reference.
+
+**Categories:**
+- [Earth Observation Terms](#earth-observation-terms)
+- [AI/ML Terms](#aiml-terms)
+- [Geospatial Data Terms](#geospatial-data-terms)
+- [Satellite & Sensor Terms](#satellite-sensor-terms)
+- [Philippine EO Organizations](#philippine-eo-organizations)
+- [Technical Acronyms](#technical-acronyms)
+
+---
+
+## Earth Observation Terms
+
+### Absorption Band
+Wavelength region where atmospheric gases (water vapor, oxygen, CO2) absorb electromagnetic radiation, limiting remote sensing capabilities.
+
+### Backscatter
+The portion of radar energy reflected back to the sensor from a target. Used in SAR imaging to detect surface properties and moisture.
+
+### Cloud Masking
+The process of identifying and removing cloud-contaminated pixels from optical satellite imagery to improve data quality.
+
+### Composite Image
+A single image created by combining multiple images from different dates, often using statistical methods (median, mean) to reduce noise and clouds.
+
+### Earth Observation (EO)
+The gathering of information about Earth's physical, chemical, and biological systems through remote sensing technologies, primarily satellites.
+
+### False Color Composite
+An image display where spectral bands are assigned to RGB colors differently than natural vision (e.g., NIR-Red-Green), revealing features invisible to the human eye.
+
+### Ground Truth
+Field-collected reference data used to validate remote sensing classifications and train machine learning models.
+
+### Image Collection
+A set of satellite images covering the same geographic area at different times, used for time series analysis.
+
+### Pixel
+The smallest unit in a raster image, representing a specific ground area (spatial resolution) and spectral value.
+
+### Preprocessing
+Steps taken to correct raw satellite data before analysis, including atmospheric correction, geometric correction, and radiometric calibration.
+
+### Remote Sensing
+The science of obtaining information about objects or areas from a distance, typically using sensors on satellites or aircraft.
+
+### Revisit Time
+The frequency with which a satellite can observe the same location on Earth (e.g., Sentinel-2 has 5-day revisit with 3 satellites).
+
+### Spectral Signature
+The unique reflectance pattern of an object across different wavelengths, used to identify materials and land cover types.
+
+### True Color Composite
+An image display using red, green, and blue bands to create a natural-looking image similar to human vision.
+
+---
+
+## AI/ML Terms
+
+### Activation Function
+Mathematical function in neural networks that introduces non-linearity (e.g., ReLU, Sigmoid, Tanh), enabling learning of complex patterns.
+
+### Artificial Intelligence (AI)
+Computer systems capable of performing tasks that typically require human intelligence, including perception, reasoning, and decision-making.
+
+### Backpropagation
+Algorithm for training neural networks by calculating gradients of loss and adjusting weights to minimize error.
+
+### Batch Size
+Number of training samples processed before updating model weights. Smaller batches = more updates but noisier; larger batches = smoother but fewer updates.
+
+### Classification
+Supervised learning task of assigning input data to predefined categories (e.g., forest, water, urban).
+
+### Clustering
+Unsupervised learning technique that groups similar data points together without predefined labels (e.g., K-means, DBSCAN).
+
+### Confusion Matrix
+Table showing predicted vs. actual classifications, used to calculate accuracy, precision, recall, and F1-score.
+
+### Convolutional Neural Network (CNN)
+Deep learning architecture specialized for image analysis, using convolutional layers to detect spatial patterns.
+
+### Data Augmentation
+Technique to artificially increase training data by applying transformations (rotation, flipping, scaling) to existing samples.
+
+### Deep Learning
+Subset of machine learning using multi-layer neural networks to learn hierarchical representations of data.
+
+### Epoch
+One complete pass through the entire training dataset during model training.
+
+### Feature Engineering
+The process of creating new input variables from raw data to improve model performance.
+
+### Feature Extraction
+Identifying and extracting relevant patterns or characteristics from raw data for use in machine learning models.
+
+### Ground Truth Labels
+Verified, accurate labels for training data, typically from field surveys or expert interpretation.
+
+### Hyperparameter
+Model configuration setting chosen before training (e.g., learning rate, number of layers) that affects model performance.
+
+### Loss Function
+Mathematical function measuring the difference between predicted and actual values, used to guide model training.
+
+### Machine Learning (ML)
+Subset of AI enabling systems to learn and improve from experience without explicit programming.
+
+### Neural Network
+Computing system inspired by biological brains, consisting of interconnected nodes (neurons) organized in layers.
+
+### Overfitting
+When a model learns training data too well, including noise, resulting in poor performance on new data.
+
+### Precision
+Proportion of positive predictions that are actually correct. Precision = TP / (TP + FP).
+
+### Random Forest
+Ensemble learning method using multiple decision trees to improve prediction accuracy and reduce overfitting.
+
+### Recall (Sensitivity)
+Proportion of actual positives correctly identified. Recall = TP / (TP + FN).
+
+### Regression
+Supervised learning task of predicting continuous numerical values (e.g., crop yield, temperature).
+
+### Supervised Learning
+Machine learning where models learn from labeled training data (input-output pairs).
+
+### Support Vector Machine (SVM)
+Classification algorithm that finds the optimal hyperplane separating different classes in feature space.
+
+### Training Set
+Portion of data used to train a machine learning model (typically 70-80% of total data).
+
+### Transfer Learning
+Reusing a pre-trained model on a new but related task, reducing training time and data requirements.
+
+### Underfitting
+When a model is too simple to capture the underlying patterns in data, resulting in poor performance.
+
+### Unsupervised Learning
+Machine learning where models find patterns in unlabeled data without predefined categories.
+
+### Validation Set
+Data used to evaluate model performance during training and tune hyperparameters (typically 10-15% of data).
+
+---
+
+## Geospatial Data Terms
+
+### Affine Transformation
+Mathematical operation describing the relationship between pixel coordinates and geographic coordinates in raster data.
+
+### Bounding Box
+Rectangular area defined by minimum and maximum coordinates [minX, minY, maxX, maxY], used to specify geographic extents.
+
+### Coordinate Reference System (CRS)
+System defining how coordinates relate to real-world locations, including datum and projection (e.g., WGS84, UTM).
+
+### Digital Elevation Model (DEM)
+Raster representation of terrain elevation, with each pixel value representing height above a reference level.
+
+### Feature
+In geospatial terms, a vector object (point, line, or polygon) with associated attributes.
+
+### GeoJSON
+Open standard JSON format for encoding geographic data structures, widely used for web mapping.
+
+### GeoPackage
+Open format for geospatial data storage in SQLite database, supporting both vector and raster data.
+
+### Geometry
+The spatial component of a geographic feature, defining its shape and location (point, line, polygon).
+
+### GeoTIFF
+Raster image format with embedded geographic metadata (CRS, extent, resolution), standard for geospatial raster data.
+
+### NoData Value
+Special value in raster data indicating missing or invalid data (e.g., -9999, NaN).
+
+### Pixel Resolution (Spatial Resolution)
+Ground area represented by one pixel (e.g., 10m means each pixel covers 10m × 10m on the ground).
+
+### Projection
+Mathematical transformation converting 3D Earth coordinates to 2D map coordinates (e.g., Mercator, UTM).
+
+### Raster Data
+Grid-based spatial data where each cell (pixel) contains a value, used for continuous phenomena (elevation, temperature, imagery).
+
+### Reproject
+Converting geospatial data from one coordinate reference system to another.
+
+### Shapefile
+Popular vector data format for GIS, consisting of multiple files (.shp, .shx, .dbf, .prj).
+
+### Spatial Join
+Combining attributes from two geospatial datasets based on their spatial relationship (intersection, within, etc.).
+
+### Vector Data
+Spatial data representing discrete features as points, lines, or polygons with associated attributes.
+
+### Well-Known Text (WKT)
+Text markup language for representing vector geometry and spatial reference systems.
+
+---
+
+## Satellite & Sensor Terms
+
+### Active Sensor
+Sensor that emits its own energy and measures the reflected signal (e.g., SAR, LiDAR).
+
+### Aperture
+Opening in a sensor that controls the amount of light collected, affecting image brightness and quality.
+
+### Atmospheric Correction
+Processing step removing atmospheric effects (scattering, absorption) to retrieve surface reflectance.
+
+### C-band
+Radar frequency band (4-8 GHz, wavelength 3.75-7.5 cm) used by Sentinel-1, good for vegetation and soil moisture.
+
+### Electromagnetic Spectrum
+Range of all electromagnetic radiation wavelengths, from radio waves to gamma rays, including visible light.
+
+### Geometric Correction
+Correcting image distortions caused by sensor viewing angle, terrain, and Earth's curvature.
+
+### Level 1C (L1C)
+Sentinel-2 product with Top-of-Atmosphere (TOA) reflectance, geometrically corrected.
+
+### Level 2A (L2A)
+Sentinel-2 product with Bottom-of-Atmosphere (BOA) surface reflectance, atmospherically corrected.
+
+### LiDAR
+Light Detection and Ranging - active sensor using laser pulses to measure distance, creating high-resolution 3D point clouds.
+
+### Multispectral
+Imaging system capturing data in multiple (typically 3-15) wavelength bands across visible and infrared spectrum.
+
+### Near Infrared (NIR)
+Electromagnetic radiation with wavelengths 0.7-1.4 μm, strongly reflected by healthy vegetation.
+
+### Optical Sensor
+Passive sensor detecting reflected sunlight in visible and infrared wavelengths (e.g., Sentinel-2, Landsat).
+
+### Orbit
+Path of a satellite around Earth, characterized by altitude, inclination, and period.
+
+### Panchromatic
+Single-band imagery capturing all visible wavelengths, typically at higher spatial resolution than multispectral bands.
+
+### Passive Sensor
+Sensor detecting naturally available energy, typically reflected sunlight (e.g., optical cameras).
+
+### Polarization
+Orientation of radar waves (HH, VV, HV, VH), providing information about surface structure and moisture.
+
+### Radiometric Calibration
+Converting raw sensor digital numbers to physical units (radiance or reflectance).
+
+### SAR (Synthetic Aperture Radar)
+Active microwave imaging system creating high-resolution images independent of sunlight and clouds.
+
+### Short-Wave Infrared (SWIR)
+Electromagnetic radiation with wavelengths 1.4-3.0 μm, useful for detecting moisture and minerals.
+
+### Spectral Resolution
+Ability to distinguish between different wavelengths, determined by number and width of spectral bands.
+
+### Sun-Synchronous Orbit
+Satellite orbit maintaining constant local solar time, ensuring consistent illumination conditions.
+
+### Swath Width
+Width of the ground strip imaged by a satellite in a single pass (e.g., Sentinel-2 has 290 km swath).
+
+### Temporal Resolution
+Frequency of repeat observations over the same location (synonymous with revisit time).
+
+### Thermal Infrared (TIR)
+Electromagnetic radiation with wavelengths 8-14 μm, measuring heat emitted by Earth's surface.
+
+---
+
+## Philippine EO Organizations
+
+### CoPhil Programme
+EU-Philippines Copernicus Capacity Support Programme - partnership to strengthen Philippine EO capabilities, establish a Copernicus Mirror Site, and develop AI/ML capacity.
+
+### DENR
+Department of Environment and Natural Resources - responsible for forest monitoring, land cover mapping, and natural resource management using EO data.
+
+### DOST
+Department of Science and Technology - leads science and technology advancement, co-chairs CoPhil programme, operates PAGASA and ASTI.
+
+### DOST-ASTI
+Advanced Science and Technology Institute - ICT research and development, AI platforms (SkAI-Pinas, DIMER, AIPI).
+
+### LiPAD
+LiDAR Portal for Archiving and Distribution - repository of high-resolution elevation data for the Philippines.
+
+### NAMRIA
+National Mapping and Resource Information Authority - official mapping agency, operates GeoPortal and Resource Data Analysis Center.
+
+### NDRRMC
+National Disaster Risk Reduction and Management Council - coordinates disaster response, uses EO data for assessment and planning.
+
+### PAGASA
+Philippine Atmospheric, Geophysical and Astronomical Services Administration - weather, climate, and astronomical services.
+
+### PhilGIS
+Philippine GIS Data Clearinghouse - repository of geospatial datasets for the Philippines.
+
+### PhilSA
+Philippine Space Agency - national space authority, co-chairs CoPhil programme, operates SIYASAT portal and develops Copernicus Mirror Site.
+
+### SIYASAT Portal
+PhilSA's secure data archive for NovaSAR-1 data and maritime monitoring products.
+
+---
+
+## Technical Acronyms
+
+### AI
+Artificial Intelligence - computer systems performing tasks requiring human intelligence.
+
+### API
+Application Programming Interface - set of functions allowing software to interact with services (e.g., Earth Engine Python API).
+
+### ASTER
+Advanced Spaceborne Thermal Emission and Reflection Radiometer - NASA sensor providing multispectral imagery.
+
+### BOA
+Bottom of Atmosphere - surface reflectance after atmospheric correction (Level 2A products).
+
+### CCA
+Climate Change Adaptation - strategies and actions to adjust to climate change impacts.
+
+### CNN
+Convolutional Neural Network - deep learning architecture for image analysis.
+
+### CRS
+Coordinate Reference System - defines how coordinates relate to Earth's surface.
+
+### DEM
+Digital Elevation Model - raster representation of terrain elevation.
+
+### DL
+Deep Learning - subset of ML using multi-layer neural networks.
+
+### DRR
+Disaster Risk Reduction - strategies to minimize disaster impacts.
+
+### EO
+Earth Observation - gathering information about Earth through remote sensing.
+
+### ESA
+European Space Agency - operates Copernicus Sentinel missions.
+
+### EVI
+Enhanced Vegetation Index - vegetation index less sensitive to atmospheric effects than NDVI.
+
+### GEE
+Google Earth Engine - cloud platform for planetary-scale geospatial analysis.
+
+### GIS
+Geographic Information System - software for capturing, managing, and analyzing spatial data.
+
+### GPU
+Graphics Processing Unit - hardware accelerating deep learning computations.
+
+### GNSS
+Global Navigation Satellite System - satellite-based positioning (GPS, Galileo, GLONASS).
+
+### HDF
+Hierarchical Data Format - file format for storing large scientific datasets.
+
+### IW
+Interferometric Wide Swath - Sentinel-1 acquisition mode with 250 km swath.
+
+### JAXA
+Japan Aerospace Exploration Agency - operates Japanese Earth observation satellites.
+
+### LiDAR
+Light Detection and Ranging - laser-based remote sensing for elevation mapping.
+
+### LULC
+Land Use Land Cover - classification of Earth's surface into categories (forest, urban, agriculture, etc.).
+
+### ML
+Machine Learning - algorithms enabling systems to learn from data.
+
+### MODIS
+Moderate Resolution Imaging Spectroradiometer - NASA sensor providing daily global coverage.
+
+### NASA
+National Aeronautics and Space Administration - operates Landsat and other EO missions.
+
+### NDBI
+Normalized Difference Built-up Index - spectral index for detecting built-up areas.
+
+### NDVI
+Normalized Difference Vegetation Index - spectral index measuring vegetation health/density.
+
+### NDWI
+Normalized Difference Water Index - spectral index for detecting water bodies.
+
+### NIR
+Near Infrared - electromagnetic radiation beyond visible red (0.7-1.4 μm).
+
+### NRM
+Natural Resource Management - sustainable management of natural resources using EO monitoring.
+
+### RGB
+Red-Green-Blue - color model using three primary colors, or the corresponding image bands.
+
+### RF
+Random Forest - ensemble machine learning algorithm using multiple decision trees.
+
+### RL
+Reinforcement Learning - ML paradigm where agents learn through interaction with environment.
+
+### SAR
+Synthetic Aperture Radar - active microwave imaging system.
+
+### SCL
+Scene Classification Layer - Sentinel-2 cloud and land cover classification mask.
+
+### SNAP
+Sentinel Application Platform - ESA's free software for processing Sentinel data.
+
+### SWIR
+Short-Wave Infrared - electromagnetic radiation with wavelengths 1.4-3.0 μm.
+
+### SVM
+Support Vector Machine - classification algorithm finding optimal separating hyperplane.
+
+### TIR
+Thermal Infrared - electromagnetic radiation measuring surface temperature (8-14 μm).
+
+### TOA
+Top of Atmosphere - apparent reflectance before atmospheric correction (Level 1C products).
+
+### USGS
+United States Geological Survey - distributes Landsat and other EO data.
+
+### UTM
+Universal Transverse Mercator - widely-used projected coordinate system dividing Earth into zones.
+
+### WGS84
+World Geodetic System 1984 - global geographic coordinate system (EPSG:4326).
+
+---
+
+## Spectral Indices
+
+### NDVI (Normalized Difference Vegetation Index)
+**Formula:** (NIR - Red) / (NIR + Red)
+
+**Range:** -1 to +1
+
+**Interpretation:**
+- High values (0.6-0.9): Dense vegetation
+- Moderate (0.2-0.5): Sparse vegetation
+- Near zero: Bare soil, rock
+- Negative: Water, clouds
+
+**Sentinel-2 Bands:** (B8 - B4) / (B8 + B4)
+
+---
+
+### NDWI (Normalized Difference Water Index)
+**McFeeters Formula:** (Green - NIR) / (Green + NIR)
+
+**Gao Formula:** (NIR - SWIR) / (NIR + SWIR)
+
+**Range:** -1 to +1
+
+**Interpretation:**
+- Positive values: Water bodies
+- Negative: Land surfaces
+
+**Sentinel-2 (McFeeters):** (B3 - B8) / (B3 + B8)
+
+**Sentinel-2 (Gao):** (B8 - B11) / (B8 + B11)
+
+---
+
+### NDBI (Normalized Difference Built-up Index)
+**Formula:** (SWIR - NIR) / (SWIR + NIR)
+
+**Range:** -1 to +1
+
+**Interpretation:**
+- Positive values: Built-up areas
+- Negative: Vegetation, water
+
+**Sentinel-2:** (B11 - B8) / (B11 + B8)
+
+---
+
+### EVI (Enhanced Vegetation Index)
+**Formula:** 2.5 × ((NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1))
+
+**Range:** -1 to +1
+
+**Advantages:** Less sensitive to atmospheric effects and soil background than NDVI
+
+**Sentinel-2:** 2.5 × ((B8 - B4) / (B8 + 6×B4 - 7.5×B2 + 1))
+
+---
+
+## Quick Reference Tables
+
+### Sentinel-2 Band Summary
+
+| Band | Name | Wavelength (nm) | Resolution (m) | Typical Use |
+|------|------|-----------------|----------------|-------------|
+| B1 | Coastal aerosol | 443 | 60 | Atmospheric correction |
+| B2 | Blue | 490 | 10 | Bathymetry, soil/vegetation |
+| B3 | Green | 560 | 10 | Peak vegetation sensitivity |
+| B4 | Red | 665 | 10 | Vegetation discrimination |
+| B5 | Red Edge 1 | 705 | 20 | Vegetation health |
+| B6 | Red Edge 2 | 740 | 20 | Vegetation stress |
+| B7 | Red Edge 3 | 783 | 20 | Vegetation stress |
+| B8 | NIR | 842 | 10 | Biomass, water bodies |
+| B8A | Narrow NIR | 865 | 20 | Atmospheric correction |
+| B9 | Water vapor | 945 | 60 | Atmospheric correction |
+| B11 | SWIR 1 | 1610 | 20 | Moisture, soil/vegetation |
+| B12 | SWIR 2 | 2190 | 20 | Moisture, burned areas |
+
+---
+
+### Common CRS for Philippines
+
+| Name | EPSG Code | Type | Use Case |
+|------|-----------|------|----------|
+| WGS84 | 4326 | Geographic | Global datasets, web maps |
+| UTM Zone 50N | 32650 | Projected | Western Mindanao |
+| UTM Zone 51N | 32651 | Projected | Luzon, Visayas, most of Philippines |
+| UTM Zone 52N | 32652 | Projected | Eastern Mindanao |
+| PRS92 | 4683 | Geographic | Philippine Reference System |
+
+---
+
+## Related Resources
+
+For more detailed information:
+
+- [Setup Guide](setup.qmd) - Technical setup instructions
+- [Cheat Sheets](cheatsheets.qmd) - Quick reference commands
+- [FAQ](faq.qmd) - Common questions and troubleshooting
+- [Philippine EO Resources](philippine-eo.qmd) - Organizations and platforms
+
+---
+
+*This glossary will be expanded in subsequent training days. Suggest additional terms via training@philsa.gov.ph*

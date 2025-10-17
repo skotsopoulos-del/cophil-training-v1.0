@@ -1,0 +1,954 @@
+---
+title: "Session 4: CNN Hands-on Lab"
+subtitle: "Building and Training CNNs for EO Image Classification"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 2</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 4</span>
+</nav>
+
+::: {.hero}
+# Session 4: CNN Hands-on Lab
+
+### Building and Training CNNs for EO Image Classification
+
+From theory to implementation with TensorFlow and PyTorch
+:::
+
+## Session Overview
+
+**Duration:** 2.5 hours | **Type:** Intensive Hands-On Lab | **Difficulty:** Intermediate-Advanced
+
+---
+
+This session transforms CNN theory from Session 3 into working code. You'll build, train, and evaluate real deep learning models for Earth Observation, achieving significantly higher accuracy than the Random Forest models from Sessions 1-2.
+
+## Presentation Slides
+
+<iframe src="../presentations/session4_cnn_lab.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+::: {.callout-important}
+## Prerequisites
+
+**Technical Requirements:**
+- ✓ Complete Session 3 (CNN theory and concepts)
+- ✓ Understand convolution, pooling, activation functions
+- ✓ Python programming proficiency (NumPy, pandas basics)
+- ✓ Google Colab account with GPU access
+- ✓ Stable internet connection (for dataset downloads)
+
+**Conceptual Understanding:**
+- ✓ Know difference between traditional ML and deep learning
+- ✓ Understand supervised learning workflow
+- ✓ Familiar with classification metrics (accuracy, confusion matrix)
+- ✓ Basic understanding of gradient descent optimization
+:::
+
+---
+
+## What You'll Accomplish
+
+::: {.callout-tip}
+## Learning Outcomes
+
+After completing this session, you will be able to:
+
+### 1. Implement CNNs in TensorFlow/Keras
+- Set up GPU-accelerated deep learning environment
+- Load and preprocess Earth observation datasets
+- Build CNN architectures layer-by-layer from scratch
+- Compile models with appropriate loss functions and optimizers
+- Train models with advanced callbacks (early stopping, checkpointing)
+
+### 2. Work with EuroSAT Benchmark Dataset
+- Download and prepare standardized EO dataset
+- Understand 10-class land use classification task
+- Create efficient data pipelines with tf.data.Dataset
+- Apply data augmentation strategies for satellite imagery
+- Handle train/validation/test splits properly
+
+### 3. Evaluate Deep Learning Models
+- Generate and interpret confusion matrices
+- Calculate per-class precision, recall, and F1-scores
+- Visualize training and validation curves
+- Analyze misclassifications and model errors
+- Compare CNN performance with Random Forest baseline
+
+### 4. Apply Transfer Learning
+- Load pre-trained models (ResNet50, VGG16, EfficientNet)
+- Understand when and why to use pre-trained weights
+- Freeze and fine-tune network layers strategically
+- Adapt ImageNet models for Earth observation tasks
+- Compare from-scratch vs. transfer learning performance
+
+### 5. Optimize and Debug Models
+- Prevent overfitting with dropout and regularization
+- Tune hyperparameters (learning rate, batch size, architecture)
+- Diagnose training issues (vanishing gradients, exploding loss)
+- Use callbacks for adaptive learning
+- Implement best practices for reproducibility
+:::
+
+---
+
+## Why This Matters for Philippine EO
+
+::: {.feature-grid}
+::: {.feature-card}
+**🎯 Accuracy Improvement**
+
+CNNs consistently outperform Random Forest:
+- **EuroSAT:** 92-98% vs 87-90%
+- **Palawan:** Estimated +5-10% accuracy
+- **Critical for:** DRR applications where errors cost lives
+:::
+
+::: {.feature-card}
+**🌍 Spatial Context**
+
+CNNs understand image context:
+- **RF:** Treats pixels independently
+- **CNN:** Captures spatial patterns
+- **Benefit:** Better forest boundary detection, fewer misclassifications
+:::
+
+::: {.feature-card}
+**⚡ Scalability**
+
+Once trained, CNNs scale efficiently:
+- **Deployment:** Fast inference on new imagery
+- **Automation:** Process entire Philippines nightly
+- **Operations:** PhilSA operational monitoring
+:::
+
+::: {.feature-card}
+**🔄 Transfer Learning**
+
+Pre-trained models accelerate development:
+- **Small Data:** Works with limited labeled samples
+- **Time Savings:** Days vs weeks of training
+- **Philippine Context:** Adapt global models locally
+:::
+:::
+
+---
+
+## Session Structure
+
+### Part A: Environment Setup & Data Preparation (30 minutes)
+
+**Setup Google Colab Environment**
+- Configure GPU runtime for acceleration
+- Install required libraries (TensorFlow, Keras, auxiliary packages)
+- Verify GPU detection and availability
+- Set random seeds for reproducibility
+
+**Download EuroSAT Dataset**
+- Understand the benchmark dataset (27,000 Sentinel-2 patches)
+- Automated download and extraction
+- Verify data integrity with checksums
+- Explore directory structure and file formats
+
+**Data Loading and Exploration**
+- Load images and labels efficiently
+- Visualize sample images from each class
+- Analyze class distribution and balance
+- Calculate dataset statistics (mean, std)
+
+**Create Data Pipeline**
+- Split data (70% train, 15% validation, 15% test)
+- Build tf.data.Dataset for efficient loading
+- Apply normalization and preprocessing
+- Implement data augmentation for training set
+- Configure batching, shuffling, and prefetching
+
+---
+
+### Part B: Building CNN from Scratch (40 minutes)
+
+**Design CNN Architecture**
+- Start with simple 3-block architecture
+- Understand layer choices and progression
+- Calculate output dimensions at each layer
+- Visualize network architecture diagram
+
+**Implementation Details:**
+
+```python
+# Example architecture (you'll implement in notebook)
+Model: "eurosat_cnn"
+_________________________________________________________________
+Layer (type)                Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)          (None, 62, 62, 32)        896       
+activation_1 (ReLU)        (None, 62, 62, 32)        0         
+max_pooling2d_1            (None, 31, 31, 32)        0         
+conv2d_2 (Conv2D)          (None, 29, 29, 64)        18,496    
+activation_2 (ReLU)        (None, 29, 29, 64)        0         
+max_pooling2d_2            (None, 14, 14, 64)        0         
+conv2d_3 (Conv2D)          (None, 12, 12, 128)       73,856    
+activation_3 (ReLU)        (None, 12, 12, 128)       0         
+max_pooling2d_3            (None, 6, 6, 128)         0         
+flatten (Flatten)          (None, 4608)              0         
+dropout (Dropout)          (None, 4608)              0         
+dense_1 (Dense)            (None, 128)               589,952   
+activation_4 (ReLU)        (None, 128)               0         
+dropout_2 (Dropout)        (None, 128)               0         
+dense_2 (Dense)            (None, 10)                1,290     
+activation_5 (Softmax)     (None, 10)                0         
+=================================================================
+Total params: 684,490
+Trainable params: 684,490
+Non-trainable params: 0
+```
+
+**Key Architectural Decisions:**
+- **Filter progression (32→64→128):** Capture features at multiple scales
+- **3×3 convolutions:** Standard choice balancing receptive field and parameters
+- **MaxPooling:** Spatial dimension reduction and translation invariance
+- **Dropout (0.3-0.5):** Regularization to prevent overfitting
+- **Dense layers:** Final classification from learned features
+- **Softmax output:** Probability distribution over 10 classes
+
+**Model Compilation:**
+- **Loss function:** Categorical cross-entropy (multi-class classification)
+- **Optimizer:** Adam (adaptive learning rate, generally robust)
+- **Metrics:** Accuracy, top-3 accuracy
+- **Learning rate:** Start with 0.001 (default), tune if needed
+
+---
+
+### Part C: U-Net for Semantic Segmentation (60 minutes)
+
+**Configure Training Callbacks**
+
+::: {.feature-grid}
+::: {.feature-card}
+**EarlyStopping**
+
+Stop training when validation loss stops improving:
+```python
+EarlyStopping(
+    monitor='val_loss',
+    patience=5,
+    restore_best_weights=True
+)
+```
+*Prevents overfitting, saves time*
+:::
+
+::: {.feature-card}
+**ModelCheckpoint**
+
+Save best model during training:
+```python
+ModelCheckpoint(
+    'best_model.h5',
+    monitor='val_accuracy',
+    save_best_only=True
+)
+```
+*Preserves optimal weights*
+:::
+
+::: {.feature-card}
+**ReduceLROnPlateau**
+
+Lower learning rate when stuck:
+```python
+ReduceLROnPlateau(
+    monitor='val_loss',
+    factor=0.5,
+    patience=3
+)
+```
+*Helps escape local minima*
+:::
+
+::: {.feature-card}
+**TensorBoard**
+
+Real-time training visualization:
+```python
+TensorBoard(
+    log_dir='./logs'
+)
+```
+*Monitor metrics live*
+:::
+:::
+
+**Execute Training**
+- Train for 20-30 epochs (likely stops early)
+- Monitor training/validation metrics in real-time
+- Observe learning curves for overfitting signs
+- Track GPU utilization and training speed
+
+**Interpret Learning Curves**
+
+**Healthy Training:**
+- Train loss decreases steadily
+- Validation loss decreases, plateaus
+- Small train-val gap (<5-10%)
+- Validation accuracy plateaus at high value
+
+**Overfitting Signs:**
+- Train accuracy → 100%, val accuracy plateaus low
+- Large train-val gap (>15-20%)
+- Validation loss increases while train loss decreases
+- **Solution:** More dropout, stronger regularization, more data
+
+**Underfitting Signs:**
+- Both train and val accuracy low
+- Loss plateaus at high value
+- No improvement with more epochs
+- **Solution:** More complex model, lower regularization, train longer
+
+---
+
+### Part D: Comprehensive Evaluation (30 minutes)
+
+**Test Set Performance**
+- Load best saved model
+- Evaluate on held-out test set
+- Calculate final accuracy and loss
+- Compare with validation performance
+
+**Confusion Matrix Analysis**
+
+Generate and visualize 10×10 confusion matrix:
+
+| True ↓ / Pred → | AnnualCrop | Forest | Herbaceous | Highway | ... |
+|----------------|------------|--------|------------|---------|-----|
+| AnnualCrop     | **450**    | 12     | 8          | 2       | ... |
+| Forest         | 5          | **492**| 3          | 0       | ... |
+| Herbaceous     | 18         | 7      | **441**    | 1       | ... |
+| ...            | ...        | ...    | ...        | ...     | ... |
+
+**Insights from Confusion:**
+- **Diagonal values:** Correct classifications (darker = better)
+- **Off-diagonal:** Common confusions
+- **Typical EO confusions:**
+  - AnnualCrop ↔ Herbaceous (similar vegetation)
+  - Industrial ↔ Highway (both gray infrastructure)
+  - Forest ↔ PermanentCrop (tree canopies)
+
+**Per-Class Metrics**
+
+```
+              precision    recall  f1-score   support
+
+  AnnualCrop       0.93      0.94      0.93       478
+      Forest       0.96      0.97      0.97       507
+  Herbaceous       0.91      0.92      0.92       481
+     Highway       0.94      0.92      0.93       453
+  Industrial       0.89      0.87      0.88       461
+     Pasture       0.90      0.91      0.91       489
+PermanentCrop      0.92      0.91      0.92       471
+ Residential       0.95      0.96      0.95       498
+       River       0.98      0.97      0.98       502
+     SeaLake       0.97      0.98      0.98       510
+
+    accuracy                           0.94      4850
+   macro avg       0.94      0.94      0.94      4850
+weighted avg       0.94      0.94      0.94      4850
+```
+
+**Error Analysis**
+- Identify most confused class pairs
+- Visualize misclassified examples
+- Understand model failure modes
+- Suggest improvements
+
+---
+
+### Part E: Transfer Learning (20 minutes)
+
+**Why Transfer Learning for EO?**
+
+::: {.callout-note}
+## Transfer Learning Benefits
+
+**ImageNet Pre-training Advantages:**
+- **Low-level features transfer:** Edges, textures, colors are universal
+- **Reduced training time:** 80-90% faster convergence
+- **Better with limited data:** Works with 100s of samples vs 1000s
+- **Higher accuracy:** +2-5% typical improvement
+- **Regularization effect:** Pre-trained weights prevent overfitting
+
+**When to Use:**
+- Limited labeled training data (<5000 samples)
+- Similar task to ImageNet (object recognition)
+- Time/compute constraints
+- Need strong baseline quickly
+
+**When NOT to Use:**
+- Very different from natural images (SAR, hyperspectral)
+- Abundant labeled data (>50K samples)
+- Highly specialized task
+:::
+
+**Load Pre-trained Model**
+
+```python
+from tensorflow.keras.applications import ResNet50
+
+# Load ResNet50 with ImageNet weights
+base_model = ResNet50(
+    include_top=False,  # Exclude classification head
+    weights='imagenet',  # Use pre-trained weights
+    input_shape=(64, 64, 3),
+    pooling='avg'  # Global average pooling
+)
+```
+
+**Fine-tuning Strategy**
+
+**Option 1: Freeze All Layers (Feature Extraction)**
+```python
+# Freeze all base model layers
+base_model.trainable = False
+
+# Add custom classification head
+model = Sequential([
+    base_model,
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    Dense(10, activation='softmax')
+])
+```
+*Fast training, use when data is very limited*
+
+**Option 2: Freeze Early, Train Late (Partial Fine-tuning)**
+```python
+# Freeze first 80% of layers
+for layer in base_model.layers[:int(0.8 * len(base_model.layers))]:
+    layer.trainable = False
+
+# Fine-tune top layers + custom head
+```
+*Balanced approach, best for moderate data*
+
+**Option 3: Full Fine-tuning**
+```python
+# All layers trainable
+base_model.trainable = True
+
+# Use lower learning rate (0.0001 instead of 0.001)
+optimizer = Adam(learning_rate=1e-4)
+```
+*Slowest, use when data is abundant*
+
+**Compare Results:**
+
+| Approach | Train Time | Test Accuracy | Notes |
+|----------|-----------|---------------|-------|
+| From Scratch | 25 min | 93.2% | Baseline |
+| Feature Extraction | 8 min | 94.1% | Fast, good boost |
+| Partial Fine-tuning | 15 min | 95.3% | Best balance |
+| Full Fine-tuning | 30 min | 95.8% | Marginal gain |
+
+---
+
+### Part F: Philippine EO Applications (10 minutes)
+
+**Adapting CNNs for Philippine Contexts**
+
+::: {.feature-grid}
+::: {.feature-card}
+**Multi-spectral Considerations**
+
+**Challenge:** Sentinel-2 has 13 bands, ResNet expects 3
+
+**Solutions:**
+1. **Band selection:** Use only RGB (B4, B3, B2)
+2. **Band combinations:** NIR-Red-Green false color
+3. **PCA:** Reduce 13→3 dimensions
+4. **Architecture modification:** Change input layer to accept 13 channels
+
+**Recommendation for Palawan:**
+- Start with RGB for transfer learning
+- Train custom CNN with all bands for production
+:::
+
+::: {.feature-card}
+**Scaling to Operational Use**
+
+**PhilSA Production Pipeline:**
+1. **Training:** Palawan pilot (this session)
+2. **Validation:** Other provinces
+3. **Deployment:** Nationwide monitoring
+4. **Updates:** Retrain quarterly
+
+**Computational Needs:**
+- Training: Cloud GPU (Colab, AWS, Azure)
+- Inference: Can run on CPU for deployment
+- Storage: Model weights ~50-200 MB
+:::
+
+::: {.feature-card}
+**CNN for Disaster Response**
+
+**Typhoon Damage Assessment:**
+- **Input:** Pre/post imagery pairs
+- **Task:** Binary (damaged/not damaged)
+- **Architecture:** Siamese network or stacked CNN
+- **Speed:** Process 1000 km² in hours
+
+**Flood Extent Mapping:**
+- **Advance to Day 3:** U-Net for pixel-level segmentation
+- **Real-time:** CNN classification during event
+- **Integration:** Feed into NOAH or Project DOST systems
+:::
+
+::: {.feature-card}
+**Accuracy Requirements**
+
+**Application-Specific Needs:**
+- **Land cover monitoring:** 85-90% sufficient
+- **Forest law enforcement:** 95%+ required
+- **Disaster response:** Speed > perfect accuracy
+- **REDD+ MRV:** High precision needed
+
+**Session 4 Achievement:** 93-96% on EuroSAT
+:::
+:::
+
+---
+
+## Hands-On Notebook
+
+::: {.callout-tip}
+## 📓 Interactive Jupyter Notebook
+
+The complete hands-on lab is available as an executable Jupyter notebook:
+
+**Student Version** (with exercises and TODOs):  
+[`session4_cnn_classification_STUDENT.ipynb`](../notebooks/session4_cnn_classification_STUDENT.ipynb)
+
+**Google Colab Direct Link:**  
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session4_cnn_classification_STUDENT.ipynb)
+
+**What's Included:**
+- Complete environment setup (TensorFlow, GPU config)
+- EuroSAT download and preparation scripts
+- CNN architecture implementation (from-scratch and transfer learning)
+- Training loops with callbacks
+- Comprehensive evaluation code
+- Visualization functions
+- Interactive exercises
+
+**Estimated Execution Time:**
+- Setup: 5 minutes
+- Data download: 3-5 minutes (90 MB)
+- Training from scratch: 15-20 minutes (GPU)
+- Transfer learning: 5-10 minutes (GPU)
+- Evaluation: 5 minutes
+- **Total:** ~30-40 minutes with GPU
+:::
+
+---
+
+## Expected Outcomes
+
+By the end of this session, you will have:
+
+✅ **Completed Projects:**
+- Working EuroSAT CNN classifier (93-96% accuracy)
+- Transfer learning model with ResNet50 (94-97% accuracy)
+- Comprehensive evaluation report with confusion matrix
+- Trained model weights saved for deployment
+
+✅ **Technical Skills:**
+- TensorFlow/Keras proficiency for CNNs
+- Data pipeline creation with tf.data
+- Training with advanced callbacks
+- Model evaluation and debugging
+- Transfer learning implementation
+
+✅ **Practical Deliverables:**
+- Executable Jupyter notebook (student version completed)
+- Trained models (`.h5` or SavedModel format)
+- Learning curve plots
+- Confusion matrix visualizations
+- Classification report (precision, recall, F1)
+
+✅ **Understanding:**
+- When CNNs outperform traditional ML
+- How to choose architecture for EO tasks
+- Transfer learning for small datasets
+- Hyperparameter tuning strategies
+- Deployment considerations
+
+---
+
+## Troubleshooting Guide
+
+### Common Issues & Solutions
+
+::: {.callout-warning}
+## GPU Not Detected
+
+**Symptoms:**
+```
+Physical devices: []
+WARNING: No GPU available, using CPU
+```
+
+**Solutions:**
+1. **Colab:** Runtime → Change runtime type → Hardware accelerator → GPU
+2. **Verify:** Run `tf.config.list_physical_devices('GPU')`
+3. **Restart runtime:** Runtime → Restart runtime
+4. **Check quota:** Colab has usage limits (reconnect after 12 hours)
+5. **Alternative:** Use Kaggle Notebooks (30 hrs/week GPU free)
+:::
+
+::: {.callout-warning}
+## Out of Memory Error
+
+**Symptoms:**
+```
+ResourceExhaustedError: OOM when allocating tensor
+```
+
+**Solutions:**
+1. **Reduce batch size:** 32 → 16 → 8
+2. **Smaller model:** Fewer filters (128→64), fewer layers
+3. **Mixed precision:** `tf.keras.mixed_precision.set_global_policy('mixed_float16')`
+4. **Clear memory:** `tf.keras.backend.clear_session()`
+5. **Restart runtime:** Fresh start clears memory
+:::
+
+::: {.callout-warning}
+## Training Not Improving
+
+**Symptoms:**
+- Accuracy stuck at ~10% (random guessing)
+- Loss = NaN or infinity
+- Very slow convergence
+
+**Solutions:**
+1. **Learning rate too high:** Reduce to 0.0001
+2. **Check data normalization:** Images should be 0-1 or standardized
+3. **Verify labels:** One-hot encoded correctly (shape: [batch, 10])
+4. **Gradient clipping:** `optimizer = Adam(clipnorm=1.0)`
+5. **Simpler model:** Start with 2 conv blocks instead of 3
+6. **Check for bugs:** Print shapes, verify data loading
+:::
+
+::: {.callout-warning}
+## Overfitting Severely
+
+**Symptoms:**
+- Train accuracy: 99%, Val accuracy: 75%
+- Validation loss increases while train loss decreases
+
+**Solutions:**
+1. **More dropout:** Increase from 0.3 to 0.5
+2. **Data augmentation:** Add rotation, flip, zoom
+3. **L2 regularization:** `Conv2D(..., kernel_regularizer=l2(0.001))`
+4. **Reduce model capacity:** Fewer filters, fewer layers
+5. **Early stopping:** Patience=3-5 epochs
+6. **More training data:** Use full EuroSAT (27K images)
+:::
+
+::: {.callout-warning}
+## Dataset Download Fails
+
+**Symptoms:**
+```
+HTTPError: 404 Not Found
+Connection timeout
+```
+
+**Solutions:**
+1. **Use mirror site:** TensorFlow Datasets, Kaggle
+2. **Manual download:** Provide local copy
+3. **Check internet:** Colab connectivity issues
+4. **Retry:** `wget` with retries
+5. **Pre-downloaded:** Load from Google Drive
+:::
+
+::: {.callout-warning}
+## Augmentation Visualization Error
+
+**Symptoms:**
+```
+TypeError: only integer scalar arrays can be converted to a scalar index
+# OR
+IndexError: invalid index to scalar variable
+```
+
+**When:** In the "Visualize Augmentation" cell when trying to display augmented images
+
+**Root Cause:**
+The code uses `class_names[sample_label.numpy()]` but `sample_label.numpy()` returns a numpy scalar (e.g., `numpy.int64(3)`) which some Python versions don't accept as a list index.
+
+**Solutions:**
+
+**Quick Fix (Add one line):**
+```python
+# After: sample_image, sample_label = next(iter(ds_train))
+# Add this line:
+label_idx = int(sample_label.numpy())
+
+# Then change plt.suptitle line to use label_idx:
+plt.suptitle(f'Data Augmentation Examples\nClass: {class_names[label_idx]}',
+             fontsize=14, fontweight='bold')
+```
+
+**Complete Fixed Cell:**
+```python
+# Show original vs augmented
+sample_image, sample_label = next(iter(ds_train))
+
+# Convert label to integer for indexing
+label_idx = int(sample_label.numpy())  # <-- ADD THIS LINE
+
+fig, axes = plt.subplots(2, 4, figsize=(14, 7))
+
+# Original
+axes[0, 0].imshow(sample_image.numpy())
+axes[0, 0].set_title('Original', fontweight='bold')
+axes[0, 0].axis('off')
+
+# Augmented versions
+for idx in range(1, 8):
+    row = idx // 4
+    col = idx % 4
+    
+    augmented = data_augmentation(tf.expand_dims(sample_image, 0), training=True)[0]
+    axes[row, col].imshow(augmented.numpy())
+    axes[row, col].set_title(f'Augmented {idx}', fontweight='bold')
+    axes[row, col].axis('off')
+
+# Use label_idx instead of sample_label.numpy()
+plt.suptitle(f'Data Augmentation Examples\nClass: {class_names[label_idx]}',  # <-- CHANGED
+             fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+print("\n✓ Augmentation creates realistic variations")
+```
+
+**Why This Works:**
+- `int()` explicitly converts numpy scalar to Python integer
+- Python lists accept native integers as indices reliably
+- Prevents type mismatch between numpy and Python types
+
+**Note:** A fixed version of the notebook is available: `session4_cnn_classification_STUDENT_FIXED.ipynb`
+:::
+
+---
+
+## Key Concepts Recap
+
+### Convolutional Layers
+
+**What they do:**
+- Apply learnable filters to extract features
+- Preserve spatial relationships
+- Translation invariant (feature detected anywhere in image)
+
+**Parameters:**
+- `filters`: Number of feature maps (32, 64, 128, ...)
+- `kernel_size`: Filter dimensions (3×3, 5×5, ...)
+- `strides`: Step size (usually 1)
+- `padding`: 'valid' (shrinks) or 'same' (maintains size)
+- `activation`: Usually ReLU
+
+### Pooling Layers
+
+**Purpose:**
+- Reduce spatial dimensions
+- Add translation invariance
+- Reduce parameters and computation
+
+**MaxPooling vs AveragePooling:**
+- **MaxPooling:** Keeps strongest activation (most common)
+- **AveragePooling:** Smooths response
+- Typically 2×2 with stride 2 (halves dimensions)
+
+### Activation Functions
+
+**ReLU (Rectified Linear Unit):**
+- `f(x) = max(0, x)`
+- Most common in hidden layers
+- Addresses vanishing gradient problem
+- Fast to compute
+
+**Softmax:**
+- Converts logits to probabilities
+- Sum to 1.0
+- Used in output layer for multi-class classification
+
+### Loss Functions
+
+**Categorical Cross-Entropy:**
+- For multi-class classification (>2 classes)
+- Requires one-hot encoded labels
+- Formula: `-Σ y_true * log(y_pred)`
+- Penalizes confident wrong predictions heavily
+
+### Optimizers
+
+**Adam (Adaptive Moment Estimation):**
+- Adaptive learning rate per parameter
+- Combines momentum + RMSprop
+- Generally robust, good default choice
+- Learning rate: 0.001 (default) to 0.0001 (fine-tuning)
+
+---
+
+## Resources
+
+### Documentation & Tutorials
+- [TensorFlow Keras Guide](https://www.tensorflow.org/guide/keras)
+- [Deep Learning for Computer Vision](https://cs231n.github.io/)
+- [EuroSAT Dataset Paper](https://github.com/phelber/EuroSAT)
+- [Transfer Learning Guide](https://www.tensorflow.org/tutorials/images/transfer_learning)
+
+### Pre-trained Models
+- [Keras Applications](https://keras.io/api/applications/)
+- [TensorFlow Hub](https://tfhub.dev/)
+- [Model Zoo](https://modelzoo.co/)
+
+### Philippine EO Resources
+- [PhilSA Space+ Data](https://data.philsa.gov.ph/)
+- [DOST-ASTI Panda](https://panda.stamina4space.upd.edu.ph/)
+- [NAMRIA Geoportal](https://www.namria.gov.ph/geoportal.html)
+
+### Course Materials
+::: {.quick-links}
+[← Back to Session 3](session3.qmd){.quick-link}
+[Day 2 Overview](../index.qmd){.quick-link}
+[Lab Notebook](../notebooks/session4_cnn_classification_STUDENT.ipynb){.quick-link}
+[Setup Guide](../../resources/setup.qmd){.quick-link}
+[FAQ](../../resources/faq.qmd){.quick-link}
+:::
+
+---
+
+## Next Steps
+
+::: {.callout-note}
+## What Comes After Session 4?
+
+**Immediate:**
+- Complete all exercises in the notebook
+- Experiment with different architectures
+- Try your own hyperparameter combinations
+- Apply to Philippine imagery (optional challenge)
+
+**Day 3 Preview:**
+- **U-Net for Semantic Segmentation:** Pixel-level land cover classification
+- **Flood Mapping Case Study:** Central Luzon with Sentinel-1 SAR
+- **Object Detection:** Metro Manila building/settlement detection
+- **Advanced Architectures:** Deeper networks, attention mechanisms
+
+**Preparation for Day 3:**
+- Ensure you understand CNN fundamentals
+- Be comfortable with TensorFlow/Keras syntax
+- Know how to debug training issues
+- Understand when to use different architectures
+
+[Preview Day 3 →](../../day3/index.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+## Assessment & Exercises
+
+### Formative Assessment (In-Notebook)
+- [ ] Successfully configure GPU environment
+- [ ] Load and visualize EuroSAT dataset
+- [ ] Build CNN architecture from scratch
+- [ ] Train model to >90% accuracy
+- [ ] Generate confusion matrix
+- [ ] Implement transfer learning with ResNet50
+- [ ] Compare results from-scratch vs transfer learning
+
+### Challenge Exercises
+
+**Exercise 1: Architecture Design**
+- Modify the CNN to have 4 convolutional blocks instead of 3
+- Add batch normalization after each convolution
+- Compare training speed and final accuracy
+
+**Exercise 2: Hyperparameter Tuning**
+- Test learning rates: [0.001, 0.0001, 0.00001]
+- Test batch sizes: [16, 32, 64]
+- Find optimal combination for fastest convergence
+
+**Exercise 3: Advanced Augmentation**
+- Add RandomBrightness and RandomContrast
+- Implement mixup augmentation
+- Measure impact on validation accuracy
+
+**Exercise 4: Multi-spectral CNN** (Advanced)
+- Load EuroSAT 13-band version
+- Modify input layer to accept all bands
+- Compare RGB vs multi-spectral performance
+
+**Exercise 5: Philippine Application** (Capstone)
+- Apply trained model to Palawan Sentinel-2 patches
+- Compare predictions with Session 2 Random Forest
+- Identify areas where CNN performs better/worse
+
+---
+
+::: {.callout-tip collapse="true"}
+## 💡 Instructor Notes
+
+**Timing Management:**
+- **Part A (Setup & Data):** Can take 35-40 min if students unfamiliar with Colab GPU setup
+- **Part B (Build CNN):** Usually 40-45 min, architecture design is tricky for beginners
+- **Part C (Training):** 30-40 min including watching training live
+- **Part D (Evaluation):** 25-30 min, confusion matrix analysis takes time
+- **Part E (Transfer Learning):** 15-20 min, can be shortened if running behind
+- **Part F (Philippine Context):** 10-15 min discussion
+
+**Common Student Questions:**
+- "Why is my GPU not detected?" → Check runtime type, may need reconnect
+- "Training is very slow on CPU" → Emphasize GPU requirement, show how to enable
+- "What batch size should I use?" → Start with 32, reduce if OOM errors
+- "Why transfer learning?" → Explain data efficiency, show time savings
+- "Can I use PyTorch instead?" → Yes, but maintain focus; TensorFlow for consistency
+
+**Teaching Tips:**
+- **Live demo:** Train a model while explaining (use simple architecture for speed)
+- **Show failures:** Demonstrate overfitting, then fix it
+- **Visualize:** Use TensorBoard or matplotlib for learning curves in real-time
+- **Pause for training:** Use 5-10 min training time for Q&A or breaks
+- **Compare with RF:** Reinforce why we learned both approaches
+
+**Technical Preparation:**
+- Pre-download EuroSAT to Google Drive as backup
+- Test notebook 24 hours before session
+- Have pre-trained models ready in case training fails
+- Prepare troubleshooting guide printout
+- Test on both GPU and CPU for comparison
+
+**Extension Activities for Fast Finishers:**
+- Implement ensemble of multiple CNNs
+- Try different pre-trained models (EfficientNet, MobileNet)
+- Explore GradCAM for visualization
+- Start Day 3 preview material
+:::
+
+---
+
+*This session is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative and delivered in partnership with PhilSA and DOST.*

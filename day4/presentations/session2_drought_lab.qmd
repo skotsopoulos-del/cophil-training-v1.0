@@ -1,0 +1,138 @@
+---
+title: "Session 2: Hands-on – LSTM Drought Monitoring Lab"
+subtitle: "Mindanao Case Study with NDVI, Rainfall, Temperature, and ONI"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: ../../day1/presentations/images/copphil_logo.png
+    footer: "DAY 4 - Session 2 | LSTM Drought Lab | 20-23 October 2025"
+    transition: fade
+    background-transition: fade
+    width: 1920
+    height: 1080
+    margin: 0.1
+---
+
+## Lab Plan & Pacing {.smaller}
+
+- **Duration:** 2.5 hours (150 minutes)
+- **Plan:**
+  - 0–10: Setup & objectives
+  - 10–35: Data generation + EDA
+  - 35–65: Sequence creation (sliding window)
+  - 65–95: Model design (LSTM)
+  - 95–125: Training + evaluation
+  - 125–145: Operationalization discussion
+  - 145–150: Wrap-up & Q&A
+
+---
+
+## Objectives
+
+- Build a multi-variate LSTM for drought forecasting
+- Use NDVI, rainfall, temperature, and ONI
+- Apply temporal validation (no leakage)
+- Evaluate with RMSE/MAE and visualize predictions
+
+---
+
+## Notebooks
+
+- Student: `course_site/day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb`
+- Instructor: `course_site/day4/notebooks/day4_session2_lstm_drought_lab_INSTRUCTOR.ipynb`
+
+---
+
+# Step 0: Setup {background-color="#2C5F77"}
+
+## Environment
+
+- Colab GPU optional (CPU sufficient)
+- Install packages if needed
+
+---
+
+# Step 1: Data Generation & EDA {background-color="#2C5F77"}
+
+## Synthetic Data Strategy
+
+- Self-contained for training speed
+- Emulates seasonal signals + drought anomalies
+
+## EDA Checklist
+
+- Plot NDVI, rainfall, temp, ONI
+- Check missing values & scaling
+
+---
+
+# Step 2: Sequence Creation {background-color="#2C5F77"}
+
+## Sliding Window
+
+- Choose lookback (e.g., 6–12 months)
+- Build X (sequences) and y (targets)
+
+## Temporal Split
+
+- Train on past, test on future (no shuffle)
+
+---
+
+# Step 3: LSTM Model Design {background-color="#2C5F77"}
+
+## Architecture (Example)
+
+- 1–2 LSTM layers (32–64 units)
+- Dropout for regularization
+- Dense output (regression)
+
+## Compilation
+
+- Loss: MSE
+- Optimizer: Adam
+- Metrics: MAE, RMSE
+
+---
+
+# Step 4: Training & Evaluation {background-color="#2C5F77"}
+
+## Training Tips
+
+- Early stopping
+- Batch size tuning
+- Learning rate
+
+## Evaluation
+
+- RMSE/MAE
+- Actual vs predicted plots
+- Error analysis
+
+---
+
+# Step 5: Operationalization {background-color="#2C5F77"}
+
+## Deployment Considerations
+
+- Retraining cadence (quarterly)
+- Monitoring drift
+- Model explainability (Session 3)
+
+## Outputs
+
+- Forecast charts
+- Exportable tables for decision-makers
+
+---
+
+## Wrap-up & Q&A
+
+- Summarize results and lessons learned
+- Prepare questions for Session 3 (emerging AI)

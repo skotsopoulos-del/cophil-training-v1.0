@@ -1,0 +1,610 @@
+---
+title: "Session 3: Object Detection Techniques for Earth Observation"
+subtitle: "From R-CNN to YOLO: Detecting and Localizing Objects in Satellite Imagery"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 3</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 3</span>
+</nav>
+
+::: {.hero}
+# Session 3: Object Detection for Earth Observation
+
+### Detecting and Localizing Objects in Satellite Imagery
+
+Learn modern object detection architectures and their application to EO challenges
+:::
+
+## Session Overview
+
+::: {.session-info}
+**Duration:** 1.5 hours | **Format:** Lecture + Discussion | **Platform:** Presentation & Slides
+:::
+
+---
+
+::: {.callout-tip}
+## Open Slides
+
+[Open revealjs slides →](../presentations/session3_object_detection.qmd)
+:::
+
+This session introduces object detection—the computer vision task of identifying and localizing multiple objects within an image using bounding boxes. You'll explore popular architectures from two-stage detectors (R-CNN family) to single-stage detectors (YOLO, SSD) and emerging transformer-based approaches (DETR), understanding their trade-offs and applications in Earth Observation contexts.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Define** object detection and distinguish it from classification and segmentation
+- **Compare** two-stage and single-stage detection architectures
+- **Explain** key concepts: anchor boxes, non-maximum suppression (NMS), and IoU
+- **Identify** EO applications suited for object detection (ships, vehicles, buildings)
+- **Evaluate** challenges specific to object detection in satellite imagery
+- **Select** appropriate detection architectures for different EO scenarios
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/session3_object_detection.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: What is Object Detection?
+
+### Definition and Output
+
+**Object detection** combines two fundamental computer vision tasks:
+
+1. **Classification:** What objects are present in the image?
+2. **Localization:** Where exactly are they located?
+
+**For each detected object, the model outputs:**
+- **Bounding box coordinates:** (x, y, width, height) or (x_min, y_min, x_max, y_max)
+- **Class label:** Object type (e.g., "ship", "vehicle", "building")
+- **Confidence score:** Detection probability (0 to 1)
+
+### Task Comparison Matrix
+
+| Aspect | Classification | Object Detection | Semantic Segmentation |
+|--------|---------------|------------------|----------------------|
+| **Question** | What's in this image? | Where are objects? | Which pixels are what? |
+| **Output** | Single label | Bounding boxes + labels | Pixel-wise mask |
+| **Granularity** | Image-level | Object-level | Pixel-level |
+| **Location Info** | None | Approximate (boxes) | Precise (pixels) |
+| **Count Objects** | No | Yes ✓ | Possible |
+| **Speed** | Fastest | Moderate | Slowest |
+| **Example Use** | "Contains buildings" | "10 buildings at coords" | "Building footprints mapped" |
+
+::: {.callout-note}
+## When to Use Object Detection vs Segmentation
+
+**Choose Object Detection when:**
+- Need to **count individual instances** (ships, vehicles, aircraft)
+- Bounding box approximation is sufficient
+- Real-time or near-real-time processing required
+- Objects are well-separated and distinct
+
+**Choose Semantic Segmentation when:**
+- Need **precise pixel-level boundaries** (flood extent, land parcels)
+- Accurate area calculations are critical
+- Objects have complex shapes not suited to rectangles
+- Can afford slower processing time
+
+**Philippine Example:** Counting ships in Manila Bay → Detection. Mapping typhoon flood extent → Segmentation.
+:::
+
+---
+
+## Part 2: Detection Architecture Categories
+
+### Architecture Evolution Timeline
+
+Object detection has evolved through three main architectural paradigms:
+
+::: {.feature-grid}
+::: {.feature-card}
+**Two-Stage Detectors**
+
+**Approach:** Separate proposal generation and classification
+
+**Representative:** R-CNN, Fast R-CNN, Faster R-CNN
+
+**Characteristics:**
+- ✓ High accuracy
+- ✓ Good for small objects
+- ✗ Slower inference (~200ms/image)
+
+**Best for:** Precision-critical applications
+:::
+
+::: {.feature-card}
+**Single-Stage Detectors**
+
+**Approach:** Direct prediction in one pass
+
+**Representative:** YOLO, SSD, RetinaNet
+
+**Characteristics:**
+- ✓ Fast inference (45+ FPS)
+- ✓ Real-time capable
+- ✗ Historically lower accuracy (improved in recent versions)
+
+**Best for:** Real-time monitoring
+:::
+
+::: {.feature-card}
+**Transformer-Based**
+
+**Approach:** Set prediction without anchors
+
+**Representative:** DETR, Deformable DETR
+
+**Characteristics:**
+- ✓ No hand-crafted components
+- ✓ Elegant architecture
+- ✗ Requires more training data
+- ✗ Longer convergence time
+
+**Best for:** Research, complex scenes
+:::
+:::
+
+### Faster R-CNN (Two-Stage)
+
+**Pipeline:**
+1. **CNN Backbone** (e.g., ResNet) extracts feature map
+2. **Region Proposal Network (RPN)** generates object proposals
+3. **ROI Pooling** extracts features for each proposal
+4. **Classification + Box Regression** predicts class and refines coordinates
+
+**Key Innovation:** RPN replaces slow Selective Search with learned proposal generation
+
+**Performance:** ~200ms per image on GPU, high accuracy (mAP ~40% on COCO)
+
+### YOLO (You Only Look Once)
+
+**Core Concept:** Reframe detection as regression—predict boxes and classes in single forward pass
+
+**How YOLO Works:**
+1. Divide image into S×S grid (e.g., 7×7 or 13×13)
+2. Each grid cell predicts B bounding boxes and confidence scores
+3. Each cell also predicts C class probabilities
+4. Output tensor: S × S × (B × 5 + C)
+
+**YOLO Evolution:**
+- **YOLOv1-v3:** Original development (2016-2018)
+- **YOLOv5:** PyTorch, very practical (2020)
+- **YOLOv7:** Speed optimizations (2022)
+- **YOLOv8:** Anchor-free, best performance (2023)
+
+**Performance:** 45+ FPS, mAP competitive with two-stage methods
+
+### SSD (Single Shot MultiBox Detector)
+
+**Key Innovation:** Multi-scale feature maps for detecting objects at different scales
+
+**Architecture:**
+- Base network (VGG or ResNet)
+- Multiple convolutional feature layers at different resolutions
+- Each layer predicts objects at specific scales
+- Combines predictions from all layers
+
+**Advantage over YOLO:** Better at detecting small objects due to multi-scale approach
+
+---
+
+## Part 3: Key Concepts
+
+### Anchor Boxes
+
+**Purpose:** Provide reference boxes at various scales and aspect ratios that the model adjusts to fit actual objects
+
+**How They Work:**
+- Predefined boxes placed at each spatial location
+- Model predicts **offsets** (adjustments) to anchors
+- Example: 9 anchors per location (3 scales × 3 aspect ratios)
+
+**Modern Alternatives:**
+- **Anchor-free methods** (FCOS, CenterNet, YOLOv8) predict object centers and dimensions directly
+
+### Non-Maximum Suppression (NMS)
+
+**Problem:** Detectors generate multiple overlapping boxes for the same object
+
+**NMS Algorithm:**
+1. Sort all detection boxes by confidence score
+2. Select box with highest confidence → add to final detections
+3. Remove all boxes with IoU > threshold (e.g., 0.5) with selected box
+4. Repeat until no boxes remain
+
+**NMS Threshold Trade-off:**
+- Lower (0.3): Stricter, may remove valid overlapping objects
+- Higher (0.7): Looser, may keep duplicate detections
+- Typical: 0.4-0.5
+
+### Intersection over Union (IoU)
+
+**Definition:** Measure of overlap between two bounding boxes
+
+$$
+\text{IoU} = \frac{\text{Area of Intersection}}{\text{Area of Union}}
+$$
+
+**Three Critical Uses:**
+1. **Training:** Match predictions to ground truth (IoU > 0.5 = positive)
+2. **NMS:** Remove overlapping duplicate detections
+3. **Evaluation:** Determine if detection is correct
+
+**Interpretation:**
+- IoU = 1.0: Perfect overlap
+- IoU = 0.5: Standard threshold for "correct" detection
+- IoU = 0.0: No overlap
+
+### Mean Average Precision (mAP)
+
+**Primary evaluation metric for object detection**
+
+**Calculation Steps:**
+1. For each class:
+   - Sort detections by confidence
+   - Compute precision-recall curve
+   - Calculate Average Precision (AP) = area under curve
+2. mAP = average AP across all classes
+
+**Common Variants:**
+- **mAP@0.5:** IoU threshold = 0.5 (PASCAL VOC standard)
+- **mAP@0.75:** Stricter threshold
+- **mAP@[0.5:0.95]:** Average over IoU thresholds 0.5 to 0.95 (COCO standard)
+
+---
+
+## Part 4: EO Applications
+
+### Maritime Surveillance: Ship Detection
+
+::: {.callout-note}
+## Philippine Context: Maritime Security
+
+**Use Case:** Monitor Exclusive Economic Zone (EEZ), detect illegal fishing, track vessel movements
+
+**Data Sources:**
+- Sentinel-1 SAR (all-weather, day-night capability)
+- Sentinel-2 optical (higher resolution when cloud-free)
+- High-resolution commercial imagery
+
+**Challenges:**
+- Small objects (ships may be 10-30 pixels in satellite imagery)
+- Open water background with wave patterns (false positives)
+- Scale variation (small fishing boats to large cargo ships)
+- No fixed orientation (ships at various headings)
+
+**Recommended Approach:**
+- **Real-time monitoring:** YOLOv8 for speed
+- **Precision inventory:** Faster R-CNN for accuracy
+- **Multi-scale training** essential for handling size variation
+:::
+
+### Urban Monitoring: Vehicle & Building Detection
+
+**Vehicle Detection:**
+- **Use Case:** Traffic flow analysis, parking occupancy, infrastructure planning
+- **Data:** Very high-resolution satellites (<1m resolution)
+- **Challenges:** Very small objects (5-10 pixels), dense arrangements, occlusion
+- **Approach:** Faster R-CNN + Feature Pyramid Network (FPN)
+
+**Building Detection:**
+- **Use Case:** Asset inventory, informal settlement mapping, damage assessment
+- **Data:** Sentinel-2 (10m) for large structures, VHR for detailed mapping
+- **Challenges:** Various sizes, complex urban backgrounds, shadow effects
+- **Approach:** YOLOv5/v8 or Faster R-CNN depending on speed requirements
+
+### Infrastructure: Oil Tanks & Aircraft
+
+**Oil Tank Detection:**
+- Distinctive circular shape aids detection
+- High reflectance in optical imagery
+- Strategic importance for infrastructure monitoring
+- Regular size distribution
+
+**Aircraft Detection:**
+- Airport activity monitoring
+- Medium-sized objects (20-50 pixels)
+- High contrast against runways
+- Fewer orientation variations than ships
+
+---
+
+## Part 5: EO-Specific Challenges
+
+### Challenge 1: Small Object Detection
+
+**Problem:** Many EO objects are tiny relative to image size
+- Ships: 10-30 pixels in Sentinel-1/2
+- Vehicles: 5-10 pixels in satellite imagery
+
+**Why Difficult:**
+- Feature maps downsample spatial resolution through pooling
+- Small objects lose critical information
+- Insufficient features for reliable classification
+
+**Solutions:**
+- **Multi-scale feature pyramids** (FPN architecture)
+- **Higher-resolution input images**
+- **Tile large images** into smaller, overlapping patches
+- **Multi-scale training** with different input sizes
+- **Specialized small object detection** architectures
+
+### Challenge 2: Scale and Orientation Variation
+
+**Scale Variation:** Same object type at vastly different scales
+- Small fishing boat vs. cargo ship (10× size difference)
+- Compact car vs. truck
+- Single-story building vs. high-rise
+
+**Orientation:** Objects appear at any angle in overhead imagery
+- Ships at various headings
+- No canonical viewpoint
+
+**Solutions:**
+- **Multi-scale anchor boxes** covering expected size ranges
+- **Rotation-invariant features** or data augmentation
+- **Oriented bounding boxes** (OBB) instead of axis-aligned
+- **Multi-scale training** protocol
+
+### Challenge 3: Complex Backgrounds and Clutter
+
+**Problem:** Satellite imagery contains many distractors
+- Urban clutter (shadows, roads, rooftops)
+- Wave patterns mimicking ships
+- Terrain texture variations
+- Seasonal changes in appearance
+
+**Solutions:**
+- **Contextual information** (use surrounding region)
+- **Stronger backbone networks** (ResNet-101, EfficientNet)
+- **Hard negative mining** during training
+- **Domain-specific preprocessing**
+
+### Challenge 4: Limited Labeled Training Data
+
+**Problem:** Annotating EO imagery is expensive and time-consuming
+- Requires domain expertise
+- Large images mean many potential objects
+- Ground truth often unavailable
+
+**Solutions:**
+- **Transfer learning** from COCO or ImageNet pre-trained models
+- **Self-supervised pre-training** on unlabeled EO data
+- **Semi-supervised learning** approaches
+- **Active learning** to prioritize annotation of informative samples
+- **Synthetic data generation** for specific scenarios
+
+### Challenge 5: Atmospheric and Image Quality Issues
+
+**Unique EO Challenges:**
+- Cloud cover and shadows
+- Haze and aerosol scattering
+- Seasonal illumination variations
+- Sensor noise and artifacts
+- Variable imaging conditions
+
+**Solutions:**
+- **Robust preprocessing** (atmospheric correction, normalization)
+- **SAR data** as weather-independent alternative
+- **Multi-temporal fusion** to handle clouds
+- **Domain adaptation** techniques
+- **Augmentation** simulating atmospheric effects
+
+---
+
+## Part 6: Architecture Selection Guide
+
+::: {.callout-tip}
+## Choosing the Right Detection Architecture
+
+### Use Two-Stage Detectors (Faster R-CNN) When:
+- ✓ **Accuracy is paramount** over speed
+- ✓ Detecting **small objects** (ships, vehicles)
+- ✓ Objects have **high scale variation**
+- ✓ Can afford **longer inference time**
+- ✓ Have **good quality labeled training data**
+
+**Example EO Applications:**
+- Detailed infrastructure surveys
+- Small object inventories (ship counting)
+- High-precision damage assessment
+
+### Use Single-Stage Detectors (YOLO, SSD) When:
+- ✓ **Speed is critical** (real-time monitoring)
+- ✓ Objects are **medium-to-large** size
+- ✓ Can accept **slightly lower accuracy**
+- ✓ Need to **process many images** quickly
+- ✓ **Resource-constrained** deployment
+
+**Example EO Applications:**
+- Real-time maritime surveillance
+- Rapid disaster response (initial assessment)
+- Large-area scanning for anomalies
+- Drone video analysis
+
+### Use Transformer-Based (DETR) When:
+- ✓ Have **large training dataset**
+- ✓ Want **elegant architecture** without heuristics
+- ✓ Can afford **longer training time**
+- ✓ Working on **research/cutting-edge** applications
+- ✓ **Complex scene understanding** matters
+
+**Example EO Applications:**
+- Advanced research projects
+- Complex multi-object scene understanding
+- When anchor box tuning is problematic
+:::
+
+### Practical Recommendations for Philippine EO
+
+| Application | Recommended Architecture | Key Reasoning |
+|-------------|-------------------------|---------------|
+| **Ship Detection (EEZ)** | YOLOv8 or Faster R-CNN | Balance speed for monitoring vs accuracy for inventory |
+| **Vehicle Counting** | Faster R-CNN + FPN | Very small objects require precision |
+| **Building Detection** | YOLOv5/v8 | Good balance of speed and accuracy |
+| **Aircraft Monitoring** | YOLO series | Real-time capability, medium-sized objects |
+| **Oil Tank Inventory** | Faster R-CNN | Precision important, distinct circular shape |
+| **Disaster Assessment** | YOLOv8 | Need rapid processing of large affected areas |
+| **Informal Settlement** | YOLOv8 or Faster R-CNN | Speed vs detail trade-off based on use case |
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 3 Summary
+
+**Object Detection Fundamentals:**
+- ✓ Combines classification and localization using bounding boxes
+- ✓ Outputs: box coordinates, class label, confidence score
+- ✓ Distinct from classification (no location) and segmentation (pixel-level)
+- ✓ Primary use: counting and locating individual object instances
+
+**Architecture Categories:**
+- ✓ **Two-stage (Faster R-CNN):** Accurate but slower, excellent for small objects
+- ✓ **Single-stage (YOLO, SSD):** Fast and real-time capable, competitive accuracy
+- ✓ **Transformer-based (DETR):** Elegant without hand-crafted components, needs more data
+
+**Key Concepts:**
+- ✓ **Anchor boxes** provide reference locations and scales
+- ✓ **Non-Maximum Suppression** removes duplicate detections
+- ✓ **IoU** measures box overlap for training, NMS, and evaluation
+- ✓ **mAP** is the standard evaluation metric
+
+**EO-Specific Challenges:**
+- ✓ Small objects, scale variation, complex backgrounds
+- ✓ Atmospheric effects, limited labeled data, class imbalance
+- ✓ Solutions: multi-scale features, transfer learning, data augmentation
+
+**Applications:**
+- ✓ Maritime (ships), urban (vehicles, buildings), infrastructure (airports, oil tanks)
+- ✓ Architecture choice depends on accuracy vs speed requirements
+- ✓ Philippine contexts: EEZ monitoring, disaster response, urban planning
+:::
+
+---
+
+## Preparation for Session 4
+
+::: {.callout-important}
+## Next: Hands-on Object Detection Lab
+
+**Session 4** puts these concepts into practice with real implementation:
+
+**What You'll Do:**
+1. Load Sentinel-2 imagery of Metro Manila urban area
+2. Use pre-trained object detection model (YOLO or SSD from TensorFlow/PyTorch Hub)
+3. Fine-tune on building/informal settlement detection dataset
+4. Evaluate model performance using mAP metric
+5. Visualize detected bounding boxes on test images
+6. Export results for GIS integration
+
+**Case Study: Informal Settlement Growth/Building Detection**
+- **Location:** Metro Manila (Quezon City or Pasig River corridor)
+- **Relevance:** Urban monitoring, disaster vulnerability assessment, housing programs
+- **Data:** Pre-prepared Sentinel-2 patches with bounding box annotations
+- **Approach:** Transfer learning with pre-trained detector (recommended for time constraints)
+
+**Dataset:**
+- ~300-500 annotated Sentinel-2 image patches
+- Bounding boxes delineating buildings or informal settlement clusters
+- Train/validation/test split provided
+
+**Expected Results:**
+- mAP > 0.60 with fine-tuned model
+- Visual detection maps ready for analysis
+
+**To Prepare:**
+- Review transfer learning concepts from Day 2
+- Ensure Google Colab GPU access
+- Familiarize with bounding box annotation formats (COCO or PASCAL VOC)
+- Understand difference between training from scratch vs fine-tuning
+
+[Preview Session 4 →](session4.qmd){.btn .btn-outline-primary}
+:::
+
+---
+
+## Resources
+
+### Foundational Papers
+
+**Two-Stage Detectors:**
+- Girshick et al. (2014) - R-CNN: Rich feature hierarchies for object detection
+- Ren et al. (2015) - Faster R-CNN: Towards real-time object detection with region proposal networks
+
+**Single-Stage Detectors:**
+- Redmon et al. (2016) - You Only Look Once: Unified, real-time object detection
+- Liu et al. (2016) - SSD: Single Shot MultiBox Detector
+- Lin et al. (2017) - Focal Loss for Dense Object Detection (RetinaNet)
+
+**Transformer-Based:**
+- Carion et al. (2020) - End-to-End Object Detection with Transformers (DETR)
+
+### Frameworks and Tools
+
+**Popular Implementations:**
+- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) - Most user-friendly YOLO implementation
+- [Detectron2](https://github.com/facebookresearch/detectron2) - Facebook AI's detection framework
+- [MMDetection](https://github.com/open-mmlab/mmdetection) - Comprehensive detection toolbox
+
+**Pre-trained Models:**
+- [TensorFlow Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md)
+- [PyTorch Hub](https://pytorch.org/hub/) - Pre-trained detection models
+- [Model Zoo](https://modelzoo.co/) - Various architectures and weights
+
+### EO-Specific Resources
+
+**Datasets:**
+- **DOTA:** Large-scale Dataset for Object Detection in Aerial Images
+- **DIOR:** Object Detection in Optical Remote Sensing Images
+- **xView:** One of the largest publicly available datasets of overhead imagery
+
+**Philippine EO Context:**
+- **PhilSA:** Maritime surveillance and disaster monitoring initiatives
+- **NAMRIA:** Infrastructure mapping and geospatial data
+- **DOST-ASTI:** DATOS platform for disaster response mapping
+
+---
+
+## Discussion Questions
+
+Before moving to the hands-on session, consider:
+
+1. **For your specific EO applications**, would you prioritize speed (YOLO) or accuracy (Faster R-CNN)? Why?
+
+2. **How would you handle the challenge** of limited labeled training data for Philippine-specific object types (e.g., jeepneys, tricycles, specific building styles)?
+
+3. **What validation strategy** would you use to ensure your detection model generalizes across different Philippine regions with varying urban densities?
+
+4. **How might you combine** object detection with other techniques (segmentation, classification) for comprehensive disaster damage assessment?
+
+---
+
+::: {.session-nav}
+[← Back to Session 2](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-outline-secondary}
+[Next: Session 4 - Object Detection Lab →](session4.qmd){.btn .btn-primary}
+:::
+
+---
+
+*This session is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

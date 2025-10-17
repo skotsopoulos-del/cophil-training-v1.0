@@ -1,0 +1,109 @@
+---
+title: "Session 4: Synthesis, Q&A, and Pathway to Continued Learning"
+subtitle: "From Techniques to Operational EO AI in the Philippines"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: ../../day1/presentations/images/copphil_logo.png
+    footer: "DAY 4 - Session 4 | Synthesis & Next Steps | 20-23 October 2025"
+    transition: fade
+    background-transition: fade
+    width: 1920
+    height: 1080
+    margin: 0.1
+---
+
+## Session Plan {.smaller}
+
+- **Duration:** 2 hours (120 minutes)
+- **Plan:**
+  - 0–15: 4-day journey recap
+  - 15–45: Technique selection matrix
+  - 45–75: Best practices for deployment
+  - 75–100: CoPhil Campus & community
+  - 100–115: Action plans (3-month roadmap)
+  - 115–120: Closing & feedback
+
+---
+
+## What You Can Now Do
+
+- Build LSTMs for EO time series (Day 4)
+- Train RF, CNNs, U-Net for EO tasks (Days 2–3)
+- Use FM/SSL/XAI to scale and explain models (Day 4)
+- Design operational pipelines and monitoring (Day 4)
+
+---
+
+# Recap of Days 1–4 {background-color="#2C5F77"}
+
+## Highlights
+
+- Day 1: Python, GEE, data preparation
+- Day 2: RF, CNNs (foundations)
+- Day 3: U-Net segmentation, object detection
+- Day 4: LSTM time series, FM/SSL/XAI
+
+---
+
+## Technique Selection Matrix
+
+- Classification (image/patch) → CNN/Transfer Learning
+- Segmentation (pixel-wise) → U-Net / FM fine-tuning
+- Detection (bounding boxes) → YOLO/SSD/DETR
+- Time series → LSTM/Transformers, temporal validation
+- Tabular + EO features → Random Forest/XGBoost
+
+---
+
+# Best Practices {background-color="#2C5F77"}
+
+## Data-Centric AI
+
+- Fix labels, balance classes, represent regions/seasons
+
+## Validation
+
+- Temporal splits, spatial CV, stratified sampling
+
+## Monitoring
+
+- Concept/data drift, retraining schedule, dashboards
+
+## Deployment
+
+- APIs, performance budgets, documentation, XAI
+
+---
+
+# CoPhil Campus & Community {background-color="#2C5F77"}
+
+## Stay Connected
+
+- Digital Space Campus (materials, notebooks, recordings)
+- SkAI-Pinas: DIMER (models), AIPI (no/low-code)
+- PhilSA Space+, NAMRIA Geoportal, PAGASA data
+- Monthly meetups, annual EO AI summit, mentorship
+
+---
+
+## 3-Month Action Plan
+
+- Week 1: Pick a starter project, run baseline
+- Month 1: Proof of concept with validation
+- Month 2: Improve data + model, stakeholder review
+- Month 3: Pilot deployment + monitoring
+
+---
+
+## Closing & Feedback
+
+- Feedback form and office hours
+- Certificates on completion
+- Thank you and see you in the community!

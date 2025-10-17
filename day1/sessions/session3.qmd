@@ -1,0 +1,2479 @@
+---
+title: "Session 3: Hands-on Python for Geospatial Data"
+subtitle: "Master vector and raster data processing with GeoPandas and Rasterio"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 1</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 3</span>
+</nav>
+
+::: {.session-info}
+**Duration:** 2 hours | **Format:** Hands-on Coding | **Platform:** Google Colaboratory
+:::
+
+## Session Overview
+
+This hands-on session teaches you how to work with geospatial data in Python - the foundation of Earth Observation workflows. Python has become the dominant language for EO and ML applications due to its rich ecosystem of libraries, active community, and seamless integration with operational systems. You'll use Google Colab (no installation needed!), learn vector data operations with GeoPandas, and master raster processing with Rasterio. By the end, you'll understand why Python powers Philippine EO platforms like DATOS, SkAI-Pinas, and PRiSM, and you'll be able to prepare satellite data for AI/ML workflows.
+
+---
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Explain** why Python is the dominant language for EO and ML applications
+- **Set up** Google Colaboratory for geospatial analysis
+- **Mount** Google Drive for data access and storage
+- **Install** Python geospatial libraries (GeoPandas, Rasterio)
+- **Read and inspect** vector data (shapefiles, GeoJSON) with GeoPandas
+- **Transform** coordinate reference systems for Philippine UTM zones
+- **Query and filter** geospatial DataFrames spatially and by attributes
+- **Visualize** vector data with static and interactive maps
+- **Open and examine** raster files and their metadata with Rasterio
+- **Read** raster bands into NumPy arrays efficiently
+- **Calculate** spectral indices (NDVI, EVI, NDWI) from Sentinel-2 bands
+- **Create** RGB and false-color composites from multispectral imagery
+- **Clip** rasters to vector boundaries for area-of-interest analysis
+- **Sample** raster values at point locations for validation
+- **Apply** preprocessing workflows for ML-ready data
+- **Combine** vector and raster operations for complete EO workflows
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/03_session3_python_geospatial.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: Why Python for Earth Observation?
+
+### The Python EO Ecosystem
+
+Python has become the **de facto standard** for Earth Observation and Machine Learning. Understanding why helps you leverage the right tools for your projects.
+
+#### Key Advantages
+
+```{mermaid}
+%%| fig-cap: "Python Earth Observation Ecosystem"
+%%| fig-width: 100%
+
+graph TB
+    subgraph DataAccess["DATA ACCESS"]
+        DA1[Earth Engine<br/>Python API]
+        DA2[Sentinel Hub<br/>sentinelhub-py]
+        DA3[NASA CMR<br/>earthaccess]
+        DA4[STAC<br/>pystac-client]
+    end
+
+    subgraph Geospatial["GEOSPATIAL PROCESSING"]
+        GP1[GeoPandas<br/>Vector data]
+        GP2[Rasterio<br/>Raster I/O]
+        GP3[Xarray<br/>N-D arrays]
+        GP4[Rioxarray<br/>Raster+Xarray]
+        GP5[GDAL/OGR<br/>Low-level ops]
+    end
+
+    subgraph DataScience["DATA SCIENCE"]
+        DS1[NumPy<br/>Array operations]
+        DS2[Pandas<br/>Tabular data]
+        DS3[SciPy<br/>Scientific computing]
+        DS4[Dask<br/>Parallel computing]
+    end
+
+    subgraph ML["MACHINE LEARNING"]
+        ML1[Scikit-learn<br/>Traditional ML]
+        ML2[TensorFlow<br/>Deep Learning]
+        ML3[PyTorch<br/>Deep Learning]
+        ML4[TorchGeo<br/>Geospatial DL]
+    end
+
+    subgraph Viz["VISUALIZATION"]
+        VZ1[Matplotlib<br/>Static plots]
+        VZ2[Folium<br/>Interactive maps]
+        VZ3[Plotly<br/>Interactive viz]
+        VZ4[Cartopy<br/>Map projections]
+    end
+
+    DataAccess --> Geospatial
+    Geospatial --> DataScience
+    DataScience --> ML
+    Geospatial --> Viz
+    ML --> Viz
+
+    style DataAccess fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style Geospatial fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style DataScience fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style ML fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Viz fill:#f0e6ff,stroke:#6666cc,stroke-width:2px
+```
+
+**1. Rich Library Ecosystem**
+- **Geospatial Processing:** GeoPandas, Rasterio, Xarray, Rioxarray, GDAL bindings
+- **Data Science:** NumPy, Pandas, SciPy for array operations and analysis
+- **Machine Learning:** Scikit-learn, TensorFlow, PyTorch, TorchGeo
+- **Visualization:** Matplotlib, Seaborn, Folium, Plotly for static and interactive maps
+
+**2. Seamless Integration**
+- **Cloud Platforms:** Google Earth Engine Python API, AWS, Azure
+- **Big Data:** Dask for parallel/distributed computing on large rasters
+- **Workflows:** Easy integration between data access → preprocessing → ML → visualization
+
+**3. Active Community**
+- Extensive documentation and tutorials
+- Stack Overflow, GitHub discussions, forums
+- Open-source contributions and rapid bug fixes
+- Jupyter notebooks for reproducible research
+
+**4. Industry and Research Standard**
+- NASA, ESA, USGS use Python for operational systems
+- Scientific papers increasingly publish Python code
+- Enterprise solutions (Planet Labs, Descartes Labs) built on Python
+
+::: {.philippine-context}
+### Python in Philippine EO Systems
+
+**DATOS (DOST-ASTI)**
+- Python backend for automated processing
+- Integrates Sentinel data access and analysis
+- Generates data products for government use
+
+**PRiSM (PhilRice/IRRI)**
+- Python workflows for SAR-based rice monitoring
+- Combines Sentinel-1, field data, and crop models
+- Operational since 2014
+
+**SkAI-Pinas (PhilSA)**
+- Python-based AI/ML training platform
+- Pre-configured with GeoPandas, Rasterio, TensorFlow
+- Jupyter notebooks for capacity building
+
+**ALaM Project (DOST)**
+- Python for agricultural land monitoring
+- Automated crop classification pipelines
+- Integration with local government data systems
+
+**Key Takeaway:** Learning Python for EO opens doors to operational systems, not just research.
+:::
+
+### Connecting to Session 2: Preprocessing for ML
+
+In **Session 2**, you learned that data preprocessing is critical for ML success:
+
+- **Atmospheric correction:** Sen2Cor converts Sentinel-2 Level-1C → Level-2A
+- **Normalization:** Scaling pixel values for neural networks
+- **Cloud masking:** Removing contaminated observations
+- **Data augmentation:** Rotation, flipping, cropping
+
+**This session provides the Python skills to implement these preprocessing steps** for your own projects. By the end, you'll prepare analysis-ready data for the ML models in Sessions 5-7.
+
+---
+
+## Part 2: Setting Up Google Colaboratory
+
+### What is Google Colab?
+
+**Google Colaboratory (Colab)** is a free cloud-based Jupyter notebook environment that allows you to:
+
+- Write and execute Python code in your browser
+- Access free GPU/TPU for machine learning
+- Collaborate with others in real-time
+- Save notebooks to Google Drive
+- No local installation required!
+
+**Perfect for this training:** Everyone has the same environment, no dependency issues, accessible from anywhere.
+
+::: {.callout-tip}
+## Why Colab for Philippine Trainees?
+
+- **No hardware requirements:** Works on any laptop/computer with a browser
+- **Internet connectivity:** Even with limited bandwidth, code runs on Google's servers
+- **Free GPU access:** Train deep learning models without expensive hardware
+- **Reproducibility:** Notebooks can be shared and rerun by collaborators
+- **COARE compatibility:** Skills transfer to DOST's COARE HPC environment
+:::
+
+### Creating Your First Colab Notebook
+
+::: {.callout-note}
+## Access Colab
+
+**URL:** [https://colab.research.google.com](https://colab.research.google.com)
+
+**Requirements:**
+- Google account
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Stable internet connection
+:::
+
+**Steps:**
+
+1. Go to colab.research.google.com
+2. Sign in with your Google account
+3. Click **File → New Notebook**
+4. Rename: **File → Rename** → "Day1_Session3_Geospatial_Python"
+
+### Understanding the Colab Interface
+
+**Key components:**
+
+- **Code cells:** Where you write Python code (click or press Enter to edit)
+- **Text cells:** Markdown for documentation (Insert → Text cell)
+- **Run button:** ▶ Execute current cell (or press Shift+Enter)
+- **Runtime menu:** Manage execution environment (restart, change runtime type)
+- **Table of Contents:** Navigate long notebooks (left sidebar icon)
+
+**Try it:** Create a code cell and run:
+
+```python
+print("Hello from Google Colab!")
+print("This is the CoPhil EO AI/ML Training")
+
+# Check Python version
+import sys
+print(f"Python version: {sys.version}")
+```
+
+Press **Shift+Enter** to execute. You should see the output below the cell.
+
+### Connecting Google Drive
+
+**Why mount Google Drive?**
+
+- Access data files stored in Drive
+- Save outputs permanently (Colab sessions are temporary!)
+- Share data with collaborators
+- Store trained models and results
+
+**Mount Drive:**
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+**What happens:**
+
+1. Click the link that appears
+2. Select your Google account
+3. Click "Allow" to grant access
+4. Copy the authorization code
+5. Paste into the input field and press Enter
+
+**Verification:**
+
+```python
+import os
+os.listdir('/content/drive/MyDrive')
+```
+
+You should see your Google Drive folders listed!
+
+::: {.callout-tip}
+## Organizing Your Data
+
+Create a folder structure in Google Drive for this training:
+
+```
+MyDrive/
+  CoPhil_Training/
+    data/
+      vector/          # Shapefiles, GeoJSON (Philippine boundaries, AOIs)
+      raster/          # Satellite imagery (Sentinel-2 tiles, NDVI, etc.)
+    outputs/           # Processed results (clipped rasters, classification maps)
+    notebooks/         # Saved Colab notebooks
+```
+
+**Pro Tip:** Use descriptive filenames with dates: `palawan_sentinel2_20240615.tif`
+
+This keeps your training materials organized and makes paths easier to reference in code.
+:::
+
+### Understanding Colab Runtime
+
+**Runtime Types:**
+
+- **CPU:** Default, free, sufficient for most geospatial tasks
+- **GPU:** Free, excellent for deep learning (Sessions 5-7)
+- **TPU:** Free, specialized for TensorFlow models
+
+**Session Limits:**
+
+- **Idle timeout:** 90 minutes of inactivity
+- **Maximum runtime:** 12 hours continuous execution
+- **Disk space:** ~100 GB temporary storage
+
+**Best Practices:**
+
+```python
+# Periodically save important results to Drive
+import shutil
+shutil.copy('important_result.tif', '/content/drive/MyDrive/CoPhil_Training/outputs/')
+```
+
+---
+
+## Part 3: Installing Geospatial Libraries
+
+### Required Libraries
+
+Google Colab comes with many libraries pre-installed (NumPy, Pandas, Matplotlib), but specialized geospatial tools need installation.
+
+**Core libraries we'll use:**
+
+| Library | Purpose | Why Important |
+|---------|---------|---------------|
+| **GeoPandas** | Vector data (shapefiles, GeoJSON, polygons, points) | Spatial operations, CRS transforms, easy plotting |
+| **Rasterio** | Raster data (GeoTIFF, satellite imagery) | Read/write rasters, metadata, windowed reading |
+| **Shapely** | Geometric operations (included with GeoPandas) | Create/manipulate geometries, spatial predicates |
+| **Matplotlib** | Visualization | Publication-quality figures, customizable plots |
+| **NumPy** | Array operations (pre-installed) | Foundation for all numerical computing |
+
+### Installation
+
+Run this cell (may take 1-2 minutes):
+
+```python
+# Install geospatial libraries
+!pip install geopandas rasterio fiona shapely pyproj -q
+
+print("Installation complete! ✓")
+```
+
+The `-q` flag makes installation quiet (less output).
+
+**What's being installed:**
+
+- `geopandas`: Main vector library (also installs Pandas)
+- `rasterio`: Main raster library (also installs GDAL bindings)
+- `fiona`: File I/O for vector formats (dependency of GeoPandas)
+- `shapely`: Geometric operations (dependency of GeoPandas)
+- `pyproj`: Coordinate reference system transformations
+
+**If you see warnings:** Usually safe to ignore. If errors occur, try:
+
+```python
+!pip install --upgrade geopandas rasterio
+```
+
+### Verify Installation
+
+```python
+import geopandas as gpd
+import rasterio
+from rasterio.plot import show
+import matplotlib.pyplot as plt
+import numpy as np
+
+print("✓ GeoPandas version:", gpd.__version__)
+print("✓ Rasterio version:", rasterio.__version__)
+print("✓ NumPy version:", np.__version__)
+print("✓ All libraries imported successfully!")
+```
+
+::: {.callout-warning}
+## Runtime Restart
+
+Occasionally, Colab may ask you to restart the runtime after installing libraries:
+
+**Runtime → Restart runtime**
+
+Then re-run your import cell. This is normal and ensures clean library loading!
+:::
+
+---
+
+## Part 4: Python Basics Refresher
+
+Quick recap of Python essentials for geospatial work:
+
+### Data Types
+
+```python
+# Numbers
+population = 1780148        # Integer
+area_km2 = 42.88           # Float
+
+# Strings
+city = "Manila"
+province = "Metro Manila"
+
+# Lists (ordered collections)
+regions = ["Luzon", "Visayas", "Mindanao"]
+coordinates = [14.5995, 120.9842]  # [latitude, longitude]
+
+# Dictionaries (key-value pairs)
+location_info = {
+    "city": "Quezon City",
+    "population": 2960048,
+    "region": "NCR"
+}
+
+print(f"{city} has population {population:,}")
+print(f"Regions: {regions}")
+print(f"Coordinates: {coordinates}")
+```
+
+### Control Structures
+
+```python
+# If statements
+cloud_cover = 15
+
+if cloud_cover < 10:
+    quality = "Excellent"
+elif cloud_cover < 30:
+    quality = "Good"
+else:
+    quality = "Poor"
+
+print(f"Cloud cover {cloud_cover}%: {quality} for optical imagery")
+
+# For loops
+provinces = ["Palawan", "Zambales", "Quezon"]
+for province in provinces:
+    print(f"Processing {province}...")
+
+# List comprehension (Pythonic way)
+province_lengths = [len(p) for p in provinces]
+print("Province name lengths:", province_lengths)
+```
+
+### Functions
+
+```python
+def calculate_ndvi(nir, red):
+    """
+    Calculate Normalized Difference Vegetation Index.
+
+    Parameters:
+    -----------
+    nir : float or ndarray
+        Near-infrared reflectance values
+    red : float or ndarray
+        Red reflectance values
+
+    Returns:
+    --------
+    ndvi : float or ndarray
+        NDVI values ranging from -1 to +1
+    """
+    # Add small value to avoid division by zero
+    ndvi = (nir - red) / (nir + red + 1e-10)
+    return ndvi
+
+# Example usage
+nir_value = 0.8
+red_value = 0.2
+result = calculate_ndvi(nir_value, red_value)
+print(f"NDVI: {result:.3f}")
+```
+
+**Key Python concepts for geospatial:**
+
+- **Indentation matters:** Use 4 spaces to define code blocks
+- **0-indexed:** First element is `list[0]`, not `list[1]`
+- **Method chaining:** `gdf.filter(...).plot()` applies operations sequentially
+- **Context managers:** `with rasterio.open() as src:` auto-closes files (prevents memory leaks)
+
+---
+
+## Part 5: Vector Data with GeoPandas
+
+### What is Vector Data?
+
+**Vector data represents discrete features as geometric objects:**
+
+- **Points:** Cities, field sites, observation locations, GPS waypoints
+- **Lines (LineStrings):** Roads, rivers, transects, boundaries
+- **Polygons:** Administrative boundaries, land parcels, watersheds, protected areas
+
+```{mermaid}
+%%| fig-cap: "Vector Data Types and GeoPandas GeoDataFrame Structure"
+%%| fig-width: 100%
+
+graph TB
+    subgraph VectorTypes["VECTOR GEOMETRY TYPES"]
+        V1[Point<br/>Single coordinate<br/>Cities, GPS points]
+        V2[LineString<br/>Connected coordinates<br/>Roads, rivers]
+        V3[Polygon<br/>Closed ring<br/>Boundaries, parcels]
+        V4[MultiPoint<br/>Multiple points<br/>Observation sites]
+        V5[MultiLineString<br/>Multiple lines<br/>Road networks]
+        V6[MultiPolygon<br/>Multiple polygons<br/>Archipelago]
+    end
+
+    subgraph GDF["GEOPANDAS GEODATAFRAME"]
+        GDF1[Geometry Column<br/>Shapely objects<br/>Point/Line/Polygon]
+        GDF2[Attribute Columns<br/>Name, Population<br/>Area, Type, etc.]
+        GDF3[CRS Information<br/>EPSG:4326, 32651<br/>Projection metadata]
+        GDF4[Spatial Index<br/>R-tree for fast<br/>spatial queries]
+    end
+
+    subgraph Formats["FILE FORMATS"]
+        F1[Shapefile<br/>.shp + .shx + .dbf + .prj]
+        F2[GeoJSON<br/>.geojson, .json]
+        F3[GeoPackage<br/>.gpkg]
+        F4[KML/KMZ<br/>.kml, .kmz]
+    end
+
+    V1 --> GDF1
+    V2 --> GDF1
+    V3 --> GDF1
+
+    GDF1 --> Operations[Spatial Operations<br/>Buffer, Intersect<br/>Union, Dissolve<br/>Clip, Overlay]
+    GDF2 --> Operations
+    GDF3 --> Operations
+
+    F1 -->|gpd.read_file| GDF
+    F2 -->|gpd.read_file| GDF
+    F3 -->|gpd.read_file| GDF
+
+    style VectorTypes fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style GDF fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Formats fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Operations fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+```
+
+**Common formats:** Shapefile (.shp + .shx + .dbf + .prj), GeoJSON (.geojson, .json), KML (.kml), GeoPackage (.gpkg)
+
+**Shapefile components:**
+- `.shp`: Geometry (points, lines, polygons)
+- `.shx`: Shape index
+- `.dbf`: Attribute table (database)
+- `.prj`: Coordinate reference system
+- `.cpg`: Character encoding (optional)
+
+### Understanding Coordinate Reference Systems (CRS)
+
+Before we load data, it's essential to understand CRS - a critical concept for accurate geospatial analysis.
+
+**What is a CRS?**
+
+A Coordinate Reference System defines how coordinates map to locations on Earth. It consists of:
+
+1. **Coordinate System:** Geographic (lat/lon) or Projected (x/y in meters)
+2. **Datum:** Reference ellipsoid approximating Earth's shape (e.g., WGS84)
+3. **Projection:** Mathematical transformation from 3D Earth to 2D map
+
+**Common CRS for Philippines:**
+
+| EPSG Code | Name | Type | Units | Use Case |
+|-----------|------|------|-------|----------|
+| **4326** | WGS84 | Geographic | Degrees | GPS, web maps, global datasets |
+| **32651** | UTM Zone 51N | Projected | Meters | Northern/Western Philippines |
+| **32652** | UTM Zone 52N | Projected | Meters | Eastern Philippines |
+| **3123** | PRS92 / Philippines Zone III | Projected | Meters | Philippine national standard |
+
+**Why CRS matters:**
+
+- **Distance calculations:** Geographic CRS (degrees) gives wrong distances; use projected CRS (meters)
+- **Area calculations:** Same issue - must use projected CRS for accurate areas
+- **Spatial operations:** CRS must match for intersections, buffers, clipping
+- **Visualization:** Web maps expect EPSG:4326; analysis needs meters
+
+```{mermaid}
+%%| fig-cap: "Coordinate Reference System Transformation Workflow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[GPS Data<br/>EPSG:4326<br/>Lat: 14.5995°<br/>Lon: 120.9842°] --> B{Need distance<br/>or area<br/>calculations?}
+
+    B -->|Yes| C[Transform to<br/>Projected CRS<br/>UTM Zone 51N<br/>EPSG:32651]
+
+    B -->|No, just<br/>visualization| D[Keep Geographic<br/>EPSG:4326<br/>For web maps]
+
+    C --> E[Accurate Calculations<br/>X: 279,000 m<br/>Y: 1,615,000 m]
+
+    E --> F[Spatial Operations<br/>Buffer 1000m<br/>Calculate area in km²<br/>Distance in meters]
+
+    F --> G{Export for<br/>web mapping?}
+
+    G -->|Yes| H[Transform back<br/>to EPSG:4326]
+    G -->|No| I[Save in UTM<br/>For further analysis]
+
+    H --> D
+
+    D --> J[Interactive Map<br/>Folium, Leaflet<br/>Google Maps]
+
+    subgraph PhilippineCRS["PHILIPPINE CRS OPTIONS"]
+        P1[EPSG:4326<br/>WGS84 Geographic<br/>Global standard]
+        P2[EPSG:32651<br/>UTM Zone 51N<br/>Western PH]
+        P3[EPSG:32652<br/>UTM Zone 52N<br/>Eastern PH]
+        P4[EPSG:3123<br/>PRS92 Zone III<br/>National standard]
+    end
+
+    C -.->|Choose| P2
+    C -.->|Choose| P3
+    C -.->|Choose| P4
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style E fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style D fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style PhilippineCRS fill:#f0e6ff,stroke:#6666cc,stroke-width:2px
+```
+
+::: {.callout-important}
+## Philippine UTM Zones
+
+The Philippines spans **two UTM zones:**
+
+- **UTM Zone 51N (EPSG:32651):** Covers western Philippines including Manila, Palawan, western Luzon, western Visayas
+- **UTM Zone 52N (EPSG:32652):** Covers eastern Philippines including Mindanao, eastern Visayas, Bicol
+
+**Rule of thumb:** Manila and most populated areas use Zone 51N. When in doubt, check your AOI's central longitude:
+- Longitude < 120° → Zone 51N
+- Longitude ≥ 120° → Zone 52N
+
+For national-scale analysis, **PRS92 (EPSG:3123)** is the Philippine standard.
+:::
+
+### Loading Philippine Administrative Boundaries
+
+Let's load provincial boundaries of the Philippines:
+
+```python
+# Option 1: From Google Drive (if you uploaded data)
+provinces = gpd.read_file('/content/drive/MyDrive/CoPhil_Training/data/vector/philippines_provinces.shp')
+
+# Option 2: From URL (using sample data from PhilGIS)
+url = "https://raw.githubusercontent.com/altcoder/philippines-json-maps/master/geojson/provinces/hires/BOHOL.json"
+sample_province = gpd.read_file(url)
+
+# For this example, let's use the sample
+gdf = sample_province
+print("Loaded successfully! ✓")
+print(f"Data type: {type(gdf)}")
+```
+
+::: {.philippine-context}
+### Philippine Geospatial Data Sources
+
+**Official Government Sources:**
+- **NAMRIA Geoportal:** Official administrative boundaries, topographic maps
+  - Website: https://www.namria.gov.ph/
+  - Note: May require registration for downloads
+- **PhilGIS:** Open-source Philippine GIS data repository
+  - Roads, rivers, boundaries, land use
+- **PSA (Philippine Statistics Authority):** Statistical boundaries matching census data
+- **LMB (Land Management Bureau):** Cadastral boundaries, land parcel data
+
+**Open Data Platforms:**
+- **GADM:** Global Administrative Areas - free Philippine boundaries
+  - Website: https://gadm.org/download_country.html (select Philippines)
+- **OpenStreetMap (OSM):** Roads, buildings, POIs, waterways
+  - Export via: https://export.hotosm.org/ or Overpass Turbo
+- **Humanitarian Data Exchange (HDX):** Disaster-related boundaries and data
+- **PhilSA Data Portal:** Satellite-derived products and boundaries
+
+**Pro Tip:** Download shapefiles to your Google Drive `data/vector/` folder before the session for offline access.
+:::
+
+### Inspecting a GeoDataFrame
+
+**View first rows:**
+
+```python
+gdf.head()
+```
+
+This shows:
+- Attribute columns (NAME, PROVINCE, REGION, ADM1_EN, etc.)
+- **geometry column:** The shapes themselves (Polygon or MultiPolygon)
+
+**Check coordinate reference system:**
+
+```python
+print("CRS:", gdf.crs)
+print("CRS name:", gdf.crs.name if gdf.crs else "Not defined")
+```
+
+**Get basic information:**
+
+```python
+print(f"Number of features: {len(gdf)}")
+print(f"Geometry type: {gdf.geometry.type[0]}")
+print(f"Bounds (minx, miny, maxx, maxy): {gdf.total_bounds}")
+print(f"\nColumns:\n{list(gdf.columns)}")
+```
+
+**Summary statistics:**
+
+```python
+gdf.info()
+```
+
+**Understand geometry details:**
+
+```python
+# First geometry
+first_geom = gdf.geometry.iloc[0]
+print(f"Geometry type: {first_geom.geom_type}")
+print(f"Is valid: {first_geom.is_valid}")
+print(f"Coordinate count: {len(first_geom.exterior.coords)}")  # For Polygon
+```
+
+### Working with Coordinate Reference Systems
+
+**Check current CRS:**
+
+```python
+print("Original CRS:", gdf.crs)
+```
+
+**Reproject to UTM Zone 51N (for Manila area):**
+
+```python
+# Transform to UTM 51N for accurate distance/area calculations
+gdf_utm = gdf.to_crs('EPSG:32651')
+print("Reprojected CRS:", gdf_utm.crs)
+
+# Compare bounds in degrees vs meters
+print("\nOriginal bounds (degrees):", gdf.total_bounds)
+print("UTM bounds (meters):", gdf_utm.total_bounds)
+```
+
+::: {.callout-tip}
+## When to Use Which CRS?
+
+**Use Geographic CRS (EPSG:4326) for:**
+- Loading data (most sources provide data in WGS84)
+- Web mapping and visualization
+- Storing data for sharing
+
+**Use Projected CRS (UTM or PRS92) for:**
+- Distance calculations: `gdf.geometry.length`
+- Area calculations: `gdf.geometry.area`
+- Buffer operations: `gdf.geometry.buffer(1000)` for 1 km buffer
+- Spatial analysis requiring metric units
+
+**Workflow:**
+1. Load data (usually in EPSG:4326)
+2. Reproject to appropriate UTM zone
+3. Perform spatial operations
+4. Optionally reproject back to EPSG:4326 for web display
+:::
+
+### Calculating Geometric Properties
+
+```python
+# Calculate area in square kilometers
+gdf_utm['area_km2'] = gdf_utm.geometry.area / 1_000_000  # m² to km²
+print(f"Province area: {gdf_utm['area_km2'].iloc[0]:.2f} km²")
+
+# Calculate perimeter
+gdf_utm['perimeter_km'] = gdf_utm.geometry.length / 1000  # m to km
+print(f"Province perimeter: {gdf_utm['perimeter_km'].iloc[0]:.2f} km")
+
+# Calculate centroid (in original CRS)
+gdf['centroid'] = gdf.geometry.centroid
+print(f"Centroid coordinates: {gdf['centroid'].iloc[0]}")
+
+# Display updated GeoDataFrame
+gdf_utm[['area_km2', 'perimeter_km']].head()
+```
+
+### Filtering and Querying
+
+**Filter by attribute:**
+
+```python
+# If using multi-province dataset:
+# luzon_provinces = gdf[gdf['ISLAND'] == 'LUZON']
+
+# Filter by area (if area column exists or was calculated)
+large_provinces = gdf_utm[gdf_utm['area_km2'] > 5000]
+print(f"Provinces larger than 5000 km²: {len(large_provinces)}")
+
+# Example: Select specific province by name
+target = gdf[gdf['NAME'].str.contains('Bohol', case=False)]
+print(f"Selected: {target['NAME'].values}")
+
+# Multiple conditions
+# coastal_large = gdf[(gdf['area_km2'] > 3000) & (gdf['coastal'] == True)]
+```
+
+**Spatial filtering:**
+
+```python
+# Check if geometries are valid
+print(f"Valid geometries: {gdf.geometry.is_valid.all()}")
+
+# If invalid, fix them
+if not gdf.geometry.is_valid.all():
+    gdf['geometry'] = gdf.geometry.buffer(0)  # Common fix for invalid geometries
+
+# Spatial predicate example: find features within a bounding box
+bbox = (123.5, 9.5, 125.0, 11.0)  # (minx, miny, maxx, maxy)
+from shapely.geometry import box
+bbox_geom = box(*bbox)
+within_bbox = gdf[gdf.geometry.within(bbox_geom)]
+print(f"Features within bounding box: {len(within_bbox)}")
+```
+
+### Spatial Operations
+
+**Buffer (create zone around feature):**
+
+```python
+# Create 10 km buffer around province (must use projected CRS!)
+buffer_10km = gdf_utm.geometry.buffer(10000)  # 10,000 meters
+
+# Visualize original and buffer
+fig, ax = plt.subplots(figsize=(10, 8))
+gdf_utm.plot(ax=ax, facecolor='lightblue', edgecolor='black', label='Province')
+buffer_10km.plot(ax=ax, facecolor='none', edgecolor='red', linewidth=2, label='10 km buffer')
+plt.title("Province with 10 km Buffer")
+plt.legend()
+plt.show()
+```
+
+**Dissolve (merge features):**
+
+```python
+# If you have multiple provinces, dissolve by region
+# dissolved = gdf.dissolve(by='REGION', aggfunc='sum')  # Aggregates numeric columns
+```
+
+**Spatial joins:**
+
+```python
+# Example: Join point data to polygons (e.g., field sites to provinces)
+# points_gdf = gpd.read_file('field_sites.shp')
+# joined = gpd.sjoin(points_gdf, gdf, how='left', predicate='within')
+# This adds province attributes to each point based on which polygon contains it
+```
+
+### Visualizing Vector Data
+
+**Simple plot:**
+
+```python
+gdf.plot(figsize=(8, 8), edgecolor='black', facecolor='lightblue')
+plt.title("Bohol Province, Philippines")
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.show()
+```
+
+**Styled plot with colors:**
+
+```python
+# If you have multiple provinces with a classification column:
+# gdf.plot(column='REGION', legend=True, figsize=(10, 10),
+#          cmap='Set3', edgecolor='black', linewidth=0.5)
+# plt.title("Philippines Provinces by Region")
+
+# For single feature, style it:
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf.plot(ax=ax, facecolor='#90EE90', edgecolor='darkgreen', linewidth=2, alpha=0.7)
+gdf['centroid'].plot(ax=ax, color='red', markersize=50, label='Centroid')
+plt.title("Bohol Province with Centroid", fontsize=16)
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+**Interactive map with Folium:**
+
+```python
+# Install folium if not already available
+!pip install folium -q
+
+import folium
+
+# Get centroid for map center
+centroid = gdf.geometry.centroid.iloc[0]
+center = [centroid.y, centroid.x]  # folium expects [lat, lon]
+
+# Create map
+m = folium.Map(location=center, zoom_start=9, tiles='OpenStreetMap')
+
+# Add GeoDataFrame to map
+folium.GeoJson(
+    gdf,
+    name='Province Boundary',
+    style_function=lambda x: {'fillColor': 'lightblue', 'color': 'darkblue', 'weight': 2}
+).add_to(m)
+
+# Add marker at centroid
+folium.Marker(
+    location=center,
+    popup='Province Centroid',
+    icon=folium.Icon(color='red', icon='info-sign')
+).add_to(m)
+
+# Display map
+m
+```
+
+### Creating Area of Interest (AOI) Geometries
+
+```python
+from shapely.geometry import Polygon, Point, LineString
+
+# Create a simple polygon AOI (example coordinates)
+aoi_coords = [
+    (123.5, 9.5),   # Southwest corner
+    (125.0, 9.5),   # Southeast corner
+    (125.0, 11.0),  # Northeast corner
+    (123.5, 11.0),  # Northwest corner
+    (123.5, 9.5)    # Close polygon (first point repeated)
+]
+
+aoi_polygon = Polygon(aoi_coords)
+aoi_gdf = gpd.GeoDataFrame([1], geometry=[aoi_polygon], crs='EPSG:4326')
+aoi_gdf.columns = ['id', 'geometry']
+
+# Visualize AOI with province
+fig, ax = plt.subplots(figsize=(10, 8))
+gdf.plot(ax=ax, facecolor='lightgray', edgecolor='black', label='Province')
+aoi_gdf.plot(ax=ax, facecolor='none', edgecolor='red', linewidth=3, label='AOI')
+plt.title("Province with Area of Interest (Red Box)")
+plt.legend()
+plt.show()
+
+print("AOI created successfully! ✓")
+print(f"AOI bounds: {aoi_gdf.total_bounds}")
+```
+
+**Save AOI for later use:**
+
+```python
+# Save as shapefile
+aoi_gdf.to_file('/content/drive/MyDrive/CoPhil_Training/data/vector/my_aoi.shp')
+
+# Or save as GeoJSON (more portable)
+aoi_gdf.to_file('/content/drive/MyDrive/CoPhil_Training/data/vector/my_aoi.geojson', driver='GeoJSON')
+```
+
+---
+
+## Part 6: Raster Data with Rasterio
+
+### What is Raster Data?
+
+**Raster data is a grid of pixels (cells), each with a value:**
+
+- **Satellite imagery:** Each pixel = reflectance values (0-10000 for Sentinel-2)
+- **DEMs (Digital Elevation Models):** Each pixel = elevation in meters
+- **Temperature maps:** Each pixel = temperature value
+- **Classification maps:** Each pixel = land cover class ID
+
+```{mermaid}
+%%| fig-cap: "Raster Data Processing Workflow with Rasterio"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Sentinel-2 GeoTIFF<br/>Multi-band raster<br/>13 spectral bands] --> B[Open with Rasterio<br/>rasterio.open]
+
+    B --> C[Read Metadata<br/>CRS, Transform<br/>Bounds, Resolution<br/>Band count]
+
+    C --> D[Read Band Data<br/>src.read<br/>NumPy arrays]
+
+    D --> E{Processing<br/>Goal?}
+
+    E -->|Calculate Index| F[NDVI Calculation<br/>NIR - Red / NIR + Red<br/>NumPy operations]
+
+    E -->|Create Composite| G[RGB Composite<br/>Stack bands<br/>Normalize values]
+
+    E -->|Clip to AOI| H[Vector Mask<br/>GeoDataFrame boundary<br/>rasterio.mask.mask]
+
+    E -->|Resample| I[Change Resolution<br/>Upsample/Downsample<br/>Resampling method]
+
+    F --> J[Write Output<br/>rasterio.open 'w'<br/>Copy metadata<br/>Write array]
+
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K[New GeoTIFF<br/>Processed raster<br/>Ready for ML]
+
+    subgraph RasterOps["RASTER OPERATIONS"]
+        R1[Arithmetic<br/>Add, Subtract<br/>Multiply, Divide]
+        R2[Logical<br/>Masks, Filters<br/>Thresholds]
+        R3[Statistics<br/>Mean, Std, Min<br/>Max, Percentiles]
+        R4[Spatial<br/>Clip, Mosaic<br/>Reproject]
+    end
+
+    D --> RasterOps
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style D fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style J fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style K fill:#ccffcc,stroke:#00aa44,stroke-width:2px
+    style RasterOps fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+```
+
+**Common formats:** GeoTIFF (.tif, .tiff), NetCDF (.nc), HDF (.hdf, .h5), JPEG2000 (.jp2)
+
+**Raster structure:**
+
+```
+┌─────┬─────┬─────┬─────┐
+│ 120 │ 130 │ 125 │ 118 │  ← Row 1 (top)
+├─────┼─────┼─────┼─────┤
+│ 115 │ 140 │ 135 │ 122 │  ← Row 2
+├─────┼─────┼─────┼─────┤
+│ 110 │ 125 │ 130 │ 119 │  ← Row 3 (bottom)
+└─────┴─────┴─────┴─────┘
+  ↑     ↑     ↑     ↑
+ Col1  Col2  Col3  Col4
+ (left)           (right)
+```
+
+Each cell has:
+- **Value:** Reflectance, elevation, class, etc.
+- **Location:** Defined by geotransform + CRS
+- **Size:** Spatial resolution (e.g., 10m means 10m × 10m pixel)
+
+**Geotransform:** 6 coefficients that map pixel coordinates to geographic coordinates
+- `[x_origin, x_pixel_size, x_rotation, y_origin, y_rotation, y_pixel_size]`
+- Example: `[400000, 10, 0, 5000000, 0, -10]` → Origin at (400000, 5000000) UTM, 10m pixels
+
+### Understanding Sentinel-2 Bands and Resolution
+
+Before opening rasters, let's review Sentinel-2's band structure (from Session 1):
+
+| Band | Name | Wavelength (nm) | Resolution | Purpose |
+|------|------|-----------------|------------|---------|
+| B1 | Coastal Aerosol | 443 | 60m | Atmospheric correction |
+| B2 | Blue | 490 | **10m** | Water body mapping, aerosol detection |
+| B3 | Green | 560 | **10m** | Vegetation vigor, water clarity |
+| B4 | Red | 665 | **10m** | Chlorophyll absorption |
+| B5 | Red Edge 1 | 705 | 20m | Vegetation classification |
+| B6 | Red Edge 2 | 740 | 20m | Vegetation stress |
+| B7 | Red Edge 3 | 783 | 20m | Vegetation monitoring |
+| B8 | NIR | 842 | **10m** | Biomass, vegetation health |
+| B8A | Narrow NIR | 865 | 20m | Atmospheric correction |
+| B9 | Water Vapor | 945 | 60m | Atmospheric correction |
+| B10 | Cirrus | 1373 | 60m | Cirrus cloud detection |
+| B11 | SWIR 1 | 1610 | 20m | Snow/ice/cloud discrimination |
+| B12 | SWIR 2 | 2190 | 20m | Vegetation moisture |
+
+**Key bands for this session:**
+- **10m bands (B2, B3, B4, B8):** Best for detailed analysis, vegetation indices
+- **20m bands (B5-B7, B8A, B11-B12):** Useful for spectral indices requiring SWIR
+- **60m bands (B1, B9, B10):** Mostly for atmospheric correction, rarely used in analysis
+
+### Opening a Raster File
+
+**Example: Sentinel-2 imagery subset**
+
+```python
+# Sample raster path (adjust to your data location)
+# For demo, we'll show the workflow with a hypothetical path
+raster_path = '/content/drive/MyDrive/CoPhil_Training/data/raster/sentinel2_bohol_subset.tif'
+
+# In real workflow, you'd download Sentinel-2 from Copernicus or GEE
+# For now, let's demonstrate with metadata inspection
+
+# Open raster and view metadata
+try:
+    src = rasterio.open(raster_path)
+
+    # View metadata
+    print("Raster Metadata:")
+    print(f"  Driver: {src.driver}")
+    print(f"  Width (pixels): {src.width}")
+    print(f"  Height (pixels): {src.height}")
+    print(f"  Number of bands: {src.count}")
+    print(f"  Data type: {src.dtypes[0]}")
+    print(f"  CRS: {src.crs}")
+    print(f"  Bounds: {src.bounds}")
+    print(f"  Transform:\n{src.transform}")
+    print(f"  Resolution: {src.res}")  # (x_res, y_res) in CRS units
+    print(f"  Nodata value: {src.nodata}")
+
+    src.close()
+except FileNotFoundError:
+    print("Sample raster file not found. We'll use a demonstration dataset.")
+    print("In practice, you'd download Sentinel-2 data from Copernicus Data Space Ecosystem or Google Earth Engine.")
+```
+
+::: {.callout-note}
+## Understanding Raster Metadata
+
+**For a Sentinel-2 10m band over Bohol (hypothetical):**
+
+- **Width/Height:** 5490 x 5490 pixels → 54.9km x 54.9km area (standard Sentinel-2 tile)
+- **Bands:** 1 (if single band file) or 4 (if RGB+NIR stack)
+- **Data type:** uint16 (unsigned 16-bit integer, range 0-65535)
+  - Sentinel-2 L2A: Reflectance scaled by 10000 (value 5000 = 50% reflectance)
+- **CRS:** EPSG:32651 (UTM Zone 51N for western Philippines)
+- **Resolution:** (10.0, -10.0) meters
+  - Positive x-resolution: columns go west to east
+  - Negative y-resolution: rows go north to south (standard in GeoTIFF)
+- **Nodata:** 0 or 65535 (no valid data, masked areas)
+
+**Transform (Affine):**
+```
+| x_pixel_size  0.0            x_origin |
+| 0.0          -y_pixel_size   y_origin |
+| 0.0           0.0            1.0      |
+```
+Maps pixel coordinates (row, col) to real-world coordinates (x, y).
+:::
+
+**Better pattern: Context manager (auto-closes file):**
+
+```python
+# Context manager ensures file is closed even if error occurs
+with rasterio.open(raster_path) as src:
+    print(f"Opened: {src.name}")
+    print(f"Bands: {src.count}")
+    print(f"CRS: {src.crs}")
+# File automatically closed after 'with' block - prevents memory leaks!
+```
+
+### Reading Raster Data into Arrays
+
+**Read a single band:**
+
+```python
+with rasterio.open(raster_path) as src:
+    # Read band 1 (Rasterio uses 1-indexing for bands!)
+    band1 = src.read(1)
+
+    # Store metadata for later use
+    profile = src.profile
+
+print(f"Band 1 shape: {band1.shape}")  # (height, width)
+print(f"Data type: {band1.dtype}")
+print(f"Min value: {band1.min()}, Max value: {band1.max()}")
+print(f"Mean value: {band1.mean():.2f}")
+
+# Mask nodata values
+if profile['nodata'] is not None:
+    band1_masked = np.ma.masked_equal(band1, profile['nodata'])
+    print(f"Mean (excluding nodata): {band1_masked.mean():.2f}")
+```
+
+**Read multiple bands:**
+
+```python
+with rasterio.open(raster_path) as src:
+    # Read all bands as 3D array (bands, height, width)
+    all_bands = src.read()
+
+    # Or read specific bands
+    blue = src.read(1)   # Band 1: Blue (B2 for Sentinel-2)
+    green = src.read(2)  # Band 2: Green (B3)
+    red = src.read(3)    # Band 3: Red (B4)
+    nir = src.read(4)    # Band 4: NIR (B8)
+
+print(f"All bands shape: {all_bands.shape}")  # (4, height, width)
+print(f"Individual band shape: {blue.shape}")  # (height, width)
+```
+
+**Windowed reading (memory-efficient for large files):**
+
+```python
+from rasterio.windows import Window
+
+with rasterio.open(raster_path) as src:
+    # Read a 1000x1000 pixel window starting at row 500, col 500
+    window = Window(col_off=500, row_off=500, width=1000, height=1000)
+    subset = src.read(1, window=window)
+
+print(f"Subset shape: {subset.shape}")  # (1000, 1000)
+print("Memory saved by reading only needed area!")
+```
+
+### Calculating Spectral Indices
+
+Spectral indices combine bands to highlight specific features. Let's implement the most common indices.
+
+#### NDVI (Normalized Difference Vegetation Index)
+
+**Formula:** NDVI = (NIR - Red) / (NIR + Red)
+
+**For Sentinel-2:** NDVI = (B8 - B4) / (B8 + B4)
+
+```python
+with rasterio.open(raster_path) as src:
+    # Read bands as float to avoid integer overflow
+    red = src.read(3).astype(float)   # B4
+    nir = src.read(4).astype(float)   # B8
+
+    # Store metadata for saving later
+    profile = src.profile.copy()
+
+# Calculate NDVI
+# Add small value to prevent division by zero
+ndvi = (nir - red) / (nir + red + 1e-10)
+
+print(f"NDVI range: {ndvi.min():.3f} to {ndvi.max():.3f}")
+print(f"NDVI mean: {ndvi.mean():.3f}")
+
+# Visualize NDVI
+plt.figure(figsize=(10, 8))
+plt.imshow(ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
+plt.colorbar(label='NDVI', shrink=0.8)
+plt.title("NDVI - Vegetation Index")
+plt.xlabel("Column (pixels)")
+plt.ylabel("Row (pixels)")
+plt.show()
+```
+
+**NDVI interpretation:**
+
+| NDVI Range | Surface Type |
+|------------|--------------|
+| **< 0** | Water, clouds, snow |
+| **0 - 0.2** | Bare soil, rock, sand, urban areas |
+| **0.2 - 0.4** | Sparse vegetation, grassland, shrubland |
+| **0.4 - 0.7** | Moderate vegetation, cropland, forest |
+| **> 0.7** | Dense vegetation, healthy forest, mature crops |
+
+::: {.philippine-context}
+### Philippine Application: Rice Paddy Monitoring
+
+Rice paddies show characteristic NDVI patterns during growing season:
+
+- **Flooding/transplanting:** Low NDVI (0.1-0.3) - water and sparse seedlings
+- **Vegetative growth:** Rising NDVI (0.4-0.6) - canopy development
+- **Peak growth:** High NDVI (0.6-0.8) - maximum biomass
+- **Senescence/harvest:** Declining NDVI (0.3-0.5) - yellowing and harvest
+
+```python
+# Identify rice paddies (moderate-high NDVI during growing season)
+rice_mask = (ndvi > 0.5) & (ndvi < 0.85)
+
+plt.figure(figsize=(10, 8))
+plt.imshow(rice_mask, cmap='Greens')
+plt.title("Potential Rice Paddies (NDVI 0.5-0.85)")
+plt.colorbar()
+plt.show()
+
+rice_pixels = rice_mask.sum()
+total_pixels = rice_mask.size
+pixel_area_m2 = 10 * 10  # 10m resolution
+rice_area_ha = (rice_pixels * pixel_area_m2) / 10000  # m² to hectares
+
+print(f"Potential rice paddies: {rice_pixels:,} pixels ({rice_pixels/total_pixels*100:.1f}%)")
+print(f"Estimated rice area: {rice_area_ha:.1f} hectares")
+```
+
+**Operational use:** PRiSM uses similar SAR-based approaches for nationwide rice monitoring.
+:::
+
+#### EVI (Enhanced Vegetation Index)
+
+**Formula:** EVI = 2.5 × ((NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1))
+
+**Advantages over NDVI:**
+- Less saturated in dense vegetation
+- Better atmospheric correction
+- Reduces soil background effects
+
+```python
+with rasterio.open(raster_path) as src:
+    blue = src.read(1).astype(float)  # B2
+    red = src.read(3).astype(float)   # B4
+    nir = src.read(4).astype(float)   # B8
+
+# Calculate EVI
+evi = 2.5 * ((nir - red) / (nir + 6*red - 7.5*blue + 1))
+
+# Typical EVI range is -1 to 1, but often 0 to 1 for vegetation
+evi = np.clip(evi, -1, 1)  # Clip extreme values
+
+plt.figure(figsize=(10, 8))
+plt.imshow(evi, cmap='YlGn', vmin=0, vmax=1)
+plt.colorbar(label='EVI', shrink=0.8)
+plt.title("EVI - Enhanced Vegetation Index")
+plt.show()
+
+print(f"EVI range: {evi.min():.3f} to {evi.max():.3f}")
+```
+
+#### NDWI (Normalized Difference Water Index)
+
+**Formula:** NDWI = (Green - NIR) / (Green + NIR)
+
+**For Sentinel-2:** NDWI = (B3 - B8) / (B3 + B8)
+
+```python
+with rasterio.open(raster_path) as src:
+    green = src.read(2).astype(float)  # B3
+    nir = src.read(4).astype(float)    # B8
+
+# Calculate NDWI
+ndwi = (green - nir) / (green + nir + 1e-10)
+
+plt.figure(figsize=(10, 8))
+plt.imshow(ndwi, cmap='Blues', vmin=-1, vmax=1)
+plt.colorbar(label='NDWI', shrink=0.8)
+plt.title("NDWI - Water Index")
+plt.show()
+
+# Extract water bodies (NDWI > 0.3 typically indicates water)
+water_mask = ndwi > 0.3
+water_pixels = water_mask.sum()
+water_area_ha = (water_pixels * 100) / 10000  # 10m pixels, convert to hectares
+
+print(f"Water pixels: {water_pixels:,}")
+print(f"Water area: {water_area_ha:.1f} hectares")
+```
+
+**NDWI interpretation:**
+- **> 0.3:** Open water (rivers, lakes, reservoirs)
+- **0.0 - 0.3:** Wet soil, flooded vegetation
+- **< 0:** Dry soil, vegetation
+
+### Creating RGB and False Color Composites
+
+#### True Color Composite (Red, Green, Blue)
+
+```python
+with rasterio.open(raster_path) as src:
+    red = src.read(3)    # B4
+    green = src.read(2)  # B3
+    blue = src.read(1)   # B2
+
+# Stack bands into RGB array (height, width, 3)
+rgb = np.stack([red, green, blue], axis=2)
+
+# Scale to 0-1 range for display
+# Sentinel-2 L2A surface reflectance: 0-10000
+rgb_scaled = rgb.astype(float) / 10000.0
+rgb_scaled = np.clip(rgb_scaled, 0, 1)  # Clip any values outside 0-1
+
+# Enhance contrast using percentile stretch
+from scipy.stats import scoreatpercentile
+def percentile_stretch(image, lower=2, upper=98):
+    """Stretch image values between percentiles for better visualization."""
+    out = np.zeros_like(image, dtype=float)
+    for i in range(image.shape[2]):
+        band = image[:,:,i]
+        low, high = scoreatpercentile(band, (lower, upper))
+        out[:,:,i] = np.clip((band - low) / (high - low), 0, 1)
+    return out
+
+rgb_enhanced = percentile_stretch(rgb_scaled, lower=2, upper=98)
+
+# Display
+fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+
+axes[0].imshow(rgb_scaled)
+axes[0].set_title("True Color (Linear Stretch)")
+axes[0].axis('off')
+
+axes[1].imshow(rgb_enhanced)
+axes[1].set_title("True Color (Enhanced Contrast)")
+axes[1].axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+#### False Color Composite (NIR, Red, Green)
+
+**Purpose:** Highlights vegetation (appears red) and makes it easier to distinguish land cover types.
+
+```python
+with rasterio.open(raster_path) as src:
+    nir = src.read(4)    # B8
+    red = src.read(3)    # B4
+    green = src.read(2)  # B3
+
+# NIR-R-G composite (standard false color)
+false_color = np.stack([nir, red, green], axis=2)
+false_color_scaled = false_color.astype(float) / 10000.0
+false_color_scaled = np.clip(false_color_scaled, 0, 1)
+
+# Apply percentile stretch
+false_color_enhanced = percentile_stretch(false_color_scaled)
+
+plt.figure(figsize=(12, 10))
+plt.imshow(false_color_enhanced)
+plt.title("False Color Composite (NIR-Red-Green)\nVegetation appears red")
+plt.axis('off')
+plt.show()
+```
+
+**False color interpretation:**
+
+| Color | Surface Type |
+|-------|--------------|
+| **Bright red** | Dense, healthy vegetation (high NIR) |
+| **Pink/magenta** | Moderate vegetation |
+| **Dark blue/black** | Water (absorbs NIR) |
+| **Cyan/gray** | Urban areas, bare soil |
+| **Brown/tan** | Sparse vegetation, agricultural fields |
+
+**Why false color is useful:**
+- Vegetation is much more distinguishable (red tones)
+- Water bodies are very dark (low NIR)
+- Urban areas are clearly visible (cyan/gray)
+- Useful for rapid visual interpretation before quantitative analysis
+
+### Saving Processed Rasters
+
+```python
+# Save NDVI as GeoTIFF
+output_path = '/content/drive/MyDrive/CoPhil_Training/outputs/ndvi.tif'
+
+# Update profile for single-band float output
+profile.update(
+    dtype=rasterio.float32,
+    count=1,
+    compress='lzw',  # Compress to save space
+    nodata=-9999     # Define nodata value
+)
+
+with rasterio.open(output_path, 'w', **profile) as dst:
+    dst.write(ndvi.astype(rasterio.float32), 1)
+
+print(f"✓ Saved NDVI to: {output_path}")
+```
+
+---
+
+## Part 7: Combining Vector and Raster Operations
+
+Real-world EO workflows often require integrating vector and raster data. Let's explore common operations.
+
+### Clipping Raster to Vector Boundary
+
+**Use case:** Extract satellite data only within your area of interest (e.g., a province, protected area, or farm boundary).
+
+```python
+from rasterio.mask import mask
+
+# Load AOI polygon (from earlier GeoPandas section)
+# aoi_gdf = gpd.read_file('my_aoi.geojson')
+
+with rasterio.open(raster_path) as src:
+    # Ensure CRS match - CRITICAL for accurate clipping!
+    if aoi_gdf.crs != src.crs:
+        print(f"Reprojecting AOI from {aoi_gdf.crs} to {src.crs}")
+        aoi_gdf = aoi_gdf.to_crs(src.crs)
+
+    # Get geometries in proper format (list of shapely geometries)
+    shapes = aoi_gdf.geometry.values
+
+    # Clip raster to vector boundary
+    out_image, out_transform = mask(src, shapes, crop=True, nodata=src.nodata)
+    out_meta = src.meta.copy()
+
+# Update metadata for clipped raster
+out_meta.update({
+    "driver": "GTiff",
+    "height": out_image.shape[1],
+    "width": out_image.shape[2],
+    "transform": out_transform
+})
+
+print(f"Original raster: {src.width} x {src.height} pixels")
+print(f"Clipped raster: {out_meta['width']} x {out_meta['height']} pixels")
+print(f"Size reduction: {(1 - (out_meta['width']*out_meta['height'])/(src.width*src.height))*100:.1f}%")
+
+# Visualize clipped area
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# Original
+with rasterio.open(raster_path) as src:
+    axes[0].imshow(src.read(3), cmap='gray')
+    axes[0].set_title("Original Raster (Full Extent)")
+
+# Clipped
+axes[1].imshow(out_image[2], cmap='gray')  # Band 3 (Red channel)
+axes[1].set_title("Clipped to AOI")
+
+plt.tight_layout()
+plt.show()
+```
+
+**Save clipped raster:**
+
+```python
+clipped_path = '/content/drive/MyDrive/CoPhil_Training/outputs/clipped_raster.tif'
+
+with rasterio.open(clipped_path, 'w', **out_meta) as dest:
+    dest.write(out_image)
+
+print(f"✓ Saved clipped raster to: {clipped_path}")
+print(f"File size reduced for faster processing and storage!")
+```
+
+::: {.callout-tip}
+## When to Clip Rasters
+
+**Advantages:**
+- **Reduced file size:** Smaller files load and process faster
+- **Focused analysis:** Only relevant area is analyzed
+- **Lower memory use:** Important for large Sentinel-2 tiles (100 km² at 10m = 100 million pixels!)
+- **Easier visualization:** Zoomed to area of interest
+
+**Best practice:** Clip rasters early in your workflow to avoid processing unnecessary pixels.
+:::
+
+### Sampling Raster Values at Point Locations
+
+**Use case:** Extract satellite data at field survey locations for validation or model training.
+
+```python
+# Example: Field survey locations (GPS coordinates)
+survey_points = gpd.GeoDataFrame({
+    'site_id': ['Site_A', 'Site_B', 'Site_C'],
+    'land_cover': ['Forest', 'Cropland', 'Urban'],
+    'geometry': gpd.points_from_xy(
+        [124.0, 124.5, 123.8],  # Longitudes
+        [10.0, 10.3, 9.8]       # Latitudes
+    )
+}, crs='EPSG:4326')
+
+# Sample raster at points
+with rasterio.open(raster_path) as src:
+    # Reproject points if needed
+    if survey_points.crs != src.crs:
+        survey_points = survey_points.to_crs(src.crs)
+
+    # Extract coordinates as (x, y) tuples
+    coords = [(x, y) for x, y in zip(survey_points.geometry.x, survey_points.geometry.y)]
+
+    # Sample all bands at each point
+    sampled_values = [x for x in src.sample(coords)]
+
+# Add sampled values to GeoDataFrame
+survey_points['blue'] = [v[0] for v in sampled_values]
+survey_points['green'] = [v[1] for v in sampled_values]
+survey_points['red'] = [v[2] for v in sampled_values]
+survey_points['nir'] = [v[3] for v in sampled_values]
+
+# Calculate NDVI at points
+survey_points['ndvi'] = (survey_points['nir'] - survey_points['red']) / \
+                        (survey_points['nir'] + survey_points['red'] + 1e-10)
+
+# Convert DN to reflectance (Sentinel-2 scaling)
+for band in ['blue', 'green', 'red', 'nir']:
+    survey_points[f'{band}_refl'] = survey_points[band] / 10000.0
+
+print("\nSampled Values at Survey Points:")
+print(survey_points[['site_id', 'land_cover', 'ndvi']])
+```
+
+**Export results for validation:**
+
+```python
+# Save as CSV for Excel/analysis
+survey_points.drop('geometry', axis=1).to_csv(
+    '/content/drive/MyDrive/CoPhil_Training/outputs/field_validation.csv',
+    index=False
+)
+
+# Or save as shapefile with geometry
+survey_points.to_file(
+    '/content/drive/MyDrive/CoPhil_Training/outputs/field_validation.shp'
+)
+
+print("✓ Validation data exported!")
+```
+
+### Zonal Statistics
+
+**Use case:** Calculate average NDVI (or other metrics) for each administrative unit, farm, or land parcel.
+
+```python
+# Example: Calculate mean NDVI per municipality
+# Requires rasterstats library
+!pip install rasterstats -q
+
+from rasterstats import zonal_stats
+
+# Load municipality boundaries
+municipalities = gpd.read_file('municipalities.shp')
+
+# Calculate zonal statistics
+stats = zonal_stats(
+    municipalities,
+    ndvi,
+    affine=profile['transform'],
+    stats=['min', 'max', 'mean', 'std', 'count'],
+    nodata=-9999
+)
+
+# Add statistics to GeoDataFrame
+municipalities['ndvi_mean'] = [s['mean'] for s in stats]
+municipalities['ndvi_std'] = [s['std'] for s in stats]
+
+# Visualize municipalities by mean NDVI
+fig, ax = plt.subplots(figsize=(12, 10))
+municipalities.plot(
+    column='ndvi_mean',
+    cmap='YlGn',
+    legend=True,
+    ax=ax,
+    edgecolor='black',
+    linewidth=0.5
+)
+plt.title("Mean NDVI by Municipality")
+plt.show()
+
+print(municipalities[['NAME', 'ndvi_mean', 'ndvi_std']].head())
+```
+
+---
+
+## Part 8: Preprocessing Workflows for Machine Learning
+
+Now let's connect everything to prepare **analysis-ready data for ML** (Sessions 5-7).
+
+### Workflow 1: Preparing Training Samples for Classification
+
+**Goal:** Create a dataset of labeled pixels for land cover classification.
+
+```python
+# 1. Load training polygons (digitized by expert)
+training_polygons = gpd.read_file('training_areas.shp')
+# Columns: 'class_id', 'class_name', 'geometry'
+
+# 2. Rasterize polygons to match satellite image grid
+from rasterio.features import rasterize
+
+with rasterio.open(raster_path) as src:
+    # Create empty array
+    training_mask = rasterize(
+        [(geom, value) for geom, value in zip(training_polygons.geometry, training_polygons['class_id'])],
+        out_shape=(src.height, src.width),
+        transform=src.transform,
+        fill=0,  # Background class
+        dtype='uint8'
+    )
+
+# 3. Extract pixel values at training locations
+with rasterio.open(raster_path) as src:
+    bands = src.read()  # (n_bands, height, width)
+
+# Reshape to (n_pixels, n_bands)
+n_bands, height, width = bands.shape
+pixels = bands.reshape(n_bands, -1).T  # (n_pixels, n_bands)
+labels = training_mask.flatten()       # (n_pixels,)
+
+# Filter to labeled pixels only (exclude background class 0)
+labeled_mask = labels > 0
+X = pixels[labeled_mask]  # Features
+y = labels[labeled_mask]  # Labels
+
+print(f"Training samples: {X.shape[0]:,} pixels")
+print(f"Features: {X.shape[1]} bands")
+print(f"Classes: {np.unique(y)}")
+
+# 4. Normalize features (important for ML!)
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+print("\nData ready for ML model training!")
+print("Next steps: Split into train/val/test, train Random Forest or CNN")
+```
+
+### Workflow 2: Creating Multi-Temporal Stack
+
+**Goal:** Combine images from different dates to capture phenology (crop growth cycles, seasonal changes).
+
+```python
+# List of raster paths from different dates
+date_paths = [
+    'sentinel2_2024_01_15.tif',  # Dry season
+    'sentinel2_2024_04_15.tif',  # Transition
+    'sentinel2_2024_07_15.tif',  # Wet season
+    'sentinel2_2024_10_15.tif'   # Harvest
+]
+
+# Read all dates and stack
+stacked_bands = []
+dates = []
+
+for path in date_paths:
+    with rasterio.open(path) as src:
+        stacked_bands.append(src.read())  # (n_bands, height, width)
+        dates.append(path.split('_')[1])  # Extract date from filename
+        profile = src.profile.copy()  # Use last profile as template
+
+# Stack along band dimension: (n_dates * n_bands, height, width)
+multi_temporal = np.concatenate(stacked_bands, axis=0)
+
+print(f"Multi-temporal stack shape: {multi_temporal.shape}")
+print(f"Total bands: {multi_temporal.shape[0]} (4 dates × {stacked_bands[0].shape[0]} bands)")
+print(f"Dates: {dates}")
+
+# Save multi-temporal stack
+profile.update(count=multi_temporal.shape[0])
+
+with rasterio.open('multi_temporal_stack.tif', 'w', **profile) as dst:
+    dst.write(multi_temporal)
+
+print("✓ Multi-temporal stack created!")
+```
+
+**Why multi-temporal?**
+- **Better classification:** Captures seasonal patterns (e.g., crops have distinct phenology)
+- **Change detection:** Compare dates to detect deforestation, urban growth, flooding
+- **Improved accuracy:** Machine learning models benefit from temporal features
+- **PRiSM approach:** Uses SAR time series to detect rice planting/harvesting
+
+### Workflow 3: Resampling and Reprojection
+
+**Goal:** Make rasters from different sensors compatible (same resolution, CRS, extent).
+
+```python
+from rasterio.warp import reproject, Resampling
+
+# Example: Resample 20m Sentinel-2 bands to 10m
+with rasterio.open('sentinel2_B11_20m.tif') as src:
+    # Define target resolution
+    scale_factor = 2  # 20m → 10m
+
+    # Calculate new dimensions
+    new_height = src.height * scale_factor
+    new_width = src.width * scale_factor
+
+    # Update transform
+    new_transform = src.transform * src.transform.scale(
+        (src.width / new_width),
+        (src.height / new_height)
+    )
+
+    # Create output array
+    upsampled = np.empty((src.count, new_height, new_width), dtype=src.dtypes[0])
+
+    # Reproject
+    reproject(
+        source=rasterio.band(src, 1),
+        destination=upsampled[0],
+        src_transform=src.transform,
+        src_crs=src.crs,
+        dst_transform=new_transform,
+        dst_crs=src.crs,
+        resampling=Resampling.bilinear  # or cubic, nearest
+    )
+
+    # Update profile
+    profile = src.profile.copy()
+    profile.update(
+        width=new_width,
+        height=new_height,
+        transform=new_transform
+    )
+
+# Save resampled raster
+with rasterio.open('sentinel2_B11_10m.tif', 'w', **profile) as dst:
+    dst.write(upsampled)
+
+print(f"✓ Resampled from {src.height}x{src.width} to {new_height}x{new_width}")
+```
+
+**Resampling methods:**
+- **Nearest:** Fast, preserves values (good for classification maps)
+- **Bilinear:** Smooth, averages neighbors (good for continuous data)
+- **Cubic:** Smoothest, best for visualization (slower)
+
+### Workflow 4: Data Augmentation for Deep Learning
+
+**Goal:** Artificially increase training data diversity to prevent overfitting.
+
+```python
+# Example: Augment image chips for CNN training
+import cv2
+
+def augment_chip(image, label=None):
+    """
+    Apply random augmentations to image chip.
+
+    Parameters:
+    -----------
+    image : ndarray (H, W, C)
+        Image chip
+    label : ndarray (H, W), optional
+        Corresponding label mask
+
+    Returns:
+    --------
+    augmented_image, augmented_label (if label provided)
+    """
+    # Random rotation (0, 90, 180, 270 degrees)
+    k = np.random.randint(0, 4)
+    image = np.rot90(image, k)
+    if label is not None:
+        label = np.rot90(label, k)
+
+    # Random flip (horizontal and/or vertical)
+    if np.random.rand() > 0.5:
+        image = np.fliplr(image)
+        if label is not None:
+            label = np.fliplr(label)
+    if np.random.rand() > 0.5:
+        image = np.flipud(image)
+        if label is not None:
+            label = np.flipud(label)
+
+    # Random brightness adjustment (simulate atmospheric variations)
+    if np.random.rand() > 0.5:
+        factor = np.random.uniform(0.8, 1.2)
+        image = np.clip(image * factor, 0, 1)
+
+    if label is not None:
+        return image, label
+    return image
+
+# Example usage
+# chip = rgb_chip  # (256, 256, 3)
+# label_chip = land_cover_chip  # (256, 256)
+# aug_chip, aug_label = augment_chip(chip, label_chip)
+
+print("Data augmentation functions ready!")
+print("Use during training to increase dataset size 4-8x without new data collection")
+```
+
+---
+
+## Part 9: Best Practices and Common Pitfalls
+
+### Memory Management for Large Rasters
+
+**Problem:** Sentinel-2 tiles are huge (100km² at 10m = 100 million pixels × 4 bands = 400 MB per tile).
+
+**Solutions:**
+
+**1. Windowed Reading:**
+```python
+# Process in chunks instead of loading entire raster
+with rasterio.open(large_raster) as src:
+    for window in src.block_windows():
+        data = src.read(window=window)
+        # Process chunk
+        result = process_data(data)
+        # Write chunk to output
+```
+
+**2. Downsampling:**
+```python
+# Read at lower resolution for exploratory analysis
+with rasterio.open(raster_path) as src:
+    # Read every 10th pixel
+    data = src.read(out_shape=(src.count, src.height // 10, src.width // 10))
+```
+
+**3. Cloud-Optimized GeoTIFF (COG):**
+```python
+# Convert to COG for efficient cloud access
+!gdal_translate input.tif output_cog.tif -of COG -co COMPRESS=DEFLATE
+```
+
+### Vectorization vs. Loops
+
+**Slow (loop over pixels):**
+```python
+# DON'T DO THIS
+for i in range(height):
+    for j in range(width):
+        ndvi[i, j] = (nir[i, j] - red[i, j]) / (nir[i, j] + red[i, j])
+```
+
+**Fast (vectorized with NumPy):**
+```python
+# DO THIS
+ndvi = (nir - red) / (nir + red + 1e-10)  # Single operation on entire array
+```
+
+**Why?** NumPy operations are implemented in C and optimized for array operations. Can be **100-1000x faster** than Python loops!
+
+### Error Handling for Geospatial Operations
+
+```python
+import warnings
+
+# Suppress common warnings that are usually harmless
+warnings.filterwarnings('ignore', category=RuntimeWarning)
+
+# Safe division with error handling
+def safe_divide(numerator, denominator):
+    """Safely divide arrays, handling division by zero."""
+    with np.errstate(divide='ignore', invalid='ignore'):
+        result = numerator / denominator
+        result[~np.isfinite(result)] = np.nan  # Replace inf/nan with nan
+    return result
+
+# Safe CRS transformation
+def safe_reproject(gdf, target_crs):
+    """Safely reproject GeoDataFrame with error handling."""
+    try:
+        return gdf.to_crs(target_crs)
+    except Exception as e:
+        print(f"Warning: Reprojection failed: {e}")
+        print("Returning original GeoDataFrame")
+        return gdf
+```
+
+### Troubleshooting Common Issues
+
+**Issue 1: CRS Mismatch**
+```python
+# Problem: "CRS mismatch" error when overlaying vector and raster
+# Solution: Check and align CRS
+with rasterio.open(raster_path) as src:
+    raster_crs = src.crs
+
+if gdf.crs != raster_crs:
+    print(f"Reprojecting vector from {gdf.crs} to {raster_crs}")
+    gdf = gdf.to_crs(raster_crs)
+```
+
+**Issue 2: NoData Handling**
+```python
+# Problem: Nodata values (0, -9999) skew statistics
+# Solution: Mask nodata before calculations
+import numpy.ma as ma
+
+# Create masked array
+raster_masked = ma.masked_equal(raster, nodata_value)
+
+# Statistics now ignore nodata
+mean = raster_masked.mean()
+std = raster_masked.std()
+```
+
+**Issue 3: Memory Error**
+```python
+# Problem: MemoryError when loading large raster
+# Solution 1: Use windowed reading (shown above)
+# Solution 2: Work with lower resolution
+# Solution 3: Use Dask for out-of-core computation
+
+import dask.array as da
+import rioxarray
+
+# Open with rioxarray (uses Dask for lazy loading)
+raster_da = rioxarray.open_rasterio(raster_path, chunks='auto')
+ndvi = (raster_da[3] - raster_da[2]) / (raster_da[3] + raster_da[2])
+# Computation happens only when .compute() is called
+```
+
+### Code Organization for Reproducibility
+
+**Good practices:**
+
+1. **Clear imports at top:**
+```python
+# Standard library
+import os
+from pathlib import Path
+
+# Third party
+import numpy as np
+import pandas as pd
+import geopandas as gpd
+import rasterio
+import matplotlib.pyplot as plt
+
+# Project-specific
+from utils import safe_divide, calculate_ndvi
+```
+
+2. **Define paths clearly:**
+```python
+# Define all paths at the beginning
+BASE_DIR = Path('/content/drive/MyDrive/CoPhil_Training')
+DATA_DIR = BASE_DIR / 'data'
+RASTER_DIR = DATA_DIR / 'raster'
+VECTOR_DIR = DATA_DIR / 'vector'
+OUTPUT_DIR = BASE_DIR / 'outputs'
+
+# Create output directory if it doesn't exist
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+```
+
+3. **Use functions:**
+```python
+def preprocess_sentinel2(raster_path, aoi_gdf=None, scale_factor=10000):
+    """
+    Load and preprocess Sentinel-2 imagery.
+
+    Parameters:
+    -----------
+    raster_path : str
+        Path to Sentinel-2 GeoTIFF
+    aoi_gdf : GeoDataFrame, optional
+        Area of interest for clipping
+    scale_factor : int
+        Scaling factor for reflectance conversion
+
+    Returns:
+    --------
+    bands : dict
+        Dictionary of band arrays
+    profile : dict
+        Raster metadata
+    """
+    with rasterio.open(raster_path) as src:
+        if aoi_gdf is not None:
+            # Clip to AOI
+            from rasterio.mask import mask
+            bands_array, transform = mask(src, aoi_gdf.geometry, crop=True)
+        else:
+            bands_array = src.read()
+            transform = src.transform
+
+        profile = src.profile.copy()
+        profile.update(transform=transform)
+
+    # Convert to reflectance
+    bands = {
+        'blue': bands_array[0] / scale_factor,
+        'green': bands_array[1] / scale_factor,
+        'red': bands_array[2] / scale_factor,
+        'nir': bands_array[3] / scale_factor
+    }
+
+    return bands, profile
+
+# Usage
+bands, profile = preprocess_sentinel2(raster_path, aoi_gdf)
+ndvi = calculate_ndvi(bands['nir'], bands['red'])
+```
+
+---
+
+## Part 10: Complete Workflow Example
+
+Let's put everything together in a realistic scenario.
+
+### Scenario: Agricultural Monitoring for Palawan Rice Area
+
+**Goal:** Map rice cultivation areas in Palawan using Sentinel-2 and prepare training data for ML classification.
+
+```python
+import numpy as np
+import geopandas as gpd
+import rasterio
+from rasterio.mask import mask
+from rasterio.plot import show
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+# ============================================================
+# 1. SETUP
+# ============================================================
+
+# Define paths
+BASE_DIR = Path('/content/drive/MyDrive/CoPhil_Training')
+palawan_boundary = BASE_DIR / 'data/vector/palawan_province.shp'
+sentinel2_tile = BASE_DIR / 'data/raster/sentinel2_palawan_20240615.tif'
+training_areas = BASE_DIR / 'data/vector/rice_training_polygons.shp'
+output_dir = BASE_DIR / 'outputs/palawan_rice_analysis'
+output_dir.mkdir(parents=True, exist_ok=True)
+
+print("Step 1: Setup complete ✓")
+
+# ============================================================
+# 2. LOAD AND INSPECT DATA
+# ============================================================
+
+# Load Palawan boundary
+palawan = gpd.read_file(palawan_boundary)
+print(f"Loaded Palawan boundary: {palawan.crs}")
+
+# Load training areas
+training = gpd.read_file(training_areas)
+print(f"Loaded training areas: {len(training)} polygons")
+print(f"Classes: {training['class_name'].unique()}")
+
+# Inspect Sentinel-2 metadata
+with rasterio.open(sentinel2_tile) as src:
+    print(f"\nSentinel-2 metadata:")
+    print(f"  Resolution: {src.res[0]}m")
+    print(f"  CRS: {src.crs}")
+    print(f"  Bounds: {src.bounds}")
+    print(f"  Bands: {src.count}")
+
+print("\nStep 2: Data loaded ✓")
+
+# ============================================================
+# 3. CLIP RASTER TO PALAWAN
+# ============================================================
+
+with rasterio.open(sentinel2_tile) as src:
+    # Ensure CRS match
+    if palawan.crs != src.crs:
+        palawan = palawan.to_crs(src.crs)
+
+    # Clip to Palawan boundary
+    clipped, transform = mask(src, palawan.geometry, crop=True)
+
+    # Update metadata
+    out_meta = src.meta.copy()
+    out_meta.update({
+        "height": clipped.shape[1],
+        "width": clipped.shape[2],
+        "transform": transform
+    })
+
+# Save clipped raster
+clipped_path = output_dir / 'palawan_sentinel2_clipped.tif'
+with rasterio.open(clipped_path, 'w', **out_meta) as dst:
+    dst.write(clipped)
+
+print(f"Step 3: Clipped raster to Palawan ✓")
+print(f"Size: {clipped.shape[2]} x {clipped.shape[1]} pixels")
+
+# ============================================================
+# 4. CALCULATE SPECTRAL INDICES
+# ============================================================
+
+# Extract bands
+blue = clipped[0].astype(float)
+green = clipped[1].astype(float)
+red = clipped[2].astype(float)
+nir = clipped[3].astype(float)
+
+# Calculate indices
+def calc_ndvi(nir, red):
+    return (nir - red) / (nir + red + 1e-10)
+
+def calc_evi(nir, red, blue):
+    return 2.5 * ((nir - red) / (nir + 6*red - 7.5*blue + 1))
+
+def calc_ndwi(green, nir):
+    return (green - nir) / (green + nir + 1e-10)
+
+ndvi = calc_ndvi(nir, red)
+evi = calc_evi(nir, red, blue)
+ndwi = calc_ndwi(green, nir)
+
+print("Step 4: Calculated spectral indices ✓")
+
+# Save indices
+for name, data in [('ndvi', ndvi), ('evi', evi), ('ndwi', ndwi)]:
+    index_meta = out_meta.copy()
+    index_meta.update(dtype=rasterio.float32, count=1, nodata=-9999)
+
+    index_path = output_dir / f'palawan_{name}.tif'
+    with rasterio.open(index_path, 'w', **index_meta) as dst:
+        dst.write(data.astype(rasterio.float32), 1)
+
+# ============================================================
+# 5. IDENTIFY POTENTIAL RICE AREAS
+# ============================================================
+
+# Rice detection criteria (during growing season):
+# - Moderate to high NDVI (0.4-0.8) - active vegetation
+# - Slightly negative NDWI (-0.2 to 0.1) - moist soil but not flooded
+# - EVI in moderate range (0.3-0.6)
+
+rice_mask = (
+    (ndvi > 0.4) & (ndvi < 0.8) &
+    (ndwi > -0.2) & (ndwi < 0.1) &
+    (evi > 0.3) & (evi < 0.6)
+)
+
+# Calculate area
+rice_pixels = rice_mask.sum()
+pixel_area_m2 = 10 * 10  # 10m resolution
+rice_area_ha = (rice_pixels * pixel_area_m2) / 10000
+
+print("\nStep 5: Rice area detection ✓")
+print(f"Potential rice area: {rice_area_ha:.1f} hectares")
+print(f"Percentage of Palawan: {(rice_pixels / rice_mask.size) * 100:.2f}%")
+
+# Save rice mask
+rice_meta = out_meta.copy()
+rice_meta.update(dtype='uint8', count=1, nodata=255)
+
+rice_mask_path = output_dir / 'palawan_rice_mask.tif'
+with rasterio.open(rice_mask_path, 'w', **rice_meta) as dst:
+    dst.write(rice_mask.astype('uint8'), 1)
+
+# ============================================================
+# 6. VISUALIZE RESULTS
+# ============================================================
+
+fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+
+# True color composite
+rgb = np.stack([red, green, blue], axis=2) / 10000
+rgb_clip = np.clip(rgb, 0, 0.3) / 0.3
+axes[0, 0].imshow(rgb_clip)
+axes[0, 0].set_title("True Color Composite")
+axes[0, 0].axis('off')
+
+# NDVI
+im1 = axes[0, 1].imshow(ndvi, cmap='RdYlGn', vmin=0, vmax=1)
+axes[0, 1].set_title("NDVI")
+axes[0, 1].axis('off')
+plt.colorbar(im1, ax=axes[0, 1], shrink=0.8)
+
+# EVI
+im2 = axes[0, 2].imshow(evi, cmap='YlGn', vmin=0, vmax=1)
+axes[0, 2].set_title("EVI")
+axes[0, 2].axis('off')
+plt.colorbar(im2, ax=axes[0, 2], shrink=0.8)
+
+# NDWI
+im3 = axes[1, 0].imshow(ndwi, cmap='Blues', vmin=-1, vmax=1)
+axes[1, 0].set_title("NDWI")
+axes[1, 0].axis('off')
+plt.colorbar(im3, ax=axes[1, 0], shrink=0.8)
+
+# Rice mask
+axes[1, 1].imshow(rice_mask, cmap='Greens')
+axes[1, 1].set_title(f"Potential Rice Areas\n{rice_area_ha:.1f} hectares")
+axes[1, 1].axis('off')
+
+# Rice mask over true color
+axes[1, 2].imshow(rgb_clip)
+axes[1, 2].imshow(rice_mask, cmap='Greens', alpha=0.5)
+axes[1, 2].set_title("Rice Areas (overlay)")
+axes[1, 2].axis('off')
+
+plt.suptitle("Palawan Rice Monitoring Analysis", fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.savefig(output_dir / 'palawan_analysis_results.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+# ============================================================
+# 7. PREPARE ML TRAINING DATA
+# ============================================================
+
+# Rasterize training polygons
+from rasterio.features import rasterize
+
+training_reprojected = training.to_crs(out_meta['crs'])
+
+training_raster = rasterize(
+    [(geom, value) for geom, value in zip(training_reprojected.geometry, training_reprojected['class_id'])],
+    out_shape=(out_meta['height'], out_meta['width']),
+    transform=out_meta['transform'],
+    fill=0,
+    dtype='uint8'
+)
+
+# Extract features and labels
+features = np.stack([blue, green, red, nir, ndvi, evi, ndwi], axis=0)  # (7, H, W)
+features_2d = features.reshape(features.shape[0], -1).T  # (n_pixels, 7)
+labels = training_raster.flatten()
+
+# Filter to labeled pixels
+labeled_idx = labels > 0
+X = features_2d[labeled_idx]
+y = labels[labeled_idx]
+
+print("\nStep 7: ML training data prepared ✓")
+print(f"Features shape: {X.shape}")
+print(f"Labels shape: {y.shape}")
+print(f"Feature names: blue, green, red, nir, ndvi, evi, ndwi")
+print(f"Classes: {np.unique(y)}")
+
+# Save training data
+np.savez(
+    output_dir / 'training_data.npz',
+    features=X,
+    labels=y,
+    feature_names=['blue', 'green', 'red', 'nir', 'ndvi', 'evi', 'ndwi']
+)
+
+print("\n" + "="*60)
+print("ANALYSIS COMPLETE!")
+print("="*60)
+print(f"\nOutputs saved to: {output_dir}")
+print("\nFiles created:")
+print("  - palawan_sentinel2_clipped.tif")
+print("  - palawan_ndvi.tif, palawan_evi.tif, palawan_ndwi.tif")
+print("  - palawan_rice_mask.tif")
+print("  - palawan_analysis_results.png")
+print("  - training_data.npz (ready for ML in Sessions 5-7!)")
+print("\nNext: Use training_data.npz to train Random Forest or CNN classifier")
+```
+
+**What we accomplished:**
+
+1. ✓ Loaded vector and raster data
+2. ✓ Clipped raster to area of interest
+3. ✓ Calculated multiple spectral indices
+4. ✓ Applied rule-based classification (rice detection)
+5. ✓ Created publication-quality visualizations
+6. ✓ Prepared training data for machine learning
+7. ✓ Saved all outputs for future use
+
+This workflow demonstrates a complete EO analysis pipeline from raw data to ML-ready datasets!
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 3 Summary
+
+**Google Colab:**
+- Cloud-based Python environment, no installation needed
+- Mount Google Drive for data persistence: `drive.mount('/content/drive')`
+- Install geospatial libraries: `!pip install geopandas rasterio`
+- Free GPU access for ML (Sessions 5-7)
+
+**GeoPandas (Vector Data):**
+- Read shapefiles/GeoJSON: `gpd.read_file(path)`
+- Filter by attributes: `gdf[gdf['column'] == value]`
+- Visualize: `gdf.plot(column='field', cmap='Set3')`
+- CRS operations: `gdf.crs`, `gdf.to_crs('EPSG:32651')`
+- **Philippine CRS:** UTM Zone 51N (EPSG:32651) for western Philippines, UTM Zone 52N (EPSG:32652) for eastern Philippines
+
+**Rasterio (Raster Data):**
+- Open rasters: `with rasterio.open(path) as src:`
+- Read bands: `src.read(band_number)` (1-indexed!)
+- Arrays are NumPy: all array operations work (vectorized!)
+- Calculate indices: `ndvi = (nir - red) / (nir + red + 1e-10)`
+- **Sentinel-2:** 13 bands at 10m/20m/60m, values 0-10000 (divide by 10000 for reflectance)
+
+**Combining Vector + Raster:**
+- Clip rasters: `rasterio.mask.mask(src, shapes, crop=True)`
+- Sample at points: `src.sample(coordinates)`
+- Zonal statistics: `rasterstats.zonal_stats(polygons, raster)`
+- **Always match CRS** before spatial operations!
+
+**Preprocessing for ML:**
+- Normalize: `StandardScaler().fit_transform(features)`
+- Augment: Rotation, flipping, brightness adjustment
+- Multi-temporal: Stack dates for phenology
+- Resample: Match resolutions from different sensors
+
+**Python for EO Advantage:**
+- Powers operational systems (DATOS, PRiSM, SkAI-Pinas)
+- Seamless workflow: data access → preprocessing → ML → visualization
+- Rich ecosystem: GeoPandas, Rasterio, Scikit-learn, TensorFlow
+- **You now have the foundation to build your own EO applications!**
+
+**Next:** Session 4 will leverage Google Earth Engine to access petabytes of Sentinel data without downloading!
+:::
+
+---
+
+## Practice Exercises
+
+::: {.callout-tip}
+## Try These Challenges
+
+**Exercise 1: Load Your Own Boundary**
+
+Download a shapefile of your province or municipality from NAMRIA Geoportal or PhilGIS. Load it with GeoPandas, reproject to UTM 51N, calculate the area in km², and create a 5 km buffer zone.
+
+```python
+# Your code here
+my_boundary = gpd.read_file('my_province.shp')
+# ...
+```
+
+**Exercise 2: Calculate Multiple Indices**
+
+Using the provided Sentinel-2 tile, calculate NDVI, EVI, NDWI, and SAVI. Create a 2×2 subplot visualization comparing all indices.
+
+**Exercise 3: Multi-temporal NDVI Change**
+
+If you have two Sentinel-2 images (dry season, wet season), calculate NDVI for both and create a change map showing NDVI difference. Interpret areas of gain (positive change) vs. loss (negative change).
+
+```python
+# Hint:
+ndvi_change = ndvi_wet - ndvi_dry
+plt.imshow(ndvi_change, cmap='RdBu', vmin=-0.5, vmax=0.5)
+```
+
+**Exercise 4: Training Sample Creation**
+
+Create a small training dataset by:
+1. Digitizing 3-5 polygons for each land cover class (use `gdf = gpd.GeoDataFrame()` manually)
+2. Rasterizing the polygons to match Sentinel-2 grid
+3. Extracting spectral values at labeled pixels
+4. Saving as `training_samples.csv` for ML
+
+**Exercise 5: Coastal Water Body Detection**
+
+For a coastal area, use NDWI to detect water bodies. Apply a threshold (e.g., NDWI > 0.3), vectorize the result using `rasterio.features.shapes()`, and save as a shapefile.
+
+**Bonus: Build Your Own Function Library**
+
+Create a Python module `eo_utils.py` with reusable functions:
+- `calculate_indices(bands_dict)` → returns dict of indices
+- `clip_raster_to_aoi(raster_path, aoi_gdf)` → returns clipped array
+- `visualize_results(rgb, ndvi, mask)` → creates 3-panel figure
+- `prepare_ml_data(raster_path, training_gdf)` → returns X, y arrays
+
+Save to your Drive and import in future notebooks!
+:::
+
+---
+
+## Further Reading
+
+### GeoPandas
+- [Official Documentation](https://geopandas.org/)
+- [GeoPandas Tutorial (DataCamp)](https://www.datacamp.com/tutorial/geopandas-tutorial-geospatial-analysis)
+- [GeoPandas Examples Gallery](https://geopandas.org/en/stable/gallery/index.html)
+- [Working with Projections](https://geopandas.org/en/stable/docs/user_guide/projections.html)
+
+### Rasterio
+- [Official Documentation](https://rasterio.readthedocs.io/)
+- [Rasterio Quickstart](https://rasterio.readthedocs.io/en/stable/quickstart.html)
+- [Python Raster Tutorial (WUR)](https://geoscripting-wur.github.io/PythonRaster/)
+- [Windowed Reading and Writing](https://rasterio.readthedocs.io/en/stable/topics/windowed-rw.html)
+
+### Combined Workflows
+- [Carpentries Geospatial Python](https://carpentries-incubator.github.io/geospatial-python/)
+- [Cropping Rasters with Vector Boundaries](https://rasterio.readthedocs.io/en/stable/topics/masking-by-shapefile.html)
+- [Python for Geospatial Analysis (O'Reilly)](https://www.oreilly.com/library/view/python-for-geospatial/9781098104788/)
+
+### Philippine Context
+- [NAMRIA Geoportal](https://www.namria.gov.ph/)
+- [PhilGIS Resources](https://philgis.org/)
+- [DATOS User Guide](https://datos.dost.gov.ph/)  (if publicly available)
+- [PRiSM Technical Documentation](https://prism.philrice.gov.ph/)
+
+### Advanced Topics
+- [Xarray for Multi-dimensional Arrays](https://docs.xarray.dev/)
+- [Dask for Parallel Computing](https://docs.dask.org/)
+- [Cloud-Optimized GeoTIFF Guide](https://www.cogeo.org/)
+- [TorchGeo for Deep Learning](https://torchgeo.readthedocs.io/)
+
+---
+
+## Jupyter Notebook
+
+::: {.callout-note}
+## Access the Interactive Notebook
+
+A complete Jupyter notebook with all code examples from this session is available:
+
+**[Open Notebook 1: Python Geospatial Data →](../notebooks/notebook1.qmd)**
+
+This notebook includes:
+- All code examples ready to run in Google Colab
+- Additional exercises with progressive difficulty
+- Sample datasets (downloadable links)
+- Detailed comments and explanations
+- Solutions to practice exercises (hidden cells)
+- Links to relevant documentation
+
+**To use the notebook:**
+1. Click the link above
+2. Click "Open in Colab" button
+3. Save a copy to your Drive: File → Save a copy in Drive
+4. Mount your Drive and start coding!
+:::
+
+---

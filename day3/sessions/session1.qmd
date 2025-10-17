@@ -1,0 +1,990 @@
+---
+title: "Session 1: Semantic Segmentation with U-Net for Earth Observation"
+subtitle: "Advanced Deep Learning for Pixel-Level Analysis"
+date: last-modified
+author: "CoPhil Advanced Training Program"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 3</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 1</span>
+</nav>
+
+::: {.hero}
+# Session 1: Semantic Segmentation with U-Net
+
+### Advanced Deep Learning for Pixel-Level Analysis
+
+Master the U-Net architecture for precise Earth Observation segmentation tasks
+:::
+
+## Session Overview
+
+::: {.session-info}
+**Duration:** 1.5 hours | **Format:** Lecture + Discussion | **Platform:** Presentation & Slides
+:::
+
+---
+
+This session introduces semantic segmentation as a pixel-wise classification task and explores the U-Net architecture—one of the most successful deep learning models for Earth Observation applications. You'll understand how U-Net's encoder-decoder structure with skip connections enables precise boundary delineation for tasks like flood mapping, land cover classification, and infrastructure extraction.
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Define** semantic segmentation and distinguish it from classification and object detection
+- **Explain** the U-Net architecture including encoder, decoder, and skip connections
+- **Describe** how loss functions (Cross-Entropy, Dice, IoU) handle class imbalance
+- **Identify** Earth Observation applications suited for semantic segmentation
+- **Evaluate** when to use different loss functions for segmentation tasks
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/session1_unet_segmentation.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: Concept of Semantic Segmentation
+
+### What is Semantic Segmentation?
+
+**Semantic segmentation** is the task of classifying every pixel in an image into a category, producing a detailed, pixel-wise map of the image content. Unlike **image classification** (which assigns one label per image) or **object detection** (which locates objects with bounding boxes), segmentation provides a fine-grained understanding of the scene.
+
+In segmentation, the output is an image where every pixel is labeled (e.g., water, building, forest, road), thus outlining the exact shapes and areas of these features. This level of detail is especially useful in geospatial contexts for creating thematic maps and analyzing spatial patterns.
+
+**Example Comparison:**
+- **Classification:** "Is this satellite patch urban or agricultural?" → Single label for entire image
+- **Detection:** "Where are the buildings?" → Bounding boxes around structures  
+- **Segmentation:** "Label every pixel as building, road, vegetation, or water" → Complete pixel-level map
+
+This pixel-level approach is crucial for Earth Observation tasks like mapping floods, land cover, or burn scars, where knowing the exact extent and shape of features matters. Unlike classification that might tell us a patch is "urban," segmentation highlights exactly which pixels are buildings, roads, vegetation, water, etc., giving a much richer understanding of the scene.
+
+```{mermaid}
+%%| fig-cap: "Computer Vision Task Hierarchy"
+%%| fig-width: 100%
+
+graph TB
+    A[Computer Vision Tasks] --> B[Classification]
+    A --> C[Object Detection]
+    A --> D[Semantic Segmentation]
+    
+    B --> B1["What's in this image?<br/>Output: Single label<br/>Granularity: Image-level"]
+    C --> C1["Where are the objects?<br/>Output: Bounding boxes<br/>Granularity: Object-level"]
+    D --> D1["Which pixels belong to what?<br/>Output: Pixel masks<br/>Granularity: Pixel-level"]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style D fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style D1 fill:#00aa44,stroke:#006622,stroke-width:1px,color:#fff
+```
+
+### Understanding the Difference
+
+In semantic segmentation, the output is an image where every pixel is labeled (e.g., water, building, forest), allowing **precise delineation** of different land cover types. This level of detail is especially useful in geospatial contexts for creating thematic maps and analyzing spatial patterns.
+
+For example, in a satellite image we might label each pixel as water, building, forest, road, etc., thus outlining the exact shapes and areas of these features. Whereas an image classification might tell us an entire satellite patch is "urban" or "agriculture," semantic segmentation can highlight **exactly which pixels** are buildings, roads, vegetation, water, etc., giving a much richer understanding of the scene. 
+
+We contrast these tasks visually and conceptually so the distinction is clear:
+
+- **Image Classification** answers: "Is this satellite patch urban or agricultural?" with a single label for the entire image
+- **Object Detection** answers: "Where are the buildings?" by drawing bounding boxes around each structure
+- **Semantic Segmentation** answers: "Label every pixel as water, forest, urban, or agriculture" producing a complete pixel-level classification map
+
+This pixel-level approach is crucial for Earth Observation tasks like mapping floods, land cover, or burn scars, where knowing the **exact extent and shape** of features matters for decision-making, planning, and response.
+
+::: {.callout-tip}
+## Why Semantic Segmentation for EO?
+
+Semantic segmentation offers several critical advantages for Earth Observation applications that make it indispensable for many geospatial analysis tasks:
+
+**Precise Delineation:**
+Segmentation provides exact boundaries of features—the precise edge of flood extent, the exact boundary where forest stops and urban area begins, the specific outline of agricultural fields. This pixel-level precision is far superior to bounding boxes or image-level labels.
+
+**Quantitative Analysis:**
+With pixel-wise classification, we can calculate accurate areas down to the precision of individual pixels. For flood mapping, this means knowing exactly how many square kilometers are inundated. For forest monitoring, it means precise measurements of deforestation extent.
+
+**Change Detection:**
+Pixel-level comparison over time enables detailed change detection. We can identify exactly which pixels changed from forest to urban, or from dry land to water, enabling fine-grained temporal analysis.
+
+**Thematic Mapping:**
+Segmentation produces detailed land cover and land use maps where every location has a meaningful class label, creating rich thematic datasets for analysis, planning, and decision-making.
+
+**Decision Support:**
+The fine-grained information from segmentation directly supports disaster response and planning. For typhoon flood assessment, segmentation provides exact flood boundaries for targeted relief operations—identifying which specific buildings or roads are affected—not just a general "flooded" vs "not flooded" assessment for an entire region.
+:::
+
+### Three Task Comparison
+
+| Aspect | Classification | Object Detection | Semantic Segmentation |
+|--------|---------------|------------------|----------------------|
+| **Question** | What's in this image? | Where are objects? | Which pixels are what? |
+| **Output** | Single label | Bounding boxes + labels | Pixel-wise mask |
+| **Granularity** | Image-level | Object-level | Pixel-level |
+| **Spatial Info** | None | Approximate (boxes) | Precise (pixels) |
+| **Computation** | Fast | Moderate | Intensive |
+| **Use Case Example** | "Contains buildings" | "10 buildings detected" | "Building footprints mapped" |
+
+---
+
+## Part 2: U-Net Architecture
+
+### Introduction to U-Net
+
+**U-Net** was developed by Ronneberger et al. (2015) for biomedical image segmentation and has since become one of the most popular architectures for Earth Observation applications.
+
+**Why "U-Net"?**
+- Architecture shape resembles the letter "U"
+- Symmetric encoder-decoder structure
+- **Key Innovation:** Skip connections that preserve spatial information
+
+```{mermaid}
+%%| fig-cap: "U-Net Architecture Overview"
+%%| fig-width: 100%
+
+graph TD
+    A[Input Image<br/>H × W × C] --> B[Encoder<br/>Contracting Path]
+    B --> C[Bottleneck<br/>Most Compressed]
+    C --> D[Decoder<br/>Expansive Path]
+    D --> E[Output Mask<br/>H × W × Classes]
+    
+    B -.->|Skip Connection 1| D
+    B -.->|Skip Connection 2| D
+    B -.->|Skip Connection 3| D
+    B -.->|Skip Connection 4| D
+    
+    B --> B1["Feature Extraction<br/>Spatial dimension ↓<br/>Feature depth ↑"]
+    C --> C1["Global Context<br/>What is in image"]
+    D --> D1["Spatial Reconstruction<br/>Spatial dimension ↑<br/>Feature depth ↓"]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style E fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+```
+
+### Encoder (Contracting Path)
+
+**Purpose:** Extract hierarchical features at multiple scales while progressively compressing spatial information
+
+The encoder is a series of convolutional and pooling layers that progressively downsample the image, extracting higher-level features while reducing spatial resolution (just as we learned with CNNs on Day 2). 
+
+**Operations:**
+1. **Convolution blocks:**
+   - Two 3×3 convolutional layers (with ReLU activations)
+   - (Optional) Batch normalization
+   - **Note:** Often uses "same" padding to preserve spatial dimensions through conv layers
+
+2. **Downsampling:**
+   - 2×2 max pooling (reduces spatial resolution)
+   - Spatial dimensions halve
+   - Feature channels double
+   - Creates hierarchical representation
+
+::: {.callout-note}
+## Connection to Day 2 Concepts
+
+**Recall from Day 2:** The encoder uses the same CNN building blocks you learned:
+- **Convolution layers** apply learnable filters to extract features
+- **Padding** ("same" padding) helps preserve spatial dimensions so feature maps align for skip connections
+- **Pooling** reduces dimensionality—recall from Day 2 that pooling without padding reduces image size, losing some detail
+- **ReLU activation** introduces non-linearity
+
+For instance, using 3×3 convolutions (with ReLU activations) and 2×2 max-pooling, the encoder learns rich features but shrinks the image size at each step. As we move down the encoder, image details are compressed and abstracted, capturing the **context** of what is in the image.
+:::
+
+**Example Progression:**
+```
+Input:     256×256×3   (RGB satellite image)
+Block 1:   256×256×64  (after convolutions)
+Pool 1:    128×128×64  (after max pooling)
+Block 2:   128×128×128 (after convolutions)
+Pool 2:    64×64×128   (after max pooling)
+Block 3:   64×64×256   (after convolutions)
+Pool 3:    32×32×256   (after max pooling)
+Block 4:   32×32×512   (after convolutions)
+Pool 4:    16×16×512   (after max pooling)
+```
+
+**Multi-Scale Learning:**
+- **Early layers:** Capture fine details (edges, textures, small features)
+- **Deep layers:** Capture semantic meaning (water bodies, urban areas, forests)
+
+### Bottleneck Layer
+
+The central part of U-Net is the **bottleneck layer** (the bottom of the "U"), where the feature representation is most compressed. This is where the network holds a condensed encoding of the image's content—**maximum context, minimum spatial detail**—before the decoder begins expanding it.
+
+**Characteristics of the Bottleneck:**
+
+At this point, we have the smallest spatial dimensions (e.g., 16×16 pixels) but the largest number of feature channels (e.g., 1024). This creates a highly compressed representation of the entire image.
+
+**What It Captures:**
+
+The bottleneck captures **global context**—it understands **what's in the image** at a semantic level. It contains information like "there is water, buildings, vegetation" but has lost the precise spatial information about **where exactly** these features are located. This trade-off is intentional: by compressing spatial dimensions while expanding feature depth, the encoder creates an abstract, semantic understanding of the scene that the decoder can then use to reconstruct precise pixel-wise predictions.
+
+### Decoder (Expansive Path)
+
+**Purpose:** Reconstruct spatial resolution using encoded features to construct precise pixel-wise predictions
+
+The decoder performs the reverse of the encoder: it uses upsampling (e.g., transpose convolutions) to increase the spatial resolution, gradually building the output segmentation map.
+
+**Operations:**
+1. **Upsampling:**
+   - **Transpose convolution** (learnable filters for upsampling, sometimes called "deconvolution") OR
+   - **Bilinear/nearest upsampling** (simpler interpolations) + regular convolution
+   - Doubles spatial dimensions
+   - Halves feature channels
+   - Mirrors encoder downsampling in reverse
+
+2. **Skip Connection Concatenation:**
+   - Copy high-resolution feature maps from corresponding encoder layer
+   - The feature maps from the encoder are copied and **concatenated** onto the decoder's feature maps at corresponding levels
+   - Fuse high-resolution spatial details with semantic understanding
+   - **Critical:** Feature map sizes must align (achieved through proper padding in encoder)
+
+3. **Convolution blocks:**
+   - Two 3×3 convolutional layers  
+   - ReLU activation
+   - Refine combined features into sharper predictions
+
+::: {.callout-tip}
+## Upsampling and Implementation Details
+
+**Recall from Day 2:** Upsampling is essentially the **inverse of pooling**—it increases spatial dimensions to expand the image back to full size.
+
+**Two common approaches:**
+- **Transpose convolution:** Learned transposed conv layers (sometimes called "deconvolution") with trainable filters
+- **Interpolation + Conv:** Simpler interpolations (bilinear or nearest neighbor) followed by regular conv to refine
+
+**Implementation Note:** To make concatenation in skip connections seamless, we often use padding in convolutions to maintain equal sizes between encoder and decoder feature maps (Day 2 covered how "same" padding keeps dimensions). The **original U-Net paper cropped feature maps** instead, but modern frameworks simply pad zeros so that encoder outputs and decoder inputs align.
+
+By the end of the decoder, a **1×1 convolution** produces the final segmentation map, with as many channels as target classes, so that each pixel receives a class label.
+:::
+
+**Example Progression:**
+```
+Bottleneck:  16×16×1024
+Upsample 1:  32×32×512
+Concat:      32×32×1024  (512 from decoder + 512 from encoder skip)
+Conv Block:  32×32×512
+Upsample 2:  64×64×256
+Concat:      64×64×512   (256 from decoder + 256 from encoder skip)
+Conv Block:  64×64×256
+...
+Final:       256×256×num_classes
+```
+
+### Skip Connections - The Key Innovation
+
+::: {.callout-important}
+## Why Skip Connections Matter
+
+A key innovation of U-Net is the **skip connections** linking matching encoder and decoder layers. The feature maps from the encoder (which contain fine-grained spatial details from earlier layers) are **concatenated** with the upsampled features in the decoder. This allows the model to "skip over" the bottleneck and directly inject high-resolution context into the decoding process.
+
+**The Problem They Solve:**
+
+Without skip connections, information is inevitably lost during the downsampling process (pooling operations). The decoder would have to reconstruct precise boundaries solely from the coarse, compressed features at the bottleneck. This results in blurry boundaries and loss of fine spatial detail—exactly what we want to avoid in Earth Observation applications.
+
+**How Skip Connections Help:**
+
+The skip connections preserve edges and small structures (e.g., the exact boundary of a flooded area or building outline) that might otherwise be lost during downsampling. The result is **improved detail and accuracy** in segmentation outputs, since the decoder doesn't have to rely solely on the coarse feature maps after upsampling—it can leverage the original fine details as well.
+
+**Best of Both Worlds:**
+
+Crucially, U-Net's decoder is fed by skip connections from the encoder: these skip connections provide high-resolution context to the decoder, ensuring that fine details (like precise boundaries) are preserved even after the image was compressed by the encoder. 
+
+In essence, the **encoder captures what is in the image** (context), and the **decoder, aided by skips, ensures we know where those things are** in the image (precise localization). By combining encoder and decoder features, U-Net captures both the **what** (context from the semantic understanding in the bottleneck) and the **where** (location from the high-resolution encoder features) for each class in the image. 
+
+Notably, U-Net implementations must handle the alignment of feature map sizes for concatenation—often using appropriate padding ("same" padding) on convolutions so that each encoder output matches the size of the corresponding decoder feature map.
+:::
+
+### How Skip Connections Work
+
+Let's walk through the skip connection mechanism step-by-step to understand how it preserves spatial information:
+
+**The Process:**
+
+1. As the encoder processes the input, it produces a feature map at a specific resolution, say 128×128×64 (128×128 spatial dimensions, 64 feature channels)
+2. This feature map is **copied and temporarily saved** before any further processing
+3. The encoder continues its downsampling path, applying pooling to reduce spatial dimensions further
+4. The process continues through the bottleneck, where the representation is most compressed
+5. The decoder begins upsampling, bringing the spatial dimensions back up. It produces, for example, a 128×128×32 feature map
+6. **Concatenation happens:** The decoder's upsampled features (128×128×32) are combined channel-wise with the saved encoder features (128×128×64)
+7. The **result** is a 128×128×96 combined feature map containing:
+   - **High-level semantic context** from the decoder path (understanding of what objects are present)
+   - **Fine spatial details** from the encoder path (precise localization of boundaries)
+
+**Real-World Impact in Earth Observation:**
+
+The difference is dramatic. In flood mapping applications, for instance:
+- **Without skip connections:** Flood boundary accuracy might be ±10 pixels (100-200 meters at 10m resolution)
+- **With skip connections:** Flood boundary accuracy improves to ±1-2 pixels (10-20 meters)
+
+This precision is critical for applications requiring legal boundaries, property lines, or hazard zone delineation, where even small errors can have significant consequences for decision-making and resource allocation.
+
+### U-Net Complete Architecture Summary
+
+```{mermaid}
+%%| fig-cap: "U-Net Information Flow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Input: 256×256×3] --> B1[Conv + ReLU]
+    B1 --> B2[Conv + ReLU]
+    B2 --> C1[MaxPool ↓]
+    B2 -.->|Skip 1| G1
+    
+    C1 --> D1[Conv + ReLU]
+    D1 --> D2[Conv + ReLU]
+    D2 --> E1[MaxPool ↓]
+    D2 -.->|Skip 2| F1
+    
+    E1 --> F0[Bottleneck<br/>Conv Layers]
+    
+    F0 --> F1[Upsample ↑]
+    F1 --> G1[Concatenate]
+    G1 --> H1[Conv + ReLU]
+    
+    H1 --> I1[Upsample ↑]
+    I1 --> J1[Concatenate]
+    J1 --> K1[Conv + ReLU]
+    
+    K1 --> L[Output: 256×256×Classes]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style F0 fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style L fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+```
+
+---
+
+## Part 3: Applications in Earth Observation
+
+### Why U-Net is Popular in EO
+
+U-Net has become a go-to architecture for many Earth Observation segmentation tasks due to its accuracy and efficiency in learning from limited data. Several key factors contribute to its widespread adoption:
+
+**Data Efficiency:**
+
+U-Net performs well with relatively modest amounts of training data—typically hundreds to thousands of training samples rather than the millions required by some other deep learning approaches. Data augmentation techniques (rotations, flips, which are particularly relevant for satellite nadir views) help further. This is **critical** when labeled EO data is expensive and time-consuming to acquire, requiring expert annotators and field validation.
+
+**Spatial Precision:**
+
+The skip connections preserve fine boundaries with remarkable accuracy, which is important for applications requiring legal boundaries, property lines, or precise hazard zone delineation. This enables accuracy from millimeter to meter level, depending on the input imagery resolution—essential for cadastral mapping, flood extent determination, and infrastructure monitoring.
+
+**Multi-Scale Learning:**
+
+The encoder's hierarchical structure captures both local textures (in early layers) and global context (in deeper layers). This is essential for the varied scales of EO features, from small boats (a few pixels) to large water bodies (thousands of pixels). U-Net handles objects at multiple scales simultaneously within a single architecture.
+
+**Transfer Learning Capability:**
+
+U-Net encoders can leverage pre-trained weights from ImageNet or other large-scale datasets, enabling domain adaptation from natural images to satellite imagery. This significantly improves performance when labeled EO data is limited, allowing the model to start with general feature extraction capabilities and fine-tune to specific remote sensing tasks.
+
+### Application 1: Flood Mapping
+
+**Use Case:** Disaster response and damage assessment
+
+::: {.callout-note}
+## Philippine Context: Typhoon Flood Mapping
+
+**Data Sources:**
+- **Sentinel-1 SAR** (cloud-penetrating, all-weather capability)
+- **Sentinel-2 optical** (high resolution when clouds permit)
+
+**Task:**
+- Binary segmentation: Flooded vs Non-flooded pixels
+- Input: SAR backscatter (VV, VH polarizations) or optical RGB+NIR
+- Output: Precise flood extent mask
+
+**Why U-Net Excels:**
+- U-Net has been used to segment flooded areas in Sentinel-1 SAR and Sentinel-2 optical images with **high accuracy**
+- Studies have shown U-Net is effective in capturing flood patterns in SAR imagery, achieving high accuracy in delineating water from land
+- During floods, produces a **binary map of floodwater vs. non-flood** for each pixel, identifying flooded pixels vs. dry pixels across an entire region
+- Enables **rapid assessment** of flood extent for emergency response
+- Research shows U-Net achieves robust results even with relatively **small training datasets**
+
+**Benefits:**
+- Rapid mapping within hours of satellite acquisition
+- Precise area calculations for damage assessment  
+- Time-series monitoring of flood evolution and recession
+- Integration with GIS for evacuation planning and relief distribution
+
+**Real Example:** Typhoon Ulysses (2020) - Central Luzon floods mapped using U-Net on Sentinel-1 data, providing precise inundation extent for affected municipalities in the Pampanga River Basin.
+:::
+
+### Application 2: Land Cover Mapping
+
+**Use Case:** Environmental monitoring, urban planning, biodiversity assessment
+
+**Data Sources:**
+- Sentinel-2 multispectral (10m resolution)
+- Landsat 8/9 (30m, long time series)
+- High-resolution commercial imagery
+
+**Task:**
+- Multi-class segmentation: Water, Forest, Urban, Agriculture, Barren, Mangrove
+- Input: Multi-spectral bands (RGB, NIR, SWIR, Red Edge)
+- Output: Detailed land cover classification map
+
+**U-Net's Strength:**
+- Combines **broad context** (distinguishing urban area from forest in general) with **precise boundaries** (exactly where forest stops and urban begins)
+- U-Net's ability to preserve fine details helps **delineate boundaries** between different land cover types
+- Can outline exact shapes of urban districts, small water bodies, or forest edges
+- Research shows U-Net often **outperforms older pixel-based or patch-based methods** in remote sensing
+
+**Benefits:**
+- Pixel-accurate thematic maps
+- Change detection over time (deforestation, urbanization)
+- Biodiversity habitat assessments  
+- Carbon stock estimation for climate reporting
+
+### Application 3: Road Network Extraction
+
+**Use Case:** Map updating, transportation planning, accessibility analysis
+
+**Challenges:**
+- Thin linear features difficult to detect
+- Occlusion by trees and shadows
+- Complex urban backgrounds
+- Need to maintain continuous structure
+
+**U-Net Advantages:**
+- Skip connections preserve **road continuity** (prevents gaps)
+- Learns to follow **linear patterns** across the image
+- Handles varying road widths (from highways to small paths)
+- Can trace continuous structures like roads and railways
+
+**Task:**
+- Binary segmentation: Road vs Background
+- Input: High-resolution aerial/satellite RGB or SAR
+- Output: Road network mask for vectorization
+
+**Applications:**
+- Automated map updating for rural areas
+- Transportation network planning
+- Accessibility analysis for disaster response
+
+### Application 4: Building Footprint Delineation
+
+**Use Case:** Urban mapping, population estimation, disaster risk assessment
+
+::: {.callout-tip}
+## Philippine Application: Informal Settlement Detection
+
+**Relevance:**
+- Monitor unplanned urban growth in Metro Manila
+- Identify disaster-vulnerable communities  
+- Support urban planning and housing programs
+
+**Task:**
+- Binary or multi-class: Building vs Background (or building types)
+- Input: Very high-resolution imagery (<1m) or Sentinel-2 for large structures
+- Output: Building footprint polygons
+
+**U-Net Performance:**
+- With appropriate high-resolution data, U-Net can **outline individual buildings** or dense informal settlements, even with complex backgrounds
+- U-Net-based models have been used to extract buildings in urban areas and to map roads winding through forests or cities
+- Variants like **Residual U-Net** or **Attention U-Net** also popular for building segmentation
+- Core idea remains: encoder-decoder with skip connections for precise boundaries
+- Instead of just saying "there are buildings in this image," we get a map of where each building is
+
+**Benefits:**
+- Automated mapping at scale
+- Pre/post disaster damage assessment
+- 3D city model generation (with height data)
+- Infrastructure planning
+- Aids urban planning and risk assessment
+:::
+
+### Application 5: Vegetation and Crop Monitoring
+
+**Use Case:** Precision agriculture, forestry, ecosystem health
+
+**Data Sources:**
+- Sentinel-2 multispectral (5-day revisit)
+- PlanetScope (3m daily coverage)
+- UAV imagery for field-scale monitoring
+
+**Task:**
+- Multi-class segmentation: Crop types (rice, corn, sugarcane, coconut)
+- Or binary: Vegetation vs Non-vegetation
+- Input: Multi-temporal + multi-spectral imagery
+- Output: Crop type map or vegetation mask
+
+**U-Net Applications:**
+- Identifying **crop fields** and **forest cover** at pixel level
+- Monitoring agricultural areas for food security
+- Tracking **tree cover** for forestry management
+- Detecting vegetation changes and health patterns
+
+**Benefits:**
+- Yield prediction and harvest planning
+- Irrigation requirement monitoring
+- Early disease detection
+- Deforestation and illegal logging tracking
+
+::: {.callout-note}
+## Research Evidence
+
+Across these examples, research and practice have shown **U-Net achieves high segmentation accuracy** in remote sensing. It has been demonstrated that U-Net can achieve **robust results with relatively small training datasets**, thanks to the efficiency of the architecture—one reason it was originally successful in medical imaging with limited training images.
+:::
+
+---
+
+## Part 4: Loss Functions for Segmentation
+
+### Why Loss Functions Matter
+
+Training a segmentation model requires choosing an appropriate **loss function** that compares the predicted mask to the ground truth mask. The loss function is the mathematical measure that tells the model how wrong its predictions are, guiding the weight updates during training.
+
+**The Challenge in Segmentation:**
+
+Unlike image classification where we compare a single predicted label to a single true label, segmentation requires comparing entire images pixel-by-pixel. We're not evaluating just one value—we must compare potentially millions of pixel predictions across the entire image.
+
+Different loss functions emphasize different aspects of the prediction:
+- Some focus on **pixel-wise accuracy** (is each individual pixel correct?)
+- Others focus on **region overlap** (does the predicted flood extent match the true extent?)
+- Some emphasize **boundary accuracy** (are the edges of objects precisely delineated?)
+
+**Why Choice Matters:**
+
+The choice of loss function **critically affects model behavior**. Several loss functions are common in segmentation, each with different strengths. In the following sections, we'll explore the main options and understand when to use each one for Earth Observation applications.
+
+### Challenge: Class Imbalance in EO
+
+::: {.callout-warning}
+## Common Imbalanced Scenarios
+
+**In segmentation of EO data, class imbalance is a typical issue:**
+
+**Flood Mapping:**
+- 95% non-flooded pixels, 5% flooded pixels
+- Think of mapping floods: the flooded pixels are usually **far fewer** than non-flooded
+
+**Ship Detection:**
+- 99.5% water/land, 0.5% ships
+
+**Building Segmentation:**
+- 80% background, 20% buildings
+
+**Problem with Simple Accuracy:**
+```python
+# Model predicts: ALL pixels = "non-flooded"
+# Accuracy: 95% ✓ (looks great!)
+# But: Completely useless - missed all floods!
+# Result: Trivial but useless prediction
+```
+
+**Why This Happens:**
+In imbalanced cases, vanilla cross-entropy can be **dominated by the majority class**. A poor choice of loss might lead the model to predict all pixels as the majority class—achieving high accuracy but providing no useful information.
+
+**Need Loss Functions That:**
+- Handle severe class imbalance
+- Focus on minority (critical) class
+- Reward region overlap, not just pixel-wise correctness
+- Ensure boundaries (edges of floods, building outlines) are accurately captured
+:::
+
+### Loss Function 1: Pixel-wise Cross-Entropy
+
+**How it Works:**
+- Treat each pixel as an **independent classification problem**
+- Compare predicted class probability to true class using **negative log-likelihood**
+- Average loss across all pixels
+- Standard approach for multi-class segmentation (or binary cross-entropy for two classes)
+
+**Formula (simplified):**
+$$
+\text{Cross-Entropy} = -\sum_{i=1}^{N} y_{\text{true},i} \cdot \log(y_{\text{pred},i})
+$$
+
+Where $N$ is the total number of pixels.
+
+**Advantages:**
+- ✓ Standard, well-understood approach
+- ✓ Strong, stable gradients for learning
+- ✓ Works naturally with multi-class problems (softmax output)
+- ✓ Effective and straightforward
+
+**Disadvantages:**
+- ✗ Dominated by majority class in imbalanced data
+- ✗ Doesn't directly optimize for spatial overlap or boundary alignment
+- ✗ Can effectively ignore minority classes
+- ✗ Focuses on pixel-level accuracy but not region-level correctness
+
+**When to Use:** Balanced datasets (~50/50 class distribution) or with class weighting
+
+### Weighted Cross-Entropy
+
+**Solution to Imbalance:** Assign higher weight to under-represented classes so the model pays more attention to them
+
+**Formula:**
+$$
+\text{Weighted CE} = -\sum_{i=1}^{N} w_{\text{class}} \cdot y_{\text{true},i} \cdot \log(y_{\text{pred},i})
+$$
+
+**Example:**
+- 95% background pixels → weight = 1.0
+- 5% flood pixels → weight = 19.0 (inverse frequency: 95/5)
+
+**Effect:**
+- Model pays 19× more attention to flood pixels
+- Heavily penalized for missing flood pixels
+- **Common remedy** for class imbalance in segmentation
+
+**Implementation (TensorFlow/Keras):**
+```python
+loss = tf.keras.losses.CategoricalCrossentropy(
+    class_weight={0: 1.0, 1: 19.0}  # background, flood
+)
+```
+
+::: {.callout-note}
+## When Weighted CE Helps
+
+Weighted cross-entropy provides strong gradients for learning while addressing imbalance. However, it still focuses on **pixel-wise accuracy** and doesn't directly ensure good overlap or boundary alignment—that's where overlap-based losses come in.
+:::
+
+### Loss Function 2: Dice Loss
+
+**Concept:** Measure overlap between prediction and ground truth regions  
+**Training Goal:** Maximize Dice (or minimize 1 - Dice) to encourage the network to get the segmentation overlap as high as possible
+
+**Formula:**
+$$
+\text{Dice Coefficient} = \frac{2 \times |P \cap T|}{|P| + |T|}
+$$
+
+$$
+\text{Dice Loss} = 1 - \text{Dice Coefficient}
+$$
+
+Where:
+- $P$ = predicted foreground pixels
+- $T$ = true foreground pixels
+- $\cap$ = intersection (overlap)
+- Essentially: $\frac{2 \times (\text{intersection})}{(\text{sum of areas})}$
+
+**Interpretation:**
+- Dice = 1.0: Perfect overlap
+- Dice = 0.5: 50% overlap
+- Dice = 0.0: No overlap
+- Loss = 0.0: Perfect (lower is better)
+
+**Why for Imbalanced Data?**
+- Focuses on the **relative overlap** of the object (minority class)
+- Treats foreground and background asymmetrically
+- **Correctly segmenting one small flooded patch** contributes as much to Dice as a large region of non-flood
+- Inherently handles class imbalance **without manual weighting**
+- Particularly well-suited when target objects occupy a **small fraction** of the image
+- Doesn't let the model get complacent by only predicting the majority class, because it focuses on the overlap of the positive (target) class
+
+**When False Positives and Negatives Need Equal Weight:**
+Dice loss is known to be effective when **false negatives** (missing floods) and **false positives** (predicting flood where there isn't) need to be weighted equally. It treats false negatives and false positives more equally than cross-entropy.
+
+**Advantages:**
+- ✓ Inherently robust to class imbalance
+- ✓ Directly optimizes overlap metric (F1-score for segmentation)
+- ✓ Excellent for small objects
+- ✓ No need to manually set class weights
+- ✓ Helps model not ignore small structures or minority classes
+
+**Disadvantages:**
+- ✗ Less stable gradients (can be noisy early in training)
+- ✗ May converge slower than cross-entropy
+- ✗ Requires careful implementation (avoid division by zero)
+
+::: {.callout-tip}
+## Medical Imaging Parallel
+
+Many medical image segmentation models use Dice loss to segment **tumors that occupy only a tiny area** of the image—exactly the same challenge as segmenting small flood patches in vast satellite scenes.
+:::
+
+### Loss Function 3: IoU Loss (Jaccard Index)
+
+**Concept:** Similar to Dice, directly optimizes the IoU metric  
+**Also Known As:** Jaccard Index
+
+**Formula:**
+$$
+\text{IoU} = \frac{|P \cap T|}{|P \cup T|}
+$$
+
+$$
+\text{IoU Loss} = 1 - \text{IoU}
+$$
+
+Where $\cup$ represents the union of predicted and true pixels.
+
+**Difference from Dice:**
+- **IoU:** Intersection / Union
+- **Dice:** 2 × Intersection / (Sum of areas)
+- Numerically different but conceptually similar
+- Related by: $\text{Dice} = \frac{2 \times \text{IoU}}{1 + \text{IoU}}$
+
+**Properties:**
+- **Robust to class imbalance** (like Dice)
+- Emphasizes **boundary accuracy**—maximizing IoU requires the predicted region to **align well** with the true region boundaries
+- Penalizes false positives and false negatives **equally at the region level**
+- Standard metric in segmentation challenges (evaluation)
+
+**Why for EO?**
+- Accurately capturing **boundaries** (edge of a flood, outline of a building) is often vital in geographic mapping
+- IoU-based loss directly rewards aligning shapes
+- Useful in applications like geographic mapping where **boundary delineation is crucial**
+
+### Dice vs IoU - When to Choose?
+
+Both Dice and IoU losses are very similar in concept—they both measure overlap between predicted and true regions—but they have subtle differences that can affect training:
+
+| Aspect | Dice Loss | IoU Loss |
+|--------|-----------|----------|
+| **Formulation** | 2×Intersection / Sum | Intersection / Union |
+| **Gradient** | More forgiving (2× numerator) | Stricter |
+| **Training** | Smoother, more stable | Can be less stable |
+| **Evaluation** | Common in medical/EO | Standard in challenges |
+| **Boundary Focus** | Moderate | Higher emphasis |
+
+**Practical Guidance:**
+
+In practice, both Dice and IoU work well for imbalanced EO data. Dice is slightly more popular in training due to its smoother gradients, while IoU is often used as an evaluation metric in segmentation challenges and competitions. The best approach is to try both on your specific dataset and compare results—the difference is often small, but one may work slightly better depending on your particular data characteristics and class distribution.
+
+Very similar to Dice, IoU loss directly optimizes the IoU metric and has an interpretation closely tied to segmentation quality—it penalizes false positives and false negatives at the region level. This makes it useful in applications like geographic mapping where boundary delineation is crucial.
+
+### Loss Function 4: Combined Losses
+
+**Best of Both Worlds:** Combine complementary loss functions  
+**In Practice:** You don't have to pick just one—many implementations use a combination
+
+**Common Combination:**
+$$
+\text{Total Loss} = \alpha \cdot \text{CE Loss} + \beta \cdot \text{Dice Loss}
+$$
+
+Where $\alpha$ and $\beta$ are weighting factors (e.g., $\alpha=0.5$, $\beta=0.5$)
+
+**Why Combine?**
+- **Cross-Entropy:** Provides strong, stable gradients; ensures overall pixel-wise correctness
+- **Dice:** Focuses on overlap and handles imbalance; ensures region-level accuracy
+- Get the **benefits of both** loss functions
+
+**Benefits:**
+- Stable training from CE's strong signal
+- Balanced optimization from Dice's overlap focus
+- Often achieves **best results in practice**
+- Can improve both per-pixel accuracy AND overall region accuracy
+
+**Implementation Example:**
+```python
+def combined_loss(y_true, y_pred):
+    ce = tf.keras.losses.categorical_crossentropy(y_true, y_pred)
+    dice = dice_loss(y_true, y_pred)
+    return 0.5 * ce + 0.5 * dice
+```
+
+::: {.callout-note}
+## Other Advanced Losses
+
+Some practitioners also use **Focal Loss** (a modified cross-entropy that down-weights easy/background examples) especially for **extremely imbalanced cases**, though it's more common in object detection. The key takeaway: loss function choice significantly affects model behavior.
+:::
+
+### Loss Function Selection Guide
+
+::: {.callout-tip}
+## Decision Framework for Loss Selection
+
+**Start Here:**
+1. **Is your data balanced** (classes ~50/50)?
+   - **Yes** → Standard Cross-Entropy (simple and effective)
+   - **No** → Continue to next question
+
+2. **Is the minority class critical** (e.g., floods, damage, ships)?
+   - **Yes** → Dice or IoU Loss (inherently handle imbalance)
+   - **Somewhat** → Weighted Cross-Entropy
+
+3. **Need most stable training?**
+   - **Yes** → Combined Loss (CE + Dice) for stability + imbalance handling
+   - **No** → Pure Dice/IoU is fine
+
+4. **Is boundary accuracy critical?**
+   - **Yes** → IoU Loss or Combined approach
+   - **Moderate** → Dice is sufficient
+
+**EO Common Practice:**
+- **Flood mapping:** Dice or Combined (severe imbalance, critical boundaries)
+- **Balanced land cover:** Cross-Entropy (classes relatively balanced)
+- **Building extraction:** Dice or IoU (precise footprints matter)
+- **Road extraction:** Combined Loss (thin features, need continuity)
+- **Ship detection:** Dice (extreme imbalance, small objects)
+
+**Golden Rule:**
+Participants should learn **not just to accept the default loss**, but to **think about the nature** of their segmentation problem and pick (or tune) a loss accordingly for the best results.
+:::
+
+### Practical Example: Flood Mapping Loss Selection
+
+**Scenario:**
+- Dataset: 1000 Sentinel-1 SAR images from Central Luzon floods
+- Class distribution: 92% non-flooded, 8% flooded pixels (typical imbalance)
+- Goal: Precise flood extent mapping for disaster response
+
+**Experiment Results:**
+
+| Loss Function | IoU Score | Notes |
+|---------------|-----------|-------|
+| **Cross-Entropy** | 0.12 | Model predicts mostly non-flooded; misses actual floods (trivial solution) |
+| **Weighted CE** | 0.54 | Better; weight = 11.5× for flood class; some false positives |
+| **Dice Loss** | 0.68 | Good recall; slightly noisy predictions; handles imbalance well |
+| **Combined (CE + Dice)** | **0.73** ✓ | Best balance of precision and recall; stable training |
+
+**Winner:** Combined Loss (0.5 × CE + 0.5 × Dice)
+
+**Key Insight:**
+For our flood mapping case (**binary segmentation with severe imbalance**), we might choose a **Dice loss** or a **combined approach (Dice + Cross-Entropy)** to handle the imbalance and get sharp boundaries. This demonstrates that the choice of loss can **significantly affect model training**—the right loss will push the model to correctly segment the minority class rather than achieving high but useless accuracy by predicting everything as the majority class.
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 1 Summary
+
+**Semantic Segmentation:**
+- ✓ Pixel-wise classification providing precise boundaries and complete spatial understanding
+- ✓ Differs from image classification (single labels) and object detection (bounding boxes)
+- ✓ Essential for EO applications requiring exact spatial extent and area calculations
+- ✓ Enables detailed thematic mapping and spatial pattern analysis
+
+**U-Net Architecture:**
+- ✓ Encoder-decoder structure with characteristic U-shape
+- ✓ **Skip connections** are the key innovation—preserve spatial details from encoder to decoder
+- ✓ Combines "what" (semantic context) with "where" (precise localization)
+- ✓ Proven architecture even with limited training data (hundreds to thousands of samples)
+- ✓ Widely adopted across EO community for high-accuracy segmentation
+- ✓ Uses same CNN building blocks from Day 2 (convolution, pooling, padding, activation)
+
+**Loss Functions:**
+- ✓ **Cross-Entropy:** Standard but sensitive to class imbalance; provides strong gradients
+- ✓ **Weighted CE:** Addresses imbalance through class weighting
+- ✓ **Dice/IoU:** Inherently handle imbalance, optimize region overlap, focus on minority class
+- ✓ **Combined losses** often achieve best performance in EO (e.g., CE + Dice)
+- ✓ **Choice significantly impacts model behavior**—can mean difference between useless and excellent results
+- ✓ Must consider data characteristics (balance, boundary importance, object size)
+
+**Applications:**
+- ✓ Flood mapping, land cover, buildings, roads, vegetation monitoring
+- ✓ U-Net achieves high accuracy even with small datasets
+- ✓ Outperforms older pixel-based and patch-based methods
+- ✓ Wide adoption across EO community
+- ✓ Proven results in Philippine disaster response contexts (Typhoon Ulysses, urban mapping)
+:::
+
+---
+
+## Resources
+
+### Core References
+
+**Foundational Paper:**
+- Ronneberger, O., Fischer, P., & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation. *MICCAI 2015*. [arXiv:1505.04597](https://arxiv.org/abs/1505.04597)
+  - Original U-Net paper from medical imaging
+  - Introduced skip connections concept
+  - Demonstrated effectiveness with limited training data
+
+**EO Applications:**
+- Flood mapping with Sentinel-1 SAR and U-Net (disaster response)
+- Building extraction from high-resolution imagery (urban planning)
+- Land cover classification with multispectral data (environmental monitoring)
+- Road network extraction (infrastructure mapping)
+
+**Loss Function References:**
+- Dice Loss for handling class imbalance in segmentation
+- IoU (Jaccard) Loss for boundary accuracy
+- Combined loss strategies for optimal performance
+
+### Datasets for Practice
+
+- **Sen1Floods11:** Global flood dataset with Sentinel-1 SAR
+- **DeepGlobe Land Cover Challenge:** Multi-class segmentation
+- **SpaceNet Building Detection:** Urban building footprints
+- **Landcover.ai:** High-resolution orthophotos (Poland)
+
+### Tutorials
+
+- [TensorFlow U-Net Tutorial](https://www.tensorflow.org/tutorials/images/segmentation)
+- [PyTorch Semantic Segmentation Examples](https://pytorch.org/vision/stable/models.html#semantic-segmentation)
+- [Keras U-Net for Satellite Imagery](https://keras.io/examples/vision/oxford_pets_image_segmentation/)
+
+### Philippine EO Context
+
+- **PhilSA:** Flood monitoring and disaster response initiatives
+- **DOST-ASTI DATOS:** Automated rapid mapping for disasters
+- **NAMRIA:** Geospatial data infrastructure
+
+---
+
+## Preparation for Session 2
+
+::: {.callout-important}
+## Next: Hands-on Flood Mapping Lab
+
+**Session 2** will put these concepts into practice with a complete U-Net implementation:
+
+**What You'll Do:**
+1. Load Sentinel-1 SAR data from Typhoon Ulysses (Central Luzon)
+2. Build U-Net model in TensorFlow/PyTorch
+3. Train with Dice Loss (or combined loss)
+4. Evaluate performance using IoU, F1-score, precision, recall
+5. Visualize flood predictions and create export maps
+
+**Dataset:**
+- ~500-1000 pre-processed SAR patches (256×256 pixels)
+- Binary flood masks (flooded / non-flooded)
+- Real flood event from major Philippine river basin
+
+**Expected Results:**
+- IoU > 0.70 with properly trained model
+- Visual flood extent maps ready for GIS integration
+
+**To Prepare:**
+- Ensure Google Colab access
+- Check GPU availability (Runtime → Change runtime type → GPU)
+- Review Python and NumPy basics if needed
+- Have patience - model training takes time!
+
+[Preview Session 2 →](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-outline-primary}
+:::
+
+---
+
+## Discussion Questions
+
+Before moving to the hands-on session, consider these questions:
+
+1. **What EO applications in your work** could benefit from semantic segmentation versus classification or detection?
+
+2. **How would you validate** segmentation results in the field, especially for disaster response applications?
+
+3. **What challenges do you anticipate** when working with limited training data for Philippine-specific contexts?
+
+4. **How might transfer learning** from models trained on other regions help with Philippine EO applications?
+
+---
+
+::: {.session-nav}
+[← Back to Day 3 Overview](../index.qmd){.btn .btn-outline-secondary}
+[Next: Session 2 - Flood Mapping Lab →](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-primary}
+:::
+
+---
+
+*This session is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

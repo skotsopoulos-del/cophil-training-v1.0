@@ -1,0 +1,1492 @@
+{
+  "type": "FeatureCollection",
+  "name": "palawan_validation_polygons",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 1,
+        "class_name": "Primary Forest",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Primary_Forest_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.1211029572701,
+              10.580993086009032
+            ],
+            [
+              119.1411029572701,
+              10.580993086009032
+            ],
+            [
+              119.1411029572701,
+              10.560993086009033
+            ],
+            [
+              119.1211029572701,
+              10.560993086009033
+            ],
+            [
+              119.1211029572701,
+              10.580993086009032
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 1,
+        "class_name": "Primary Forest",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Primary_Forest_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.39542001300612,
+              9.738941783811153
+            ],
+            [
+              119.41542001300613,
+              9.738941783811153
+            ],
+            [
+              119.41542001300613,
+              9.718941783811154
+            ],
+            [
+              119.39542001300612,
+              9.718941783811154
+            ],
+            [
+              119.39542001300612,
+              9.738941783811153
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 1,
+        "class_name": "Primary Forest",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Primary_Forest_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.56085734988865,
+              9.369635400253747
+            ],
+            [
+              118.58085734988866,
+              9.369635400253747
+            ],
+            [
+              118.58085734988866,
+              9.349635400253748
+            ],
+            [
+              118.56085734988865,
+              9.349635400253748
+            ],
+            [
+              118.56085734988865,
+              9.369635400253747
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 1,
+        "class_name": "Primary Forest",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Primary_Forest_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.15897777829628,
+              9.48600926873799
+            ],
+            [
+              118.17897777829629,
+              9.48600926873799
+            ],
+            [
+              118.17897777829629,
+              9.46600926873799
+            ],
+            [
+              118.15897777829628,
+              9.46600926873799
+            ],
+            [
+              118.15897777829628,
+              9.48600926873799
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 1,
+        "class_name": "Primary Forest",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Primary_Forest_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.62231184872502,
+              9.438473614740877
+            ],
+            [
+              119.64231184872503,
+              9.438473614740877
+            ],
+            [
+              119.64231184872503,
+              9.418473614740877
+            ],
+            [
+              119.62231184872502,
+              9.418473614740877
+            ],
+            [
+              119.62231184872502,
+              9.438473614740877
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 2,
+        "class_name": "Secondary Forest",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Secondary_Forest_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.06104309332528,
+              11.445514240580671
+            ],
+            [
+              119.08104309332529,
+              11.445514240580671
+            ],
+            [
+              119.08104309332529,
+              11.425514240580672
+            ],
+            [
+              119.06104309332528,
+              11.425514240580672
+            ],
+            [
+              119.06104309332528,
+              11.445514240580671
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 2,
+        "class_name": "Secondary Forest",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Secondary_Forest_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.27461942429075,
+              9.982671026311793
+            ],
+            [
+              119.29461942429076,
+              9.982671026311793
+            ],
+            [
+              119.29461942429076,
+              9.962671026311794
+            ],
+            [
+              119.27461942429075,
+              9.962671026311794
+            ],
+            [
+              119.27461942429075,
+              9.982671026311793
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 2,
+        "class_name": "Secondary Forest",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Secondary_Forest_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.68040991436187,
+              9.317496997766643
+            ],
+            [
+              118.70040991436188,
+              9.317496997766643
+            ],
+            [
+              118.70040991436188,
+              9.297496997766643
+            ],
+            [
+              118.68040991436187,
+              9.297496997766643
+            ],
+            [
+              118.68040991436187,
+              9.317496997766643
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 2,
+        "class_name": "Secondary Forest",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Secondary_Forest_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.92105118240637,
+              9.203861628457647
+            ],
+            [
+              117.94105118240638,
+              9.203861628457647
+            ],
+            [
+              117.94105118240638,
+              9.183861628457647
+            ],
+            [
+              117.92105118240637,
+              9.183861628457647
+            ],
+            [
+              117.92105118240637,
+              9.203861628457647
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 2,
+        "class_name": "Secondary Forest",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Secondary_Forest_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.95702466803667,
+              9.857157246039842
+            ],
+            [
+              119.97702466803668,
+              9.857157246039842
+            ],
+            [
+              119.97702466803668,
+              9.837157246039842
+            ],
+            [
+              119.95702466803667,
+              9.837157246039842
+            ],
+            [
+              119.95702466803667,
+              9.857157246039842
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 3,
+        "class_name": "Mangroves",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Mangroves_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.1633645472933,
+              11.23907584945985
+            ],
+            [
+              119.18336454729331,
+              11.23907584945985
+            ],
+            [
+              119.18336454729331,
+              11.21907584945985
+            ],
+            [
+              119.1633645472933,
+              11.21907584945985
+            ],
+            [
+              119.1633645472933,
+              11.23907584945985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 3,
+        "class_name": "Mangroves",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Mangroves_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.58841787115195,
+              10.494165211365965
+            ],
+            [
+              118.60841787115196,
+              10.494165211365965
+            ],
+            [
+              118.60841787115196,
+              10.474165211365966
+            ],
+            [
+              118.58841787115195,
+              10.474165211365966
+            ],
+            [
+              118.58841787115195,
+              10.494165211365965
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 3,
+        "class_name": "Mangroves",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Mangroves_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.82930260539496,
+              8.912621282102268
+            ],
+            [
+              118.84930260539497,
+              8.912621282102268
+            ],
+            [
+              118.84930260539497,
+              8.892621282102269
+            ],
+            [
+              118.82930260539496,
+              8.892621282102269
+            ],
+            [
+              118.82930260539496,
+              8.912621282102268
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 3,
+        "class_name": "Mangroves",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Mangroves_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.73865633392028,
+              10.733345072705582
+            ],
+            [
+              117.75865633392029,
+              10.733345072705582
+            ],
+            [
+              117.75865633392029,
+              10.713345072705582
+            ],
+            [
+              117.73865633392028,
+              10.713345072705582
+            ],
+            [
+              117.73865633392028,
+              10.733345072705582
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 3,
+        "class_name": "Mangroves",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Mangroves_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.93861354783313,
+              9.390417816881623
+            ],
+            [
+              119.95861354783314,
+              9.390417816881623
+            ],
+            [
+              119.95861354783314,
+              9.370417816881623
+            ],
+            [
+              119.93861354783313,
+              9.370417816881623
+            ],
+            [
+              119.93861354783313,
+              9.390417816881623
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 4,
+        "class_name": "Agricultural Land",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Agricultural_Land_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.76854514466693,
+              10.931881639834405
+            ],
+            [
+              118.78854514466694,
+              10.931881639834405
+            ],
+            [
+              118.78854514466694,
+              10.911881639834405
+            ],
+            [
+              118.76854514466693,
+              10.911881639834405
+            ],
+            [
+              118.76854514466693,
+              10.931881639834405
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 4,
+        "class_name": "Agricultural Land",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Agricultural_Land_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.413265599276,
+              9.7598064478821
+            ],
+            [
+              119.43326559927601,
+              9.7598064478821
+            ],
+            [
+              119.43326559927601,
+              9.739806447882101
+            ],
+            [
+              119.413265599276,
+              9.739806447882101
+            ],
+            [
+              119.413265599276,
+              9.7598064478821
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 4,
+        "class_name": "Agricultural Land",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Agricultural_Land_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.35134910476182,
+              8.953130745053457
+            ],
+            [
+              119.37134910476183,
+              8.953130745053457
+            ],
+            [
+              119.37134910476183,
+              8.933130745053457
+            ],
+            [
+              119.35134910476182,
+              8.933130745053457
+            ],
+            [
+              119.35134910476182,
+              8.953130745053457
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 4,
+        "class_name": "Agricultural Land",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Agricultural_Land_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.54058832952488,
+              10.110650624899696
+            ],
+            [
+              117.56058832952489,
+              10.110650624899696
+            ],
+            [
+              117.56058832952489,
+              10.090650624899697
+            ],
+            [
+              117.54058832952488,
+              10.090650624899697
+            ],
+            [
+              117.54058832952488,
+              10.110650624899696
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 4,
+        "class_name": "Agricultural Land",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Agricultural_Land_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.32602758507994,
+              11.008564936825453
+            ],
+            [
+              120.34602758507995,
+              11.008564936825453
+            ],
+            [
+              120.34602758507995,
+              10.988564936825453
+            ],
+            [
+              120.32602758507994,
+              10.988564936825453
+            ],
+            [
+              120.32602758507994,
+              11.008564936825453
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 5,
+        "class_name": "Grassland/Scrubland",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Grassland/Scrubland_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.41636698300812,
+              11.47899625728475
+            ],
+            [
+              119.43636698300813,
+              11.47899625728475
+            ],
+            [
+              119.43636698300813,
+              11.45899625728475
+            ],
+            [
+              119.41636698300812,
+              11.45899625728475
+            ],
+            [
+              119.41636698300812,
+              11.47899625728475
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 5,
+        "class_name": "Grassland/Scrubland",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Grassland/Scrubland_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.65631111060391,
+              10.358695734414304
+            ],
+            [
+              118.67631111060392,
+              10.358695734414304
+            ],
+            [
+              118.67631111060392,
+              10.338695734414305
+            ],
+            [
+              118.65631111060391,
+              10.338695734414305
+            ],
+            [
+              118.65631111060391,
+              10.358695734414304
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 5,
+        "class_name": "Grassland/Scrubland",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Grassland/Scrubland_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.70374729919918,
+              8.99564112545072
+            ],
+            [
+              118.72374729919919,
+              8.99564112545072
+            ],
+            [
+              118.72374729919919,
+              8.97564112545072
+            ],
+            [
+              118.70374729919918,
+              8.97564112545072
+            ],
+            [
+              118.70374729919918,
+              8.99564112545072
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 5,
+        "class_name": "Grassland/Scrubland",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Grassland/Scrubland_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.54863539997217,
+              9.812080585098904
+            ],
+            [
+              117.56863539997218,
+              9.812080585098904
+            ],
+            [
+              117.56863539997218,
+              9.792080585098905
+            ],
+            [
+              117.54863539997217,
+              9.792080585098905
+            ],
+            [
+              117.54863539997217,
+              9.812080585098904
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 5,
+        "class_name": "Grassland/Scrubland",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Grassland/Scrubland_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.47530884377971,
+              9.767946237953831
+            ],
+            [
+              120.49530884377972,
+              9.767946237953831
+            ],
+            [
+              120.49530884377972,
+              9.747946237953832
+            ],
+            [
+              120.47530884377971,
+              9.747946237953832
+            ],
+            [
+              120.47530884377971,
+              9.767946237953831
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 6,
+        "class_name": "Water Bodies",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Water_Bodies_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.27407060194857,
+              10.775203058172151
+            ],
+            [
+              119.29407060194858,
+              10.775203058172151
+            ],
+            [
+              119.29407060194858,
+              10.755203058172151
+            ],
+            [
+              119.27407060194857,
+              10.755203058172151
+            ],
+            [
+              119.27407060194857,
+              10.775203058172151
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 6,
+        "class_name": "Water Bodies",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Water_Bodies_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.91300748599016,
+              9.965008367339143
+            ],
+            [
+              118.93300748599017,
+              9.965008367339143
+            ],
+            [
+              118.93300748599017,
+              9.945008367339144
+            ],
+            [
+              118.91300748599016,
+              9.945008367339144
+            ],
+            [
+              118.91300748599016,
+              9.965008367339143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 6,
+        "class_name": "Water Bodies",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Water_Bodies_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.48542268949271,
+              9.467317640859672
+            ],
+            [
+              119.50542268949272,
+              9.467317640859672
+            ],
+            [
+              119.50542268949272,
+              9.447317640859673
+            ],
+            [
+              119.48542268949271,
+              9.447317640859673
+            ],
+            [
+              119.48542268949271,
+              9.467317640859672
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 6,
+        "class_name": "Water Bodies",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Water_Bodies_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.20840827529632,
+              10.121536646811236
+            ],
+            [
+              118.22840827529633,
+              10.121536646811236
+            ],
+            [
+              118.22840827529633,
+              10.101536646811237
+            ],
+            [
+              118.20840827529632,
+              10.101536646811237
+            ],
+            [
+              118.20840827529632,
+              10.121536646811236
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 6,
+        "class_name": "Water Bodies",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Water_Bodies_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.78670782549456,
+              9.319593650548128
+            ],
+            [
+              119.80670782549457,
+              9.319593650548128
+            ],
+            [
+              119.80670782549457,
+              9.299593650548129
+            ],
+            [
+              119.78670782549456,
+              9.299593650548129
+            ],
+            [
+              119.78670782549456,
+              9.319593650548128
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 7,
+        "class_name": "Urban/Built-up",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Urban/Built-up_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.06918029081625,
+              11.47870936496916
+            ],
+            [
+              119.08918029081626,
+              11.47870936496916
+            ],
+            [
+              119.08918029081626,
+              11.45870936496916
+            ],
+            [
+              119.06918029081625,
+              11.45870936496916
+            ],
+            [
+              119.06918029081625,
+              11.47870936496916
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 7,
+        "class_name": "Urban/Built-up",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Urban/Built-up_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.23797556037906,
+              10.052195201374275
+            ],
+            [
+              119.25797556037907,
+              10.052195201374275
+            ],
+            [
+              119.25797556037907,
+              10.032195201374275
+            ],
+            [
+              119.23797556037906,
+              10.032195201374275
+            ],
+            [
+              119.23797556037906,
+              10.052195201374275
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 7,
+        "class_name": "Urban/Built-up",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Urban/Built-up_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.07417759445896,
+              8.567165272907483
+            ],
+            [
+              119.09417759445897,
+              8.567165272907483
+            ],
+            [
+              119.09417759445897,
+              8.547165272907483
+            ],
+            [
+              119.07417759445896,
+              8.547165272907483
+            ],
+            [
+              119.07417759445896,
+              8.567165272907483
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 7,
+        "class_name": "Urban/Built-up",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Urban/Built-up_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.34271989204828,
+              10.015700765839027
+            ],
+            [
+              118.36271989204829,
+              10.015700765839027
+            ],
+            [
+              118.36271989204829,
+              9.995700765839027
+            ],
+            [
+              118.34271989204828,
+              9.995700765839027
+            ],
+            [
+              118.34271989204828,
+              10.015700765839027
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 7,
+        "class_name": "Urban/Built-up",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Urban/Built-up_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.45077890327444,
+              9.324865455878966
+            ],
+            [
+              120.47077890327445,
+              9.324865455878966
+            ],
+            [
+              120.47077890327445,
+              9.304865455878966
+            ],
+            [
+              120.45077890327444,
+              9.304865455878966
+            ],
+            [
+              120.45077890327444,
+              9.324865455878966
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 8,
+        "class_name": "Bare Soil/Mining",
+        "region": "North",
+        "type": "validation",
+        "polygon_id": "Bare_Soil/Mining_1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.67582496098072,
+              10.590111465240586
+            ],
+            [
+              118.69582496098073,
+              10.590111465240586
+            ],
+            [
+              118.69582496098073,
+              10.570111465240586
+            ],
+            [
+              118.67582496098072,
+              10.570111465240586
+            ],
+            [
+              118.67582496098072,
+              10.590111465240586
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 8,
+        "class_name": "Bare Soil/Mining",
+        "region": "Central",
+        "type": "validation",
+        "polygon_id": "Bare_Soil/Mining_2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.16521255360408,
+              10.105035106450027
+            ],
+            [
+              119.18521255360409,
+              10.105035106450027
+            ],
+            [
+              119.18521255360409,
+              10.085035106450027
+            ],
+            [
+              119.16521255360408,
+              10.085035106450027
+            ],
+            [
+              119.16521255360408,
+              10.105035106450027
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 8,
+        "class_name": "Bare Soil/Mining",
+        "region": "South",
+        "type": "validation",
+        "polygon_id": "Bare_Soil/Mining_3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.60988661394713,
+              8.74520389500093
+            ],
+            [
+              118.62988661394714,
+              8.74520389500093
+            ],
+            [
+              118.62988661394714,
+              8.72520389500093
+            ],
+            [
+              118.60988661394713,
+              8.72520389500093
+            ],
+            [
+              118.60988661394713,
+              8.74520389500093
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 8,
+        "class_name": "Bare Soil/Mining",
+        "region": "West Coast",
+        "type": "validation",
+        "polygon_id": "Bare_Soil/Mining_4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.73621534778862,
+              10.790574628258875
+            ],
+            [
+              117.75621534778863,
+              10.790574628258875
+            ],
+            [
+              117.75621534778863,
+              10.770574628258876
+            ],
+            [
+              117.73621534778862,
+              10.770574628258876
+            ],
+            [
+              117.73621534778862,
+              10.790574628258875
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "class_id": 8,
+        "class_name": "Bare Soil/Mining",
+        "region": "East Coast",
+        "type": "validation",
+        "polygon_id": "Bare_Soil/Mining_5"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.1093815103321,
+              10.199038307066882
+            ],
+            [
+              120.12938151033211,
+              10.199038307066882
+            ],
+            [
+              120.12938151033211,
+              10.179038307066882
+            ],
+            [
+              120.1093815103321,
+              10.179038307066882
+            ],
+            [
+              120.1093815103321,
+              10.199038307066882
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

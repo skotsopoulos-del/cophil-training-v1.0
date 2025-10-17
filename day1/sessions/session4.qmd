@@ -1,0 +1,1617 @@
+---
+title: "Session 4: Introduction to Google Earth Engine"
+subtitle: "Harness cloud computing power to access and process petabytes of Earth observation data"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <a href="../index.html">Day 1</a>
+  <span class="breadcrumb-separator" aria-hidden="true">›</span>
+  <span class="breadcrumb-current">Session 4</span>
+</nav>
+
+::: {.session-info}
+**Duration:** 2 hours | **Format:** Hands-on Coding | **Platform:** Google Colaboratory + Earth Engine Python API
+:::
+
+## Session Overview
+
+Google Earth Engine (GEE) is a planetary-scale platform for Earth science data and analysis. This session introduces you to GEE's Python API, enabling you to access Sentinel-1 and Sentinel-2 data, filter massive image collections, perform cloud masking, create temporal composites, and export processed data - all without downloading terabytes of imagery. You'll learn core GEE concepts and apply them to Philippine use cases.
+
+---
+
+::: {.learning-objectives}
+### Learning Objectives
+
+By the end of this session, you will be able to:
+
+- **Explain** what Google Earth Engine is and its advantages for EO
+- **Authenticate** and initialize the Earth Engine Python API
+- **Define** core GEE concepts: Image, ImageCollection, Feature, FeatureCollection
+- **Apply** filters (spatial, temporal, metadata) to image collections
+- **Access** Sentinel-1 GRD and Sentinel-2 SR data catalogs
+- **Implement** cloud masking using QA bands
+- **Create** temporal composites (median, mean) to reduce cloud cover
+- **Calculate** spectral indices (NDVI, NDWI) at scale
+- **Export** processed imagery to Google Drive
+- **Understand** GEE's capabilities and limitations for AI/ML workflows
+:::
+
+---
+
+## Presentation Slides
+
+<iframe src="../presentations/04_session4_google_earth_engine.html" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+---
+
+## Part 1: What is Google Earth Engine?
+
+### Overview
+
+**Google Earth Engine** is a cloud-based platform combining:
+
+1. **Multi-petabyte catalog** of satellite imagery and geospatial datasets
+2. **Planetary-scale analysis capabilities** via Google's computational infrastructure
+3. **Code Editor** (JavaScript) and **Python API** for programmatic access
+
+```{mermaid}
+%%| fig-cap: "Google Earth Engine Architecture and Workflow"
+%%| fig-width: 100%
+
+flowchart TB
+    subgraph User["USER INTERFACE"]
+        U1[Code Editor<br/>JavaScript<br/>Web-based IDE]
+        U2[Python API<br/>Local/Colab<br/>ee library]
+        U3[Apps<br/>Earth Engine Apps<br/>Custom web apps]
+    end
+
+    subgraph GEECloud["GOOGLE EARTH ENGINE CLOUD"]
+        subgraph DataCatalog["DATA CATALOG (70+ PB)"]
+            DC1[Landsat<br/>1972-present<br/>30m resolution]
+            DC2[Sentinel-1/2<br/>2014-present<br/>10m resolution]
+            DC3[MODIS<br/>2000-present<br/>250m-1km]
+            DC4[Climate<br/>ERA5, CHIRPS<br/>Weather data]
+            DC5[Terrain<br/>SRTM, ALOS<br/>DEMs]
+        end
+
+        subgraph Processing["PROCESSING ENGINE"]
+            P1[Parallel<br/>Computation<br/>Distributed]
+            P2[Server-side<br/>Operations<br/>ee.Image, ee.ImageCollection]
+            P3[Optimized<br/>Algorithms<br/>Reducers, Filters]
+        end
+
+        subgraph Operations["COMMON OPERATIONS"]
+            O1[Filtering<br/>filterBounds<br/>filterDate<br/>filterMetadata]
+            O2[Compositing<br/>median, mean<br/>mosaic, reduce]
+            O3[Indices<br/>NDVI, EVI<br/>normalizedDifference]
+            O4[Classification<br/>Random Forest<br/>CART, SVM]
+        end
+    end
+
+    subgraph Output["OUTPUT"]
+        OUT1[Interactive Maps<br/>Visualization<br/>Map.addLayer]
+        OUT2[Exports<br/>Drive, Asset<br/>Cloud Storage]
+        OUT3[Charts<br/>Time series<br/>Statistics]
+        OUT4[Training Data<br/>For external ML]
+    end
+
+    U1 --> P2
+    U2 --> P2
+    U3 --> P2
+
+    DataCatalog --> P1
+    P1 --> P2
+    P2 --> O1
+    P2 --> O2
+    P2 --> O3
+    P2 --> O4
+
+    Operations --> OUT1
+    Operations --> OUT2
+    Operations --> OUT3
+    Operations --> OUT4
+
+    style User fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style DataCatalog fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Processing fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Operations fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Output fill:#f0e6ff,stroke:#6666cc,stroke-width:2px
+```
+
+::: {.callout-note}
+## Earth Engine by the Numbers
+
+- **40+ years** of historical imagery
+- **70+ petabytes** of data
+- **700+ datasets** including Landsat, Sentinel, MODIS, climate, terrain
+- **Global coverage** updated daily
+- **Free** for research, education, and non-profit use
+:::
+
+### Why Use Google Earth Engine?
+
+**Traditional workflow problems:**
+
+- Downloading terabytes of satellite data
+- Storing data locally (expensive storage)
+- Pre-processing each scene individually (time-consuming)
+- Limited computational resources for large-area analysis
+
+**Earth Engine solution:**
+
+```
+┌─────────────────────────────────────┐
+│   Your Computer                     │
+│   ┌──────────────┐                  │
+│   │ Write Code   │                  │
+│   │ (Python/JS)  │                  │
+│   └──────┬───────┘                  │
+│          │                           │
+│   ┌──────▼───────────────────────┐  │
+│   │ Send to Cloud                │  │
+│   └──────────────────────────────┘  │
+└──────────────┬──────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────────┐
+│   Google Earth Engine Cloud                 │
+│   ┌──────────────┐  ┌──────────────┐        │
+│   │ Petabyte     │  │ Massive      │        │
+│   │ Data Catalog │  │ Computation  │        │
+│   └──────────────┘  └──────────────┘        │
+│                                              │
+│   Process → Results → Send back to you      │
+└──────────────────────────────────────────────┘
+```
+
+**Key advantages:**
+
+- **No downloading:** Data stays in Google's cloud
+- **Parallel processing:** Distributed computation across many machines
+- **Pre-processed data:** Analysis-ready collections (e.g., Sentinel-2 SR)
+- **Temporal analysis:** Easily work with time series
+- **Reproducible:** Share code, not gigabytes of data
+
+### Use Cases for Earth Observation
+
+**Ideal for:**
+
+- Large-area mapping (country/continent scale)
+- Multi-temporal analysis (time series, change detection)
+- Rapid prototyping and exploration
+- Cloud-based pre-processing
+- Teaching and learning (no infrastructure needed)
+
+**Less ideal for:**
+
+- Training custom deep learning models (CNNs, U-Net) - limited GPU support
+- Real-time processing requiring millisecond latency
+- Workflows requiring full control over hardware
+- Proprietary/restricted datasets not in GEE catalog
+
+::: {.philippine-context}
+**Philippine Applications:**
+
+- **National land cover mapping:** Process all of Philippines (~300,000 km²) at 10m resolution
+- **Multi-year deforestation monitoring:** Annual forest loss detection 2015-2025
+- **Typhoon impact assessment:** Before/after composites for disaster response
+- **Rice paddy monitoring:** Track planting/harvest cycles using SAR time series
+- **Coastal change detection:** Erosion and accretion mapping using optical+SAR
+:::
+
+---
+
+## Part 2: Setting Up Earth Engine in Python
+
+### Prerequisites
+
+::: {.callout-warning}
+## Required Setup
+
+Before using Earth Engine, you must:
+
+1. **Google account** (Gmail or G Suite)
+2. **Earth Engine account** - Register at [earthengine.google.com](https://earthengine.google.com)
+3. **Cloud project** - Create or select a project after registration
+
+**Registration is FREE** and typically approved within 1-2 days.
+:::
+
+### Installation in Google Colab
+
+The `earthengine-api` library is pre-installed in Colab, but let's ensure it's up-to-date:
+
+```python
+# Update Earth Engine API
+!pip install earthengine-api --upgrade -q
+
+print("Earth Engine API updated! ✓")
+```
+
+### Authentication & Initialization
+
+**First-time setup (one-time per environment):**
+
+```python
+import ee
+
+# Authenticate (opens browser window for authorization)
+ee.Authenticate()
+```
+
+This will:
+1. Open a new browser tab
+2. Ask you to select your Google account
+3. Request permission to access Earth Engine
+4. Provide an authorization code
+5. Automatically apply the code
+
+::: {.callout-tip}
+## Authentication Troubleshooting
+
+If authentication fails:
+
+1. Ensure you've registered at earthengine.google.com
+2. Check that you're using the same Google account
+3. Clear browser cookies and try again
+4. Use an incognito/private browsing window
+:::
+
+**Initialize Earth Engine (required every session):**
+
+```python
+# Initialize with your cloud project
+# Replace with your actual project ID
+ee.Initialize(project='your-project-id')
+
+print("Earth Engine initialized! ✓")
+```
+
+**To find your project ID:**
+1. Go to [console.cloud.google.com](https://console.cloud.google.com)
+2. Select your project from the dropdown at the top
+3. Copy the Project ID (not Project Name)
+
+**Complete setup code:**
+
+```python
+import ee
+import geemap  # Interactive mapping library
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Authenticate (first time only - comment out after first use)
+# ee.Authenticate()
+
+# Initialize
+ee.Initialize(project='your-project-id')
+
+# Test that it works
+image = ee.Image('USGS/SRTMGL1_003')
+print("✓ Successfully connected to Earth Engine!")
+print(f"  Test image bands: {image.bandNames().getInfo()}")
+```
+
+---
+
+## Part 3: Core Earth Engine Concepts
+
+### The Building Blocks
+
+Earth Engine has a unique data model optimized for planetary-scale analysis:
+
+| Concept | Description | Example |
+|---------|-------------|---------|
+| **Image** | Single raster with multiple bands | One Sentinel-2 scene |
+| **ImageCollection** | Stack of images (time series) | All Sentinel-2 over Philippines in 2024 |
+| **Geometry** | Vector shapes | Point, polygon, line |
+| **Feature** | Geometry + properties (attributes) | Province polygon with name, population |
+| **FeatureCollection** | Multiple features | All Philippine provinces |
+
+### 1. Geometry
+
+**Define locations and areas of interest:**
+
+```python
+# Point (longitude, latitude)
+manila = ee.Geometry.Point([121.0244, 14.5995])
+
+# Rectangle (min_lon, min_lat, max_lon, max_lat)
+bohol_bbox = ee.Geometry.Rectangle([123.8, 9.6, 124.6, 10.2])
+
+# Polygon (list of coordinate pairs)
+custom_aoi = ee.Geometry.Polygon([
+    [[123.5, 9.5], [125.0, 9.5], [125.0, 11.0], [123.5, 11.0], [123.5, 9.5]]
+])
+
+print("Geometries created! ✓")
+print(f"Manila coordinates: {manila.coordinates().getInfo()}")
+print(f"Bohol bbox area: {bohol_bbox.area().divide(1e6).getInfo():.2f} km²")
+```
+
+### 2. Image
+
+**Single raster image with one or more bands:**
+
+```python
+# Load a Sentinel-2 image by ID
+sentinel2_image = ee.Image('COPERNICUS/S2_SR/20240315T015701_20240315T015659_T51PWN')
+
+# Examine properties
+print("Image ID:", sentinel2_image.id().getInfo())
+print("Band names:", sentinel2_image.bandNames().getInfo())
+print("Cloud cover:", sentinel2_image.get('CLOUDY_PIXEL_PERCENTAGE').getInfo(), "%")
+
+# Select specific bands
+rgb_bands = sentinel2_image.select(['B4', 'B3', 'B2'])  # Red, Green, Blue
+```
+
+**Image operations:**
+
+```python
+# Calculate NDVI for single image
+ndvi = sentinel2_image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+
+# Add as band to original image
+image_with_ndvi = sentinel2_image.addBands(ndvi)
+
+print("NDVI band added! ✓")
+```
+
+### 3. ImageCollection
+
+**Stack of images (time series):**
+
+```python
+# Load Sentinel-2 collection
+s2_collection = ee.ImageCollection('COPERNICUS/S2_SR')
+
+# Check collection size (can be huge!)
+print("Total Sentinel-2 images in catalog:", s2_collection.size().getInfo())
+# This will be millions!
+```
+
+**ImageCollection operations:**
+
+```python
+# Filter by date, location, and cloud cover
+filtered = (s2_collection
+    .filterBounds(bohol_bbox)
+    .filterDate('2024-01-01', '2024-12-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30)))
+
+print(f"Filtered to {filtered.size().getInfo()} images over Bohol in 2024 with <30% clouds")
+
+# Get image at specific index
+first_image = ee.Image(filtered.first())
+print("First image date:", first_image.date().format('YYYY-MM-dd').getInfo())
+```
+
+### 4. Feature & FeatureCollection
+
+**Vector data with attributes:**
+
+```python
+# Single feature (geometry + properties)
+manila_feature = ee.Feature(
+    ee.Geometry.Point([121.0244, 14.5995]),
+    {'name': 'Manila', 'population': 1780148, 'country': 'Philippines'}
+)
+
+print("Feature:", manila_feature.getInfo())
+
+# Load feature collection (e.g., GADM administrative boundaries)
+philippines = ee.FeatureCollection('FAO/GAUL/2015/level1').filter(
+    ee.Filter.eq('ADM0_NAME', 'Philippines')
+)
+
+print(f"Philippine provinces: {philippines.size().getInfo()}")
+```
+
+---
+
+## Part 4: Filtering and Querying Data
+
+### Filter Types
+
+Earth Engine provides powerful filtering to reduce massive collections to relevant data.
+
+```{mermaid}
+%%| fig-cap: "ImageCollection Filtering Pipeline"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Full Sentinel-2 Collection<br/>COPERNICUS/S2_SR<br/>Global, All dates<br/>~Millions of images] --> B[filterBounds<br/>Spatial Filter<br/>AOI: Bohol Province]
+
+    B --> C[Bohol Coverage<br/>~10,000s images<br/>Since 2015]
+
+    C --> D[filterDate<br/>Temporal Filter<br/>2024-03-01 to 2024-05-31]
+
+    D --> E[Date Range<br/>~100 images<br/>3 months]
+
+    E --> F{filterMetadata<br/>CLOUDY_PIXEL_PERCENTAGE<br/>< 20%}
+
+    F -->|Pass| G[Clear Images<br/>~30-40 images<br/>Usable quality]
+
+    F -->|Fail<br/>Too cloudy| H[Excluded<br/>High cloud cover]
+
+    G --> I[select<br/>Band Selection<br/>B2, B3, B4, B8, B11, B12]
+
+    I --> J[Final Collection<br/>30-40 images<br/>6 bands each<br/>Ready for analysis]
+
+    J --> K1[median<br/>Temporal composite]
+    J --> K2[mean<br/>Average]
+    J --> K3[mosaic<br/>Spatial mosaic]
+    J --> K4[map<br/>Apply function]
+
+    K1 --> L[Single Image<br/>Cloud-free composite<br/>Analysis-ready]
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style E fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style G fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style H fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style J fill:#ccffcc,stroke:#00aa44,stroke-width:3px
+    style L fill:#ccffcc,stroke:#00aa44,stroke-width:3px
+```
+
+#### 1. Spatial Filtering
+
+**filterBounds() - Keep images intersecting a geometry:**
+
+```python
+# Define AOI
+palawan = ee.Geometry.Rectangle([117.5, 8.0, 119.5, 12.0])
+
+# Filter Sentinel-2 to Palawan
+s2_palawan = ee.ImageCollection('COPERNICUS/S2_SR').filterBounds(palawan)
+
+print(f"Total Sentinel-2 images over Palawan: {s2_palawan.size().getInfo()}")
+```
+
+#### 2. Temporal Filtering
+
+**filterDate() - Keep images within date range:**
+
+```python
+# Dry season 2024
+dry_season = s2_palawan.filterDate('2024-01-01', '2024-05-31')
+print(f"Dry season images: {dry_season.size().getInfo()}")
+
+# Wet season 2024
+wet_season = s2_palawan.filterDate('2024-06-01', '2024-11-30')
+print(f"Wet season images: {wet_season.size().getInfo()}")
+```
+
+#### 3. Metadata Filtering
+
+**filter() - Custom filters on image properties:**
+
+```python
+# Low cloud cover
+clear_images = dry_season.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+print(f"Clear images (<10% clouds): {clear_images.size().getInfo()}")
+
+# Specific satellite
+s2a_only = dry_season.filter(ee.Filter.eq('SPACECRAFT_NAME', 'Sentinel-2A'))
+print(f"Sentinel-2A only: {s2a_only.size().getInfo()}")
+
+# Multiple conditions
+best_images = (dry_season
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 5))
+    .filter(ee.Filter.eq('SPACECRAFT_NAME', 'Sentinel-2B'))
+)
+print(f"Best images (S-2B, <5% clouds): {best_images.size().getInfo()}")
+```
+
+### Chain Filters for Precision
+
+**Combine multiple filters:**
+
+```python
+# Define AOI for Bohol
+bohol_aoi = ee.Geometry.Rectangle([123.8, 9.6, 124.6, 10.2])
+
+# Multi-filter pipeline
+bohol_images = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(bohol_aoi)
+    .filterDate('2024-03-01', '2024-05-31')  # Dry season
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+    .select(['B2', 'B3', 'B4', 'B8', 'B11', 'B12', 'QA60']))  # Relevant bands
+
+print("=" * 50)
+print(f"Bohol Image Collection (Dry Season 2024)")
+print("=" * 50)
+print(f"  Total images: {bohol_images.size().getInfo()}")
+print(f"  Date range: {bohol_images.aggregate_min('system:time_start').getInfo()} to {bohol_images.aggregate_max('system:time_start').getInfo()}")
+print("=" * 50)
+```
+
+---
+
+## Part 5: Working with Sentinel Data in GEE
+
+### Sentinel-2 Surface Reflectance
+
+**Collection ID:** `COPERNICUS/S2_SR`
+
+**Key information:**
+
+- **Level:** Level-2A (atmospherically corrected surface reflectance)
+- **Bands:** 13 spectral bands (B1-B12, plus QA60)
+- **Resolution:** 10m (B2-B4, B8), 20m (B5-B7, B8A, B11-B12), 60m (B1, B9, B10)
+- **Revisit:** 5 days (constellation)
+- **Updates:** Near real-time (within days of acquisition)
+
+**Band naming in GEE:**
+
+| Band | Name | Wavelength | Resolution | Use |
+|------|------|------------|------------|-----|
+| B2 | Blue | 490 nm | 10m | Atmospheric, water |
+| B3 | Green | 560 nm | 10m | Vegetation, water |
+| B4 | Red | 665 nm | 10m | Vegetation discrimination |
+| B8 | NIR | 842 nm | 10m | Biomass, vegetation |
+| B11 | SWIR1 | 1610 nm | 20m | Moisture, soil/vegetation |
+| B12 | SWIR2 | 2190 nm | 20m | Moisture, geology |
+| QA60 | Quality | - | 60m | Cloud mask |
+
+**Load and visualize:**
+
+```python
+# Load collection
+s2 = ee.ImageCollection('COPERNICUS/S2_SR')
+
+# Filter to area and time
+image = (s2
+    .filterBounds(ee.Geometry.Point([124.0, 10.0]))  # Bohol
+    .filterDate('2024-03-01', '2024-03-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+    .first())
+
+# Visualize with geemap (interactive mapping)
+import geemap
+
+Map = geemap.Map(center=[10.0, 124.0], zoom=9)
+vis_params = {
+    'bands': ['B4', 'B3', 'B2'],
+    'min': 0,
+    'max': 3000,
+    'gamma': 1.4
+}
+Map.addLayer(image, vis_params, 'Sentinel-2 True Color')
+Map
+```
+
+### Sentinel-1 SAR
+
+**Collection ID:** `COPERNICUS/S1_GRD`
+
+**Key information:**
+
+- **Level:** Level-1 Ground Range Detected (GRD)
+- **Polarization:** VV, VH (or HH, HV depending on mode)
+- **Resolution:** 10m (IW mode)
+- **Revisit:** 6-12 days
+- **Advantages:** All-weather, day-night imaging
+
+**Load Sentinel-1:**
+
+```python
+# Load Sentinel-1 collection
+s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
+
+# Filter for ascending pass, IW mode, VV+VH polarization
+s1_filtered = (s1
+    .filterBounds(bohol_aoi)
+    .filterDate('2024-06-01', '2024-08-31')  # Wet season
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
+    .filter(ee.Filter.eq('instrumentMode', 'IW'))
+    .filter(ee.Filter.eq('orbitProperties_pass', 'ASCENDING'))
+    .select(['VV', 'VH']))
+
+print(f"Sentinel-1 images: {s1_filtered.size().getInfo()}")
+
+# Visualize
+s1_image = s1_filtered.median()  # Median composite
+Map = geemap.Map(center=[10.0, 124.0], zoom=9)
+Map.addLayer(s1_image, {'bands': ['VV'], 'min': -25, 'max': 0}, 'S1 VV')
+Map.addLayer(s1_image, {'bands': ['VH'], 'min': -30, 'max': -5}, 'S1 VH')
+Map
+```
+
+---
+
+## Part 6: Cloud Masking and Preprocessing
+
+### Why Cloud Masking?
+
+**Problems with clouds:**
+
+- Obscure ground features
+- Contaminate spectral indices
+- Reduce classification accuracy
+- Create artifacts in composites
+
+**Solution:** Use quality assessment (QA) bands to identify and mask clouds.
+
+### Sentinel-2 Cloud Masking
+
+**Sentinel-2 includes QA60 band:**
+
+- Bit 10: Opaque clouds
+- Bit 11: Cirrus clouds
+
+**Cloud masking function:**
+
+```python
+def mask_s2_clouds(image):
+    """Mask clouds using QA60 band."""
+    qa = image.select('QA60')
+
+    # Bits 10 and 11 are clouds and cirrus
+    cloud_bit_mask = 1 << 10
+    cirrus_bit_mask = 1 << 11
+
+    # Both flags should be zero = clear
+    mask = (qa.bitwiseAnd(cloud_bit_mask).eq(0)
+            .And(qa.bitwiseAnd(cirrus_bit_mask).eq(0)))
+
+    # Return masked image, scaled to reflectance (0-1)
+    return image.updateMask(mask).divide(10000)
+
+# Apply to collection
+s2_masked = bohol_images.map(mask_s2_clouds)
+
+print("Cloud masking applied! ✓")
+```
+
+::: {.callout-note}
+## Understanding Bitwise Operations
+
+**QA60 band stores flags as bits:**
+
+```
+QA60 = 1024 (binary: 10000000000)
+         Bit 10 is set → Cloud present
+
+Bit mask:
+cloud_bit_mask = 1 << 10 = 1024
+qa.bitwiseAnd(cloud_bit_mask) extracts bit 10
+.eq(0) checks if bit is 0 (no cloud)
+```
+
+This efficient encoding allows multiple flags in one band!
+:::
+
+### Advanced Cloud Masking with SCL
+
+**Scene Classification Layer (SCL) band provides detailed classification:**
+
+```python
+def mask_s2_clouds_scl(image):
+    """Advanced cloud masking using SCL band."""
+    scl = image.select('SCL')
+
+    # SCL values:
+    # 3 = cloud shadows
+    # 8 = cloud medium probability
+    # 9 = cloud high probability
+    # 10 = thin cirrus
+    # 11 = snow/ice
+
+    # Keep only vegetation (4), bare soil (5), water (6)
+    mask = scl.eq(4).Or(scl.eq(5)).Or(scl.eq(6))
+
+    return image.updateMask(mask).divide(10000)
+
+# Note: Need to load SCL band
+s2_with_scl = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(bohol_aoi)
+    .filterDate('2024-03-01', '2024-05-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+    .select(['B2', 'B3', 'B4', 'B8', 'SCL']))
+
+s2_masked_scl = s2_with_scl.map(mask_s2_clouds_scl)
+```
+
+---
+
+## Part 7: Creating Temporal Composites
+
+### Why Composites?
+
+**Challenges in tropical regions (like Philippines):**
+
+- Frequent cloud cover (>60% annual average)
+- Difficult to find single cloud-free scene
+- Monsoon seasons worsen problem
+
+**Solution: Temporal compositing**
+
+Combine multiple images over time to create cloud-free mosaic.
+
+### Composite Methods
+
+#### 1. Median Composite
+
+**Most common - robust to outliers:**
+
+```python
+# Create median composite (dry season 2024)
+composite_median = s2_masked.median()
+
+print("Median composite created! ✓")
+
+# Visualize
+Map = geemap.Map(center=[10.0, 124.0], zoom=9)
+vis_params = {
+    'bands': ['B4', 'B3', 'B2'],
+    'min': 0,
+    'max': 0.3,
+    'gamma': 1.4
+}
+Map.addLayer(composite_median, vis_params, 'Median Composite (Dry Season)')
+Map
+```
+
+**Why median?**
+
+- Middle value of sorted pixel values over time
+- Removes clouds (typically brightest values)
+- Removes shadows (typically darkest values)
+- Preserves realistic surface reflectance
+
+#### 2. Mean Composite
+
+**Average of all pixels:**
+
+```python
+composite_mean = s2_masked.mean()
+
+# Smoother than median, but sensitive to remaining clouds
+```
+
+#### 3. Greenest Pixel Composite
+
+**Select pixel with highest NDVI (most vegetated):**
+
+```python
+def add_ndvi(image):
+    """Add NDVI band to image."""
+    ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+    return image.addBands(ndvi)
+
+# Add NDVI to all images
+s2_with_ndvi = s2_masked.map(add_ndvi)
+
+# Get maximum NDVI composite (greenest pixel)
+composite_max_ndvi = s2_with_ndvi.qualityMosaic('NDVI')
+
+Map.addLayer(composite_max_ndvi, vis_params, 'Greenest Pixel Composite')
+```
+
+### Multi-temporal Analysis
+
+**Compare dry vs. wet season:**
+
+```python
+# Dry season composite (Jan-May)
+dry_season = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(bohol_aoi)
+    .filterDate('2024-01-01', '2024-05-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+    .map(mask_s2_clouds)
+    .median())
+
+# Wet season composite (Jun-Nov)
+wet_season = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(bohol_aoi)
+    .filterDate('2024-06-01', '2024-11-30')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+    .map(mask_s2_clouds)
+    .median())
+
+# Calculate NDVI for both
+dry_ndvi = dry_season.normalizedDifference(['B8', 'B4'])
+wet_ndvi = wet_season.normalizedDifference(['B8', 'B4'])
+
+# NDVI difference (wet - dry)
+ndvi_change = wet_ndvi.subtract(dry_ndvi)
+
+# Visualize
+Map = geemap.Map(center=[10.0, 124.0], zoom=9)
+Map.addLayer(dry_season, vis_params, 'Dry Season')
+Map.addLayer(wet_season, vis_params, 'Wet Season')
+Map.addLayer(ndvi_change, {'min': -0.3, 'max': 0.3, 'palette': ['red', 'white', 'green']},
+             'NDVI Change (Wet-Dry)')
+Map
+```
+
+::: {.philippine-context}
+**Interpretation for Philippines:**
+
+- **Green areas (positive change):** Rice paddies planted during wet season, increased vegetation vigor
+- **Red areas (negative change):** Areas with less vegetation in wet season (possibly fallow, harvested, or flooded)
+- **White areas (no change):** Stable land cover (evergreen forest, urban)
+:::
+
+---
+
+## Part 8: Calculating Spectral Indices at Scale
+
+### NDVI (Vegetation Health)
+
+```python
+def calculate_ndvi(image):
+    """Calculate NDVI for an image."""
+    ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+    return image.addBands(ndvi)
+
+# Apply to collection
+s2_with_ndvi = s2_masked.map(calculate_ndvi)
+
+# Get NDVI composite
+ndvi_composite = s2_with_ndvi.select('NDVI').median()
+
+# Visualize
+ndvi_params = {
+    'min': 0,
+    'max': 1,
+    'palette': ['red', 'yellow', 'green']
+}
+Map = geemap.Map(center=[10.0, 124.0], zoom=9)
+Map.addLayer(ndvi_composite, ndvi_params, 'NDVI Composite')
+Map
+```
+
+### NDWI (Water Bodies)
+
+```python
+def calculate_ndwi(image):
+    """Calculate NDWI for water detection."""
+    ndwi = image.normalizedDifference(['B3', 'B8']).rename('NDWI')
+    return image.addBands(ndwi)
+
+s2_with_ndwi = s2_masked.map(calculate_ndwi)
+ndwi_composite = s2_with_ndwi.select('NDWI').median()
+
+# Extract water bodies (NDWI > 0.3)
+water_mask = ndwi_composite.gt(0.3)
+
+Map.addLayer(water_mask.selfMask(), {'palette': 'blue'}, 'Water Bodies')
+```
+
+### Multiple Indices
+
+```python
+def add_indices(image):
+    """Add multiple spectral indices."""
+    # NDVI
+    ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+
+    # NDWI
+    ndwi = image.normalizedDifference(['B3', 'B8']).rename('NDWI')
+
+    # NDBI (Built-up)
+    ndbi = image.normalizedDifference(['B11', 'B8']).rename('NDBI')
+
+    # EVI (Enhanced Vegetation Index)
+    evi = image.expression(
+        '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
+        {
+            'NIR': image.select('B8'),
+            'RED': image.select('B4'),
+            'BLUE': image.select('B2')
+        }
+    ).rename('EVI')
+
+    return image.addBands([ndvi, ndwi, ndbi, evi])
+
+# Apply to collection
+s2_with_indices = s2_masked.map(add_indices)
+
+# Create composite with all indices
+multi_index_composite = s2_with_indices.median()
+
+print("Bands in composite:", multi_index_composite.bandNames().getInfo())
+```
+
+---
+
+## Part 9: Exporting Data from Earth Engine
+
+### Export to Google Drive
+
+**Why export?**
+
+- Use data outside Earth Engine
+- Train ML models locally or in Colab
+- Share processed results
+- Create high-resolution figures
+
+```{mermaid}
+%%| fig-cap: "Earth Engine Export Workflow"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Processed Data<br/>in GEE] --> B{Export<br/>Type?}
+
+    B -->|Image| C1[ee.batch.Export<br/>.image.toDrive]
+    B -->|Table| C2[ee.batch.Export<br/>.table.toDrive]
+    B -->|Video| C3[ee.batch.Export<br/>.video.toDrive]
+
+    C1 --> D1[Configure<br/>Image Export]
+    C2 --> D2[Configure<br/>Table Export]
+
+    D1 --> E1[Parameters:<br/>region, scale<br/>crs, bands<br/>fileFormat]
+
+    D2 --> E2[Parameters:<br/>columns<br/>fileFormat<br/>CSV/SHP/GeoJSON]
+
+    E1 --> F[task.start<br/>Submit to Queue]
+    E2 --> F
+
+    F --> G[GEE Processing<br/>Server-side<br/>computation]
+
+    G --> H{Status?}
+
+    H -->|READY| I[In Queue<br/>Waiting]
+    H -->|RUNNING| J[Processing...<br/>Monitor progress]
+    H -->|COMPLETED| K[Success!<br/>Check Drive]
+    H -->|FAILED| L[Error<br/>Check logs]
+
+    K --> M[Google Drive<br/>CoPhil_Training/<br/>filename.tif]
+
+    M --> N1[Download<br/>Local use]
+    M --> N2[Colab Access<br/>mount Drive]
+    M --> N3[Share<br/>Collaborators]
+
+    N1 --> O[ML Training<br/>PyTorch/TensorFlow<br/>Scikit-learn]
+    N2 --> O
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style F fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style G fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style K fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style L fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style M fill:#ccffcc,stroke:#00aa44,stroke-width:2px
+    style O fill:#cce6ff,stroke:#0066cc,stroke-width:2px
+```
+
+**Export image:**
+
+```python
+# Define export region (use AOI)
+export_region = bohol_aoi
+
+# Export composite to Drive
+export_task = ee.batch.Export.image.toDrive(
+    image=composite_median.select(['B2', 'B3', 'B4', 'B8']),
+    description='Bohol_S2_Median_Dry2024',
+    folder='CoPhil_Training',
+    fileNamePrefix='bohol_s2_composite',
+    region=export_region,
+    scale=10,  # Resolution in meters
+    crs='EPSG:32651',  # UTM Zone 51N
+    maxPixels=1e9,
+    fileFormat='GeoTIFF'
+)
+
+# Start export task
+export_task.start()
+
+print("Export task started! ✓")
+print("Check status at: https://code.earthengine.google.com/tasks")
+```
+
+**Monitor export:**
+
+```python
+import time
+
+# Check task status
+task_id = export_task.id
+print(f"Task ID: {task_id}")
+
+# Poll until complete (check every 30 seconds)
+while export_task.active():
+    print(f"  Status: {export_task.status()['state']} ...")
+    time.sleep(30)
+
+print(f"✓ Export complete! Status: {export_task.status()['state']}")
+```
+
+### Export Options
+
+**1. Export to Google Drive (easiest):**
+
+```python
+ee.batch.Export.image.toDrive()
+```
+
+**2. Export to Cloud Storage:**
+
+```python
+ee.batch.Export.image.toCloudStorage(
+    image=image,
+    bucket='your-gcs-bucket',
+    fileNamePrefix='path/to/file',
+    ...
+)
+```
+
+**3. Export to Asset (for reuse in GEE):**
+
+```python
+ee.batch.Export.image.toAsset(
+    image=image,
+    description='MyAsset',
+    assetId='users/your-username/your-asset-name',
+    ...
+)
+```
+
+### Export FeatureCollection (Vector)
+
+**Export classification results or statistics:**
+
+```python
+# Create sample points with NDVI values
+sample_points = ndvi_composite.sample(
+    region=bohol_aoi,
+    scale=100,
+    numPixels=1000,
+    geometries=True
+)
+
+# Export to Drive
+export_vector = ee.batch.Export.table.toDrive(
+    collection=sample_points,
+    description='Bohol_NDVI_Samples',
+    folder='CoPhil_Training',
+    fileFormat='CSV'
+)
+
+export_vector.start()
+print("Vector export started! ✓")
+```
+
+---
+
+## Part 10: Best Practices and Limitations
+
+### Best Practices
+
+::: {.callout-tip}
+## GEE Workflow Tips
+
+1. **Filter aggressively:** Reduce collection size before processing
+2. **Use Cloud masking:** Always mask clouds for optical data
+3. **Scale matters:** Choose appropriate scale for export (don't over-sample)
+4. **Test on small areas:** Prototype with small AOI before scaling up
+5. **Monitor quotas:** Be aware of computation and storage limits
+6. **Reproducibility:** Save scripts, document parameters
+7. **Leverage built-in functions:** Don't reinvent the wheel
+:::
+
+### Computational Limits
+
+**Earth Engine has quotas (free tier):**
+
+- **Simultaneous requests:** Limited concurrent computations
+- **Export size:** Max 100,000 pixels per dimension
+- **Asset storage:** Limited space for uploaded/exported assets
+- **Processing time:** Long-running tasks may timeout
+
+**Solutions:**
+
+- Break large exports into tiles
+- Use reduce() operations instead of getInfo() for large data
+- Export to Asset for intermediate results
+- Consider upgrading to commercial tier for production workflows
+
+### Limitations for AI/ML
+
+**What GEE does well:**
+
+- Data access and pre-processing
+- Large-scale feature extraction
+- Random Forest / CART classification
+- Pixel-based analysis
+
+**What GEE struggles with:**
+
+- Training deep learning models (CNNs, U-Net, LSTMs)
+- Custom loss functions and optimizers
+- GPU-accelerated training
+- Complex model architectures requiring TensorFlow/PyTorch
+
+::: {.callout-note}
+## Recommended Workflow for Deep Learning
+
+1. **Use GEE for:** Data discovery, filtering, cloud masking, compositing, exporting training patches
+2. **Use Python (Colab/local) for:** Training CNNs/U-Nets with TensorFlow or PyTorch
+3. **Return to GEE for:** Applying trained model at scale (if feasible) or export tiles for prediction
+:::
+
+---
+
+## Part 11: Complete Example: Philippine Land Cover Composite
+
+**Scenario:** Create cloud-free RGB and NDVI composites for entire Palawan province.
+
+```python
+# 1. Define AOI (Palawan province)
+palawan = ee.Geometry.Rectangle([117.5, 8.0, 119.5, 12.0])
+
+# 2. Load and filter Sentinel-2
+s2_palawan = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(palawan)
+    .filterDate('2024-01-01', '2024-05-31')  # Dry season
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+    .select(['B2', 'B3', 'B4', 'B8', 'QA60']))
+
+print(f"Images in collection: {s2_palawan.size().getInfo()}")
+
+# 3. Apply cloud masking
+def mask_clouds(image):
+    qa = image.select('QA60')
+    cloud_mask = qa.bitwiseAnd(1 << 10).eq(0).And(qa.bitwiseAnd(1 << 11).eq(0))
+    return image.updateMask(cloud_mask).divide(10000)
+
+s2_masked = s2_palawan.map(mask_clouds)
+
+# 4. Create median composite
+composite = s2_masked.median()
+
+# 5. Calculate NDVI
+ndvi = composite.normalizedDifference(['B8', 'B4']).rename('NDVI')
+composite_with_ndvi = composite.addBands(ndvi)
+
+# 6. Visualize
+Map = geemap.Map(center=[10.0, 118.5], zoom=8)
+
+rgb_vis = {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 0.3, 'gamma': 1.4}
+ndvi_vis = {'bands': ['NDVI'], 'min': 0, 'max': 1, 'palette': ['brown', 'yellow', 'green', 'darkgreen']}
+
+Map.addLayer(composite, rgb_vis, 'Palawan True Color')
+Map.addLayer(composite_with_ndvi, ndvi_vis, 'Palawan NDVI')
+Map
+
+# 7. Export to Drive
+export_rgb = ee.batch.Export.image.toDrive(
+    image=composite.select(['B4', 'B3', 'B2']),
+    description='Palawan_RGB_DryS2024',
+    folder='CoPhil_Training',
+    region=palawan,
+    scale=10,
+    maxPixels=1e10,
+    fileFormat='GeoTIFF'
+)
+
+export_ndvi = ee.batch.Export.image.toDrive(
+    image=ndvi,
+    description='Palawan_NDVI_DryS2024',
+    folder='CoPhil_Training',
+    region=palawan,
+    scale=10,
+    maxPixels=1e10,
+    fileFormat='GeoTIFF'
+)
+
+export_rgb.start()
+export_ndvi.start()
+
+print("=" * 60)
+print("PALAWAN LAND COVER COMPOSITE - EXPORT STARTED")
+print("=" * 60)
+print("RGB Composite: Check Google Drive in ~10-30 minutes")
+print("NDVI Layer: Check Google Drive in ~10-30 minutes")
+print("Monitor at: https://code.earthengine.google.com/tasks")
+print("=" * 60)
+```
+
+---
+
+## Part 12: Philippine Case Studies and Applications
+
+### Case Study 1: Typhoon Impact Assessment
+
+**Scenario:** Assess vegetation damage from Typhoon Odette (Rai) in December 2021 over Bohol and Cebu.
+
+```python
+# Define affected region
+visayas_aoi = ee.Geometry.Rectangle([123.5, 9.5, 125.0, 11.0])
+
+# Pre-typhoon composite (November 2021)
+pre_typhoon = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(visayas_aoi)
+    .filterDate('2021-11-01', '2021-11-30')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+    .map(mask_s2_clouds)
+    .median())
+
+# Post-typhoon composite (January 2022 - after clouds cleared)
+post_typhoon = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(visayas_aoi)
+    .filterDate('2022-01-15', '2022-02-15')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+    .map(mask_s2_clouds)
+    .median())
+
+# Calculate NDVI for both periods
+pre_ndvi = pre_typhoon.normalizedDifference(['B8', 'B4']).rename('pre_NDVI')
+post_ndvi = post_typhoon.normalizedDifference(['B8', 'B4']).rename('post_NDVI')
+
+# Calculate NDVI difference (damage indicator)
+ndvi_change = post_ndvi.subtract(pre_ndvi).rename('NDVI_change')
+
+# Identify severely damaged areas (NDVI drop > 0.3)
+severe_damage = ndvi_change.lt(-0.3).selfMask()
+
+# Calculate affected area
+pixel_area = severe_damage.multiply(ee.Image.pixelArea())
+affected_area_m2 = pixel_area.reduceRegion(
+    reducer=ee.Reducer.sum(),
+    geometry=visayas_aoi,
+    scale=10,
+    maxPixels=1e10
+).getInfo()
+
+affected_hectares = affected_area_m2['NDVI_change'] / 10000
+
+print(f"Severely damaged vegetation: {affected_hectares:.0f} hectares")
+
+# Visualize
+Map = geemap.Map(center=[10.2, 124.0], zoom=9)
+Map.addLayer(pre_typhoon, {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 0.3}, 'Pre-Typhoon')
+Map.addLayer(post_typhoon, {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 0.3}, 'Post-Typhoon')
+Map.addLayer(ndvi_change, {'min': -0.5, 'max': 0.2, 'palette': ['red', 'yellow', 'green']}, 'NDVI Change')
+Map.addLayer(severe_damage, {'palette': 'darkred'}, 'Severe Damage')
+Map
+```
+
+**Applications:**
+- Rapid disaster assessment for relief planning
+- Insurance claims verification
+- Forest damage quantification
+- Agricultural loss estimation
+
+### Case Study 2: Manila Bay Water Quality Monitoring
+
+**Scenario:** Monitor water turbidity and suspended sediment in Manila Bay using Sentinel-2.
+
+```python
+# Define Manila Bay AOI
+manila_bay = ee.Geometry.Polygon([
+    [[120.7, 14.4], [120.95, 14.4], [121.0, 14.65], [120.75, 14.75], [120.7, 14.4]]
+])
+
+# Load Sentinel-2 for dry season 2024
+s2_manila = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(manila_bay)
+    .filterDate('2024-02-01', '2024-04-30')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+    .map(mask_s2_clouds)
+    .median())
+
+# Calculate water indices
+# Turbidity proxy using Red band
+turbidity = s2_manila.select('B4').rename('turbidity')
+
+# Normalized Difference Turbidity Index (NDTI)
+ndti = s2_manila.normalizedDifference(['B4', 'B3']).rename('NDTI')
+
+# Total Suspended Matter (TSM) estimation (simplified model)
+# TSM (mg/L) ≈ 3000 * Red_reflectance - 100
+tsm = s2_manila.select('B4').multiply(3000).subtract(100).rename('TSM_mgL')
+
+# Mask out land (keep only water bodies)
+ndwi = s2_manila.normalizedDifference(['B3', 'B8'])
+water_mask = ndwi.gt(0.0)
+tsm_water = tsm.updateMask(water_mask)
+
+# Visualize
+Map = geemap.Map(center=[14.55, 120.85], zoom=10)
+Map.addLayer(s2_manila, {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 0.15}, 'True Color')
+Map.addLayer(tsm_water, {'min': 0, 'max': 200, 'palette': ['blue', 'cyan', 'yellow', 'red']},
+             'TSM (mg/L)')
+Map.addLayer(ndti, {'min': -0.2, 'max': 0.4, 'palette': ['blue', 'white', 'brown']}, 'Turbidity Index')
+Map
+```
+
+**Applications:**
+- Coastal water quality monitoring
+- Rehabilitation program assessment
+- Pollution source identification
+- Seasonal variation analysis
+
+### Case Study 3: Rice Paddy Phenology with Sentinel-1
+
+**Scenario:** Track rice planting and harvesting cycles in Central Luzon using SAR.
+
+```python
+# Define Central Luzon rice area
+central_luzon = ee.Geometry.Rectangle([120.5, 15.0, 121.0, 15.5])
+
+# Load Sentinel-1 time series (wet season 2024)
+s1_series = (ee.ImageCollection('COPERNICUS/S1_GRD')
+    .filterBounds(central_luzon)
+    .filterDate('2024-06-01', '2024-11-30')
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
+    .filter(ee.Filter.eq('instrumentMode', 'IW'))
+    .select('VH'))
+
+# Function to add date as band
+def add_date_band(image):
+    date = ee.Date(image.get('system:time_start'))
+    day_of_year = date.getRelative('day', 'year')
+    return image.addBands(ee.Image.constant(day_of_year).rename('day_of_year'))
+
+s1_with_dates = s1_series.map(add_date_band)
+
+# Create monthly composites
+months = ee.List.sequence(6, 11)
+
+def monthly_composite(month):
+    start = ee.Date.fromYMD(2024, month, 1)
+    end = start.advance(1, 'month')
+    return s1_series.filterDate(start, end).median().set('month', month)
+
+monthly_composites = ee.ImageCollection.fromImages(months.map(monthly_composite))
+
+# Extract time series for a sample point
+rice_point = ee.Geometry.Point([120.75, 15.25])
+
+def sample_vh(image):
+    value = image.reduceRegion(
+        reducer=ee.Reducer.mean(),
+        geometry=rice_point,
+        scale=10
+    )
+    return ee.Feature(None, {
+        'VH': value.get('VH'),
+        'month': image.get('month')
+    })
+
+time_series = monthly_composites.map(sample_vh)
+data = time_series.getInfo()
+
+# Print time series
+print("VH Backscatter Time Series (dB):")
+for feat in data['features']:
+    month = feat['properties']['month']
+    vh = feat['properties'].get('VH', 'N/A')
+    if vh != 'N/A':
+        print(f"  Month {month}: {vh:.2f} dB")
+
+# Visualize VH for different months
+Map = geemap.Map(center=[15.25, 120.75], zoom=11)
+for i, month in enumerate([6, 8, 10]):
+    composite = monthly_composites.filter(ee.Filter.eq('month', month)).first()
+    Map.addLayer(composite, {'min': -25, 'max': -5, 'palette': ['blue', 'white', 'green']},
+                 f'VH - Month {month}')
+Map.addLayer(rice_point, {'color': 'red'}, 'Sample Point')
+Map
+```
+
+**Interpretation:**
+- **High VH (> -15 dB):** Flooding/transplanting phase (water surface with sparse vegetation)
+- **Decreasing VH (-15 to -20 dB):** Vegetative growth (increasing biomass scatters radar)
+- **Low VH (< -20 dB):** Peak growth/maturity
+- **Increasing VH:** Senescence and harvest
+
+**Applications:**
+- Crop calendar monitoring
+- Planting date estimation
+- Yield forecasting
+- Irrigation management
+
+### Case Study 4: Mangrove Forest Monitoring in Palawan
+
+**Scenario:** Map and monitor mangrove extent and health in Puerto Princesa.
+
+```python
+# Define Palawan coastal AOI
+palawan_coast = ee.Geometry.Rectangle([118.6, 9.6, 118.9, 10.0])
+
+# Load Sentinel-2 (dry season for best visibility)
+s2_palawan = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(palawan_coast)
+    .filterDate('2024-03-01', '2024-05-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+    .map(mask_s2_clouds)
+    .median())
+
+# Calculate indices for mangrove detection
+ndvi = s2_palawan.normalizedDifference(['B8', 'B4']).rename('NDVI')
+ndwi = s2_palawan.normalizedDifference(['B3', 'B8']).rename('NDWI')
+
+# Mangrove Vegetation Index (MVI) - uses SWIR
+# Mangroves have high NIR but moderate SWIR compared to other vegetation
+mvi = s2_palawan.normalizedDifference(['B8', 'B11']).rename('MVI')
+
+# Combined index for mangrove detection
+# Criteria: High NDVI (dense vegetation), slightly positive NDWI (coastal), high MVI
+mangrove_mask = (
+    ndvi.gt(0.5)
+    .And(ndwi.gt(-0.1))
+    .And(ndwi.lt(0.3))
+    .And(mvi.gt(0.4))
+)
+
+# Calculate mangrove area
+mangrove_area = mangrove_mask.multiply(ee.Image.pixelArea()).reduceRegion(
+    reducer=ee.Reducer.sum(),
+    geometry=palawan_coast,
+    scale=10,
+    maxPixels=1e9
+).getInfo()
+
+mangrove_hectares = mangrove_area['NDVI'] / 10000
+
+print(f"Estimated mangrove area: {mangrove_hectares:.1f} hectares")
+
+# Visualize
+Map = geemap.Map(center=[9.8, 118.75], zoom=12)
+Map.addLayer(s2_palawan, {'bands': ['B4', 'B3', 'B2'], 'min': 0, 'max': 0.3}, 'True Color')
+Map.addLayer(ndvi, {'min': 0, 'max': 1, 'palette': ['white', 'yellow', 'green']}, 'NDVI')
+Map.addLayer(mvi, {'min': 0, 'max': 1, 'palette': ['white', 'lightgreen', 'darkgreen']}, 'MVI')
+Map.addLayer(mangrove_mask.selfMask(), {'palette': 'darkgreen'}, 'Mangrove Detection')
+Map
+```
+
+**Multi-temporal Change Detection:**
+
+```python
+# Compare 2019 vs 2024 to detect changes
+mangrove_2019 = (ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterBounds(palawan_coast)
+    .filterDate('2019-03-01', '2019-05-31')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+    .map(mask_s2_clouds)
+    .median())
+
+ndvi_2019 = mangrove_2019.normalizedDifference(['B8', 'B4'])
+mvi_2019 = mangrove_2019.normalizedDifference(['B8', 'B11'])
+mangrove_2019_mask = ndvi_2019.gt(0.5).And(mvi_2019.gt(0.4))
+
+# Change detection
+mangrove_loss = mangrove_2019_mask.And(mangrove_mask.Not()).selfMask()
+mangrove_gain = mangrove_2019_mask.Not().And(mangrove_mask).selfMask()
+
+Map.addLayer(mangrove_loss, {'palette': 'red'}, 'Mangrove Loss (2019-2024)')
+Map.addLayer(mangrove_gain, {'palette': 'lime'}, 'Mangrove Gain (2019-2024)')
+Map
+```
+
+**Applications:**
+- Coastal protection assessment
+- Carbon stock estimation
+- Restoration monitoring
+- Policy compliance verification
+
+---
+
+## Key Takeaways
+
+::: {.callout-important}
+## Session 4 Summary
+
+**Google Earth Engine:**
+- Cloud platform with petabytes of EO data
+- No downloading required - process in cloud
+- Free for research/education
+
+**Core Concepts:**
+- Image / ImageCollection for rasters
+- Feature / FeatureCollection for vectors
+- Geometry for locations and AOIs
+
+**Key Operations:**
+- Filter by bounds, date, metadata
+- Cloud masking using QA bands
+- Temporal composites (median, mean)
+- Spectral indices (NDVI, NDWI)
+- Export to Drive/Cloud Storage
+
+**Workflow:**
+1. Define AOI
+2. Filter collection
+3. Mask clouds
+4. Create composite
+5. Calculate indices
+6. Visualize
+7. Export
+
+**Best for:** Pre-processing, data access, Random Forest, large-area mapping
+
+**Use Python/TensorFlow for:** Deep learning model training
+
+**Next steps:** Apply these skills in Days 2-4 for land cover classification, flood mapping, and time series analysis!
+:::
+
+---
+
+## Practice Exercises
+
+::: {.callout-tip}
+## Try These Challenges
+
+**Exercise 1: Your Province Composite**
+
+Create a cloud-free Sentinel-2 composite for your home province using the complete workflow above.
+
+**Exercise 2: Multi-temporal NDVI Analysis**
+
+Calculate NDVI composites for each month of 2024 over an agricultural area. Create a time series chart.
+
+**Exercise 3: Water Body Extraction**
+
+Use NDWI to extract all water bodies in a coastal province. Export as vector (polygons).
+
+**Exercise 4: SAR Flood Detection**
+
+Compare Sentinel-1 VV polarization before and after a typhoon to detect flooded areas.
+
+**Exercise 5: Export Training Data**
+
+Create stratified random samples of different land cover classes and export as CSV for ML training.
+
+**Bonus: Integrate with Session 3**
+
+Export a GEE composite, then load it in Python (Session 3 techniques) to perform additional analysis with Rasterio.
+:::
+
+---
+
+## Further Reading
+
+### Official Documentation
+- [Earth Engine Guides](https://developers.google.com/earth-engine/guides) - Complete developer documentation
+- [Python API Introduction](https://developers.google.com/earth-engine/tutorials/community/intro-to-python-api) - Getting started with Python API
+- [Python Installation Guide](https://developers.google.com/earth-engine/guides/python_install) - Setup instructions for various environments
+- [Sentinel-2 in GEE](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR) - Sentinel-2 Surface Reflectance catalog
+- [Sentinel-1 Algorithms](https://developers.google.com/earth-engine/guides/sentinel1) - SAR processing workflows
+- [Earth Engine GitHub](https://github.com/google/earthengine-api) - Official repository with examples
+
+### Recent Tutorials (2025)
+- [End-to-End GEE Course](https://courses.spatialthoughts.com/end-to-end-gee.html) - Comprehensive training with Python modules
+- [GBIF GEE Python Primer (Jan 2025)](https://data-blog.gbif.org/post/2025-01-29-understanding-google-earth-engine-gee-and-its-python-api-a-primer-for-gbif-users/) - Latest Python API tutorial for environmental applications
+- [GEE Community Tutorials](https://developers.google.com/earth-engine/tutorials/community/explore) - User-contributed examples and workflows
+- [Sentinel Data Downloader Tool](https://github.com/alessandrosebastianelli/SentinelDataDownloaderTool) - Automated dataset creation for AI applications
+
+### Tools and Libraries
+- [geemap Library](https://geemap.org/) - Interactive mapping in Python with Jupyter integration
+- [eemont](https://github.com/davemlz/eemont) - Extended functionality for GEE Python
+- [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE) - Curated resources and examples
+- [GEE Community Forum](https://groups.google.com/g/google-earth-engine-developers) - Help and discussions
+
+---
+
+## Jupyter Notebook
+
+::: {.callout-note}
+## Access the Interactive Notebook
+
+A complete Jupyter notebook with all Google Earth Engine examples from this session is available:
+
+**[Open Notebook 2: Google Earth Engine →](../notebooks/notebook2.qmd)**
+
+This notebook includes:
+- All code examples ready to run
+- Philippine case studies
+- Additional exercises
+- Export workflows
+- Troubleshooting guide
+:::
+
+---

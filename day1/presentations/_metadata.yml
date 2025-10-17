@@ -1,0 +1,11 @@
+render:
+  - "*.qmd"
+  - "!*.md"
+  - "!README.*"
+  - "!*_STATUS.md"
+  - "!*_GUIDE.md"
+  - "!*_SUMMARY.md"
+  - "!*_PLACEHOLDERS.md"
+  - "!*_CREATED.md"
+  - "!*_STEPS.md"
+  - "!*_TO_SOURCE.md"
