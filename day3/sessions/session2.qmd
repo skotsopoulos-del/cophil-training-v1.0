@@ -1406,11 +1406,4 @@ Your skills can now contribute to saving lives through rapid, accurate flood ext
 
 ---
 
-::: {.session-nav}
-[← Back to Session 1](session1.qmd){.btn .btn-outline-secondary}
-[Next: Session 3 - Object Detection →](session3.qmd){.btn .btn-primary}
-:::
-
----
-
 *This hands-on lab is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative. Materials developed in collaboration with PhilSA, DOST-ASTI, and the European Space Agency.*

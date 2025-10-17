@@ -598,11 +598,4 @@ Object detection is a powerful tool for operational Earth observation. By levera
 
 ---
 
-::: {.session-nav}
-[← Session 3: Object Detection Theory](session3.qmd){.btn .btn-outline-primary}
-[Back to Day 3 Home](../index.qmd){.btn .btn-outline-secondary}
-:::
-
----
-
 *Session 4: Hands-on Object Detection from Sentinel Imagery - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

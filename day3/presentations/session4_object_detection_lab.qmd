@@ -201,7 +201,3 @@ for det in detections:
 **Open the notebook in Colab:**  
 `day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb`
 
-::: {.session-nav}
-[Back to Session 3](../sessions/session3.qmd){.btn .btn-outline-secondary}
-[Proceed to Notebook →](../notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-primary}
-:::

@@ -420,11 +420,6 @@ For urgent setup issues:
 
 Once you've completed all setup steps, you're ready for the training!
 
-::: {.session-nav}
-::: {.session-nav-link href="../index.qmd"}
-::: {.session-nav-label}
-Back
-:::
 ::: {.session-nav-title}
 ← Return to Home
 :::

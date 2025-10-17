@@ -172,25 +172,4 @@ After completing this notebook:
 
 ---
 
-::: {.session-nav}
-::: {.session-nav-link href="../sessions/session3.qmd"}
-::: {.session-nav-label}
-Back
-:::
-::: {.session-nav-title}
-← Session 3 Overview
-:::
-:::
-::: {.session-nav-link href="notebook2.qmd"}
-::: {.session-nav-label}
-Next
-:::
-::: {.session-nav-title}
-Notebook 2: Google Earth Engine →
-:::
-:::
-:::
-
----
-
 *Ready to code? Open the notebook in Colab and start learning!*

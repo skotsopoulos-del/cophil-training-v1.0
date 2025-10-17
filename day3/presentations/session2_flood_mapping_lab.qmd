@@ -204,7 +204,3 @@ format:
 **Open the notebook in Colab:**  
 `day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb`
 
-::: {.session-nav}
-[Back to Session 1](../sessions/session1.qmd){.btn .btn-outline-secondary}
-[Proceed to Notebook →](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-primary}
-:::

@@ -347,11 +347,4 @@ All 4 sessions are complete and ready! Begin with Session 1 to master LSTMs, the
 
 ---
 
-::: {.session-nav}
-[← Back to Day 3](../day3/index.qmd){.btn .btn-outline-primary}
-[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
-:::
-
----
-
 *Day 4: Time Series Analysis, Emerging Trends, and Sustainable Learning - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

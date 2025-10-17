@@ -205,13 +205,6 @@ After Day 3, you'll progress to:
 
 ---
 
-::: {.session-nav}
-[← Back to Day 2](../day2/index.qmd){.btn .btn-outline-primary}
-[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
-:::
-
----
-
 ::: {.callout-note}
 ## 🎓 Using Synthetic Data for Immediate Learning
 

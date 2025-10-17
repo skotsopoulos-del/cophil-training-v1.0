@@ -367,27 +367,6 @@ After completing this notebook:
 
 ---
 
-::: {.session-nav}
-::: {.session-nav-link href="notebook1.qmd"}
-::: {.session-nav-label}
-Previous
-:::
-::: {.session-nav-title}
-← Notebook 1: Python Geospatial
-:::
-:::
-::: {.session-nav-link href="../sessions/session4.qmd"}
-::: {.session-nav-label}
-Back
-:::
-::: {.session-nav-title}
-Session 4 Overview →
-:::
-:::
-:::
-
----
-
 ::: {.callout-tip}
 ## Ready to Explore Petabytes of Data?
 Open the notebook in Colab and start accessing the entire Sentinel archive from your browser!

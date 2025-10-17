@@ -215,11 +215,4 @@ For technical issues during the training:
 
 ---
 
-::: {.session-nav}
-[← Back to Course Home](../index.qmd){.btn .btn-outline-primary}
-[Start Session 1 →](sessions/session1.qmd){.btn .btn-primary}
-:::
-
----
-
 *Day 1 is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative and delivered in partnership with PhilSA and DOST.*

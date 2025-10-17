@@ -600,11 +600,4 @@ Before moving to the hands-on session, consider:
 
 ---
 
-::: {.session-nav}
-[← Back to Session 2](../notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-outline-secondary}
-[Next: Session 4 - Object Detection Lab →](session4.qmd){.btn .btn-primary}
-:::
-
----
-
 *This session is part of the CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*

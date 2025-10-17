@@ -168,6 +168,3 @@ Use Combined (BCE + Dice) for flood/building tasks with imbalance.
 - Hands-on: Train U-Net flood mapper on Sentinel-1 SAR
 - Evaluate with IoU/Dice; export masks for GIS
 
-::: {.session-nav}
-[Next: Session 2 – Flood Mapping Lab](../sessions/session2.qmd){.btn .btn-primary}
-:::

@@ -166,6 +166,3 @@ format:
 - Hands‑on: fine‑tune a pre‑trained detector for Metro Manila buildings
 - Evaluate with mAP; visualize detections
 
-::: {.session-nav}
-[Next: Session 4 – Detection Lab](../sessions/session4.qmd){.btn .btn-primary}
-:::
