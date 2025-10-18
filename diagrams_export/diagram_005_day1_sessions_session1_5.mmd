@@ -1,0 +1,55 @@
+%%| fig-cap: "Philippine Earth Observation Ecosystem"
+%%| fig-width: 100%
+
+graph TB
+    subgraph Space["SPACE SEGMENT"]
+        S1[Copernicus Sentinels<br/>EU Programme]
+        S2[Diwata-2<br/>PhilSA]
+        S3[MULA 2026<br/>PhilSA/SSTL]
+        S4[Maya CubeSats<br/>STAMINA4Space]
+    end
+
+    subgraph Agencies["GOVERNMENT AGENCIES"]
+        A1[PhilSA<br/>Space Agency]
+        A2[NAMRIA<br/>Mapping Authority]
+        A3[PAGASA<br/>Weather Service]
+        A4[DOST-ASTI<br/>Science Tech]
+        A5[DENR<br/>Environment]
+        A6[DA<br/>Agriculture]
+    end
+
+    subgraph Platforms["DATA PLATFORMS"]
+        P1[SIYASAT<br/>PhilSA Portal]
+        P2[DATOS<br/>DOST Platform]
+        P3[PRiSM<br/>Rice Monitoring]
+        P4[ALaM<br/>Agri Monitor]
+        P5[CoPhil Mirror<br/>2025]
+    end
+
+    subgraph Apps["APPLICATIONS"]
+        AP1[Disaster Response<br/>NDRRMC/OCD]
+        AP2[Climate Adaptation<br/>PAGASA/CCC]
+        AP3[Agriculture<br/>DA/PhilRice]
+        AP4[Forestry<br/>DENR-FMB]
+        AP5[Urban Planning<br/>LGUs/NEDA]
+    end
+
+    S1 -.->|Free Data| P5
+    S2 -.->|5m Resolution| P1
+    S3 -.->|2026 Launch| P1
+
+    A1 -->|Operates| P1
+    A1 -->|Co-chairs| P5
+    A4 -->|Develops| P2
+    A4 -->|Develops| P4
+
+    P1 -->|Imagery| Agencies
+    P2 -->|Processing| Agencies
+    P5 -->|Sentinel Data| Agencies
+
+    Agencies -->|Services| Apps
+
+    style Space fill:#003d7a,stroke:#001f3d,stroke-width:2px,color:#fff
+    style A1 fill:#cc0000,stroke:#880000,stroke-width:2px,color:#fff
+    style P5 fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style Apps fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff

@@ -1,0 +1,29 @@
+%%| fig-cap: "U-Net Information Flow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Input: 256×256×3] --> B1[Conv + ReLU]
+    B1 --> B2[Conv + ReLU]
+    B2 --> C1[MaxPool ↓]
+    B2 -.->|Skip 1| G1
+    
+    C1 --> D1[Conv + ReLU]
+    D1 --> D2[Conv + ReLU]
+    D2 --> E1[MaxPool ↓]
+    D2 -.->|Skip 2| F1
+    
+    E1 --> F0[Bottleneck<br/>Conv Layers]
+    
+    F0 --> F1[Upsample ↑]
+    F1 --> G1[Concatenate]
+    G1 --> H1[Conv + ReLU]
+    
+    H1 --> I1[Upsample ↑]
+    I1 --> J1[Concatenate]
+    J1 --> K1[Conv + ReLU]
+    
+    K1 --> L[Output: 256×256×Classes]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style F0 fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style L fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff

@@ -1,0 +1,9 @@
+flowchart LR
+    A[Original Image] --> B[Mask 75%]
+    B --> C[Encoder]
+    C --> D[Decoder:<br/>Reconstruct]
+    D --> E[Compare<br/>Calculate Loss]
+    
+    style A fill:#e8f5e9
+    style B fill:#fff4e1
+    style C fill:#e1f5ff

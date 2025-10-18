@@ -1,0 +1,61 @@
+%%| fig-cap: "Google Earth Engine Architecture and Workflow"
+%%| fig-width: 100%
+
+flowchart TB
+    subgraph User["USER INTERFACE"]
+        U1[Code Editor<br/>JavaScript<br/>Web-based IDE]
+        U2[Python API<br/>Local/Colab<br/>ee library]
+        U3[Apps<br/>Earth Engine Apps<br/>Custom web apps]
+    end
+
+    subgraph GEECloud["GOOGLE EARTH ENGINE CLOUD"]
+        subgraph DataCatalog["DATA CATALOG (70+ PB)"]
+            DC1[Landsat<br/>1972-present<br/>30m resolution]
+            DC2[Sentinel-1/2<br/>2014-present<br/>10m resolution]
+            DC3[MODIS<br/>2000-present<br/>250m-1km]
+            DC4[Climate<br/>ERA5, CHIRPS<br/>Weather data]
+            DC5[Terrain<br/>SRTM, ALOS<br/>DEMs]
+        end
+
+        subgraph Processing["PROCESSING ENGINE"]
+            P1[Parallel<br/>Computation<br/>Distributed]
+            P2[Server-side<br/>Operations<br/>ee.Image, ee.ImageCollection]
+            P3[Optimized<br/>Algorithms<br/>Reducers, Filters]
+        end
+
+        subgraph Operations["COMMON OPERATIONS"]
+            O1[Filtering<br/>filterBounds<br/>filterDate<br/>filterMetadata]
+            O2[Compositing<br/>median, mean<br/>mosaic, reduce]
+            O3[Indices<br/>NDVI, EVI<br/>normalizedDifference]
+            O4[Classification<br/>Random Forest<br/>CART, SVM]
+        end
+    end
+
+    subgraph Output["OUTPUT"]
+        OUT1[Interactive Maps<br/>Visualization<br/>Map.addLayer]
+        OUT2[Exports<br/>Drive, Asset<br/>Cloud Storage]
+        OUT3[Charts<br/>Time series<br/>Statistics]
+        OUT4[Training Data<br/>For external ML]
+    end
+
+    U1 --> P2
+    U2 --> P2
+    U3 --> P2
+
+    DataCatalog --> P1
+    P1 --> P2
+    P2 --> O1
+    P2 --> O2
+    P2 --> O3
+    P2 --> O4
+
+    Operations --> OUT1
+    Operations --> OUT2
+    Operations --> OUT3
+    Operations --> OUT4
+
+    style User fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style DataCatalog fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Processing fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Operations fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Output fill:#f0e6ff,stroke:#6666cc,stroke-width:2px

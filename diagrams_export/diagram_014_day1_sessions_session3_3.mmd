@@ -1,0 +1,39 @@
+%%| fig-cap: "Coordinate Reference System Transformation Workflow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[GPS Data<br/>EPSG:4326<br/>Lat: 14.5995°<br/>Lon: 120.9842°] --> B{Need distance<br/>or area<br/>calculations?}
+
+    B -->|Yes| C[Transform to<br/>Projected CRS<br/>UTM Zone 51N<br/>EPSG:32651]
+
+    B -->|No, just<br/>visualization| D[Keep Geographic<br/>EPSG:4326<br/>For web maps]
+
+    C --> E[Accurate Calculations<br/>X: 279,000 m<br/>Y: 1,615,000 m]
+
+    E --> F[Spatial Operations<br/>Buffer 1000m<br/>Calculate area in km²<br/>Distance in meters]
+
+    F --> G{Export for<br/>web mapping?}
+
+    G -->|Yes| H[Transform back<br/>to EPSG:4326]
+    G -->|No| I[Save in UTM<br/>For further analysis]
+
+    H --> D
+
+    D --> J[Interactive Map<br/>Folium, Leaflet<br/>Google Maps]
+
+    subgraph PhilippineCRS["PHILIPPINE CRS OPTIONS"]
+        P1[EPSG:4326<br/>WGS84 Geographic<br/>Global standard]
+        P2[EPSG:32651<br/>UTM Zone 51N<br/>Western PH]
+        P3[EPSG:32652<br/>UTM Zone 52N<br/>Eastern PH]
+        P4[EPSG:3123<br/>PRS92 Zone III<br/>National standard]
+    end
+
+    C -.->|Choose| P2
+    C -.->|Choose| P3
+    C -.->|Choose| P4
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style E fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style D fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style PhilippineCRS fill:#f0e6ff,stroke:#6666cc,stroke-width:2px

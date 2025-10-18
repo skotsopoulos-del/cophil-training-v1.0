@@ -1,0 +1,14 @@
+%%| fig-cap: "Object Detection Transfer Learning Workflow"
+%%| fig-width: 100%
+
+flowchart TD
+    A[1. Setup & Pre-trained Model] --> B[2. Load Demo Data]
+    B --> C[3. Data Preparation]
+    C --> D[4. Model Fine-tuning]
+    D --> E[5. Inference & Detection]
+    E --> F[6. Evaluation mAP]
+    F --> G[7. Visualization & Export]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style D fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style G fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff

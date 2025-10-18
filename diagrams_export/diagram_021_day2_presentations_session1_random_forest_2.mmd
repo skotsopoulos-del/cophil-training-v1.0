@@ -1,0 +1,12 @@
+%%| fig-width: 8
+flowchart TD
+    A[NDVI > 0.4?] -->|Yes| B[NIR > 3000?]
+    A -->|No| C[NDWI > 0?]
+    B -->|Yes| D[Forest]
+    B -->|No| E[Agriculture]
+    C -->|Yes| F[Water]
+    C -->|No| G[Urban/Bare]
+    style D fill:#2E7D32
+    style E fill:#FBC02D
+    style F fill:#1976D2
+    style G fill:#757575

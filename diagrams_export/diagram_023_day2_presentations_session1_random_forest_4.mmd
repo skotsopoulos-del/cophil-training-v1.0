@@ -1,0 +1,18 @@
+%%| fig-width: 10
+flowchart TD
+    A[User Code<br/>Python/JavaScript] --> B[GEE API]
+    B --> C[GEE Cloud<br/>Processing]
+
+    D[Satellite Data<br/>Catalog] --> C
+    E[Landsat<br/>1972-present] --> D
+    F[Sentinel-1/2<br/>2014-present] --> D
+    G[MODIS<br/>2000-present] --> D
+    H[Climate Data<br/>ERA5, etc.] --> D
+
+    C --> I[Results]
+    I --> J[Interactive Map]
+    I --> K[Export to Drive]
+    I --> L[Charts/Stats]
+
+    style C fill:#4285F4
+    style D fill:#34A853

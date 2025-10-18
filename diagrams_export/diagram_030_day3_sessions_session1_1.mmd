@@ -1,0 +1,15 @@
+%%| fig-cap: "Computer Vision Task Hierarchy"
+%%| fig-width: 100%
+
+graph TB
+    A[Computer Vision Tasks] --> B[Classification]
+    A --> C[Object Detection]
+    A --> D[Semantic Segmentation]
+    
+    B --> B1["What's in this image?<br/>Output: Single label<br/>Granularity: Image-level"]
+    C --> C1["Where are the objects?<br/>Output: Bounding boxes<br/>Granularity: Object-level"]
+    D --> D1["Which pixels belong to what?<br/>Output: Pixel masks<br/>Granularity: Pixel-level"]
+    
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style D fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style D1 fill:#00aa44,stroke:#006622,stroke-width:1px,color:#fff

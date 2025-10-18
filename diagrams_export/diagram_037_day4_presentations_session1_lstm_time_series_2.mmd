@@ -1,0 +1,10 @@
+flowchart LR
+  subgraph LSTM
+    C[Cell State]
+    I[Input Gate]
+    F[Forget Gate]
+    O[Output Gate]
+  end
+  I --> C
+  F --> C
+  C --> O

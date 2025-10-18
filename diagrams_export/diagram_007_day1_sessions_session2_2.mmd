@@ -1,0 +1,46 @@
+%%| fig-cap: "Complete AI/ML Workflow for Earth Observation"
+%%| fig-width: 100%
+
+flowchart TD
+    A[1. Problem Definition<br/>What question?<br/>What output?] --> B[2. Data Acquisition<br/>Satellite imagery<br/>Ground truth<br/>Ancillary data]
+
+    B --> C[3. Data Preprocessing<br/>Atmospheric correction<br/>Cloud masking<br/>Normalization]
+
+    C --> D[4. Data Annotation<br/>Label training samples<br/>Quality control<br/>Class balancing]
+
+    D --> E[5. Feature Engineering<br/>Spectral indices<br/>Texture features<br/>Temporal metrics]
+
+    E --> F{6. Train/Val/Test<br/>Split}
+    F -->|70%| G[Training Set]
+    F -->|15%| H[Validation Set]
+    F -->|15%| I[Test Set]
+
+    G --> J[7. Model Training<br/>Select architecture<br/>Set hyperparameters<br/>Train on GPU]
+
+    H --> K[8. Model Validation<br/>Tune hyperparameters<br/>Monitor overfitting<br/>Early stopping]
+
+    J --> K
+    K -->|Iterate| J
+
+    K --> L{Performance<br/>Acceptable?}
+    L -->|No| M[Improve Data<br/>More samples<br/>Better labels<br/>Data augmentation]
+    M --> D
+
+    L -->|Yes| N[9. Model Testing<br/>Final evaluation<br/>Unseen test set<br/>Confusion matrix]
+
+    I --> N
+
+    N --> O[10. Deployment<br/>Production system<br/>Monitoring<br/>Maintenance]
+
+    O --> P{Model Drift?<br/>Performance<br/>degraded?}
+    P -->|Yes| Q[Retrain with<br/>new data]
+    Q --> D
+    P -->|No| O
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style B fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style D fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style J fill:#cc00cc,stroke:#880088,stroke-width:2px,color:#fff
+    style K fill:#cc00cc,stroke:#880088,stroke-width:2px,color:#fff
+    style O fill:#009999,stroke:#006666,stroke-width:2px,color:#fff

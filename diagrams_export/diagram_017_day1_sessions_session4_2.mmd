@@ -1,0 +1,36 @@
+%%| fig-cap: "ImageCollection Filtering Pipeline"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Full Sentinel-2 Collection<br/>COPERNICUS/S2_SR<br/>Global, All dates<br/>~Millions of images] --> B[filterBounds<br/>Spatial Filter<br/>AOI: Bohol Province]
+
+    B --> C[Bohol Coverage<br/>~10,000s images<br/>Since 2015]
+
+    C --> D[filterDate<br/>Temporal Filter<br/>2024-03-01 to 2024-05-31]
+
+    D --> E[Date Range<br/>~100 images<br/>3 months]
+
+    E --> F{filterMetadata<br/>CLOUDY_PIXEL_PERCENTAGE<br/>< 20%}
+
+    F -->|Pass| G[Clear Images<br/>~30-40 images<br/>Usable quality]
+
+    F -->|Fail<br/>Too cloudy| H[Excluded<br/>High cloud cover]
+
+    G --> I[select<br/>Band Selection<br/>B2, B3, B4, B8, B11, B12]
+
+    I --> J[Final Collection<br/>30-40 images<br/>6 bands each<br/>Ready for analysis]
+
+    J --> K1[median<br/>Temporal composite]
+    J --> K2[mean<br/>Average]
+    J --> K3[mosaic<br/>Spatial mosaic]
+    J --> K4[map<br/>Apply function]
+
+    K1 --> L[Single Image<br/>Cloud-free composite<br/>Analysis-ready]
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style E fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style G fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style H fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style J fill:#ccffcc,stroke:#00aa44,stroke-width:3px
+    style L fill:#ccffcc,stroke:#00aa44,stroke-width:3px

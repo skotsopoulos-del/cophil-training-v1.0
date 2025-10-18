@@ -1,0 +1,51 @@
+%%| fig-cap: "Python Earth Observation Ecosystem"
+%%| fig-width: 100%
+
+graph TB
+    subgraph DataAccess["DATA ACCESS"]
+        DA1[Earth Engine<br/>Python API]
+        DA2[Sentinel Hub<br/>sentinelhub-py]
+        DA3[NASA CMR<br/>earthaccess]
+        DA4[STAC<br/>pystac-client]
+    end
+
+    subgraph Geospatial["GEOSPATIAL PROCESSING"]
+        GP1[GeoPandas<br/>Vector data]
+        GP2[Rasterio<br/>Raster I/O]
+        GP3[Xarray<br/>N-D arrays]
+        GP4[Rioxarray<br/>Raster+Xarray]
+        GP5[GDAL/OGR<br/>Low-level ops]
+    end
+
+    subgraph DataScience["DATA SCIENCE"]
+        DS1[NumPy<br/>Array operations]
+        DS2[Pandas<br/>Tabular data]
+        DS3[SciPy<br/>Scientific computing]
+        DS4[Dask<br/>Parallel computing]
+    end
+
+    subgraph ML["MACHINE LEARNING"]
+        ML1[Scikit-learn<br/>Traditional ML]
+        ML2[TensorFlow<br/>Deep Learning]
+        ML3[PyTorch<br/>Deep Learning]
+        ML4[TorchGeo<br/>Geospatial DL]
+    end
+
+    subgraph Viz["VISUALIZATION"]
+        VZ1[Matplotlib<br/>Static plots]
+        VZ2[Folium<br/>Interactive maps]
+        VZ3[Plotly<br/>Interactive viz]
+        VZ4[Cartopy<br/>Map projections]
+    end
+
+    DataAccess --> Geospatial
+    Geospatial --> DataScience
+    DataScience --> ML
+    Geospatial --> Viz
+    ML --> Viz
+
+    style DataAccess fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style Geospatial fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style DataScience fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style ML fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Viz fill:#f0e6ff,stroke:#6666cc,stroke-width:2px

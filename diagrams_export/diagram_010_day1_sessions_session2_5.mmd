@@ -1,0 +1,52 @@
+%%| fig-cap: "U-Net Architecture for Semantic Segmentation (Flood Mapping Example)"
+%%| fig-width: 100%
+
+flowchart TD
+    subgraph Encoder["ENCODER (Contracting Path)"]
+        A[Input<br/>SAR Image<br/>256x256x2<br/>VV, VH] --> B[Conv 3x3<br/>ReLU<br/>64 filters]
+        B --> C[Conv 3x3<br/>ReLU<br/>64 filters]
+        C --> D[Max Pool 2x2<br/>128x128x64]
+
+        D --> E[Conv 3x3<br/>128 filters]
+        E --> F[Conv 3x3<br/>128 filters]
+        F --> G[Max Pool 2x2<br/>64x64x128]
+
+        G --> H[Conv 3x3<br/>256 filters]
+        H --> I[Conv 3x3<br/>256 filters]
+        I --> J[Max Pool 2x2<br/>32x32x256]
+    end
+
+    subgraph Bottleneck["BOTTLENECK"]
+        J --> K[Conv 3x3<br/>512 filters]
+        K --> L[Conv 3x3<br/>512 filters]
+    end
+
+    subgraph Decoder["DECODER (Expanding Path)"]
+        L --> M[Up-Conv 2x2<br/>256 filters<br/>64x64x256]
+        M --> N[Concatenate<br/>with I]
+        N --> O[Conv 3x3<br/>256 filters]
+        O --> P[Conv 3x3<br/>256 filters]
+
+        P --> Q[Up-Conv 2x2<br/>128 filters<br/>128x128x128]
+        Q --> R[Concatenate<br/>with F]
+        R --> S[Conv 3x3<br/>128 filters]
+        S --> T[Conv 3x3<br/>128 filters]
+
+        T --> U[Up-Conv 2x2<br/>64 filters<br/>256x256x64]
+        U --> V[Concatenate<br/>with C]
+        V --> W[Conv 3x3<br/>64 filters]
+        W --> X[Conv 3x3<br/>64 filters]
+    end
+
+    X --> Y[Conv 1x1<br/>2 classes<br/>Sigmoid]
+    Y --> Z[Output<br/>Flood Mask<br/>256x256x2<br/>Water/No-Water]
+
+    I -.->|Skip Connection| N
+    F -.->|Skip Connection| R
+    C -.->|Skip Connection| V
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style Encoder fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style Bottleneck fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Decoder fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Z fill:#ccffcc,stroke:#00aa44,stroke-width:3px

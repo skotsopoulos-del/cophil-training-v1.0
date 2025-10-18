@@ -1,0 +1,33 @@
+%%| fig-cap: "AI, Machine Learning, and Deep Learning Relationship"
+%%| fig-width: 100%
+
+graph TB
+    subgraph AI["ARTIFICIAL INTELLIGENCE<br/>Creating intelligent machines"]
+        subgraph ML["MACHINE LEARNING<br/>Learning from data without explicit programming"]
+            subgraph DL["DEEP LEARNING<br/>Multi-layered neural networks"]
+                DL1[Convolutional<br/>Neural Networks<br/>CNNs]
+                DL2[Recurrent<br/>Neural Networks<br/>RNNs/LSTMs]
+                DL3[Transformers<br/>Vision Transformers]
+                DL4[GANs & VAEs<br/>Generative Models]
+            end
+            ML1[Random Forest]
+            ML2[Support Vector<br/>Machines]
+            ML3[Decision Trees]
+            ML4[K-Means<br/>Clustering]
+        end
+        AI1[Expert Systems<br/>Rule-based]
+        AI2[Fuzzy Logic]
+        AI3[Genetic<br/>Algorithms]
+    end
+
+    DL1 -.->|EO Apps| EO1[Land Cover<br/>Classification]
+    DL1 -.->|EO Apps| EO2[Semantic<br/>Segmentation]
+    DL2 -.->|EO Apps| EO3[Time Series<br/>Crop Monitoring]
+    DL3 -.->|EO Apps| EO4[Change<br/>Detection]
+
+    style AI fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
+    style ML fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style DL fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style DL1 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff
+    style DL2 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff
+    style DL3 fill:#00cc66,stroke:#008844,stroke-width:1px,color:#fff

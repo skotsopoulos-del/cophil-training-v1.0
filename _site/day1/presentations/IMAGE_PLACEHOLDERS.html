@@ -73,14 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4a074efccdeff27617fbc72d37c1244e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a15f5dce5650fb3fe5aba34e3b6df9a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,6 +104,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-509191933"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-509191933', { 'anonymize_ip': true});
+</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
 
@@ -115,169 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles/phase2-enhancements.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -352,11 +195,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/cophil-training-v1.0"> <i class="bi bi-github" role="img" aria-label="GitHub">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../resources/downloads.html"> <i class="bi bi-download" role="img">
 </i> 
@@ -365,7 +203,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -447,8 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -1677,27 +1513,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Questions? See INSTRUCTOR_GUIDE.md or README.md</strong></p>
 
 
-<!-- -->
-
 </section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1767,60 +1588,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2155,529 +1925,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 <script src="https://utteranc.es/client.js" repo="cophil-training-v1.0" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Day 1 Presentations - Image Placeholders Guide</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>**Status:** All image references are currently placeholders  </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>**Action Required:** Source and add images before delivery</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📋 Overview</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>The Day 1 presentations reference **87 images** that need to be sourced and placed in the <span class="in">`images/`</span> directory. This guide provides:</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Complete list of missing images by session</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Description and purpose of each image</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Recommended sources</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Licensing requirements</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Alternative solutions if images unavailable</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📁 Directory Structure</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="in">course_site/day1/presentations/</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="in">├── images/                    ← CREATE THIS DIRECTORY</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── Logos/</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── Satellites/</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── Platforms/</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── Organizations/</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── Concepts/</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">└── *.qmd files</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🎯 Quick Solutions</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option 1: Use Actual Images (Recommended)**</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>Source images from official websites and open repositories. See detailed list below.</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option 2: Create Placeholder Slides**</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>Replace image slides with text-based content describing what would be shown.</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option 3: Remove Image References**</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>Comment out image slides and rely on speaker descriptions.</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option 4: Use Generic Placeholders**</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>Create simple placeholder images with text labels (e.g., "Sentinel-1 Satellite").</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📊 Missing Images by Session</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Pre-Course Orientation (0 images)**</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>✅ No images required</span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Session 1: Copernicus &amp; Philippine EO (35 images)**</span></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Program &amp; Branding**</span></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`eu_global_gateway.png`</span> <span class="pp">|</span> EU Global Gateway logo <span class="pp">|</span> <span class="co">[</span><span class="ot">EU Website</span><span class="co">](https://ec.europa.eu/commission/presscorner/detail/en/ip_21_6433)</span> <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`copphil_logo.png`</span> <span class="pp">|</span> CoPhil Programme logo <span class="pp">|</span> CoPhil Programme <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Organizations**</span></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`philsa_logo.png`</span> <span class="pp">|</span> PhilSA official logo <span class="pp">|</span> <span class="co">[</span><span class="ot">PhilSA Website</span><span class="co">](https://philsa.gov.ph)</span> <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`philsa_building.jpg`</span> <span class="pp">|</span> PhilSA headquarters <span class="pp">|</span> PhilSA or Google Earth <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`dost_logo.png`</span> <span class="pp">|</span> DOST logo <span class="pp">|</span> <span class="co">[</span><span class="ot">DOST Website</span><span class="co">](https://www.dost.gov.ph)</span> <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`dost_asti_logo.png`</span> <span class="pp">|</span> DOST-ASTI logo <span class="pp">|</span> <span class="co">[</span><span class="ot">ASTI Website</span><span class="co">](https://asti.dost.gov.ph)</span> <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`namria_logo.png`</span> <span class="pp">|</span> NAMRIA logo <span class="pp">|</span> <span class="co">[</span><span class="ot">NAMRIA Website</span><span class="co">](https://www.namria.gov.ph)</span> <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`pagasa_logo.png`</span> <span class="pp">|</span> PAGASA logo <span class="pp">|</span> <span class="co">[</span><span class="ot">PAGASA Website</span><span class="co">](https://www.pagasa.dost.gov.ph)</span> <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`datos_logo.png`</span> <span class="pp">|</span> DATOS platform logo <span class="pp">|</span> DOST-ASTI <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Copernicus Programme**</span></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`copernicus_overview.jpg`</span> <span class="pp">|</span> Programme overview infographic <span class="pp">|</span> <span class="co">[</span><span class="ot">Copernicus.eu</span><span class="co">](https://www.copernicus.eu/en/about-copernicus)</span> <span class="pp">|</span> CC BY 4.0 <span class="pp">|</span></span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`copernicus_applications.png`</span> <span class="pp">|</span> Service applications diagram <span class="pp">|</span> Copernicus website <span class="pp">|</span> CC BY 4.0 <span class="pp">|</span></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Sentinel Satellites**</span></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sentinel1_satellite.jpg`</span> <span class="pp">|</span> Sentinel-1 satellite image <span class="pp">|</span> <span class="co">[</span><span class="ot">ESA Multimedia</span><span class="co">](https://www.esa.int/ESA_Multimedia/Images)</span> <span class="pp">|</span> ESA Standard <span class="pp">|</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sentinel2_satellite.jpg`</span> <span class="pp">|</span> Sentinel-2 satellite image <span class="pp">|</span> ESA Multimedia <span class="pp">|</span> ESA Standard <span class="pp">|</span></span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sar_principle.png`</span> <span class="pp">|</span> SAR imaging principle diagram <span class="pp">|</span> Create or ESA Education <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`polarization_comparison.jpg`</span> <span class="pp">|</span> VV/VH polarization comparison <span class="pp">|</span> ESA or academic papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sentinel2_mayon.jpg`</span> <span class="pp">|</span> Sentinel-2 image of Mayon Volcano <span class="pp">|</span> <span class="co">[</span><span class="ot">Copernicus Browser</span><span class="co">](https://dataspace.copernicus.eu)</span> <span class="pp">|</span> Free &amp; Open <span class="pp">|</span></span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Applications**</span></span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`s1_flood_mapping.jpg`</span> <span class="pp">|</span> Flood detection example <span class="pp">|</span> Copernicus Browser or papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`s1_insar.jpg`</span> <span class="pp">|</span> InSAR ground deformation <span class="pp">|</span> ESA or academic <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sentinel1_flood_ph.png`</span> <span class="pp">|</span> Philippine flood case study <span class="pp">|</span> Create from Copernicus data <span class="pp">|</span> Own creation <span class="pp">|</span></span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`s1_s2_synergy.jpg`</span> <span class="pp">|</span> Combined SAR &amp; Optical <span class="pp">|</span> ESA or papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Data Platforms**</span></span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`dataspace_portal.jpg`</span> <span class="pp">|</span> Copernicus Data Space Ecosystem <span class="pp">|</span> Screenshot from <span class="co">[</span><span class="ot">dataspace.copernicus.eu</span><span class="co">](https://dataspace.copernicus.eu)</span> <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sentiboard.jpg`</span> <span class="pp">|</span> SentiBoard interface <span class="pp">|</span> Screenshot <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`gee_logo.png`</span> <span class="pp">|</span> Google Earth Engine logo <span class="pp">|</span> <span class="co">[</span><span class="ot">GEE Website</span><span class="co">](https://earthengine.google.com)</span> <span class="pp">|</span> Google <span class="pp">|</span></span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`siyasat_portal.jpg`</span> <span class="pp">|</span> SIYASAT platform interface <span class="pp">|</span> PhilSA (with permission) <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`space_plus_dashboard.jpg`</span> <span class="pp">|</span> Space+ Dashboard <span class="pp">|</span> PhilSA (with permission) <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`namria_geoportal.jpg`</span> <span class="pp">|</span> NAMRIA Geoportal screenshot <span class="pp">|</span> Screenshot from <span class="co">[</span><span class="ot">geoportal.gov.ph</span><span class="co">](https://www.geoportal.gov.ph)</span> <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`namria_landcover.jpg`</span> <span class="pp">|</span> Land cover map example <span class="pp">|</span> NAMRIA products <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`hazardhunter.jpg`</span> <span class="pp">|</span> HazardHunter interface <span class="pp">|</span> NAMRIA <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **DOST-ASTI Platforms**</span></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`skai_pinas.jpg`</span> <span class="pp">|</span> SkAI-Pinas logo/interface <span class="pp">|</span> DOST-ASTI <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`dimer_interface.jpg`</span> <span class="pp">|</span> DIMER platform screenshot <span class="pp">|</span> DOST-ASTI <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`aipi_workflow.png`</span> <span class="pp">|</span> AIPI workflow diagram <span class="pp">|</span> Create or DOST-ASTI <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`asti_ecosystem.png`</span> <span class="pp">|</span> ASTI platform ecosystem <span class="pp">|</span> Create diagram <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Infrastructure**</span></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`coare_infrastructure.jpg`</span> <span class="pp">|</span> COARE HPC facility <span class="pp">|</span> DOST-ASTI <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mirror_site_concept.jpg`</span> <span class="pp">|</span> Mirror site architecture <span class="pp">|</span> Create diagram <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`digital_campus.jpg`</span> <span class="pp">|</span> Digital campus concept <span class="pp">|</span> DOST-ASTI or create <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Integration**</span></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ph_eo_ecosystem.png`</span> <span class="pp">|</span> Philippine EO ecosystem diagram <span class="pp">|</span> **CREATE THIS** <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`integration_diagram.png`</span> <span class="pp">|</span> Platform integration flow <span class="pp">|</span> **CREATE THIS** <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Session 2: AI/ML Fundamentals (46 images)**</span></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Concepts**</span></span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ai_ml_dl_venn.png`</span> <span class="pp">|</span> AI/ML/DL relationship diagram <span class="pp">|</span> **CREATE** or Wikipedia <span class="pp">|</span> CC/Own <span class="pp">|</span></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ml_definition.png`</span> <span class="pp">|</span> ML definition visual <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`traditional_vs_ml.png`</span> <span class="pp">|</span> Traditional vs ML comparison <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Workflow**</span></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`eo_ml_workflow.png`</span> <span class="pp">|</span> End-to-end workflow diagram <span class="pp">|</span> **CREATE THIS** <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`problem_formulation.png`</span> <span class="pp">|</span> Problem definition visual <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_collection_eo.png`</span> <span class="pp">|</span> EO data sources diagram <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`preprocessing_pipeline.png`</span> <span class="pp">|</span> Preprocessing steps <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`feature_engineering.jpg`</span> <span class="pp">|</span> Feature extraction examples <span class="pp">|</span> Create/papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`model_training.png`</span> <span class="pp">|</span> Training process diagram <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`validation_workflow.png`</span> <span class="pp">|</span> Validation methodology <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`deployment_architecture.png`</span> <span class="pp">|</span> Deployment diagram <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Supervised Learning**</span></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`supervised_learning_concept.png`</span> <span class="pp">|</span> Supervised learning visual <span class="pp">|</span> Create/Wikipedia <span class="pp">|</span> CC/Own <span class="pp">|</span></span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`classification_example.jpg`</span> <span class="pp">|</span> Land cover classification <span class="pp">|</span> Create from S2 data <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`regression_example.png`</span> <span class="pp">|</span> Regression plot example <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`decision_boundary.png`</span> <span class="pp">|</span> Decision boundary visual <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`random_forest_diagram.png`</span> <span class="pp">|</span> Random Forest structure <span class="pp">|</span> Wikipedia/Create <span class="pp">|</span> CC/Own <span class="pp">|</span></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`confusion_matrix.png`</span> <span class="pp">|</span> Confusion matrix example <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Unsupervised Learning**</span></span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`unsupervised_concept.png`</span> <span class="pp">|</span> Unsupervised learning visual <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`clustering_example.jpg`</span> <span class="pp">|</span> K-means clustering on imagery <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`anomaly_detection.jpg`</span> <span class="pp">|</span> Anomaly detection example <span class="pp">|</span> Create/papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Deep Learning**</span></span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`neural_network_diagram.png`</span> <span class="pp">|</span> Simple neural network <span class="pp">|</span> Wikipedia/Create <span class="pp">|</span> CC/Own <span class="pp">|</span></span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`cnn_architecture.png`</span> <span class="pp">|</span> CNN structure diagram <span class="pp">|</span> Create/papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`convolution_operation.gif`</span> <span class="pp">|</span> Convolution animation <span class="pp">|</span> Create/GitHub <span class="pp">|</span> Open <span class="pp">|</span></span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`pooling_operation.png`</span> <span class="pp">|</span> Pooling visualization <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`unet_architecture.png`</span> <span class="pp">|</span> U-Net architecture <span class="pp">|</span> Papers/Create <span class="pp">|</span> Academic <span class="pp">|</span></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`semantic_segmentation.jpg`</span> <span class="pp">|</span> Segmentation example <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Data-Centric AI**</span></span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`model_centric_vs_data_centric.png`</span> <span class="pp">|</span> Paradigm comparison <span class="pp">|</span> Create/Andrew Ng <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_quality_impact.png`</span> <span class="pp">|</span> Quality vs quantity chart <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`labeling_quality.jpg`</span> <span class="pp">|</span> Good vs bad labels <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`active_learning_loop.png`</span> <span class="pp">|</span> Active learning workflow <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **2025 Innovations**</span></span>
-<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`foundation_models_timeline.png`</span> <span class="pp">|</span> FM development timeline <span class="pp">|</span> **CREATE THIS** <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`prithvi_architecture.png`</span> <span class="pp">|</span> Prithvi model architecture <span class="pp">|</span> IBM/NASA papers <span class="pp">|</span> Academic <span class="pp">|</span></span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`clay_model_overview.png`</span> <span class="pp">|</span> Clay model visual <span class="pp">|</span> Clay GitHub/papers <span class="pp">|</span> Open <span class="pp">|</span></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`nasa_ibm_logo.png`</span> <span class="pp">|</span> NASA-IBM partnership logo <span class="pp">|</span> Official sources <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`foundation_model_benefits.png`</span> <span class="pp">|</span> FM advantages diagram <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fine_tuning_workflow.png`</span> <span class="pp">|</span> Fine-tuning process <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`phisat2_satellite.jpg`</span> <span class="pp">|</span> Φsat-2 satellite image <span class="pp">|</span> ESA <span class="pp">|</span> Official <span class="pp">|</span></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`onboard_ai_concept.png`</span> <span class="pp">|</span> On-board processing diagram <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`edge_computing_diagram.png`</span> <span class="pp">|</span> Edge AI architecture <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Philippine Examples**</span></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`ph_flood_ml.jpg`</span> <span class="pp">|</span> Philippine flood ML example <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`typhoon_damage_assessment.jpg`</span> <span class="pp">|</span> Damage detection case <span class="pp">|</span> Create/papers <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`rice_monitoring_ph.jpg`</span> <span class="pp">|</span> Rice field monitoring <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mangrove_mapping.jpg`</span> <span class="pp">|</span> Mangrove classification <span class="pp">|</span> Create <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Session 3: Python Geospatial (4 images)**</span></span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`geopandas_logo.png`</span> <span class="pp">|</span> GeoPandas logo <span class="pp">|</span> <span class="co">[</span><span class="ot">GeoPandas GitHub</span><span class="co">](https://github.com/geopandas/geopandas)</span> <span class="pp">|</span> BSD <span class="pp">|</span></span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`rasterio_logo.png`</span> <span class="pp">|</span> Rasterio logo <span class="pp">|</span> <span class="co">[</span><span class="ot">Rasterio GitHub</span><span class="co">](https://github.com/rasterio/rasterio)</span> <span class="pp">|</span> BSD <span class="pp">|</span></span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`python_geospatial_stack.png`</span> <span class="pp">|</span> Python GIS ecosystem <span class="pp">|</span> **CREATE THIS** <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`colab_interface.jpg`</span> <span class="pp">|</span> Google Colab screenshot <span class="pp">|</span> Screenshot <span class="pp">|</span> Fair use <span class="pp">|</span></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Session 4: Google Earth Engine (2 images)**</span></span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> Purpose <span class="pp">|</span> Source <span class="pp">|</span> License <span class="pp">|</span></span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|---------|--------|---------|</span></span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`gee_architecture.png`</span> <span class="pp">|</span> GEE system architecture <span class="pp">|</span> Create from docs <span class="pp">|</span> Own <span class="pp">|</span></span>
-<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`geemap_logo.png`</span> <span class="pp">|</span> geemap library logo <span class="pp">|</span> <span class="co">[</span><span class="ot">geemap GitHub</span><span class="co">](https://github.com/gisw qs/geemap)</span> <span class="pp">|</span> MIT <span class="pp">|</span></span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🔧 Solutions &amp; Workarounds</span></span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Immediate Solution: Create Key Diagrams**</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a>Priority diagrams to create (can use tools like draw.io, Canva, PowerPoint):</span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**`eo_ml_workflow.png`** - End-to-end ML workflow for EO</span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**`ph_eo_ecosystem.png`** - Philippine EO infrastructure diagram</span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**`foundation_models_timeline.png`** - 2025 FM developments</span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**`python_geospatial_stack.png`** - Python GIS libraries</span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**`integration_diagram.png`** - Platform integration</span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Text-Only Alternative**</span></span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a>For slides with missing images, you can convert to text-based slides. Example:</span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>**Instead of:**</span>
-<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/copernicus_overview.jpg)</span></span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a>**Use:**</span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a>**Copernicus Programme Overview**</span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a>::: {.columns}</span>
-<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Launched 1998 (GMES)</span>
-<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Renamed Copernicus 2012</span>
-<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>EU flagship programme</span>
-<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>€6.7B (2021-2027)</span>
-<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6 Sentinel families</span>
-<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Free &amp; Open data policy</span>
-<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Petabytes of EO data</span>
-<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Global coverage</span>
-<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a><span class="in">### **Placeholder Image Script**</span></span>
-<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a><span class="in">Create simple placeholder images with Python:</span></span>
-<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a><span class="in">from PIL import Image, ImageDraw, ImageFont</span></span>
-<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="in">import os</span></span>
-<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="in">def create_placeholder(filename, text, size=(1920, 1080)):</span></span>
-<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="in">    img = Image.new('RGB', size, color='#1e3a8a')</span></span>
-<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="in">    d = ImageDraw.Draw(img)</span></span>
-<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a><span class="in">    # Try to use a nice font, fallback to default</span></span>
-<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="in">    try:</span></span>
-<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a><span class="in">        font = ImageFont.truetype("Arial.ttf", 80)</span></span>
-<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a><span class="in">    except:</span></span>
-<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a><span class="in">        font = ImageFont.load_default()</span></span>
-<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="in">    # Calculate text position (center)</span></span>
-<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a><span class="in">    bbox = d.textbbox((0, 0), text, font=font)</span></span>
-<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="in">    text_width = bbox[2] - bbox[0]</span></span>
-<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="in">    text_height = bbox[3] - bbox[1]</span></span>
-<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a><span class="in">    position = ((size[0] - text_width) / 2, (size[1] - text_height) / 2)</span></span>
-<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a><span class="in">    d.text(position, text, fill='white', font=font)</span></span>
-<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="in">    os.makedirs('images', exist_ok=True)</span></span>
-<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="in">    img.save(f'images/{filename}')</span></span>
-<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="in">    print(f'Created: images/{filename}')</span></span>
-<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="in"># Create placeholders for key images</span></span>
-<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="in">placeholders = [</span></span>
-<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a><span class="in">    ('copernicus_overview.jpg', 'Copernicus Programme'),</span></span>
-<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="in">    ('sentinel1_satellite.jpg', 'Sentinel-1 SAR'),</span></span>
-<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="in">    ('sentinel2_mayon.jpg', 'Sentinel-2 Optical'),</span></span>
-<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a><span class="in">    ('ph_eo_ecosystem.png', 'Philippine EO Ecosystem'),</span></span>
-<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a><span class="in">    ('eo_ml_workflow.png', 'EO ML Workflow'),</span></span>
-<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="in">    ('foundation_models_timeline.png', 'Foundation Models 2025'),</span></span>
-<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="in">]</span></span>
-<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a><span class="in">for filename, text in placeholders:</span></span>
-<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="in">    create_placeholder(filename, text)</span></span>
-<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📥 Sourcing Official Images</span></span>
-<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a><span class="fu">### **ESA Images**</span></span>
-<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Visit <span class="co">[</span><span class="ot">ESA Multimedia Gallery</span><span class="co">](https://www.esa.int/ESA_Multimedia/Images)</span></span>
-<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Search for "Sentinel-1" or "Sentinel-2"</span>
-<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Download high-resolution images</span>
-<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Attribution: "ESA" or "Contains modified Copernicus data"</span>
-<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Copernicus Data**</span></span>
-<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Open <span class="co">[</span><span class="ot">Copernicus Browser</span><span class="co">](https://dataspace.copernicus.eu)</span></span>
-<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Navigate to Philippine areas of interest</span>
-<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Take screenshots or export images</span>
-<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Free to use (Copernicus data policy)</span>
-<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Philippine Agencies**</span></span>
-<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a>**PhilSA:**</span>
-<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Email: info@philsa.gov.ph</span>
-<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Request official logos and platform screenshots</span>
-<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explain educational use for CoPhil training</span>
-<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a>**DOST-ASTI:**</span>
-<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visit: https://asti.dost.gov.ph</span>
-<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Contact for SkAI-Pinas, DIMER, PANDA materials</span>
-<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Request permission for screenshots</span>
-<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a>**NAMRIA:**</span>
-<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visit: https://www.namria.gov.ph</span>
-<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Download publicly available products</span>
-<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Screenshot Geoportal interface</span>
-<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Logos**</span></span>
-<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a>Most logos can be found on official websites:</span>
-<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Right-click → "Save image as..."</span>
-<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Look for "Media Kit" or "Press Resources"</span>
-<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use PNG format with transparent background when available</span>
-<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📝 Licensing &amp; Attribution</span></span>
-<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="fu">### **ESA Standard License**</span></span>
-<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a>Credit: European Space Agency (ESA)</span>
-<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a><span class="in">### **Copernicus Data**</span></span>
-<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a>Contains modified Copernicus Sentinel data <span class="co">[</span><span class="ot">year</span><span class="co">]</span></span>
-<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a><span class="in">### **Philippine Government**</span></span>
-<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a>Source: <span class="co">[</span><span class="ot">Agency Name</span><span class="co">]</span>, Republic of the Philippines</span>
-<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a><span class="in">### **Academic Papers**</span></span>
-<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a>Adapted from <span class="co">[</span><span class="ot">Author et al., Year</span><span class="co">]</span></span>
-<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a><span class="in">## ✅ Pre-Delivery Checklist</span></span>
-<span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a><span class="in">Before final delivery, ensure:</span></span>
-<span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] All critical diagrams created (workflow, ecosystem, integration)</span></span>
-<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Official logos obtained (PhilSA, DOST, NAMRIA, ESA)</span></span>
-<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Key satellite images sourced (Sentinel-1, Sentinel-2)</span></span>
-<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Platform screenshots captured (Copernicus Browser, Geoportal)</span></span>
-<span id="cb10-390"><a href="#cb10-390" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Philippine example images prepared</span></span>
-<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Proper attribution added to all images</span></span>
-<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Images optimized for web (&lt; 500KB each)</span></span>
-<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Image dimensions appropriate (1920x1080 or smaller)</span></span>
-<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] All images placed in `course_site/day1/presentations/images/`</span></span>
-<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a><span class="in">- [ ] Presentations re-rendered and checked</span></span>
-<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-397"><a href="#cb10-397" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb10-398"><a href="#cb10-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-399"><a href="#cb10-399" aria-hidden="true" tabindex="-1"></a><span class="in">## 🎨 Creating Custom Diagrams</span></span>
-<span id="cb10-400"><a href="#cb10-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-401"><a href="#cb10-401" aria-hidden="true" tabindex="-1"></a><span class="in">### **Tools (Free)**</span></span>
-<span id="cb10-402"><a href="#cb10-402" aria-hidden="true" tabindex="-1"></a><span class="in">- **Draw.io** (diagrams.net) - Excellent for technical diagrams</span></span>
-<span id="cb10-403"><a href="#cb10-403" aria-hidden="true" tabindex="-1"></a><span class="in">- **Canva** - Good for infographics</span></span>
-<span id="cb10-404"><a href="#cb10-404" aria-hidden="true" tabindex="-1"></a><span class="in">- **PowerPoint/Google Slides** - Export slides as PNG</span></span>
-<span id="cb10-405"><a href="#cb10-405" aria-hidden="true" tabindex="-1"></a><span class="in">- **Inkscape** - Vector graphics (open-source)</span></span>
-<span id="cb10-406"><a href="#cb10-406" aria-hidden="true" tabindex="-1"></a><span class="in">- **GIMP** - Image editing (open-source)</span></span>
-<span id="cb10-407"><a href="#cb10-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-408"><a href="#cb10-408" aria-hidden="true" tabindex="-1"></a><span class="in">### **Recommended Dimensions**</span></span>
-<span id="cb10-409"><a href="#cb10-409" aria-hidden="true" tabindex="-1"></a><span class="in">- Diagrams: 1920x1080 or 1600x900</span></span>
-<span id="cb10-410"><a href="#cb10-410" aria-hidden="true" tabindex="-1"></a><span class="in">- Logos: 500x500 (PNG with transparency)</span></span>
-<span id="cb10-411"><a href="#cb10-411" aria-hidden="true" tabindex="-1"></a><span class="in">- Screenshots: 1920x1080 cropped as needed</span></span>
-<span id="cb10-412"><a href="#cb10-412" aria-hidden="true" tabindex="-1"></a><span class="in">- Concept images: 1200x800 minimum</span></span>
-<span id="cb10-413"><a href="#cb10-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-414"><a href="#cb10-414" aria-hidden="true" tabindex="-1"></a><span class="in">### **Color Scheme (Match Presentations)**</span></span>
-<span id="cb10-415"><a href="#cb10-415" aria-hidden="true" tabindex="-1"></a><span class="in">- Primary: `#1e3a8a` (Blue)</span></span>
-<span id="cb10-416"><a href="#cb10-416" aria-hidden="true" tabindex="-1"></a><span class="in">- Secondary: `#7c3aed` (Purple)</span></span>
-<span id="cb10-417"><a href="#cb10-417" aria-hidden="true" tabindex="-1"></a><span class="in">- Accent: `#10b981` (Green)</span></span>
-<span id="cb10-418"><a href="#cb10-418" aria-hidden="true" tabindex="-1"></a><span class="in">- Dark: `#1f2937` (Gray)</span></span>
-<span id="cb10-419"><a href="#cb10-419" aria-hidden="true" tabindex="-1"></a><span class="in">- Light: `#f3f4f6` (Light Gray)</span></span>
-<span id="cb10-420"><a href="#cb10-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-421"><a href="#cb10-421" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb10-422"><a href="#cb10-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-423"><a href="#cb10-423" aria-hidden="true" tabindex="-1"></a><span class="in">## 🚀 Quick Start Script</span></span>
-<span id="cb10-424"><a href="#cb10-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-425"><a href="#cb10-425" aria-hidden="true" tabindex="-1"></a><span class="in">Run this to create placeholder images for testing:</span></span>
-<span id="cb10-426"><a href="#cb10-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-427"><a href="#cb10-427" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-428"><a href="#cb10-428" aria-hidden="true" tabindex="-1"></a><span class="in">cd course_site/day1/presentations</span></span>
-<span id="cb10-429"><a href="#cb10-429" aria-hidden="true" tabindex="-1"></a><span class="in">mkdir -p images</span></span>
-<span id="cb10-430"><a href="#cb10-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-431"><a href="#cb10-431" aria-hidden="true" tabindex="-1"></a><span class="in"># Create simple text placeholders</span></span>
-<span id="cb10-432"><a href="#cb10-432" aria-hidden="true" tabindex="-1"></a><span class="in">echo "IMAGE PLACEHOLDER" &gt; images/README.txt</span></span>
-<span id="cb10-433"><a href="#cb10-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-434"><a href="#cb10-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-435"><a href="#cb10-435" aria-hidden="true" tabindex="-1"></a>Or use the Python script above to create actual placeholder images.</span>
-<span id="cb10-436"><a href="#cb10-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-437"><a href="#cb10-437" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-438"><a href="#cb10-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-439"><a href="#cb10-439" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📞 Support Contacts</span></span>
-<span id="cb10-440"><a href="#cb10-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-441"><a href="#cb10-441" aria-hidden="true" tabindex="-1"></a>**For Image Permissions:**</span>
-<span id="cb10-442"><a href="#cb10-442" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PhilSA:** info@philsa.gov.ph</span>
-<span id="cb10-443"><a href="#cb10-443" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**DOST-ASTI:** info@asti.dost.gov.ph</span>
-<span id="cb10-444"><a href="#cb10-444" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**NAMRIA:** namria@namria.gov.ph</span>
-<span id="cb10-445"><a href="#cb10-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**ESA:** Contact via ESA website</span>
-<span id="cb10-446"><a href="#cb10-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-447"><a href="#cb10-447" aria-hidden="true" tabindex="-1"></a>**For Technical Issues:**</span>
-<span id="cb10-448"><a href="#cb10-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check image file paths in <span class="in">`.qmd`</span> files</span>
-<span id="cb10-449"><a href="#cb10-449" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ensure images are in <span class="in">`course_site/day1/presentations/images/`</span></span>
-<span id="cb10-450"><a href="#cb10-450" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Verify image filenames match exactly (case-sensitive)</span>
-<span id="cb10-451"><a href="#cb10-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-452"><a href="#cb10-452" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-453"><a href="#cb10-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-454"><a href="#cb10-454" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📈 Priority Levels</span></span>
-<span id="cb10-455"><a href="#cb10-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-456"><a href="#cb10-456" aria-hidden="true" tabindex="-1"></a><span class="fu">### **CRITICAL (Must Have)**</span></span>
-<span id="cb10-457"><a href="#cb10-457" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Official logos (PhilSA, DOST, ESA, Copernicus)</span>
-<span id="cb10-458"><a href="#cb10-458" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Philippine EO ecosystem diagram</span>
-<span id="cb10-459"><a href="#cb10-459" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>EO ML workflow diagram</span>
-<span id="cb10-460"><a href="#cb10-460" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Sentinel satellite images</span>
-<span id="cb10-461"><a href="#cb10-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-462"><a href="#cb10-462" aria-hidden="true" tabindex="-1"></a><span class="fu">### **HIGH (Should Have)**</span></span>
-<span id="cb10-463"><a href="#cb10-463" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Platform screenshots (SIYASAT, Geoportal)</span>
-<span id="cb10-464"><a href="#cb10-464" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Foundation models timeline</span>
-<span id="cb10-465"><a href="#cb10-465" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Python geospatial stack diagram</span>
-<span id="cb10-466"><a href="#cb10-466" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Data processing examples</span>
-<span id="cb10-467"><a href="#cb10-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-468"><a href="#cb10-468" aria-hidden="true" tabindex="-1"></a><span class="fu">### **MEDIUM (Nice to Have)**</span></span>
-<span id="cb10-469"><a href="#cb10-469" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Concept diagrams</span>
-<span id="cb10-470"><a href="#cb10-470" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Integration architectures</span>
-<span id="cb10-471"><a href="#cb10-471" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>Philippine application examples</span>
-<span id="cb10-472"><a href="#cb10-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-473"><a href="#cb10-473" aria-hidden="true" tabindex="-1"></a><span class="fu">### **LOW (Optional)**</span></span>
-<span id="cb10-474"><a href="#cb10-474" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>Decorative images</span>
-<span id="cb10-475"><a href="#cb10-475" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>Background visuals</span>
-<span id="cb10-476"><a href="#cb10-476" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>Additional examples</span>
-<span id="cb10-477"><a href="#cb10-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-478"><a href="#cb10-478" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-479"><a href="#cb10-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-480"><a href="#cb10-480" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🎯 Delivery Options</span></span>
-<span id="cb10-481"><a href="#cb10-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-482"><a href="#cb10-482" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option A: Full Image Package** (Recommended)</span></span>
-<span id="cb10-483"><a href="#cb10-483" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source all images</span>
-<span id="cb10-484"><a href="#cb10-484" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create custom diagrams</span>
-<span id="cb10-485"><a href="#cb10-485" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Professional quality</span>
-<span id="cb10-486"><a href="#cb10-486" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Time: 2-3 days</span>
-<span id="cb10-487"><a href="#cb10-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-488"><a href="#cb10-488" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option B: Essential Images Only**</span></span>
-<span id="cb10-489"><a href="#cb10-489" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Critical logos and diagrams</span>
-<span id="cb10-490"><a href="#cb10-490" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Text-based alternatives for others</span>
-<span id="cb10-491"><a href="#cb10-491" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Time: 4-6 hours</span>
-<span id="cb10-492"><a href="#cb10-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-493"><a href="#cb10-493" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option C: Placeholder + Text**</span></span>
-<span id="cb10-494"><a href="#cb10-494" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use placeholder images</span>
-<span id="cb10-495"><a href="#cb10-495" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Enhanced text descriptions</span>
-<span id="cb10-496"><a href="#cb10-496" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Speaker explains visually</span>
-<span id="cb10-497"><a href="#cb10-497" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Time: 1 hour</span>
-<span id="cb10-498"><a href="#cb10-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-499"><a href="#cb10-499" aria-hidden="true" tabindex="-1"></a><span class="fu">### **Option D: Remove Image Slides**</span></span>
-<span id="cb10-500"><a href="#cb10-500" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comment out image-heavy slides</span>
-<span id="cb10-501"><a href="#cb10-501" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rely on speaker notes</span>
-<span id="cb10-502"><a href="#cb10-502" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quickest solution</span>
-<span id="cb10-503"><a href="#cb10-503" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Time: 30 minutes</span>
-<span id="cb10-504"><a href="#cb10-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-505"><a href="#cb10-505" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-506"><a href="#cb10-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-507"><a href="#cb10-507" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📝 Notes</span></span>
-<span id="cb10-508"><a href="#cb10-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-509"><a href="#cb10-509" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Presentations are fully functional without images</span>
-<span id="cb10-510"><a href="#cb10-510" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Speaker notes provide context for missing visuals</span>
-<span id="cb10-511"><a href="#cb10-511" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Images enhance but are not essential for learning</span>
-<span id="cb10-512"><a href="#cb10-512" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Can deliver with placeholders and add images later</span>
-<span id="cb10-513"><a href="#cb10-513" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Students can access online resources for visuals</span>
-<span id="cb10-514"><a href="#cb10-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-515"><a href="#cb10-515" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-516"><a href="#cb10-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-517"><a href="#cb10-517" aria-hidden="true" tabindex="-1"></a>**Current Status:** ⚠️ 87 images missing  </span>
-<span id="cb10-518"><a href="#cb10-518" aria-hidden="true" tabindex="-1"></a>**Recommended Action:** Start with Option B (Essential Images Only)  </span>
-<span id="cb10-519"><a href="#cb10-519" aria-hidden="true" tabindex="-1"></a>**Estimated Time:** 4-6 hours for core images</span>
-<span id="cb10-520"><a href="#cb10-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-521"><a href="#cb10-521" aria-hidden="true" tabindex="-1"></a>**Questions? See INSTRUCTOR_GUIDE.md or README.md**</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

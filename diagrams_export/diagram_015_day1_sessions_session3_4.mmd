@@ -1,0 +1,43 @@
+%%| fig-cap: "Raster Data Processing Workflow with Rasterio"
+%%| fig-width: 100%
+
+flowchart TD
+    A[Sentinel-2 GeoTIFF<br/>Multi-band raster<br/>13 spectral bands] --> B[Open with Rasterio<br/>rasterio.open]
+
+    B --> C[Read Metadata<br/>CRS, Transform<br/>Bounds, Resolution<br/>Band count]
+
+    C --> D[Read Band Data<br/>src.read<br/>NumPy arrays]
+
+    D --> E{Processing<br/>Goal?}
+
+    E -->|Calculate Index| F[NDVI Calculation<br/>NIR - Red / NIR + Red<br/>NumPy operations]
+
+    E -->|Create Composite| G[RGB Composite<br/>Stack bands<br/>Normalize values]
+
+    E -->|Clip to AOI| H[Vector Mask<br/>GeoDataFrame boundary<br/>rasterio.mask.mask]
+
+    E -->|Resample| I[Change Resolution<br/>Upsample/Downsample<br/>Resampling method]
+
+    F --> J[Write Output<br/>rasterio.open 'w'<br/>Copy metadata<br/>Write array]
+
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K[New GeoTIFF<br/>Processed raster<br/>Ready for ML]
+
+    subgraph RasterOps["RASTER OPERATIONS"]
+        R1[Arithmetic<br/>Add, Subtract<br/>Multiply, Divide]
+        R2[Logical<br/>Masks, Filters<br/>Thresholds]
+        R3[Statistics<br/>Mean, Std, Min<br/>Max, Percentiles]
+        R4[Spatial<br/>Clip, Mosaic<br/>Reproject]
+    end
+
+    D --> RasterOps
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style C fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style D fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style J fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style K fill:#ccffcc,stroke:#00aa44,stroke-width:2px
+    style RasterOps fill:#ffe6e6,stroke:#cc0044,stroke-width:2px

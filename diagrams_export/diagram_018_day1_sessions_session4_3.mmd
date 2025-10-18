@@ -1,0 +1,45 @@
+%%| fig-cap: "Earth Engine Export Workflow"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Processed Data<br/>in GEE] --> B{Export<br/>Type?}
+
+    B -->|Image| C1[ee.batch.Export<br/>.image.toDrive]
+    B -->|Table| C2[ee.batch.Export<br/>.table.toDrive]
+    B -->|Video| C3[ee.batch.Export<br/>.video.toDrive]
+
+    C1 --> D1[Configure<br/>Image Export]
+    C2 --> D2[Configure<br/>Table Export]
+
+    D1 --> E1[Parameters:<br/>region, scale<br/>crs, bands<br/>fileFormat]
+
+    D2 --> E2[Parameters:<br/>columns<br/>fileFormat<br/>CSV/SHP/GeoJSON]
+
+    E1 --> F[task.start<br/>Submit to Queue]
+    E2 --> F
+
+    F --> G[GEE Processing<br/>Server-side<br/>computation]
+
+    G --> H{Status?}
+
+    H -->|READY| I[In Queue<br/>Waiting]
+    H -->|RUNNING| J[Processing...<br/>Monitor progress]
+    H -->|COMPLETED| K[Success!<br/>Check Drive]
+    H -->|FAILED| L[Error<br/>Check logs]
+
+    K --> M[Google Drive<br/>CoPhil_Training/<br/>filename.tif]
+
+    M --> N1[Download<br/>Local use]
+    M --> N2[Colab Access<br/>mount Drive]
+    M --> N3[Share<br/>Collaborators]
+
+    N1 --> O[ML Training<br/>PyTorch/TensorFlow<br/>Scikit-learn]
+    N2 --> O
+
+    style A fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style F fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style G fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px
+    style K fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style L fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style M fill:#ccffcc,stroke:#00aa44,stroke-width:2px
+    style O fill:#cce6ff,stroke:#0066cc,stroke-width:2px

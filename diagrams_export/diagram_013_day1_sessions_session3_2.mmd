@@ -1,0 +1,43 @@
+%%| fig-cap: "Vector Data Types and GeoPandas GeoDataFrame Structure"
+%%| fig-width: 100%
+
+graph TB
+    subgraph VectorTypes["VECTOR GEOMETRY TYPES"]
+        V1[Point<br/>Single coordinate<br/>Cities, GPS points]
+        V2[LineString<br/>Connected coordinates<br/>Roads, rivers]
+        V3[Polygon<br/>Closed ring<br/>Boundaries, parcels]
+        V4[MultiPoint<br/>Multiple points<br/>Observation sites]
+        V5[MultiLineString<br/>Multiple lines<br/>Road networks]
+        V6[MultiPolygon<br/>Multiple polygons<br/>Archipelago]
+    end
+
+    subgraph GDF["GEOPANDAS GEODATAFRAME"]
+        GDF1[Geometry Column<br/>Shapely objects<br/>Point/Line/Polygon]
+        GDF2[Attribute Columns<br/>Name, Population<br/>Area, Type, etc.]
+        GDF3[CRS Information<br/>EPSG:4326, 32651<br/>Projection metadata]
+        GDF4[Spatial Index<br/>R-tree for fast<br/>spatial queries]
+    end
+
+    subgraph Formats["FILE FORMATS"]
+        F1[Shapefile<br/>.shp + .shx + .dbf + .prj]
+        F2[GeoJSON<br/>.geojson, .json]
+        F3[GeoPackage<br/>.gpkg]
+        F4[KML/KMZ<br/>.kml, .kmz]
+    end
+
+    V1 --> GDF1
+    V2 --> GDF1
+    V3 --> GDF1
+
+    GDF1 --> Operations[Spatial Operations<br/>Buffer, Intersect<br/>Union, Dissolve<br/>Clip, Overlay]
+    GDF2 --> Operations
+    GDF3 --> Operations
+
+    F1 -->|gpd.read_file| GDF
+    F2 -->|gpd.read_file| GDF
+    F3 -->|gpd.read_file| GDF
+
+    style VectorTypes fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style GDF fill:#e6ffe6,stroke:#00aa44,stroke-width:2px
+    style Formats fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Operations fill:#ffe6ff,stroke:#cc00cc,stroke-width:2px

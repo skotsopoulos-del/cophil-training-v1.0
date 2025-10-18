@@ -1,0 +1,13 @@
+%%| fig-cap: "Operational Deployment Pipeline"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Sentinel-2 API] --> B[Pre-processing]
+    B --> C[Object Detection Model]
+    C --> D[Post-processing]
+    D --> E[GIS Export]
+    E --> F[Stakeholder Dashboard]
+    
+    style A fill:#0066cc,color:#fff
+    style C fill:#ff8800,color:#fff
+    style F fill:#00aa44,color:#fff

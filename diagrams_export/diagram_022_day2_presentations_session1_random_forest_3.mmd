@@ -1,0 +1,23 @@
+%%| fig-width: 9
+flowchart TD
+    A[Training Data<br/>1000 samples] --> B1[Bootstrap<br/>Sample 1]
+    A --> B2[Bootstrap<br/>Sample 2]
+    A --> B3[Bootstrap<br/>Sample 3]
+    A --> B4[...]
+    A --> B5[Bootstrap<br/>Sample N]
+
+    B1 --> T1[Tree 1]
+    B2 --> T2[Tree 2]
+    B3 --> T3[Tree 3]
+    B4 --> T4[...]
+    B5 --> T5[Tree N]
+
+    T1 --> V[Majority Vote]
+    T2 --> V
+    T3 --> V
+    T4 --> V
+    T5 --> V
+
+    V --> F[Final Prediction]
+
+    style F fill:#4CAF50

@@ -8,6 +8,7 @@ website:
   title: "CoPhil EO AI/ML Training"
   description: "4-Day Advanced Training on AI/ML for Earth Observation - A comprehensive training program for Philippine EO professionals"
   favicon: images/favicon.png
+  google-analytics: "G-509191933"
 
   navbar:
     background: primary

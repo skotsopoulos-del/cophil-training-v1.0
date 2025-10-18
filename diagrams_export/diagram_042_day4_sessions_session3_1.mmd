@@ -1,0 +1,18 @@
+flowchart TB
+    subgraph PreTraining["Pre-Training Phase"]
+        A[Massive Satellite Archive<br/>Millions of Images] --> B[Self-Supervised Learning<br/>No Labels Needed]
+        B --> C[Foundation Model<br/>Learns General Features]
+    end
+    
+    subgraph FineTuning["Fine-Tuning Phase"]
+        C --> D[Your Small Labeled Dataset<br/>100-500 samples]
+        D --> E[Task-Specific Model<br/>Flood/Drought/Crops]
+    end
+    
+    subgraph Deployment["Deployment"]
+        E --> F[Predict on New Data<br/>Operational Use]
+    end
+    
+    style PreTraining fill:#e1f5ff
+    style FineTuning fill:#fff4e1
+    style Deployment fill:#e8f5e9

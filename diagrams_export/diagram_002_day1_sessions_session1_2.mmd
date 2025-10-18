@@ -1,0 +1,18 @@
+%%| fig-cap: "Sentinel-1 SAR Imaging Process"
+%%| fig-width: 100%
+
+flowchart LR
+    A[Satellite<br/>693km altitude] -->|Transmit<br/>Radar Pulse| B[Ground Surface]
+    B -->|Backscatter<br/>Returns| A
+
+    A --> C[Signal Processing]
+    C --> D[SAR Image]
+
+    D --> E1[Amplitude<br/>Surface roughness]
+    D --> E2[Phase<br/>InSAR deformation]
+    D --> E3[Polarization<br/>Surface properties]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style B fill:#8b4513,stroke:#654321,stroke-width:2px,color:#fff
+    style C fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style D fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff

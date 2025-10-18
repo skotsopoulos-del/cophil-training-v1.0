@@ -1,0 +1,13 @@
+%%| fig-width: 10
+flowchart LR
+    A[Satellite Imagery] --> B[Preprocessing]
+    B --> C[Feature Extraction]
+    C --> D[Training Data Collection]
+    D --> E[Model Training]
+    E --> F[Classification]
+    F --> G[Accuracy Assessment]
+    G --> H{Acceptable?}
+    H -->|No| D
+    H -->|Yes| I[Final Map]
+    style E fill:#4A90E2
+    style F fill:#4A90E2

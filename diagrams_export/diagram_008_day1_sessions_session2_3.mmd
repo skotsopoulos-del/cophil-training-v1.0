@@ -1,0 +1,41 @@
+%%| fig-cap: "Machine Learning Paradigms for Earth Observation"
+%%| fig-width: 100%
+
+graph TB
+    subgraph Supervised["SUPERVISED LEARNING<br/>Learning from labeled examples"]
+        S1[Classification<br/>Discrete categories]
+        S2[Regression<br/>Continuous values]
+        S3[Object Detection<br/>Locate + classify]
+        S4[Semantic Segmentation<br/>Pixel-wise classification]
+
+        S1 --> S1A[Land Cover<br/>Forest, Water, Urban]
+        S2 --> S2A[Biomass Estimation<br/>Predict AGB in tons/ha]
+        S3 --> S3A[Building Detection<br/>YOLO, Faster R-CNN]
+        S4 --> S4A[Flood Mapping<br/>U-Net segmentation]
+    end
+
+    subgraph Unsupervised["UNSUPERVISED LEARNING<br/>Finding patterns without labels"]
+        U1[Clustering<br/>Group similar pixels]
+        U2[Dimensionality<br/>Reduction]
+        U3[Anomaly<br/>Detection]
+
+        U1 --> U1A[K-Means<br/>ISODATA<br/>Spectral clusters]
+        U2 --> U2A[PCA<br/>MNF Transform<br/>Band reduction]
+        U3 --> U3A[Outlier Detection<br/>Change hotspots]
+    end
+
+    subgraph SemiSupervised["SEMI-SUPERVISED<br/>Combine labeled + unlabeled"]
+        SS1[Self-training<br/>Pseudo-labeling]
+        SS2[Co-training<br/>Multiple views]
+        SS1 --> SS1A[Bootstrap from<br/>limited labels]
+    end
+
+    subgraph Reinforcement["REINFORCEMENT LEARNING<br/>Learn from interaction"]
+        R1[Agent-Environment<br/>Interaction]
+        R1 --> R1A[Drone Path<br/>Planning]
+    end
+
+    style Supervised fill:#e6ffe6,stroke:#00aa44,stroke-width:3px
+    style Unsupervised fill:#ffe6e6,stroke:#cc0044,stroke-width:3px
+    style SemiSupervised fill:#fff4e6,stroke:#ff8800,stroke-width:3px
+    style Reinforcement fill:#e6e6ff,stroke:#6666cc,stroke-width:3px

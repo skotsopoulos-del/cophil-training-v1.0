@@ -31,6 +31,15 @@
     }
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a52660f024e6f9788c15754c389b1b96.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-509191933"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-509191933', { 'anonymize_ip': true});
+  </script>
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -364,9 +373,6 @@ Stylianos Kotsopoulos
 <li>Hands-on: Train U-Net flood mapper on Sentinel-1 SAR</li>
 <li>Evaluate with IoU/Dice; export masks for GIS</li>
 </ul>
-<div class="session-nav">
-<p><a href="../../day3/sessions/session2.html" class="btn btn-primary">Next: Session 2 – Flood Mapping Lab</a></p>
-</div>
 
 
 </section></section>
@@ -658,7 +664,7 @@ Stylianos Kotsopoulos
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

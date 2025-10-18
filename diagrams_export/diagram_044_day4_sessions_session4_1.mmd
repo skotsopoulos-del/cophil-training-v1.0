@@ -1,0 +1,33 @@
+flowchart TB
+    subgraph Day1["Day 1: Foundations"]
+        A1[Python for Geospatial]
+        A2[Google Earth Engine]
+        A3[Data Preprocessing]
+    end
+    
+    subgraph Day2["Day 2: Machine Learning"]
+        B1[Random Forest]
+        B2[CNNs Introduction]
+        B3[Land Cover Classification]
+    end
+    
+    subgraph Day3["Day 3: Deep Learning"]
+        C1[U-Net Segmentation]
+        C2[Flood Mapping]
+        C3[Object Detection]
+    end
+    
+    subgraph Day4["Day 4: Advanced Topics"]
+        D1[LSTMs]
+        D2[Foundation Models]
+        D3[XAI]
+    end
+    
+    Day1 --> Day2
+    Day2 --> Day3
+    Day3 --> Day4
+    
+    style Day1 fill:#e8f5e9
+    style Day2 fill:#e1f5ff
+    style Day3 fill:#fff4e1
+    style Day4 fill:#f3e5f5

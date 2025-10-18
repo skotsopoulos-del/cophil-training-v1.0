@@ -1,0 +1,10 @@
+%%| fig-width: 10
+flowchart LR
+    A[Raw Classification] --> B[Majority Filter<br/>3x3 or 5x5]
+    B --> C[Remove Small Patches<br/>MMU threshold]
+    C --> D[Morphological<br/>Opening/Closing]
+    D --> E[Expert Rules<br/>Constraints]
+    E --> F[Final Clean Map]
+
+    style A fill:#E74C3C
+    style F fill:#27AE60

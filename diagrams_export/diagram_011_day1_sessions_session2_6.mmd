@@ -1,0 +1,51 @@
+%%| fig-cap: "Data-Centric AI Framework for Earth Observation"
+%%| fig-width: 100%
+
+flowchart TB
+    subgraph ModelCentric["MODEL-CENTRIC AI (Old Paradigm)"]
+        MC1[Fixed Data] --> MC2[Iterate Models]
+        MC2 --> MC3[Tune Hyperparameters]
+        MC3 --> MC4[Try New Architectures]
+        MC4 --> MC5[85% → 87% → 88%<br/>Diminishing Returns]
+    end
+
+    subgraph DataCentric["DATA-CENTRIC AI (2025 Paradigm)"]
+        DC1[Proven Architecture<br/>ResNet, U-Net, ViT] --> DC2[Improve Data Quality]
+        DC2 --> DC3[Increase Data Quantity]
+        DC3 --> DC4[Enhance Data Diversity]
+        DC4 --> DC5[Refine Annotations]
+        DC5 --> DC6[85% → 92% → 95%<br/>Significant Gains]
+    end
+
+    subgraph Pillars["FOUR PILLARS OF DATA-CENTRIC AI"]
+        P1[1. Quality<br/>Accurate, consistent<br/>Cloud-free<br/>Atmospherically corrected]
+        P2[2. Quantity<br/>Sufficient samples<br/>Per class balance<br/>Training data scale]
+        P3[3. Diversity<br/>Geographic coverage<br/>Temporal variation<br/>Seasonal representation]
+        P4[4. Annotation<br/>Label accuracy<br/>Boundary precision<br/>Class consistency]
+    end
+
+    DC2 --> P1
+    DC3 --> P2
+    DC4 --> P3
+    DC5 --> P4
+
+    subgraph DCCheck["DC-CHECK FRAMEWORK"]
+        DCC1[Characterize<br/>Data distribution<br/>Coverage, biases]
+        DCC2[Evaluate<br/>Label quality<br/>Representation]
+        DCC3[Monitor<br/>Data drift<br/>Performance tracking]
+    end
+
+    P1 --> DCC1
+    P2 --> DCC1
+    P3 --> DCC2
+    P4 --> DCC2
+    DCC1 --> DCC3
+    DCC2 --> DCC3
+
+    DCC3 --> Result[Robust,<br/>Operational<br/>Models]
+
+    style ModelCentric fill:#ffe6e6,stroke:#cc0044,stroke-width:2px
+    style DataCentric fill:#e6ffe6,stroke:#00aa44,stroke-width:3px
+    style Pillars fill:#e6f3ff,stroke:#0066cc,stroke-width:2px
+    style DCCheck fill:#fff4e6,stroke:#ff8800,stroke-width:2px
+    style Result fill:#ccffcc,stroke:#00aa44,stroke-width:3px,color:#000

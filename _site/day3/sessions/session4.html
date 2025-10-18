@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Stylianos Kotsopoulos">
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-17">
 
 <title>Session 4: Hands-on Object Detection from Sentinel Imagery – CoPhil EO AI/ML Training</title>
 <style>
@@ -77,14 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4a074efccdeff27617fbc72d37c1244e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a15f5dce5650fb3fe5aba34e3b6df9a9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,7 +108,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-509191933"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-509191933', { 'anonymize_ip': true});
+</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<meta name="mermaid-theme" content="default">
 <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -122,169 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles/phase2-enhancements.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -359,11 +203,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/cophil-training-v1.0"> <i class="bi bi-github" role="img" aria-label="GitHub">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../resources/downloads.html"> <i class="bi bi-download" role="img">
 </i> 
@@ -372,7 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -541,10 +379,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../day3/sessions/session1.html">Sessions</a></li><li class="breadcrumb-item"><a href="../../day3/sessions/session4.html">Session 4: Hands-on Object Detection from Sentinel Imagery</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Session 4: Hands-on Object Detection from Sentinel Imagery</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Session 4: Hands-on Object Detection from Sentinel Imagery</h1>
 <p class="subtitle lead">Urban Monitoring with Transfer Learning and Pre-trained Models</p>
 </div>
 
@@ -562,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Date</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 16, 2025</p>
+      <p class="date">October 17, 2025</p>
     </div>
   </div>
   
@@ -1066,33 +903,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
-<div class="session-nav">
-<p><a href="../../day3/sessions/session3.html" class="btn btn-outline-primary">← Session 3: Object Detection Theory</a> <a href="../../day3/index.html" class="btn btn-outline-secondary">Back to Day 3 Home</a></p>
-</div>
-<hr>
 <p><em>Session 4: Hands-on Object Detection from Sentinel Imagery - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.</em></p>
 
-
-<!-- -->
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1162,60 +980,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/DimitrisKasabalis\.github\.io\/cophil-training-v1\.0");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1562,617 +1329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <span class="nav-page-text">Session 2: Hands-on Flood Mapping with U-Net and Sentinel-1 SAR</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Session 4: Hands-on Object Detection from Sentinel Imagery"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Urban Monitoring with Transfer Learning and Pre-trained Models"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Stylianos Kotsopoulos"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> class</span><span class="op">=</span><span class="st">"breadcrumb"</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Breadcrumb"</span><span class="dt">&gt;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"../../index.html"</span><span class="dt">&gt;</span>Home<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"breadcrumb-separator"</span><span class="ot"> aria-hidden</span><span class="op">=</span><span class="st">"true"</span><span class="dt">&gt;</span>›<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"../index.html"</span><span class="dt">&gt;</span>Day 3<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"breadcrumb-separator"</span><span class="ot"> aria-hidden</span><span class="op">=</span><span class="st">"true"</span><span class="dt">&gt;</span>›<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"breadcrumb-current"</span><span class="dt">&gt;</span>Session 4<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>::: {.hero}</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># Hands-on Lab: Object Detection from Sentinel Imagery</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Building Detection for Urban Monitoring in Metro Manila</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Apply transfer learning with pre-trained object detectors to identify buildings and settlements in satellite imagery</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lab Overview</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>::: {.session-info}</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>**Duration:** 2.5 hours | **Format:** Hands-on Coding Lab | **Platform:** Google Colab with GPU</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>This practical session demonstrates object detection for Earth observation using transfer learning. You'll fine-tune a pre-trained object detection model (YOLO or SSD) to detect buildings and informal settlements in Metro Manila from Sentinel-2 optical imagery. This approach minimizes data annotation requirements while achieving operational accuracy.</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>::: {.learning-objectives}</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Learning Objectives</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>By the end of this lab, you will be able to:</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Understand** transfer learning for object detection in EO applications</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Load and configure** pre-trained models from TensorFlow Hub or PyTorch Hub</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Prepare** satellite imagery and annotations for object detection</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fine-tune** pre-trained detectors on custom datasets</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Evaluate** model performance using mean Average Precision (mAP)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Visualize** detected bounding boxes on satellite imagery</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Interpret** model predictions for urban monitoring</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Deploy** object detection for operational Philippine use cases</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentation Slides</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../presentations/session4_object_detection_lab.html"</span><span class="ot"> width</span><span class="op">=</span><span class="st">"100%"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"600"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"border: 1px solid #ccc; border-radius: 4px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Case Study: Metro Manila Building Detection</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Philippine Urban Monitoring Context</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>**Location:** Metro Manila - National Capital Region (NCR)  </span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>**Focus Areas:** Quezon City and Pasig River corridor  </span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>**Challenge:** Rapid informal settlement growth and urban sprawl</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>**Why This Matters:**</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>Metro Manila's rapid urbanization creates challenges for:</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disaster Risk Reduction** - Identifying vulnerable settlements in flood zones</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Urban Planning** - Monitoring informal settlements and infrastructure</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Population Estimation** - Building counts for demographic analysis</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Resource Allocation** - Targeting social services and infrastructure development</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>**Data Source:** Sentinel-2 Multispectral Imagery</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Advantage:** High spatial resolution (10m RGB) with rich spectral information</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Temporal Coverage:** 5-day revisit for change detection</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Bands Used:** RGB (B4, B3, B2) + NIR (B8) for enhanced detection</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Challenge</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>Manual building delineation is time-consuming and inconsistent. Object detection with deep learning enables:</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Automated identification** of buildings from satellite imagery</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Rapid mapping** of large urban areas within hours</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Change detection** by comparing detections over time</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Scalable monitoring** for growing metropolitan regions</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantitative analysis** of urban expansion patterns</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lab Workflow</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>This hands-on lab follows a 7-step transfer learning workflow:</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Object Detection Transfer Learning Workflow</span><span class="ot">"</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>%%| fig-width: <span class="dv">100</span>%</span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    A[<span class="dv">1</span>. Setup &amp; Pre-trained Model] --&gt; B[<span class="dv">2</span>. Load Demo Data]</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[<span class="dv">3</span>. Data Preparation]</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[<span class="dv">4</span>. Model Fine-tuning]</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>    D --&gt; E[<span class="dv">5</span>. Inference &amp; Detection]</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[<span class="dv">6</span>. Evaluation mAP]</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[<span class="dv">7</span>. Visualization &amp; Export]</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    style A fill:<span class="co">#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff</span></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    style D fill:<span class="co">#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff</span></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    style G fill:<span class="co">#00aa44,stroke:#006622,stroke-width:2px,color:#fff</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prerequisites and Setup</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Before You Begin</span></span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Required Setup</span></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>**Platform:** Google Colab (free tier with GPU)</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>**Checklist:**</span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Google account with access to Google Colab</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Understanding of CNNs (from Day 2, Session 3)</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Familiarity with object detection concepts (from Session 3)</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Basic Python and TensorFlow/PyTorch knowledge</span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>**Estimated Total Time:** 2.5 hours (including fine-tuning time)</span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Access the Notebook</span></span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>**Download and Open:**</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Download: <span class="co">[</span><span class="ot">`Day3_Session4_Object_Detection_STUDENT.ipynb`</span><span class="co">](../notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb)</span></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Upload to your Google Drive</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Open with Google Colab</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transfer Learning Advantage</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>Instead of training from scratch (requires 10,000+ annotated images), we'll:</span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Use a pre-trained detector (trained on COCO dataset with 330K images)</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Fine-tune on a small urban satellite image dataset (100-500 samples)</span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Achieve operational accuracy in 30-60 minutes of training</span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>**This is how real-world practitioners work with limited labeled data!**</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### Enable GPU</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPU Acceleration Required</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>In Colab: **Runtime** → **Change runtime type**</span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Select **Hardware accelerator:** GPU (T4 or better)</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Verify: Run <span class="in">`!nvidia-smi`</span> to confirm GPU availability</span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>**Note:** GPU significantly speeds up fine-tuning (10x faster than CPU)</span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part 1: Understanding Transfer Learning for Object Detection (15 min)</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is Transfer Learning?</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>**Concept:** Adapt a model pre-trained on a large dataset to your specific task with minimal additional training data.</span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>**Analogy:** Like a doctor specializing in cardiology after completing general medical training - the foundational knowledge transfers, requiring less time to specialize.</span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>**For Object Detection:**</span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pre-trained model learned to detect 80 object classes on COCO dataset</span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Model already understands:</span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>What makes an object distinct from background</span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>How to propose bounding boxes</span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>How to classify regions</span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We adapt it to detect buildings/settlements in satellite imagery</span>
-<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Why Transfer Learning for Philippine EO?</span></span>
-<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>**Challenge:** Limited labeled satellite imagery</span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Annotation is expensive (bounding boxes take time)</span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Philippine-specific datasets are scarce</span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Small agencies can't afford large labeling efforts</span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>**Solution:** Transfer Learning</span>
-<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Start with pre-trained model (free, publicly available)</span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fine-tune with 100-500 labeled satellite images</span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Achieve 75-85% accuracy (operational quality)</span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Training time: 30-60 minutes (vs. days from scratch)</span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part 2: Lab Exercises</span></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 1: Load Pre-trained Model (20 min)</span></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>**Objective:** Load a pre-trained object detector from TensorFlow Hub or PyTorch Hub</span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>**Models Available:**</span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**SSD MobileNet V2** - Fast, lightweight (recommended for EO)</span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Faster R-CNN ResNet50** - Higher accuracy, slower</span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**YOLO v5/v8** - Good balance of speed and accuracy</span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>**Tasks:**</span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pre-trained SSD MobileNet from TensorFlow Hub</span></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow_hub <span class="im">as</span> hub</span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>model_url <span class="op">=</span> <span class="st">"https://tfhub.dev/tensorflow/ssd_mobilenet_v2/fpnlite_320x320/1"</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> hub.load(model_url)</span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Test on a sample image</span></span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize default detections (COCO classes)</span></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>**What You'll Learn:**</span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How to load pre-trained models</span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Understanding model input/output format</span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Visualizing detections before fine-tuning</span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 2: Prepare Training Data (30 min)</span></span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>**Objective:** Load and prepare satellite imagery with building annotations</span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>**Data Format:**</span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Images: Sentinel-2 RGB patches (320x320 or 512x512 pixels)</span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Annotations: COCO JSON format with bounding boxes</span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>  <span class="in">```json</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>    <span class="st">"images"</span><span class="op">:</span> [<span class="op">...</span>]<span class="op">,</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>    <span class="st">"annotations"</span><span class="op">:</span> [</span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>        <span class="st">"image_id"</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bbox"</span><span class="op">:</span> [x<span class="op">,</span> y<span class="op">,</span> width<span class="op">,</span> height]<span class="op">,</span></span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>        <span class="st">"category_id"</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>  <span class="co">// building</span></span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>        <span class="st">"area"</span><span class="op">:</span> <span class="dv">2500</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">,</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>    <span class="st">"categories"</span><span class="op">:</span> [{<span class="st">"id"</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="st">"name"</span><span class="op">:</span> <span class="st">"building"</span>}]</span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>**Tasks:**</span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Load demo urban satellite imagery</span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Visualize images with bounding boxes</span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Split data: 70% train, 15% validation, 15% test</span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Convert to model's expected input format</span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## Demo Data Included</span></span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>For this lab, we provide a small demo dataset:</span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>100 Sentinel-2 urban patches</span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pre-annotated buildings (simulated or curated)</span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ready for immediate fine-tuning</span>
-<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>**For production:** See data acquisition guide for collecting real Metro Manila imagery and annotations.</span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 3: Fine-tune Model (40 min)</span></span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a>**Objective:** Adapt the pre-trained detector to recognize buildings in satellite imagery</span>
-<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a>**Fine-tuning Strategy:**</span>
-<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Freeze early layers (keep general feature extractors)</span>
-<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Train only the detection head (bounding box prediction)</span>
-<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use small learning rate (0.0001-0.001)</span>
-<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Train for 10-30 epochs</span>
-<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a>**Tasks:**</span>
-<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure fine-tuning</span></span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> tf.keras.optimizers.Adam(learning_rate<span class="op">=</span><span class="fl">0.0001</span>)</span>
-<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> detection_loss  <span class="co"># Combined classification + localization loss</span></span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Train for 20 epochs</span></span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> batch_images, batch_boxes <span class="kw">in</span> train_dataset:</span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
-<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> model(batch_images)</span>
-<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate loss</span></span>
-<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(predictions, batch_boxes)</span>
-<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backpropagation</span></span>
-<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update weights</span></span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validation</span></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>    val_loss <span class="op">=</span> evaluate(model, val_dataset)</span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="sc">}</span><span class="ss">: Train Loss=</span><span class="sc">{</span>loss<span class="sc">:.4f}</span><span class="ss">, Val Loss=</span><span class="sc">{</span>val_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>**What You'll Observe:**</span>
-<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Training loss decreases over epochs</span>
-<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation loss plateaus (indicates convergence)</span>
-<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Typical fine-tuning time: 30-45 minutes on Colab GPU</span>
-<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 4: Evaluate with mAP (25 min)</span></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>**Objective:** Calculate mean Average Precision (mAP) - the standard object detection metric</span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a>**What is mAP?**</span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Precision:** Of detected buildings, how many are correct?</span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Recall:** Of all actual buildings, how many did we detect?</span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Average Precision (AP):** Area under precision-recall curve</span>
-<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**mAP:** Mean AP across all classes (here, just "building")</span>
-<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>**IoU Threshold:**</span>
-<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Detection "correct" if IoU (Intersection over Union) ≥ 0.5</span>
-<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>IoU = (Area of Overlap) / (Area of Union)</span>
-<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a>**Tasks:**</span>
-<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate on test set</span></span>
-<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> evaluate_model(model, test_dataset)</span>
-<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mAP@0.5: </span><span class="sc">{</span>results[<span class="st">'mAP_50'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Precision: </span><span class="sc">{</span>results[<span class="st">'precision'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Recall: </span><span class="sc">{</span>results[<span class="st">'recall'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a>**Expected Performance:**</span>
-<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Before fine-tuning:** mAP ~0.10-0.20 (not trained for buildings)</span>
-<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**After fine-tuning:** mAP ~0.70-0.85 (operational quality)</span>
-<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 5: Visualize Detections (20 min)</span></span>
-<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>**Objective:** Visualize model predictions on Metro Manila satellite imagery</span>
-<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>**Tasks:**</span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Run inference on test images</span>
-<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Draw bounding boxes with confidence scores</span>
-<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compare before/after fine-tuning</span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Analyze false positives and false negatives</span>
-<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>**Visualization Code:**</span>
-<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect buildings in test image</span></span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> load_satellite_image(<span class="st">"metro_manila_test.tif"</span>)</span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>detections <span class="op">=</span> model.predict(image)</span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bbox <span class="kw">in</span> detections:</span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bbox[<span class="st">'score'</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>:  <span class="co"># Confidence threshold</span></span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>        draw_box(image, bbox[<span class="st">'bbox'</span>], label<span class="op">=</span><span class="ss">f"Building </span><span class="sc">{</span>bbox[<span class="st">'score'</span>]<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>plt.imshow(image)</span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Building Detection - Metro Manila"</span>)</span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a>**Analysis:**</span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Count detected buildings per image</span>
-<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare against ground truth</span>
-<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Identify challenging cases (dense urban areas, shadows)</span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part 3: Metro Manila Urban Monitoring Applications (15 min)</span></span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a><span class="fu">### Operational Use Cases</span></span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>**1. Informal Settlement Mapping**</span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Application:** Identify unplanned settlements in flood-prone areas</span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Stakeholder:** NDRRMC, Local Government Units (LGUs)</span>
-<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Output:** Building density maps, population estimates</span>
-<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a>**2. Urban Growth Monitoring**</span>
-<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Application:** Track new construction over time</span>
-<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Method:** Compare detections from multi-temporal imagery</span>
-<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Output:** Change maps showing urban expansion hotspots</span>
-<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a>**3. Disaster Impact Assessment**</span>
-<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Application:** Post-typhoon damage assessment</span>
-<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Method:** Detect changes in building footprints (collapsed structures)</span>
-<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Output:** Damage severity maps for relief operations</span>
-<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>**4. Infrastructure Planning**</span>
-<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Application:** Identify under-served areas (low building density)</span>
-<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Stakeholder:** DPWH, MMDA</span>
-<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Output:** Priority areas for infrastructure development</span>
-<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a><span class="fu">### Deployment Workflow</span></span>
-<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Operational Deployment Pipeline</span><span class="ot">"</span></span>
-<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a>%%| fig-width: <span class="dv">100</span>%</span>
-<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a>    A[Sentinel<span class="dv">-2</span> API] --&gt; B[Pre-processing]</span>
-<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[Object Detection Model]</span>
-<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[Post-processing]</span>
-<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a>    D --&gt; E[GIS Export]</span>
-<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[Stakeholder Dashboard]</span>
-<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a>    style A fill:<span class="co">#0066cc,color:#fff</span></span>
-<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a>    style C fill:<span class="co">#ff8800,color:#fff</span></span>
-<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a>    style F fill:<span class="co">#00aa44,color:#fff</span></span>
-<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a>**Steps:**</span>
-<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Automated download from Copernicus/GEE</span>
-<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Cloud masking and atmospheric correction</span>
-<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Tile into model input size</span>
-<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Run detection inference</span>
-<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Merge tiles and export to GeoJSON/Shapefile</span>
-<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Integrate with QGIS/ArcGIS for analysis</span>
-<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part 4: Beyond the Lab - Production Considerations (10 min)</span></span>
-<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a><span class="fu">### Real Data Acquisition</span></span>
-<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a>**For Production Deployment:**</span>
-<span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Acquire Sentinel-2 Imagery:**</span>
-<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Google Earth Engine (free, cloud-based)</span>
-<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Copernicus Data Space Ecosystem</span>
-<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>PhilSA Mirror Site</span>
-<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Create Annotations:**</span>
-<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Manual: RoboFlow, CVAT, Label Studio</span>
-<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Semi-automated: Use model predictions + human review</span>
-<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Crowdsourced: Engage local communities</span>
-<span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-443"><a href="#cb5-443" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Quality Control:**</span>
-<span id="cb5-444"><a href="#cb5-444" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Ensure consistent annotation guidelines</span>
-<span id="cb5-445"><a href="#cb5-445" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Review inter-annotator agreement</span>
-<span id="cb5-446"><a href="#cb5-446" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Validate with field surveys where possible</span>
-<span id="cb5-447"><a href="#cb5-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-448"><a href="#cb5-448" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model Improvement Strategies</span></span>
-<span id="cb5-449"><a href="#cb5-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-450"><a href="#cb5-450" aria-hidden="true" tabindex="-1"></a>**To increase accuracy:**</span>
-<span id="cb5-451"><a href="#cb5-451" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add more training samples (500-1000 recommended)</span>
-<span id="cb5-452"><a href="#cb5-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use multi-temporal imagery (seasonal variations)</span>
-<span id="cb5-453"><a href="#cb5-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ensemble multiple models (YOLO + SSD)</span>
-<span id="cb5-454"><a href="#cb5-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Post-process with building footprint databases</span>
-<span id="cb5-455"><a href="#cb5-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-456"><a href="#cb5-456" aria-hidden="true" tabindex="-1"></a>**To handle challenges:**</span>
-<span id="cb5-457"><a href="#cb5-457" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dense urban areas:** Use higher resolution imagery (Pléiades, SPOT)</span>
-<span id="cb5-458"><a href="#cb5-458" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cloud cover:** Combine Sentinel-2 with Sentinel-1 SAR</span>
-<span id="cb5-459"><a href="#cb5-459" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Small buildings:** Use models with better small object detection (YOLO v8)</span>
-<span id="cb5-460"><a href="#cb5-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-461"><a href="#cb5-461" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-462"><a href="#cb5-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-463"><a href="#cb5-463" aria-hidden="true" tabindex="-1"></a><span class="fu">## Part 5: Lab Summary and Next Steps (10 min)</span></span>
-<span id="cb5-464"><a href="#cb5-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-465"><a href="#cb5-465" aria-hidden="true" tabindex="-1"></a><span class="fu">### What You've Accomplished</span></span>
-<span id="cb5-466"><a href="#cb5-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-467"><a href="#cb5-467" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb5-468"><a href="#cb5-468" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Achievements</span></span>
-<span id="cb5-469"><a href="#cb5-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-470"><a href="#cb5-470" aria-hidden="true" tabindex="-1"></a>✅ Loaded and understood pre-trained object detection models  </span>
-<span id="cb5-471"><a href="#cb5-471" aria-hidden="true" tabindex="-1"></a>✅ Prepared satellite imagery for object detection  </span>
-<span id="cb5-472"><a href="#cb5-472" aria-hidden="true" tabindex="-1"></a>✅ Fine-tuned a detector on urban building dataset  </span>
-<span id="cb5-473"><a href="#cb5-473" aria-hidden="true" tabindex="-1"></a>✅ Evaluated performance using mAP metrics  </span>
-<span id="cb5-474"><a href="#cb5-474" aria-hidden="true" tabindex="-1"></a>✅ Visualized detections on Metro Manila imagery  </span>
-<span id="cb5-475"><a href="#cb5-475" aria-hidden="true" tabindex="-1"></a>✅ Connected to real-world Philippine urban monitoring applications</span>
-<span id="cb5-476"><a href="#cb5-476" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-477"><a href="#cb5-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-478"><a href="#cb5-478" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparison with Session 2 (Flood Mapping)</span></span>
-<span id="cb5-479"><a href="#cb5-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-480"><a href="#cb5-480" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspect <span class="pp">|</span> Session 2 (Segmentation) <span class="pp">|</span> Session 4 (Object Detection) <span class="pp">|</span></span>
-<span id="cb5-481"><a href="#cb5-481" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-------------------------|------------------------------|</span></span>
-<span id="cb5-482"><a href="#cb5-482" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Task** <span class="pp">|</span> Pixel-wise classification <span class="pp">|</span> Object localization + classification <span class="pp">|</span></span>
-<span id="cb5-483"><a href="#cb5-483" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Output** <span class="pp">|</span> Binary flood mask <span class="pp">|</span> Bounding boxes + labels <span class="pp">|</span></span>
-<span id="cb5-484"><a href="#cb5-484" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Metric** <span class="pp">|</span> IoU, F1-score <span class="pp">|</span> mAP, Precision, Recall <span class="pp">|</span></span>
-<span id="cb5-485"><a href="#cb5-485" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Use Case** <span class="pp">|</span> Flood extent mapping <span class="pp">|</span> Building counting, urban growth <span class="pp">|</span></span>
-<span id="cb5-486"><a href="#cb5-486" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Data** <span class="pp">|</span> Sentinel-1 SAR <span class="pp">|</span> Sentinel-2 Optical <span class="pp">|</span></span>
-<span id="cb5-487"><a href="#cb5-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-488"><a href="#cb5-488" aria-hidden="true" tabindex="-1"></a>**Both are complementary!**</span>
-<span id="cb5-489"><a href="#cb5-489" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use segmentation for continuous phenomena (floods, vegetation)</span>
-<span id="cb5-490"><a href="#cb5-490" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use object detection for discrete objects (buildings, vehicles)</span>
-<span id="cb5-491"><a href="#cb5-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-492"><a href="#cb5-492" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-493"><a href="#cb5-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-494"><a href="#cb5-494" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources and Further Learning</span></span>
-<span id="cb5-495"><a href="#cb5-495" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-496"><a href="#cb5-496" aria-hidden="true" tabindex="-1"></a><span class="fu">### Documentation</span></span>
-<span id="cb5-497"><a href="#cb5-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-498"><a href="#cb5-498" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**TensorFlow Object Detection API:** <span class="co">[</span><span class="ot">Official Guide</span><span class="co">](https://tensorflow-object-detection-api-tutorial.readthedocs.io/)</span></span>
-<span id="cb5-499"><a href="#cb5-499" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PyTorch Detection Tutorial:** <span class="co">[</span><span class="ot">PyTorch Docs</span><span class="co">](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)</span></span>
-<span id="cb5-500"><a href="#cb5-500" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**COCO mAP Explained:** <span class="co">[</span><span class="ot">Research Paper</span><span class="co">](https://cocodataset.org/#detection-eval)</span></span>
-<span id="cb5-501"><a href="#cb5-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-502"><a href="#cb5-502" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pre-trained Models</span></span>
-<span id="cb5-503"><a href="#cb5-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-504"><a href="#cb5-504" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**TensorFlow Hub:** https://tfhub.dev/ (search "object detection")</span>
-<span id="cb5-505"><a href="#cb5-505" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PyTorch Hub:** https://pytorch.org/hub/ (search "detection")</span>
-<span id="cb5-506"><a href="#cb5-506" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ultralytics YOLO:** https://github.com/ultralytics/ultralytics</span>
-<span id="cb5-507"><a href="#cb5-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-508"><a href="#cb5-508" aria-hidden="true" tabindex="-1"></a><span class="fu">### Philippine EO Resources</span></span>
-<span id="cb5-509"><a href="#cb5-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-510"><a href="#cb5-510" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PhilSA SIYASAT:** Access Sentinel-2 data for Philippines</span>
-<span id="cb5-511"><a href="#cb5-511" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**NAMRIA Geoportal:** Administrative boundaries for Metro Manila</span>
-<span id="cb5-512"><a href="#cb5-512" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OpenStreetMap Philippines:** Building footprints for validation</span>
-<span id="cb5-513"><a href="#cb5-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-514"><a href="#cb5-514" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-515"><a href="#cb5-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-516"><a href="#cb5-516" aria-hidden="true" tabindex="-1"></a><span class="fu">## Troubleshooting Guide</span></span>
-<span id="cb5-517"><a href="#cb5-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-518"><a href="#cb5-518" aria-hidden="true" tabindex="-1"></a><span class="fu">### Common Issues</span></span>
-<span id="cb5-519"><a href="#cb5-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-520"><a href="#cb5-520" aria-hidden="true" tabindex="-1"></a>**Issue 1: Out of Memory (OOM) during training**</span>
-<span id="cb5-521"><a href="#cb5-521" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Reduce batch size (try 4 or 8)</span>
-<span id="cb5-522"><a href="#cb5-522" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Use smaller input image size (320x320 instead of 512x512)</span>
-<span id="cb5-523"><a href="#cb5-523" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Restart runtime and clear outputs</span>
-<span id="cb5-524"><a href="#cb5-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-525"><a href="#cb5-525" aria-hidden="true" tabindex="-1"></a>**Issue 2: mAP is very low (&lt;0.30)**</span>
-<span id="cb5-526"><a href="#cb5-526" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cause:** Model not fine-tuned enough</span>
-<span id="cb5-527"><a href="#cb5-527" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Train for more epochs (30-50)</span>
-<span id="cb5-528"><a href="#cb5-528" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Check if annotations are correct</span>
-<span id="cb5-529"><a href="#cb5-529" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Increase learning rate slightly (0.001)</span>
-<span id="cb5-530"><a href="#cb5-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-531"><a href="#cb5-531" aria-hidden="true" tabindex="-1"></a>**Issue 3: Model detects everything as buildings**</span>
-<span id="cb5-532"><a href="#cb5-532" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cause:** Confidence threshold too low</span>
-<span id="cb5-533"><a href="#cb5-533" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Increase threshold from 0.3 to 0.5-0.7</span>
-<span id="cb5-534"><a href="#cb5-534" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Add negative examples (non-building areas) to training</span>
-<span id="cb5-535"><a href="#cb5-535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-536"><a href="#cb5-536" aria-hidden="true" tabindex="-1"></a>**Issue 4: Training is very slow**</span>
-<span id="cb5-537"><a href="#cb5-537" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Check:** GPU is enabled (Runtime → Change runtime type)</span>
-<span id="cb5-538"><a href="#cb5-538" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Use SSD MobileNet instead of Faster R-CNN</span>
-<span id="cb5-539"><a href="#cb5-539" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Solution:** Reduce number of training samples (use subset)</span>
-<span id="cb5-540"><a href="#cb5-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-541"><a href="#cb5-541" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-542"><a href="#cb5-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-543"><a href="#cb5-543" aria-hidden="true" tabindex="-1"></a><span class="fu">## Assessment and Deliverables</span></span>
-<span id="cb5-544"><a href="#cb5-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-545"><a href="#cb5-545" aria-hidden="true" tabindex="-1"></a><span class="fu">### Self-Assessment Checklist</span></span>
-<span id="cb5-546"><a href="#cb5-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-547"><a href="#cb5-547" aria-hidden="true" tabindex="-1"></a>By the end of this lab, you should be able to:</span>
-<span id="cb5-548"><a href="#cb5-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-549"><a href="#cb5-549" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Explain transfer learning for object detection</span>
-<span id="cb5-550"><a href="#cb5-550" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Load a pre-trained model from TensorFlow/PyTorch Hub</span>
-<span id="cb5-551"><a href="#cb5-551" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Prepare annotations in COCO format</span>
-<span id="cb5-552"><a href="#cb5-552" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Fine-tune a detector on custom satellite imagery</span>
-<span id="cb5-553"><a href="#cb5-553" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Calculate and interpret mAP metrics</span>
-<span id="cb5-554"><a href="#cb5-554" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Visualize bounding box detections</span>
-<span id="cb5-555"><a href="#cb5-555" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Apply object detection to Philippine urban monitoring</span>
-<span id="cb5-556"><a href="#cb5-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-557"><a href="#cb5-557" aria-hidden="true" tabindex="-1"></a><span class="fu">### Optional Extensions (If Time Permits)</span></span>
-<span id="cb5-558"><a href="#cb5-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-559"><a href="#cb5-559" aria-hidden="true" tabindex="-1"></a>**Advanced Exercise 1:** Multi-class detection</span>
-<span id="cb5-560"><a href="#cb5-560" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add "informal settlement" as a second class</span>
-<span id="cb5-561"><a href="#cb5-561" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Train model to distinguish formal vs informal buildings</span>
-<span id="cb5-562"><a href="#cb5-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-563"><a href="#cb5-563" aria-hidden="true" tabindex="-1"></a>**Advanced Exercise 2:** Change detection</span>
-<span id="cb5-564"><a href="#cb5-564" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load imagery from two time periods (e.g., 2020 vs 2024)</span>
-<span id="cb5-565"><a href="#cb5-565" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare building counts to quantify urban growth</span>
-<span id="cb5-566"><a href="#cb5-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-567"><a href="#cb5-567" aria-hidden="true" tabindex="-1"></a>**Advanced Exercise 3:** Anchor box optimization</span>
-<span id="cb5-568"><a href="#cb5-568" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Analyze building size distribution in Metro Manila</span>
-<span id="cb5-569"><a href="#cb5-569" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Customize anchor boxes for typical building sizes</span>
-<span id="cb5-570"><a href="#cb5-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-571"><a href="#cb5-571" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-572"><a href="#cb5-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-573"><a href="#cb5-573" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb5-574"><a href="#cb5-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-575"><a href="#cb5-575" aria-hidden="true" tabindex="-1"></a>Object detection is a powerful tool for operational Earth observation. By leveraging transfer learning, even small teams with limited annotation budgets can build production-quality detectors for Philippine-specific applications.</span>
-<span id="cb5-576"><a href="#cb5-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-577"><a href="#cb5-577" aria-hidden="true" tabindex="-1"></a>**Key Takeaways:**</span>
-<span id="cb5-578"><a href="#cb5-578" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Transfer learning dramatically reduces data and training time requirements</span>
-<span id="cb5-579"><a href="#cb5-579" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Pre-trained models provide strong baselines for fine-tuning</span>
-<span id="cb5-580"><a href="#cb5-580" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>mAP is the standard metric for object detection evaluation</span>
-<span id="cb5-581"><a href="#cb5-581" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Object detection enables scalable urban monitoring for disaster preparedness</span>
-<span id="cb5-582"><a href="#cb5-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-583"><a href="#cb5-583" aria-hidden="true" tabindex="-1"></a>**Next Steps:**</span>
-<span id="cb5-584"><a href="#cb5-584" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apply this workflow to your own area of interest</span>
-<span id="cb5-585"><a href="#cb5-585" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Collaborate with PhilSA/LGUs to acquire local annotations</span>
-<span id="cb5-586"><a href="#cb5-586" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integrate detections with GIS workflows</span>
-<span id="cb5-587"><a href="#cb5-587" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Monitor urban changes over time using Sentinel-2 time series</span>
-<span id="cb5-588"><a href="#cb5-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-589"><a href="#cb5-589" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-590"><a href="#cb5-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-591"><a href="#cb5-591" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb5-592"><a href="#cb5-592" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ready to Start the Lab?</span></span>
-<span id="cb5-593"><a href="#cb5-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-594"><a href="#cb5-594" aria-hidden="true" tabindex="-1"></a>**Download the notebook now and begin hands-on object detection!**</span>
-<span id="cb5-595"><a href="#cb5-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-596"><a href="#cb5-596" aria-hidden="true" tabindex="-1"></a>📓 <span class="co">[</span><span class="ot">Day3_Session4_Object_Detection_STUDENT.ipynb</span><span class="co">](../notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb)</span></span>
-<span id="cb5-597"><a href="#cb5-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-598"><a href="#cb5-598" aria-hidden="true" tabindex="-1"></a>**Estimated completion time:** 2-2.5 hours</span>
-<span id="cb5-599"><a href="#cb5-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-600"><a href="#cb5-600" aria-hidden="true" tabindex="-1"></a>**Questions?** Refer to the FAQ or ask your instructor during the session.</span>
-<span id="cb5-601"><a href="#cb5-601" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-602"><a href="#cb5-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-603"><a href="#cb5-603" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-604"><a href="#cb5-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-605"><a href="#cb5-605" aria-hidden="true" tabindex="-1"></a>::: {.session-nav}</span>
-<span id="cb5-606"><a href="#cb5-606" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Session 3: Object Detection Theory</span><span class="co">](session3.qmd)</span>{.btn .btn-outline-primary}</span>
-<span id="cb5-607"><a href="#cb5-607" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Back to Day 3 Home</span><span class="co">](../index.qmd)</span>{.btn .btn-outline-secondary}</span>
-<span id="cb5-608"><a href="#cb5-608" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-609"><a href="#cb5-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-610"><a href="#cb5-610" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb5-611"><a href="#cb5-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-612"><a href="#cb5-612" aria-hidden="true" tabindex="-1"></a>*Session 4: Hands-on Object Detection from Sentinel Imagery - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*</span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

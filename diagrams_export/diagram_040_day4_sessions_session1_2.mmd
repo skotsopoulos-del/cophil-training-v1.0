@@ -1,0 +1,41 @@
+flowchart TB
+    subgraph LSTM["LSTM Cell at time t"]
+        Input[Input x_t]
+        PrevH[Previous h_{t-1}]
+        PrevC[Previous C_{t-1}]
+
+        FG[Forget Gate<br/>σ]
+        IG[Input Gate<br/>σ]
+        CT[Cell Candidate<br/>tanh]
+        OG[Output Gate<br/>σ]
+
+        NewC[New Cell State C_t]
+        NewH[New Hidden State h_t]
+
+        Input --> FG
+        Input --> IG
+        Input --> CT
+        Input --> OG
+
+        PrevH --> FG
+        PrevH --> IG
+        PrevH --> CT
+        PrevH --> OG
+
+        PrevC --> FG
+        FG -->|Forget| NewC
+        IG -->|Add| NewC
+        CT -->|Scaled| NewC
+
+        NewC --> OG
+        OG --> NewH
+    end
+
+    NewC -.->|To next cell| PrevC
+    NewH -.->|To next cell| PrevH
+
+    style FG fill:#E74C3C
+    style IG fill:#3498DB
+    style OG fill:#2ECC71
+    style NewC fill:#F39C12
+    style NewH fill:#9B59B6

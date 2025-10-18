@@ -1,0 +1,14 @@
+%%| fig-width: 10
+flowchart TD
+    A[2020 Sentinel-2] --> B[Classify with RF]
+    C[2024 Sentinel-2] --> D[Classify with RF]
+    B --> E[2020 Land Cover Map]
+    D --> F[2024 Land Cover Map]
+    E --> G[Change Detection]
+    F --> G
+    G --> H[Transition Matrix]
+    G --> I[Change Hotspot Map]
+    G --> J[Area Statistics]
+    
+    style G fill:#E74C3C
+    style H fill:#3498DB

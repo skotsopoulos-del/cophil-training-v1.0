@@ -1,0 +1,17 @@
+%%| fig-cap: "Sentinel-1 Acquisition Modes Comparison"
+%%| fig-width: 100%
+
+graph LR
+    A[Sentinel-1<br/>Imaging Modes] --> B[SM<br/>Strip Map]
+    A --> C[IW<br/>Interferometric<br/>Wide Swath]
+    A --> D[EW<br/>Extra Wide<br/>Swath]
+    A --> E[WV<br/>Wave Mode]
+
+    B --> B1[80 km swath<br/>5m resolution<br/>Specific targets]
+    C --> C1[250 km swath<br/>5x20m resolution<br/>Standard land mode]
+    D --> D1[410 km swath<br/>20x40m resolution<br/>Maritime/ice/polar]
+    E --> E1[20x20 km vignettes<br/>5m resolution<br/>Ocean waves]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:3px,color:#fff
+    style C fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff
+    style C1 fill:#00aa44,stroke:#006622,stroke-width:1px,color:#fff
