@@ -155,6 +155,8 @@ format:
     css:
       - styles/custom.css
       - styles/phase2-enhancements.css
+    mermaid:
+      theme: default
     toc: true
     toc-depth: 3
     toc-expand: 2
@@ -173,6 +175,11 @@ format:
     tbl-cap-location: top
     citations-hover: true
     footnotes-hover: true
+    lightbox:
+      match: auto
+      effect: zoom
+      desc-position: bottom
+      loop: true
 
 comments:
   hypothesis: false
