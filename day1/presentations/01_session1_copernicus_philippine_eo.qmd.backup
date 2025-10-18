@@ -167,18 +167,6 @@ This session provides the foundation for understanding where EO data comes from 
 Copernicus is the European Union's Earth Observation program, providing free and open satellite data globally. It comprises a fleet of Sentinel satellites designed for environmental monitoring.
 :::
 
----
-
-## Copernicus Programme Architecture
-
-![Copernicus Programme Structure showing Space Component, Services, and End Users](../../diagrams_export/diagram_001_day1_sessions_session1_1.png){fig-align="center" width="90%"}
-
-::: {.notes}
-This diagram shows the complete Copernicus architecture: the space component with Sentinel missions, in-situ data sources, the six core services (CAMS, CMEMS, Land, Climate, Emergency, Security), and the various end-user categories.
-:::
-
----
-
 ## The Sentinel Family
 
 ::: {.columns}
@@ -489,7 +477,7 @@ For this training, we use **pre-processed Sentinel-1 GRD data**. Here's what hap
 ::: {.column width="50%"}
 **Flood Mapping**
 
-![Copernicus Sentinel-1 Flood Monitoring](images/Copernicus_Sentinel-1_flood_monitoring.jpg){width="100%" height="350px" style="object-fit: contain;"}
+![](images/s1_flood_mapping.jpg){width="100%"}
 
 - Water appears dark in SAR
 - Works through clouds
@@ -499,7 +487,7 @@ For this training, we use **pre-processed Sentinel-1 GRD data**. Here's what hap
 ::: {.column width="50%"}
 **Deformation Monitoring**
 
-![Sentinel-1C Interferogram of Northern Chile](images/Sentinel-1C_interferogram_of_northern_Chile_pillars.jpg){width="100%" height="350px" style="object-fit: contain;"}
+![](images/s1_insar.jpg){width="100%"}
 
 - InSAR technique
 - Millimeter precision
@@ -508,7 +496,7 @@ For this training, we use **pre-processed Sentinel-1 GRD data**. Here's what hap
 :::
 
 ::: {.notes}
-Sentinel-1's ability to penetrate clouds makes it invaluable for flood mapping during typhoons. The left image shows actual flood monitoring using Sentinel-1 data. The right image shows an interferogram from Sentinel-1C demonstrating ground deformation detection with millimeter precision in northern Chile.
+Sentinel-1's ability to penetrate clouds makes it invaluable for flood mapping during typhoons. InSAR can detect ground deformation from earthquakes or volcanoes.
 :::
 
 ## Philippine Example: Flood Monitoring
@@ -613,32 +601,23 @@ This Sentinel-2 false-color image of Mayon Volcano from 2018 shows recent lava f
 
 ## Sentinel-2 Spectral Bands
 
-::: {style="font-size: 0.8em;"}
-| **Band** | **Name** | **Wavelength (nm)** | **Resolution** | **Purpose** |
-|----------|----------|---------------------|----------------|-------------|
-| **B1** | Coastal Aerosol | 443 | 60m | Aerosol correction, water color |
-| **B2** | Blue | 490 | **10m** | Water bodies, atmospheric |
-| **B3** | Green | 560 | **10m** | Vegetation health |
-| **B4** | Red | 665 | **10m** | Vegetation discrimination |
-| **B5** | Red Edge 1 | 705 | 20m | Vegetation stress detection |
-| **B6** | Red Edge 2 | 740 | 20m | Vegetation classification |
-| **B7** | Red Edge 3 | 783 | 20m | Vegetation stress, chlorophyll |
-| **B8** | NIR | 842 | **10m** | Biomass, water bodies |
-| **B8A** | NIR Narrow | 865 | 20m | Atmospheric correction |
-| **B9** | Water Vapor | 945 | 60m | Atmospheric correction |
-| **B10** | SWIR Cirrus | 1375 | 60m | Cirrus cloud detection |
-| **B11** | SWIR 1 | 1610 | 20m | Moisture content, fire |
-| **B12** | SWIR 2 | 2190 | 20m | Moisture, geology, soil |
-:::
+| **Band** | **Description** | **Wavelength (nm)** | **Resolution** | **Application** |
+|----------|----------------|---------------------|----------------|-----------------|
+| **B2** | Blue | 490 | 10m | Water bodies, atmospheric |
+| **B3** | Green | 560 | 10m | Vegetation health |
+| **B4** | Red | 665 | 10m | Vegetation discrimination |
+| **B8** | NIR | 842 | 10m | Biomass, water bodies |
+| **B5-B7** | **Red Edge** | 705-783 | 20m | **Vegetation stress** |
+| **B11-B12** | SWIR | 1610-2190 | 20m | Moisture, fire detection |
 
 ::: {.notes}
-**All 13 Sentinel-2 bands:** Four 10m bands (B2-B4, B8) for detailed mapping, six 20m bands including the unique Red Edge trio (B5-B7) for vegetation analysis, and three 60m atmospheric bands (B1, B9, B10) for corrections. The Red Edge bands are Sentinel-2's signature capability.
+Sentinel-2 has 13 spectral bands spanning visible to shortwave infrared. The 10m bands (B2, B3, B4, B8) are most commonly used for land applications.
 :::
 
 ## Red Edge Bands - Sentinel-2's Special Capability
 
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 **What is Red Edge?**
 
 - Transition zone between red and NIR (700-780nm)
@@ -654,16 +633,13 @@ This Sentinel-2 false-color image of Mayon Volcano from 2018 shows recent lava f
 - Pre-harvest yield estimation
 :::
 
-::: {.column width="50%"}
-**Philippine Use Cases:**
+::: {.column width="40%"}
+![](images/red_edge_spectrum.png){width="100%"}
 
-- **Rice crop assessment** - Monitor crop health and nitrogen status during panicle initiation in Nueva Ecija rice paddies
-- **Coconut disease detection** - Identify stem bleeding disease and pest infestations through spectral signatures
-- **Mangrove health monitoring** - Track vegetation stress and recovery in Palawan mangrove forests using red edge indices
-
-::: {.fragment}
-*Red edge bands detect stress weeks before visible bands show changes*
-:::
+**Philippine Use:**
+- Rice crop assessment
+- Coconut disease detection
+- Mangrove health monitoring
 :::
 :::
 
@@ -781,6 +757,7 @@ Different band combinations highlight different features. False Color (NIR-Red-G
 ## Complementary Capabilities
 
 | **Aspect** | **Sentinel-1** | **Sentinel-2** |
+{{ ... }}
 |------------|----------------|----------------|
 | **Sensor Type** | Radar (SAR) | Optical (MSI) |
 | **Weather** | All-weather | Cloud-affected |

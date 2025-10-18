@@ -154,10 +154,31 @@ This is a HANDS-ON session. Participants code along in their notebooks. Instruct
 
 ## Python Geospatial Ecosystem
 
-![Complete Python Earth Observation Ecosystem organized by function](../../diagrams_export/diagram_012_day1_sessions_session3_1.png){fig-align="center" width="95%"}
+::: {.columns}
+::: {.column width="50%"}
+**Core Geospatial Libraries:**
 
-::: {.notes}
-This diagram shows the complete Python ecosystem for Earth Observation, organized by function: Data Access (Earth Engine, Sentinel Hub), Geospatial Processing (GeoPandas, Rasterio), Data Science (NumPy, Pandas), Machine Learning (Scikit-learn, TensorFlow, PyTorch), and Visualization tools. Notice how data flows from access through processing to analysis and visualization.
+- **GeoPandas** - Vector data
+- **Rasterio** - Raster data
+- **Shapely** - Geometric operations
+- **Fiona** - Vector I/O
+- **GDAL** - Foundational library
+:::
+
+::: {.column width="50%"}
+**Scientific Computing:**
+
+- **NumPy** - Array operations
+- **Pandas** - Data manipulation
+- **Matplotlib** - Visualization
+- **SciPy** - Scientific algorithms
+:::
+:::
+
+::: {.fragment}
+**ML/AI Libraries:**
+
+**Scikit-learn**, **TensorFlow**, **PyTorch**, **XGBoost**
 :::
 
 ## Integration Capabilities
@@ -215,6 +236,33 @@ prediction = model.predict(image)
 :::
 
 # Google Colaboratory {background-color="#009933"}
+
+## What is Google Colab?
+
+::: {.columns}
+::: {.column width="60%"}
+**Cloud-Based Jupyter Notebook Environment**
+
+::: {.fragment}
+**Key Features:**
+
+- Runs entirely in the browser
+- No installation required
+- Free GPU and TPU access
+- Pre-installed common libraries
+- Google Drive integration
+- Easy sharing and collaboration
+:::
+:::
+
+::: {.column width="40%"}
+![Google Colab Logo](images/icons8-google-colab-color/icons8-google-colab-240.svg){width=80%}
+:::
+:::
+
+::: notes
+Google Colab is perfect for training environments. Everyone has the same setup, no compatibility issues, and free access to powerful computing resources.
+:::
 
 ## Why Colab for This Training?
 

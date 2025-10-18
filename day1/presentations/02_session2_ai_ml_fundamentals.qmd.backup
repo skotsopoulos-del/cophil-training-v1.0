@@ -99,7 +99,7 @@ Machine learning allows us to automatically recognize patterns in satellite imag
 
 ## Defining the Terms
 
-![AI, ML, and Deep Learning Hierarchy with EO Applications](../../diagrams_export/diagram_006_day1_sessions_session2_1.png){fig-align="center" width="85%"}
+![](images/ai_ml_dl_venn.png){fig-align="center" width="60%"}
 
 ::: {.incremental}
 - **Artificial Intelligence (AI):** Broad field of making machines "smart"
@@ -108,7 +108,7 @@ Machine learning allows us to automatically recognize patterns in satellite imag
 :::
 
 ::: {.notes}
-AI is the broadest term. Machine Learning is a subset where computer algorithms learn patterns from data without being explicitly programmed. Deep Learning uses neural networks. This comprehensive diagram shows the nested hierarchy with specific algorithms at each level (Random Forest, CNNs, RNNs, etc.) and their Earth Observation applications like land cover classification and time series analysis.
+AI is the broadest term. Machine Learning is a subset where computer algorithms learn patterns from data without being explicitly programmed. Deep Learning uses neural networks.
 :::
 
 ## Machine Learning in Simple Terms
@@ -271,26 +271,30 @@ Well-prepared input data is crucial. Even the best model will fail if fed cloudy
 
 ## Preprocessing Example
 
-![Cloud Removal Before and After Comparison](images/Cloud_removal_before_after.webp){fig-align="center" width="90%"}
-
 ::: {.columns}
 ::: {.column width="50%"}
-**Before Preprocessing:**
+**Before Preprocessing**
+
+![](images/before_preprocessing.jpg){width="100%"}
+
 - Clouds present
 - Atmospheric haze
-- Different acquisition dates
+- Different dates
 :::
 
 ::: {.column width="50%"}
-**After Preprocessing:**
+**After Preprocessing**
+
+![](images/after_preprocessing.jpg){width="100%"}
+
 - Clouds masked
 - Atmospherically corrected
-- Temporal composite created
+- Temporal composite
 :::
 :::
 
 ::: {.notes}
-Preprocessing transforms raw satellite data into analysis-ready products. This side-by-side comparison shows the dramatic improvement from cloud masking and creating temporal composites - essential steps before any ML analysis.
+Preprocessing transforms raw satellite data into analysis-ready products. This often involves cloud masking and creating composites.
 :::
 
 ## Step 4: Feature Engineering
@@ -1901,7 +1905,6 @@ Real example of how data improvements had bigger impact than model tuning. The d
 
 **Examples (2025):**
 
-- **Google AlphaEarth Foundations** (DeepMind, 2025) - 1.4 trillion embeddings/year in GEE
 - **NASA-IBM Geospatial Foundation Model** (open-source, Aug 2024)
 - **Prithvi** (IBM/NASA/ESA collaboration)
 - **Clay Foundation Model** (open-source)
@@ -1913,14 +1916,13 @@ Real example of how data improvements had bigger impact than model tuning. The d
 
 **Key Points:**
 - **2025 Update:** Foundation models are THE major innovation in EO AI
-- **Google AlphaEarth Foundations:** Virtual satellite model, 10x10m resolution, integrates Sentinel-1/2 + Landsat + radar, available in Earth Engine, 16x less storage than other AI systems
 - NASA-IBM model released August 2024 as open-source
 - Trained on massive Sentinel-2 datasets (1 billion parameters)
 - Can be fine-tuned with just hundreds of labeled samples (vs thousands before)
-- **Philippine Application:** Use foundation models to jumpstart projects with limited labeled data - AlphaEarth embeddings already in GEE!
+- **Philippine Application:** Use foundation models to jumpstart projects with limited labeled data
 
 **Example:**
-"Instead of manually labeling 10,000 images for rice mapping, use AlphaEarth embeddings in GEE or fine-tune Prithvi with just 500 samples and achieve similar accuracy"
+"Instead of manually labeling 10,000 images for rice mapping, fine-tune Prithvi with just 500 samples and achieve similar accuracy"
 :::
 
 ## On-Board AI Processing

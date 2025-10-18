@@ -116,16 +116,6 @@ Like Session 3, this is heavily hands-on. Most time spent coding in notebooks fo
 
 ---
 
-## GEE Architecture and Workflow
-
-![Google Earth Engine complete architecture showing User Interface, Cloud Processing, Data Catalog, and Outputs](../../diagrams_export/diagram_016_day1_sessions_session4_1.png){fig-align="center" width="95%"}
-
-::: {.notes}
-This comprehensive diagram shows GEE's architecture: multiple user interfaces (Code Editor, Python API, Apps), the massive data catalog (70+ PB including Landsat, Sentinel, MODIS), distributed processing engine, common operations (filtering, compositing, indices, classification), and various output options (maps, exports, charts, training data).
-:::
-
----
-
 ## Why GEE for This Training?
 
 ::: {.incremental}
