@@ -1602,7 +1602,7 @@ Stylianos Kotsopoulos
 <section id="philsa-national-space-agency" class="slide level2 center">
 <h2>PhilSA: National Space Agency</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
 <p><strong>Established:</strong> August 2019</p>
 <p><strong>Mandate:</strong></p>
 <ul>
@@ -1612,7 +1612,9 @@ Stylianos Kotsopoulos
 <li>Support DRR, CCA, NRM</li>
 <li>Co-chair CoPhil programme</li>
 </ul>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:25%;">
+<p><img data-src="images/philsa_logo.png" style="width:100.0%"></p>
+</div><div class="column" style="width:25%;">
 <p><img data-src="images/philsa_building.jpg" style="width:100.0%"></p>
 </div></div>
 <p><strong>Website:</strong> <a href="https://philsa.gov.ph" class="uri">https://philsa.gov.ph</a></p>
@@ -1730,7 +1732,7 @@ Stylianos Kotsopoulos
 <section id="coare-infrastructure" class="slide level2 center">
 <h2>COARE Infrastructure</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
 <p><strong>Computing and Archiving Research Environment</strong></p>
 <ul>
 <li>High-performance computing</li>
@@ -1739,8 +1741,8 @@ Stylianos Kotsopoulos
 <li>Supports data-intensive research</li>
 <li>Enables AI/ML workflows</li>
 </ul>
-</div><div class="column" style="width:40%;">
-<p><img data-src="images/coare_infrastructure.jpg" style="width:100.0%"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/Original-version-COARE-REBRANDED-LOGO.png" style="width:80.0%"></p>
 </div></div>
 <aside class="notes">
 <p>COARE provides the computational infrastructure needed for processing large satellite datasets and running AI/ML models at scale.</p>
@@ -2197,7 +2199,7 @@ Stylianos Kotsopoulos
 <li>Weather observations</li>
 </ul>
 </div><div class="column" style="width:40%;">
-<p><img data-src="images/pagasa_logo.png" width="150"></p>
+<p><img data-src="images/pagasa-logo.png" width="200"></p>
 </div></div>
 <div class="fragment">
 <p><strong>Integration:</strong> Combine with satellite data for climate analysis</p>
@@ -2409,75 +2411,6 @@ Stylianos Kotsopoulos
 </div>
 <aside class="notes">
 <p>A real-world workflow leverages multiple data sources, AI tools, and institutional partnerships. This is exactly what CoPhil aims to enable.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="operational-cautions" class="slide level2 center" data-background-color="#dc2626">
-<h2>Operational Cautions</h2>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>“Don’t Do This” - Common Pitfalls</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Quality &amp; Governance additions</strong> to prevent common mistakes:</p>
-</div>
-</div>
-</div>
-<p><strong>Model Applicability:</strong> - ❌ <strong>Don’t</strong> apply a Palawan RF land cover model to Mindanao without re-sampling - Why: Different climate, vegetation types, seasonality - Do: Collect local training samples from Mindanao - ❌ <strong>Don’t</strong> use un-calibrated SAR (digital numbers only) - Why: Meaningless for quantitative analysis - Do: Always calibrate to σ⁰ or γ⁰ in dB</p>
-<p><strong>Processing Assumptions:</strong> - ❌ <strong>Don’t</strong> skip terrain correction (RTC) for SAR in mountainous areas - Why: Topographic distortions create false changes - Do: Apply RTC using SRTM or better DEM - ❌ <strong>Don’t</strong> mix Sentinel-2 processing baselines without harmonization - Why: DN offset of 1000 after Jan 2022 breaks time series - Do: Use HARMONIZED collections in GEE</p>
-<p><strong>Evaluation:</strong> - ❌ <strong>Don’t</strong> train and test on the same tile/province - Why: Inflated accuracy, poor generalization - Do: Geographic hold-out (different tiles/provinces for test)</p>
-<aside class="notes">
-<p><strong>P2 IMPROVEMENT APPLIED:</strong> Operational cautions slide with “don’t do this” examples.</p>
-<p>These are real mistakes participants WILL make without explicit warnings. One slide can save hours of debugging and poor results.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="pre-flight-checklist" class="slide level2 center" data-background-color="#1e40af">
-<h2>Pre-Flight Checklist</h2>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>P1 IMPROVEMENT: Before Day 1 Hands-On Sessions</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Send this checklist 1 week before training:</strong></p>
-</div>
-</div>
-</div>
-<p><strong>✅ Accounts &amp; Access:</strong> - [ ] Google Earth Engine account enabled (<a href="https://signup.earthengine.google.com">signup.earthengine.google.com</a>) - [ ] Google Drive with ≥5 GB free space - [ ] Google Colab tested (login with same Google account) - [ ] CoPhil Infrastructure registration (<a href="https://application.infra.copphil.philsa.gov.ph">application.infra.copphil.philsa.gov.ph</a>)</p>
-<p><strong>✅ Software &amp; Data:</strong> - [ ] Downloaded sample vector/raster bundle (link provided via email) - [ ] Confirmed zip file extracts correctly - [ ] Python 3.8+ installed (if working locally) - [ ] Jupyter notebook tested (if working locally)</p>
-<p><strong>✅ Troubleshooting Contacts:</strong> - [ ] Have training support email/chat details - [ ] Know how to access Digital Space Campus materials</p>
-<div class="fragment">
-<p><strong>If any issues:</strong> Contact training organizers BEFORE Day 1 to resolve access problems!</p>
-</div>
-<aside class="notes">
-<p><strong>P1 IMPROVEMENT APPLIED:</strong> Pre-flight checklist (send 1 week before).</p>
-<p><strong>Action Item for Organizers:</strong> - Create downloadable “sample bundle” (small GeoPackage + COG) - Set up support email/chat channel - Send checklist email 7 days before training - Follow up 2 days before to confirm readiness</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

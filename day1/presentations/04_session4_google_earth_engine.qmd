@@ -21,10 +21,6 @@ format:
     background-transition: fade
     width: 1920
     height: 1080
-  pdf:
-    toc: false
-    number-sections: false
-    colorlinks: true
 ---
 
 # Welcome to Session 4 {background-color="#1e3a8a"}

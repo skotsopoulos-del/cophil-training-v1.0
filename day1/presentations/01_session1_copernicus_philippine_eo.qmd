@@ -21,10 +21,6 @@ format:
     background-transition: fade
     width: 1920
     height: 1080
-  pdf:
-    toc: false
-    number-sections: false
-    colorlinks: true
 ---
 
 # Welcome {background-color="#1e3a8a"}
@@ -963,7 +959,7 @@ Beyond European satellites, the Philippines has its own geospatial data platform
 ## PhilSA: National Space Agency
 
 ::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 **Established:** August 2019
 
 **Mandate:**
@@ -975,7 +971,11 @@ Beyond European satellites, the Philippines has its own geospatial data platform
 - Co-chair CoPhil programme
 :::
 
-::: {.column width="40%"}
+::: {.column width="25%"}
+![](images/philsa_logo.png){width="100%"}
+:::
+
+::: {.column width="25%"}
 ![](images/philsa_building.jpg){width="100%"}
 :::
 :::
@@ -1071,7 +1071,7 @@ PhilSA's 2025 initiatives focus on empowering innovators and building capacity a
 ## COARE Infrastructure
 
 ::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 **Computing and Archiving Research Environment**
 
 - High-performance computing
@@ -1081,8 +1081,8 @@ PhilSA's 2025 initiatives focus on empowering innovators and building capacity a
 - Enables AI/ML workflows
 :::
 
-::: {.column width="40%"}
-![](images/coare_infrastructure.jpg){width="100%"}
+::: {.column width="50%"}
+![](images/Original-version-COARE-REBRANDED-LOGO.png){width="80%"}
 :::
 :::
 
@@ -1460,7 +1460,7 @@ These initiatives work together to create a complete ecosystem from data labelin
 :::
 
 ::: {.column width="40%"}
-![](images/pagasa_logo.png){width="150px"}
+![](images/pagasa-logo.png){width="200px"}
 :::
 :::
 
@@ -1613,83 +1613,6 @@ Satellite data + Philippine ground truth + AI models + processing infrastructure
 
 ::: {.notes}
 A real-world workflow leverages multiple data sources, AI tools, and institutional partnerships. This is exactly what CoPhil aims to enable.
-:::
-
----
-
-## Operational Cautions {background-color="#dc2626"}
-
-::: {.callout-warning}
-## "Don't Do This" - Common Pitfalls
-
-**Quality & Governance additions** to prevent common mistakes:
-:::
-
-**Model Applicability:**
-- ❌ **Don't** apply a Palawan RF land cover model to Mindanao without re-sampling
-  - Why: Different climate, vegetation types, seasonality
-  - Do: Collect local training samples from Mindanao
-- ❌ **Don't** use un-calibrated SAR (digital numbers only)
-  - Why: Meaningless for quantitative analysis
-  - Do: Always calibrate to σ⁰ or γ⁰ in dB
-
-**Processing Assumptions:**
-- ❌ **Don't** skip terrain correction (RTC) for SAR in mountainous areas
-  - Why: Topographic distortions create false changes
-  - Do: Apply RTC using SRTM or better DEM
-- ❌ **Don't** mix Sentinel-2 processing baselines without harmonization
-  - Why: DN offset of 1000 after Jan 2022 breaks time series
-  - Do: Use HARMONIZED collections in GEE
-
-**Evaluation:**
-- ❌ **Don't** train and test on the same tile/province
-  - Why: Inflated accuracy, poor generalization
-  - Do: Geographic hold-out (different tiles/provinces for test)
-
-::: {.notes}
-**P2 IMPROVEMENT APPLIED:** Operational cautions slide with "don't do this" examples.
-
-These are real mistakes participants WILL make without explicit warnings. One slide can save hours of debugging and poor results.
-:::
-
----
-
-## Pre-Flight Checklist {background-color="#1e40af"}
-
-::: {.callout-note}
-## P1 IMPROVEMENT: Before Day 1 Hands-On Sessions
-
-**Send this checklist 1 week before training:**
-:::
-
-**✅ Accounts & Access:**
-- [ ] Google Earth Engine account enabled ([signup.earthengine.google.com](https://signup.earthengine.google.com))
-- [ ] Google Drive with ≥5 GB free space
-- [ ] Google Colab tested (login with same Google account)
-- [ ] CoPhil Infrastructure registration ([application.infra.copphil.philsa.gov.ph](https://application.infra.copphil.philsa.gov.ph))
-
-**✅ Software & Data:**
-- [ ] Downloaded sample vector/raster bundle (link provided via email)
-- [ ] Confirmed zip file extracts correctly
-- [ ] Python 3.8+ installed (if working locally)
-- [ ] Jupyter notebook tested (if working locally)
-
-**✅ Troubleshooting Contacts:**
-- [ ] Have training support email/chat details
-- [ ] Know how to access Digital Space Campus materials
-
-::: {.fragment}
-**If any issues:** Contact training organizers BEFORE Day 1 to resolve access problems!
-:::
-
-::: {.notes}
-**P1 IMPROVEMENT APPLIED:** Pre-flight checklist (send 1 week before).
-
-**Action Item for Organizers:**
-- Create downloadable "sample bundle" (small GeoPackage + COG)
-- Set up support email/chat channel
-- Send checklist email 7 days before training
-- Follow up 2 days before to confirm readiness
 :::
 
 ---

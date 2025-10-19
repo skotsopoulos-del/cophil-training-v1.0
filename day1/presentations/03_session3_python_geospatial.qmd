@@ -20,10 +20,6 @@ format:
     fig-align: center
     width: 1920
     height: 1080
-  pdf:
-    toc: false
-    number-sections: false
-    colorlinks: true
 ---
 
 # Welcome to Session 3 {background-color="#003399"}

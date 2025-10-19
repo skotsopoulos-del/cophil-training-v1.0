@@ -109,7 +109,7 @@ Download presentation slides for reference:
 **Formats:** RevealJS HTML Presentation | PDF
 
 [View Online](../day1/presentations/01_session1_copernicus_philippine_eo.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/01_session1_copernicus_philippine_eo.pdf){.btn .btn-outline download}
+[Download PDF](../day1/presentations/01_session1_copernicus_philippine_eo.pdf){.btn .btn-outline download="01_session1_copernicus_philippine_eo.pdf"}
 :::
 
 ### Session 2: AI/ML Fundamentals for Earth Observation
@@ -127,7 +127,7 @@ Download presentation slides for reference:
 **Formats:** RevealJS HTML Presentation | PDF
 
 [View Online](../day1/presentations/02_session2_ai_ml_fundamentals.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/02_session2_ai_ml_fundamentals.pdf){.btn .btn-outline download}
+[Download PDF](../day1/presentations/02_session2_ai_ml_fundamentals.pdf){.btn .btn-outline download="02_session2_ai_ml_fundamentals.pdf"}
 :::
 
 ### Session 3: Python for Geospatial Data (Intro)
@@ -143,7 +143,7 @@ Download presentation slides for reference:
 **Formats:** RevealJS HTML Presentation | PDF
 
 [View Online](../day1/presentations/03_session3_python_geospatial.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/03_session3_python_geospatial.pdf){.btn .btn-outline download}
+[Download PDF](../day1/presentations/03_session3_python_geospatial.pdf){.btn .btn-outline download="03_session3_python_geospatial.pdf"}
 :::
 
 ### Session 4: Introduction to Google Earth Engine
@@ -158,7 +158,7 @@ Download presentation slides for reference:
 **Formats:** RevealJS HTML Presentation | PDF
 
 [View Online](../day1/presentations/04_session4_google_earth_engine.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/04_session4_google_earth_engine.pdf){.btn .btn-outline download}
+[Download PDF](../day1/presentations/04_session4_google_earth_engine.pdf){.btn .btn-outline download="04_session4_google_earth_engine.pdf"}
 :::
 
 ---

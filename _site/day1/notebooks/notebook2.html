@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-10-17">
+
+<title>Notebook 2: Google Earth Engine – CoPhil EO AI/ML Training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../day1/notebooks/Day1_Session3_Python_Geospatial_Data.html" rel="next">
+<link href="../../day1/notebooks/notebook1.html" rel="prev">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c9822816d3895e59fda95a6fa7545fef.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3775014fae9fc394bbda1d6ff89dd45e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-509191933"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-509191933', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../styles/custom.css">
+<link rel="stylesheet" href="../../styles/phase2-enhancements.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CoPhil EO AI/ML Training</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-training-days" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Training Days</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-training-days">    
+        <li>
+    <a class="dropdown-item" href="../../day1/index.html">
+ <span class="dropdown-text">Day 1: EO Data &amp; Fundamentals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day2/index.html">
+ <span class="dropdown-text">Day 2: Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day3/index.html">
+ <span class="dropdown-text">Day 3: Deep Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../day4/index.html">
+ <span class="dropdown-text">Day 4: Advanced Topics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../resources/setup.html">
+ <span class="dropdown-text">Setup Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/philippine-eo.html">
+ <span class="dropdown-text">Philippine EO Links</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/cheatsheets.html">
+ <span class="dropdown-text">Cheat Sheets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/faq.html">
+ <span class="dropdown-text">FAQ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../resources/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources/downloads.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Materials</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../day1/notebooks/notebook1.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../day1/notebooks/notebook2.html">Notebook 2: Google Earth Engine</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: EO Data &amp; AI/ML Fundamentals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sessions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/sessions/session1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 1: Copernicus Sentinel Data Deep Dive &amp; Philippine EO Ecosystem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/sessions/session2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 2: Core Concepts of AI/ML for Earth Observation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/sessions/session3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 3: Hands-on Python for Geospatial Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/sessions/session4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 4: Introduction to Google Earth Engine</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/notebooks/notebook1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook 1: Python for Geospatial Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/notebooks/notebook2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Notebook 2: Google Earth Engine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/notebooks/Day1_Session3_Python_Geospatial_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1, Session 3: Python for Geospatial Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../day1/notebooks/Day1_Session4_Google_Earth_Engine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1, Session 4: Google Earth Engine Python API</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#session-4-hands-on-notebooks" id="toc-session-4-hands-on-notebooks" class="nav-link active" data-scroll-target="#session-4-hands-on-notebooks">Session 4 Hands-On Notebooks</a>
+  <ul class="collapse">
+  <li><a href="#notebook-1-gee-fundamentals-start-here" id="toc-notebook-1-gee-fundamentals-start-here" class="nav-link" data-scroll-target="#notebook-1-gee-fundamentals-start-here">📘 <strong>Notebook 1: GEE Fundamentals</strong> (Start Here)</a></li>
+  <li><a href="#notebook-2-advanced-cloud-masking-p0-best-practices" id="toc-notebook-2-advanced-cloud-masking-p0-best-practices" class="nav-link" data-scroll-target="#notebook-2-advanced-cloud-masking-p0-best-practices">📗 <strong>Notebook 2: Advanced Cloud Masking</strong> (P0 Best Practices)</a></li>
+  <li><a href="#combined-learning-objectives" id="toc-combined-learning-objectives" class="nav-link" data-scroll-target="#combined-learning-objectives">Combined Learning Objectives</a></li>
+  </ul></li>
+  <li><a href="#notebook-1-gee-fundamentals-start-here-1" id="toc-notebook-1-gee-fundamentals-start-here-1" class="nav-link" data-scroll-target="#notebook-1-gee-fundamentals-start-here-1">📘 Notebook 1: GEE Fundamentals (Start Here)</a>
+  <ul class="collapse">
+  <li><a href="#what-youll-learn" id="toc-what-youll-learn" class="nav-link" data-scroll-target="#what-youll-learn">What You’ll Learn</a></li>
+  <li><a href="#open-in-google-colab" id="toc-open-in-google-colab" class="nav-link" data-scroll-target="#open-in-google-colab">Open in Google Colab</a></li>
+  </ul></li>
+  <li><a href="#notebook-2-advanced-cloud-masking-p0-best-practices-1" id="toc-notebook-2-advanced-cloud-masking-p0-best-practices-1" class="nav-link" data-scroll-target="#notebook-2-advanced-cloud-masking-p0-best-practices-1">📗 Notebook 2: Advanced Cloud Masking (P0 Best Practices)</a>
+  <ul class="collapse">
+  <li><a href="#what-youll-learn-1" id="toc-what-youll-learn-1" class="nav-link" data-scroll-target="#what-youll-learn-1">What You’ll Learn</a></li>
+  <li><a href="#when-to-use-this-notebook" id="toc-when-to-use-this-notebook" class="nav-link" data-scroll-target="#when-to-use-this-notebook">When to Use This Notebook</a></li>
+  <li><a href="#open-in-google-colab-1" id="toc-open-in-google-colab-1" class="nav-link" data-scroll-target="#open-in-google-colab-1">Open in Google Colab</a></li>
+  </ul></li>
+  <li><a href="#recommended-learning-path" id="toc-recommended-learning-path" class="nav-link" data-scroll-target="#recommended-learning-path">Recommended Learning Path</a>
+  <ul class="collapse">
+  <li><a href="#for-beginners-first-time-gee-users" id="toc-for-beginners-first-time-gee-users" class="nav-link" data-scroll-target="#for-beginners-first-time-gee-users">🎯 For Beginners / First-Time GEE Users:</a></li>
+  <li><a href="#for-experienced-users-refresher" id="toc-for-experienced-users-refresher" class="nav-link" data-scroll-target="#for-experienced-users-refresher">🎯 For Experienced Users / Refresher:</a></li>
+  <li><a href="#for-production-operational-work" id="toc-for-production-operational-work" class="nav-link" data-scroll-target="#for-production-operational-work">🎯 For Production / Operational Work:</a></li>
+  </ul></li>
+  <li><a href="#quick-comparison" id="toc-quick-comparison" class="nav-link" data-scroll-target="#quick-comparison">Quick Comparison</a></li>
+  <li><a href="#whats-covered-across-both-notebooks" id="toc-whats-covered-across-both-notebooks" class="nav-link" data-scroll-target="#whats-covered-across-both-notebooks">What’s Covered Across Both Notebooks</a>
+  <ul class="collapse">
+  <li><a href="#notebook-1-topics" id="toc-notebook-1-topics" class="nav-link" data-scroll-target="#notebook-1-topics">Notebook 1 Topics</a></li>
+  <li><a href="#notebook-2-additional-topics" id="toc-notebook-2-additional-topics" class="nav-link" data-scroll-target="#notebook-2-additional-topics">Notebook 2 Additional Topics</a></li>
+  </ul></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#notebook-contents" id="toc-notebook-contents" class="nav-link" data-scroll-target="#notebook-contents">Notebook Contents</a></li>
+  <li><a href="#key-concepts-covered" id="toc-key-concepts-covered" class="nav-link" data-scroll-target="#key-concepts-covered">Key Concepts Covered</a>
+  <ul class="collapse">
+  <li><a href="#earth-engine-architecture" id="toc-earth-engine-architecture" class="nav-link" data-scroll-target="#earth-engine-architecture">Earth Engine Architecture</a></li>
+  <li><a href="#interactive-mapping-with-geemap" id="toc-interactive-mapping-with-geemap" class="nav-link" data-scroll-target="#interactive-mapping-with-geemap">Interactive Mapping with geemap</a></li>
+  </ul></li>
+  <li><a href="#philippine-use-cases" id="toc-philippine-use-cases" class="nav-link" data-scroll-target="#philippine-use-cases">Philippine Use Cases</a>
+  <ul class="collapse">
+  <li><a href="#case-study-1-metro-manila-urban-monitoring" id="toc-case-study-1-metro-manila-urban-monitoring" class="nav-link" data-scroll-target="#case-study-1-metro-manila-urban-monitoring">Case Study 1: Metro Manila Urban Monitoring</a></li>
+  <li><a href="#case-study-2-palawan-forest-cover" id="toc-case-study-2-palawan-forest-cover" class="nav-link" data-scroll-target="#case-study-2-palawan-forest-cover">Case Study 2: Palawan Forest Cover</a></li>
+  <li><a href="#case-study-3-central-luzon-flood-mapping" id="toc-case-study-3-central-luzon-flood-mapping" class="nav-link" data-scroll-target="#case-study-3-central-luzon-flood-mapping">Case Study 3: Central Luzon Flood Mapping</a></li>
+  <li><a href="#case-study-4-mindanao-agricultural-drought" id="toc-case-study-4-mindanao-agricultural-drought" class="nav-link" data-scroll-target="#case-study-4-mindanao-agricultural-drought">Case Study 4: Mindanao Agricultural Drought</a></li>
+  </ul></li>
+  <li><a href="#common-errors-solutions" id="toc-common-errors-solutions" class="nav-link" data-scroll-target="#common-errors-solutions">Common Errors &amp; Solutions</a>
+  <ul class="collapse">
+  <li><a href="#error-please-set-project-id" id="toc-error-please-set-project-id" class="nav-link" data-scroll-target="#error-please-set-project-id">Error: “Please set project ID”</a></li>
+  <li><a href="#error-user-memory-limit-exceeded" id="toc-error-user-memory-limit-exceeded" class="nav-link" data-scroll-target="#error-user-memory-limit-exceeded">Error: “User memory limit exceeded”</a></li>
+  <li><a href="#error-too-many-concurrent-aggregations" id="toc-error-too-many-concurrent-aggregations" class="nav-link" data-scroll-target="#error-too-many-concurrent-aggregations">Error: “Too many concurrent aggregations”</a></li>
+  </ul></li>
+  <li><a href="#support" id="toc-support" class="nav-link" data-scroll-target="#support">Support</a>
+  <ul class="collapse">
+  <li><a href="#during-the-training" id="toc-during-the-training" class="nav-link" data-scroll-target="#during-the-training">During the Training</a></li>
+  <li><a href="#after-the-training" id="toc-after-the-training" class="nav-link" data-scroll-target="#after-the-training">After the Training</a></li>
+  </ul></li>
+  <li><a href="#related-resources" id="toc-related-resources" class="nav-link" data-scroll-target="#related-resources">Related Resources</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../day1/notebooks/notebook1.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../day1/notebooks/notebook2.html">Notebook 2: Google Earth Engine</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Notebook 2: Google Earth Engine</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Cloud-based Earth Observation Data Processing</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Date</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="session-4-hands-on-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="session-4-hands-on-notebooks">Session 4 Hands-On Notebooks</h2>
+<p>This session includes <strong>TWO complementary notebooks</strong> designed for progressive learning:</p>
+<section id="notebook-1-gee-fundamentals-start-here" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-1-gee-fundamentals-start-here">📘 <strong>Notebook 1: GEE Fundamentals</strong> (Start Here)</h3>
+<p>Complete introduction to Google Earth Engine with standard cloud masking (QA60)</p>
+</section>
+<section id="notebook-2-advanced-cloud-masking-p0-best-practices" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-2-advanced-cloud-masking-p0-best-practices">📗 <strong>Notebook 2: Advanced Cloud Masking</strong> (P0 Best Practices)</h3>
+<p>Advanced techniques using SCL and s2cloudless for production-quality results</p>
+</section>
+<section id="combined-learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="combined-learning-objectives">Combined Learning Objectives</h3>
+<p>By completing both notebooks, you will:</p>
+<ul>
+<li>Authenticate and initialize Google Earth Engine</li>
+<li>Access Sentinel-1 SAR and Sentinel-2 optical data</li>
+<li>Filter ImageCollections by location, date, and metadata</li>
+<li><strong>Apply basic (QA60) AND advanced (SCL, s2cloudless) cloud masking</strong></li>
+<li>Understand when to use each masking approach</li>
+<li>Create temporal composites with best practices</li>
+<li>Calculate vegetation indices (NDVI)</li>
+<li>Export processed data for ML workflows</li>
+<li>Apply concepts to Philippine use cases</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="notebook-1-gee-fundamentals-start-here-1" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-1-gee-fundamentals-start-here-1">📘 Notebook 1: GEE Fundamentals (Start Here)</h2>
+<section id="what-youll-learn" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h3>
+<ul>
+<li>Complete GEE setup and authentication</li>
+<li>Core concepts: Image, ImageCollection, Geometry</li>
+<li>Filtering by location, date, and metadata</li>
+<li><strong>Standard QA60 cloud masking</strong> (simple, fast)</li>
+<li>Median composite creation</li>
+<li>NDVI calculation and visualization</li>
+<li>Basic export workflows</li>
+<li>Philippine case studies</li>
+</ul>
+</section>
+<section id="open-in-google-colab" class="level3">
+<h3 class="anchored" data-anchor-id="open-in-google-colab">Open in Google Colab</h3>
+<div class="colab-button">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>First Time Using This Notebook?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you get a “Not Found” error: 1. The notebook files need to be pushed to GitHub first 2. Alternative: Download the notebook below and upload to your own Google Drive 3. Then open from Drive in Colab</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Earth Engine Account Required
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You must have a registered Google Earth Engine account to run this notebook. If you haven’t registered yet, see the <a href="../../resources/setup.html#step-3-google-earth-engine-registration">Setup Guide</a>.</p>
+<p>Registration takes 24-48 hours for approval.</p>
+</div>
+</div>
+<p><strong>Why Start with Notebook 1:</strong> - Covers all GEE fundamentals systematically - Standard QA60 masking is easier to understand first - Complete workflow from setup to export - ~60 cells, ~2 hours</p>
+<div class="download-box">
+<p><strong>Download Option:</strong></p>
+<p><a href="../../day1/notebooks/Day1_Session4_Google_Earth_Engine.html" class="btn btn-primary" download="Day1_Session4_Google_Earth_Engine.ipynb">Download Notebook 1 .ipynb</a></p>
+</div>
+<hr>
+</section>
+</section>
+<section id="notebook-2-advanced-cloud-masking-p0-best-practices-1" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-2-advanced-cloud-masking-p0-best-practices-1">📗 Notebook 2: Advanced Cloud Masking (P0 Best Practices)</h2>
+<section id="what-youll-learn-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn-1">What You’ll Learn</h3>
+<p><strong>🆕 P0 IMPROVEMENT:</strong> This notebook implements the expert-recommended cloud masking improvements:</p>
+<ul>
+<li><strong>Scene Classification Layer (SCL) masking</strong>
+<ul>
+<li>Detects clouds AND shadows (QA60 misses shadows!)</li>
+<li>12-class comprehensive classification</li>
+<li>Better for NDVI time series and land cover</li>
+</ul></li>
+<li><strong>s2cloudless integration</strong>
+<ul>
+<li>Most accurate ML-based cloud detection</li>
+<li>Adjustable probability thresholds</li>
+<li>Production-grade quality</li>
+</ul></li>
+<li><strong>Comparative analysis</strong>
+<ul>
+<li>Visual comparison: QA60 vs SCL vs s2cloudless</li>
+<li>When to use each method</li>
+<li>Performance trade-offs</li>
+</ul></li>
+<li><strong>Export templates</strong>
+<ul>
+<li>Optimized for ML training data</li>
+<li>Batch export workflows</li>
+<li>Sample point extraction</li>
+</ul></li>
+</ul>
+</section>
+<section id="when-to-use-this-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-this-notebook">When to Use This Notebook</h3>
+<p>✅ <strong>After completing Notebook 1</strong> ✅ <strong>For operational/production work</strong> ✅ <strong>When QA60 results have “ghost” clouds or shadows</strong> ✅ <strong>For ML training data preparation</strong> ✅ <strong>For NDVI time series analysis</strong></p>
+</section>
+<section id="open-in-google-colab-1" class="level3">
+<h3 class="anchored" data-anchor-id="open-in-google-colab-1">Open in Google Colab</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Notebook 2 Coming Soon
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The advanced SCL cloud masking notebook is currently under development. For now, use Notebook 1 which covers all essential GEE concepts including QA60 cloud masking.</p>
+</div>
+</div>
+<p><strong>Why Notebook 2 (When Available):</strong> - Implements P0 improvement from expert review - Cleaner composites for ML training - Production-ready workflows - Focused and concise (~10-15 cells, ~30 minutes)</p>
+<hr>
+</section>
+</section>
+<section id="recommended-learning-path" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-learning-path">Recommended Learning Path</h2>
+<section id="for-beginners-first-time-gee-users" class="level3">
+<h3 class="anchored" data-anchor-id="for-beginners-first-time-gee-users">🎯 For Beginners / First-Time GEE Users:</h3>
+<ol type="1">
+<li>✅ Complete <strong>Notebook 1</strong> in full (2 hours)</li>
+<li>✅ Practice exercises</li>
+<li>✅ (Optional) Try <strong>Notebook 2</strong> to see advanced techniques</li>
+</ol>
+</section>
+<section id="for-experienced-users-refresher" class="level3">
+<h3 class="anchored" data-anchor-id="for-experienced-users-refresher">🎯 For Experienced Users / Refresher:</h3>
+<ol type="1">
+<li>✅ Skim <strong>Notebook 1</strong> sections 1-3 (setup and basics)</li>
+<li>✅ Focus on <strong>Notebook 2</strong> for P0 improvements</li>
+<li>✅ Use as reference for production workflows</li>
+</ol>
+</section>
+<section id="for-production-operational-work" class="level3">
+<h3 class="anchored" data-anchor-id="for-production-operational-work">🎯 For Production / Operational Work:</h3>
+<ol type="1">
+<li>✅ Use <strong>Notebook 2</strong> as template</li>
+<li>✅ Reference <strong>Notebook 1</strong> for comprehensive examples</li>
+<li>✅ Adapt SCL or s2cloudless masking to your use case</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="quick-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="quick-comparison">Quick Comparison</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Notebook 1</th>
+<th>Notebook 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Focus</strong></td>
+<td>Comprehensive GEE introduction</td>
+<td>Advanced cloud masking</td>
+</tr>
+<tr class="even">
+<td><strong>Cloud Masking</strong></td>
+<td>QA60 (standard)</td>
+<td>SCL + s2cloudless (advanced)</td>
+</tr>
+<tr class="odd">
+<td><strong>Length</strong></td>
+<td>~66 cells, 2 hours</td>
+<td>~10-15 cells, 30 min</td>
+</tr>
+<tr class="even">
+<td><strong>Complexity</strong></td>
+<td>Beginner-friendly</td>
+<td>Intermediate</td>
+</tr>
+<tr class="odd">
+<td><strong>Use For</strong></td>
+<td>Learning GEE fundamentals</td>
+<td>Production workflows</td>
+</tr>
+<tr class="even">
+<td><strong>P0 Alignment</strong></td>
+<td>Standard approach</td>
+<td>✅ Implements P0 improvement</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="whats-covered-across-both-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="whats-covered-across-both-notebooks">What’s Covered Across Both Notebooks</h2>
+<section id="notebook-1-topics" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-1-topics">Notebook 1 Topics</h3>
+<ol type="1">
+<li><strong>Earth Engine Fundamentals</strong>
+<ul>
+<li>Authentication and initialization</li>
+<li>ee.Image and ee.ImageCollection</li>
+<li>Geometry definitions</li>
+<li>Data catalog navigation</li>
+</ul></li>
+<li><strong>Sentinel-1 &amp; Sentinel-2 Access</strong>
+<ul>
+<li>COPERNICUS/S2_SR_HARMONIZED collection</li>
+<li>COPERNICUS/S1_GRD collection</li>
+<li>Band names and metadata</li>
+</ul></li>
+<li><strong>Filtering &amp; Processing</strong>
+<ul>
+<li>Spatial, temporal, metadata filters</li>
+<li>QA60 cloud masking</li>
+<li>Median composites</li>
+<li>NDVI calculation</li>
+</ul></li>
+<li><strong>Philippine Case Studies</strong>
+<ul>
+<li>Metro Manila monitoring</li>
+<li>Palawan land cover</li>
+<li>Flood detection</li>
+<li>Agricultural monitoring</li>
+</ul></li>
+<li><strong>Export Workflows</strong>
+<ul>
+<li>Google Drive export</li>
+<li>Scale and region parameters</li>
+<li>Task management</li>
+</ul></li>
+</ol>
+</section>
+<section id="notebook-2-additional-topics" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-2-additional-topics">Notebook 2 Additional Topics</h3>
+<ol start="6" type="1">
+<li><strong>Advanced Cloud Masking (P0)</strong>
+<ul>
+<li>SCL 12-class classification</li>
+<li>Shadow detection</li>
+<li>s2cloudless ML-based detection</li>
+<li>Method comparison</li>
+</ul></li>
+<li><strong>Production Optimization</strong>
+<ul>
+<li>Export templates for ML</li>
+<li>Sample point extraction</li>
+<li>Batch processing workflows</li>
+<li>Best practices</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>Before starting this notebook, ensure you have:</p>
+<ul>
+<li>✅ Google Earth Engine account (registered and approved)</li>
+<li>✅ Completed <a href="../../resources/setup.html">Setup Guide</a></li>
+<li>✅ Understanding of Session 4 concepts</li>
+<li>✅ Basic Python knowledge</li>
+<li>✅ Familiarity with Jupyter/Colab</li>
+</ul>
+<hr>
+</section>
+<section id="notebook-contents" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-contents">Notebook Contents</h2>
+<p>The full interactive notebook includes:</p>
+<ul>
+<li><strong>20+ code cells</strong> with step-by-step instructions</li>
+<li><strong>15+ visualizations</strong> including interactive maps</li>
+<li><strong>4 Philippine case studies</strong> with real-world applications</li>
+<li><strong>Export workflows</strong> for downloading processed data</li>
+<li><strong>Troubleshooting section</strong> for common errors</li>
+<li><strong>Exercises</strong> to reinforce learning</li>
+</ul>
+<hr>
+</section>
+<section id="key-concepts-covered" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-covered">Key Concepts Covered</h2>
+<section id="earth-engine-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="earth-engine-architecture">Earth Engine Architecture</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic Earth Engine workflow</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define area of interest</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>philippines <span class="op">=</span> ee.Geometry.Rectangle([<span class="fl">116.0</span>, <span class="fl">4.0</span>, <span class="fl">127.0</span>, <span class="fl">21.0</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Access Sentinel-2 collection</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>) <span class="op">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    .filterBounds(philippines) <span class="op">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    .filterDate(<span class="st">'2024-01-01'</span>, <span class="st">'2024-12-31'</span>) <span class="op">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">20</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create composite</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>composite <span class="op">=</span> collection.median()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate NDVI</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ndvi <span class="op">=</span> composite.normalizedDifference([<span class="st">'B8'</span>, <span class="st">'B4'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="interactive-mapping-with-geemap" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-mapping-with-geemap">Interactive Mapping with geemap</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Map.centerObject(philippines, <span class="dv">6</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add layers</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Map.addLayer(composite, {<span class="st">'bands'</span>: [<span class="st">'B4'</span>, <span class="st">'B3'</span>, <span class="st">'B2'</span>], <span class="st">'min'</span>: <span class="dv">0</span>, <span class="st">'max'</span>: <span class="dv">3000</span>}, <span class="st">'True Color'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Map.addLayer(ndvi, {<span class="st">'min'</span>: <span class="dv">0</span>, <span class="st">'max'</span>: <span class="dv">1</span>, <span class="st">'palette'</span>: [<span class="st">'red'</span>, <span class="st">'yellow'</span>, <span class="st">'green'</span>]}, <span class="st">'NDVI'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="philippine-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="philippine-use-cases">Philippine Use Cases</h2>
+<section id="case-study-1-metro-manila-urban-monitoring" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-1-metro-manila-urban-monitoring">Case Study 1: Metro Manila Urban Monitoring</h3>
+<p>Track urban expansion and changes in the National Capital Region using multi-temporal Sentinel-2 data.</p>
+</section>
+<section id="case-study-2-palawan-forest-cover" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-2-palawan-forest-cover">Case Study 2: Palawan Forest Cover</h3>
+<p>Monitor forest cover and detect deforestation in Palawan Province using NDVI time series.</p>
+</section>
+<section id="case-study-3-central-luzon-flood-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-3-central-luzon-flood-mapping">Case Study 3: Central Luzon Flood Mapping</h3>
+<p>Detect flood extents using Sentinel-1 SAR backscatter changes before and after typhoon events.</p>
+</section>
+<section id="case-study-4-mindanao-agricultural-drought" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-4-mindanao-agricultural-drought">Case Study 4: Mindanao Agricultural Drought</h3>
+<p>Assess agricultural drought impacts using vegetation indices and SWIR bands.</p>
+<hr>
+</section>
+</section>
+<section id="common-errors-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="common-errors-solutions">Common Errors &amp; Solutions</h2>
+<section id="error-please-set-project-id" class="level3">
+<h3 class="anchored" data-anchor-id="error-please-set-project-id">Error: “Please set project ID”</h3>
+<p><strong>Cause:</strong> Earth Engine not authenticated</p>
+<p><strong>Solution:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ee.Authenticate()  <span class="co"># Follow prompts</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="error-user-memory-limit-exceeded" class="level3">
+<h3 class="anchored" data-anchor-id="error-user-memory-limit-exceeded">Error: “User memory limit exceeded”</h3>
+<p><strong>Solution:</strong> Reduce spatial or temporal scope, increase scale parameter</p>
+</section>
+<section id="error-too-many-concurrent-aggregations" class="level3">
+<h3 class="anchored" data-anchor-id="error-too-many-concurrent-aggregations">Error: “Too many concurrent aggregations”</h3>
+<p><strong>Solution:</strong> Add <code>.limit()</code> to reduce collection size</p>
+<p>See the <a href="../../resources/faq.html#earth-engine-issues">FAQ</a> for more troubleshooting help.</p>
+<hr>
+</section>
+</section>
+<section id="support" class="level2">
+<h2 class="anchored" data-anchor-id="support">Support</h2>
+<section id="during-the-training" class="level3">
+<h3 class="anchored" data-anchor-id="during-the-training">During the Training</h3>
+<ul>
+<li>Ask questions in live session</li>
+<li>Consult teaching assistants</li>
+<li>Share your results with the group</li>
+</ul>
+</section>
+<section id="after-the-training" class="level3">
+<h3 class="anchored" data-anchor-id="after-the-training">After the Training</h3>
+<ul>
+<li>Review <a href="../../resources/cheatsheets.html#google-earth-engine-python-api-cheat-sheet">Earth Engine Cheat Sheet</a></li>
+<li>Check <a href="../../resources/faq.html">FAQ</a></li>
+<li>Join <a href="https://groups.google.com/g/google-earth-engine-developers">GEE Community Forum</a></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="related-resources" class="level2">
+<h2 class="anchored" data-anchor-id="related-resources">Related Resources</h2>
+<div class="resource-links">
+<p><strong>Session Materials:</strong> - <a href="../../day1/sessions/session4.html">Session 4: Introduction to Google Earth Engine</a> - <a href="#">Session 4 Presentation Slides</a></p>
+<p><strong>Quick References:</strong> - <a href="../../resources/cheatsheets.html#google-earth-engine-python-api-cheat-sheet">Earth Engine Python API Cheat Sheet</a> - <a href="../../resources/cheatsheets.html#sentinel-mission-quick-reference">Sentinel Missions Reference</a></p>
+<p><strong>Official Documentation:</strong> - <a href="https://developers.google.com/earth-engine/guides/python_install">Earth Engine Python API Guide</a> - <a href="https://developers.google.com/earth-engine/datasets">Earth Engine Data Catalog</a> - <a href="https://geemap.org/">geemap Documentation</a></p>
+<p><strong>Community Resources:</strong> - <a href="https://github.com/giswqs/Awesome-GEE">Awesome Earth Engine</a> - <a href="https://developers.google.com/earth-engine/tutorials">Earth Engine Tutorials</a></p>
+</div>
+<hr>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>After completing this notebook:</p>
+<ol type="1">
+<li>✅ Practice with different Philippine regions</li>
+<li>✅ Experiment with other satellites (Landsat, MODIS)</li>
+<li>✅ Prepare for Day 2: Machine Learning for Land Cover Classification</li>
+<li>✅ Export data for your own projects</li>
+</ol>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ready to Explore Petabytes of Data?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open the notebook in Colab and start accessing the entire Sentinel archive from your browser!</p>
+</div>
+</div>
+<p><em>All processing happens in the cloud - no downloads required!</em></p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="cophil-training-v1.0" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../day1/notebooks/notebook1.html" class="pagination-link" aria-label="Notebook 1: Python for Geospatial Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notebook 1: Python for Geospatial Data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../day1/notebooks/Day1_Session3_Python_Geospatial_Data.html" class="pagination-link" aria-label="Day 1, Session 3: Python for Geospatial Data">
+        <span class="nav-page-text">Day 1, Session 3: Python for Geospatial Data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Notebook 2: Google Earth Engine"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Cloud-based Earth Observation Data Processing"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session 4 Hands-On Notebooks</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>This session includes **TWO complementary notebooks** designed for progressive learning:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📘 **Notebook 1: GEE Fundamentals** (Start Here)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Complete introduction to Google Earth Engine with standard cloud masking (QA60)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📗 **Notebook 2: Advanced Cloud Masking** (P0 Best Practices)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Advanced techniques using SCL and s2cloudless for production-quality results</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Combined Learning Objectives</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>By completing both notebooks, you will:</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Authenticate and initialize Google Earth Engine</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Access Sentinel-1 SAR and Sentinel-2 optical data</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter ImageCollections by location, date, and metadata</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Apply basic (QA60) AND advanced (SCL, s2cloudless) cloud masking**</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Understand when to use each masking approach</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create temporal composites with best practices</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate vegetation indices (NDVI)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Export processed data for ML workflows</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apply concepts to Philippine use cases</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📘 Notebook 1: GEE Fundamentals (Start Here)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### What You'll Learn</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Complete GEE setup and authentication</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Core concepts: Image, ImageCollection, Geometry</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filtering by location, date, and metadata</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Standard QA60 cloud masking** (simple, fast)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Median composite creation</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NDVI calculation and visualization</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic export workflows</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Philippine case studies</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Open in Google Colab</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>::: {.colab-button}</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb)</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## First Time Using This Notebook?</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>If you get a "Not Found" error:</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>The notebook files need to be pushed to GitHub first</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Alternative: Download the notebook below and upload to your own Google Drive</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Then open from Drive in Colab</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Earth Engine Account Required</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>You must have a registered Google Earth Engine account to run this notebook. If you haven't registered yet, see the <span class="co">[</span><span class="ot">Setup Guide</span><span class="co">](../../resources/setup.qmd#step-3-google-earth-engine-registration)</span>.</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>Registration takes 24-48 hours for approval.</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>**Why Start with Notebook 1:**</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Covers all GEE fundamentals systematically</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standard QA60 masking is easier to understand first</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Complete workflow from setup to export</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>~60 cells, ~2 hours</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>::: {.download-box}</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>**Download Option:**</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download Notebook 1 .ipynb</span><span class="co">](Day1_Session4_Google_Earth_Engine.ipynb)</span>{.btn .btn-primary download="Day1_Session4_Google_Earth_Engine.ipynb"}</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📗 Notebook 2: Advanced Cloud Masking (P0 Best Practices)</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### What You'll Learn</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>**🆕 P0 IMPROVEMENT:** This notebook implements the expert-recommended cloud masking improvements:</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Scene Classification Layer (SCL) masking**</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Detects clouds AND shadows (QA60 misses shadows!)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>12-class comprehensive classification</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Better for NDVI time series and land cover</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**s2cloudless integration**</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Most accurate ML-based cloud detection</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Adjustable probability thresholds</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Production-grade quality</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Comparative analysis**</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Visual comparison: QA60 vs SCL vs s2cloudless</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>When to use each method</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Performance trade-offs</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Export templates**</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Optimized for ML training data</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Batch export workflows</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Sample point extraction</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### When to Use This Notebook</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>✅ **After completing Notebook 1**</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>✅ **For operational/production work**</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>✅ **When QA60 results have "ghost" clouds or shadows**</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>✅ **For ML training data preparation**</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>✅ **For NDVI time series analysis**</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Open in Google Colab</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook 2 Coming Soon</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>The advanced SCL cloud masking notebook is currently under development. For now, use Notebook 1 which covers all essential GEE concepts including QA60 cloud masking.</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>**Why Notebook 2 (When Available):**</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implements P0 improvement from expert review</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cleaner composites for ML training</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Production-ready workflows</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Focused and concise (~10-15 cells, ~30 minutes)</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recommended Learning Path</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🎯 For Beginners / First-Time GEE Users:</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>✅ Complete **Notebook 1** in full (2 hours)</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>✅ Practice exercises</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>✅ (Optional) Try **Notebook 2** to see advanced techniques</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🎯 For Experienced Users / Refresher:</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>✅ Skim **Notebook 1** sections 1-3 (setup and basics)</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>✅ Focus on **Notebook 2** for P0 improvements</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>✅ Use as reference for production workflows</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🎯 For Production / Operational Work:</span></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>✅ Use **Notebook 2** as template</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>✅ Reference **Notebook 1** for comprehensive examples</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>✅ Adapt SCL or s2cloudless masking to your use case</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick Comparison</span></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspect <span class="pp">|</span> Notebook 1 <span class="pp">|</span> Notebook 2 <span class="pp">|</span></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-----------|-----------|</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Focus** <span class="pp">|</span> Comprehensive GEE introduction <span class="pp">|</span> Advanced cloud masking <span class="pp">|</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Cloud Masking** <span class="pp">|</span> QA60 (standard) <span class="pp">|</span> SCL + s2cloudless (advanced) <span class="pp">|</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Length** <span class="pp">|</span> ~66 cells, 2 hours <span class="pp">|</span> ~10-15 cells, 30 min <span class="pp">|</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Complexity** <span class="pp">|</span> Beginner-friendly <span class="pp">|</span> Intermediate <span class="pp">|</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Use For** <span class="pp">|</span> Learning GEE fundamentals <span class="pp">|</span> Production workflows <span class="pp">|</span></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **P0 Alignment** <span class="pp">|</span> Standard approach <span class="pp">|</span> ✅ Implements P0 improvement <span class="pp">|</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## What's Covered Across Both Notebooks</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Notebook 1 Topics</span></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Earth Engine Fundamentals**</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Authentication and initialization</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>ee.Image and ee.ImageCollection</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Geometry definitions</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Data catalog navigation</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Sentinel-1 &amp; Sentinel-2 Access**</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>COPERNICUS/S2_SR_HARMONIZED collection</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>COPERNICUS/S1_GRD collection</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Band names and metadata</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Filtering &amp; Processing**</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Spatial, temporal, metadata filters</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>QA60 cloud masking</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Median composites</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>NDVI calculation</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Philippine Case Studies**</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Metro Manila monitoring</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Palawan land cover</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Flood detection</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Agricultural monitoring</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Export Workflows**</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Google Drive export</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Scale and region parameters</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Task management</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Notebook 2 Additional Topics</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>**Advanced Cloud Masking (P0)**</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>SCL 12-class classification</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Shadow detection</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>s2cloudless ML-based detection</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Method comparison</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>**Production Optimization**</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Export templates for ML</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Sample point extraction</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Batch processing workflows</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Best practices</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prerequisites</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>Before starting this notebook, ensure you have:</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Google Earth Engine account (registered and approved)</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Completed <span class="co">[</span><span class="ot">Setup Guide</span><span class="co">](../../resources/setup.qmd)</span></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Understanding of Session 4 concepts</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Basic Python knowledge</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Familiarity with Jupyter/Colab</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notebook Contents</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>The full interactive notebook includes:</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**20+ code cells** with step-by-step instructions</span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**15+ visualizations** including interactive maps</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**4 Philippine case studies** with real-world applications</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Export workflows** for downloading processed data</span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Troubleshooting section** for common errors</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Exercises** to reinforce learning</span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Concepts Covered</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Earth Engine Architecture</span></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic Earth Engine workflow</span></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="co"># Define area of interest</span></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>philippines <span class="op">=</span> ee.Geometry.Rectangle([<span class="fl">116.0</span>, <span class="fl">4.0</span>, <span class="fl">127.0</span>, <span class="fl">21.0</span>])</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="co"># Access Sentinel-2 collection</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>) <span class="op">\</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>    .filterBounds(philippines) <span class="op">\</span></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>    .filterDate(<span class="st">'2024-01-01'</span>, <span class="st">'2024-12-31'</span>) <span class="op">\</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">20</span>))</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Create composite</span></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>composite <span class="op">=</span> collection.median()</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate NDVI</span></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>ndvi <span class="op">=</span> composite.normalizedDifference([<span class="st">'B8'</span>, <span class="st">'B4'</span>])</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interactive Mapping with geemap</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap</span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>Map.centerObject(philippines, <span class="dv">6</span>)</span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Add layers</span></span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>Map.addLayer(composite, {<span class="st">'bands'</span>: [<span class="st">'B4'</span>, <span class="st">'B3'</span>, <span class="st">'B2'</span>], <span class="st">'min'</span>: <span class="dv">0</span>, <span class="st">'max'</span>: <span class="dv">3000</span>}, <span class="st">'True Color'</span>)</span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>Map.addLayer(ndvi, {<span class="st">'min'</span>: <span class="dv">0</span>, <span class="st">'max'</span>: <span class="dv">1</span>, <span class="st">'palette'</span>: [<span class="st">'red'</span>, <span class="st">'yellow'</span>, <span class="st">'green'</span>]}, <span class="st">'NDVI'</span>)</span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>Map</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## Philippine Use Cases</span></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case Study 1: Metro Manila Urban Monitoring</span></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>Track urban expansion and changes in the National Capital Region using multi-temporal Sentinel-2 data.</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case Study 2: Palawan Forest Cover</span></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>Monitor forest cover and detect deforestation in Palawan Province using NDVI time series.</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case Study 3: Central Luzon Flood Mapping</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>Detect flood extents using Sentinel-1 SAR backscatter changes before and after typhoon events.</span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case Study 4: Mindanao Agricultural Drought</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>Assess agricultural drought impacts using vegetation indices and SWIR bands.</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Errors &amp; Solutions</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error: "Please set project ID"</span></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>**Cause:** Earth Engine not authenticated</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>**Solution:**</span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>ee.Authenticate()  <span class="co"># Follow prompts</span></span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error: "User memory limit exceeded"</span></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>**Solution:** Reduce spatial or temporal scope, increase scale parameter</span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error: "Too many concurrent aggregations"</span></span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>**Solution:** Add <span class="in">`.limit()`</span> to reduce collection size</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>See the <span class="co">[</span><span class="ot">FAQ</span><span class="co">](../../resources/faq.qmd#earth-engine-issues)</span> for more troubleshooting help.</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Support</span></span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a><span class="fu">### During the Training</span></span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ask questions in live session</span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Consult teaching assistants</span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Share your results with the group</span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a><span class="fu">### After the Training</span></span>
+<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review <span class="co">[</span><span class="ot">Earth Engine Cheat Sheet</span><span class="co">](../../resources/cheatsheets.qmd#google-earth-engine-python-api-cheat-sheet)</span></span>
+<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check <span class="co">[</span><span class="ot">FAQ</span><span class="co">](../../resources/faq.qmd)</span></span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Join <span class="co">[</span><span class="ot">GEE Community Forum</span><span class="co">](https://groups.google.com/g/google-earth-engine-developers)</span></span>
+<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related Resources</span></span>
+<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>::: {.resource-links}</span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>**Session Materials:**</span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Session 4: Introduction to Google Earth Engine</span><span class="co">](../sessions/session4.qmd)</span></span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Session 4 Presentation Slides</span><span class="co">](#)</span></span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>**Quick References:**</span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Earth Engine Python API Cheat Sheet</span><span class="co">](../../resources/cheatsheets.qmd#google-earth-engine-python-api-cheat-sheet)</span></span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sentinel Missions Reference</span><span class="co">](../../resources/cheatsheets.qmd#sentinel-mission-quick-reference)</span></span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a>**Official Documentation:**</span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Earth Engine Python API Guide</span><span class="co">](https://developers.google.com/earth-engine/guides/python_install)</span></span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Earth Engine Data Catalog</span><span class="co">](https://developers.google.com/earth-engine/datasets)</span></span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">geemap Documentation</span><span class="co">](https://geemap.org/)</span></span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a>**Community Resources:**</span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Awesome Earth Engine</span><span class="co">](https://github.com/giswqs/Awesome-GEE)</span></span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Earth Engine Tutorials</span><span class="co">](https://developers.google.com/earth-engine/tutorials)</span></span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a><span class="fu">## Next Steps</span></span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>After completing this notebook:</span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>✅ Practice with different Philippine regions</span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>✅ Experiment with other satellites (Landsat, MODIS)</span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>✅ Prepare for Day 2: Machine Learning for Land Cover Classification</span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>✅ Export data for your own projects</span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ready to Explore Petabytes of Data?</span></span>
+<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a>Open the notebook in Colab and start accessing the entire Sentinel archive from your browser!</span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>*All processing happens in the cloud - no downloads required!*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CoPhil EO AI/ML Training Programme</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Funded by the European Union - Global Gateway Initiative</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:skotsopoulos@neuralio.ai">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://philsa.gov.ph">
+      <i class="bi bi-globe" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
