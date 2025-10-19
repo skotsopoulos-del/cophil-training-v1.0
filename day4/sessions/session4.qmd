@@ -377,13 +377,7 @@ The **CoPhil Digital Space Campus** is your ongoing resource.
 - Hands-on labs with auto-grading
 - Capstone project templates
 
-**3. Community Forum**
-- Q&A with instructors and peers
-- Share projects and results
-- Troubleshooting help
-- Best practices discussions
-
-**4. Resource Library**
+**3. Resource Library**
 - Curated research papers
 - Tool documentation
 - Case study repository
@@ -710,9 +704,8 @@ Go forth and build amazing things! 🚀🇵🇭
 - Includes competencies covered
 
 **Post-Training Support:**
-- Email: training@copphil.philsa.gov.ph
+- Email: skotsopoulos@neuralio.ai
 - Office hours: Bi-weekly
-- Community forum: Ongoing
 
 **Alumni Network:**
 - Join CoPhil Alumni groups
@@ -753,8 +746,7 @@ Take what you've learned, adapt it to your context, share with colleagues, and c
 
 **Stay connected:**
 - 🌐 CoPhil Digital Space Campus
-- 📧 training@copphil.philsa.gov.ph
-- 💬 Community Forum
+- 📧 skotsopoulos@neuralio.ai
 - 🤝 SkAI-Pinas Platform
 
 **Thank you for your dedication!**

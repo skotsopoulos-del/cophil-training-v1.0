@@ -844,11 +844,8 @@ Pre-processed Sentinel-2 NDVI time series will be provided, but optional data do
 - How far ahead can we realistically forecast with LSTMs?
 - What are the limitations and uncertainties?
 
-**Discussion Forum:**
-Post questions, share ideas, and discuss with peers in the course forum.
-
 **Instructor Contact:**
-Email questions to: [training@copphil.philsa.gov.ph](mailto:training@copphil.philsa.gov.ph)
+Email questions to: [skotsopoulos@neuralio.ai](mailto:skotsopoulos@neuralio.ai)
 
 ---
 

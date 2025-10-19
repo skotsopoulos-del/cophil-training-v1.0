@@ -385,9 +385,8 @@ By the end of Day 2, you will have:
 
 - Live instructor support during sessions
 - Teaching assistants for breakout help
-- Discussion forum for Q&A
 - Office hours (schedule TBA)
-- Email: [instructors@course.ph]
+- Email: skotsopoulos@neuralio.ai
 
 ---
 

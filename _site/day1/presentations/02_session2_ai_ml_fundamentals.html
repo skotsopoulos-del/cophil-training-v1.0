@@ -296,13 +296,13 @@ Stylianos Kotsopoulos
 <section id="defining-the-terms" class="slide level2 center">
 <h2>Defining the Terms</h2>
 
-<img data-src="images/ai_ml_dl_venn.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
+<img data-src="../../diagrams_export/diagram_006_day1_sessions_session2_1.png" style="width:85.0%" class="r-stretch quarto-figure-center"><p class="caption">AI, ML, and Deep Learning Hierarchy with EO Applications</p><ul>
 <li class="fragment"><strong>Artificial Intelligence (AI):</strong> Broad field of making machines “smart”</li>
 <li class="fragment"><strong>Machine Learning (ML):</strong> Subset of AI where algorithms learn from data</li>
 <li class="fragment"><strong>Deep Learning (DL):</strong> Subset of ML using neural networks with many layers</li>
 </ul>
 <aside class="notes">
-<p>AI is the broadest term. Machine Learning is a subset where computer algorithms learn patterns from data without being explicitly programmed. Deep Learning uses neural networks.</p>
+<p>AI is the broadest term. Machine Learning is a subset where computer algorithms learn patterns from data without being explicitly programmed. Deep Learning uses neural networks. This comprehensive diagram shows the nested hierarchy with specific algorithms at each level (Random Forest, CNNs, RNNs, etc.) and their Earth Observation applications like land cover classification and time series analysis.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -367,8 +367,8 @@ ELSE Non-Forest</code></pre>
 <li>Works in diverse conditions</li>
 </ul>
 </div></div>
-
-<img data-src="images/ml_classification_example.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><aside class="notes">
+<!-- ![](images/classification_example.jpg){fig-align="center" width="60%"} -->
+<aside class="notes">
 <p>A simple NDVI threshold might work in one region but fail in another. ML can learn the nuanced patterns that distinguish forest from non-forest across different conditions.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -511,26 +511,15 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="preprocessing-example" class="slide level2 center">
 <h2>Preprocessing Example</h2>
-<div class="columns">
+
+<img data-src="images/Cloud_removal_before_after.webp" style="width:90.0%" class="r-stretch quarto-figure-center"><p class="caption">Cloud Removal Before and After Comparison</p><div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Before Preprocessing</strong></p>
-<p><img data-src="images/before_preprocessing.jpg" style="width:100.0%"></p>
-<ul>
-<li>Clouds present</li>
-<li>Atmospheric haze</li>
-<li>Different dates</li>
-</ul>
+<p><strong>Before Preprocessing:</strong> - Clouds present - Atmospheric haze - Different acquisition dates</p>
 </div><div class="column" style="width:50%;">
-<p><strong>After Preprocessing</strong></p>
-<p><img data-src="images/after_preprocessing.jpg" style="width:100.0%"></p>
-<ul>
-<li>Clouds masked</li>
-<li>Atmospherically corrected</li>
-<li>Temporal composite</li>
-</ul>
+<p><strong>After Preprocessing:</strong> - Clouds masked - Atmospherically corrected - Temporal composite created</p>
 </div></div>
 <aside class="notes">
-<p>Preprocessing transforms raw satellite data into analysis-ready products. This often involves cloud masking and creating composites.</p>
+<p>Preprocessing transforms raw satellite data into analysis-ready products. This side-by-side comparison shows the dramatic improvement from cloud masking and creating temporal composites - essential steps before any ML analysis.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2666,6 +2655,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 <p><strong>Examples (2025):</strong></p>
 <ul>
+<li class="fragment"><strong>Google AlphaEarth Foundations</strong> (DeepMind, 2025) - 1.4 trillion embeddings/year in GEE</li>
 <li class="fragment"><strong>NASA-IBM Geospatial Foundation Model</strong> (open-source, Aug 2024)</li>
 <li class="fragment"><strong>Prithvi</strong> (IBM/NASA/ESA collaboration)</li>
 <li class="fragment"><strong>Clay Foundation Model</strong> (open-source)</li>
@@ -2673,8 +2663,8 @@ ELSE Non-Forest</code></pre>
 </ul>
 <aside class="notes">
 <p><strong>Timing:</strong> 4 minutes</p>
-<p><strong>Key Points:</strong> - <strong>2025 Update:</strong> Foundation models are THE major innovation in EO AI - NASA-IBM model released August 2024 as open-source - Trained on massive Sentinel-2 datasets (1 billion parameters) - Can be fine-tuned with just hundreds of labeled samples (vs thousands before) - <strong>Philippine Application:</strong> Use foundation models to jumpstart projects with limited labeled data</p>
-<p><strong>Example:</strong> “Instead of manually labeling 10,000 images for rice mapping, fine-tune Prithvi with just 500 samples and achieve similar accuracy”</p>
+<p><strong>Key Points:</strong> - <strong>2025 Update:</strong> Foundation models are THE major innovation in EO AI - <strong>Google AlphaEarth Foundations:</strong> Virtual satellite model, 10x10m resolution, integrates Sentinel-1/2 + Landsat + radar, available in Earth Engine, 16x less storage than other AI systems - NASA-IBM model released August 2024 as open-source - Trained on massive Sentinel-2 datasets (1 billion parameters) - Can be fine-tuned with just hundreds of labeled samples (vs thousands before) - <strong>Philippine Application:</strong> Use foundation models to jumpstart projects with limited labeled data - AlphaEarth embeddings already in GEE!</p>
+<p><strong>Example:</strong> “Instead of manually labeling 10,000 images for rice mapping, use AlphaEarth embeddings in GEE or fine-tune Prithvi with just 500 samples and achieve similar accuracy”</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

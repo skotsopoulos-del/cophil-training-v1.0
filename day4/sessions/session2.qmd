@@ -1212,7 +1212,7 @@ Session 3 explores emerging AI trends (foundation models, self-supervised learni
 
 **Feedback Form:** [Submit anonymous feedback](https://forms.gle/copphil-day4-session2)
 
-**Instructor Email:** [training@copphil.philsa.gov.ph](mailto:training@copphil.philsa.gov.ph)
+**Instructor Email:** [skotsopoulos@neuralio.ai](mailto:skotsopoulos@neuralio.ai)
 :::
 
 ---

@@ -412,8 +412,7 @@ Google Earth Engine provides:
 
 **After Session:**
 - Review [FAQ](../../resources/faq.qmd)
-- Post in discussion forum
-- Email instructors
+- Email instructors: skotsopoulos@neuralio.ai
 - Office hours: [schedule]
 
 ---

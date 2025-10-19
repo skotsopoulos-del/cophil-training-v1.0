@@ -929,7 +929,6 @@ print("\n✓ Augmentation creates realistic variations")
 - "Can I use PyTorch instead?" → Yes, but maintain focus; TensorFlow for consistency
 
 **Teaching Tips:**
-- **Live demo:** Train a model while explaining (use simple architecture for speed)
 - **Show failures:** Demonstrate overfitting, then fix it
 - **Visualize:** Use TensorBoard or matplotlib for learning curves in real-time
 - **Pause for training:** Use 5-10 min training time for Q&A or breaks

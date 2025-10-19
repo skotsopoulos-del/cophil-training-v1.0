@@ -21,6 +21,10 @@ format:
     background-transition: fade
     width: 1920
     height: 1080
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
 # Welcome to Session 4 {background-color="#1e3a8a"}
@@ -297,7 +301,7 @@ print("GEE Initialized Successfully!")
 ::: {.notes}
 **Timing:** 5 minutes - participants authenticate
 
-**Live Demo Steps:**
+**Steps:**
 1. Run `ee.Authenticate()` - opens browser tab
 2. Sign in with Google account
 3. Allow Earth Engine access
@@ -518,7 +522,7 @@ Map
 ```
 
 ::: {.notes}
-**Live demo:**
+**Key points:**
 - Create interactive map
 - Add Sentinel-2 layer
 - Zoom, pan, inspect

@@ -1105,7 +1105,7 @@ Session 4 will integrate GEE for larger-scale data loading.
 
 - 📖 [CNN Tutorial (Google ML Crash Course)](https://developers.google.com/machine-learning/crash-course/image-classification)
 - 📖 [CS231n Stanford Course](http://cs231n.stanford.edu/) - Best CNN educational resource
-- 💬 [Instructor support](mailto:training@copphil.org) - Questions during lab hours
+- 💬 [Instructor support](mailto:skotsopoulos@neuralio.ai) - Questions during lab hours
 - 📧 [PhilSA Data Support](https://data.philsa.gov.ph/support) - Access issues
 
 ---

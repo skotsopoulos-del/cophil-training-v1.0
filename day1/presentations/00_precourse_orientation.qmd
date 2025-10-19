@@ -287,8 +287,6 @@ Colab is where we'll do all our hands-on work. Make sure it works before Day 1.
 
 ### Access the Course Site
 
-- **Course Website:** [URL will be provided]
-- **Discussion Forum:** [URL will be provided]
 - **Zoom/Meeting Link:** [Will be sent before each session]
 
 ::: {.fragment}
@@ -327,7 +325,7 @@ Each day follows this consistent schedule. Plan your day accordingly and protect
 
 ::: {.incremental}
 - **10 min:** Introduction & objectives
-- **60 min:** Core content with live demonstrations
+- **60 min:** Core content
 - **40 min:** Hands-on exercises OR Q&A
 - **10 min:** Summary & next steps
 :::
@@ -344,8 +342,8 @@ We balance theory with practice. You'll spend roughly 50% of time doing hands-on
 ::: {.column width="50%"}
 **Instructor-Led**
 
-- Live presentations
-- Code demonstrations
+- Presentations
+- Code examples
 - Guided exercises
 - Real-time Q&A
 :::
@@ -448,7 +446,6 @@ This is a supportive learning environment. Everyone starts somewhere, and questi
 - Ask in chat anytime
 - Unmute and ask verbally
 - Use Q&A sessions
-- Post in discussion forum
 :::
 :::
 
@@ -462,11 +459,9 @@ Don't suffer in silence! We're here to help you succeed.
 
 ### Support Resources
 
-1. **Course Website:** FAQs, troubleshooting, cheat sheets
-2. **Discussion Forum:** Post questions, share insights
-3. **Email Support:** [instructor email]
-4. **Office Hours:** [Schedule TBA]
-5. **Peer Study Groups:** Connect with other participants
+1. **Email Support:** skotsopoulos@neuralio.ai
+2. **Office Hours:** [Schedule TBA]
+3. **Peer Study Groups:** Connect with other participants
 
 ::: {.fragment}
 **Response time:** Usually within 24 hours
@@ -778,15 +773,11 @@ Exact dates will be in your calendar invite. Add them to your calendar now!
 
 ## Contact Information
 
-**Email:** [course-email@copphil.ph]  
-**Website:** [URL]  
-**Discussion Forum:** [URL]
+**Email:** skotsopoulos@neuralio.ai
 
 ::: {.fragment}
 ### Can't wait to start?
 
-- Explore the course website
-- Join the discussion forum
 - Connect with other participants
 - Review setup instructions again
 :::

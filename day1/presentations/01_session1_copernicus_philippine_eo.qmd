@@ -21,6 +21,10 @@ format:
     background-transition: fade
     width: 1920
     height: 1080
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
 # Welcome {background-color="#1e3a8a"}
@@ -53,14 +57,20 @@ Welcome participants to the 4-day advanced training. Emphasize that this is part
 
 ## EU Global Gateway Initiative
 
+::: {.columns}
+::: {.column width="70%"}
 ::: {.incremental}
 - EU-Philippines space cooperation flagship
 - Building strong partnerships
 - Smart, clean, secure digital links
 - Strengthening health, education, research systems globally
 :::
+:::
 
-![](images/eu_global_gateway.png){fig-align="center" width="60%"}
+::: {.column width="30%"}
+![](images/eu_global_gateway.svg){width="100%"}
+:::
+:::
 
 ::: {.notes}
 The Global Gateway strategy represents the EU's commitment to building partnerships that boost smart, clean and secure infrastructure globally. CoPhil is a unique flagship initiative within this framework.
@@ -540,43 +550,6 @@ During Typhoon Ulysses, Sentinel-1 provided crucial flood extent mapping when op
 
 ---
 
-## Live Demo: Sentinel-1 Data {background-color="#1e40af"}
-
-### Copernicus Browser Demonstration
-
-**We'll explore:**
-
-- Accessing Sentinel-1 imagery for Philippines
-- Before/after typhoon comparison
-- VV polarization for water detection
-- Change detection visualization
-
-::: {.notes}
-**Timing:** 5 minutes
-
-**Demo Steps:**
-1. Open Copernicus Browser (dataspace.copernicus.eu)
-2. Navigate to Philippines (zoom to recent typhoon-affected area)
-3. Select Sentinel-1 IW product
-4. Choose date before typhoon
-5. Add date after typhoon using compare feature
-6. Show VV band - dark areas indicate water
-7. Demonstrate time slider for animation
-8. Explain bright (urban/rough) vs dark (water/smooth) returns
-
-**Key Teaching Points:**
-- SAR works regardless of clouds/time of day
-- VV polarization excellent for water detection
-- Rapid revisit enables quick response
-- Free and open data accessible to all
-
-**Common Questions:**
-- "Why does it look grainy?" - Speckle is inherent to SAR imaging
-- "Can we download this?" - Yes, we'll learn export in Session 4
-
-**P1 IMPROVEMENT - Concept Check Coming:** After Session 2 (AI/ML), we'll pause for a 5-minute concept check with 3 questions to reduce cognitive load.
-:::
-
 # Sentinel-2: Optical Mission {background-color="#0f766e"}
 
 ## Sentinel-2 Overview
@@ -736,45 +709,6 @@ Different band combinations highlight different features. False Color (NIR-Red-G
 :::
 
 ---
-
-## Live Demo: Sentinel-2 Data {background-color="#1e40af"}
-
-### Copernicus Browser Demonstration
-
-**We'll explore:**
-
-- Finding cloud-free Sentinel-2 imagery
-- Band combinations (True Color, False Color, SWIR)
-- NDVI vegetation index
-- Time-series comparison (deforestation/urban growth)
-
-::: {.notes}
-**Timing:** 5 minutes
-
-**Demo Steps:**
-1. Open Copernicus Browser
-2. Navigate to Palawan or Metro Manila
-3. Select Sentinel-2 L2A (atmospherically corrected)
-4. Filter by cloud cover (<20%)
-5. Show True Color RGB (B4-B3-B2)
-6. Switch to False Color (B8-B4-B3) - vegetation is RED
-7. Show SWIR composite (B12-B8-B4) - good for fires/moisture
-8. Calculate NDVI: (B8-B4)/(B8+B4)
-9. Use time slider to show change (e.g., deforestation, urban expansion)
-
-**Key Teaching Points:**
-- 13 bands provide rich information
-- Different band combinations highlight different features
-- L2A data is analysis-ready
-- 10m resolution excellent for detailed mapping
-- 5-day repeat increases cloud-free acquisition chances
-
-**Common Questions:**
-- "Which bands should I use?" - Depends on application (we'll cover in Day 2)
-- "What about clouds?" - **Use Scene Classification Layer (SCL)** - Session 4 topic
-
-**P0 IMPROVEMENT - SCL vs QA60:** We'll use **SCL masking** (not QA60) in Session 4 for better cloud AND shadow removal. SCL classes: clouds (low/medium/high prob), cirrus, cloud shadows, snow/ice - much more comprehensive than basic QA60 bitmasks.
-:::
 
 # Sentinel-1 vs Sentinel-2 {background-color="#0f766e"}
 
@@ -1011,7 +945,7 @@ Multiple platforms provide Sentinel data access. The CoPhil Mirror Site provides
 
 ## Overview of Philippine EO Landscape
 
-![](images/ph_eo_ecosystem.png){fig-align="center" width="85%"}
+![](images/ph_eo_ecosystem.svg){fig-align="center" width="85%"}
 
 ::: {.incremental}
 - **PhilSA:** Space data and operations

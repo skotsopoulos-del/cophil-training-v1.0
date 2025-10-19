@@ -617,8 +617,7 @@ Yes! All training materials are licensed under **Creative Commons BY-SA 4.0**, w
 - Check this FAQ first
 
 **Outside training hours:**
-- **Email:** training@philsa.gov.ph
-- **Slack/Discord:** Check invitation email
+- **Email:** skotsopoulos@neuralio.ai
 - **GitHub Issues:** [Report issue](#)
 
 ---
@@ -629,7 +628,7 @@ Thank you for helping improve the training!
 
 **To report:**
 1. **GitHub Issues:** [Create issue](#)
-2. **Email:** training@philsa.gov.ph
+2. **Email:** skotsopoulos@neuralio.ai
 3. **During session:** Notify instructors
 
 **Include:**
@@ -670,7 +669,6 @@ Thank you for helping improve the training!
 
 **Getting Help:**
 - [Stack Overflow](https://stackoverflow.com/)
-- [Python Discord](https://pythondiscord.com/)
 - [r/learnpython](https://www.reddit.com/r/learnpython/)
 
 ---
@@ -681,9 +679,8 @@ Thank you for helping improve the training!
 ## Can't Find Your Answer?
 
 **Contact Us:**
-- **Email:** training@philsa.gov.ph
+- **Email:** skotsopoulos@neuralio.ai
 - **During training:** Ask instructors directly
-- **Slack/Discord:** Join the community channels
 
 We're here to help ensure your success in the training!
 :::

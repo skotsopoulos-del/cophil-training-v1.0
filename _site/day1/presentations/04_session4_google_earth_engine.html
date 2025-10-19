@@ -358,6 +358,23 @@ Stylianos Kotsopoulos
           display:block!important;
       }</style></aside>
 </section>
+<section id="gee-architecture-and-workflow" class="slide level2 center">
+<h2>GEE Architecture and Workflow</h2>
+
+<img data-src="../../diagrams_export/diagram_016_day1_sessions_session4_1.png" style="width:95.0%" class="r-stretch quarto-figure-center"><p class="caption">Google Earth Engine complete architecture showing User Interface, Cloud Processing, Data Catalog, and Outputs</p><aside class="notes">
+<p>This comprehensive diagram shows GEE’s architecture: multiple user interfaces (Code Editor, Python API, Apps), the massive data catalog (70+ PB including Landsat, Sentinel, MODIS), distributed processing engine, common operations (filtering, compositing, indices, classification), and various output options (maps, exports, charts, training data).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="why-gee-for-this-training" class="slide level2 center">
 <h2>Why GEE for This Training?</h2>
 <p><strong>Addresses Key Challenges:</strong></p>
@@ -542,7 +559,7 @@ Stylianos Kotsopoulos
 <span id="cb1-10"><a></a><span class="bu">print</span>(<span class="st">"GEE Initialized Successfully!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p><strong>Timing:</strong> 5 minutes - participants authenticate</p>
-<p><strong>Live Demo Steps:</strong> 1. Run <code>ee.Authenticate()</code> - opens browser tab 2. Sign in with Google account 3. Allow Earth Engine access 4. Copy token back to notebook 5. Run <code>ee.Initialize()</code> 6. Confirm success message</p>
+<p><strong>Steps:</strong> 1. Run <code>ee.Authenticate()</code> - opens browser tab 2. Sign in with Google account 3. Allow Earth Engine access 4. Copy token back to notebook 5. Run <code>ee.Initialize()</code> 6. Confirm success message</p>
 <p><strong>Troubleshooting:</strong> - “Authentication failed” → Check GEE account approved - “Module not found” → Install geemap: <code>pip install geemap</code></p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -737,7 +754,7 @@ Stylianos Kotsopoulos
 <span id="cb10-13"><a></a>Map.addLayer(first_image, vis_params_rgb, <span class="st">'Sentinel-2 True Color'</span>)</span>
 <span id="cb10-14"><a></a>Map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
-<p><strong>Live demo:</strong> - Create interactive map - Add Sentinel-2 layer - Zoom, pan, inspect - Explain band selection for RGB</p>
+<p><strong>Key points:</strong> - Create interactive map - Add Sentinel-2 layer - Zoom, pan, inspect - Explain band selection for RGB</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

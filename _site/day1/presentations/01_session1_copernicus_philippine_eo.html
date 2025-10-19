@@ -196,14 +196,18 @@ Stylianos Kotsopoulos
 </section>
 <section id="eu-global-gateway-initiative" class="slide level2 center">
 <h2>EU Global Gateway Initiative</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
 <ul>
 <li class="fragment">EU-Philippines space cooperation flagship</li>
 <li class="fragment">Building strong partnerships</li>
 <li class="fragment">Smart, clean, secure digital links</li>
 <li class="fragment">Strengthening health, education, research systems globally</li>
 </ul>
-
-<img data-src="images/eu_global_gateway.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><aside class="notes">
+</div><div class="column" style="width:30%;">
+<p><img data-src="images/eu_global_gateway.svg" style="width:100.0%"></p>
+</div></div>
+<aside class="notes">
 <p>The Global Gateway strategy represents the EU’s commitment to building partnerships that boost smart, clean and secure infrastructure globally. CoPhil is a unique flagship initiative within this framework.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -336,6 +340,23 @@ Stylianos Kotsopoulos
 </div>
 <aside class="notes">
 <p>Copernicus is the European Union’s Earth Observation program, providing free and open satellite data globally. It comprises a fleet of Sentinel satellites designed for environmental monitoring.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="copernicus-programme-architecture" class="slide level2 center">
+<h2>Copernicus Programme Architecture</h2>
+
+<img data-src="../../diagrams_export/diagram_001_day1_sessions_session1_1.png" style="width:90.0%" class="r-stretch quarto-figure-center"><p class="caption">Copernicus Programme Structure showing Space Component, Services, and End Users</p><aside class="notes">
+<p>This diagram shows the complete Copernicus architecture: the space component with Sentinel missions, in-situ data sources, the six core services (CAMS, CMEMS, Land, Climate, Emergency, Security), and the various end-user categories.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -820,7 +841,12 @@ Stylianos Kotsopoulos
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Flood Mapping</strong></p>
-<p><img data-src="images/s1_flood_mapping.jpg" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center" style="object-fit: contain;">
+<figure>
+<p><img data-src="images/Copernicus_Sentinel-1_flood_monitoring.jpg" style="width:100.0%" height="350"></p>
+<figcaption>Copernicus Sentinel-1 Flood Monitoring</figcaption>
+</figure>
+</div>
 <ul>
 <li>Water appears dark in SAR</li>
 <li>Works through clouds</li>
@@ -828,7 +854,12 @@ Stylianos Kotsopoulos
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>Deformation Monitoring</strong></p>
-<p><img data-src="images/s1_insar.jpg" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center" style="object-fit: contain;">
+<figure>
+<p><img data-src="images/Sentinel-1C_interferogram_of_northern_Chile_pillars.jpg" style="width:100.0%" height="350"></p>
+<figcaption>Sentinel-1C Interferogram of Northern Chile</figcaption>
+</figure>
+</div>
 <ul>
 <li>InSAR technique</li>
 <li>Millimeter precision</li>
@@ -836,7 +867,7 @@ Stylianos Kotsopoulos
 </ul>
 </div></div>
 <aside class="notes">
-<p>Sentinel-1’s ability to penetrate clouds makes it invaluable for flood mapping during typhoons. InSAR can detect ground deformation from earthquakes or volcanoes.</p>
+<p>Sentinel-1’s ability to penetrate clouds makes it invaluable for flood mapping during typhoons. The left image shows actual flood monitoring using Sentinel-1 data. The right image shows an interferogram from Sentinel-1C demonstrating ground deformation detection with millimeter precision in northern Chile.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -883,33 +914,8 @@ Stylianos Kotsopoulos
           display:block!important;
       }</style></aside>
 </section>
-<section id="live-demo-sentinel-1-data" class="slide level2 center" data-background-color="#1e40af">
-<h2>Live Demo: Sentinel-1 Data</h2>
-<h3 id="copernicus-browser-demonstration">Copernicus Browser Demonstration</h3>
-<p><strong>We’ll explore:</strong></p>
-<ul>
-<li>Accessing Sentinel-1 imagery for Philippines</li>
-<li>Before/after typhoon comparison</li>
-<li>VV polarization for water detection</li>
-<li>Change detection visualization</li>
-</ul>
-<aside class="notes">
-<p><strong>Timing:</strong> 5 minutes</p>
-<p><strong>Demo Steps:</strong> 1. Open Copernicus Browser (dataspace.copernicus.eu) 2. Navigate to Philippines (zoom to recent typhoon-affected area) 3. Select Sentinel-1 IW product 4. Choose date before typhoon 5. Add date after typhoon using compare feature 6. Show VV band - dark areas indicate water 7. Demonstrate time slider for animation 8. Explain bright (urban/rough) vs dark (water/smooth) returns</p>
-<p><strong>Key Teaching Points:</strong> - SAR works regardless of clouds/time of day - VV polarization excellent for water detection - Rapid revisit enables quick response - Free and open data accessible to all</p>
-<p><strong>Common Questions:</strong> - “Why does it look grainy?” - Speckle is inherent to SAR imaging - “Can we download this?” - Yes, we’ll learn export in Session 4</p>
-<p><strong>P1 IMPROVEMENT - Concept Check Coming:</strong> After Session 2 (AI/ML), we’ll pause for a 5-minute concept check with 3 questions to reduce cognitive load.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section class="slide level2 center">
+
 </section></section>
 <section>
 <section id="sentinel-2-optical-mission" class="title-slide slide level1 center" data-background-color="#0f766e">
@@ -958,70 +964,121 @@ Stylianos Kotsopoulos
 </section>
 <section id="sentinel-2-spectral-bands" class="slide level2 center">
 <h2>Sentinel-2 Spectral Bands</h2>
-<table class="caption-top">
+<div style="font-size: 0.8em;">
+<table class="caption-top" style="width:100%;">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 20%">
-<col style="width: 26%">
-<col style="width: 20%">
-<col style="width: 21%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 30%">
+<col style="width: 22%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
 <th><strong>Band</strong></th>
-<th><strong>Description</strong></th>
+<th><strong>Name</strong></th>
 <th><strong>Wavelength (nm)</strong></th>
 <th><strong>Resolution</strong></th>
-<th><strong>Application</strong></th>
+<th><strong>Purpose</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>B1</strong></td>
+<td>Coastal Aerosol</td>
+<td>443</td>
+<td>60m</td>
+<td>Aerosol correction, water color</td>
+</tr>
+<tr class="even">
 <td><strong>B2</strong></td>
 <td>Blue</td>
 <td>490</td>
-<td>10m</td>
+<td><strong>10m</strong></td>
 <td>Water bodies, atmospheric</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>B3</strong></td>
 <td>Green</td>
 <td>560</td>
-<td>10m</td>
+<td><strong>10m</strong></td>
 <td>Vegetation health</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>B4</strong></td>
 <td>Red</td>
 <td>665</td>
-<td>10m</td>
+<td><strong>10m</strong></td>
 <td>Vegetation discrimination</td>
+</tr>
+<tr class="odd">
+<td><strong>B5</strong></td>
+<td>Red Edge 1</td>
+<td>705</td>
+<td>20m</td>
+<td>Vegetation stress detection</td>
+</tr>
+<tr class="even">
+<td><strong>B6</strong></td>
+<td>Red Edge 2</td>
+<td>740</td>
+<td>20m</td>
+<td>Vegetation classification</td>
+</tr>
+<tr class="odd">
+<td><strong>B7</strong></td>
+<td>Red Edge 3</td>
+<td>783</td>
+<td>20m</td>
+<td>Vegetation stress, chlorophyll</td>
 </tr>
 <tr class="even">
 <td><strong>B8</strong></td>
 <td>NIR</td>
 <td>842</td>
-<td>10m</td>
+<td><strong>10m</strong></td>
 <td>Biomass, water bodies</td>
 </tr>
 <tr class="odd">
-<td><strong>B5-B7</strong></td>
-<td><strong>Red Edge</strong></td>
-<td>705-783</td>
+<td><strong>B8A</strong></td>
+<td>NIR Narrow</td>
+<td>865</td>
 <td>20m</td>
-<td><strong>Vegetation stress</strong></td>
+<td>Atmospheric correction</td>
 </tr>
 <tr class="even">
-<td><strong>B11-B12</strong></td>
-<td>SWIR</td>
-<td>1610-2190</td>
+<td><strong>B9</strong></td>
+<td>Water Vapor</td>
+<td>945</td>
+<td>60m</td>
+<td>Atmospheric correction</td>
+</tr>
+<tr class="odd">
+<td><strong>B10</strong></td>
+<td>SWIR Cirrus</td>
+<td>1375</td>
+<td>60m</td>
+<td>Cirrus cloud detection</td>
+</tr>
+<tr class="even">
+<td><strong>B11</strong></td>
+<td>SWIR 1</td>
+<td>1610</td>
 <td>20m</td>
-<td>Moisture, fire detection</td>
+<td>Moisture content, fire</td>
+</tr>
+<tr class="odd">
+<td><strong>B12</strong></td>
+<td>SWIR 2</td>
+<td>2190</td>
+<td>20m</td>
+<td>Moisture, geology, soil</td>
 </tr>
 </tbody>
 </table>
+</div>
 <aside class="notes">
-<p>Sentinel-2 has 13 spectral bands spanning visible to shortwave infrared. The 10m bands (B2, B3, B4, B8) are most commonly used for land applications.</p>
+<p><strong>All 13 Sentinel-2 bands:</strong> Four 10m bands (B2-B4, B8) for detailed mapping, six 20m bands including the unique Red Edge trio (B5-B7) for vegetation analysis, and three 60m atmospheric bands (B1, B9, B10) for corrections. The Red Edge bands are Sentinel-2’s signature capability.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1037,7 +1094,7 @@ Stylianos Kotsopoulos
 <section id="red-edge-bands---sentinel-2s-special-capability" class="slide level2 center">
 <h2>Red Edge Bands - Sentinel-2’s Special Capability</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
 <p><strong>What is Red Edge?</strong></p>
 <ul>
 <li>Transition zone between red and NIR (700-780nm)</li>
@@ -1052,9 +1109,16 @@ Stylianos Kotsopoulos
 <li>Forest disease identification</li>
 <li>Pre-harvest yield estimation</li>
 </ul>
-</div><div class="column" style="width:40%;">
-<p><img data-src="images/red_edge_spectrum.png" style="width:100.0%"></p>
-<p><strong>Philippine Use:</strong> - Rice crop assessment - Coconut disease detection - Mangrove health monitoring</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Philippine Use Cases:</strong></p>
+<ul>
+<li><strong>Rice crop assessment</strong> - Monitor crop health and nitrogen status during panicle initiation in Nueva Ecija rice paddies</li>
+<li><strong>Coconut disease detection</strong> - Identify stem bleeding disease and pest infestations through spectral signatures</li>
+<li><strong>Mangrove health monitoring</strong> - Track vegetation stress and recovery in Palawan mangrove forests using red edge indices</li>
+</ul>
+<div class="fragment">
+<p><em>Red edge bands detect stress weeks before visible bands show changes</em></p>
+</div>
 </div></div>
 <aside class="notes">
 <p>Red Edge bands are Sentinel-2’s superpower. They detect vegetation stress weeks before visible bands show changes - crucial for precision agriculture and forest health monitoring.</p>
@@ -1133,33 +1197,8 @@ Stylianos Kotsopoulos
           display:block!important;
       }</style></aside>
 </section>
-<section id="live-demo-sentinel-2-data" class="slide level2 center" data-background-color="#1e40af">
-<h2>Live Demo: Sentinel-2 Data</h2>
-<h3 id="copernicus-browser-demonstration-1">Copernicus Browser Demonstration</h3>
-<p><strong>We’ll explore:</strong></p>
-<ul>
-<li>Finding cloud-free Sentinel-2 imagery</li>
-<li>Band combinations (True Color, False Color, SWIR)</li>
-<li>NDVI vegetation index</li>
-<li>Time-series comparison (deforestation/urban growth)</li>
-</ul>
-<aside class="notes">
-<p><strong>Timing:</strong> 5 minutes</p>
-<p><strong>Demo Steps:</strong> 1. Open Copernicus Browser 2. Navigate to Palawan or Metro Manila 3. Select Sentinel-2 L2A (atmospherically corrected) 4. Filter by cloud cover (&lt;20%) 5. Show True Color RGB (B4-B3-B2) 6. Switch to False Color (B8-B4-B3) - vegetation is RED 7. Show SWIR composite (B12-B8-B4) - good for fires/moisture 8. Calculate NDVI: (B8-B4)/(B8+B4) 9. Use time slider to show change (e.g., deforestation, urban expansion)</p>
-<p><strong>Key Teaching Points:</strong> - 13 bands provide rich information - Different band combinations highlight different features - L2A data is analysis-ready - 10m resolution excellent for detailed mapping - 5-day repeat increases cloud-free acquisition chances</p>
-<p><strong>Common Questions:</strong> - “Which bands should I use?” - Depends on application (we’ll cover in Day 2) - “What about clouds?” - <strong>Use Scene Classification Layer (SCL)</strong> - Session 4 topic</p>
-<p><strong>P0 IMPROVEMENT - SCL vs QA60:</strong> We’ll use <strong>SCL masking</strong> (not QA60) in Session 4 for better cloud AND shadow removal. SCL classes: clouds (low/medium/high prob), cirrus, cloud shadows, snow/ice - much more comprehensive than basic QA60 bitmasks.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section class="slide level2 center">
+
 </section></section>
 <section>
 <section id="sentinel-1-vs-sentinel-2" class="title-slide slide level1 center" data-background-color="#0f766e">
@@ -1168,8 +1207,57 @@ Stylianos Kotsopoulos
 </section>
 <section id="complementary-capabilities" class="slide level2 center">
 <h2>Complementary Capabilities</h2>
-<div class="line-block"><strong>Aspect</strong> | <strong>Sentinel-1</strong> | <strong>Sentinel-2</strong> |</div>
-<p>{{ … }} |————|—————-|—————-| | <strong>Sensor Type</strong> | Radar (SAR) | Optical (MSI) | | <strong>Weather</strong> | All-weather | Cloud-affected | | <strong>Time</strong> | Day &amp; night | Daytime only | | <strong>Resolution</strong> | 5m × 20m | 10m / 20m / 60m | | <strong>Revisit</strong> | 6-12 days | 5 days | | <strong>Bands</strong> | Polarizations (2) | Spectral bands (13) | | <strong>Best For</strong> | Water, structure, moisture | Vegetation, land cover, color |</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Sentinel-1</strong></th>
+<th><strong>Sentinel-2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sensor Type</strong></td>
+<td>Radar (SAR)</td>
+<td>Optical (MSI)</td>
+</tr>
+<tr class="even">
+<td><strong>Weather</strong></td>
+<td>All-weather</td>
+<td>Cloud-affected</td>
+</tr>
+<tr class="odd">
+<td><strong>Time</strong></td>
+<td>Day &amp; night</td>
+<td>Daytime only</td>
+</tr>
+<tr class="even">
+<td><strong>Resolution</strong></td>
+<td>5m × 20m</td>
+<td>10m / 20m / 60m</td>
+</tr>
+<tr class="odd">
+<td><strong>Revisit</strong></td>
+<td>6-12 days</td>
+<td>5 days</td>
+</tr>
+<tr class="even">
+<td><strong>Bands</strong></td>
+<td>Polarizations (2)</td>
+<td>Spectral bands (13)</td>
+</tr>
+<tr class="odd">
+<td><strong>Best For</strong></td>
+<td>Water, structure, moisture</td>
+<td>Vegetation, land cover, color</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1486,7 +1574,7 @@ Stylianos Kotsopoulos
 <section id="overview-of-philippine-eo-landscape" class="slide level2 center">
 <h2>Overview of Philippine EO Landscape</h2>
 
-<img data-src="images/ph_eo_ecosystem.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
+<img data-src="images/ph_eo_ecosystem.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
 <li class="fragment"><strong>PhilSA:</strong> Space data and operations</li>
 <li class="fragment"><strong>NAMRIA:</strong> National mapping and geospatial data</li>
 <li class="fragment"><strong>DOST-ASTI:</strong> AI and remote sensing R&amp;D</li>

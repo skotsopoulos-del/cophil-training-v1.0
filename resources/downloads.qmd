@@ -60,8 +60,8 @@ Learn to work with vector data (GeoPandas) and raster data (Rasterio) in Python.
 - Google Colab (recommended)
 - Or local Jupyter with geopandas, rasterio installed
 
-[Download Notebook](../day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-primary}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-outline}
+[Download Notebook](../day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-primary download}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-outline target="_blank"}
 :::
 
 ### Session 4: Google Earth Engine
@@ -85,8 +85,8 @@ Master Google Earth Engine for accessing and processing Copernicus data.
 - Google Earth Engine account (register at earthengine.google.com)
 - Google Colab
 
-[Download Notebook](#){.btn .btn-primary}
-[Open in Colab](#){.btn .btn-outline}
+[Download Notebook](../day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-primary download}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-outline target="_blank"}
 :::
 
 ---
@@ -106,12 +106,10 @@ Download presentation slides for reference:
 - Philippine EO agencies (PhilSA, NAMRIA, DOST-ASTI)
 - CoPhil Mirror Site introduction
 
-**Format:** PDF (slides with notes)
+**Formats:** RevealJS HTML Presentation | PDF
 
-**Size:** ~15 MB
-
-[Download PDF](#){.btn .btn-primary}
-[View Online](#){.btn .btn-outline}
+[View Online](../day1/presentations/01_session1_copernicus_philippine_eo.html){.btn .btn-primary}
+[Download PDF](../day1/presentations/01_session1_copernicus_philippine_eo.pdf){.btn .btn-outline download}
 :::
 
 ### Session 2: AI/ML Fundamentals for Earth Observation
@@ -126,12 +124,10 @@ Download presentation slides for reference:
 - Data-centric AI paradigm
 - EO-specific considerations
 
-**Format:** PDF (slides with notes)
+**Formats:** RevealJS HTML Presentation | PDF
 
-**Size:** ~12 MB
-
-[Download PDF](#){.btn .btn-primary}
-[View Online](#){.btn .btn-outline}
+[View Online](../day1/presentations/02_session2_ai_ml_fundamentals.html){.btn .btn-primary}
+[Download PDF](../day1/presentations/02_session2_ai_ml_fundamentals.pdf){.btn .btn-outline download}
 :::
 
 ### Session 3: Python for Geospatial Data (Intro)
@@ -144,15 +140,13 @@ Download presentation slides for reference:
 - Raster data concepts
 - Coordinate reference systems
 
-**Format:** PDF (slides with notes)
+**Formats:** RevealJS HTML Presentation | PDF
 
-**Size:** ~8 MB
-
-[Download PDF](#){.btn .btn-primary}
-[View Online](#){.btn .btn-outline}
+[View Online](../day1/presentations/03_session3_python_geospatial.html){.btn .btn-primary}
+[Download PDF](../day1/presentations/03_session3_python_geospatial.pdf){.btn .btn-outline download}
 :::
 
-### Session 4: Introduction to Google Earth Engine (Coming Soon)
+### Session 4: Introduction to Google Earth Engine
 
 ::: {.download-item}
 **Topics:**
@@ -161,11 +155,10 @@ Download presentation slides for reference:
 - Data catalog navigation
 - Philippine EO applications
 
-**Format:** PDF (slides with notes)
+**Formats:** RevealJS HTML Presentation | PDF
 
-**Status:** In preparation
-
-[Coming Soon](#){.btn .btn-secondary .disabled}
+[View Online](../day1/presentations/04_session4_google_earth_engine.html){.btn .btn-primary}
+[Download PDF](../day1/presentations/04_session4_google_earth_engine.pdf){.btn .btn-outline download}
 :::
 
 ---
@@ -528,7 +521,7 @@ Geospatial Python. EU-Philippines Copernicus Capacity Support Programme.
 
 - Check the [FAQ](faq.qmd) for common problems
 - Review the [Setup Guide](setup.qmd) for installation help
-- Contact training coordinators: training@philsa.gov.ph
+- Contact training coordinators: skotsopoulos@neuralio.ai
 
 ### Suggest Improvements
 

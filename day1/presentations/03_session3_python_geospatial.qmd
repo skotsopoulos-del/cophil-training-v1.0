@@ -20,6 +20,10 @@ format:
     fig-align: center
     width: 1920
     height: 1080
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 ---
 
 # Welcome to Session 3 {background-color="#003399"}
@@ -68,7 +72,7 @@ By the end of this session, you will be able to:
 **Timing:** 2 minutes
 
 **Key Point:**
-This is a HANDS-ON session. Participants code along in their notebooks. Instructor demonstrates, then participants practice.
+This is a HANDS-ON session. Participants code along in their notebooks.
 :::
 
 ## Notebook Access
@@ -1162,7 +1166,7 @@ Any questions about the tools or approach?
 :::
 
 ::: notes
-Take a few questions, then transition to the hands-on Colab notebooks. The rest of the session will be interactive coding with live instructor demonstration and support.
+Take a few questions, then transition to the hands-on Colab notebooks. The rest of the session will be interactive coding with support.
 :::
 
 # Let's Code! {background-color="#003399"}

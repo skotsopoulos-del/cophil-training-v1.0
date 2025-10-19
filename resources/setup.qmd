@@ -391,8 +391,7 @@ Before Day 1 starts, ensure:
 ## Technical Support Contacts
 
 For urgent setup issues:
-- **Email:** training@philsa.gov.ph
-- **Slack/Discord:** Check invitation email for links
+- **Email:** skotsopoulos@neuralio.ai
 - **WhatsApp Group:** Join via link in confirmation email
 :::
 
