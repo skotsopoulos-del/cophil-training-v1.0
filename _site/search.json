@@ -2923,7 +2923,7 @@
     "href": "resources/downloads.html",
     "title": "Downloads",
     "section": "",
-    "text": "Download all training materials for Day 1 of the CoPhil EO AI/ML Training. All materials are provided under open licenses for educational use.\n\n\n\n\n\n\nNoteDownload Package\n\n\n\nFor convenience, you can download all Day 1 materials as a single ZIP file, or download individual components below.",
+    "text": "Download training materials for the CoPhil EO AI/ML Training Programme. All materials are provided under open licenses for educational use.",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -2935,7 +2935,7 @@
     "href": "resources/downloads.html#overview",
     "title": "Downloads",
     "section": "",
-    "text": "Download all training materials for Day 1 of the CoPhil EO AI/ML Training. All materials are provided under open licenses for educational use.\n\n\n\n\n\n\nNoteDownload Package\n\n\n\nFor convenience, you can download all Day 1 materials as a single ZIP file, or download individual components below.",
+    "text": "Download training materials for the CoPhil EO AI/ML Training Programme. All materials are provided under open licenses for educational use.",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -2959,7 +2959,7 @@
     "href": "resources/downloads.html#jupyter-notebooks",
     "title": "Downloads",
     "section": "Jupyter Notebooks",
-    "text": "Jupyter Notebooks\nDownload interactive notebooks for hands-on practice:\n\nSession 3: Python for Geospatial Data\n\nDay1_Session3_Python_Geospatial_Data.ipynb\nLearn to work with vector data (GeoPandas) and raster data (Rasterio) in Python.\nTopics Covered: - GeoPandas for vector data - Reading shapefiles, GeoJSON, and GeoPackages - Coordinate reference systems and reprojection - Rasterio for raster data - Reading GeoTIFF files - Band operations and visualization - Philippine case study: Palawan land cover\nRequirements: - Google Colab (recommended) - Or local Jupyter with geopandas, rasterio installed\nDownload Notebook{.btn .btn-primary download} Open in Colab\n\n\n\nSession 4: Google Earth Engine\n\nDay1_Session4_Google_Earth_Engine.ipynb\nMaster Google Earth Engine for accessing and processing Copernicus data.\nTopics Covered: - Earth Engine authentication and initialization - ImageCollection filtering (spatial, temporal, metadata) - Sentinel-1 SAR data access - Sentinel-2 optical data access - Cloud masking techniques - Temporal compositing - Data export workflows - Philippine case study: Metro Manila monitoring\nRequirements: - Google Earth Engine account (register at earthengine.google.com) - Google Colab\nDownload Notebook{.btn .btn-primary download} Open in Colab",
+    "text": "Jupyter Notebooks\nDownload interactive notebooks for hands-on practice:\n\nSession 3: Python for Geospatial Data\n\nDay1_Session3_Python_Geospatial_Data.ipynb\nLearn to work with vector data (GeoPandas) and raster data (Rasterio) in Python.\nTopics Covered: - GeoPandas for vector data - Reading shapefiles, GeoJSON, and GeoPackages - Coordinate reference systems and reprojection - Rasterio for raster data - Reading GeoTIFF files - Band operations and visualization - Philippine case study: Palawan land cover\nRequirements: - Google Colab (recommended) - Or local Jupyter with geopandas, rasterio installed\nDownload Notebook Open in Colab\n\n\n\nSession 4: Google Earth Engine\n\nDay1_Session4_Google_Earth_Engine.ipynb\nMaster Google Earth Engine for accessing and processing Copernicus data.\nTopics Covered: - Earth Engine authentication and initialization - ImageCollection filtering (spatial, temporal, metadata) - Sentinel-1 SAR data access - Sentinel-2 optical data access - Cloud masking techniques - Temporal compositing - Data export workflows - Philippine case study: Metro Manila monitoring\nRequirements: - Google Earth Engine account (register at earthengine.google.com) - Google Colab\nDownload Notebook Open in Colab",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -2983,7 +2983,7 @@
     "href": "resources/downloads.html#cheat-sheets-pdf",
     "title": "Downloads",
     "section": "Cheat Sheets (PDF)",
-    "text": "Cheat Sheets (PDF)\nPrint-friendly quick reference guides:\n\n\nPython Basics\nEssential Python syntax and operations\nDownload PDF\n\n\nGeoPandas Reference\nVector data operations\nDownload PDF\n\n\nRasterio Commands\nRaster data handling\nDownload PDF\n\n\nEarth Engine API\nGEE Python commands\nDownload PDF\n\n\nSentinel Missions\nBand specifications\nDownload PDF\n\n\nSpectral Indices\nCommon formulas\nDownload PDF",
+    "text": "Cheat Sheets (PDF)\nQuick reference guides for common operations:\n\n\nPython Basics\nEssential Python syntax and operations\nDownload PDF\n\n\nGeoPandas Reference\nVector data operations\nDownload PDF\n\n\nRasterio Commands\nRaster data handling\nDownload PDF\n\n\nEarth Engine API\nGEE Python commands\nDownload PDF\n\n\nSentinel Missions\nBand specifications\nDownload PDF\n\n\nSpectral Indices\nCommon formulas (NDVI, NDWI, etc.)\nDownload PDF",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -3043,7 +3043,7 @@
     "href": "resources/downloads.html#additional-resources",
     "title": "Downloads",
     "section": "Additional Resources",
-    "text": "Additional Resources\n\nRecommended Reading\n\nEarth Observation: - Copernicus Open Access Hub User Guide - Sentinel-1 Toolbox Documentation - Sentinel-2 User Handbook\nPython for Geospatial: - GeoPandas User Guide - Rasterio Quickstart - Python Geospatial Development\nGoogle Earth Engine: - Earth Engine Python API Guide - Earth Engine Community Tutorials - Awesome Earth Engine\nAI/ML for EO: - Deep Learning for Earth Observation (Springer) - Fundamentals of Machine Learning for Predictive Data Analytics - Data-Centric AI Resource Hub\n\n\n\nVideo Tutorials\n\n\nCopernicus Programme Introduction (15 min) - Watch\nGetting Started with Google Earth Engine (30 min) - Watch\nGeoPandas Tutorial for Beginners (45 min) - Watch\nPhilippine EO Ecosystem Overview (20 min) - Watch",
+    "text": "Additional Resources\n\nRecommended Reading\nEarth Observation: - Copernicus Open Access Hub User Guide - Sentinel-1 Toolbox Documentation - Sentinel-2 User Handbook\nPython for Geospatial: - GeoPandas User Guide - Rasterio Quickstart - Python Geospatial Development\nGoogle Earth Engine: - Earth Engine Python API Guide - Earth Engine Community Tutorials - Awesome Earth Engine\nAI/ML for EO: - Deep Learning for Earth Observation (Springer) - Fundamentals of Machine Learning for Predictive Data Analytics - Data-Centric AI Resource Hub",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -3079,7 +3079,7 @@
     "href": "resources/downloads.html#support-feedback",
     "title": "Downloads",
     "section": "Support & Feedback",
-    "text": "Support & Feedback\n\nHaving Issues?\n\nCheck the FAQ for common problems\nReview the Setup Guide for installation help\nContact training coordinators: skotsopoulos@neuralio.ai\n\n\n\nSuggest Improvements\n\nReport broken links or errors\nRequest additional materials\nShare feedback on content\n\nGitHub Issues: Report Issue",
+    "text": "Support & Feedback\n\nHaving Issues?\n\nCheck the FAQ for common problems\nReview the Setup Guide for installation help\nContact training coordinators: skotsopoulos@neuralio.ai\n\n\n\nSuggest Improvements\nWe welcome your feedback to improve the training materials:\n\nReport broken links or errors\nRequest additional materials\nShare feedback on content\n\nContact: skotsopoulos@neuralio.ai\n\nAll materials are regularly updated. Check back for new resources and improved versions.",
     "crumbs": [
       "Materials",
       "Help & Downloads",
@@ -4012,5 +4012,591 @@
     "crumbs": [
       "Day 1: EO Data & AI/ML Fundamentals"
     ]
+  },
+  {
+    "objectID": "resources/downloads.html#day-1-eo-data-aiml-fundamentals-geospatial-python",
+    "href": "resources/downloads.html#day-1-eo-data-aiml-fundamentals-geospatial-python",
+    "title": "Downloads",
+    "section": "Day 1: EO Data, AI/ML Fundamentals & Geospatial Python",
+    "text": "Day 1: EO Data, AI/ML Fundamentals & Geospatial Python\n\nSession 1: Copernicus Sentinel Data & Philippine EO Ecosystem\nPresentation: View Online Download PDF\nTopics: - Copernicus Programme overview - Sentinel-1 SAR and Sentinel-2 optical missions - Philippine EO agencies (PhilSA, NAMRIA, DOST-ASTI, PAGASA) - CoPhil Mirror Site and infrastructure\n\n\n\nSession 2: AI/ML Fundamentals for Earth Observation\nPresentation: View Online Download PDF\nTopics: - What is AI/ML and the EO workflow - Supervised vs. Unsupervised learning - Introduction to neural networks and CNNs - Data-centric AI paradigm\n\n\n\nSession 3: Python for Geospatial Data\nPresentation: View Online Download PDF\nJupyter Notebook: Download Notebook Open in Colab\nTopics: - Google Colab setup - GeoPandas for vector data - Rasterio for raster data - Coordinate reference systems - Philippine case study: Palawan land cover\n\n\n\nSession 4: Introduction to Google Earth Engine\nPresentation: View Online Download PDF\nJupyter Notebook: Download Notebook Open in Colab\nTopics: - Earth Engine authentication and initialization - ImageCollection filtering - Sentinel-1 SAR and Sentinel-2 optical data access - Cloud masking and temporal compositing - Philippine case study: Metro Manila monitoring",
+    "crumbs": [
+      "Materials",
+      "Help & Downloads",
+      "Downloads"
+    ]
+  },
+  {
+    "objectID": "resources/downloads.html#day-2-machine-learning-for-land-cover-classification",
+    "href": "resources/downloads.html#day-2-machine-learning-for-land-cover-classification",
+    "title": "Downloads",
+    "section": "Day 2: Machine Learning for Land Cover Classification",
+    "text": "Day 2: Machine Learning for Land Cover Classification\n\nSession 1: Random Forest Classification\nPresentation: View Online Download PDF\nJupyter Notebooks: Theory Notebook Hands-on Lab\nTopics: - Decision trees and ensemble methods - Random Forest algorithm - Feature importance and model interpretation - Land cover classification with Sentinel-2\n\n\n\nSession 2: Palawan Land Cover Lab\nPresentation: View Online Download PDF\nJupyter Notebook: Extended Lab\nTopics: - Model evaluation and validation - Hyperparameter tuning - Cross-validation strategies - Handling imbalanced datasets\n\n\n\nSession 3: Deep Learning Fundamentals\nPresentation: View Online Download PDF\nJupyter Notebook: Theory Interactive\nTopics: - Neural networks architecture - Backpropagation and optimization - Introduction to PyTorch/TensorFlow - Building simple neural networks\n\n\n\nSession 4: Convolutional Neural Networks for EO\nPresentation: View Online Download PDF\nJupyter Notebooks: CNN Classification Transfer Learning\nTopics: - CNN architecture and components - Transfer learning for EO - Image classification with CNNs - Philippine land use case studies",
+    "crumbs": [
+      "Materials",
+      "Help & Downloads",
+      "Downloads"
+    ]
+  },
+  {
+    "objectID": "resources/downloads.html#day-3-semantic-segmentation-object-detection",
+    "href": "resources/downloads.html#day-3-semantic-segmentation-object-detection",
+    "title": "Downloads",
+    "section": "Day 3: Semantic Segmentation & Object Detection",
+    "text": "Day 3: Semantic Segmentation & Object Detection\n\nSession 1: U-Net Semantic Segmentation\nPresentation: View Online Download PDF\nTopics: - Pixel-wise classification - U-Net architecture - Encoder-decoder networks - Loss functions for segmentation\n\n\n\nSession 2: Flood Mapping with U-Net\nPresentation: View Online Download PDF\nJupyter Notebook: Flood Mapping Lab\nTopics: - SAR data for flood detection - U-Net implementation - Training and validation - Philippine flood mapping case study\n\n\n\nSession 3: Object Detection Theory\nPresentation: View Online Download PDF\nTopics: - Object detection frameworks - YOLO and Faster R-CNN - Detection vs segmentation - Evaluation metrics\n\n\n\nSession 4: Object Detection Lab\nPresentation: View Online Download PDF\nJupyter Notebook: Object Detection Lab\nTopics: - Building and ship detection - Infrastructure monitoring - Hands-on implementation - Philippine case studies",
+    "crumbs": [
+      "Materials",
+      "Help & Downloads",
+      "Downloads"
+    ]
+  },
+  {
+    "objectID": "resources/downloads.html#day-4-time-series-analysis-advanced-topics",
+    "href": "resources/downloads.html#day-4-time-series-analysis-advanced-topics",
+    "title": "Downloads",
+    "section": "Day 4: Time Series Analysis & Advanced Topics",
+    "text": "Day 4: Time Series Analysis & Advanced Topics\n\nSession 1: LSTM for Time Series\nPresentation: View Online Download PDF\nJupyter Notebook: LSTM Demo\nTopics: - Recurrent neural networks - LSTM architecture - Time series forecasting - Vegetation dynamics modeling\n\n\n\nSession 2: Drought Monitoring with LSTM\nPresentation: View Online Download PDF\nJupyter Notebook: Drought Lab\nTopics: - Multi-variate time series - LSTM implementation for drought - Feature engineering - Philippine drought case study\n\n\n\nSession 3: Emerging AI Technologies\nPresentation: View Online Download PDF\nTopics: - Self-supervised learning - Vision transformers - Foundation models overview - Prithvi and other EO models\n\n\n\nSession 4: Synthesis & Best Practices\nPresentation: View Online Download PDF\nTopics: - End-to-end EO AI/ML workflow - Model deployment - Operational considerations - Future directions in EO AI/ML",
+    "crumbs": [
+      "Materials",
+      "Help & Downloads",
+      "Downloads"
+    ]
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#session-overview",
+    "href": "day2/presentations/session1_random_forest.html#session-overview",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Session Overview",
+    "text": "Session Overview\n\n\nPart A: Theory (1.5 hours)\n\nIntroduction to Supervised Classification\nDecision Trees Fundamentals\nRandom Forest Ensemble Method\nFeature Importance\nAccuracy Assessment\nGoogle Earth Engine Platform\n\n\nPart B: Hands-on Lab (1.5 hours)\n\nSentinel-2 Data Acquisition\nFeature Engineering (Spectral Indices)\nTraining Data Preparation\nModel Training & Optimization\nClassification & Validation\nPhilippine NRM Applications\n\n\nLearning Objectives:\n\nUnderstand supervised classification workflow for EO data\nImplement Random Forest using Google Earth Engine\nPerform accuracy assessment and interpret results\nApply classification to Palawan land cover mapping"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#what-is-supervised-classification",
+    "href": "day2/presentations/session1_random_forest.html#what-is-supervised-classification",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "What is Supervised Classification?",
+    "text": "What is Supervised Classification?\n\nGoal: Assign labels to pixels/objects based on their characteristics\n“Supervised”: We provide labeled training examples to the algorithm\nLearning Process: Algorithm learns patterns from training data\nApplication: Classify entire image based on learned patterns\n\n\n\n\n\n\n\n\nKey Concept\n\n\nSupervised classification requires labeled training data (ground truth) to learn the relationship between spectral signatures and land cover classes."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#supervised-classification-workflow",
+    "href": "day2/presentations/session1_random_forest.html#supervised-classification-workflow",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Supervised Classification Workflow",
+    "text": "Supervised Classification Workflow\n\n\n\n\n\nflowchart LR\n    A[Satellite Imagery] --&gt; B[Preprocessing]\n    B --&gt; C[Feature Extraction]\n    C --&gt; D[Training Data Collection]\n    D --&gt; E[Model Training]\n    E --&gt; F[Classification]\n    F --&gt; G[Accuracy Assessment]\n    G --&gt; H{Acceptable?}\n    H --&gt;|No| D\n    H --&gt;|Yes| I[Final Map]\n    style E fill:#4A90E2\n    style F fill:#4A90E2\n\n\n\n\n\n\nKey Steps:\n\nPreprocessing: Cloud masking, atmospheric correction\nFeature Extraction: Spectral bands, indices (NDVI, NDWI)\nTraining Data: Collect representative samples for each class\nModel Training: Train classifier on training data\nClassification: Apply model to entire scene\nValidation: Assess accuracy with independent test data"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#common-land-cover-classes-in-philippines",
+    "href": "day2/presentations/session1_random_forest.html#common-land-cover-classes-in-philippines",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Common Land Cover Classes in Philippines",
+    "text": "Common Land Cover Classes in Philippines\n\n\nNatural Ecosystems:\n\nPrimary Forest (dipterocarp)\nSecondary Forest\nMangroves\nGrasslands\nWater Bodies (rivers, lakes, coastal)\n\n\nHuman-Modified:\n\nAgricultural Land (rice paddies, coconut)\nUrban/Built-up Areas\nBare Soil\nMining Areas\nRoads and Infrastructure\n\n\n\n\n\n\n\n\n\nPhilippine Context\n\n\nAccurate land cover classification supports monitoring of Protected Areas, REDD+ programs, agricultural expansion, and disaster response (typhoons, floods)."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#what-is-a-decision-tree",
+    "href": "day2/presentations/session1_random_forest.html#what-is-a-decision-tree",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "What is a Decision Tree?",
+    "text": "What is a Decision Tree?\nA tree-like structure that makes decisions by asking a series of questions about features.\n\n\n\n\n\n\n\nflowchart TD\n    A[NDVI &gt; 0.4?] --&gt;|Yes| B[NIR &gt; 3000?]\n    A --&gt;|No| C[NDWI &gt; 0?]\n    B --&gt;|Yes| D[Forest]\n    B --&gt;|No| E[Agriculture]\n    C --&gt;|Yes| F[Water]\n    C --&gt;|No| G[Urban/Bare]\n    style D fill:#2E7D32\n    style E fill:#FBC02D\n    style F fill:#1976D2\n    style G fill:#757575\n\n\n\n\n\n\n\nHow it Works:\n\nStart at root node\nTest condition (e.g., NDVI &gt; 0.4?)\nBranch based on answer\nRepeat until reaching leaf node\nLeaf node = predicted class"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#decision-tree-splitting",
+    "href": "day2/presentations/session1_random_forest.html#decision-tree-splitting",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Decision Tree Splitting",
+    "text": "Decision Tree Splitting\nHow does a tree decide where to split?\n\nGoal: Create pure nodes (all samples belong to one class)\nMetric: Information Gain or Gini Impurity\nProcess: Test all possible splits, choose the best one\nRecursion: Repeat for each branch until stopping criteria\n\n\nGini Impurity Formula:\n\\[\nGini = 1 - \\sum_{i=1}^{n} (p_i)^2\n\\]\nWhere \\(p_i\\) is the probability of class \\(i\\) in the node.\n\nGini = 0: Pure node (all samples same class) ✓\nGini = 0.5: Maximum impurity (50/50 split) ✗"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#decision-tree-example-spectral-splitting",
+    "href": "day2/presentations/session1_random_forest.html#decision-tree-example-spectral-splitting",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Decision Tree Example: Spectral Splitting",
+    "text": "Decision Tree Example: Spectral Splitting\n\nSplit 1Split 2Split 3\n\n\nRoot Node: All 1000 samples\nTest: NDVI &gt; 0.4?\n\nLeft branch (NDVI ≤ 0.4): 400 samples → Mostly Water, Urban, Bare\nRight branch (NDVI &gt; 0.4): 600 samples → Mostly Forest, Agriculture\n\nInformation Gain: High ✓ (classes becoming more separated)\n\n\nRight Branch: 600 samples with NDVI &gt; 0.4\nTest: NIR Reflectance &gt; 3000?\n\nLeft branch (NIR ≤ 3000): 250 samples → Agriculture (less canopy density)\nRight branch (NIR &gt; 3000): 350 samples → Forest (dense canopy)\n\nInformation Gain: High ✓\n\n\nLeft Branch: 400 samples with NDVI ≤ 0.4\nTest: NDWI &gt; 0?\n\nLeft branch (NDWI ≤ 0): 200 samples → Urban/Bare\nRight branch (NDWI &gt; 0): 200 samples → Water\n\nInformation Gain: High ✓"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#decision-tree-advantages-limitations",
+    "href": "day2/presentations/session1_random_forest.html#decision-tree-advantages-limitations",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Decision Tree Advantages & Limitations",
+    "text": "Decision Tree Advantages & Limitations\n\n\nAdvantages:\n\n✓ Easy to understand and visualize\n✓ No data normalization needed\n✓ Handles non-linear relationships\n✓ Feature importance easily extracted\n✓ Fast prediction\n\n\nLimitations:\n\n✗ Overfitting: Can memorize training data\n✗ High variance: Small data changes → big tree changes\n✗ Instability: Greedy algorithm (local optima)\n✗ Bias: Favor features with many levels\n\n\n\n\n\n\n\n\n\nThe Solution\n\n\nRandom Forest addresses these limitations by combining many decision trees!"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#what-is-random-forest",
+    "href": "day2/presentations/session1_random_forest.html#what-is-random-forest",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "What is Random Forest?",
+    "text": "What is Random Forest?\nAn ensemble learning method that combines many decision trees to improve accuracy and reduce overfitting.\n\n\n\n\n\n\n\nflowchart TD\n    A[Training Data&lt;br/&gt;1000 samples] --&gt; B1[Bootstrap&lt;br/&gt;Sample 1]\n    A --&gt; B2[Bootstrap&lt;br/&gt;Sample 2]\n    A --&gt; B3[Bootstrap&lt;br/&gt;Sample 3]\n    A --&gt; B4[...]\n    A --&gt; B5[Bootstrap&lt;br/&gt;Sample N]\n\n    B1 --&gt; T1[Tree 1]\n    B2 --&gt; T2[Tree 2]\n    B3 --&gt; T3[Tree 3]\n    B4 --&gt; T4[...]\n    B5 --&gt; T5[Tree N]\n\n    T1 --&gt; V[Majority Vote]\n    T2 --&gt; V\n    T3 --&gt; V\n    T4 --&gt; V\n    T5 --&gt; V\n\n    V --&gt; F[Final Prediction]\n\n    style F fill:#4CAF50\n\n\n\n\n\n\n\nKey Ideas:\n\nBootstrap Aggregating (Bagging)\n\nRandom sampling with replacement\nEach tree sees different data\n\nRandom Feature Selection\n\nEach split uses random subset of features\nReduces correlation between trees\n\nMajority Voting\n\nClassification: Most common class\nRegression: Average prediction"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#random-forest-the-forest-analogy",
+    "href": "day2/presentations/session1_random_forest.html#random-forest-the-forest-analogy",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Random Forest: The “Forest” Analogy",
+    "text": "Random Forest: The “Forest” Analogy\n\nOne tree (Decision Tree): One expert’s opinion\n\nCan be very confident but sometimes wrong\nMight overfit to specific training examples\n\nForest (Random Forest): Committee of experts\n\nEach expert sees slightly different data\nEach expert considers different features\nFinal decision: Majority vote\nWisdom of crowds: Group decision more reliable than individual\n\n\n\n\n\n\n\n\n\nIntuition\n\n\nIf you ask 100 independent experts and 75 say “Forest”, you can be more confident than if only 1 expert says “Forest”."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#bootstrap-aggregating-bagging",
+    "href": "day2/presentations/session1_random_forest.html#bootstrap-aggregating-bagging",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Bootstrap Aggregating (Bagging)",
+    "text": "Bootstrap Aggregating (Bagging)\nBootstrap Sampling:\n\nOriginal training set: 1000 samples\nEach tree gets: 1000 samples (with replacement)\nSome samples repeated, some never selected (~37% out-of-bag)\n\n\n\nOriginal Data:\nSample IDs: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\nTree 1 Bootstrap:\nSample IDs: 1, 3, 3, 5, 7, 7, 7, 9, 9, 10\nTree 2 Bootstrap:\nSample IDs: 2, 2, 4, 5, 5, 6, 8, 8, 9, 10\n\nWhy Bootstrap?\n\nIntroduces diversity between trees\nEach tree specializes on different samples\nReduces overfitting\nEnables Out-of-Bag (OOB) validation\n\nOut-of-Bag Samples: - Samples not used by a tree (~37%) - Used for internal validation - No separate validation set needed"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#random-feature-selection",
+    "href": "day2/presentations/session1_random_forest.html#random-feature-selection",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Random Feature Selection",
+    "text": "Random Feature Selection\nAt each split, only consider a random subset of features.\n\n\nAll Features (13 for Sentinel-2 + indices):\n\nB2 (Blue)\nB3 (Green)\nB4 (Red)\nB8 (NIR)\nB11 (SWIR1)\nB12 (SWIR2)\nNDVI\nNDWI\nNDBI\nEVI\nSAVI\nTexture features\nElevation\n\n\nRandom Subset at Each Split:\nTypical: \\(\\sqrt{n}\\) features\nFor 13 features: \\(\\sqrt{13} \\approx 4\\) features\nTree 1, Split 1: {NDVI, B4, B11, Elevation}\nTree 1, Split 2: {B8, NDWI, B3, SAVI}\nTree 2, Split 1: {NDBI, B12, NDVI, B2}\n. . .\nResult: - Trees decorrelated - Prevents strong features from dominating - Better generalization"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#random-forest-prediction-majority-voting",
+    "href": "day2/presentations/session1_random_forest.html#random-forest-prediction-majority-voting",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Random Forest Prediction: Majority Voting",
+    "text": "Random Forest Prediction: Majority Voting\nExample Classification:\nClassify a pixel with spectral signature: NDVI=0.65, NIR=4500, SWIR=2000\n\n\n100 Trees Vote:\n\nTree 1 → Forest 🌲\nTree 2 → Forest 🌲\nTree 3 → Agriculture 🌾\nTree 4 → Forest 🌲\nTree 5 → Forest 🌲\n…\nTree 100 → Forest 🌲\n\n\nVote Count:\n\nForest: 78 votes\nAgriculture: 22 votes\n\nFinal Prediction: Forest (78%)\nConfidence: 78% confidence in prediction\n\n\n\n\n\n\n\n\nPrediction Confidence\n\n\nThe proportion of votes can be interpreted as confidence. Higher consensus → more confident prediction."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#random-forest-hyperparameters",
+    "href": "day2/presentations/session1_random_forest.html#random-forest-hyperparameters",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Random Forest Hyperparameters",
+    "text": "Random Forest Hyperparameters\nKey parameters to tune:\n\n\n\n\n\n\n\n\n\nParameter\nDescription\nTypical Values\nImpact\n\n\n\n\nn_trees\nNumber of trees in forest\n50-500\nMore trees → better performance (diminishing returns)\n\n\nmax_depth\nMaximum depth of each tree\n10-50 or None\nDeeper → more complex, risk overfitting\n\n\nmin_samples_split\nMin samples to split node\n2-10\nHigher → simpler trees, less overfitting\n\n\nmax_features\nFeatures per split\n\\(\\sqrt{n}\\) or \\(\\log_2(n)\\)\nBalance between accuracy and diversity\n\n\nbootstrap\nUse bootstrap sampling\nTrue\nAlmost always True for RF\n\n\n\n\n\n\n\n\n\n\nGoogle Earth Engine Default\n\n\nGEE’s ee.Classifier.smileRandomForest() defaults: - numberOfTrees: 100 - variablesPerSplit: \\(\\sqrt{n}\\) (automatic) - minLeafPopulation: 1"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#random-forest-advantages",
+    "href": "day2/presentations/session1_random_forest.html#random-forest-advantages",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Random Forest Advantages",
+    "text": "Random Forest Advantages\n\nHigh Accuracy\n\nOften achieves excellent performance out-of-the-box\nHandles complex non-linear relationships\n\nRobust to Overfitting\n\nEnsemble averaging reduces variance\nHarder to overfit than single decision tree\n\nFeature Importance\n\nQuantifies which features matter most\nHelps understand classification drivers\n\nHandles Missing Data\n\nCan work with incomplete feature sets\nRobust to noisy data\n\nNo Normalization Needed\n\nWorks with features on different scales\nSimplifies preprocessing\n\nEfficient\n\nFast training (parallelizable)\nFast prediction"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#understanding-feature-importance",
+    "href": "day2/presentations/session1_random_forest.html#understanding-feature-importance",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Understanding Feature Importance",
+    "text": "Understanding Feature Importance\nQuestion: Which spectral bands/indices contribute most to classification accuracy?\nFeature Importance measures the contribution of each feature to the model’s predictions.\n\n\nCalculation Methods:\n\nMean Decrease in Impurity (MDI)\n\nHow much each feature reduces impurity (Gini)\nAveraged across all trees\nDefault in most implementations\n\nPermutation Importance\n\nMeasure accuracy drop when feature is randomly shuffled\nMore reliable but slower\n\n\n\nInterpretation:\n\nHigh importance: Feature strongly discriminates classes\nLow importance: Feature adds little information\nZero importance: Feature not used by any tree"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#example-feature-importance-for-palawan",
+    "href": "day2/presentations/session1_random_forest.html#example-feature-importance-for-palawan",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Example: Feature Importance for Palawan",
+    "text": "Example: Feature Importance for Palawan\nLand Cover Classification (7 classes)\n\n\nTop Features:\n\n\n\nRank\nFeature\nImportance\nUse Case\n\n\n\n\n1\nNDVI\n0.285\nForest vs. non-forest\n\n\n2\nNIR (B8)\n0.192\nVegetation density\n\n\n3\nSWIR1 (B11)\n0.156\nMoisture content\n\n\n4\nNDWI\n0.128\nWater detection\n\n\n5\nRed (B4)\n0.089\nVegetation health\n\n\n6\nNDBI\n0.067\nUrban areas\n\n\n7\nElevation\n0.045\nTopographic context\n\n\n\n\nInsights:\n\nNDVI dominant: Vegetation indices most important\nNIR crucial: Distinguishes vegetation types\nSWIR useful: Separates forest from agriculture\nNDWI essential: Water body identification\nElevation helps: Mountains → forest, lowlands → agriculture\n\nActionable: - Focus on acquiring high-quality NIR and SWIR data - Ensure accurate NDVI calculation - Include DEM for improved accuracy"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#feature-importance-visualization",
+    "href": "day2/presentations/session1_random_forest.html#feature-importance-visualization",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Feature Importance Visualization",
+    "text": "Feature Importance Visualization\nTypical Output:\n# Example feature importance from trained RF\nFeature Importances:\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNDVI        ████████████████████████████  0.285\nNIR         ███████████████████           0.192\nSWIR1       █████████████████             0.156\nNDWI        ██████████████                0.128\nRed         █████████                     0.089\nNDBI        ███████                       0.067\nElevation   █████                         0.045\nBlue        ███                           0.020\nGreen       ███                           0.018\nApplications:\n\nFeature selection: Remove low-importance features\nData collection priorities: Focus on important bands\nModel interpretation: Understand classification logic\nDomain validation: Does importance match EO theory?"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#trainingtest-data-splitting",
+    "href": "day2/presentations/session1_random_forest.html#trainingtest-data-splitting",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Training/Test Data Splitting",
+    "text": "Training/Test Data Splitting\nCritical Decision: How to split data for training vs. validation?\n\n\nCommon Split Ratios:\n\n\n\nSplit\nTraining\nTesting\nUse Case\n\n\n\n\n80/20\n80%\n20%\nStandard (sufficient data)\n\n\n70/30\n70%\n30%\nMore robust validation\n\n\n60/40\n60%\n40%\nLimited training data\n\n\n50/50\n50%\n50%\nVery small datasets\n\n\n\nGoogle Earth Engine: Use .randomColumn() to assign splits\n\nSplitting Strategies:\n1. Random Split (most common)\n# Add random column\ndata = data.randomColumn('random')\n\n# Split 80/20\ntraining = data.filter(ee.Filter.lt('random', 0.8))\ntesting = data.filter(ee.Filter.gte('random', 0.8))\n2. Stratified Split (recommended) - Maintain class proportions in both sets - Important for imbalanced datasets - Ensures all classes in test set\n3. Spatial Split - Training from one region, testing from another - Tests geographic transferability - More realistic for operational use\n\n\nRandom 80/20 is standard, but stratified ensures each class has representation in test set. Spatial split is most rigorous - tests if model works in new areas."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#why-accuracy-assessment",
+    "href": "day2/presentations/session1_random_forest.html#why-accuracy-assessment",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Why Accuracy Assessment?",
+    "text": "Why Accuracy Assessment?\n\nQuantify performance: How good is the classification?\nCompare models: Which classifier performs better?\nIdentify weaknesses: Which classes are confused?\nBuild confidence: Can we trust the map for decisions?\nReport to stakeholders: Scientific credibility\n\n\n\n\n\n\n\n\nGolden Rule\n\n\nALWAYS use independent test data that was NOT used for training. Otherwise, you’re measuring memorization, not generalization."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#confusion-matrix",
+    "href": "day2/presentations/session1_random_forest.html#confusion-matrix",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Confusion Matrix",
+    "text": "Confusion Matrix\nA table showing predicted classes vs. actual classes for test data.\nExample: 5-class classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredicted →\nForest\nAgriculture\nWater\nUrban\nBare\nTotal\nUser’s Acc\n\n\n\n\nActual ↓\n\n\n\n\n\n\n\n\n\n\nForest\n\n85\n8\n0\n2\n5\n100\n85%\n\n\nAgriculture\n\n12\n73\n0\n5\n10\n100\n73%\n\n\nWater\n\n0\n1\n95\n2\n2\n100\n95%\n\n\nUrban\n\n3\n7\n3\n82\n5\n100\n82%\n\n\nBare\n\n5\n11\n2\n9\n78\n105\n74%\n\n\nTotal\n\n105\n100\n100\n100\n100\n505\n\n\n\nProducer’s Acc\n\n81%\n73%\n95%\n82%\n78%\n\nOA: 82.6%"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#accuracy-metrics-explained",
+    "href": "day2/presentations/session1_random_forest.html#accuracy-metrics-explained",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Accuracy Metrics Explained",
+    "text": "Accuracy Metrics Explained\n\nOverall AccuracyProducer’s AccuracyUser’s AccuracyKappa Coefficient\n\n\nDefinition: Percentage of correctly classified samples\n\\[\n\\text{Overall Accuracy} = \\frac{\\text{Correct Predictions}}{\\text{Total Samples}} = \\frac{85+73+95+82+78}{505} = \\frac{413}{500} = 82.6\\%\n\\]\nInterpretation: - Simple, intuitive metric - Limitation: Can be misleading with imbalanced classes\nExample: 95% accuracy sounds great, but if 95% of pixels are forest, a “classify everything as forest” model achieves 95%!\n\n\nDefinition: Percentage of actual class correctly identified (per class)\nAlso called: Recall, Sensitivity\n\\[\n\\text{Producer's Accuracy}_{\\text{Forest}} = \\frac{85}{105} = 81\\%\n\\]\nInterpretation: - “Of all actual forest pixels, how many did we correctly identify?” - Producer’s perspective: How complete is the map? - Low producer’s accuracy → omission error (missing true positives)\nExample: 81% for Forest means we missed 19% of actual forest pixels.\n\n\nDefinition: Percentage of predicted class that is correct (per class)\nAlso called: Precision, Positive Predictive Value\n\\[\n\\text{User's Accuracy}_{\\text{Forest}} = \\frac{85}{100} = 85\\%\n\\]\nInterpretation: - “Of all pixels we labeled as forest, how many are truly forest?” - User’s perspective: How reliable is the map? - Low user’s accuracy → commission error (false positives)\nExample: 85% for Forest means 15% of “forest” pixels are actually other classes.\n\n\nDefinition: Measure of agreement beyond chance\n\\[\n\\kappa = \\frac{p_o - p_e}{1 - p_e}\n\\]\nWhere: - \\(p_o\\) = observed accuracy (overall accuracy) - \\(p_e\\) = expected accuracy by chance\nInterpretation: - κ &lt; 0.4: Poor agreement - κ = 0.4-0.6: Moderate agreement - κ = 0.6-0.8: Good agreement - κ &gt; 0.8: Excellent agreement\nWhy use Kappa? Accounts for agreement by random chance, especially important for imbalanced datasets."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#common-confusion-patterns",
+    "href": "day2/presentations/session1_random_forest.html#common-confusion-patterns",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Common Confusion Patterns",
+    "text": "Common Confusion Patterns\nExample: Forest vs. Agriculture confusion\n\n\n\n\nPredicted Forest\nPredicted Agriculture\n\n\n\n\nActual Forest\n85\n8 ← Confusion\n\n\nActual Agriculture\n12 ← Confusion\n73\n\n\n\nWhy confusion occurs:\n\nSpectral Similarity\n\nTree crops (coconut, fruit trees) look like forest\nYoung forest regeneration looks like agriculture\n\nMixed Pixels\n\nAgroforestry systems\nForest edges with agriculture\n\nTemporal Variability\n\nAgriculture changes rapidly (planting, harvesting)\nSingle-date imagery may miss phenology\n\nClass Definition Ambiguity\n\nWhere does “forest” end and “tree plantation” begin?"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#best-practices-training-data-collection",
+    "href": "day2/presentations/session1_random_forest.html#best-practices-training-data-collection",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Best Practices: Training Data Collection",
+    "text": "Best Practices: Training Data Collection\nPractical Tips for High-Quality Training Samples:\n\n\nSample Size Guidelines:\n\n\n\nClass\nMin Samples\nRecommended\nNotes\n\n\n\n\nCommon (forest)\n50\n100-200\nMore coverage\n\n\nModerate (agriculture)\n50\n100-150\nCapture variability\n\n\nRare (bare soil)\n30\n50-100\nGet what you can\n\n\n\nSampling Strategies:\n1. Stratified Random: - Distribute samples across study area - Avoid clustering in one region - Ensure all sub-types represented\n2. Purposive Sampling: - Target known pure pixels - Use high-resolution imagery (Google Earth) - Field visits when possible\n\nQuality Criteria:\n✓ Pure Pixels - Homogeneous within polygon - Avoid edges and mixed areas - Use ≥3x3 pixel minimum areas\n✓ Clear Definition - Unambiguous class membership - Document class definitions - Use consistent interpretation rules\n✓ Temporal Match - Training data date matches imagery - Account for phenology (crops) - Update for multi-temporal analysis\nPhilippine-Specific Tips: - Use PhilSA Space+ Dashboard for recent imagery - Leverage NAMRIA land cover for reference - Consult LGU land use plans for urban areas - Use Google Street View for ground truth\n\n\nQuality training data is more important than quantity. 100 high-quality samples beats 500 noisy samples. For Philippine applications, leverage existing government datasets as starting points."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#improving-classification-accuracy",
+    "href": "day2/presentations/session1_random_forest.html#improving-classification-accuracy",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Improving Classification Accuracy",
+    "text": "Improving Classification Accuracy\n\nBetter Training DataMore FeaturesBetter ModelPost-Processing\n\n\n\nMore samples: 50-100 per class minimum\nBetter quality: Pure pixels, clear boundaries\nBalanced: Equal samples per class\nRepresentative: Cover all variations within class\nDistributed: Spatial coverage across study area\n\n\n\n\nMulti-temporal data: Capture seasonal differences\nTexture features: Spatial patterns (GLCM)\nTopographic features: Elevation, slope, aspect\nRadar data: Sentinel-1 SAR (cloud-free)\nAncillary data: Roads, protected areas\n\n\n\n\nHyperparameter tuning: Optimize RF parameters\nMore trees: 200-500 trees (diminishing returns after ~300)\nCross-validation: Ensure generalization\nEnsemble methods: Combine RF with other classifiers\n\n\n\n\nMajority filter: Smooth noisy pixels\nMinimum mapping unit: Remove small isolated pixels\nExpert rules: Apply domain knowledge\nVisual inspection: Manual correction of obvious errors"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#why-google-earth-engine",
+    "href": "day2/presentations/session1_random_forest.html#why-google-earth-engine",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Why Google Earth Engine?",
+    "text": "Why Google Earth Engine?\n\n\nChallenges with Desktop GIS:\n\n✗ Downloading large satellite data\n✗ Storage requirements (TBs)\n✗ Computational limitations\n✗ Manual preprocessing\n✗ Time-consuming workflows\n\n\nGoogle Earth Engine Solutions:\n\n✓ Petabyte-scale catalog (Landsat, Sentinel, MODIS…)\n✓ Cloud computing (no downloads)\n✓ Pre-processed data (atmospherically corrected)\n✓ Scalable processing (parallel)\n✓ Free for research & education\n\n\n\n\n\n\n\n\n\nPerfect for This Course\n\n\nGEE enables us to process years of Sentinel-2 data for entire provinces in minutes!"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#google-earth-engine-architecture",
+    "href": "day2/presentations/session1_random_forest.html#google-earth-engine-architecture",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Google Earth Engine Architecture",
+    "text": "Google Earth Engine Architecture\n\n\n\n\n\nflowchart TD\n    A[User Code&lt;br/&gt;Python/JavaScript] --&gt; B[GEE API]\n    B --&gt; C[GEE Cloud&lt;br/&gt;Processing]\n\n    D[Satellite Data&lt;br/&gt;Catalog] --&gt; C\n    E[Landsat&lt;br/&gt;1972-present] --&gt; D\n    F[Sentinel-1/2&lt;br/&gt;2014-present] --&gt; D\n    G[MODIS&lt;br/&gt;2000-present] --&gt; D\n    H[Climate Data&lt;br/&gt;ERA5, etc.] --&gt; D\n\n    C --&gt; I[Results]\n    I --&gt; J[Interactive Map]\n    I --&gt; K[Export to Drive]\n    I --&gt; L[Charts/Stats]\n\n    style C fill:#4285F4\n    style D fill:#34A853\n\n\n\n\n\n\nKey Concepts:\n\nServer-side processing: Code runs on Google servers, not your laptop\nLazy evaluation: Operations queued, executed only when needed (e.g., map display, export)\nParallel processing: Automatically distributed across many machines"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#gee-data-catalog-highlights",
+    "href": "day2/presentations/session1_random_forest.html#gee-data-catalog-highlights",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "GEE Data Catalog Highlights",
+    "text": "GEE Data Catalog Highlights\nRelevant for Philippine EO:\n\n\nOptical Imagery:\n\nSentinel-2 MSI: 10m, 13 bands, 5-day revisit\nLandsat 8/9 OLI: 30m, 11 bands, 16-day revisit\nMODIS: 250-500m, daily, long time series\n\nRadar:\n\nSentinel-1 SAR: 10m, cloud-free, day/night\n\nTerrain:\n\nSRTM DEM: 30m elevation\nALOS World 3D: 30m (better for SE Asia)\n\n\nClimate:\n\nERA5: Hourly reanalysis (temp, precip)\nCHIRPS: Daily rainfall\nMODIS LST: Land surface temperature\n\nPre-processed Products:\n\nHansen Global Forest Change: Annual tree cover loss\nESA WorldCover: Global 10m land cover\nGlobal Surface Water: Water occurrence"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#gee-code-editor-vs.-python-api",
+    "href": "day2/presentations/session1_random_forest.html#gee-code-editor-vs.-python-api",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "GEE Code Editor vs. Python API",
+    "text": "GEE Code Editor vs. Python API\n\n\nJavaScript (Code Editor)\n\nPros:\n\nBrowser-based (no installation)\nInteractive map interface\nBuilt-in visualization\nGreat for exploration\n\nCons:\n\nLimited to GEE environment\nHarder to integrate with other tools\nLess powerful for data science\n\n\nUse Case: Quick exploration, visualization\n\nPython API\n\nPros:\n\nIntegrate with NumPy, Pandas, scikit-learn\nJupyter notebooks\nReproducible workflows\nVersion control (Git)\nAdvanced analysis\n\nCons:\n\nRequires installation/setup\nSlightly steeper learning curve\n\n\nUse Case: Reproducible research, production workflows\n\n\n\n\n\n\n\n\nOur Approach\n\n\nWe’ll use Python API with geemap library for best of both worlds: Python ecosystem + interactive maps!"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#gee-random-forest-workflow",
+    "href": "day2/presentations/session1_random_forest.html#gee-random-forest-workflow",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "GEE Random Forest Workflow",
+    "text": "GEE Random Forest Workflow\nHigh-level workflow for today’s lab:\nimport ee\nimport geemap\n\n# 1. Initialize GEE\nee.Initialize()\n\n# 2. Load Sentinel-2 imagery\ns2 = ee.ImageCollection('COPERNICUS/S2_SR') \\\n    .filterBounds(palawan_boundary) \\\n    .filterDate('2024-01-01', '2024-12-31') \\\n    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))\n\n# 3. Compute composite and indices\ncomposite = s2.median()\nndvi = composite.normalizedDifference(['B8', 'B4']).rename('NDVI')\nndwi = composite.normalizedDifference(['B3', 'B8']).rename('NDWI')\n\n# 4. Stack features\nfeatures = composite.select(['B2','B3','B4','B8','B11','B12']) \\\n    .addBands([ndvi, ndwi])\n\n# 5. Sample training data\ntraining = features.sampleRegions(collection=training_polygons,\n                                   properties=['class'],\n                                   scale=10)\n\n# 6. Train Random Forest\nclassifier = ee.Classifier.smileRandomForest(numberOfTrees=100) \\\n    .train(features=training, classProperty='class', inputProperties=features.bandNames())\n\n# 7. Classify image\nclassified = features.classify(classifier)\n\n# 8. Visualize\nMap = geemap.Map()\nMap.addLayer(classified, vis_params, 'Land Cover')\nMap"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#forest-monitoring-denr-redd",
+    "href": "day2/presentations/session1_random_forest.html#forest-monitoring-denr-redd",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Forest Monitoring (DENR, REDD+)",
+    "text": "Forest Monitoring (DENR, REDD+)\n\n\nChallenges:\n\n7,641 islands, 30 million hectares\nCloud cover year-round\nRapid deforestation in some areas\nLimited ground-based monitoring\n\nRF Classification Helps:\n\nAnnual forest cover maps\nDeforestation hotspot detection\nREDD+ MRV (Monitoring, Reporting, Verification)\nProtected area encroachment\n\n\nExample: Palawan Biosphere Reserve\n\nArea: 1.1 million hectares\nProtection: UNESCO MAB, NIPAS\nThreats: Illegal logging, mining, agriculture\n\nWorkflow:\n\nAnnual Sentinel-2 composites (2016-2024)\nRF classification (primary forest, secondary, non-forest)\nChange detection (forest loss/gain)\nAlert system for encroachment\nReports for PCSDS, DENR"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#agricultural-monitoring-da-philrice",
+    "href": "day2/presentations/session1_random_forest.html#agricultural-monitoring-da-philrice",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Agricultural Monitoring (DA, PhilRice)",
+    "text": "Agricultural Monitoring (DA, PhilRice)\n\n\nRice Production Monitoring:\n\nGoal: Estimate planted area and yield\nImportance: Food security planning\nTraditional method: Field surveys (slow, expensive)\n\nRF Approach:\n\nMulti-temporal Sentinel-2 (capture crop phenology)\nTraining data from field surveys\nClassify: Rice, Other crops, Non-ag\nArea calculation per province/municipality\nEarly warning for production shortfalls\n\n\nExample: Central Luzon Rice Bowl\nClasses: - Rice (wet season) - Rice (dry season) - Vegetables - Fallow/bare - Non-agricultural\nFeatures: - NDVI time series (captures growth cycle) - LSWI (Land Surface Water Index) - EVI (Enhanced Vegetation Index)\nValidation: - PhilRice field surveys - DA crop cut experiments"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#urban-expansion-monitoring-neda-hlurb",
+    "href": "day2/presentations/session1_random_forest.html#urban-expansion-monitoring-neda-hlurb",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Urban Expansion Monitoring (NEDA, HLURB)",
+    "text": "Urban Expansion Monitoring (NEDA, HLURB)\n\n\nMetro Manila & Major Cities:\n\nRapid urbanization: 3-5% annual growth\nPlanning needs: Infrastructure, transport, housing\nEnvironmental concerns: Loss of green space, flooding\n\nRF Classification:\n\nUrban/built-up\nRoads and infrastructure\nVegetation (parks, trees)\nBare soil (construction sites)\nWater bodies\n\n\nApplications:\n\nUrban growth tracking\n\nCompare 2015 vs. 2024\nIdentify sprawl patterns\nPredict future expansion\n\nGreen space monitoring\n\nUrban vegetation loss\nPark accessibility analysis\n\nFlood risk\n\nImpervious surface mapping\nDrainage planning\n\nCompliance\n\nIllegal construction detection\nZoning violations"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#water-resources-nwrb-lgus",
+    "href": "day2/presentations/session1_random_forest.html#water-resources-nwrb-lgus",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Water Resources (NWRB, LGUs)",
+    "text": "Water Resources (NWRB, LGUs)\nApplications:\n\n\nSurface Water Mapping:\n\nRivers, lakes, reservoirs\nSeasonal variations\nDrought monitoring\nFlood extent mapping\n\nRF Advantages: - NDWI as strong predictor - Multi-temporal captures seasonal changes - Can detect small water bodies\n\nWatershed Management:\n\nLand cover within watersheds\nForest cover (water regulation)\nAgriculture (erosion risk)\nUrban (runoff)\n\nExample: Angat Dam Watershed - Critical for Metro Manila water supply - Monitor forest cover changes - Detect encroachment - Sediment risk assessment"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#disaster-response-ndrrmc-pagasa",
+    "href": "day2/presentations/session1_random_forest.html#disaster-response-ndrrmc-pagasa",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Disaster Response (NDRRMC, PAGASA)",
+    "text": "Disaster Response (NDRRMC, PAGASA)\nPost-Typhoon Damage Assessment:\n\n\nChallenge: - Philippines: ~20 typhoons/year - Rapid assessment needed for relief - Cloud-free imagery rare after storms\nRF Classification Approach:\n\nPre-event baseline: Land cover map\nPost-event imagery: First clear Sentinel-2\nDamage classes:\n\nIntact forest/vegetation\nDamaged vegetation\nExposed soil/landslides\nFlooded areas\nBuilding damage (requires very high res)\n\n\n\nExample: Typhoon Odette (2021)\n\nAffected: Visayas, Mindanao\nAssessment needs:\n\nAgricultural damage (coconut, rice)\nForest destruction\nCoastal erosion\nFlooded areas\n\n\nRF Workflow: - Pre-typhoon: December 2021 composite - Post-typhoon: January 2022 composite - Classify: Intact, Damaged, Destroyed - Area statistics per municipality - Priority areas for relief"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#recap-session-1-theory",
+    "href": "day2/presentations/session1_random_forest.html#recap-session-1-theory",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Recap: Session 1 Theory",
+    "text": "Recap: Session 1 Theory\n\n\nWhat We Learned:\n✓ Supervised classification workflow\n✓ Decision trees: Intuitive but limited\n✓ Random Forest: Ensemble of trees - Bootstrap sampling - Random feature selection - Majority voting\n✓ Feature importance: Which bands matter?\n✓ Accuracy assessment: - Confusion matrix - Overall, Producer’s, User’s accuracy - Kappa coefficient\n✓ Google Earth Engine: Cloud-based EO\n\nKey Takeaways:\n\nRandom Forest is powerful for EO classification\n\nHigh accuracy\nHandles non-linear relationships\nRobust to overfitting\n\nTraining data quality is critical\n\nRepresentative samples\nBalanced classes\nSufficient quantity\n\nFeature engineering improves results\n\nSpectral indices (NDVI, NDWI)\nMulti-temporal data\nAuxiliary data (DEM)\n\nAccuracy assessment builds confidence\n\nAlways use independent test data\nUnderstand confusion patterns"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#break",
+    "href": "day2/presentations/session1_random_forest.html#break",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Break",
+    "text": "Break\n15-minute break before hands-on lab\n\n🔸 Stretch\n🔸 Coffee/water\n🔸 Check your setup: - Google Earth Engine account - Python environment activated - Jupyter notebook ready\n\nComing up: Hands-on lab with Palawan land cover classification!"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#lab-overview",
+    "href": "day2/presentations/session1_random_forest.html#lab-overview",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Lab Overview",
+    "text": "Lab Overview\nWhat We’ll Build: Palawan Land Cover Classification using Random Forest\n\n\nSteps:\n\nSetup and authentication\nLoad Sentinel-2 imagery\nCreate cloud-free composite\nCalculate spectral indices\nPrepare training data\nTrain Random Forest model\nGenerate classification map\nValidate accuracy\nAnalyze results\n\nDuration: ~1.5 hours\n\nStudy Area: Palawan Province\n\nLocation: Western Philippines\nArea: ~14,649 km²\nSignificance: UNESCO Biosphere Reserve\nDiversity: Forest, mangroves, agriculture, urban\n\nClasses: 1. Forest 2. Agriculture 3. Water 4. Urban 5. Bare Soil"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#spectral-indices-for-classification",
+    "href": "day2/presentations/session1_random_forest.html#spectral-indices-for-classification",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Spectral Indices for Classification",
+    "text": "Spectral Indices for Classification\nKey Features Beyond Raw Bands:\n\n\nVegetation Indices:\n\n\n\n\n\n\n\n\nIndex\nFormula\nPurpose\n\n\n\n\nNDVI\n(NIR - Red) / (NIR + Red)\nVegetation vigor\n\n\nEVI\n2.5 × (NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1)\nEnhanced sensitivity in high biomass\n\n\n\n# Calculate NDVI\nndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')\n\n# Calculate EVI\nevi = image.expression(\n    '2.5 * ((NIR - RED) / (NIR + 6*RED - 7.5*BLUE + 1))',\n    {'NIR': image.select('B8'),\n     'RED': image.select('B4'),\n     'BLUE': image.select('B2')\n    }).rename('EVI')\n\nWater & Built-up Indices:\n\n\n\n\n\n\n\n\nIndex\nFormula\nPurpose\n\n\n\n\nNDWI\n(Green - NIR) / (Green + NIR)\nWater bodies\n\n\nMNDWI\n(Green - SWIR) / (Green + SWIR)\nWater/wetlands (better separation)\n\n\nNDBI\n(SWIR - NIR) / (SWIR + NIR)\nBuilt-up areas\n\n\n\n# Calculate water indices\nndwi = image.normalizedDifference(['B3', 'B8']).rename('NDWI')\nmndwi = image.normalizedDifference(['B3', 'B11']).rename('MNDWI')\n\n# Calculate built-up index\nndbi = image.normalizedDifference(['B11', 'B8']).rename('NDBI')\n\n\nWhy MNDWI? Better separates water from built-up areas than NDWI (uses SWIR instead of NIR)\n\n\nMNDWI is particularly useful in coastal areas like Palawan where you need to distinguish water bodies from urban areas. SWIR absorption by water creates stronger contrast."
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#lab-instructions",
+    "href": "day2/presentations/session1_random_forest.html#lab-instructions",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Lab Instructions",
+    "text": "Lab Instructions\nFollow along in Jupyter notebook:\n../notebooks/session1_hands_on_lab_student.ipynb\nStudent version: With TODO markers for exercises\nInstructor version: Complete solutions\n\n\n\n\n\n\n\nTips for Success\n\n\n\nRead markdown cells carefully before running code\nExperiment with parameters\nVisualize intermediate results\nAsk questions when stuck!"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#expected-outputs",
+    "href": "day2/presentations/session1_random_forest.html#expected-outputs",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Expected Outputs",
+    "text": "Expected Outputs\nBy the end of the lab, you will have:\n\n✓ Interactive map of Palawan with Sentinel-2 composite\n✓ Calculated spectral indices (NDVI, NDWI, NDBI)\n✓ Trained Random Forest classifier (100 trees)\n✓ Land cover classification map\n✓ Confusion matrix and accuracy metrics\n✓ Feature importance ranking\n✓ Area statistics per land cover class\n✓ Exported classification to Google Drive\n\nAccuracy Target: &gt;80% overall accuracy"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#session-1-summary",
+    "href": "day2/presentations/session1_random_forest.html#session-1-summary",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Session 1 Summary",
+    "text": "Session 1 Summary\n\n\nTheory Concepts:\n\nSupervised classification workflow\nDecision trees → Random Forest\nBootstrap aggregating\nRandom feature selection\nFeature importance\nAccuracy assessment metrics\nConfusion matrix interpretation\n\nTools:\n\nGoogle Earth Engine\nPython API (geemap)\nSentinel-2 imagery\n\n\nPractical Skills:\n\nGEE authentication\nImageCollection filtering\nComposite generation\nSpectral index calculation\nTraining data preparation\nRF model training\nClassification execution\nAccuracy validation\nMap visualization\n\nPhilippine Context:\n\nPalawan land cover mapping\nDENR forest monitoring\nDA agricultural mapping\nNDRRMC disaster response"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#next-session-preview",
+    "href": "day2/presentations/session1_random_forest.html#next-session-preview",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Next Session Preview",
+    "text": "Next Session Preview\nSession 2: Advanced Palawan Land Cover Lab\n\nMulti-temporal composites (dry/wet season)\nAdvanced feature engineering (GLCM texture)\nTopographic features (DEM)\n8-class detailed classification\nHyperparameter tuning\nChange detection (2020 vs. 2024)\nDeforestation analysis\nStakeholder reporting\n\n\nPreparation:\n\nComplete Session 1 exercises\nReview confusion matrix analysis\nThink about classification improvements"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#resources",
+    "href": "day2/presentations/session1_random_forest.html#resources",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Resources",
+    "text": "Resources\nDocumentation:\n\nGoogle Earth Engine: https://developers.google.com/earth-engine\ngeemap: https://geemap.org\nSentinel-2: https://sentinel.esa.int/web/sentinel/missions/sentinel-2\nRandom Forest paper: Breiman (2001) - Machine Learning 45:5-32\n\nPhilippine EO:\n\nPhilSA: https://philsa.gov.ph\nNAMRIA: https://namria.gov.ph\nDOST-ASTI PANDA: https://panda.stamina4space.upd.edu.ph\n\nCourse Materials:\n\nGitHub: [repository link]\nDatasets: [Google Drive link]"
+  },
+  {
+    "objectID": "day2/presentations/session1_random_forest.html#thank-you",
+    "href": "day2/presentations/session1_random_forest.html#thank-you",
+    "title": "Session 1: Supervised Classification with Random Forest",
+    "section": "Thank You!",
+    "text": "Thank You!\n\nQuestions?\n\nContact:\n\nEmail: skotsopoulos@neuralio.ai\nOffice Hours: [schedule]\n\n\nLet’s move to the hands-on lab!\n🚀 Open: session1_hands_on_lab.ipynb"
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "",
+    "text": "CoPhil 4-Day Advanced Online Training\nDAY 2 - Session 1: Supervised Machine Learning - Part 1",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#learning-objectives",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#learning-objectives",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nUnderstand Decision Trees: Explain how a single decision tree makes predictions through recursive splitting\nGrasp Ensemble Learning: Describe how Random Forest combines multiple trees through bootstrap sampling and random feature selection\nInterpret Feature Importance: Analyze which spectral bands or derived indices contribute most to classification\nEvaluate Model Performance: Read and interpret confusion matrices to assess classification accuracy\nApply to EO Context: Connect these concepts to satellite image classification tasks",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#why-random-forest-for-earth-observation",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#why-random-forest-for-earth-observation",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "Why Random Forest for Earth Observation?",
+    "text": "Why Random Forest for Earth Observation?\nRandom Forest is one of the most popular algorithms for land cover classification because:\n\nHandles high-dimensional data: Works well with many spectral bands (Sentinel-2 has 13 bands)\nRobust to overfitting: Ensemble approach reduces variance\nFeature importance: Reveals which bands are most informative\nNo feature scaling required: Unlike neural networks\nFast training: Efficient even with large datasets\nInterpretable: Can visualize decision rules\n\n\nEstimated Time: 70 minutes",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#a.-introduction-and-setup-5-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#a.-introduction-and-setup-5-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "A. Introduction and Setup (5 minutes)",
+    "text": "A. Introduction and Setup (5 minutes)\nLet’s start by importing the necessary libraries and setting up our environment for reproducible results.\n\n# Core scientific computing libraries\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Scikit-learn for machine learning\nfrom sklearn.datasets import make_moons, make_circles, make_classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import confusion_matrix, classification_report, accuracy_score\n\n# Suppress warnings for cleaner output\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Set random seeds for reproducibility\nRANDOM_STATE = 42\nnp.random.seed(RANDOM_STATE)\n\n# Configure plotting style\nplt.style.use('seaborn-v0_8-darkgrid')\nsns.set_palette(\"colorblind\")  # Color-blind friendly palette\nplt.rcParams['figure.figsize'] = (10, 6)\nplt.rcParams['font.size'] = 11\n\nprint(\"✓ Libraries imported successfully!\")\nprint(f\"✓ Random state set to: {RANDOM_STATE}\")\nprint(f\"✓ NumPy version: {np.__version__}\")\nprint(f\"✓ Pandas version: {pd.__version__}\")",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#b.-decision-trees-interactive-demo-15-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#b.-decision-trees-interactive-demo-15-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "B. Decision Trees Interactive Demo (15 minutes)",
+    "text": "B. Decision Trees Interactive Demo (15 minutes)\n\nWhat is a Decision Tree?\nA Decision Tree is a supervised learning algorithm that makes predictions by learning a series of if-then-else decision rules from data. Think of it like a flowchart:\nIs NDVI &gt; 0.3?\n├─ Yes: Is NIR &gt; 0.5?\n│  ├─ Yes: Forest\n│  └─ No: Grassland\n└─ No: Is SWIR &lt; 0.2?\n   ├─ Yes: Water\n   └─ No: Urban\n\n\nKey Concepts:\n\nRoot Node: The first decision point (top of the tree)\nInternal Nodes: Intermediate decision points\nLeaf Nodes: Final predictions (bottom of the tree)\nSplitting: How the algorithm decides which feature and threshold to use\nDepth: Number of levels in the tree (deeper = more complex)\n\n\n\nLet’s Build a Simple Example\n\n# Create a simple 2D classification dataset\n# This simulates two spectral bands (e.g., NIR and Red)\nX, y = make_moons(n_samples=200, noise=0.25, random_state=RANDOM_STATE)\n\n# Add feature names for EO context\nfeature_names = ['NIR Reflectance', 'Red Reflectance']\nclass_names = ['Water/Urban', 'Vegetation']\n\nprint(f\"Dataset shape: {X.shape}\")\nprint(f\"Number of samples: {X.shape[0]}\")\nprint(f\"Number of features: {X.shape[1]}\")\nprint(f\"Classes: {np.unique(y)}\")\nprint(f\"Class distribution: {np.bincount(y)}\")\n\n\n# Visualize the dataset\nplt.figure(figsize=(10, 6))\nscatter = plt.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', \n                     s=50, alpha=0.7, edgecolors='k', linewidth=0.5)\nplt.xlabel(feature_names[0], fontsize=12)\nplt.ylabel(feature_names[1], fontsize=12)\nplt.title('Training Data: Two Spectral Bands', fontsize=14, fontweight='bold')\nplt.colorbar(scatter, label='Class', ticks=[0, 1])\nplt.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n💡 TIP: In real EO applications, each point would represent a pixel with its spectral reflectance values.\")\n\n\n\nTrain a Single Decision Tree\nLet’s train a decision tree and visualize how it splits the feature space.\n\n# Train a decision tree with limited depth\ntree = DecisionTreeClassifier(max_depth=3, random_state=RANDOM_STATE)\ntree.fit(X, y)\n\n# Calculate training accuracy\ntrain_accuracy = tree.score(X, y)\nprint(f\"Training Accuracy: {train_accuracy:.3f}\")\nprint(f\"Tree Depth: {tree.get_depth()}\")\nprint(f\"Number of Leaves: {tree.get_n_leaves()}\")\n\n\n# Visualize decision boundaries\ndef plot_decision_boundary(model, X, y, title=\"Decision Boundary\"):\n    \"\"\"\n    Plot decision boundary for a 2D classification problem.\n    \n    Parameters:\n    -----------\n    model : trained classifier\n    X : array-like, shape (n_samples, 2)\n    y : array-like, shape (n_samples,)\n    title : str\n    \"\"\"\n    # Create mesh grid\n    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5\n    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5\n    xx, yy = np.meshgrid(np.linspace(x_min, x_max, 200),\n                         np.linspace(y_min, y_max, 200))\n    \n    # Predict on mesh grid\n    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])\n    Z = Z.reshape(xx.shape)\n    \n    # Plot\n    plt.figure(figsize=(10, 6))\n    plt.contourf(xx, yy, Z, alpha=0.3, cmap='viridis', levels=1)\n    scatter = plt.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', \n                         s=50, alpha=0.8, edgecolors='k', linewidth=0.5)\n    plt.xlabel(feature_names[0], fontsize=12)\n    plt.ylabel(feature_names[1], fontsize=12)\n    plt.title(title, fontsize=14, fontweight='bold')\n    plt.colorbar(scatter, label='Class', ticks=[0, 1])\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nplot_decision_boundary(tree, X, y, \n                      title=\"Decision Tree: How It Splits the Feature Space\")\n\nprint(\"\\n💡 TIP: Notice the rectangular decision boundaries. Trees can only make\")\nprint(\"   axis-aligned splits (e.g., 'NIR &gt; 0.5'), not diagonal lines.\")\n\n\n\nVisualize the Tree Structure\nLet’s look inside the tree to see the actual decision rules it learned.\n\n# Plot the tree structure\nplt.figure(figsize=(20, 10))\nplot_tree(tree, \n         feature_names=feature_names,\n         class_names=class_names,\n         filled=True,\n         rounded=True,\n         fontsize=10)\nplt.title('Decision Tree Structure', fontsize=16, fontweight='bold', pad=20)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nHow to Read This Tree:\")\nprint(\"━\" * 60)\nprint(\"• Each box is a node with a decision rule (e.g., 'NIR &lt;= 0.5')\")\nprint(\"• 'gini' measures impurity (0 = pure, 0.5 = mixed)\")\nprint(\"• 'samples' shows how many training points reach this node\")\nprint(\"• 'value' shows class distribution [class 0, class 1]\")\nprint(\"• Color intensity indicates class majority (darker = more confident)\")\nprint(\"• Leaf nodes (bottom) make the final prediction\")\n\n\n\n🎯 Interactive Exercise: Effect of Tree Depth\nTask: Experiment with different max_depth values and observe how the decision boundary changes.\nQuestions to consider: 1. What happens with max_depth=1 (a “decision stump”)? 2. What happens with max_depth=10 (very deep tree)? 3. Which depth seems to balance simplicity and accuracy? 4. Can you identify overfitting?\n\n# TODO: Experiment with different max_depth values\n# Try: max_depth = 1, 2, 5, 10, None (unlimited)\n\nmax_depth_to_test = 1  # TODO: Change this value\n\ntree_experiment = DecisionTreeClassifier(max_depth=max_depth_to_test, \n                                        random_state=RANDOM_STATE)\ntree_experiment.fit(X, y)\n\naccuracy = tree_experiment.score(X, y)\nprint(f\"Max Depth: {max_depth_to_test}\")\nprint(f\"Training Accuracy: {accuracy:.3f}\")\nprint(f\"Actual Tree Depth: {tree_experiment.get_depth()}\")\nprint(f\"Number of Leaves: {tree_experiment.get_n_leaves()}\")\n\nplot_decision_boundary(tree_experiment, X, y, \n                      title=f\"Decision Tree with max_depth={max_depth_to_test}\")\n\nprint(\"\\n⚠️ COMMON MISTAKE: Setting max_depth=None can lead to overfitting!\")\nprint(\"   The tree will memorize training data instead of learning patterns.\")",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#c.-random-forest-voting-mechanism-15-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#c.-random-forest-voting-mechanism-15-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "C. Random Forest Voting Mechanism (15 minutes)",
+    "text": "C. Random Forest Voting Mechanism (15 minutes)\n\nThe Power of Ensemble Learning\nA single decision tree can be unstable: - Small changes in data can lead to completely different trees - Prone to overfitting (memorizing training data) - High variance in predictions\nRandom Forest solves this by combining many trees:\n\nBootstrap Sampling: Each tree trains on a random subset of data (sampling with replacement)\nRandom Feature Selection: Each split only considers a random subset of features\nMajority Voting: Final prediction is the class chosen by most trees\n\nAnalogy: Instead of asking one expert (one tree), you ask a committee of experts (forest) and take a vote. This “wisdom of the crowd” is more robust!\n\n# Train a Random Forest with just 5 trees (for visualization)\nn_trees = 5\nrf_small = RandomForestClassifier(n_estimators=n_trees, \n                                 max_depth=3,\n                                 random_state=RANDOM_STATE)\nrf_small.fit(X, y)\n\nrf_accuracy = rf_small.score(X, y)\nprint(f\"Random Forest Accuracy (5 trees): {rf_accuracy:.3f}\")\nprint(f\"Single Tree Accuracy (from before): {train_accuracy:.3f}\")\nprint(f\"\\nImprovement: {rf_accuracy - train_accuracy:.3f}\")\n\n\n\nVisualize Individual Trees in the Forest\nLet’s see how each tree makes different decisions.\n\n# Plot decision boundaries for each individual tree\nfig, axes = plt.subplots(2, 3, figsize=(18, 12))\naxes = axes.ravel()\n\n# Plot each individual tree\nfor idx, tree in enumerate(rf_small.estimators_):\n    ax = axes[idx]\n    \n    # Create mesh grid\n    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5\n    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5\n    xx, yy = np.meshgrid(np.linspace(x_min, x_max, 200),\n                         np.linspace(y_min, y_max, 200))\n    \n    # Predict\n    Z = tree.predict(np.c_[xx.ravel(), yy.ravel()])\n    Z = Z.reshape(xx.shape)\n    \n    # Plot\n    ax.contourf(xx, yy, Z, alpha=0.3, cmap='viridis', levels=1)\n    ax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', \n              s=30, alpha=0.6, edgecolors='k', linewidth=0.3)\n    ax.set_xlabel(feature_names[0])\n    ax.set_ylabel(feature_names[1])\n    ax.set_title(f'Tree {idx + 1}', fontweight='bold')\n    ax.grid(True, alpha=0.3)\n\n# Plot the ensemble (Random Forest)\nax = axes[5]\nx_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5\ny_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5\nxx, yy = np.meshgrid(np.linspace(x_min, x_max, 200),\n                     np.linspace(y_min, y_max, 200))\nZ = rf_small.predict(np.c_[xx.ravel(), yy.ravel()])\nZ = Z.reshape(xx.shape)\n\nax.contourf(xx, yy, Z, alpha=0.3, cmap='viridis', levels=1)\nax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', \n          s=30, alpha=0.6, edgecolors='k', linewidth=0.3)\nax.set_xlabel(feature_names[0])\nax.set_ylabel(feature_names[1])\nax.set_title('Random Forest (Ensemble)', fontweight='bold', color='red')\nax.grid(True, alpha=0.3)\n\nplt.suptitle('Individual Trees vs. Ensemble Decision', \n            fontsize=16, fontweight='bold', y=1.00)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n💡 TIP: Notice how each tree is slightly different due to bootstrap\")\nprint(\"   sampling and random feature selection. The ensemble smooths out\")\nprint(\"   individual errors and creates more stable boundaries.\")\n\n\n\nVisualize Voting Confidence\nRandom Forest can provide prediction probabilities based on the proportion of trees voting for each class.\n\n# Get prediction probabilities\nx_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5\ny_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5\nxx, yy = np.meshgrid(np.linspace(x_min, x_max, 200),\n                     np.linspace(y_min, y_max, 200))\n\n# Predict probabilities for class 1 (Vegetation)\nZ_proba = rf_small.predict_proba(np.c_[xx.ravel(), yy.ravel()])[:, 1]\nZ_proba = Z_proba.reshape(xx.shape)\n\n# Plot confidence\nplt.figure(figsize=(12, 7))\ncontour = plt.contourf(xx, yy, Z_proba, levels=20, cmap='RdYlGn', alpha=0.8)\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', \n           s=50, alpha=0.7, edgecolors='k', linewidth=0.5)\nplt.colorbar(contour, label='Confidence for Vegetation Class')\nplt.xlabel(feature_names[0], fontsize=12)\nplt.ylabel(feature_names[1], fontsize=12)\nplt.title('Random Forest Prediction Confidence\\n(Based on Voting Proportions)', \n         fontsize=14, fontweight='bold')\nplt.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nInterpreting Confidence:\")\nprint(\"━\" * 60)\nprint(\"• Green (high values): Most trees vote for 'Vegetation'\")\nprint(\"• Red (low values): Most trees vote for 'Water/Urban'\")\nprint(\"• Yellow (middle values): Trees are uncertain (mixed votes)\")\nprint(\"\\n💡 TIP: Low confidence regions often indicate:\")\nprint(\"   - Class boundaries\")\nprint(\"   - Mixed pixels (in EO context)\")\nprint(\"   - Need for more training data\")\n\n\n\n🎯 Interactive Exercise: Effect of Number of Trees\nTask: Test how the number of trees affects model stability and accuracy.\nHypothesis: More trees → more stable predictions, but diminishing returns after a certain point.\n\n# TODO: Test different numbers of trees\ntree_counts = [1, 5, 10, 50, 100, 200]\naccuracies = []\n\nfor n in tree_counts:\n    # TODO: Create and train a Random Forest with n trees\n    rf = RandomForestClassifier(n_estimators=n, \n                               max_depth=3,\n                               random_state=RANDOM_STATE)\n    rf.fit(X, y)\n    acc = rf.score(X, y)\n    accuracies.append(acc)\n    print(f\"n_estimators={n:3d} → Accuracy: {acc:.4f}\")\n\n# Plot accuracy vs. number of trees\nplt.figure(figsize=(10, 6))\nplt.plot(tree_counts, accuracies, marker='o', linewidth=2, markersize=8)\nplt.xlabel('Number of Trees', fontsize=12)\nplt.ylabel('Training Accuracy', fontsize=12)\nplt.title('Effect of Ensemble Size on Accuracy', fontsize=14, fontweight='bold')\nplt.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n📊 Observation: Accuracy stabilizes after ~50-100 trees.\")\nprint(\"   In practice, 100-500 trees is common for EO applications.\")",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#d.-feature-importance-analysis-10-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#d.-feature-importance-analysis-10-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "D. Feature Importance Analysis (10 minutes)",
+    "text": "D. Feature Importance Analysis (10 minutes)\n\nWhy Feature Importance Matters in EO\nFeature importance tells us: - Which spectral bands contribute most to classification - Whether derived indices (NDVI, NDWI) are valuable - If certain features are redundant - How to optimize future data collection\nHow Random Forest Calculates Importance: - Measures how much each feature decreases impurity (Gini or entropy) - Averaged across all trees in the forest - Higher values = more important for classification\n\n# Create a dataset mimicking Sentinel-2 spectral bands\nnp.random.seed(RANDOM_STATE)\n\n# Simulate 1000 pixels with 8 \"spectral bands\"\nn_samples = 1000\nn_features = 8\n\n# Feature names mimicking Sentinel-2 bands and indices\neo_feature_names = [\n    'Blue (B2)',\n    'Green (B3)',\n    'Red (B4)',\n    'NIR (B8)',\n    'SWIR1 (B11)',\n    'SWIR2 (B12)',\n    'NDVI',\n    'NDWI'\n]\n\n# Create synthetic data with realistic patterns\n# Class 0: Water (low NIR, high Blue, high NDWI)\n# Class 1: Vegetation (high NIR, low Red, high NDVI)\n# Class 2: Urban (moderate all, low NDVI, low NDWI)\n\nX_eo = np.random.rand(n_samples, n_features)\ny_eo = np.random.choice([0, 1, 2], size=n_samples)\n\n# Add class-specific patterns\nfor i in range(n_samples):\n    if y_eo[i] == 0:  # Water\n        X_eo[i, 0] += 0.3  # Higher Blue\n        X_eo[i, 3] -= 0.3  # Lower NIR\n        X_eo[i, 7] += 0.4  # Higher NDWI\n    elif y_eo[i] == 1:  # Vegetation\n        X_eo[i, 3] += 0.5  # Higher NIR\n        X_eo[i, 2] -= 0.2  # Lower Red\n        X_eo[i, 6] += 0.5  # Higher NDVI\n    else:  # Urban\n        X_eo[i, 4] += 0.2  # Higher SWIR1\n        X_eo[i, 5] += 0.2  # Higher SWIR2\n\n# Clip to [0, 1] range\nX_eo = np.clip(X_eo, 0, 1)\n\nprint(f\"EO Dataset shape: {X_eo.shape}\")\nprint(f\"Features: {eo_feature_names}\")\nprint(f\"Classes: 0=Water, 1=Vegetation, 2=Urban\")\nprint(f\"Class distribution: {np.bincount(y_eo)}\")\n\n\n# Train Random Forest on EO-like data\nrf_eo = RandomForestClassifier(n_estimators=100, \n                              max_depth=10,\n                              random_state=RANDOM_STATE)\nrf_eo.fit(X_eo, y_eo)\n\n# Extract feature importances\nimportances = rf_eo.feature_importances_\nindices = np.argsort(importances)[::-1]  # Sort descending\n\nprint(\"Feature Importance Ranking:\")\nprint(\"━\" * 60)\nfor i, idx in enumerate(indices):\n    print(f\"{i+1}. {eo_feature_names[idx]:15s}: {importances[idx]:.4f}\")\n\n\n# Visualize feature importances\nplt.figure(figsize=(12, 7))\nbars = plt.barh(range(len(importances)), importances[indices], align='center')\n\n# Color bars by importance\ncolors = plt.cm.viridis(importances[indices] / importances.max())\nfor bar, color in zip(bars, colors):\n    bar.set_color(color)\n\nplt.yticks(range(len(importances)), [eo_feature_names[i] for i in indices])\nplt.xlabel('Importance (Mean Decrease in Impurity)', fontsize=12)\nplt.ylabel('Feature', fontsize=12)\nplt.title('Feature Importance for Land Cover Classification', \n         fontsize=14, fontweight='bold')\nplt.grid(True, axis='x', alpha=0.3)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n💡 TIP: High importance doesn't always mean causation!\")\nprint(\"   - NDVI is derived from NIR and Red, so they're correlated\")\nprint(\"   - Consider domain knowledge alongside feature importance\")\nprint(\"   - Importance can be unstable with correlated features\")\n\n\n\n🎯 Exercise: Interpret Feature Importance\nQuestions: 1. Which feature is most important? Why might this be? 2. Are the derived indices (NDVI, NDWI) more or less important than raw bands? 3. Which features could potentially be removed to simplify the model? 4. How does this align with your knowledge of land cover spectral signatures?\nYour answers here (double-click to edit):\n\nMost important feature:\n\nTODO: Write your observation\n\nDerived indices vs. raw bands:\n\nTODO: Write your analysis\n\nFeatures that could be removed:\n\nTODO: Write your suggestions\n\nAlignment with spectral signatures:\n\nTODO: Write your interpretation",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#e.-confusion-matrix-interpretation-15-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#e.-confusion-matrix-interpretation-15-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "E. Confusion Matrix Interpretation (15 minutes)",
+    "text": "E. Confusion Matrix Interpretation (15 minutes)\n\nWhy Confusion Matrix?\nOverall accuracy can be misleading! Consider: - Dataset: 95% Forest, 5% Mangrove - Model: Predicts everything as Forest - Accuracy: 95% (sounds great!) - Problem: Completely missed mangroves!\nConfusion Matrix reveals: - Which classes are well-predicted - Which classes are confused with each other - Class-specific performance (precision, recall)\n\n\nKey Metrics:\n\nPrecision (User’s Accuracy): Of all pixels predicted as class X, how many are actually class X?\n\nFormula: TP / (TP + FP)\nImportant when false positives are costly\n\nRecall (Producer’s Accuracy): Of all actual class X pixels, how many did we correctly identify?\n\nFormula: TP / (TP + FN)\nImportant when false negatives are costly\n\nF1-Score: Harmonic mean of precision and recall\n\nFormula: 2 × (Precision × Recall) / (Precision + Recall)\nBalances both metrics\n\n\n\n# Split data into train and test sets\nX_train, X_test, y_train, y_test = train_test_split(\n    X_eo, y_eo, test_size=0.3, random_state=RANDOM_STATE, stratify=y_eo\n)\n\nprint(f\"Training set size: {X_train.shape[0]}\")\nprint(f\"Test set size: {X_test.shape[0]}\")\nprint(f\"Training class distribution: {np.bincount(y_train)}\")\nprint(f\"Test class distribution: {np.bincount(y_test)}\")\n\nprint(\"\\n💡 TIP: We use stratified split to maintain class proportions.\")\n\n\n# Train Random Forest\nrf_final = RandomForestClassifier(n_estimators=100, \n                                 max_depth=10,\n                                 random_state=RANDOM_STATE)\nrf_final.fit(X_train, y_train)\n\n# Make predictions\ny_pred = rf_final.predict(X_test)\n\n# Calculate overall accuracy\noverall_accuracy = accuracy_score(y_test, y_pred)\nprint(f\"Overall Test Accuracy: {overall_accuracy:.3f}\")\n\n\n# Generate confusion matrix\ncm = confusion_matrix(y_test, y_pred)\nclass_labels = ['Water', 'Vegetation', 'Urban']\n\nprint(\"Confusion Matrix (raw counts):\")\nprint(\"━\" * 60)\nprint(cm)\nprint(\"\\nRows = Actual class, Columns = Predicted class\")\n\n\n# Visualize confusion matrix as heatmap\nplt.figure(figsize=(10, 8))\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues', \n           xticklabels=class_labels, \n           yticklabels=class_labels,\n           cbar_kws={'label': 'Number of Samples'},\n           linewidths=1, linecolor='gray')\nplt.xlabel('Predicted Class', fontsize=12, fontweight='bold')\nplt.ylabel('Actual Class', fontsize=12, fontweight='bold')\nplt.title('Confusion Matrix: Land Cover Classification', \n         fontsize=14, fontweight='bold', pad=15)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nHow to Read This Matrix:\")\nprint(\"━\" * 60)\nprint(\"• Diagonal (top-left to bottom-right): Correct predictions\")\nprint(\"• Off-diagonal: Confusion between classes\")\nprint(\"• Dark blue cells indicate high counts\")\nprint(\"\\n💡 TIP: Look for patterns in confusion:\")\nprint(\"   - Are certain class pairs often confused?\")\nprint(\"   - Do confusions make spectral sense?\")\n\n\n# Calculate normalized confusion matrix (percentages)\ncm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]\n\nplt.figure(figsize=(10, 8))\nsns.heatmap(cm_normalized, annot=True, fmt='.2%', cmap='RdYlGn', \n           xticklabels=class_labels, \n           yticklabels=class_labels,\n           vmin=0, vmax=1,\n           cbar_kws={'label': 'Percentage'},\n           linewidths=1, linecolor='gray')\nplt.xlabel('Predicted Class', fontsize=12, fontweight='bold')\nplt.ylabel('Actual Class', fontsize=12, fontweight='bold')\nplt.title('Normalized Confusion Matrix (Row Percentages)', \n         fontsize=14, fontweight='bold', pad=15)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n💡 TIP: Normalized matrix shows recall (producer's accuracy) for each class.\")\nprint(\"   Diagonal values are the percentage correctly classified for each class.\")\n\n\n\nCalculate Detailed Metrics\n\n# Generate classification report\nprint(\"Classification Report:\")\nprint(\"━\" * 80)\nreport = classification_report(y_test, y_pred, \n                              target_names=class_labels,\n                              digits=3)\nprint(report)\n\nprint(\"\\nMetric Definitions:\")\nprint(\"━\" * 80)\nprint(\"• Precision (User's Accuracy): TP / (TP + FP)\")\nprint(\"  → Of predictions for this class, how many were correct?\")\nprint(\"  → Important when false alarms are costly\")\nprint(\"\")\nprint(\"• Recall (Producer's Accuracy): TP / (TP + FN)\")\nprint(\"  → Of actual samples of this class, how many were found?\")\nprint(\"  → Important when missing instances is costly\")\nprint(\"\")\nprint(\"• F1-Score: 2 × (Precision × Recall) / (Precision + Recall)\")\nprint(\"  → Harmonic mean balancing precision and recall\")\nprint(\"\")\nprint(\"• Support: Number of actual samples in test set\")\n\n\n# Visualize per-class metrics\nfrom sklearn.metrics import precision_score, recall_score, f1_score\n\nprecision = precision_score(y_test, y_pred, average=None)\nrecall = recall_score(y_test, y_pred, average=None)\nf1 = f1_score(y_test, y_pred, average=None)\n\n# Create DataFrame for easier plotting\nmetrics_df = pd.DataFrame({\n    'Precision': precision,\n    'Recall': recall,\n    'F1-Score': f1\n}, index=class_labels)\n\n# Plot\nax = metrics_df.plot(kind='bar', figsize=(12, 7), width=0.8)\nplt.xlabel('Land Cover Class', fontsize=12)\nplt.ylabel('Score', fontsize=12)\nplt.title('Per-Class Performance Metrics', fontsize=14, fontweight='bold')\nplt.xticks(rotation=0)\nplt.ylim([0, 1.05])\nplt.legend(loc='lower right', fontsize=11)\nplt.grid(True, axis='y', alpha=0.3)\nplt.axhline(y=0.8, color='r', linestyle='--', alpha=0.5, label='80% threshold')\nplt.tight_layout()\nplt.show()\n\nprint(\"\\n💡 TIP: In EO applications, different thresholds matter:\")\nprint(\"   - Disaster mapping: High recall for affected areas (don't miss damage)\")\nprint(\"   - Urban planning: High precision for built-up (avoid false alarms)\")\nprint(\"   - Balanced: Use F1-score for overall assessment\")\n\n\n\n🎯 Exercise: Confusion Analysis\nTask: Analyze the confusion matrix and answer these questions:\n\nWhich class has the highest recall (producer’s accuracy)?\nWhich class has the lowest precision (user’s accuracy)?\nWhich two classes are most often confused with each other?\nWhy might this confusion occur from a spectral perspective?\nWhat could you do to improve classification of the weakest class?\n\nYour answers here (double-click to edit):\n\nHighest recall class:\n\nTODO: Identify and explain\n\nLowest precision class:\n\nTODO: Identify and explain\n\nMost confused class pair:\n\nTODO: Identify the pair\n\nSpectral reason for confusion:\n\nTODO: Explain using spectral signature knowledge\n\nImprovement strategies:\n\nTODO: List 2-3 practical approaches",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#f.-concept-check-quiz-10-minutes",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#f.-concept-check-quiz-10-minutes",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "F. Concept Check Quiz (10 minutes)",
+    "text": "F. Concept Check Quiz (10 minutes)\nTest your understanding of Random Forest concepts!\n\nQuestion 1: Decision Tree Splitting\nQ: How does a decision tree decide where to split at each node?\n\nRandomly selects a feature and threshold\n\nUses the feature and threshold that maximizes information gain (or minimizes impurity)\n\nAlways splits at the median value of each feature\n\nSplits based on alphabetical order of feature names\n\nYour answer: TODO (A, B, C, or D)\n\n\nClick to reveal answer\n\nCorrect Answer: B\nDecision trees evaluate all possible splits and choose the one that best separates classes (maximizes information gain or minimizes Gini impurity). This greedy approach finds locally optimal splits at each node.\n\n\n\nQuestion 2: Bootstrap Sampling\nQ: In Random Forest, what is bootstrap sampling?\n\nSampling pixels only from the edges of images\n\nSampling with replacement to create training subsets for each tree\n\nSampling only the most important features\n\nSampling validation data separately from training data\n\nYour answer: TODO (A, B, C, or D)\n\n\nClick to reveal answer\n\nCorrect Answer: B\nBootstrap sampling means randomly selecting samples WITH replacement. Each tree gets a different random subset of the training data (approximately 63.2% unique samples), which introduces diversity and reduces correlation between trees.\n\n\n\nQuestion 3: Random Feature Selection\nQ: At each split in a Random Forest tree, what does “random feature selection” mean?\n\nAll features are considered for splitting\n\nFeatures are selected in alphabetical order\n\nOnly a random subset of features is considered (typically √n or log₂n)\n\nThe most important feature is always selected\n\nYour answer: TODO (A, B, C, or D)\n\n\nClick to reveal answer\n\nCorrect Answer: C\nAt each split, Random Forest only considers a random subset of features (controlled by max_features parameter). Default is √n for classification. This decorrelates trees and prevents dominant features from being used in every tree.\n\n\n\nQuestion 4: Feature Importance Interpretation\nQ: You’re classifying land cover and find that NDVI has the highest feature importance. What should you conclude?\n\nNDVI is the only feature needed; remove all others\n\nNDVI contributes most to reducing impurity, but other features may still be valuable\n\nNDVI causes the land cover types (causal relationship)\n\nAll other features are completely irrelevant\n\nYour answer: TODO (A, B, C, or D)\n\n\nClick to reveal answer\n\nCorrect Answer: B\nHigh importance means NDVI is most useful for discrimination, but: - Other features may capture complementary information - Importance doesn’t imply causation - Correlated features share importance - Context and domain knowledge matter!\n\n\n\nQuestion 5: Confusion Matrix - Precision vs. Recall\nScenario: You’re mapping forest fire damage. The confusion matrix shows: - Actual Burned: 100 pixels - Predicted as Burned: 150 pixels - Correctly identified Burned: 90 pixels\nQ: Calculate precision and recall for the “Burned” class. Which is more important for this application?\nYour calculations: - Precision = TODO (show calculation) - Recall = TODO (show calculation) - More important: TODO (Precision or Recall, and why?)\n\n\nClick to reveal answer\n\nAnswers: - Precision = 90 / 150 = 0.60 (60%) - Of pixels predicted as burned, 60% actually were - Recall = 90 / 100 = 0.90 (90%) - Of actual burned pixels, we found 90%\nMore Important: Recall\nFor fire damage assessment: - High recall is critical: We don’t want to miss burned areas (false negatives could delay aid) - Lower precision is acceptable: False alarms can be verified with field checks - It’s better to overestimate damage than underestimate\n\n\n\nQuestion 6: Overfitting in Random Forest\nQ: Which scenario is MOST likely to cause overfitting in Random Forest?\n\nUsing 100 trees instead of 10\n\nSetting max_depth=None (unlimited depth)\n\nUsing bootstrap sampling\n\nUsing random feature selection\n\nYour answer: TODO (A, B, C, or D)\n\n\nClick to reveal answer\n\nCorrect Answer: B\nUnlimited depth allows trees to grow until leaves are pure (or nearly pure), memorizing training data. Signs of overfitting: - Very high training accuracy (&gt;99%) - Much lower test accuracy - Overly complex decision boundaries\nPrevention: - Set max_depth (e.g., 10-20) - Set min_samples_split (e.g., 5-10) - Set min_samples_leaf (e.g., 2-5)\nNote: More trees (A) actually reduces overfitting! Bootstrap (C) and feature selection (D) also help prevent it.",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#summary-and-key-takeaways",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#summary-and-key-takeaways",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "Summary and Key Takeaways",
+    "text": "Summary and Key Takeaways\n\nDecision Trees\n\nLearn hierarchical decision rules through recursive splitting\nCreate axis-aligned decision boundaries\nProne to overfitting if too deep\nEasy to interpret and visualize\n\n\n\nRandom Forest Ensemble\n\nCombines many trees to reduce variance and improve stability\nUses bootstrap sampling (bagging) for training diversity\nUses random feature selection to decorrelate trees\nFinal prediction by majority voting (classification) or averaging (regression)\nMore robust than single trees, less prone to overfitting\n\n\n\nFeature Importance\n\nMeasures contribution of each feature to reducing impurity\nHelps identify most informative spectral bands/indices\nUseful for feature selection and model interpretation\nShould be interpreted with domain knowledge\nCan be unstable with correlated features\n\n\n\nConfusion Matrix & Metrics\n\nOverall accuracy can hide class-specific problems\nPrecision (user’s accuracy): Reliability of positive predictions\nRecall (producer’s accuracy): Completeness of detection\nF1-score: Harmonic mean balancing precision and recall\nChoice of metric depends on application cost (false positives vs. false negatives)\n\n\n\nFor Earth Observation\n\nRandom Forest works well with multi-spectral data\nNo feature scaling needed (unlike neural networks)\nFeature importance reveals spectral signature insights\nConfusion patterns often reflect spectral similarity\nFast training enables rapid iteration",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#next-steps",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#next-steps",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "Next Steps",
+    "text": "Next Steps\nIn the Hands-On Session, you will: 1. Load real Sentinel-2 data for Palawan, Philippines 2. Extract training samples from land cover polygons 3. Train Random Forest for multi-class land cover classification 4. Optimize hyperparameters (n_estimators, max_depth, etc.) 5. Generate wall-to-wall land cover maps 6. Validate results and interpret errors\nPrepare by reviewing: - Sentinel-2 band characteristics (B2, B3, B4, B8, B11, B12) - Philippine land cover types (forest, mangrove, agriculture, urban, water) - Google Earth Engine Python API basics",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day2/notebooks/session1_theory_notebook_STUDENT.html#references",
+    "href": "day2/notebooks/session1_theory_notebook_STUDENT.html#references",
+    "title": "Session 1 Theory: Understanding Random Forest for Earth Observation",
+    "section": "References",
+    "text": "References\n\nBreiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.\nBelgiu, M., & Drăguţ, L. (2016). Random forest in remote sensing: A review of applications and future directions. ISPRS Journal of Photogrammetry and Remote Sensing, 114, 24-31.\nScikit-learn Documentation: Random Forest Classifier\nESA Sentinel-2 User Handbook: https://sentinels.copernicus.eu/documents/247904/685211/Sentinel-2_User_Handbook\n\n\nEnd of Theory Notebook\nDeveloped for CoPhil 4-Day Advanced Online Training on AI/ML for Earth Observation",
+    "crumbs": [
+      "Notebooks",
+      "Session 1 Theory: Understanding Random Forest for Earth Observation"
+    ]
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#session-overview",
+    "href": "day3/presentations/session1_unet_segmentation.html#session-overview",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Session Overview",
+    "text": "Session Overview\n\n\nDuration: 1.5 hours\nType: Theory + Discussion\nGoal: Understand semantic segmentation and U-Net for EO\nYou will learn: - What semantic segmentation is and why it matters for EO - U-Net architecture: encoder, decoder, skip connections - Losses for segmentation: CE, Dice, IoU - EO applications: floods, land cover, roads, buildings\n\nPrerequisites: - Day 2 Session 3 (CNNs) - Basic Python/Colab\nResources: - Hands-on lab in Session 2 (flood mapping)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#pixel-wise-classification-vs-other-cv-tasks",
+    "href": "day3/presentations/session1_unet_segmentation.html#pixel-wise-classification-vs-other-cv-tasks",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Pixel-wise classification vs other CV tasks",
+    "text": "Pixel-wise classification vs other CV tasks\n\nClassification → single label per image\nObject detection → boxes + labels per instance\nSemantic segmentation → label for every pixel\n\n\n\n\n\n\nflowchart TB\n    A[Computer Vision Tasks] --&gt; B[Classification]\n    A --&gt; C[Object Detection]\n    A --&gt; D[Semantic Segmentation]\n    B --&gt; B1[Image-level]\n    C --&gt; C1[Boxes + classes]\n    D --&gt; D1[Pixel masks]\n\n\n\n\n\n\n\n\n\n\n\n\nWhy segmentation for EO?\n\n\n\nPrecise boundaries (flood edges, building footprints)\nAccurate area calculations (km² flooded)\nEnables fine-grained change detection"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#high-level-overview",
+    "href": "day3/presentations/session1_unet_segmentation.html#high-level-overview",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "High-level overview",
+    "text": "High-level overview\n\nEncoder (contracting path): features ↑, resolution ↓\nBottleneck: global context\nDecoder (expansive path): upsample + refine\nSkip connections: fuse detail from encoder into decoder\n\n\n\n\n\n\nflowchart TD\n    A[Input] --&gt; B[Encoder]\n    B --&gt; C[Bottleneck]\n    C --&gt; D[Decoder]\n    D --&gt; E[Output Mask]\n    B -.-&gt; D"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#skip-connections-the-key",
+    "href": "day3/presentations/session1_unet_segmentation.html#skip-connections-the-key",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Skip connections: the key",
+    "text": "Skip connections: the key\n\nPreserve high-resolution details lost during pooling\nConcatenate encoder features with upsampled decoder features\nSharper boundaries, better small structures (roads, levees)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#encoder-details",
+    "href": "day3/presentations/session1_unet_segmentation.html#encoder-details",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Encoder details",
+    "text": "Encoder details\n\nBlocks: 2× Conv(3×3, ReLU) → MaxPool(2×2)\nSpatial dims halve, channels double\nMulti-scale feature hierarchy (edges → textures → semantics)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#decoder-details",
+    "href": "day3/presentations/session1_unet_segmentation.html#decoder-details",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Decoder details",
+    "text": "Decoder details\n\nUpsample via TransposedConv or Bilinear + Conv\nConcatenate with corresponding encoder features (same size)\n1×1 Conv at end to produce class logits (per pixel)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#imbalance-is-common-in-eo",
+    "href": "day3/presentations/session1_unet_segmentation.html#imbalance-is-common-in-eo",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Imbalance is common in EO",
+    "text": "Imbalance is common in EO\n\nFlood pixels &lt;&lt; background pixels\nBuildings/roads are sparse\n\nOptions\n\nPixel-wise Cross-Entropy (with class weights)\nDice loss (overlap-focused)\nIoU/Jaccard loss\nCombined loss (BCE + Dice) → robust baseline\n\n\n\n\n\n\n\nPractical recommendation\n\n\nUse Combined (BCE + Dice) for flood/building tasks with imbalance."
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#flood-mapping-drr",
+    "href": "day3/presentations/session1_unet_segmentation.html#flood-mapping-drr",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Flood Mapping (DRR)",
+    "text": "Flood Mapping (DRR)\n\nSentinel-1 SAR (VV/VH) → binary flood masks\nU-Net excels at delineating flood boundaries in dark backscatter regions"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#land-cover-mapping-nrm",
+    "href": "day3/presentations/session1_unet_segmentation.html#land-cover-mapping-nrm",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Land Cover Mapping (NRM)",
+    "text": "Land Cover Mapping (NRM)\n\nMulti-class masks from Sentinel-2 bands/indices\nPrecise boundaries between forest / agriculture / urban"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#roads-buildings-urban",
+    "href": "day3/presentations/session1_unet_segmentation.html#roads-buildings-urban",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Roads & Buildings (Urban)",
+    "text": "Roads & Buildings (Urban)\n\nThin linear features and compact footprints benefit from skips"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#implementation-notes",
+    "href": "day3/presentations/session1_unet_segmentation.html#implementation-notes",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Implementation Notes",
+    "text": "Implementation Notes\n\nInput sizes: 256×256 or 512×512 chips\nNormalization: SAR (dB scaling), Optical (0–1)\nAugmentation: flips/rotations; ensure image & mask transformed identically\nMetrics: Dice, IoU, Precision/Recall (minority class focus)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#key-takeaways",
+    "href": "day3/presentations/session1_unet_segmentation.html#key-takeaways",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Key takeaways",
+    "text": "Key takeaways\n\nU-Net = encoder–decoder + skip connections → precise masks\nOverlap-focused losses improve minority-class performance\nPerfect fit for EO segmentation tasks (floods, land cover, roads)"
+  },
+  {
+    "objectID": "day3/presentations/session1_unet_segmentation.html#next-session-2",
+    "href": "day3/presentations/session1_unet_segmentation.html#next-session-2",
+    "title": "Session 1: Semantic Segmentation with U-Net",
+    "section": "Next (Session 2)",
+    "text": "Next (Session 2)\n\nHands-on: Train U-Net flood mapper on Sentinel-1 SAR\nEvaluate with IoU/Dice; export masks for GIS"
   }
 ]
