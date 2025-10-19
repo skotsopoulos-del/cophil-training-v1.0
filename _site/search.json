@@ -1726,7 +1726,7 @@
     "href": "index.html#course-resources",
     "title": "CoPhil EO AI/ML Training",
     "section": "Course Resources",
-    "text": "Course Resources\nEverything you need for a successful learning experience:\n\n\n\n\nSetup Guide\nComplete technical setup instructions for Google Colab, Earth Engine, and required accounts.\nView Guide →\n\n\n\n\n\nPhilippine EO Resources\nDirectory of Philippine EO platforms, agencies, and data access portals.\nExplore Resources →\n\n\n\n\n\nDownload Materials\nAccess all course notebooks, datasets, presentations, and supplementary materials.\nDownload →\n\n\n\n\n\nFAQ\nCommon questions and troubleshooting tips for technical issues and course content.\nBrowse FAQ →\n\n\n\n\n\nGlossary\nComprehensive definitions of EO, AI/ML, and geospatial terminology used throughout the course.\nView Glossary →\n\n\n\n\n\nCheat Sheets\nQuick reference guides for Python, geospatial libraries, and machine learning workflows.\nGet Cheat Sheets →"
+    "text": "Course Resources\nEverything you need for a successful learning experience:\n\n\n\n\nSetup Guide\nComplete technical setup instructions for Google Colab, Earth Engine, and required accounts.\nView Guide →\n\n\n\n\n\nPhilippine EO Resources\nDirectory of Philippine EO platforms, agencies, and data access portals.\nExplore Resources →\n\n\n\n\n\nDownload Materials\nAccess all course notebooks, datasets, presentations, and supplementary materials.\nDownload →\n\n\n\n\n\nFAQ\nCommon questions and troubleshooting tips for technical issues and course content.\nBrowse FAQ →\n\n\n\n\n\nGlossary\nComprehensive definitions of EO, AI/ML, and geospatial terminology used throughout the course.\nView Glossary →\n\n\n\n\n\nCheat Sheets\nQuick reference guides for Python, geospatial libraries, and machine learning workflows.\nGet Cheat Sheets →\n\n\n\n\n\nQuestions & Support\nAsk questions, report issues, or discuss course content with instructors and fellow participants.\nAsk a Question →"
   },
   {
     "objectID": "index.html#about-cophil-programme",
@@ -1754,14 +1754,14 @@
     "href": "index.html#need-help",
     "title": "CoPhil EO AI/ML Training",
     "section": "Need Help?",
-    "text": "Need Help?\nThroughout the training, you can:\n\nAsk questions during live sessions\nConsult the FAQ for common issues\nCheck the Glossary for term definitions\nDownload Cheat Sheets for quick reference\nAccess the Philippine EO Resources directory\nContact instructors or teaching assistants"
+    "text": "Need Help?\n\n\n\n\n\n\nTipAsk Questions & Get Support\n\n\n\nHave a question about the course content or facing technical issues?\nVisit our GitHub Issues page to:\n\nAsk questions about course material, exercises, or concepts\nReport technical issues with notebooks, data access, or setup\nShare insights and discuss solutions with fellow participants\nGet help from instructors and teaching assistants\nSearch existing discussions - your question may already be answered!\n\nAsk a Question or Report an Issue →\n\n\nThroughout the training, you can also:\n\nAsk questions during live sessions\nConsult the FAQ for common issues\nCheck the Glossary for term definitions\nDownload Cheat Sheets for quick reference\nAccess the Philippine EO Resources directory"
   },
   {
     "objectID": "index.html#technical-support",
     "href": "index.html#technical-support",
     "title": "CoPhil EO AI/ML Training",
     "section": "Technical Support",
-    "text": "Technical Support\n\n\n\n\n\n\nNoteGetting Help\n\n\n\nFor technical issues: - Google Colab problems: See Setup Guide - Data access issues: Check session-specific troubleshooting - Course questions: Contact instructors during sessions - Email support: info@philsa.gov.ph"
+    "text": "Technical Support\n\n\n\n\n\n\nNoteGetting Help\n\n\n\nFor technical issues: - Questions & Issues: Post on GitHub Issues for community support - Google Colab problems: See Setup Guide - Data access issues: Check session-specific troubleshooting - Course questions: Ask during live sessions or post on GitHub Issues - Email support: skotsopoulos@neuralio.ai"
   },
   {
     "objectID": "index.html#acknowledgments",

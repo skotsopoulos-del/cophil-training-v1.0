@@ -253,6 +253,15 @@ Quick reference guides for Python, geospatial libraries, and machine learning wo
 
 [Get Cheat Sheets →](resources/cheatsheets.qmd){.btn .btn-outline-primary .btn-sm}
 :::
+
+::: {.resource-card}
+<i class="bi bi-chat-dots-fill" style="font-size: 2.5rem; color: #003399; margin-bottom: 1rem;"></i>
+
+### Questions & Support
+Ask questions, report issues, or discuss course content with instructors and fellow participants.
+
+[Ask a Question →](https://github.com/skotsopoulos-del/cophil-training-v1.0/issues){.btn .btn-outline-primary .btn-sm target="_blank"}
+:::
 :::
 
 ## About CoPhil Programme
@@ -304,14 +313,29 @@ The **CoPhil Programme** is part of the EU-Philippines cooperation programme and
 
 ## Need Help?
 
-Throughout the training, you can:
+::: {.callout-tip}
+## Ask Questions & Get Support
+
+**Have a question about the course content or facing technical issues?**
+
+Visit our [GitHub Issues page](https://github.com/skotsopoulos-del/cophil-training-v1.0/issues){target="_blank"} to:
+
+- **Ask questions** about course material, exercises, or concepts
+- **Report technical issues** with notebooks, data access, or setup
+- **Share insights** and discuss solutions with fellow participants
+- **Get help from instructors** and teaching assistants
+- **Search existing discussions** - your question may already be answered!
+
+[Ask a Question or Report an Issue →](https://github.com/skotsopoulos-del/cophil-training-v1.0/issues){.btn .btn-primary target="_blank"}
+:::
+
+Throughout the training, you can also:
 
 - Ask questions during live sessions
 - Consult the [FAQ](resources/faq.qmd) for common issues
 - Check the [Glossary](resources/glossary.qmd) for term definitions
 - Download [Cheat Sheets](resources/cheatsheets.qmd) for quick reference
 - Access the [Philippine EO Resources](resources/philippine-eo.qmd) directory
-- Contact instructors or teaching assistants
 
 ## Technical Support
 
@@ -319,10 +343,11 @@ Throughout the training, you can:
 ## Getting Help
 
 For technical issues:
+- **Questions & Issues:** Post on [GitHub Issues](https://github.com/skotsopoulos-del/cophil-training-v1.0/issues){target="_blank"} for community support
 - **Google Colab problems:** See [Setup Guide](resources/setup.qmd)
 - **Data access issues:** Check session-specific troubleshooting
-- **Course questions:** Contact instructors during sessions
-- **Email support:** info@philsa.gov.ph
+- **Course questions:** Ask during live sessions or post on GitHub Issues
+- **Email support:** [skotsopoulos@neuralio.ai](mailto:skotsopoulos@neuralio.ai)
 :::
 
 ## Acknowledgments
