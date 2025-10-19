@@ -50,43 +50,13 @@ jobs:
       - name: Render Quarto site
         run: quarto render
 
-      - name: Set up Node.js for Decktape
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Decktape
-        run: npm install -g decktape
-
-      - name: Generate PDFs from presentations
+      - name: Copy pre-generated PDFs to site
         run: |
-          # Day 1 presentations
-          cd _site/day1/presentations
-          for file in 01_session1_copernicus_philippine_eo 02_session2_ai_ml_fundamentals 03_session3_python_geospatial 04_session4_google_earth_engine; do
-            decktape reveal ${file}.html ${file}.pdf --size 1920x1080 || echo "Failed to generate ${file}.pdf"
-          done
-          cd ../../..
-
-          # Day 2 presentations
-          cd _site/day2/presentations
-          for file in session1_random_forest session2_palawan_lab session3_deep_learning session4_cnn_lab; do
-            decktape reveal ${file}.html ${file}.pdf --size 1920x1080 || echo "Failed to generate ${file}.pdf"
-          done
-          cd ../../..
-
-          # Day 3 presentations
-          cd _site/day3/presentations
-          for file in session1_unet_segmentation session2_flood_mapping_lab session3_object_detection session4_object_detection_lab; do
-            decktape reveal ${file}.html ${file}.pdf --size 1920x1080 || echo "Failed to generate ${file}.pdf"
-          done
-          cd ../../..
-
-          # Day 4 presentations
-          cd _site/day4/presentations
-          for file in session1_lstm_time_series session2_drought_lab session3_emerging_ai session4_synthesis; do
-            decktape reveal ${file}.html ${file}.pdf --size 1920x1080 || echo "Failed to generate ${file}.pdf"
-          done
-          cd ../../..
+          cp -r pdfs/day1/*.pdf _site/day1/presentations/
+          cp -r pdfs/day2/*.pdf _site/day2/presentations/
+          cp -r pdfs/day3/*.pdf _site/day3/presentations/
+          cp -r pdfs/day4/*.pdf _site/day4/presentations/
+          echo "PDFs copied to _site directories"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
