@@ -179,7 +179,7 @@ A simple NDVI threshold might work in one region but fail in another. ML can lea
 
 ## End-to-End ML Workflow
 
-![](images/ml_workflow.png){fig-align="center" width="90%"}
+<!-- <!-- ![](images/ml_workflow.png){fig-align="center" width="90%"} --> -->
 
 ::: {.notes}
 This is the typical workflow for any ML project in Earth Observation. Understanding these steps is crucial for successful implementation.
@@ -369,7 +369,7 @@ Model choice depends on your specific problem, available data, and resources. We
 
 ## Training Process
 
-![](images/training_process.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/training_process.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.incremental}
 1. **Split data:** Training set (70-80%) & Validation set (20-30%)
@@ -416,7 +416,7 @@ Rigorous validation using held-out data ensures the model works on new, unseen e
 
 ## Confusion Matrix Example
 
-![](images/confusion_matrix.png){fig-align="center" width="60%"}
+<!-- ![](images/confusion_matrix.png){fig-align="center" width="60%"} -->
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -471,7 +471,7 @@ If the model is satisfactory, deploy it for operational use. This might mean gen
 
 ## Workflow is Iterative
 
-![](images/iterative_workflow.png){fig-align="center" width="70%"}
+<!-- <!-- ![](images/iterative_workflow.png) --> -->{fig-align="center" width="70%"}
 
 ::: {.incremental}
 - **Poor validation?** → Go back to data acquisition or model selection
@@ -488,7 +488,7 @@ Real projects are iterative. You often loop back: if validation is poor, you mig
 
 ## Main ML Paradigms
 
-![](images/ml_types.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/ml_types.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.incremental}
 1. **Supervised Learning** (most common in EO)
@@ -516,7 +516,7 @@ We'll focus on supervised and unsupervised learning as these are most relevant f
 :::
 
 ::: {.column width="50%"}
-![](images/supervised_learning.png){width="100%"}
+<!-- <!-- ![](images/supervised_learning.png) --> -->{width="100%"}
 :::
 :::
 
@@ -538,7 +538,7 @@ Supervised learning is the most common in EO. The algorithm is given examples wi
 - Discrete classes
 - Example outputs: "Forest", "Water", "Urban"
 
-![](images/classification.jpg){width="100%"}
+<!-- ![](images/classification.jpg){width="100%"} -->
 :::
 
 ::: {.column width="50%"}
@@ -548,7 +548,7 @@ Supervised learning is the most common in EO. The algorithm is given examples wi
 - Numeric outputs
 - Example outputs: 25.3 tons/hectare, 15.2°C
 
-![](images/regression.jpg){width="100%"}
+<!-- ![](images/regression.jpg){width="100%"} -->
 :::
 :::
 
@@ -562,7 +562,7 @@ Classification assigns data to categories. Regression predicts numeric values. B
 ::: {.column width="50%"}
 **Land Cover Classification**
 
-![](images/land_cover_classification.jpg){width="100%"}
+<!-- ![](images/land_cover_classification.jpg){width="100%"} -->
 
 - Forest, agriculture, urban, water
 - Pixel-wise or object-based
@@ -572,7 +572,7 @@ Classification assigns data to categories. Regression predicts numeric values. B
 ::: {.column width="50%"}
 **Crop Type Mapping**
 
-![](images/crop_type_map.jpg){width="100%"}
+<!-- ![](images/crop_type_map.jpg){width="100%"} -->
 
 - Rice, corn, sugarcane
 - Seasonal patterns important
@@ -590,7 +590,7 @@ Land cover classification is the classic EO supervised learning task. Each pixel
 ::: {.column width="50%"}
 **Biomass Estimation**
 
-![](images/biomass_estimation.jpg){width="100%"}
+<!-- ![](images/biomass_estimation.jpg){width="100%"} -->
 
 - Predict tons of biomass per hectare
 - Important for carbon accounting
@@ -600,7 +600,7 @@ Land cover classification is the classic EO supervised learning task. Each pixel
 ::: {.column width="50%"}
 **Crop Yield Prediction**
 
-![](images/yield_prediction.jpg){width="100%"}
+<!-- ![](images/yield_prediction.jpg){width="100%"} -->
 
 - Predict tons per hectare
 - Seasonal NDVI time series
@@ -661,7 +661,7 @@ Supervised learning needs ground truth. For land cover, this might be field surv
 :::
 
 ::: {.column width="50%"}
-![](images/unsupervised_learning.png){width="100%"}
+<!-- <!-- ![](images/unsupervised_learning.png) --> -->{width="100%"}
 :::
 :::
 
@@ -675,7 +675,7 @@ Unsupervised learning finds patterns or groupings inherent in the data without b
 
 ## Clustering: Main Unsupervised Technique
 
-![](images/clustering_example.png){fig-align="center" width="70%"}
+<!-- <!-- ![](images/clustering_example.png) --> -->{fig-align="center" width="70%"}
 
 ::: {.incremental}
 - **Group similar pixels** based on spectral characteristics
@@ -809,7 +809,7 @@ Stand up • Grab water • Back in 5 minutes
 :::
 
 ::: {.column width="40%"}
-![](images/deep_learning_layers.png){width="100%"}
+<!-- <!-- ![](images/deep_learning_layers.png) --> -->{width="100%"}
 :::
 :::
 
@@ -819,7 +819,7 @@ Deep learning is essentially about neural networks with many layers (dozens or e
 
 ## Neural Networks: Building Blocks
 
-![](images/neuron_diagram.png){fig-align="center" width="70%"}
+<!-- <!-- ![](images/neuron_diagram.png) --> -->{fig-align="center" width="70%"}
 
 ::: {.incremental}
 **Artificial Neuron:**
@@ -837,7 +837,7 @@ A single neuron is like a logistic regression unit. It takes inputs, applies wei
 
 ## Neural Network Architecture
 
-![](images/neural_network_architecture.png){fig-align="center" width="80%"}
+<!-- <!-- ![](images/neural_network_architecture.png) --> -->{fig-align="center" width="80%"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -888,7 +888,7 @@ Activation functions are crucial - they allow neural networks to learn non-linea
 
 ## How Neural Networks Learn
 
-![](images/training_loop.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/training_loop.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.incremental}
 1. **Forward pass:** Input data, get prediction
@@ -979,7 +979,7 @@ CNNs are neural networks specialized for grid data like images. They use convolu
 
 ## How CNNs Process Images
 
-![](images/cnn_feature_extraction.png){fig-align="center" width="80%"}
+<!-- <!-- ![](images/cnn_feature_extraction.png) --> -->{fig-align="center" width="80%"}
 
 ::: {.incremental}
 **Hierarchical Feature Learning:**
@@ -1017,7 +1017,7 @@ CNNs learn increasingly complex features at each layer. Early layers detect edge
 :::
 :::
 
-![](images/cnn_eo_examples.jpg){fig-align="center" width="70%"}
+<!-- ![](images/cnn_eo_examples.jpg){fig-align="center" width="70%"} -->
 
 ::: {.notes}
 CNNs have achieved state-of-the-art results in many EO tasks. They can learn to recognize complex patterns without manual feature engineering.
@@ -1043,7 +1043,7 @@ These are proven architectures widely used in EO. ResNet-50 is often the startin
 
 ## ResNet: Residual Networks
 
-![](images/resnet_residual_block.png){fig-align="center" width="70%"}
+<!-- <!-- ![](images/resnet_residual_block.png) --> -->{fig-align="center" width="70%"}
 
 ::: {.columns}
 ::: {.column width="60%"}
@@ -1079,7 +1079,7 @@ ResNet revolutionized deep learning by enabling training of very deep networks. 
 
 ## U-Net for Semantic Segmentation
 
-![](images/unet_architecture.png){fig-align="center" width="80%"}
+<!-- ![](images/unet_architecture.png){fig-align="center" width="80%"} -->
 
 ::: {.incremental}
 **Architecture:**
@@ -1107,7 +1107,7 @@ U-Net is THE architecture for semantic segmentation in EO. Originally designed f
 ::: {.column width="50%"}
 **TensorFlow / Keras**
 
-![](images/tensorflow_logo.png){width="150px"}
+<!-- <!-- ![](images/tensorflow_logo.png) --> -->{width="150px"}
 
 - Google's framework
 - High-level Keras API
@@ -1118,7 +1118,7 @@ U-Net is THE architecture for semantic segmentation in EO. Originally designed f
 ::: {.column width="50%"}
 **PyTorch**
 
-![](images/pytorch_logo.png){width="150px"}
+<!-- <!-- ![](images/pytorch_logo.png) --> -->{width="150px"}
 
 - Facebook's framework
 - Pythonic and intuitive
@@ -1201,7 +1201,7 @@ Annual Crop • Forest • Herbaceous Vegetation • Highway • Industrial • 
 :::
 
 ::: {.column width="40%"}
-![](images/eurosat_classes.png){width="100%"}
+<!-- <!-- ![](images/eurosat_classes.png) --> -->{width="100%"}
 
 **Achievement:**
 **98.57% accuracy** with CNNs
@@ -1235,7 +1235,7 @@ EuroSAT is one of the most popular benchmarks for EO classification. Based on Se
 :::
 
 ::: {.column width="50%"}
-![](images/bigearth_multilabel.jpg){width="100%"}
+<!-- ![](images/bigearth_multilabel.jpg){width="100%"} -->
 
 **Why Different:**
 
@@ -1272,7 +1272,7 @@ BigEarthNet's multi-label nature makes it more challenging but also more realist
 :::
 
 ::: {.column width="50%"}
-![](images/xview_samples.jpg){width="100%"}
+<!-- ![](images/xview_samples.jpg){width="100%"} -->
 
 **Created for disaster response**
 
@@ -1334,7 +1334,7 @@ Philippine agencies have produced operational EO products that can serve as trai
 
 ## Paradigm Shift: Model-Centric vs Data-Centric
 
-![](images/model_vs_data_centric.png){fig-align="center" width="80%"}
+<!-- <!-- ![](images/model_vs_data_centric.png) --> -->{fig-align="center" width="80%"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1384,7 +1384,7 @@ In EO, the "food" you feed your AI matters more than fancy model tweaks. Cloudy 
 
 ## 2025 Research: Data Efficiency
 
-![](images/data_efficiency_research.png){fig-align="center" width="70%"}
+<!-- <!-- ![](images/data_efficiency_research.png) --> -->{fig-align="center" width="70%"}
 
 **Key Finding (ArXiv 2025):**
 
@@ -1405,7 +1405,7 @@ Recent research shows you don't always need all available data. Smart selection 
 ::: {.column width="50%"}
 **1. Data Quality**
 
-![](images/data_quality.jpg){width="100%"}
+<!-- ![](images/data_quality.jpg){width="100%"} -->
 
 - Cloud/shadow removal
 - Atmospheric correction
@@ -1416,7 +1416,7 @@ Recent research shows you don't always need all available data. Smart selection 
 ::: {.column width="50%"}
 **2. Data Quantity**
 
-![](images/data_quantity.jpg){width="100%"}
+<!-- ![](images/data_quantity.jpg){width="100%"} -->
 
 - Sufficient training samples
 - Balanced classes
@@ -1431,7 +1431,7 @@ Recent research shows you don't always need all available data. Smart selection 
 ::: {.column width="50%"}
 **3. Data Diversity**
 
-![](images/data_diversity.jpg){width="100%"}
+<!-- ![](images/data_diversity.jpg){width="100%"} -->
 
 - Multiple seasons
 - Different regions
@@ -1442,7 +1442,7 @@ Recent research shows you don't always need all available data. Smart selection 
 ::: {.column width="50%"}
 **4. Label Quality**
 
-![](images/label_quality.jpg){width="100%"}
+<!-- ![](images/label_quality.jpg){width="100%"} -->
 
 - Clear definitions
 - Consistent protocols
@@ -1493,7 +1493,7 @@ Satellite data can be noisy. Cloud masking, using atmospherically corrected prod
 ::: {.column width="50%"}
 **Without Cloud Masking**
 
-![](images/with_clouds.jpg){width="100%"}
+<!-- ![](images/with_clouds.jpg){width="100%"} -->
 
 - Clouds misclassified
 - Shadows cause errors
@@ -1503,7 +1503,7 @@ Satellite data can be noisy. Cloud masking, using atmospherically corrected prod
 ::: {.column width="50%"}
 **With Proper Masking**
 
-![](images/clouds_masked.jpg){width="100%"}
+<!-- ![](images/clouds_masked.jpg){width="100%"} -->
 
 - Clean training data
 - Accurate classifications
@@ -1544,7 +1544,7 @@ Deep learning is data-hungry. Random Forest can work with smaller datasets. Tran
 
 ## Data Augmentation
 
-![](images/data_augmentation.jpg){fig-align="center" width="80%"}
+<!-- ![](images/data_augmentation.jpg){fig-align="center" width="80%"} -->
 
 ::: {.incremental}
 **Techniques:**
@@ -1566,7 +1566,7 @@ Data augmentation synthetically increases dataset size by creating modified vers
 
 ## Transfer Learning
 
-![](images/transfer_learning.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/transfer_learning.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1598,7 +1598,7 @@ Transfer learning leverages knowledge learned on large datasets and adapts it to
 ::: {.column width="50%"}
 **Problem: Biased Training**
 
-![](images/biased_training.jpg){width="100%"}
+<!-- ![](images/biased_training.jpg){width="100%"} -->
 
 - All samples from one season
 - One geographic region only
@@ -1609,7 +1609,7 @@ Transfer learning leverages knowledge learned on large datasets and adapts it to
 ::: {.column width="50%"}
 **Solution: Diverse Training**
 
-![](images/diverse_training.jpg){width="100%"}
+<!-- ![](images/diverse_training.jpg){width="100%"} -->
 
 - Multiple seasons
 - Different regions
@@ -1757,7 +1757,7 @@ Invest time in defining classes clearly and training labelers. Consistency matte
 ::: {.column width="50%"}
 **Poor Labels**
 
-![](images/poor_labels.jpg){width="100%"}
+<!-- ![](images/poor_labels.jpg){width="100%"} -->
 
 - "Forest" defined inconsistently
 - Mixed with shrubland
@@ -1768,7 +1768,7 @@ Invest time in defining classes clearly and training labelers. Consistency matte
 ::: {.column width="50%"}
 **High-Quality Labels**
 
-![](images/good_labels.jpg){width="100%"}
+<!-- ![](images/good_labels.jpg){width="100%"} -->
 
 - Clear forest definition
 - Careful boundary delineation
@@ -1783,7 +1783,7 @@ High-quality labels are worth the effort. A smaller dataset with accurate labels
 
 ## ALaM Project: Addressing Labels
 
-![](images/alam_project.jpg){fig-align="center" width="70%"}
+<!-- ![](images/alam_project.jpg){fig-align="center" width="70%"} -->
 
 ::: {.incremental}
 **DOST-ASTI's Automated Labeling Machine**
@@ -1889,7 +1889,7 @@ Real example of how data improvements had bigger impact than model tuning. The d
 
 ## Foundation Models for EO
 
-![](images/foundation_models.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/foundation_models.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.incremental}
 **What are Foundation Models?**
@@ -1925,7 +1925,7 @@ Real example of how data improvements had bigger impact than model tuning. The d
 
 ## On-Board AI Processing
 
-![](images/onboard_ai.jpg){fig-align="center" width="70%"}
+<!-- ![](images/onboard_ai.jpg){fig-align="center" width="70%"} -->
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1982,7 +1982,7 @@ Real example of how data improvements had bigger impact than model tuning. The d
 :::
 
 ::: {.column width="40%"}
-![](images/self_supervised.png){width="100%"}
+<!-- <!-- ![](images/self_supervised.png) --> -->{width="100%"}
 :::
 :::
 
@@ -1992,7 +1992,7 @@ Self-supervised learning is particularly relevant for EO due to abundance of unl
 
 ## Explainable AI (XAI)
 
-![](images/xai_methods.png){fig-align="center" width="75%"}
+<!-- <!-- ![](images/xai_methods.png) --> -->{fig-align="center" width="75%"}
 
 ::: {.incremental}
 **Why XAI Matters:**

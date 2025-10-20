@@ -540,7 +540,7 @@ The complete hands-on lab is available as an executable Jupyter notebook:
 [`session4_cnn_classification_STUDENT.ipynb`](../notebooks/session4_cnn_classification_STUDENT.ipynb)
 
 **Google Colab Direct Link:**  
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session4_cnn_classification_STUDENT.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session4_cnn_classification_STUDENT.ipynb)
 
 **What's Included:**
 - Complete environment setup (TensorFlow, GPU config)

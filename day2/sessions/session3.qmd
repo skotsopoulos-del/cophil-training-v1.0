@@ -981,8 +981,8 @@ Two comprehensive notebooks guide you through neural network and CNN fundamental
 ---
 
 **Google Colab:**
-[![Open Theory Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session3_theory_interactive.ipynb)
-[![Open CNN Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session3_theory_interactive.ipynb)
+[![Open Theory Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session3_theory_interactive.ipynb)
+[![Open CNN Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session3_theory_interactive.ipynb)
 :::
 
 ### Supporting Documentation

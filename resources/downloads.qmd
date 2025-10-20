@@ -48,7 +48,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Download Notebook](../day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-primary download="Day1_Session3_Python_Geospatial_Data.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Google Colab setup
@@ -67,7 +67,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Download Notebook](../day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-primary download="Day1_Session4_Google_Earth_Engine.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Earth Engine authentication and initialization
@@ -89,8 +89,8 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 **Jupyter Notebooks:**
 [Theory Notebook](../day2/notebooks/session1_theory_notebook_STUDENT.ipynb){.btn .btn-primary download="session1_theory_notebook_STUDENT.ipynb"}
 [Hands-on Lab](../day2/notebooks/session1_hands_on_lab_student.ipynb){.btn .btn-primary download="session1_hands_on_lab_student.ipynb"}
-[Open Theory in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session1_theory_notebook_STUDENT.ipynb){.btn .btn-outline target="_blank"}
-[Open Lab in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session1_hands_on_lab_student.ipynb){.btn .btn-outline target="_blank"}
+[Open Theory in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session1_theory_notebook_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open Lab in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session1_hands_on_lab_student.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Decision trees and ensemble methods
@@ -108,7 +108,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Extended Lab](../day2/notebooks/session2_extended_lab_STUDENT.ipynb){.btn .btn-primary download="session2_extended_lab_STUDENT.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session2_extended_lab_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session2_extended_lab_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Model evaluation and validation
@@ -126,7 +126,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Theory Interactive](../day2/notebooks/session3_theory_interactive.ipynb){.btn .btn-primary download="session3_theory_interactive.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session3_theory_interactive.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session3_theory_interactive.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Neural networks architecture
@@ -145,8 +145,8 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 **Jupyter Notebooks:**
 [CNN Classification](../day2/notebooks/session4_cnn_classification_STUDENT.ipynb){.btn .btn-primary download="session4_cnn_classification_STUDENT.ipynb"}
 [Transfer Learning](../day2/notebooks/session4_transfer_learning_STUDENT.ipynb){.btn .btn-primary download="session4_transfer_learning_STUDENT.ipynb"}
-[Open CNN in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session4_cnn_classification_STUDENT.ipynb){.btn .btn-outline target="_blank"}
-[Open Transfer Learning in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session4_transfer_learning_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open CNN in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session4_cnn_classification_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open Transfer Learning in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session4_transfer_learning_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - CNN architecture and components
@@ -180,7 +180,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Flood Mapping Lab](../day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-primary download="Day3_Session2_Flood_Mapping_UNet.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - SAR data for flood detection
@@ -212,7 +212,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Object Detection Lab](../day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-primary download="Day3_Session4_Object_Detection_STUDENT.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Building and ship detection
@@ -232,7 +232,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [LSTM Demo](../day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-primary download="day4_session1_lstm_demo_STUDENT.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Recurrent neural networks
@@ -250,7 +250,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Jupyter Notebook:**
 [Drought Lab](../day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-primary download="day4_session2_lstm_drought_lab_STUDENT.ipynb"}
-[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-outline target="_blank"}
+[Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
 - Multi-variate time series

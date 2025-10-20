@@ -49,9 +49,9 @@ By completing both notebooks, you will:
 
 ### Open in Google Colab
 
-::: {.colab-button}
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb)
-:::
+<a href="https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 ::: {.callout-note}
 ## First Time Using This Notebook?

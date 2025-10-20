@@ -354,7 +354,7 @@ The complete hands-on lab is available as an interactive Jupyter notebook:
 `session2_extended_lab_INSTRUCTOR.ipynb`
 
 **Google Colab:**  
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/EO_trainning/blob/main/course_site/day2/notebooks/session2_extended_lab_STUDENT.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day2/notebooks/session2_extended_lab_STUDENT.ipynb)
 :::
 
 ### Code Templates

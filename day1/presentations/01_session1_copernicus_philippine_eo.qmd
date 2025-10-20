@@ -21,6 +21,11 @@ format:
     background-transition: fade
     width: 1920
     height: 1080
+  pptx:
+    slide-level: 2
+    incremental: false
+    fig-width: 8
+    fig-height: 5
 ---
 
 # Welcome {background-color="#1e3a8a"}
