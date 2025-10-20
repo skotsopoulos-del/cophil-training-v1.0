@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Fetch last 2 commits to detect changes
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -34,19 +36,26 @@ jobs:
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
 
-      - name: Cache pip packages
+      - name: Cache Python virtual environment
         uses: actions/cache@v4
+        id: venv-cache
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          path: venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-pip-
+            ${{ runner.os }}-venv-
 
       - name: Install Python dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
+          python -m venv venv
+          source venv/bin/activate
           python -m pip install --upgrade pip
-          # Install with caching for faster subsequent builds
           pip install -r requirements.txt
+
+      - name: Activate virtual environment
+        if: steps.venv-cache.outputs.cache-hit == 'true'
+        run: echo "Using cached virtual environment"
 
       - name: Cache Quarto freeze
         uses: actions/cache@v4
@@ -67,6 +76,8 @@ jobs:
 
       - name: Render Quarto site
         run: |
+          # Activate virtual environment and render
+          source venv/bin/activate
           # Freeze feature prevents re-executing unchanged notebooks
           # This dramatically speeds up rendering
           quarto render
