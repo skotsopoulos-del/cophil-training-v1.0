@@ -32,11 +32,31 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
+          # Install without dependencies first for speed
+          pip install --no-deps -r requirements.txt || true
+          # Then install with dependencies (cached from previous runs)
           pip install -r requirements.txt
+
+      - name: Cache Quarto freeze
+        uses: actions/cache@v4
+        with:
+          path: _freeze
+          key: ${{ runner.os }}-quarto-freeze-${{ hashFiles('**/*.qmd', '**/*.ipynb') }}
+          restore-keys: |
+            ${{ runner.os }}-quarto-freeze-
 
       - name: Set site URL for fork-friendly deployment
         run: |
@@ -48,7 +68,10 @@ jobs:
           echo "Deploying to: ${SITE_URL}"
 
       - name: Render Quarto site
-        run: quarto render
+        run: |
+          # Freeze feature prevents re-executing unchanged notebooks
+          # This dramatically speeds up rendering
+          quarto render
 
       - name: Copy pre-generated PDFs to site
         run: |

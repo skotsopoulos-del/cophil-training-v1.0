@@ -3,3 +3,7 @@
 
 # PowerPoint presentations (not tracked)
 /pptx/
+
+# Quarto freeze directory (cached in CI, not in git)
+# This stores pre-rendered notebook outputs to speed up builds
+/_freeze/
