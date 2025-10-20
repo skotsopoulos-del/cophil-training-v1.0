@@ -45,9 +45,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          # Install without dependencies first for speed
-          pip install --no-deps -r requirements.txt || true
-          # Then install with dependencies (cached from previous runs)
+          # Install with caching for faster subsequent builds
           pip install -r requirements.txt
 
       - name: Cache Quarto freeze
@@ -71,7 +69,8 @@ jobs:
         run: |
           # Freeze feature prevents re-executing unchanged notebooks
           # This dramatically speeds up rendering
-          quarto render
+          # Use parallel rendering with --parallel flag
+          quarto render --parallel
 
       - name: Copy pre-generated PDFs to site
         run: |
