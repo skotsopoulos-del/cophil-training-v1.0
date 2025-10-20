@@ -69,8 +69,7 @@ jobs:
         run: |
           # Freeze feature prevents re-executing unchanged notebooks
           # This dramatically speeds up rendering
-          # Use parallel rendering with --parallel flag
-          quarto render --parallel
+          quarto render
 
       - name: Copy pre-generated PDFs to site
         run: |
