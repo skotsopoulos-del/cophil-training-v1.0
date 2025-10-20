@@ -389,8 +389,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="end-to-end-ml-workflow" class="slide level2 center">
 <h2>End-to-End ML Workflow</h2>
-
-<img data-src="images/ml_workflow.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"><aside class="notes">
+<!-- <!-- ![](images/ml_workflow.png){fig-align="center" width="90%"} -->
+<p>–&gt;</p>
+<aside class="notes">
 <p>This is the typical workflow for any ML project in Earth Observation. Understanding these steps is crucial for successful implementation.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -669,8 +670,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="training-process" class="slide level2 center">
 <h2>Training Process</h2>
-
-<img data-src="images/training_process.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ol type="1">
+<!-- <!-- ![](images/training_process.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<ol type="1">
 <li class="fragment"><strong>Split data:</strong> Training set (70-80%) &amp; Validation set (20-30%)</li>
 <li class="fragment"><strong>Feed training data</strong> to model</li>
 <li class="fragment"><strong>Model learns patterns</strong> by adjusting internal parameters</li>
@@ -731,8 +733,8 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="confusion-matrix-example" class="slide level2 center">
 <h2>Confusion Matrix Example</h2>
-
-<img data-src="images/confusion_matrix.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><div class="columns">
+<!-- ![](images/confusion_matrix.png){fig-align="center" width="60%"} -->
+<div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>What it shows:</strong></p>
 <ul>
@@ -801,8 +803,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="workflow-is-iterative" class="slide level2 center">
 <h2>Workflow is Iterative</h2>
-
-<img data-src="images/iterative_workflow.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<!-- <!-- ![](images/iterative_workflow.png) -->
+<p>–&gt;{fig-align=“center” width=“70%”}</p>
+<ul>
 <li class="fragment"><strong>Poor validation?</strong> → Go back to data acquisition or model selection</li>
 <li class="fragment"><strong>New data available?</strong> → Retrain model</li>
 <li class="fragment"><strong>Requirements change?</strong> → Redefine problem</li>
@@ -829,8 +832,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="main-ml-paradigms" class="slide level2 center">
 <h2>Main ML Paradigms</h2>
-
-<img data-src="images/ml_types.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ol type="1">
+<!-- <!-- ![](images/ml_types.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<ol type="1">
 <li class="fragment"><strong>Supervised Learning</strong> (most common in EO)</li>
 <li class="fragment"><strong>Unsupervised Learning</strong> (exploratory analysis)</li>
 <li class="fragment"><strong>Semi-supervised Learning</strong> (combines both)</li>
@@ -867,7 +871,8 @@ ELSE Non-Forest</code></pre>
 <li>Like learning with an answer key</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/supervised_learning.png" style="width:100.0%"></p>
+<!-- <!-- ![](images/supervised_learning.png) -->
+<p>–&gt;{width=“100%”}</p>
 </div></div>
 <div class="fragment">
 <p><strong>Requires ground truth labels for training</strong></p>
@@ -896,7 +901,7 @@ ELSE Non-Forest</code></pre>
 <li>Discrete classes</li>
 <li>Example outputs: “Forest”, “Water”, “Urban”</li>
 </ul>
-<p><img data-src="images/classification.jpg" style="width:100.0%"></p>
+<!-- ![](images/classification.jpg){width="100%"} -->
 </div><div class="column" style="width:50%;">
 <p><strong>Regression</strong></p>
 <ul>
@@ -904,7 +909,7 @@ ELSE Non-Forest</code></pre>
 <li>Numeric outputs</li>
 <li>Example outputs: 25.3 tons/hectare, 15.2°C</li>
 </ul>
-<p><img data-src="images/regression.jpg" style="width:100.0%"></p>
+<!-- ![](images/regression.jpg){width="100%"} -->
 </div></div>
 <aside class="notes">
 <p>Classification assigns data to categories. Regression predicts numeric values. Both require labeled training data.</p>
@@ -925,7 +930,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Land Cover Classification</strong></p>
-<p><img data-src="images/land_cover_classification.jpg" style="width:100.0%"></p>
+<!-- ![](images/land_cover_classification.jpg){width="100%"} -->
 <ul>
 <li>Forest, agriculture, urban, water</li>
 <li>Pixel-wise or object-based</li>
@@ -933,7 +938,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>Crop Type Mapping</strong></p>
-<p><img data-src="images/crop_type_map.jpg" style="width:100.0%"></p>
+<!-- ![](images/crop_type_map.jpg){width="100%"} -->
 <ul>
 <li>Rice, corn, sugarcane</li>
 <li>Seasonal patterns important</li>
@@ -959,7 +964,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Biomass Estimation</strong></p>
-<p><img data-src="images/biomass_estimation.jpg" style="width:100.0%"></p>
+<!-- ![](images/biomass_estimation.jpg){width="100%"} -->
 <ul>
 <li>Predict tons of biomass per hectare</li>
 <li>Important for carbon accounting</li>
@@ -967,7 +972,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>Crop Yield Prediction</strong></p>
-<p><img data-src="images/yield_prediction.jpg" style="width:100.0%"></p>
+<!-- ![](images/yield_prediction.jpg){width="100%"} -->
 <ul>
 <li>Predict tons per hectare</li>
 <li>Seasonal NDVI time series</li>
@@ -1089,7 +1094,8 @@ ELSE Non-Forest</code></pre>
 <li>Like sorting without instructions</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/unsupervised_learning.png" style="width:100.0%"></p>
+<!-- <!-- ![](images/unsupervised_learning.png) -->
+<p>–&gt;{width=“100%”}</p>
 </div></div>
 <div class="fragment">
 <p><strong>Useful for exploratory analysis and finding structure</strong></p>
@@ -1110,8 +1116,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="clustering-main-unsupervised-technique" class="slide level2 center">
 <h2>Clustering: Main Unsupervised Technique</h2>
-
-<img data-src="images/clustering_example.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<!-- <!-- ![](images/clustering_example.png) -->
+<p>–&gt;{fig-align=“center” width=“70%”}</p>
+<ul>
 <li class="fragment"><strong>Group similar pixels</strong> based on spectral characteristics</li>
 <li class="fragment">Algorithm decides number of clusters (or you specify)</li>
 <li class="fragment"><strong>Analyst interprets</strong> what each cluster means</li>
@@ -1317,7 +1324,8 @@ ELSE Non-Forest</code></pre>
 <li>Data-hungry</li>
 </ul>
 </div><div class="column" style="width:40%;">
-<p><img data-src="images/deep_learning_layers.png" style="width:100.0%"></p>
+<!-- <!-- ![](images/deep_learning_layers.png) -->
+<p>–&gt;{width=“100%”}</p>
 </div></div>
 <aside class="notes">
 <p>Deep learning is essentially about neural networks with many layers (dozens or even hundreds). These “deep” networks can capture very complex relationships.</p>
@@ -1335,8 +1343,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="neural-networks-building-blocks" class="slide level2 center">
 <h2>Neural Networks: Building Blocks</h2>
-
-<img data-src="images/neuron_diagram.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><strong>Artificial Neuron:</strong></p>
+<!-- <!-- ![](images/neuron_diagram.png) -->
+<p>–&gt;{fig-align=“center” width=“70%”}</p>
+<p><strong>Artificial Neuron:</strong></p>
 <ol type="1">
 <li class="fragment">Takes multiple inputs</li>
 <li class="fragment">Multiplies each by a <strong>weight</strong></li>
@@ -1360,8 +1369,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="neural-network-architecture" class="slide level2 center">
 <h2>Neural Network Architecture</h2>
-
-<img data-src="images/neural_network_architecture.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="columns">
+<!-- <!-- ![](images/neural_network_architecture.png) -->
+<p>–&gt;{fig-align=“center” width=“80%”}</p>
+<div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Layers:</strong></p>
 <ul>
@@ -1426,8 +1436,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="how-neural-networks-learn" class="slide level2 center">
 <h2>How Neural Networks Learn</h2>
-
-<img data-src="images/training_loop.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ol type="1">
+<!-- <!-- ![](images/training_loop.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<ol type="1">
 <li class="fragment"><strong>Forward pass:</strong> Input data, get prediction</li>
 <li class="fragment"><strong>Calculate loss:</strong> How wrong is the prediction?</li>
 <li class="fragment"><strong>Backpropagation:</strong> Calculate gradients</li>
@@ -1544,8 +1555,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="how-cnns-process-images" class="slide level2 center">
 <h2>How CNNs Process Images</h2>
-
-<img data-src="images/cnn_feature_extraction.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Hierarchical Feature Learning:</strong></p>
+<!-- <!-- ![](images/cnn_feature_extraction.png) -->
+<p>–&gt;{fig-align=“center” width=“80%”}</p>
+<p><strong>Hierarchical Feature Learning:</strong></p>
 <ul>
 <li class="fragment"><strong>Early layers:</strong> Detect edges, simple patterns</li>
 <li class="fragment"><strong>Middle layers:</strong> Detect textures, parts</li>
@@ -1587,8 +1599,8 @@ ELSE Non-Forest</code></pre>
 <li>Transfer learning possible</li>
 </ul>
 </div></div>
-
-<img data-src="images/cnn_eo_examples.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><aside class="notes">
+<!-- ![](images/cnn_eo_examples.jpg){fig-align="center" width="70%"} -->
+<aside class="notes">
 <p>CNNs have achieved state-of-the-art results in many EO tasks. They can learn to recognize complex patterns without manual feature engineering.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1671,8 +1683,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="resnet-residual-networks" class="slide level2 center">
 <h2>ResNet: Residual Networks</h2>
-
-<img data-src="images/resnet_residual_block.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<!-- <!-- ![](images/resnet_residual_block.png) -->
+<p>–&gt;{fig-align=“center” width=“70%”}</p>
+<div class="columns">
 <div class="column" style="width:60%;">
 <p><strong>Key Innovation: Skip Connections</strong></p>
 <ul>
@@ -1707,8 +1720,8 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="u-net-for-semantic-segmentation" class="slide level2 center">
 <h2>U-Net for Semantic Segmentation</h2>
-
-<img data-src="images/unet_architecture.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Architecture:</strong> - <strong>Encoder (contracting path):</strong> Captures context - <strong>Decoder (expanding path):</strong> Enables precise localization - <strong>Skip connections:</strong> Combine low &amp; high-level features</p>
+<!-- ![](images/unet_architecture.png){fig-align="center" width="80%"} -->
+<p><strong>Architecture:</strong> - <strong>Encoder (contracting path):</strong> Captures context - <strong>Decoder (expanding path):</strong> Enables precise localization - <strong>Skip connections:</strong> Combine low &amp; high-level features</p>
 <p><strong>Why Dominant in EO:</strong> - Works with small datasets (hundreds of images) - Precise pixel-wise predictions - Perfect for segmentation tasks</p>
 <div class="fragment">
 <p><strong>EO Applications:</strong> Flood mapping, land cover, building footprints, crop fields</p>
@@ -1732,7 +1745,8 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>TensorFlow / Keras</strong></p>
-<p><img data-src="images/tensorflow_logo.png" width="150"></p>
+<!-- <!-- ![](images/tensorflow_logo.png) -->
+<p>–&gt;{width=“150px”}</p>
 <ul>
 <li>Google’s framework</li>
 <li>High-level Keras API</li>
@@ -1741,7 +1755,8 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>PyTorch</strong></p>
-<p><img data-src="images/pytorch_logo.png" width="150"></p>
+<!-- <!-- ![](images/pytorch_logo.png) -->
+<p>–&gt;{width=“150px”}</p>
 <ul>
 <li>Facebook’s framework</li>
 <li>Pythonic and intuitive</li>
@@ -1841,7 +1856,8 @@ ELSE Non-Forest</code></pre>
 <p><strong>Specifications:</strong> - <strong>Images:</strong> 27,000 labeled patches - <strong>Classes:</strong> 10 land cover types - <strong>Size:</strong> 64×64 pixels - <strong>Bands:</strong> All 13 Sentinel-2 bands - <strong>Source:</strong> European cities</p>
 <p><strong>10 Classes:</strong> Annual Crop • Forest • Herbaceous Vegetation • Highway • Industrial • Pasture • Permanent Crop • Residential • River • Sea/Lake</p>
 </div><div class="column" style="width:40%;">
-<p><img data-src="images/eurosat_classes.png" style="width:100.0%"></p>
+<!-- <!-- ![](images/eurosat_classes.png) -->
+<p>–&gt;{width=“100%”}</p>
 <p><strong>Achievement:</strong> <strong>98.57% accuracy</strong> with CNNs</p>
 <p><strong>Why Popular:</strong> - Sentinel-2 based - Balanced classes - Easy to use</p>
 </div></div>
@@ -1866,7 +1882,7 @@ ELSE Non-Forest</code></pre>
 <p><strong>Massive Scale:</strong> - <strong>Images:</strong> 590,326 Sentinel-2 patches - <strong>Coverage:</strong> 10 European countries - <strong>Labels:</strong> 43 land cover classes - <strong>Multi-label:</strong> Multiple classes per image - <strong>Multi-modal:</strong> Optical + SAR version</p>
 <p><strong>Real-World Complexity:</strong> - Forest + Water - Urban + Agricultural - Reflects actual landscapes</p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/bigearth_multilabel.jpg" style="width:100.0%"></p>
+<!-- ![](images/bigearth_multilabel.jpg){width="100%"} -->
 <p><strong>Why Different:</strong></p>
 <p>Unlike EuroSAT (single label), BigEarthNet has multiple overlapping classes - more realistic!</p>
 <p><strong>Access:</strong> - bigearth.net - TensorFlow Datasets - Papers With Code</p>
@@ -1892,7 +1908,7 @@ ELSE Non-Forest</code></pre>
 <p><strong>Specifications:</strong> - <strong>Objects:</strong> &gt;1 million annotated - <strong>Classes:</strong> 60 object types - <strong>Resolution:</strong> 0.3m (WorldView-3) - <strong>Area:</strong> &gt;1,400 km² - <strong>Annotations:</strong> Bounding boxes</p>
 <p><strong>Object Categories:</strong> - Buildings &amp; infrastructure - Vehicles (cars, trucks, aircraft) - Ships &amp; maritime - Storage tanks - Construction equipment</p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/xview_samples.jpg" style="width:100.0%"></p>
+<!-- ![](images/xview_samples.jpg){width="100%"} -->
 <p><strong>Created for disaster response</strong></p>
 <p><strong>Applications:</strong> - YOLO training - Faster R-CNN - Small object detection - Infrastructure mapping</p>
 </div></div>
@@ -1944,8 +1960,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="paradigm-shift-model-centric-vs-data-centric" class="slide level2 center">
 <h2>Paradigm Shift: Model-Centric vs Data-Centric</h2>
-
-<img data-src="images/model_vs_data_centric.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="columns">
+<!-- <!-- ![](images/model_vs_data_centric.png) -->
+<p>–&gt;{fig-align=“center” width=“80%”}</p>
+<div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Model-Centric (Traditional)</strong></p>
 <ul>
@@ -2008,8 +2025,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="research-data-efficiency" class="slide level2 center">
 <h2>2025 Research: Data Efficiency</h2>
-
-<img data-src="images/data_efficiency_research.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><strong>Key Finding (ArXiv 2025):</strong></p>
+<!-- <!-- ![](images/data_efficiency_research.png) -->
+<p>–&gt;{fig-align=“center” width=“70%”}</p>
+<p><strong>Key Finding (ArXiv 2025):</strong></p>
 <ul>
 <li class="fragment">Some EO datasets reach <strong>optimal accuracy with &lt;20% of temporal instances</strong></li>
 <li class="fragment"><strong>Single band</strong> from single modality can be sufficient</li>
@@ -2035,7 +2053,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>1. Data Quality</strong></p>
-<p><img data-src="images/data_quality.jpg" style="width:100.0%"></p>
+<!-- ![](images/data_quality.jpg){width="100%"} -->
 <ul>
 <li>Cloud/shadow removal</li>
 <li>Atmospheric correction</li>
@@ -2044,7 +2062,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>2. Data Quantity</strong></p>
-<p><img data-src="images/data_quantity.jpg" style="width:100.0%"></p>
+<!-- ![](images/data_quantity.jpg){width="100%"} -->
 <ul>
 <li>Sufficient training samples</li>
 <li>Balanced classes</li>
@@ -2058,7 +2076,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>3. Data Diversity</strong></p>
-<p><img data-src="images/data_diversity.jpg" style="width:100.0%"></p>
+<!-- ![](images/data_diversity.jpg){width="100%"} -->
 <ul>
 <li>Multiple seasons</li>
 <li>Different regions</li>
@@ -2067,7 +2085,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>4. Label Quality</strong></p>
-<p><img data-src="images/label_quality.jpg" style="width:100.0%"></p>
+<!-- ![](images/label_quality.jpg){width="100%"} -->
 <ul>
 <li>Clear definitions</li>
 <li>Consistent protocols</li>
@@ -2137,7 +2155,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Without Cloud Masking</strong></p>
-<p><img data-src="images/with_clouds.jpg" style="width:100.0%"></p>
+<!-- ![](images/with_clouds.jpg){width="100%"} -->
 <ul>
 <li>Clouds misclassified</li>
 <li>Shadows cause errors</li>
@@ -2145,7 +2163,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>With Proper Masking</strong></p>
-<p><img data-src="images/clouds_masked.jpg" style="width:100.0%"></p>
+<!-- ![](images/clouds_masked.jpg){width="100%"} -->
 <ul>
 <li>Clean training data</li>
 <li>Accurate classifications</li>
@@ -2205,8 +2223,8 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="data-augmentation" class="slide level2 center">
 <h2>Data Augmentation</h2>
-
-<img data-src="images/data_augmentation.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Techniques:</strong></p>
+<!-- ![](images/data_augmentation.jpg){fig-align="center" width="80%"} -->
+<p><strong>Techniques:</strong></p>
 <ul>
 <li class="fragment">Rotation (90°, 180°, 270°)</li>
 <li class="fragment">Flipping (horizontal, vertical)</li>
@@ -2233,8 +2251,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="transfer-learning" class="slide level2 center">
 <h2>Transfer Learning</h2>
-
-<img data-src="images/transfer_learning.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><div class="columns">
+<!-- <!-- ![](images/transfer_learning.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Concept:</strong></p>
 <ul>
@@ -2274,7 +2293,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Problem: Biased Training</strong></p>
-<p><img data-src="images/biased_training.jpg" style="width:100.0%"></p>
+<!-- ![](images/biased_training.jpg){width="100%"} -->
 <ul>
 <li>All samples from one season</li>
 <li>One geographic region only</li>
@@ -2283,7 +2302,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>Solution: Diverse Training</strong></p>
-<p><img data-src="images/diverse_training.jpg" style="width:100.0%"></p>
+<!-- ![](images/diverse_training.jpg){width="100%"} -->
 <ul>
 <li>Multiple seasons</li>
 <li>Different regions</li>
@@ -2473,7 +2492,7 @@ ELSE Non-Forest</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Poor Labels</strong></p>
-<p><img data-src="images/poor_labels.jpg" style="width:100.0%"></p>
+<!-- ![](images/poor_labels.jpg){width="100%"} -->
 <ul>
 <li>“Forest” defined inconsistently</li>
 <li>Mixed with shrubland</li>
@@ -2482,7 +2501,7 @@ ELSE Non-Forest</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>High-Quality Labels</strong></p>
-<p><img data-src="images/good_labels.jpg" style="width:100.0%"></p>
+<!-- ![](images/good_labels.jpg){width="100%"} -->
 <ul>
 <li>Clear forest definition</li>
 <li>Careful boundary delineation</li>
@@ -2506,8 +2525,8 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="alam-project-addressing-labels" class="slide level2 center">
 <h2>ALaM Project: Addressing Labels</h2>
-
-<img data-src="images/alam_project.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><strong>DOST-ASTI’s Automated Labeling Machine</strong></p>
+<!-- ![](images/alam_project.jpg){fig-align="center" width="70%"} -->
+<p><strong>DOST-ASTI’s Automated Labeling Machine</strong></p>
 <ul>
 <li class="fragment">Automates labeling process</li>
 <li class="fragment">Crowdsourcing capabilities</li>
@@ -2645,8 +2664,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="foundation-models-for-eo" class="slide level2 center">
 <h2>Foundation Models for EO</h2>
-
-<img data-src="images/foundation_models.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p><strong>What are Foundation Models?</strong></p>
+<!-- <!-- ![](images/foundation_models.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<p><strong>What are Foundation Models?</strong></p>
 <ul>
 <li class="fragment">Large models pre-trained on massive EO datasets</li>
 <li class="fragment">Learn general representations</li>
@@ -2679,8 +2699,8 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="on-board-ai-processing" class="slide level2 center">
 <h2>On-Board AI Processing</h2>
-
-<img data-src="images/onboard_ai.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="columns">
+<!-- ![](images/onboard_ai.jpg){fig-align="center" width="70%"} -->
+<div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>ESA Φsat-2 (Launched 2024)</strong></p>
 <ul>
@@ -2734,7 +2754,8 @@ ELSE Non-Forest</code></pre>
 <li>Improves transferability</li>
 </ul>
 </div><div class="column" style="width:40%;">
-<p><img data-src="images/self_supervised.png" style="width:100.0%"></p>
+<!-- <!-- ![](images/self_supervised.png) -->
+<p>–&gt;{width=“100%”}</p>
 </div></div>
 <aside class="notes">
 <p>Self-supervised learning is particularly relevant for EO due to abundance of unlabeled imagery. Models learn useful features without expensive labeling.</p>
@@ -2752,8 +2773,9 @@ ELSE Non-Forest</code></pre>
 </section>
 <section id="explainable-ai-xai" class="slide level2 center">
 <h2>Explainable AI (XAI)</h2>
-
-<img data-src="images/xai_methods.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p><strong>Why XAI Matters:</strong></p>
+<!-- <!-- ![](images/xai_methods.png) -->
+<p>–&gt;{fig-align=“center” width=“75%”}</p>
+<p><strong>Why XAI Matters:</strong></p>
 <ul>
 <li class="fragment">Understand model decisions</li>
 <li class="fragment">Build trust in AI systems</li>

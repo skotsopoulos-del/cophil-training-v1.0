@@ -551,15 +551,7 @@ window.Quarto = {
 <p><strong>First-time users:</strong> You’ll be redirected to a browser to grant permissions.</p>
 <p><strong>Returning users:</strong> Authentication tokens are cached automatically.</p>
 <div id="cell-6" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Authenticate and initialize Earth Engine</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ee.Initialize()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"✓ Earth Engine initialized successfully"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"First-time authentication required..."</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ee.Authenticate()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ee.Initialize()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"✓ Earth Engine authenticated and initialized"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Authenticate and initialize Earth Engineimport eeimport geemap.core as geemapee.Authenticate()ee.Initialize(project='YOUR-PROJECT-ID')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>⚠️ <strong>Common Issues:</strong></p>
 <ul>
@@ -572,29 +564,14 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="testing-the-connection">Testing the Connection</h3>
 <p>Let’s verify our connection works by querying a simple dataset.</p>
 <div id="cell-9" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test connection with a simple query</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_image <span class="op">=</span> ee.Image(<span class="st">'COPERNICUS/S2_SR/20240115T015701_20240115T020226_T51PUS'</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>image_info <span class="op">=</span> test_image.getInfo()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Connection successful!"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test Image ID: </span><span class="sc">{</span>image_info[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Available bands: </span><span class="sc">{</span><span class="bu">len</span>(image_info[<span class="st">'bands'</span>])<span class="sc">}</span><span class="ss"> bands"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test connection with a simple query# Instead of a specific image, we'll query a well-known datasettest_collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \    .filterDate('2025-01-01', '2025-12-31') \    .first()# Get basic infotry:    collection_info = test_collection.getInfo()    print("✓ Connection successful!")    print(f"Test Image ID: {collection_info['id']}")    print(f"Available bands: {len(collection_info['bands'])} bands")except Exception as e:    print(f"⚠️ Connection test failed: {str(e)}")    print("Please check your authentication and try again")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="creating-an-interactive-map" class="level3">
 <h3 class="anchored" data-anchor-id="creating-an-interactive-map">Creating an Interactive Map</h3>
 <p>We’ll create an interactive map centered on Palawan Province using geemap.</p>
 <div id="cell-11" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map centered on Palawan</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Palawan center coordinates: approximately 10.5°N, 118.8°E</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map(center<span class="op">=</span>[<span class="fl">10.5</span>, <span class="fl">118.8</span>], zoom<span class="op">=</span><span class="dv">8</span>, height<span class="op">=</span><span class="st">'600px'</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add basemap options</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Map.add_basemap(<span class="st">'SATELLITE'</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Interactive map created"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Use the map controls to pan, zoom, and explore Palawan"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map centered on Palawan# Palawan center coordinates: approximately 10.5°N, 118.8°EMap = geemap.Map(center=[10.5, 118.8], zoom=8, height='600px')# Add basemap options (SATELLITE basemap)# Note: basemap is already set by default, or you can use addLayer for custom layersprint("✓ Interactive map created")print("Use the map controls to pan, zoom, and explore Palawan")Map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -661,19 +638,14 @@ window.Quarto = {
 <li><strong>COPERNICUS/S2_SR</strong>: Surface Reflectance (Level-2A) - atmospherically corrected</li>
 <li><strong>COPERNICUS/S2</strong>: Top-of-Atmosphere Reflectance (Level-1C) - raw measurements</li>
 </ul>
-<p>We use <strong>S2_SR</strong> because atmospheric correction is already applied, making it analysis-ready for land cover classification.</p>
+<p>We use <strong>S2_SR_HARMONIZED</strong> because atmospheric correction is already applied, making it analysis-ready for land cover classification.</p>
 <p><strong>Key Sentinel-2 Specifications:</strong> - Revisit time: 5 days (with both satellites) - Spatial resolution: 10m (RGB, NIR), 20m (Red Edge, SWIR), 60m (coastal, aerosol) - Spectral bands: 13 bands covering visible to short-wave infrared</p>
 <div id="cell-18" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define date range for imagery</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using 2024 data (or most recent full year)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">'2024-01-01'</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">'2024-12-31'</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>start_date<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>end_date<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define date range for imagery# Using 2025 data (current year)start_date = '2025-01-01'end_date = '2025-12-31'print(f"Date range: {start_date} to {end_date}")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-19" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Sentinel-2 Surface Reflectance collection</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>s2_collection <span class="op">=</span> (ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>s2_collection <span class="op">=</span> (ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 .filterBounds(palawan)  <span class="co"># Filter by study area</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 .filterDate(start_date, end_date)  <span class="co"># Filter by date range</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                 .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">20</span>)))  <span class="co"># Max 20% cloud cover</span></span>
@@ -1901,27 +1873,7 @@ window.Quarto = {
 <section id="export-classified-image" class="level3">
 <h3 class="anchored" data-anchor-id="export-classified-image">Export Classified Image</h3>
 <div id="cell-101" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export classification to Google Drive</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>export_classification <span class="op">=</span> ee.batch.Export.image.toDrive(</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    image<span class="op">=</span>classified_image,</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">'Palawan_LandCover_Classification'</span>,</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    folder<span class="op">=</span><span class="st">'EarthEngine'</span>,</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    fileNamePrefix<span class="op">=</span><span class="st">'palawan_landcover_2024'</span>,</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    region<span class="op">=</span>palawan.geometry(),</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    scale<span class="op">=</span><span class="dv">10</span>,  <span class="co"># 10m resolution</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">'EPSG:4326'</span>,</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    maxPixels<span class="op">=</span><span class="fl">1e10</span>,</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    fileFormat<span class="op">=</span><span class="st">'GeoTIFF'</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the export task</span></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>export_classification.start()</span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Classification export task started"</span>)</span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Task description: </span><span class="sc">{</span>export_classification<span class="sc">.</span>status()[<span class="st">'description'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Task state: </span><span class="sc">{</span>export_classification<span class="sc">.</span>status()[<span class="st">'state'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Check Google Drive &gt; EarthEngine folder for the file"</span>)</span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Note: Export may take 5-15 minutes depending on area size"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export classification to Google Driveexport_classification = ee.batch.Export.image.toDrive(    image=classified_image,    description='Palawan_LandCover_Classification',    folder='EarthEngine',    fileNamePrefix='palawan_landcover_2025',    region=palawan.geometry(),    scale=10,  # 10m resolution    crs='EPSG:4326',    maxPixels=1e10,    fileFormat='GeoTIFF')# Start the export taskexport_classification.start()print("✓ Classification export task started")print(f"Task description: {export_classification.status()['description']}")print(f"Task state: {export_classification.status()['state']}")print("\nCheck Google Drive &gt; EarthEngine folder for the file")print("Note: Export may take 5-15 minutes depending on area size")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="export-training-samples" class="level3">
@@ -2033,20 +1985,7 @@ window.Quarto = {
 <p>Create composites for dry season (Jan-Apr) and wet season (Jun-Sep), then classify.</p>
 <p><strong>Question</strong>: Does multi-temporal data improve discrimination between forest and agriculture?</p>
 <div id="cell-115" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Create dry season composite</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dry_season = s2_masked.filterDate('2024-01-01', '2024-04-30').median()</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Create wet season composite</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># wet_season = s2_masked.filterDate('2024-06-01', '2024-09-30').median()</span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Calculate NDVI for each season</span></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ndvi_dry = dry_season.normalizedDifference(['B8', 'B4']).rename('NDVI_dry')</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ndvi_wet = wet_season.normalizedDifference(['B8', 'B4']).rename('NDVI_wet')</span></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Create multi-temporal feature stack</span></span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="co"># feature_stack_temporal = dry_season.select(bands).addBands(wet_season.select(bands)).addBands([ndvi_dry, ndvi_wet])</span></span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Train and evaluate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Create dry season composite# dry_season = s2_masked.filterDate('2025-01-01', '2025-04-30').median()# </span><span class="al">TODO</span><span class="co">: Create wet season composite# wet_season = s2_masked.filterDate('2025-06-01', '2025-09-30').median()# </span><span class="al">TODO</span><span class="co">: Calculate NDVI for each season# ndvi_dry = dry_season.normalizedDifference(['B8', 'B4']).rename('NDVI_dry')# ndvi_wet = wet_season.normalizedDifference(['B8', 'B4']).rename('NDVI_wet')# </span><span class="al">TODO</span><span class="co">: Create multi-temporal feature stack# feature_stack_temporal = dry_season.select(bands).addBands(wet_season.select(bands)).addBands([ndvi_dry, ndvi_wet])# </span><span class="al">TODO</span><span class="co">: Train and evaluate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="exercise-9-add-topographic-features" class="level3">

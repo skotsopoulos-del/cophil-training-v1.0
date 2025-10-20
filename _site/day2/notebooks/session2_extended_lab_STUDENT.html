@@ -336,8 +336,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
   <li><a href="#part-a-advanced-feature-engineering-30-minutes" id="toc-part-a-advanced-feature-engineering-30-minutes" class="nav-link" data-scroll-target="#part-a-advanced-feature-engineering-30-minutes">Part A: Advanced Feature Engineering (30 minutes)</a>
   <ul class="collapse">
   <li><a href="#a.1-setup-and-initialization" id="toc-a.1-setup-and-initialization" class="nav-link" data-scroll-target="#a.1-setup-and-initialization">A.1: Setup and Initialization</a></li>
-  <li><a href="#a.2-define-study-area" id="toc-a.2-define-study-area" class="nav-link" data-scroll-target="#a.2-define-study-area">A.2: Define Study Area</a></li>
-  <li><a href="#a.3-create-seasonal-composites" id="toc-a.3-create-seasonal-composites" class="nav-link" data-scroll-target="#a.3-create-seasonal-composites">A.3: Create Seasonal Composites</a>
+  <li><a href="#a.2-define-study-area" id="toc-a.2-define-study-area" class="nav-link" data-scroll-target="#a.2-define-study-area">A.2: Define Study Area</a>
   <ul class="collapse">
   <li><a href="#visualize-seasonal-composites" id="toc-visualize-seasonal-composites" class="nav-link" data-scroll-target="#visualize-seasonal-composites">Visualize Seasonal Composites</a></li>
   </ul></li>
@@ -383,10 +382,6 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
   <li><a href="#todo-exercise-5-compare-filtering-results" id="toc-todo-exercise-5-compare-filtering-results" class="nav-link" data-scroll-target="#todo-exercise-5-compare-filtering-results">TODO Exercise 5: Compare Filtering Results</a></li>
   <li><a href="#part-c-complete" id="toc-part-c-complete" class="nav-link" data-scroll-target="#part-c-complete">🎉 Part C Complete!</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#part-d-nrm-applications-change-detection-15-minutes" id="toc-part-d-nrm-applications-change-detection-15-minutes" class="nav-link" data-scroll-target="#part-d-nrm-applications-change-detection-15-minutes">Part D: NRM Applications &amp; Change Detection (15 minutes)</a>
-  <ul class="collapse">
-  <li><a href="#d.1-create-2020-classification" id="toc-d.1-create-2020-classification" class="nav-link" data-scroll-target="#d.1-create-2020-classification">D.1: Create 2020 Classification</a></li>
   <li><a href="#d.2-detect-forest-loss" id="toc-d.2-detect-forest-loss" class="nav-link" data-scroll-target="#d.2-detect-forest-loss">D.2: Detect Forest Loss</a></li>
   <li><a href="#d.3-identify-deforestation-hotspots" id="toc-d.3-identify-deforestation-hotspots" class="nav-link" data-scroll-target="#d.3-identify-deforestation-hotspots">D.3: Identify Deforestation Hotspots</a></li>
   <li><a href="#d.4-change-matrix-statistics" id="toc-d.4-change-matrix-statistics" class="nav-link" data-scroll-target="#d.4-change-matrix-statistics">D.4: Change Matrix &amp; Statistics</a></li>
@@ -459,7 +454,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <li>✅ Create seasonal Sentinel-2 composites for Philippine context</li>
 <li>✅ Implement optimized Random Forest classification</li>
 <li>✅ Perform accuracy assessment with detailed metrics</li>
-<li>✅ Detect land cover changes (2020 vs 2024)</li>
+<li>✅ Detect land cover changes (2020 vs 2025)</li>
 <li>✅ Generate stakeholder-ready outputs for NRM applications</li>
 </ol>
 <hr>
@@ -559,19 +554,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Session started: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="d4de4c3f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Google Earth Engine</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    ee.Initialize()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"✓ Earth Engine initialized successfully"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"⚠️ Authenticating Earth Engine..."</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ee.Authenticate()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ee.Initialize()</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"✓ Earth Engine authenticated and initialized"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Test connection</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>test_image <span class="op">=</span> ee.Image(<span class="st">'COPERNICUS/S2_SR/20240101T020659_20240101T020701_T50QKF'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Connection test: </span><span class="sc">{</span>test_image<span class="sc">.</span>getInfo()[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Google Earth Engineimport eeimport geemap.core as geemapee.Authenticate()ee.Initialize(project='YOUR-PROJECT-ID')print("✓ Earth Engine authenticated and initialized")# Test connectiontest_collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \    .filterDate('2025-01-01', '2025-12-31') \    .first()try:    test_info = test_collection.getInfo()    print(f"✓ Connection test: {test_info['id']}")except Exception as e:    print(f"⚠️ Connection test failed: {str(e)}")    print("Please check your authentication and try again")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -593,12 +576,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>Map.addLayer(aoi, {<span class="st">'color'</span>: <span class="st">'red'</span>}, <span class="st">'Study Area'</span>)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>Map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr>
-</section>
-<section id="a.3-create-seasonal-composites" class="level2">
-<h2 class="anchored" data-anchor-id="a.3-create-seasonal-composites">A.3: Create Seasonal Composites</h2>
-<p>Philippine seasons are critical for land cover classification: - <strong>Dry Season (Jan-May):</strong> Best for forest mapping, minimal cloud cover - <strong>Wet Season (Jun-Nov):</strong> Shows agricultural phenology, maximum water extent</p>
-<p>We’ll create median composites for both seasons from 2024 data.</p>
+<p>—## A.3: Create Seasonal CompositesPhilippine seasons are critical for land cover classification:- <strong>Dry Season (Jan-May):</strong> Best for forest mapping, minimal cloud cover- <strong>Wet Season (Jun-Nov):</strong> Shows agricultural phenology, maximum water extentWe’ll create median composites for both seasons from 2025 data.</p>
 <div id="c7c37baa" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cloud masking function</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mask_s2_clouds(image):</span>
@@ -619,51 +597,15 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Cloud masking function defined"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="9c285976" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DRY SEASON composite (January-May 2024)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Creating dry season composite..."</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dry_season <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR'</span>) <span class="op">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    .filterBounds(aoi) <span class="op">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .filterDate(<span class="st">'2024-01-01'</span>, <span class="st">'2024-05-31'</span>) <span class="op">\</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">20</span>)) <span class="op">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">map</span>(mask_s2_clouds) <span class="op">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .median() <span class="op">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .clip(aoi)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Dry season composite created"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Bands: </span><span class="sc">{</span>dry_season<span class="sc">.</span>bandNames()<span class="sc">.</span>getInfo()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DRY SEASON composite (January-May 2025)print("Creating dry season composite...")dry_season = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \    .filterBounds(aoi) \    .filterDate('2025-01-01', '2025-05-31') \    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) \    .map(mask_s2_clouds) \    .median() \    .clip(aoi)print(f"✓ Dry season composite created")print(f"  Bands: {dry_season.bandNames().getInfo()}")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="c490610a" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create WET SEASON composite (June-November 2024)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Creating wet season composite..."</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wet_season <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR'</span>) <span class="op">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    .filterBounds(aoi) <span class="op">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .filterDate(<span class="st">'2024-06-01'</span>, <span class="st">'2024-11-30'</span>) <span class="op">\</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">30</span>)) <span class="op">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">map</span>(mask_s2_clouds) <span class="op">\</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    .median() <span class="op">\</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    .clip(aoi)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Wet season composite created"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Bands: </span><span class="sc">{</span>wet_season<span class="sc">.</span>bandNames()<span class="sc">.</span>getInfo()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create WET SEASON composite (June-November 2025)print("Creating wet season composite...")wet_season = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \    .filterBounds(aoi) \    .filterDate('2025-06-01', '2025-11-30') \    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30)) \    .map(mask_s2_clouds) \    .median() \    .clip(aoi)print(f"✓ Wet season composite created")print(f"  Bands: {wet_season.bandNames().getInfo()}")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="visualize-seasonal-composites" class="level3">
 <h3 class="anchored" data-anchor-id="visualize-seasonal-composites">Visualize Seasonal Composites</h3>
 <div id="a6e8b584" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize both seasons</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Map2 <span class="op">=</span> geemap.Map(center<span class="op">=</span>[<span class="fl">10.0</span>, <span class="fl">119.0</span>], zoom<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># RGB visualization parameters</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>vis_params <span class="op">=</span> {</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'min'</span>: <span class="dv">0</span>, <span class="st">'max'</span>: <span class="fl">0.3</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bands'</span>: [<span class="st">'B4'</span>, <span class="st">'B3'</span>, <span class="st">'B2'</span>]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>Map2.addLayer(dry_season, vis_params, <span class="st">'Dry Season (Jan-May 2024)'</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>Map2.addLayer(wet_season, vis_params, <span class="st">'Wet Season (Jun-Nov 2024)'</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Map2.addLayerControl()</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Map2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize both seasonsMap2 = geemap.Map(center=[10.0, 119.0], zoom=10)# RGB visualization parametersvis_params = {    'min': 0, 'max': 0.3,    'bands': ['B4', 'B3', 'B2']}Map2.addLayer(dry_season, vis_params, 'Dry Season (Jan-May 2025)')Map2.addLayer(wet_season, vis_params, 'Wet Season (Jun-Nov 2025)')Map2.addLayerControl()Map2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -901,25 +843,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <section id="b.4-apply-classification" class="level2">
 <h2 class="anchored" data-anchor-id="b.4-apply-classification">B.4: Apply Classification</h2>
 <div id="b73924bd" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify the feature stack</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>classified <span class="op">=</span> feature_stack.classify(classifier).rename(<span class="st">'classification'</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Classification complete"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize classification</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>class_colors <span class="op">=</span> [<span class="st">'#0A5F0A'</span>, <span class="st">'#4CAF50'</span>, <span class="st">'#009688'</span>, <span class="st">'#FFC107'</span>, </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'#FFEB3B'</span>, <span class="st">'#2196F3'</span>, <span class="st">'#F44336'</span>, <span class="st">'#795548'</span>]</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Map3 <span class="op">=</span> geemap.Map(center<span class="op">=</span>[<span class="fl">10.0</span>, <span class="fl">119.0</span>], zoom<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Map3.addLayer(classified, {<span class="st">'min'</span>: <span class="dv">1</span>, <span class="st">'max'</span>: <span class="dv">8</span>, <span class="st">'palette'</span>: class_colors}, <span class="st">'Land Cover 2024'</span>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Map3.addLayer(aoi, {<span class="st">'color'</span>: <span class="st">'black'</span>}, <span class="st">'Study Area'</span>, <span class="va">False</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>Map3.add_legend(</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Land Cover Classes'</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>[<span class="st">'Primary Forest'</span>, <span class="st">'Secondary Forest'</span>, <span class="st">'Mangroves'</span>, <span class="st">'Agricultural'</span>,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Grassland'</span>, <span class="st">'Water'</span>, <span class="st">'Urban'</span>, <span class="st">'Bare Soil'</span>],</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>class_colors</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>Map3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify the feature stackclassified = feature_stack.classify(classifier).rename('classification')print("✓ Classification complete")# Visualize classificationclass_colors = ['#0A5F0A', '#4CAF50', '#009688', '#FFC107',                 '#FFEB3B', '#2196F3', '#F44336', '#795548']Map3 = geemap.Map(center=[10.0, 119.0], zoom=10)Map3.addLayer(classified, {'min': 1, 'max': 8, 'palette': class_colors}, 'Land Cover 2025')Map3.addLayer(aoi, {'color': 'black'}, 'Study Area', False)Map3.add_legend(    title='Land Cover Classes',    labels=['Primary Forest', 'Secondary Forest', 'Mangroves', 'Agricultural',            'Grassland', 'Water', 'Urban', 'Bare Soil'],    colors=class_colors)Map3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -1036,35 +960,7 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✓ Area statistics calculated"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="60651f79" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize area distribution</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>classes_list <span class="op">=</span> <span class="bu">list</span>(area_stats.keys())</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>areas_list <span class="op">=</span> <span class="bu">list</span>(area_stats.values())</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#0A5F0A'</span>, <span class="st">'#4CAF50'</span>, <span class="st">'#009688'</span>, <span class="st">'#FFC107'</span>, </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">'#FFEB3B'</span>, <span class="st">'#2196F3'</span>, <span class="st">'#F44336'</span>, <span class="st">'#795548'</span>]</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="bu">len</span>(classes_list)), areas_list, color<span class="op">=</span>colors, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Land Cover Class'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Area (hectares)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Palawan Land Cover Distribution (2024)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(classes_list)))</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(classes_list, rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">'y'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add value labels on bars</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (bar, value) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(bars, areas_list)):</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> bar.get_height()</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width()<span class="op">/</span><span class="fl">2.</span>, height,</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f'</span><span class="sc">{</span>value<span class="sc">:,.0f}</span><span class="ss">'</span>,</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>            ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Area distribution plot created"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize area distributionimport matplotlib.pyplot as pltfig, ax = plt.subplots(figsize=(12, 6))classes_list = list(area_stats.keys())areas_list = list(area_stats.values())colors = ['#0A5F0A', '#4CAF50', '#009688', '#FFC107',           '#FFEB3B', '#2196F3', '#F44336', '#795548']bars = ax.bar(range(len(classes_list)), areas_list, color=colors, edgecolor='black', linewidth=1.5)ax.set_xlabel('Land Cover Class', fontsize=12, fontweight='bold')ax.set_ylabel('Area (hectares)', fontsize=12, fontweight='bold')ax.set_title('Palawan Land Cover Distribution (2025)', fontsize=14, fontweight='bold')ax.set_xticks(range(len(classes_list)))ax.set_xticklabels(classes_list, rotation=45, ha='right')ax.grid(axis='y', alpha=0.3)# Add value labels on barsfor i, (bar, value) in enumerate(zip(bars, areas_list)):    height = bar.get_height()    ax.text(bar.get_x() + bar.get_width()/2., height,            f'{value:,.0f}',            ha='center', va='bottom', fontsize=10, fontweight='bold')plt.tight_layout()plt.show()print("✓ Area distribution plot created")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="part-b-complete" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-complete">🎉 Part B Complete!</h3>
@@ -1182,22 +1078,12 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="part-c-complete">🎉 Part C Complete!</h3>
 <p>You’ve successfully: - ✅ Performed hyperparameter tuning - ✅ Identified optimal tree count - ✅ Applied post-processing filters</p>
 <hr>
-<hr>
-</section>
-</section>
-</section>
-<section id="part-d-nrm-applications-change-detection-15-minutes" class="level1">
-<h1>Part D: NRM Applications &amp; Change Detection (15 minutes)</h1>
-<p>Apply classification to conservation challenges: detect forest loss from 2020 to 2024.</p>
-<hr>
-<section id="d.1-create-2020-classification" class="level2">
-<h2 class="anchored" data-anchor-id="d.1-create-2020-classification">D.1: Create 2020 Classification</h2>
-<p>We’ll create a comparable classification for 2020 to detect changes.</p>
+<p>—# Part D: NRM Applications &amp; Change Detection (15 minutes)Apply classification to conservation challenges: detect forest loss from 2020 to 2025.—## D.1: Create 2020 ClassificationWe’ll create a comparable classification for 2020 to detect changes.</p>
 <div id="31f5c875" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 2020 dry season composite</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Creating 2020 composite for comparison..."</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>dry_2020 <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR'</span>) <span class="op">\</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>dry_2020 <span class="op">=</span> ee.ImageCollection(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>) <span class="op">\</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    .filterBounds(aoi) <span class="op">\</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    .filterDate(<span class="st">'2020-01-01'</span>, <span class="st">'2020-05-31'</span>) <span class="op">\</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(ee.Filter.lt(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="dv">20</span>)) <span class="op">\</span></span>
@@ -1223,51 +1109,14 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 </div>
 <hr>
 </section>
+</section>
 <section id="d.2-detect-forest-loss" class="level2">
 <h2 class="anchored" data-anchor-id="d.2-detect-forest-loss">D.2: Detect Forest Loss</h2>
 <div id="74f501c0" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect forest loss (class 1 or 2 in 2020, NOT in 2024)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Detecting forest loss..."</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create forest masks</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>forest_2020 <span class="op">=</span> classified_2020.eq(<span class="dv">1</span>).Or(classified_2020.eq(<span class="dv">2</span>))</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>forest_2024 <span class="op">=</span> classified_filtered.eq(<span class="dv">1</span>).Or(classified_filtered.eq(<span class="dv">2</span>))</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest loss: was forest in 2020, not forest in 2024</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>forest_loss <span class="op">=</span> forest_2020.And(forest_2024.Not()).rename(<span class="st">'forest_loss'</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Forest loss detected"</span>)</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate forest loss area</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>loss_area <span class="op">=</span> forest_loss.multiply(ee.Image.pixelArea()).reduceRegion(</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span>ee.Reducer.<span class="bu">sum</span>(),</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>aoi,</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    scale<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    maxPixels<span class="op">=</span><span class="fl">1e13</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>loss_ha <span class="op">=</span> ee.Number(loss_area.get(<span class="st">'forest_loss'</span>)).divide(<span class="dv">10000</span>).getInfo()</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🚨 Forest Loss (2020-2024): </span><span class="sc">{</span>loss_ha<span class="sc">:,.2f}</span><span class="ss"> hectares"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect forest loss (class 1 or 2 in 2020, NOT in 2025)print("Detecting forest loss...")# Create forest masksforest_2020 = classified_2020.eq(1).Or(classified_2020.eq(2))forest_2025 = classified_filtered.eq(1).Or(classified_filtered.eq(2))# Forest loss: was forest in 2020, not forest in 2025forest_loss = forest_2020.And(forest_2025.Not()).rename('forest_loss')print("✓ Forest loss detected")# Calculate forest loss arealoss_area = forest_loss.multiply(ee.Image.pixelArea()).reduceRegion(    reducer=ee.Reducer.sum(),    geometry=aoi,    scale=10,    maxPixels=1e13)loss_ha = ee.Number(loss_area.get('forest_loss')).divide(10000).getInfo()print(f"\n🚨 Forest Loss (2020-2025): {loss_ha:,.2f} hectares")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="5a3ab90c" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize forest loss</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Map5 <span class="op">=</span> geemap.Map(center<span class="op">=</span>[<span class="fl">10.0</span>, <span class="fl">119.0</span>], zoom<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Background: 2024 classification</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>Map5.addLayer(classified_filtered, {<span class="st">'min'</span>: <span class="dv">1</span>, <span class="st">'max'</span>: <span class="dv">8</span>, <span class="st">'palette'</span>: class_colors}, </span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">'2024 Land Cover'</span>, <span class="va">False</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight forest loss in red</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>Map5.addLayer(forest_loss.updateMask(forest_loss), {<span class="st">'palette'</span>: [<span class="st">'red'</span>]}, </span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>              <span class="st">'Forest Loss (2020-2024)'</span>)</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>Map5.add_legend(</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Change Detection'</span>,</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>[<span class="st">'Forest Loss'</span>, <span class="st">'No Change'</span>],</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>[<span class="st">'red'</span>, <span class="st">'lightgray'</span>]</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>Map5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize forest lossMap5 = geemap.Map(center=[10.0, 119.0], zoom=10)# Background: 2025 classificationMap5.addLayer(classified_filtered, {'min': 1, 'max': 8, 'palette': class_colors},               '2025 Land Cover', False)# Highlight forest loss in redMap5.addLayer(forest_loss.updateMask(forest_loss), {'palette': ['red']},               'Forest Loss (2020-2025)')Map5.add_legend(    title='Change Detection',    labels=['Forest Loss', 'No Change'],    colors=['red', 'lightgray'])Map5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -1331,63 +1180,14 @@ gtag('config', 'G-509191933', { 'anonymize_ip': true});
 <section id="d.5-generate-stakeholder-report" class="level2">
 <h2 class="anchored" data-anchor-id="d.5-generate-stakeholder-report">D.5: Generate Stakeholder Report</h2>
 <div id="4cad0acd" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary report</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PALAWAN BIOSPHERE RESERVE - CHANGE DETECTION REPORT (2020-2024)"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Study Area: </span><span class="sc">{</span>aoi<span class="sc">.</span>area()<span class="sc">.</span>divide(<span class="fl">1e6</span>)<span class="sc">.</span>getInfo()<span class="sc">:.2f}</span><span class="ss"> km²"</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Analysis Period: 2020-2024 (4 years)"</span>)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">--- KEY FINDINGS ---</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest loss</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>total_area_km2 <span class="op">=</span> aoi.area().divide(<span class="fl">1e6</span>).getInfo()</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>loss_percent <span class="op">=</span> (loss_ha <span class="op">/</span> (total_area_km2 <span class="op">*</span> <span class="dv">100</span>)) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"🚨 Total Forest Loss: </span><span class="sc">{</span>loss_ha<span class="sc">:,.2f}</span><span class="ss"> hectares (</span><span class="sc">{</span>loss_percent<span class="sc">:.2f}</span><span class="ss">% of study area)"</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"📉 Annual Loss Rate: </span><span class="sc">{</span>loss_ha<span class="op">/</span><span class="dv">4</span><span class="sc">:,.2f}</span><span class="ss"> hectares/year"</span>)</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024 Land cover summary</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">--- 2024 LAND COVER DISTRIBUTION ---</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> class_name, area <span class="kw">in</span> area_stats.items():</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    percent <span class="op">=</span> (area <span class="op">/</span> (total_area_km2 <span class="op">*</span> <span class="dv">100</span>)) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>class_name<span class="sc">:20s}</span><span class="ss">: </span><span class="sc">{</span>area<span class="sc">:10,.2f}</span><span class="ss"> ha (</span><span class="sc">{</span>percent<span class="sc">:5.2f}</span><span class="ss">%)"</span>)</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">--- CONSERVATION IMPLICATIONS ---</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Continued monitoring recommended"</span>)</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Priority intervention zones identified via hotspot analysis"</span>)</span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Update DENR forest cover database"</span>)</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Inform REDD+ MRV reporting"</span>)</span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Report generated:"</span>, datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>))</span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary reportprint("=" * 70)print("PALAWAN BIOSPHERE RESERVE - CHANGE DETECTION REPORT (2020-2025)")print("=" * 70)print(f"\nStudy Area: {aoi.area().divide(1e6).getInfo():.2f} km²")print(f"Analysis Period: 2020-2025 (5 years)")print(f"\n--- KEY FINDINGS ---\n")# Forest losstotal_area_km2 = aoi.area().divide(1e6).getInfo()loss_percent = (loss_ha / (total_area_km2 * 100)) * 100print(f"🚨 Total Forest Loss: {loss_ha:,.2f} hectares ({loss_percent:.2f}% of study area)")print(f"📉 Annual Loss Rate: {loss_ha/5:,.2f} hectares/year")# 2025 Land cover summaryprint(f"\n--- 2025 LAND COVER DISTRIBUTION ---\n")for class_name, area in area_stats.items():    percent = (area / (total_area_km2 * 100)) * 100    print(f"  {class_name:20s}: {area:10,.2f} ha ({percent:5.2f}%)")print(f"\n--- CONSERVATION IMPLICATIONS ---\n")print("• Continued monitoring recommended")print("• Priority intervention zones identified via hotspot analysis")print("• Update DENR forest cover database")print("• Inform REDD+ MRV reporting")print("\n" + "=" * 70)print("Report generated:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))print("=" * 70)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
 <section id="d.6-export-results" class="level2">
 <h2 class="anchored" data-anchor-id="d.6-export-results">D.6: Export Results</h2>
 <div id="3bd4cc3e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export classification to Google Drive</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Preparing exports..."</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Export 2024 classification</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>export_task <span class="op">=</span> ee.batch.Export.image.toDrive(</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    image<span class="op">=</span>classified_filtered.toUint8(),</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">'Palawan_LULC_2024'</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    folder<span class="op">=</span><span class="st">'EO_Training_Exports'</span>,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    fileNamePrefix<span class="op">=</span><span class="st">'palawan_lulc_2024'</span>,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    region<span class="op">=</span>aoi,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    scale<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    maxPixels<span class="op">=</span><span class="fl">1e13</span>,</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">'EPSG:4326'</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Don't start automatically in notebook</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Export tasks configured"</span>)</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">To start export, run:"</span>)</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  export_task.start()"</span>)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Then check status at: https://code.earthengine.google.com/tasks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export classification to Google Driveprint("Preparing exports...")# Export 2025 classificationexport_task = ee.batch.Export.image.toDrive(    image=classified_filtered.toUint8(),    description='Palawan_LULC_2025',    folder='EO_Training_Exports',    fileNamePrefix='palawan_lulc_2025',    region=aoi,    scale=10,    maxPixels=1e13,    crs='EPSG:4326')# Don't start automatically in notebookprint("✓ Export tasks configured")print("\nTo start export, run:")print("  export_task.start()")print("\nThen check status at: https://code.earthengine.google.com/tasks")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="export-options" class="level3">
 <h3 class="anchored" data-anchor-id="export-options">Export Options</h3>
