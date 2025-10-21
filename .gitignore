@@ -7,3 +7,13 @@
 # Quarto freeze directory (cached in CI, not in git)
 # This stores pre-rendered notebook outputs to speed up builds
 /_freeze/
+
+# Python virtual environment (local testing)
+/venv/
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+
+# Jupyter notebook outputs (optional - keep if you want rendered outputs in git)
+# Uncomment to ignore all notebook outputs:
+# *.ipynb
