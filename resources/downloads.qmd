@@ -16,7 +16,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day1/presentations/01_session1_copernicus_philippine_eo.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/01_session1_copernicus_philippine_eo.pdf){.btn .btn-outline download="01_session1_copernicus_philippine_eo.pdf"}
+[Download PDF](../pdfs/day1/01_session1_copernicus_philippine_eo.pdf){.btn .btn-outline download="01_session1_copernicus_philippine_eo.pdf"}
 
 **Topics:**
 - Copernicus Programme overview
@@ -30,7 +30,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day1/presentations/02_session2_ai_ml_fundamentals.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/02_session2_ai_ml_fundamentals.pdf){.btn .btn-outline download="02_session2_ai_ml_fundamentals.pdf"}
+[Download PDF](../pdfs/day1/02_session2_ai_ml_fundamentals.pdf){.btn .btn-outline download="02_session2_ai_ml_fundamentals.pdf"}
 
 **Topics:**
 - What is AI/ML and the EO workflow
@@ -44,7 +44,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day1/presentations/03_session3_python_geospatial.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/03_session3_python_geospatial.pdf){.btn .btn-outline download="03_session3_python_geospatial.pdf"}
+[Download PDF](../pdfs/day1/03_session3_python_geospatial.pdf){.btn .btn-outline download="03_session3_python_geospatial.pdf"}
 
 **Jupyter Notebook:**
 [Download Notebook](../day1/notebooks/Day1_Session3_Python_Geospatial_Data.ipynb){.btn .btn-primary download="Day1_Session3_Python_Geospatial_Data.ipynb"}
@@ -63,7 +63,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day1/presentations/04_session4_google_earth_engine.html){.btn .btn-primary}
-[Download PDF](../day1/presentations/04_session4_google_earth_engine.pdf){.btn .btn-outline download="04_session4_google_earth_engine.pdf"}
+[Download PDF](../pdfs/day1/04_session4_google_earth_engine.pdf){.btn .btn-outline download="04_session4_google_earth_engine.pdf"}
 
 **Jupyter Notebook:**
 [Download Notebook](../day1/notebooks/Day1_Session4_Google_Earth_Engine.ipynb){.btn .btn-primary download="Day1_Session4_Google_Earth_Engine.ipynb"}
@@ -84,7 +84,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day2/presentations/session1_random_forest.html){.btn .btn-primary}
-[Download PDF](../day2/presentations/session1_random_forest.pdf){.btn .btn-outline download="session1_random_forest.pdf"}
+[Download PDF](../pdfs/day2/session1_random_forest.pdf){.btn .btn-outline download="session1_random_forest.pdf"}
 
 **Jupyter Notebooks:**
 [Theory Notebook](../day2/notebooks/session1_theory_notebook_STUDENT.ipynb){.btn .btn-primary download="session1_theory_notebook_STUDENT.ipynb"}
@@ -104,7 +104,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day2/presentations/session2_palawan_lab.html){.btn .btn-primary}
-[Download PDF](../day2/presentations/session2_palawan_lab.pdf){.btn .btn-outline download="session2_palawan_lab.pdf"}
+[Download PDF](../pdfs/day2/session2_palawan_lab.pdf){.btn .btn-outline download="session2_palawan_lab.pdf"}
 
 **Jupyter Notebook:**
 [Extended Lab](../day2/notebooks/session2_extended_lab_STUDENT.ipynb){.btn .btn-primary download="session2_extended_lab_STUDENT.ipynb"}
@@ -122,7 +122,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day2/presentations/session3_deep_learning.html){.btn .btn-primary}
-[Download PDF](../day2/presentations/session3_deep_learning.pdf){.btn .btn-outline download="session3_deep_learning.pdf"}
+[Download PDF](../pdfs/day2/session3_deep_learning.pdf){.btn .btn-outline download="session3_deep_learning.pdf"}
 
 **Jupyter Notebook:**
 [Theory Interactive](../day2/notebooks/session3_theory_interactive.ipynb){.btn .btn-primary download="session3_theory_interactive.ipynb"}
@@ -140,7 +140,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day2/presentations/session4_cnn_lab.html){.btn .btn-primary}
-[Download PDF](../day2/presentations/session4_cnn_lab.pdf){.btn .btn-outline download="session4_cnn_lab.pdf"}
+[Download PDF](../pdfs/day2/session4_cnn_lab.pdf){.btn .btn-outline download="session4_cnn_lab.pdf"}
 
 **Jupyter Notebooks:**
 [CNN Classification](../day2/notebooks/session4_cnn_classification_STUDENT.ipynb){.btn .btn-primary download="session4_cnn_classification_STUDENT.ipynb"}
@@ -162,7 +162,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session1_unet_segmentation.html){.btn .btn-primary}
-[Download PDF](../day3/presentations/session1_unet_segmentation.pdf){.btn .btn-outline download="session1_unet_segmentation.pdf"}
+[Download PDF](../pdfs/day3/session1_unet_segmentation.pdf){.btn .btn-outline download="session1_unet_segmentation.pdf"}
 
 **Topics:**
 - Pixel-wise classification
@@ -176,7 +176,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session2_flood_mapping_lab.html){.btn .btn-primary}
-[Download PDF](../day3/presentations/session2_flood_mapping_lab.pdf){.btn .btn-outline download="session2_flood_mapping_lab.pdf"}
+[Download PDF](../pdfs/day3/session2_flood_mapping_lab.pdf){.btn .btn-outline download="session2_flood_mapping_lab.pdf"}
 
 **Jupyter Notebook:**
 [Flood Mapping Lab](../day3/notebooks/Day3_Session2_Flood_Mapping_UNet.ipynb){.btn .btn-primary download="Day3_Session2_Flood_Mapping_UNet.ipynb"}
@@ -194,7 +194,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session3_object_detection.html){.btn .btn-primary}
-[Download PDF](../day3/presentations/session3_object_detection.pdf){.btn .btn-outline download="session3_object_detection.pdf"}
+[Download PDF](../pdfs/day3/session3_object_detection.pdf){.btn .btn-outline download="session3_object_detection.pdf"}
 
 **Topics:**
 - Object detection frameworks
@@ -208,7 +208,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session4_object_detection_lab.html){.btn .btn-primary}
-[Download PDF](../day3/presentations/session4_object_detection_lab.pdf){.btn .btn-outline download="session4_object_detection_lab.pdf"}
+[Download PDF](../pdfs/day3/session4_object_detection_lab.pdf){.btn .btn-outline download="session4_object_detection_lab.pdf"}
 
 **Jupyter Notebook:**
 [Object Detection Lab](../day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-primary download="Day3_Session4_Object_Detection_STUDENT.ipynb"}
@@ -228,7 +228,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session1_lstm_time_series.html){.btn .btn-primary}
-[Download PDF](../day4/presentations/session1_lstm_time_series.pdf){.btn .btn-outline download="session1_lstm_time_series.pdf"}
+[Download PDF](../pdfs/day4/session1_lstm_time_series.pdf){.btn .btn-outline download="session1_lstm_time_series.pdf"}
 
 **Jupyter Notebook:**
 [LSTM Demo](../day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-primary download="day4_session1_lstm_demo_STUDENT.ipynb"}
@@ -246,7 +246,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session2_drought_lab.html){.btn .btn-primary}
-[Download PDF](../day4/presentations/session2_drought_lab.pdf){.btn .btn-outline download="session2_drought_lab.pdf"}
+[Download PDF](../pdfs/day4/session2_drought_lab.pdf){.btn .btn-outline download="session2_drought_lab.pdf"}
 
 **Jupyter Notebook:**
 [Drought Lab](../day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-primary download="day4_session2_lstm_drought_lab_STUDENT.ipynb"}
@@ -264,7 +264,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session3_emerging_ai.html){.btn .btn-primary}
-[Download PDF](../day4/presentations/session3_emerging_ai.pdf){.btn .btn-outline download="session3_emerging_ai.pdf"}
+[Download PDF](../pdfs/day4/session3_emerging_ai.pdf){.btn .btn-outline download="session3_emerging_ai.pdf"}
 
 **Topics:**
 - Self-supervised learning
@@ -278,7 +278,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session4_synthesis.html){.btn .btn-primary}
-[Download PDF](../day4/presentations/session4_synthesis.pdf){.btn .btn-outline download="session4_synthesis.pdf"}
+[Download PDF](../pdfs/day4/session4_synthesis.pdf){.btn .btn-outline download="session4_synthesis.pdf"}
 
 **Topics:**
 - End-to-end EO AI/ML workflow
