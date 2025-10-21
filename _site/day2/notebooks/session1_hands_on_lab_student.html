@@ -606,19 +606,7 @@ window.Quarto = {
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ Palawan boundary defined"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-15" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the boundary on the map</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Map.addLayer(palawan, {<span class="st">'color'</span>: <span class="st">'red'</span>}, <span class="st">'Palawan Boundary'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Map.centerObject(palawan, <span class="dv">8</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Display basic information</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>area_km2 <span class="op">=</span> palawan.geometry().area().divide(<span class="fl">1e6</span>).getInfo()</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>bounds <span class="op">=</span> palawan.geometry().bounds().getInfo()</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Study Area: Palawan Province"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Approximate Area: </span><span class="sc">{</span>area_km2<span class="sc">:,.0f}</span><span class="ss"> km²"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bounding Box: </span><span class="sc">{</span>bounds[<span class="st">'coordinates'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>Map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the boundary on the mapMap.addLayer(palawan, {'color': 'red'}, 'Palawan Boundary')Map.centerObject(palawan, 8)# Display basic informationarea_km2 = palawan.geometry().area().divide(1e6).getInfo()bounds = palawan.geometry().bounds().getInfo()print(f"Study Area: Palawan Province")print(f"Approximate Area: {area_km2:,.0f} km²")# Safely extract bounding box coordinatestry:    if bounds and 'coordinates' in bounds:        print(f"Bounding Box: {bounds['coordinates']}")    else:        print("Bounding Box: Coordinates not available")except:    print("Bounding Box: Could not retrieve coordinates")Map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>🔍 <strong>Interpretation:</strong></p>
 <ul>
