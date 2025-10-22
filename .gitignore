@@ -17,3 +17,5 @@ __pycache__/
 # Jupyter notebook outputs (optional - keep if you want rendered outputs in git)
 # Uncomment to ignore all notebook outputs:
 # *.ipynb
+_site/
+.DS_Store
