@@ -24,7 +24,7 @@ format:
 ::: {.columns}
 ::: {.column width="58%"}
 **Duration:** 1.5 hours (90 minutes)
-**Type:** Theory + Interactive Demos
+**Type:** Theory Session
 **Goal:** Master LSTM networks for time series forecasting
 
 **You will learn:**
@@ -47,9 +47,8 @@ format:
 **Materials:**
 
 - Theory presentation
-- Interactive LSTM notebook
-- Gradient demonstration
-- Philippine EO examples
+- Philippine EO case studies
+- Reference materials overview
 :::
 :::
 
@@ -651,61 +650,6 @@ Session 2 (2.5 hours) implements full workflow:
 - Historical built-up area
 - Urban expansion locations
 - MMDA infrastructure planning
-
----
-
-# Interactive Demos {background-color="#2C5F77"}
-
----
-
-## Demo 1: Gate Behavior
-
-Interactive notebook features:
-
-- Set gate values manually
-- Observe cell state evolution
-- See information flow control
-- Understand selective memory
-
----
-
-## Demo 2: Vanishing Gradient
-
-Side-by-side comparison:
-
-- Standard RNN gradient decay (50 steps)
-- LSTM gradient preservation (50 steps)
-- Visualization of why LSTMs work
-
----
-
-## Demo 3: NDVI Prediction
-
-LSTM trained during the demo:
-
-- Input: 12 months synthetic Mindanao NDVI
-- Predictions vs actual (next 3 months)
-- Drought vs normal conditions
-- Seasonal pattern capture
-
----
-
-## Notebook Access
-
-::: {.callout-note}
-## Interactive Materials
-
-📓 **LSTM Demo Notebook:**
-
-- Architecture visualization
-- Gradient demonstration  
-- Mindanao NDVI generation
-- Complete model training
-
-[Download Student Version](../notebooks/day4_session1_lstm_demo_STUDENT.ipynb)
-
-**Requirements:** TensorFlow 2.x, NumPy, Matplotlib, Pandas
-:::
 
 ---
 

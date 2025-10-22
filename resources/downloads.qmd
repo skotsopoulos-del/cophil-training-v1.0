@@ -257,6 +257,9 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 [Drought Lab](../day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-primary download="day4_session2_lstm_drought_lab_STUDENT.ipynb"}
 [Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day4/notebooks/day4_session2_lstm_drought_lab_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
+**Instructor Notebook:**
+[Download Notebook](../day4/notebooks/day4_session2_lstm_drought_lab_INSTRUCTOR.ipynb){.btn .btn-outline download="day4_session2_lstm_drought_lab_INSTRUCTOR.ipynb"}
+
 **Topics:**
 - Multi-variate time series
 - LSTM implementation for drought
