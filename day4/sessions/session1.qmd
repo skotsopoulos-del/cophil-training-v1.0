@@ -624,7 +624,7 @@ Scale features to [0, 1] or standardize to mean=0, std=1
 ::: {.callout-important}
 ## Session 2 Lab Preview
 
-Tomorrow's hands-on lab (Session 2) will implement this full workflow:
+Later today’s hands-on lab (Session 2) will implement this full workflow:
 - Download Sentinel-2 NDVI time series for Mindanao
 - Prepare sequences and training data
 - Build and train LSTM model
@@ -677,7 +677,7 @@ Side-by-side comparison:
 
 **Demo 3: NDVI Sequence Prediction**
 
-Pre-trained LSTM model:
+LSTM model trained during the demo:
 - Input: 12 months of synthetic Mindanao NDVI data
 - Visualize predictions vs. actual for next 3 months
 - Explore impact of drought vs. normal conditions
@@ -697,7 +697,7 @@ Pre-trained LSTM model:
 📓 [Download Instructor Solution](../notebooks/day4_session1_lstm_demo_INSTRUCTOR.ipynb)
 
 **Requirements:**
-- TensorFlow 2.x or PyTorch
+- TensorFlow 2.x
 - NumPy, Matplotlib, Pandas, Scikit-learn
 - Jupyter Notebook or Google Colab (GPU recommended)
 :::
@@ -782,7 +782,7 @@ model = Sequential([
 - Operational potential: early warning for DA, PAGASA, LGUs
 
 **Next Session:**
-Session 2 (tomorrow) implements the full LSTM drought monitoring lab for Mindanao with real Sentinel-2 data!
+Session 2 (today) implements the full LSTM drought monitoring lab for Mindanao with real Sentinel-2 data!
 :::
 
 ---
@@ -790,7 +790,7 @@ Session 2 (tomorrow) implements the full LSTM drought monitoring lab for Mindana
 ## Preparation for Session 2
 
 ::: {.callout-tip}
-## Get Ready for Tomorrow's Lab
+## Get Ready for Session 2 (Today)
 
 **Session 2** is a 2.5-hour hands-on lab implementing LSTM drought forecasting for Mindanao.
 

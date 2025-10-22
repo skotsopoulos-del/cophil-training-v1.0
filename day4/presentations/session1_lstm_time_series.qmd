@@ -1,6 +1,6 @@
 ---
 title: "Session 1: LSTMs for Earth Observation Time Series"
-subtitle: "Theory, Concepts, and Interactive Demos"
+subtitle: "Understanding Recurrent Neural Networks and Long Short-Term Memory"
 author: "Stylianos Kotsopoulos"
 institute: "EU-Philippines CoPhil Programme"
 date: ""
@@ -10,8 +10,8 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    logo: ../../day1/presentations/images/copphil_logo.png
-    footer: "DAY 4 - Session 1 | LSTMs for EO Time Series | 20-23 October 2025"
+    logo: ../../day1/presentations/images/philsa_logo.png
+    footer: "DAY 4 - Session 1 | LSTMs for EO Time Series"
     transition: fade
     background-transition: fade
     width: 1920
@@ -19,156 +19,875 @@ format:
     margin: 0.1
 ---
 
-## Welcome & Agenda {.smaller}
+## Session Overview {.smaller}
 
-- **Duration:** 1.5 hours (90 minutes)
-- **Plan:**
-  - 0–10 min: EO time series context
-  - 10–30 min: RNN basics & vanishing gradient
-  - 30–60 min: LSTM architecture deep-dive (gates, cell state)
-  - 60–80 min: EO applications (Mindanao drought, phenology)
-  - 80–90 min: Q&A, transition to Lab (Session 2)
+::: {.columns}
+::: {.column width="58%"}
+**Duration:** 1.5 hours (90 minutes)
+**Type:** Theory + Interactive Demos
+**Goal:** Master LSTM networks for time series forecasting
 
----
+**You will learn:**
 
-## Learning Objectives
+- Why time series analysis is critical for EO
+- Limitations of standard neural networks for sequences
+- LSTM architecture and how it solves vanishing gradients
+- EO applications for LSTM-based forecasting
+- How LSTM gates control information flow
+:::
 
-- Understand EO time series (NDVI, rainfall, temperature, SAR backscatter)
-- Explain RNN limitations (vanishing/exploding gradients)
-- Describe LSTM internals (input/forget/output gates, cell state)
-- Connect LSTMs to EO tasks (drought, yield, phenology)
+::: {.column width="42%"}
+**Prerequisites:**
 
----
+- Understanding of CNNs (Day 3)
+- Basic neural network training
+- Time series concepts
+- Python fundamentals
 
-# EO Time Series Context {background-color="#2C5F77"}
+**Materials:**
 
-## What is EO Time Series?
-
-- Repeated observations over the same AOI
-- Examples: NDVI monthly means, SAR backscatter weekly, climate forcings
-- Why it matters: seasonality, trends, anomalies
-
----
-
-## Typical EO Inputs for Drought
-
-- NDVI (vegetation health)
-- Rainfall (CHIRPS)
-- Temperature (ERA5, station data)
-- ONI/ENSO index (large-scale climate driver)
+- Theory presentation
+- Interactive LSTM notebook
+- Gradient demonstration
+- Philippine EO examples
+:::
+:::
 
 ---
 
-# RNN Basics & Limitations {background-color="#2C5F77"}
+# Part 1: Time Series in EO {background-color="#2C5F77"}
 
-## Recurrent Neural Networks (RNNs)
+---
 
-- Designed for sequences: maintain hidden state across time
-- Learn temporal dependencies
+## Why Time Series Matter
+
+Earth observation data is inherently **temporal** - we observe the same locations repeatedly over time.
+
+**Static Analysis (Single Date):**
+
+- Land cover classification
+- Feature detection
+- Snapshot assessments
+
+**Time Series Analysis (Multi-Date):**
+
+- Vegetation phenology and growth cycles
+- Drought onset and recovery
+- Crop yield forecasting
+- Deforestation detection
+- Seasonal pattern analysis
+- Climate change trend identification
+
+---
+
+## The Fourth Dimension of EO
+
+::: {.callout-tip}
+## Spatial + Temporal Analysis
+
+While CNNs excel at extracting **spatial patterns** from individual satellite images, **LSTMs excel at extracting temporal patterns** from sequences of observations.
+
+Together, they form powerful tools for spatiotemporal analysis.
+:::
+
+---
+
+## Common EO Time Series
+
+**Vegetation Indices:**
+
+- **NDVI:** Vegetation health, crop growth, drought stress
+- **EVI:** Better for high-biomass areas (tropical forests)
+- **SAVI:** Reduces soil background effects
+
+**SAR Backscatter:**
+
+- **VV, VH polarization:** Flooding, harvest, vegetation changes
+- **Coherence:** Surface stability over time
+
+**Biophysical Parameters:**
+
+- **LAI:** Crop canopy development
+- **FPAR:** Productivity indicator
+- **LST:** Heat stress, urban heat island
+
+---
+
+## Philippine Seasonal Patterns
+
+::: {.columns}
+::: {.column width="50%"}
+### Dry Season (Nov-Apr)
+
+- Lower NDVI in rain-fed areas
+- Reduced soil moisture
+- Increased drought risk (Mindanao)
+:::
+
+::: {.column width="50%"}
+### Wet Season (May-Oct)
+
+- Peak NDVI during growth
+- Rice planting seasons
+- Flood risk (typhoon-prone)
+:::
+:::
+
+. . .
+
+**Climate Impacts:**
+
+- **El Niño:** Prolonged dry conditions, delayed planting, reduced yields
+- **La Niña:** Enhanced rainfall, potential flooding, pest outbreaks
+
+---
+
+## Mindanao Case Study
+
+::: {.callout-note}
+## Agricultural Context
+
+**Provinces:** Bukidnon and South Cotabato
+
+**Major Crops:**
+
+- Corn (maize)
+- Rice
+- Pineapple
+- Coffee
+- Sugarcane
+
+**2015-2016 El Niño Impact:**
+
+- Severe drought causing significant crop losses
+- **Need:** Predict drought 1-3 months ahead for early interventions
+:::
+
+---
+
+## LSTM Applications for EO
+
+**1. Drought Forecasting**
+
+- Input: NDVI, rainfall, temperature sequences
+- Output: Predicted NDVI 1-3 months ahead
+- Benefit: Early warning for agricultural planning
+
+**2. Crop Yield Prediction**
+
+- Input: In-season NDVI, weather, SAR
+- Output: Estimated yield at harvest
+- Benefit: Food security planning
+
+**3. Flood Risk Assessment**
+
+- Input: Precipitation, discharge, soil moisture
+- Output: Predicted flood probability
+- Benefit: Disaster preparedness
+
+---
+
+## More Applications
+
+**4. Land Cover Change Detection**
+
+- Input: Multi-temporal optical and SAR
+- Output: Change probability, anomaly detection
+- Benefit: Deforestation monitoring
+
+**5. Phenology Monitoring**
+
+- Input: NDVI/EVI time series
+- Output: Predicted crop stage, harvest date
+- Benefit: Precision agriculture
+
+---
+
+# Part 2: RNN Limitations {background-color="#2C5F77"}
+
+---
+
+## Why Standard Networks Fail
+
+**Feedforward Networks** (including CNNs) assume inputs are **independent**.
+
+**Problem with Sequential Data:**
+
+- Each input depends on previous inputs
+- Context matters: Today's NDVI depends on past weeks
+- Fixed input size challenge
+
+**Example:** Predicting next month's vegetation health
+
+- Feedforward: Each month treated independently (no memory)
+- But we know: If NDVI declining for 3 months → drought worsening
+
+**Solution:** Networks with **memory** of previous inputs
+
+---
+
+## Recurrent Neural Networks
+
+**Key Idea:** Add **feedback loop** to remember previous inputs
+
+![](images/diagram1_rnn_sequence.svg){width="90%"}
+
+---
+
+## How RNNs Work
+
+At each time step `t`:
+
+1. Receive input `x_t` (e.g., current month's NDVI)
+2. Combine with previous hidden state `h_{t-1}` (memory)
+3. Compute new hidden state `h_t`
+4. Produce output `y_t`
+5. Pass `h_t` to next time step
+
+**Mathematical Formulation:**
+
+$$h_t = \text{tanh}(W_{hh} \cdot h_{t-1} + W_{xh} \cdot x_t + b_h)$$
+
+$$y_t = W_{hy} \cdot h_t + b_y$$
+
+---
+
+## RNN Advantages
+
+::: {.incremental}
+- Handles variable-length sequences
+- Maintains memory across time steps
+- Shares weights across time (parameter efficiency)
+- Designed for temporal dependencies
+:::
+
+---
 
 ## The Vanishing Gradient Problem
 
-- Gradients shrink across long sequences → poor long-range memory
-- Results: cannot learn seasonal/annual dependencies reliably
+**Critical Flaw of Standard RNNs:**
+
+When training on long sequences (e.g., 24 months), gradients become extremely small during backpropagation.
+
+**Why This Happens:**
+
+Gradients multiply repeatedly:
+
+$$\frac{\partial L}{\partial h_1} = \frac{\partial L}{\partial h_T} \cdot \frac{\partial h_T}{\partial h_{T-1}} \cdot \ldots \cdot \frac{\partial h_2}{\partial h_1}$$
+
+If each derivative < 1, product shrinks exponentially
 
 ---
 
-## Visual: Gradient Decay (Concept)
+## Gradient Decay Consequences
 
-```mermaid
-flowchart LR
-  x1[Input t-3] --> H1[Hidden t-3]
-  x2[Input t-2] --> H2[Hidden t-2]
-  x3[Input t-1] --> H3[Hidden t-1]
-  x4[Input t] --> H4[Hidden t]
-  H1 --> H2 --> H3 --> H4
-  classDef f stroke:#2C5F77,stroke-width:2px
+**Impact:**
+
+- **Vanishing gradients:** Cannot learn long-term dependencies (e.g., drought from 6 months ago)
+- **Exploding gradients:** Less common, but gradients can grow exponentially
+
+**EO Application Impact:**
+
+Predicting August drought based on:
+
+- July data: ✓ RNN learns easily
+- April-June: △ Partially learned
+- January-March: ✗ **Lost due to vanishing gradients**
+
+But January-March dry season conditions are **critical** for August prediction!
+
+---
+
+## Mini-Challenge: Gradient Decay
+
+::: {.callout-tip}
+## Calculate Gradient Decay
+
+**Task:** How many time steps for gradient of 0.9 to shrink below 0.01?
+
+**Formula:** $0.9^n < 0.01$
+
+**Answer:** $n = \frac{\log(0.01)}{\log(0.9)} \approx 44$ steps
+
+**Meaning:**
+
+- Standard RNN: Learn only ~44 recent steps
+- Monthly data: Less than 4 years
+- 10-day composites: Less than 15 months
+
+**This is why LSTMs are essential!**
+:::
+
+---
+
+# Part 3: LSTM Architecture {background-color="#2C5F77"}
+
+---
+
+## What is an LSTM?
+
+**Long Short-Term Memory** networks solve the vanishing gradient problem
+
+**Key Innovation:**
+
+Replace simple hidden state with a **memory cell** controlled by learnable **gates**
+
+**LSTM Advantages:**
+
+- Learn long-term dependencies (100+ time steps)
+- Selective memory: Remember important, forget irrelevant
+- Gradient flow preserved through time
+
+---
+
+## LSTM Cell Structure
+
+**Components:**
+
+- **Cell State (C_t):** Long-term memory "conveyor belt"
+- **Hidden State (h_t):** Short-term memory and output
+- **Three Gates:** Control information flow
+
+![](images/diagram2_lstm_cell.svg){width="85%"}
+
+---
+
+## The Three Gates
+
+**1. Forget Gate**
+
+- Purpose: Decide what to discard from cell state
+- Question: "Should I forget old information?"
+- Example: Dry season ended → forget drought patterns
+
+$$f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$$
+
+Output: 0 (forget) to 1 (keep)
+
+---
+
+## Input Gate
+
+**2. Input Gate**
+
+- Purpose: Decide what new information to add
+- Question: "What new information should I remember?"
+- Example: Wet season started → remember rainfall pattern
+
+$$i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)$$
+
+$$\tilde{C}_t = \text{tanh}(W_C \cdot [h_{t-1}, x_t] + b_C)$$
+
+- `i_t`: How much to add (0 to 1)
+- `C_tilde_t`: Candidate values
+
+---
+
+## Output Gate
+
+**3. Output Gate**
+
+- Purpose: Decide what to output from cell state
+- Question: "What should I output this time step?"
+- Example: Output drought risk based on accumulated evidence
+
+$$o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)$$
+
+$$h_t = o_t \cdot \text{tanh}(C_t)$$
+
+---
+
+## Cell State Update
+
+**Step 1: Forget old information**
+
+$$C_t = f_t \cdot C_{t-1}$$
+
+**Step 2: Add new information**
+
+$$C_t = C_t + i_t \cdot \tilde{C}_t$$
+
+**Combined:**
+
+$$C_t = f_t \cdot C_{t-1} + i_t \cdot \tilde{C}_t$$
+
+---
+
+## Why LSTMs Solve Vanishing Gradients
+
+**Key Insight:** Cell state acts as **gradient highway**
+
+**Standard RNN:**
+
+- Gradient multiplied by weight matrix at each step → decay
+
+**LSTM:**
+
+- Gradient flows through cell state with **element-wise operations**
+- Gate values learned, can be close to 1
+- Minimal gradient decay
+
+**Result:**
+
+- Learn dependencies over 100+ time steps
+- Remember events from months ago
+- Forget irrelevant fluctuations
+
+---
+
+## Think-Through Discussion
+
+::: {.callout-note}
+## Drought Monitoring Example
+
+**Question:** What might the gates do for Mindanao drought?
+
+**Forget Gate:**
+
+- Discard normal seasonal fluctuations
+- Remove short-term weather noise
+
+**Input Gate:**
+
+- Preserve El Niño indicators
+- Remember declining NDVI trend
+- Store anomalous patterns
+
+**Reflection:** How would gates behave differently for:
+
+1. Typical seasonal NDVI decline (expected)
+2. Anomalous drought event (unexpected)
+:::
+
+---
+
+# Part 4: LSTM for EO {background-color="#2C5F77"}
+
+---
+
+## LSTM Network Architecture
+
+![](images/diagram3_lstm_architecture.svg){width="75%"}
+
+**Components:**
+
+- Input: Sequence of observations (12 months NDVI)
+- LSTM Layers: Extract temporal patterns (1-2 layers)
+- Dense Layers: Map LSTM output to prediction
+- Output: Predicted value(s)
+
+---
+
+## Input Data Preparation
+
+**Sequence Creation (Sliding Window):**
+
+Given monthly NDVI 2015-2021, create training sequences:
+
+**Lookback:** 12 months
+**Forecast:** 1 month ahead
+
+**Example:**
+
+- Seq 1: [Jan 2015, ..., Dec 2015] → Predict Jan 2016
+- Seq 2: [Feb 2015, ..., Jan 2016] → Predict Feb 2016
+- Seq 3: [Mar 2015, ..., Feb 2016] → Predict Mar 2016
+
+**Result:** Hundreds/thousands of training sequences from multi-year data
+
+---
+
+## Multivariate Inputs
+
+LSTMs use multiple features per time step:
+
+- NDVI (vegetation health)
+- Rainfall (water availability)
+- Temperature (heat stress)
+- Soil moisture
+- Previous year same month
+
+**Input Shape:** `(samples, time_steps, features)`
+
+Example: `(5000, 12, 4)` = 5000 sequences, 12 months, 4 features
+
+---
+
+## Training Process
+
+**1. Data Splitting:**
+
+- Training: 2015-2019 (80%)
+- Validation: 2020 (10%)
+- Test: 2021 (10%)
+
+**Important:** Temporal splits (not random) to avoid leakage
+
+**2. Normalization:**
+
+- Scale to [0, 1] or standardize (mean=0, std=1)
+
+**3. Model Compilation:**
+
+- Loss: Mean Squared Error (MSE)
+- Optimizer: Adam
+- Metrics: RMSE, MAE
+
+---
+
+## Training Details
+
+**4. Training:**
+
+- Batch size: 32-128
+- Epochs: 50-200 (early stopping)
+- Monitor validation loss
+
+**5. Evaluation:**
+
+- Test set predictions vs actual
+- Visualize time series
+- Calculate error metrics
+
+---
+
+## Hyperparameters
+
+| Parameter | Description | Typical Range |
+|-----------|-------------|---------------|
+| **LSTM units** | Hidden state size | 32-256 per layer |
+| **Layers** | LSTM stack depth | 1-3 |
+| **Lookback** | Time steps to use | 6-24 months |
+| **Dropout** | Regularization | 0.1-0.3 |
+| **Learning rate** | Optimization step | 0.0001-0.01 |
+| **Batch size** | Samples per update | 32-128 |
+
+---
+
+# Philippine Applications {background-color="#2C5F77"}
+
+---
+
+## Mindanao Drought Monitoring
+
+**Objective:** Predict drought 1-3 months ahead for Bukidnon & South Cotabato
+
+**Data Sources:**
+
+- Sentinel-2 NDVI: 2015-2021 (10-day)
+- PAGASA rainfall: Monthly accumulation
+- PAGASA temperature: Monthly mean
+- El Niño index (ONI): NOAA data
+
+**Model Setup:**
+
+- Input: 12-month sequences (NDVI, rainfall, temp, ONI)
+- Output: NDVI prediction 1 month ahead
+- Architecture: 2 layers (64, 32 units), dropout 0.2
+
+---
+
+## Expected Results
+
+**Training:**
+
+- Historical: 2015-2019
+- Validation: 2020
+- Test: 2021
+
+**Performance:**
+
+- RMSE < 0.05 on NDVI scale [0-1]
+- Early detection 1-3 months in advance
+- Correlation with reported crop losses
+
+**Operational:**
+
+- Monthly predictions as new data arrives
+- Alerts to DA, PAGASA, LGUs
+- Integration with agricultural advisory systems
+
+---
+
+## Session 2 Lab Preview
+
+::: {.callout-important}
+## Session 2 Hands-On Lab (Today)
+
+Session 2 (2.5 hours) implements full workflow:
+
+- Download Sentinel-2 NDVI for Mindanao
+- Prepare sequences and training data
+- Build and train LSTM model
+- Evaluate predictions
+- Visualize results
+- Discuss operational deployment
+:::
+
+---
+
+## Other Philippine Applications
+
+**1. Rice Yield Forecasting (Luzon)**
+
+- SAR backscatter + NDVI time series
+- Yield 1 month before harvest
+- DA food security planning
+
+**2. Typhoon Impact Prediction (Visayas)**
+
+- Pre-typhoon NDVI, rainfall, wind
+- Expected NDVI drop (damage proxy)
+- Pre-position relief supplies
+
+**3. Coral Bleaching (Palawan)**
+
+- Sea surface temperature series
+- Bleaching risk 2-4 weeks ahead
+- DENR early warning for MPAs
+
+**4. Urban Growth (Metro Manila)**
+
+- Historical built-up area
+- Urban expansion locations
+- MMDA infrastructure planning
+
+---
+
+# Interactive Demos {background-color="#2C5F77"}
+
+---
+
+## Demo 1: Gate Behavior
+
+Interactive notebook features:
+
+- Set gate values manually
+- Observe cell state evolution
+- See information flow control
+- Understand selective memory
+
+---
+
+## Demo 2: Vanishing Gradient
+
+Side-by-side comparison:
+
+- Standard RNN gradient decay (50 steps)
+- LSTM gradient preservation (50 steps)
+- Visualization of why LSTMs work
+
+---
+
+## Demo 3: NDVI Prediction
+
+LSTM trained during the demo:
+
+- Input: 12 months synthetic Mindanao NDVI
+- Predictions vs actual (next 3 months)
+- Drought vs normal conditions
+- Seasonal pattern capture
+
+---
+
+## Notebook Access
+
+::: {.callout-note}
+## Interactive Materials
+
+📓 **LSTM Demo Notebook:**
+
+- Architecture visualization
+- Gradient demonstration  
+- Mindanao NDVI generation
+- Complete model training
+
+[Download Student Version](../notebooks/day4_session1_lstm_demo_STUDENT.ipynb)
+
+**Requirements:** TensorFlow 2.x, NumPy, Matplotlib, Pandas
+:::
+
+---
+
+# Hands-On Exercise {background-color="#2C5F77"}
+
+---
+
+## Build Your First LSTM
+
+**Step 1: Data Preparation**
+
+- Generate synthetic Mindanao NDVI (2019-2024)
+- Visualize seasonal patterns
+- Create sliding window sequences
+
+**Step 2: Understand Gradients**
+
+- Calculate vanishing gradient decay
+- Compare RNN vs LSTM
+- Visualize gradient flow
+
+---
+
+## Model Building
+
+**Step 3: Build and Train**
+
+```python
+model = Sequential([
+    LSTM(64, return_sequences=True, input_shape=(12, 1)),
+    Dropout(0.2),
+    LSTM(32),
+    Dropout(0.2),
+    Dense(16, activation='relu'),
+    Dense(1)
+])
 ```
 
-- As sequence length increases, gradient signal fades
+**Step 4: Evaluate**
+
+- Compare predictions vs actual
+- Calculate RMSE and MAE
+- Visualize drought prediction accuracy
 
 ---
 
-# LSTM Architecture {background-color="#2C5F77"}
+## Expected Results
 
-## Idea
+- Prediction accuracy: MAE < 0.05 NDVI units
+- Drought detection: 80%+ accuracy
+- Training time: ~3-5 minutes on CPU
 
-- Add a "cell state" highway with gates to regulate information flow
-
-## Components
-
-- Input gate: write new information
-- Forget gate: decide what to keep/discard
-- Output gate: produce relevant hidden state
+📓 **Open Student Notebook to begin!**
 
 ---
 
-## LSTM Gates (Conceptual)
-
-- Input gate: how much of new candidate state to add
-- Forget gate: how much of previous cell state to keep
-- Output gate: how much of cell state to expose as hidden state
-
-```mermaid
-flowchart LR
-  subgraph LSTM
-    C[Cell State]
-    I[Input Gate]
-    F[Forget Gate]
-    O[Output Gate]
-  end
-  I --> C
-  F --> C
-  C --> O
-```
+# Key Takeaways {background-color="#2C5F77"}
 
 ---
 
-## Why LSTM for EO?
+## Summary: Time Series
 
-- Captures seasonal cycles and lags (e.g., rainfall → NDVI response)
-- Handles noisy and irregular sequences better than vanilla RNNs
-- Supports multi-variate inputs (NDVI + rainfall + temp + ONI)
+::: {.callout-important}
+**Time Series in EO:**
 
----
-
-# EO Applications {background-color="#2C5F77"}
-
-## Mindanao Drought Monitoring (Case)
-
-- Inputs: NDVI, rainfall, temperature, ONI
-- Output: drought index/severity forecast (1-month ahead)
-- Benefits: early warning for agriculture
-
-## Other Examples
-
-- Phenology (crop calendars)
-- Yield estimation
-- Land cover change dynamics
+- Unlocks temporal patterns invisible in single images
+- Philippine agriculture: Strong seasonal cycles
+- Applications: Drought, yield, phenology, change detection
+- Fourth dimension beyond spatial analysis
+:::
 
 ---
 
-## Demo Orientation (10 min)
+## Summary: RNNs
 
-- Open in Colab:
-  - `course_site/day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb`
-  - `course_site/day4/notebooks/day4_session1_lstm_demo_INSTRUCTOR.ipynb`
-- Objectives:
-  - Visualize a simple sequence
-  - Observe RNN vs LSTM behavior
-  - See impact of sequence length on performance
+::: {.callout-important}
+**RNNs and Limitations:**
 
----
-
-## Key Takeaways
-
-- LSTMs mitigate vanishing gradients using gates + cell state
-- Perfect match for EO time series with seasonal signals
-- Foundation for Session 2 hands-on drought lab
+- Standard networks can't handle sequences
+- RNNs add memory via recurrent connections
+- Vanishing gradient: Can't learn >10 time steps
+- Limits: ~44 steps with 0.9 gradient retention
+:::
 
 ---
 
-## Q&A and Transition
+## Summary: LSTM
 
-- Questions on gates, sequence lengths, multi-variate inputs
-- Move to Session 2 lab (2.5 hours)
+::: {.callout-important}
+**LSTM Architecture:**
+
+- Three gates (forget, input, output) control flow
+- Cell state = long-term memory "conveyor belt"
+- Gradients flow without decay → 100+ steps
+- Selective memory: Remember important, forget noise
+:::
+
+---
+
+## Summary: EO Forecasting
+
+::: {.callout-important}
+**LSTM for EO:**
+
+- Input: Sequences via sliding windows
+- Architecture: Stacked LSTM + dense layers
+- Output: Predicted values 1-N steps ahead
+- Training: Temporal splits, MSE loss, Adam
+
+**Philippine Context:**
+
+- Mindanao drought: NDVI 1-3 months ahead
+- Multivariate: NDVI + rainfall + temp + climate
+- Operational: Early warning for agencies
+:::
+
+---
+
+## Next Session
+
+::: {.callout-tip}
+## Session 2: Hands-On Lab (Today)
+
+**Session 2** implements full LSTM drought monitoring for Mindanao with real Sentinel-2 data!
+
+**To Prepare:**
+
+1. Python environment with TensorFlow
+2. Review LSTM concepts from today
+3. Understand sequence preparation
+4. Think about drought indicators
+
+**Software:** Python 3.8+, TensorFlow 2.x, GEE account
+:::
+
+---
+
+## Resources
+
+### Research Papers
+
+- Hochreiter & Schmidhuber (1997). "Long Short-Term Memory"
+- Gers et al. (2000). "Learning to Forget with LSTM"
+- Ndikumana et al. (2018). "Deep RNN for Agricultural Classification"
+
+### Tutorials
+
+- [Understanding LSTM Networks (colah's blog)](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- [Keras LSTM Tutorial](https://keras.io/examples/timeseries/)
+- [TensorFlow Time Series](https://www.tensorflow.org/tutorials/structured_data/time_series)
+
+---
+
+## Philippine EO Data
+
+- [PAGASA Climate Data](https://www.pagasa.dost.gov.ph)
+- [CoPhil Infrastructure](https://infra.copphil.philsa.gov.ph)
+- [Google Earth Engine](https://earthengine.google.com)
+
+---
+
+## Questions & Discussion
+
+**Think About:**
+
+- What time series problems in your work need LSTM?
+- What features beyond NDVI improve drought prediction?
+- How far ahead can we realistically forecast?
+- What are the limitations and uncertainties?
+
+**Contact:** [skotsopoulos@neuralio.ai](mailto:skotsopoulos@neuralio.ai)
+
+---
+
+## Thank You! {background-color="#2C5F77"}
+
+::: {.r-fit-text}
+Questions?
+:::
+
+**See you in Session 2 for the hands-on lab!**
+
+---
+
+*Day 4: Time Series Analysis, Emerging Trends, and Sustainable Learning - CoPhil 4-Day Advanced Training on AI/ML for Earth Observation, funded by the European Union under the Global Gateway initiative.*
