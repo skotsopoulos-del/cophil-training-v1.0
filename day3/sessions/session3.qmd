@@ -34,12 +34,6 @@ Learn modern object detection architectures and their application to EO challeng
 
 ---
 
-::: {.callout-tip}
-## Open Slides
-
-[Open revealjs slides →](../presentations/session3_object_detection.qmd)
-:::
-
 This session introduces object detection—the computer vision task of identifying and localizing multiple objects within an image using bounding boxes. You'll explore popular architectures from two-stage detectors (R-CNN family) to single-stage detectors (YOLO, SSD) and emerging transformer-based approaches (DETR), understanding their trade-offs and applications in Earth Observation contexts.
 
 ::: {.learning-objectives}

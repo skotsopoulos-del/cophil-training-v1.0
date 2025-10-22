@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <defs>
+    <style>
+      .title { font: bold 22px sans-serif; fill: #2C5F77; }
+      .subtitle { font: 16px sans-serif; fill: #4A4A4A; }
+      .text { font: 14px sans-serif; fill: #333; }
+      .small-text { font: 12px sans-serif; fill: #666; }
+      .label { font: bold 14px sans-serif; fill: #2C5F77; }
+      .grid { fill: none; stroke: #BDC3C7; stroke-width: 1; }
+      .grid-active { fill: rgba(52, 152, 219, 0.2); stroke: #3498DB; stroke-width: 2; }
+      .object { fill: #E74C3C; }
+      .box { fill: none; stroke: #2ECC71; stroke-width: 3; }
+      .info-box { fill: #F8F9FA; stroke: #2C5F77; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <text x="500" y="30" class="title" text-anchor="middle">YOLO: You Only Look Once</text>
+  <text x="500" y="55" class="subtitle" text-anchor="middle">Grid-Based Object Detection</text>
+
+  <!-- Grid -->
+  <g transform="translate(100, 90)">
+    <text x="200" y="-10" class="label" text-anchor="middle">Input Image divided into S×S Grid (e.g., 7×7)</text>
+    
+    <!-- Draw 7x7 grid -->
+    <g id="grid">
+      <rect x="0" y="0" width="400" height="400" class="grid"/>
+      <line x1="57.14" y1="0" x2="57.14" y2="400" class="grid"/>
+      <line x1="114.28" y1="0" x2="114.28" y2="400" class="grid"/>
+      <line x1="171.42" y1="0" x2="171.42" y2="400" class="grid"/>
+      <line x1="228.56" y1="0" x2="228.56" y2="400" class="grid"/>
+      <line x1="285.7" y1="0" x2="285.7" y2="400" class="grid"/>
+      <line x1="342.84" y1="0" x2="342.84" y2="400" class="grid"/>
+      
+      <line x1="0" y1="57.14" x2="400" y2="57.14" class="grid"/>
+      <line x1="0" y1="114.28" x2="400" y2="114.28" class="grid"/>
+      <line x1="0" y1="171.42" x2="400" y2="171.42" class="grid"/>
+      <line x1="0" y1="228.56" x2="400" y2="228.56" class="grid"/>
+      <line x1="0" y1="285.7" x2="400" y2="285.7" class="grid"/>
+      <line x1="0" y1="342.84" x2="400" y2="342.84" class="grid"/>
+    </g>
+    
+    <!-- Object (car) -->
+    <ellipse cx="180" cy="150" rx="40" ry="25" class="object"/>
+    <text x="180" y="155" class="small-text" fill="white" text-anchor="middle" font-weight="bold">Object</text>
+    
+    <!-- Highlight responsible grid cell -->
+    <rect x="114.28" y="114.28" width="57.14" height="57.14" class="grid-active"/>
+    
+    <!-- Bounding box prediction -->
+    <rect x="135" y="120" width="90" height="60" class="box"/>
+    <text x="180" y="200" class="small-text" text-anchor="middle" fill="#2ECC71" font-weight="bold">Predicted Box</text>
+    
+    <!-- Arrow pointing to active cell -->
+    <text x="250" y="140" class="small-text" fill="#3498DB" font-weight="bold">← Responsible cell</text>
+  </g>
+
+  <!-- How YOLO works -->
+  <g transform="translate(550, 90)">
+    <rect x="0" y="0" width="400" height="400" class="info-box" rx="5"/>
+    
+    <text x="200" y="30" class="label" text-anchor="middle">How YOLO Works:</text>
+    
+    <text x="20" y="65" class="text" font-weight="bold">1. Divide image into S×S grid</text>
+    <text x="35" y="88" class="small-text">Each cell: responsible for objects</text>
+    <text x="35" y="106" class="small-text">whose center falls in the cell</text>
+    
+    <text x="20" y="140" class="text" font-weight="bold">2. Each cell predicts B boxes</text>
+    <text x="35" y="163" class="small-text">Box: (x, y, w, h, confidence)</text>
+    <text x="35" y="181" class="small-text">Confidence: P(Object) × IoU</text>
+    
+    <text x="20" y="215" class="text" font-weight="bold">3. Each cell predicts C classes</text>
+    <text x="35" y="238" class="small-text">Class probabilities for object</text>
+    
+    <text x="20" y="272" class="text" font-weight="bold">4. Output tensor shape</text>
+    <text x="35" y="295" class="small-text">S × S × (B × 5 + C)</text>
+    <text x="35" y="313" class="small-text">Example: 7 × 7 × (2 × 5 + 20) = 7 × 7 × 30</text>
+    
+    <text x="20" y="350" class="label">Key Advantage:</text>
+    <text x="35" y="373" class="small-text">✓ Single forward pass → FAST (45+ FPS)</text>
+  </g>
+
+  <!-- YOLO Evolution -->
+  <g transform="translate(100, 530)">
+    <text x="0" y="0" class="label">YOLO Evolution:</text>
+    
+    <rect x="0" y="15" width="180" height="50" class="info-box" rx="3"/>
+    <text x="90" y="35" class="text" text-anchor="middle" font-weight="bold">YOLOv1-v3</text>
+    <text x="90" y="52" class="small-text" text-anchor="middle">2016-2018</text>
+    
+    <rect x="200" y="15" width="180" height="50" class="info-box" rx="3"/>
+    <text x="290" y="35" class="text" text-anchor="middle" font-weight="bold">YOLOv5</text>
+    <text x="290" y="52" class="small-text" text-anchor="middle">PyTorch, practical (2020)</text>
+    
+    <rect x="400" y="15" width="180" height="50" class="info-box" rx="3"/>
+    <text x="490" y="35" class="text" text-anchor="middle" font-weight="bold">YOLOv7</text>
+    <text x="490" y="52" class="small-text" text-anchor="middle">Speed optimizations (2022)</text>
+    
+    <rect x="600" y="15" width="180" height="50" class="info-box" rx="3"/>
+    <text x="690" y="35" class="text" text-anchor="middle" font-weight="bold">YOLOv8</text>
+    <text x="690" y="52" class="small-text" text-anchor="middle">Anchor-free, best (2023)</text>
+  </g>
+</svg>

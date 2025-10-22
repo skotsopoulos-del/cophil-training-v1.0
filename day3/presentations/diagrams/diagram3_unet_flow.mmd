@@ -1,0 +1,27 @@
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'20px', 'fontFamily':'Arial'}}}%%
+flowchart TD
+    A[Input: 256×256×3] --> B1[Conv + ReLU]
+    B1 --> B2[Conv + ReLU]
+    B2 --> C1[MaxPool ↓]
+    B2 -.->|Skip 1<br/>256×256×64| G1
+
+    C1 --> D1[Conv + ReLU]
+    D1 --> D2[Conv + ReLU]
+    D2 --> E1[MaxPool ↓]
+    D2 -.->|Skip 2<br/>128×128×128| F1
+
+    E1 --> F0[Bottleneck<br/>16×16×1024<br/>Conv Layers]
+
+    F0 --> F1[Upsample ↑<br/>32×32×512]
+    F1 --> G1[Concatenate<br/>32×32×1024]
+    G1 --> H1[Conv + ReLU<br/>32×32×512]
+
+    H1 --> I1[Upsample ↑<br/>64×64×256]
+    I1 --> J1[Concatenate<br/>64×64×512]
+    J1 --> K1[Conv + ReLU<br/>64×64×256]
+
+    K1 --> L[Output: 256×256×Classes]
+
+    style A fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff
+    style F0 fill:#ff8800,stroke:#cc6600,stroke-width:2px,color:#fff
+    style L fill:#00aa44,stroke:#006622,stroke-width:2px,color:#fff

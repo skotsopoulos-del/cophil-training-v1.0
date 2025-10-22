@@ -1,0 +1,174 @@
+---
+title: "Session 1: LSTMs for Earth Observation Time Series"
+subtitle: "Theory, Concepts, and Interactive Demos"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: ../../day1/presentations/images/copphil_logo.png
+    footer: "DAY 4 - Session 1 | LSTMs for EO Time Series | 20-23 October 2025"
+    transition: fade
+    background-transition: fade
+    width: 1920
+    height: 1080
+    margin: 0.1
+---
+
+## Welcome & Agenda {.smaller}
+
+- **Duration:** 1.5 hours (90 minutes)
+- **Plan:**
+  - 0–10 min: EO time series context
+  - 10–30 min: RNN basics & vanishing gradient
+  - 30–60 min: LSTM architecture deep-dive (gates, cell state)
+  - 60–80 min: EO applications (Mindanao drought, phenology)
+  - 80–90 min: Q&A, transition to Lab (Session 2)
+
+---
+
+## Learning Objectives
+
+- Understand EO time series (NDVI, rainfall, temperature, SAR backscatter)
+- Explain RNN limitations (vanishing/exploding gradients)
+- Describe LSTM internals (input/forget/output gates, cell state)
+- Connect LSTMs to EO tasks (drought, yield, phenology)
+
+---
+
+# EO Time Series Context {background-color="#2C5F77"}
+
+## What is EO Time Series?
+
+- Repeated observations over the same AOI
+- Examples: NDVI monthly means, SAR backscatter weekly, climate forcings
+- Why it matters: seasonality, trends, anomalies
+
+---
+
+## Typical EO Inputs for Drought
+
+- NDVI (vegetation health)
+- Rainfall (CHIRPS)
+- Temperature (ERA5, station data)
+- ONI/ENSO index (large-scale climate driver)
+
+---
+
+# RNN Basics & Limitations {background-color="#2C5F77"}
+
+## Recurrent Neural Networks (RNNs)
+
+- Designed for sequences: maintain hidden state across time
+- Learn temporal dependencies
+
+## The Vanishing Gradient Problem
+
+- Gradients shrink across long sequences → poor long-range memory
+- Results: cannot learn seasonal/annual dependencies reliably
+
+---
+
+## Visual: Gradient Decay (Concept)
+
+```mermaid
+flowchart LR
+  x1[Input t-3] --> H1[Hidden t-3]
+  x2[Input t-2] --> H2[Hidden t-2]
+  x3[Input t-1] --> H3[Hidden t-1]
+  x4[Input t] --> H4[Hidden t]
+  H1 --> H2 --> H3 --> H4
+  classDef f stroke:#2C5F77,stroke-width:2px
+```
+
+- As sequence length increases, gradient signal fades
+
+---
+
+# LSTM Architecture {background-color="#2C5F77"}
+
+## Idea
+
+- Add a "cell state" highway with gates to regulate information flow
+
+## Components
+
+- Input gate: write new information
+- Forget gate: decide what to keep/discard
+- Output gate: produce relevant hidden state
+
+---
+
+## LSTM Gates (Conceptual)
+
+- Input gate: how much of new candidate state to add
+- Forget gate: how much of previous cell state to keep
+- Output gate: how much of cell state to expose as hidden state
+
+```mermaid
+flowchart LR
+  subgraph LSTM
+    C[Cell State]
+    I[Input Gate]
+    F[Forget Gate]
+    O[Output Gate]
+  end
+  I --> C
+  F --> C
+  C --> O
+```
+
+---
+
+## Why LSTM for EO?
+
+- Captures seasonal cycles and lags (e.g., rainfall → NDVI response)
+- Handles noisy and irregular sequences better than vanilla RNNs
+- Supports multi-variate inputs (NDVI + rainfall + temp + ONI)
+
+---
+
+# EO Applications {background-color="#2C5F77"}
+
+## Mindanao Drought Monitoring (Case)
+
+- Inputs: NDVI, rainfall, temperature, ONI
+- Output: drought index/severity forecast (1-month ahead)
+- Benefits: early warning for agriculture
+
+## Other Examples
+
+- Phenology (crop calendars)
+- Yield estimation
+- Land cover change dynamics
+
+---
+
+## Demo Orientation (10 min)
+
+- Open in Colab:
+  - `course_site/day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb`
+  - `course_site/day4/notebooks/day4_session1_lstm_demo_INSTRUCTOR.ipynb`
+- Objectives:
+  - Visualize a simple sequence
+  - Observe RNN vs LSTM behavior
+  - See impact of sequence length on performance
+
+---
+
+## Key Takeaways
+
+- LSTMs mitigate vanishing gradients using gates + cell state
+- Perfect match for EO time series with seasonal signals
+- Foundation for Session 2 hands-on drought lab
+
+---
+
+## Q&A and Transition
+
+- Questions on gates, sequence lengths, multi-variate inputs
+- Move to Session 2 lab (2.5 hours)

@@ -162,13 +162,14 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session1_unet_segmentation.html){.btn .btn-primary}
-[Download PDF](../pdfs/day3/session1_unet_segmentation.pdf){.btn .btn-outline download="session1_unet_segmentation.pdf"}
+[Download PDF](../pdfs/day3/day3_session1_unet_segmentation.pdf){.btn .btn-outline download="day3_session1_unet_segmentation.pdf"}
 
 **Topics:**
-- Pixel-wise classification
-- U-Net architecture
-- Encoder-decoder networks
-- Loss functions for segmentation
+- Semantic segmentation fundamentals
+- U-Net architecture (encoder, decoder, skip connections)
+- Loss functions for segmentation (Cross-Entropy, Dice, IoU, Combined)
+- EO applications (flood mapping, land cover, buildings, roads)
+- Philippine case studies (Typhoon Ulysses, Palawan)
 
 ---
 
@@ -208,17 +209,19 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day3/presentations/session4_object_detection_lab.html){.btn .btn-primary}
-[Download PDF](../pdfs/day3/session4_object_detection_lab.pdf){.btn .btn-outline download="session4_object_detection_lab.pdf"}
+[Download PDF](../pdfs/day3/day3_session4_object_detection_lab.pdf){.btn .btn-outline download="day3_session4_object_detection_lab.pdf"}
 
 **Jupyter Notebook:**
 [Object Detection Lab](../day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-primary download="Day3_Session4_Object_Detection_STUDENT.ipynb"}
 [Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day3/notebooks/Day3_Session4_Object_Detection_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
-- Building and ship detection
-- Infrastructure monitoring
-- Hands-on implementation
-- Philippine case studies
+- Transfer learning for object detection
+- Pre-trained models (SSD MobileNet, Faster R-CNN, YOLO)
+- Building detection from Sentinel-2 imagery
+- mAP evaluation metrics
+- Metro Manila urban monitoring case study
+- Operational deployment pipeline
 
 ---
 
@@ -228,17 +231,19 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session1_lstm_time_series.html){.btn .btn-primary}
-[Download PDF](../pdfs/day4/session1_lstm_time_series.pdf){.btn .btn-outline download="session1_lstm_time_series.pdf"}
+[Download PDF](../pdfs/day4/day4_session1_lstm_time_series.pdf){.btn .btn-outline download="day4_session1_lstm_time_series.pdf"}
 
 **Jupyter Notebook:**
 [LSTM Demo](../day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-primary download="day4_session1_lstm_demo_STUDENT.ipynb"}
 [Open in Colab](https://colab.research.google.com/github/DimitrisKasabalis/cophil-training-v1.0/blob/main/day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-outline target="_blank"}
 
 **Topics:**
-- Recurrent neural networks
-- LSTM architecture
-- Time series forecasting
-- Vegetation dynamics modeling
+- Why time series analysis matters for EO
+- Recurrent neural networks and vanishing gradients
+- LSTM architecture (gates, cell state, memory)
+- Philippine seasonal patterns and drought forecasting
+- Mindanao case study with Sentinel-2 NDVI
+- Multivariate time series modeling
 
 ---
 

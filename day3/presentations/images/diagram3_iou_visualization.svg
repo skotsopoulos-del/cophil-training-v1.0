@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500">
+  <defs>
+    <style>
+      .title { font: bold 22px sans-serif; fill: #2C5F77; }
+      .subtitle { font: 16px sans-serif; fill: #4A4A4A; }
+      .text { font: 14px sans-serif; fill: #333; }
+      .small-text { font: 12px sans-serif; fill: #666; }
+      .label { font: bold 14px sans-serif; fill: #2C5F77; }
+      .box-gt { fill: rgba(46, 204, 113, 0.3); stroke: #2ECC71; stroke-width: 3; }
+      .box-pred { fill: rgba(52, 152, 219, 0.3); stroke: #3498DB; stroke-width: 3; }
+      .intersection { fill: rgba(155, 89, 182, 0.5); }
+      .formula-box { fill: #F8F9FA; stroke: #2C5F77; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <text x="600" y="30" class="title" text-anchor="middle">Intersection over Union (IoU)</text>
+
+  <!-- Example 1: Good IoU -->
+  <g transform="translate(100, 80)">
+    <text x="100" y="0" class="subtitle" text-anchor="middle">Good Detection (IoU = 0.75)</text>
+    
+    <rect x="30" y="30" width="140" height="100" class="box-gt"/>
+    <text x="100" y="25" class="small-text" text-anchor="middle" fill="#2ECC71">Ground Truth</text>
+    
+    <rect x="50" y="40" width="140" height="100" class="box-pred"/>
+    <text x="120" y="155" class="small-text" text-anchor="middle" fill="#3498DB">Prediction</text>
+    
+    <rect x="50" y="40" width="120" height="90" class="intersection"/>
+    <text x="110" y="90" class="text" text-anchor="middle" fill="white" font-weight="bold">Intersection</text>
+  </g>
+
+  <!-- Example 2: Medium IoU -->
+  <g transform="translate(450, 80)">
+    <text x="100" y="0" class="subtitle" text-anchor="middle">Medium Detection (IoU = 0.50)</text>
+    
+    <rect x="30" y="30" width="140" height="100" class="box-gt"/>
+    <text x="100" y="25" class="small-text" text-anchor="middle" fill="#2ECC71">Ground Truth</text>
+    
+    <rect x="80" y="40" width="140" height="100" class="box-pred"/>
+    <text x="150" y="155" class="small-text" text-anchor="middle" fill="#3498DB">Prediction</text>
+    
+    <rect x="80" y="40" width="90" height="90" class="intersection"/>
+    <text x="125" y="90" class="text" text-anchor="middle" fill="white" font-weight="bold">Overlap</text>
+  </g>
+
+  <!-- Example 3: Poor IoU -->
+  <g transform="translate(800, 80)">
+    <text x="100" y="0" class="subtitle" text-anchor="middle">Poor Detection (IoU = 0.20)</text>
+    
+    <rect x="30" y="30" width="140" height="100" class="box-gt"/>
+    <text x="100" y="25" class="small-text" text-anchor="middle" fill="#2ECC71">Ground Truth</text>
+    
+    <rect x="110" y="50" width="140" height="100" class="box-pred"/>
+    <text x="180" y="165" class="small-text" text-anchor="middle" fill="#3498DB">Prediction</text>
+    
+    <rect x="110" y="50" width="60" height="80" class="intersection"/>
+    <text x="140" y="95" class="small-text" text-anchor="middle" fill="white" font-weight="bold">Small</text>
+  </g>
+
+  <!-- Formula and explanation -->
+  <g transform="translate(100, 280)">
+    <rect x="0" y="0" width="1000" height="180" class="formula-box" rx="5"/>
+    
+    <text x="500" y="35" class="label" text-anchor="middle">IoU Formula</text>
+    
+    <text x="500" y="70" class="text" text-anchor="middle" font-size="18" font-weight="bold">
+      IoU = Area of Intersection / Area of Union
+    </text>
+    
+    <text x="50" y="110" class="label">Three Critical Uses:</text>
+    <text x="50" y="135" class="text">1. <tspan font-weight="bold">Training:</tspan> Match predictions to ground truth (IoU > 0.5 = positive match)</text>
+    <text x="50" y="160" class="text">2. <tspan font-weight="bold">NMS:</tspan> Remove overlapping duplicate detections</text>
+    
+    <text x="550" y="110" class="label">Interpretation:</text>
+    <text x="550" y="135" class="text">• IoU = 1.0: Perfect overlap</text>
+    <text x="550" y="160" class="text">• IoU = 0.5: Standard threshold</text>
+  </g>
+</svg>

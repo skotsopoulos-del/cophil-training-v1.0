@@ -1,0 +1,1656 @@
+---
+title: "Session 1: Supervised Classification with Random Forest"
+subtitle: "Theory and Practice for Earth Observation"
+author: "Stylianos Kotsopoulos"
+institute: "EU-Philippines CoPhil Programme"
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: images/copphil_logo.png
+    footer: "DAY 2 - Session 1 | Random Forest for Earth Observation | 20-23 October 2025"
+    transition: fade
+    background-transition: fade
+    width: 1920
+    height: 1080
+    margin: 0.1
+---
+
+## Session Overview {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Part A: Theory (1.5 hours)**
+
+- Introduction to Supervised Classification
+- Decision Trees Fundamentals
+- Random Forest Ensemble Method
+- Feature Importance
+- Accuracy Assessment
+- Google Earth Engine Platform
+
+:::
+::: {.column width="50%"}
+**Part B: Hands-on Lab (1.5 hours)**
+
+- Sentinel-2 Data Acquisition
+- Feature Engineering (Spectral Indices)
+- Training Data Preparation
+- Model Training & Optimization
+- Classification & Validation
+- Philippine NRM Applications
+
+:::
+:::
+
+**Learning Objectives:**
+
+- Understand supervised classification workflow for EO data
+- Implement Random Forest using Google Earth Engine
+- Perform accuracy assessment and interpret results
+- Apply classification to Palawan land cover mapping
+
+---
+
+# Part A: Theory {background-color="#2C5F77"}
+
+## What is Supervised Classification?
+
+::: {.incremental}
+- **Goal:** Assign labels to pixels/objects based on their characteristics
+- **"Supervised":** We provide labeled training examples to the algorithm
+- **Learning Process:** Algorithm learns patterns from training data
+- **Application:** Classify entire image based on learned patterns
+:::
+
+. . .
+
+::: {.callout-note}
+## Key Concept
+Supervised classification requires **labeled training data** (ground truth) to learn the relationship between spectral signatures and land cover classes.
+:::
+
+---
+
+## Supervised Classification Workflow
+
+```{mermaid}
+%%| fig-width: 10
+flowchart LR
+    A[Satellite Imagery] --> B[Preprocessing]
+    B --> C[Feature Extraction]
+    C --> D[Training Data Collection]
+    D --> E[Model Training]
+    E --> F[Classification]
+    F --> G[Accuracy Assessment]
+    G --> H{Acceptable?}
+    H -->|No| D
+    H -->|Yes| I[Final Map]
+    style E fill:#4A90E2
+    style F fill:#4A90E2
+```
+
+**Key Steps:**
+
+1. **Preprocessing:** Cloud masking, atmospheric correction
+2. **Feature Extraction:** Spectral bands, indices (NDVI, NDWI)
+3. **Training Data:** Collect representative samples for each class
+4. **Model Training:** Train classifier on training data
+5. **Classification:** Apply model to entire scene
+6. **Validation:** Assess accuracy with independent test data
+
+---
+
+## Common Land Cover Classes in Philippines
+
+::: {.columns}
+::: {.column width="50%"}
+**Natural Ecosystems:**
+
+- Primary Forest (dipterocarp)
+- Secondary Forest
+- Mangroves
+- Grasslands
+- Water Bodies (rivers, lakes, coastal)
+
+:::
+::: {.column width="50%"}
+**Human-Modified:**
+
+- Agricultural Land (rice paddies, coconut)
+- Urban/Built-up Areas
+- Bare Soil
+- Mining Areas
+- Roads and Infrastructure
+
+:::
+:::
+
+. . .
+
+::: {.callout-tip}
+## Philippine Context
+Accurate land cover classification supports monitoring of **Protected Areas**, **REDD+ programs**, **agricultural expansion**, and **disaster response** (typhoons, floods).
+:::
+
+---
+
+# Decision Trees {background-color="#2C5F77"}
+
+## What is a Decision Tree?
+
+A tree-like structure that makes decisions by asking a series of questions about features.
+
+::: {.columns}
+::: {.column width="60%"}
+```{mermaid}
+%%| fig-width: 8
+flowchart TD
+    A[NDVI > 0.4?] -->|Yes| B[NIR > 3000?]
+    A -->|No| C[NDWI > 0?]
+    B -->|Yes| D[Forest]
+    B -->|No| E[Agriculture]
+    C -->|Yes| F[Water]
+    C -->|No| G[Urban/Bare]
+    style D fill:#2E7D32
+    style E fill:#FBC02D
+    style F fill:#1976D2
+    style G fill:#757575
+```
+:::
+::: {.column width="40%"}
+**How it Works:**
+
+1. Start at root node
+2. Test condition (e.g., NDVI > 0.4?)
+3. Branch based on answer
+4. Repeat until reaching leaf node
+5. Leaf node = predicted class
+
+:::
+:::
+
+---
+
+## Decision Tree Splitting
+
+**How does a tree decide where to split?**
+
+::: {.incremental}
+- **Goal:** Create pure nodes (all samples belong to one class)
+- **Metric:** Information Gain or Gini Impurity
+- **Process:** Test all possible splits, choose the best one
+- **Recursion:** Repeat for each branch until stopping criteria
+:::
+
+. . .
+
+**Gini Impurity Formula:**
+
+$$
+Gini = 1 - \sum_{i=1}^{n} (p_i)^2
+$$
+
+Where $p_i$ is the probability of class $i$ in the node.
+
+- **Gini = 0:** Pure node (all samples same class) ✓
+- **Gini = 0.5:** Maximum impurity (50/50 split) ✗
+
+---
+
+## Decision Tree Example: Spectral Splitting
+
+::: {.panel-tabset}
+
+### Split 1
+**Root Node: All 1000 samples**
+
+Test: **NDVI > 0.4?**
+
+- **Left branch (NDVI ≤ 0.4):** 400 samples → Mostly Water, Urban, Bare
+- **Right branch (NDVI > 0.4):** 600 samples → Mostly Forest, Agriculture
+
+**Information Gain:** High ✓ (classes becoming more separated)
+
+### Split 2
+**Right Branch: 600 samples with NDVI > 0.4**
+
+Test: **NIR Reflectance > 3000?**
+
+- **Left branch (NIR ≤ 3000):** 250 samples → Agriculture (less canopy density)
+- **Right branch (NIR > 3000):** 350 samples → Forest (dense canopy)
+
+**Information Gain:** High ✓
+
+### Split 3
+**Left Branch: 400 samples with NDVI ≤ 0.4**
+
+Test: **NDWI > 0?**
+
+- **Left branch (NDWI ≤ 0):** 200 samples → Urban/Bare
+- **Right branch (NDWI > 0):** 200 samples → Water
+
+**Information Gain:** High ✓
+
+:::
+
+---
+
+## Decision Tree Advantages & Limitations
+
+::: {.columns}
+::: {.column width="50%"}
+**Advantages:**
+
+- ✓ Easy to understand and visualize
+- ✓ No data normalization needed
+- ✓ Handles non-linear relationships
+- ✓ Feature importance easily extracted
+- ✓ Fast prediction
+
+:::
+::: {.column width="50%"}
+**Limitations:**
+
+- ✗ **Overfitting:** Can memorize training data
+- ✗ **High variance:** Small data changes → big tree changes
+- ✗ **Instability:** Greedy algorithm (local optima)
+- ✗ **Bias:** Favor features with many levels
+
+:::
+:::
+
+. . .
+
+::: {.callout-important}
+## The Solution
+**Random Forest** addresses these limitations by combining many decision trees!
+:::
+
+---
+
+# Random Forest {background-color="#2C5F77"}
+
+## What is Random Forest?
+
+An **ensemble learning** method that combines many decision trees to improve accuracy and reduce overfitting.
+
+::: {.columns}
+::: {.column width="60%"}
+```{mermaid}
+%%| fig-width: 9
+flowchart TD
+    A[Training Data<br/>1000 samples] --> B1[Bootstrap<br/>Sample 1]
+    A --> B2[Bootstrap<br/>Sample 2]
+    A --> B3[Bootstrap<br/>Sample 3]
+    A --> B4[...]
+    A --> B5[Bootstrap<br/>Sample N]
+
+    B1 --> T1[Tree 1]
+    B2 --> T2[Tree 2]
+    B3 --> T3[Tree 3]
+    B4 --> T4[...]
+    B5 --> T5[Tree N]
+
+    T1 --> V[Majority Vote]
+    T2 --> V
+    T3 --> V
+    T4 --> V
+    T5 --> V
+
+    V --> F[Final Prediction]
+
+    style F fill:#4CAF50
+```
+:::
+::: {.column width="40%"}
+**Key Ideas:**
+
+1. **Bootstrap Aggregating (Bagging)**
+   - Random sampling with replacement
+   - Each tree sees different data
+
+2. **Random Feature Selection**
+   - Each split uses random subset of features
+   - Reduces correlation between trees
+
+3. **Majority Voting**
+   - Classification: Most common class
+   - Regression: Average prediction
+
+:::
+:::
+
+---
+
+## Random Forest: The "Forest" Analogy
+
+::: {.incremental}
+- **One tree (Decision Tree):** One expert's opinion
+  - Can be very confident but sometimes wrong
+  - Might overfit to specific training examples
+
+- **Forest (Random Forest):** Committee of experts
+  - Each expert sees slightly different data
+  - Each expert considers different features
+  - Final decision: Majority vote
+  - **Wisdom of crowds:** Group decision more reliable than individual
+:::
+
+. . .
+
+::: {.callout-tip}
+## Intuition
+If you ask 100 independent experts and 75 say "Forest", you can be more confident than if only 1 expert says "Forest".
+:::
+
+---
+
+## Bootstrap Aggregating (Bagging)
+
+**Bootstrap Sampling:**
+
+- Original training set: 1000 samples
+- Each tree gets: 1000 samples (with replacement)
+- Some samples repeated, some never selected (~37% out-of-bag)
+
+::: {.columns}
+::: {.column width="50%"}
+**Original Data:**
+```
+Sample IDs: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+```
+
+**Tree 1 Bootstrap:**
+```
+Sample IDs: 1, 3, 3, 5, 7, 7, 7, 9, 9, 10
+```
+
+**Tree 2 Bootstrap:**
+```
+Sample IDs: 2, 2, 4, 5, 5, 6, 8, 8, 9, 10
+```
+:::
+::: {.column width="50%"}
+**Why Bootstrap?**
+
+- Introduces diversity between trees
+- Each tree specializes on different samples
+- Reduces overfitting
+- Enables Out-of-Bag (OOB) validation
+
+**Out-of-Bag Samples:**
+- Samples not used by a tree (~37%)
+- Used for internal validation
+- No separate validation set needed
+
+:::
+:::
+
+---
+
+## Random Feature Selection
+
+At each split, only consider a **random subset** of features.
+
+::: {.columns}
+::: {.column width="50%"}
+**All Features (13 for Sentinel-2 + indices):**
+
+- B2 (Blue)
+- B3 (Green)
+- B4 (Red)
+- B8 (NIR)
+- B11 (SWIR1)
+- B12 (SWIR2)
+- NDVI
+- NDWI
+- NDBI
+- EVI
+- SAVI
+- Texture features
+- Elevation
+
+:::
+::: {.column width="50%"}
+**Random Subset at Each Split:**
+
+**Typical:** $\sqrt{n}$ features
+
+For 13 features: $\sqrt{13} \approx 4$ features
+
+**Tree 1, Split 1:** {NDVI, B4, B11, Elevation}
+
+**Tree 1, Split 2:** {B8, NDWI, B3, SAVI}
+
+**Tree 2, Split 1:** {NDBI, B12, NDVI, B2}
+
+. . .
+
+**Result:**
+- Trees decorrelated
+- Prevents strong features from dominating
+- Better generalization
+
+:::
+:::
+
+---
+
+## Random Forest Prediction: Majority Voting
+
+**Example Classification:**
+
+Classify a pixel with spectral signature: **NDVI=0.65, NIR=4500, SWIR=2000**
+
+::: {.columns}
+::: {.column width="50%"}
+**100 Trees Vote:**
+
+- Tree 1 → **Forest** 🌲
+- Tree 2 → **Forest** 🌲
+- Tree 3 → **Agriculture** 🌾
+- Tree 4 → **Forest** 🌲
+- Tree 5 → **Forest** 🌲
+- ...
+- Tree 100 → **Forest** 🌲
+
+:::
+::: {.column width="50%"}
+**Vote Count:**
+
+- **Forest:** 78 votes
+- **Agriculture:** 22 votes
+
+**Final Prediction:** **Forest** (78%)
+
+**Confidence:** 78% confidence in prediction
+
+:::
+:::
+
+. . .
+
+::: {.callout-note}
+## Prediction Confidence
+The proportion of votes can be interpreted as **confidence**. Higher consensus → more confident prediction.
+:::
+
+---
+
+## Random Forest Hyperparameters
+
+**Key parameters to tune:**
+
+| Parameter | Description | Typical Values | Impact |
+|-----------|-------------|----------------|--------|
+| **n_trees** | Number of trees in forest | 50-500 | More trees → better performance (diminishing returns) |
+| **max_depth** | Maximum depth of each tree | 10-50 or None | Deeper → more complex, risk overfitting |
+| **min_samples_split** | Min samples to split node | 2-10 | Higher → simpler trees, less overfitting |
+| **max_features** | Features per split | $\sqrt{n}$ or $\log_2(n)$ | Balance between accuracy and diversity |
+| **bootstrap** | Use bootstrap sampling | True | Almost always True for RF |
+
+. . .
+
+::: {.callout-tip}
+## Google Earth Engine Default
+GEE's `ee.Classifier.smileRandomForest()` defaults:
+- **numberOfTrees:** 100
+- **variablesPerSplit:** $\sqrt{n}$ (automatic)
+- **minLeafPopulation:** 1
+:::
+
+---
+
+## Random Forest Advantages
+
+::: {.incremental}
+1. **High Accuracy**
+   - Often achieves excellent performance out-of-the-box
+   - Handles complex non-linear relationships
+
+2. **Robust to Overfitting**
+   - Ensemble averaging reduces variance
+   - Harder to overfit than single decision tree
+
+3. **Feature Importance**
+   - Quantifies which features matter most
+   - Helps understand classification drivers
+
+4. **Handles Missing Data**
+   - Can work with incomplete feature sets
+   - Robust to noisy data
+
+5. **No Normalization Needed**
+   - Works with features on different scales
+   - Simplifies preprocessing
+
+6. **Efficient**
+   - Fast training (parallelizable)
+   - Fast prediction
+:::
+
+---
+
+# Feature Importance {background-color="#2C5F77"}
+
+## Understanding Feature Importance
+
+**Question:** Which spectral bands/indices contribute most to classification accuracy?
+
+**Feature Importance** measures the contribution of each feature to the model's predictions.
+
+::: {.columns}
+::: {.column width="60%"}
+**Calculation Methods:**
+
+1. **Mean Decrease in Impurity (MDI)**
+   - How much each feature reduces impurity (Gini)
+   - Averaged across all trees
+   - Default in most implementations
+
+2. **Permutation Importance**
+   - Measure accuracy drop when feature is randomly shuffled
+   - More reliable but slower
+
+:::
+::: {.column width="40%"}
+**Interpretation:**
+
+- **High importance:** Feature strongly discriminates classes
+- **Low importance:** Feature adds little information
+- **Zero importance:** Feature not used by any tree
+
+:::
+:::
+
+---
+
+## Example: Feature Importance for Palawan
+
+**Land Cover Classification (7 classes)**
+
+::: {.columns}
+::: {.column width="50%"}
+**Top Features:**
+
+| Rank | Feature | Importance | Use Case |
+|------|---------|------------|----------|
+| 1 | **NDVI** | 0.285 | Forest vs. non-forest |
+| 2 | **NIR (B8)** | 0.192 | Vegetation density |
+| 3 | **SWIR1 (B11)** | 0.156 | Moisture content |
+| 4 | **NDWI** | 0.128 | Water detection |
+| 5 | **Red (B4)** | 0.089 | Vegetation health |
+| 6 | **NDBI** | 0.067 | Urban areas |
+| 7 | **Elevation** | 0.045 | Topographic context |
+
+:::
+::: {.column width="50%"}
+**Insights:**
+
+- **NDVI dominant:** Vegetation indices most important
+- **NIR crucial:** Distinguishes vegetation types
+- **SWIR useful:** Separates forest from agriculture
+- **NDWI essential:** Water body identification
+- **Elevation helps:** Mountains → forest, lowlands → agriculture
+
+**Actionable:**
+- Focus on acquiring high-quality NIR and SWIR data
+- Ensure accurate NDVI calculation
+- Include DEM for improved accuracy
+
+:::
+:::
+
+---
+
+## Feature Importance Visualization
+
+**Typical Output:**
+
+```python
+# Example feature importance from trained RF
+Feature Importances:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NDVI        ████████████████████████████  0.285
+NIR         ███████████████████           0.192
+SWIR1       █████████████████             0.156
+NDWI        ██████████████                0.128
+Red         █████████                     0.089
+NDBI        ███████                       0.067
+Elevation   █████                         0.045
+Blue        ███                           0.020
+Green       ███                           0.018
+```
+
+**Applications:**
+
+- **Feature selection:** Remove low-importance features
+- **Data collection priorities:** Focus on important bands
+- **Model interpretation:** Understand classification logic
+- **Domain validation:** Does importance match EO theory?
+
+---
+
+# Accuracy Assessment {background-color="#2C5F77"}
+
+## Training/Test Data Splitting
+
+**Critical Decision:** How to split data for training vs. validation?
+
+::: {.columns}
+::: {.column width="50%"}
+**Common Split Ratios:**
+
+| **Split** | **Training** | **Testing** | **Use Case** |
+|-----------|--------------|-------------|--------------|
+| 80/20 | 80% | 20% | Standard (sufficient data) |
+| 70/30 | 70% | 30% | More robust validation |
+| 60/40 | 60% | 40% | Limited training data |
+| 50/50 | 50% | 50% | Very small datasets |
+
+**Google Earth Engine:** Use `.randomColumn()` to assign splits
+:::
+
+::: {.column width="50%"}
+**Splitting Strategies:**
+
+**1. Random Split** (most common)
+```python
+# Add random column
+data = data.randomColumn('random')
+
+# Split 80/20
+training = data.filter(ee.Filter.lt('random', 0.8))
+testing = data.filter(ee.Filter.gte('random', 0.8))
+```
+
+**2. Stratified Split** (recommended)
+- Maintain class proportions in both sets
+- Important for imbalanced datasets
+- Ensures all classes in test set
+
+**3. Spatial Split**
+- Training from one region, testing from another
+- Tests geographic transferability
+- More realistic for operational use
+:::
+:::
+
+::: {.notes}
+Random 80/20 is standard, but stratified ensures each class has representation in test set. Spatial split is most rigorous - tests if model works in new areas.
+:::
+
+---
+
+## Why Accuracy Assessment?
+
+::: {.incremental}
+- **Quantify performance:** How good is the classification?
+- **Compare models:** Which classifier performs better?
+- **Identify weaknesses:** Which classes are confused?
+- **Build confidence:** Can we trust the map for decisions?
+- **Report to stakeholders:** Scientific credibility
+:::
+
+. . .
+
+::: {.callout-important}
+## Golden Rule
+**ALWAYS** use **independent test data** that was NOT used for training. Otherwise, you're measuring memorization, not generalization.
+:::
+
+---
+
+## Confusion Matrix
+
+A table showing **predicted classes** vs. **actual classes** for test data.
+
+**Example: 5-class classification**
+
+|  | **Predicted →** | Forest | Agriculture | Water | Urban | Bare | **Total** | **User's Acc** |
+|---|---|---|---|---|---|---|---|---|
+| **Actual ↓** |  |  |  |  |  |  |  |  |
+| **Forest** |  | **85** | 8 | 0 | 2 | 5 | 100 | 85% |
+| **Agriculture** |  | 12 | **73** | 0 | 5 | 10 | 100 | 73% |
+| **Water** |  | 0 | 1 | **95** | 2 | 2 | 100 | 95% |
+| **Urban** |  | 3 | 7 | 3 | **82** | 5 | 100 | 82% |
+| **Bare** |  | 5 | 11 | 2 | 9 | **78** | 105 | 74% |
+| **Total** |  | 105 | 100 | 100 | 100 | 100 | 505 |  |
+| **Producer's Acc** |  | 81% | 73% | 95% | 82% | 78% |  | **OA: 82.6%** |
+
+---
+
+## Accuracy Metrics Explained
+
+::: {.panel-tabset}
+
+### Overall Accuracy
+**Definition:** Percentage of correctly classified samples
+
+$$
+\text{Overall Accuracy} = \frac{\text{Correct Predictions}}{\text{Total Samples}} = \frac{85+73+95+82+78}{505} = \frac{413}{500} = 82.6\%
+$$
+
+**Interpretation:**
+- Simple, intuitive metric
+- **Limitation:** Can be misleading with imbalanced classes
+
+**Example:** 95% accuracy sounds great, but if 95% of pixels are forest, a "classify everything as forest" model achieves 95%!
+
+### Producer's Accuracy
+**Definition:** Percentage of actual class correctly identified (per class)
+
+Also called: **Recall**, **Sensitivity**
+
+$$
+\text{Producer's Accuracy}_{\text{Forest}} = \frac{85}{105} = 81\%
+$$
+
+**Interpretation:**
+- "Of all actual forest pixels, how many did we correctly identify?"
+- **Producer's perspective:** How complete is the map?
+- Low producer's accuracy → **omission error** (missing true positives)
+
+**Example:** 81% for Forest means we missed 19% of actual forest pixels.
+
+### User's Accuracy
+**Definition:** Percentage of predicted class that is correct (per class)
+
+Also called: **Precision**, **Positive Predictive Value**
+
+$$
+\text{User's Accuracy}_{\text{Forest}} = \frac{85}{100} = 85\%
+$$
+
+**Interpretation:**
+- "Of all pixels we labeled as forest, how many are truly forest?"
+- **User's perspective:** How reliable is the map?
+- Low user's accuracy → **commission error** (false positives)
+
+**Example:** 85% for Forest means 15% of "forest" pixels are actually other classes.
+
+### Kappa Coefficient
+**Definition:** Measure of agreement beyond chance
+
+$$
+\kappa = \frac{p_o - p_e}{1 - p_e}
+$$
+
+Where:
+- $p_o$ = observed accuracy (overall accuracy)
+- $p_e$ = expected accuracy by chance
+
+**Interpretation:**
+- **κ < 0.4:** Poor agreement
+- **κ = 0.4-0.6:** Moderate agreement
+- **κ = 0.6-0.8:** Good agreement
+- **κ > 0.8:** Excellent agreement
+
+**Why use Kappa?**
+Accounts for agreement by random chance, especially important for imbalanced datasets.
+
+:::
+
+---
+
+## Common Confusion Patterns
+
+**Example:** Forest vs. Agriculture confusion
+
+|  | Predicted Forest | Predicted Agriculture |
+|---|---|---|
+| **Actual Forest** | 85 | **8** ← Confusion |
+| **Actual Agriculture** | **12** ← Confusion | 73 |
+
+**Why confusion occurs:**
+
+::: {.incremental}
+1. **Spectral Similarity**
+   - Tree crops (coconut, fruit trees) look like forest
+   - Young forest regeneration looks like agriculture
+
+2. **Mixed Pixels**
+   - Agroforestry systems
+   - Forest edges with agriculture
+
+3. **Temporal Variability**
+   - Agriculture changes rapidly (planting, harvesting)
+   - Single-date imagery may miss phenology
+
+4. **Class Definition Ambiguity**
+   - Where does "forest" end and "tree plantation" begin?
+:::
+
+---
+
+## Best Practices: Training Data Collection
+
+**Practical Tips for High-Quality Training Samples:**
+
+::: {.columns}
+::: {.column width="50%"}
+**Sample Size Guidelines:**
+
+| **Class** | **Min Samples** | **Recommended** | **Notes** |
+|-----------|----------------|-----------------|-----------|
+| Common (forest) | 50 | 100-200 | More coverage |
+| Moderate (agriculture) | 50 | 100-150 | Capture variability |
+| Rare (bare soil) | 30 | 50-100 | Get what you can |
+
+**Sampling Strategies:**
+
+**1. Stratified Random:**
+- Distribute samples across study area
+- Avoid clustering in one region
+- Ensure all sub-types represented
+
+**2. Purposive Sampling:**
+- Target known pure pixels
+- Use high-resolution imagery (Google Earth)
+- Field visits when possible
+:::
+
+::: {.column width="50%"}
+**Quality Criteria:**
+
+**✓ Pure Pixels**
+- Homogeneous within polygon
+- Avoid edges and mixed areas
+- Use ≥3x3 pixel minimum areas
+
+**✓ Clear Definition**
+- Unambiguous class membership
+- Document class definitions
+- Use consistent interpretation rules
+
+**✓ Temporal Match**
+- Training data date matches imagery
+- Account for phenology (crops)
+- Update for multi-temporal analysis
+
+**Philippine-Specific Tips:**
+- Use **PhilSA Space+ Dashboard** for recent imagery
+- Leverage **NAMRIA land cover** for reference
+- Consult **LGU land use plans** for urban areas
+- Use **Google Street View** for ground truth
+:::
+:::
+
+::: {.notes}
+Quality training data is more important than quantity. 100 high-quality samples beats 500 noisy samples. For Philippine applications, leverage existing government datasets as starting points.
+:::
+
+---
+
+## Improving Classification Accuracy
+
+::: {.panel-tabset}
+
+### Better Training Data
+- **More samples:** 50-100 per class minimum
+- **Better quality:** Pure pixels, clear boundaries
+- **Balanced:** Equal samples per class
+- **Representative:** Cover all variations within class
+- **Distributed:** Spatial coverage across study area
+
+### More Features
+- **Multi-temporal data:** Capture seasonal differences
+- **Texture features:** Spatial patterns (GLCM)
+- **Topographic features:** Elevation, slope, aspect
+- **Radar data:** Sentinel-1 SAR (cloud-free)
+- **Ancillary data:** Roads, protected areas
+
+### Better Model
+- **Hyperparameter tuning:** Optimize RF parameters
+- **More trees:** 200-500 trees (diminishing returns after ~300)
+- **Cross-validation:** Ensure generalization
+- **Ensemble methods:** Combine RF with other classifiers
+
+### Post-Processing
+- **Majority filter:** Smooth noisy pixels
+- **Minimum mapping unit:** Remove small isolated pixels
+- **Expert rules:** Apply domain knowledge
+- **Visual inspection:** Manual correction of obvious errors
+
+:::
+
+---
+
+# Google Earth Engine {background-color="#2C5F77"}
+
+## Why Google Earth Engine?
+
+::: {.columns}
+::: {.column width="50%"}
+**Challenges with Desktop GIS:**
+
+- ✗ Downloading large satellite data
+- ✗ Storage requirements (TBs)
+- ✗ Computational limitations
+- ✗ Manual preprocessing
+- ✗ Time-consuming workflows
+
+:::
+::: {.column width="50%"}
+**Google Earth Engine Solutions:**
+
+- ✓ **Petabyte-scale catalog** (Landsat, Sentinel, MODIS...)
+- ✓ **Cloud computing** (no downloads)
+- ✓ **Pre-processed data** (atmospherically corrected)
+- ✓ **Scalable processing** (parallel)
+- ✓ **Free for research** & education
+
+:::
+:::
+
+. . .
+
+::: {.callout-tip}
+## Perfect for This Course
+GEE enables us to process years of Sentinel-2 data for entire provinces in minutes!
+:::
+
+---
+
+## Google Earth Engine Architecture
+
+```{mermaid}
+%%| fig-width: 10
+flowchart TD
+    A[User Code<br/>Python/JavaScript] --> B[GEE API]
+    B --> C[GEE Cloud<br/>Processing]
+
+    D[Satellite Data<br/>Catalog] --> C
+    E[Landsat<br/>1972-present] --> D
+    F[Sentinel-1/2<br/>2014-present] --> D
+    G[MODIS<br/>2000-present] --> D
+    H[Climate Data<br/>ERA5, etc.] --> D
+
+    C --> I[Results]
+    I --> J[Interactive Map]
+    I --> K[Export to Drive]
+    I --> L[Charts/Stats]
+
+    style C fill:#4285F4
+    style D fill:#34A853
+```
+
+**Key Concepts:**
+
+- **Server-side processing:** Code runs on Google servers, not your laptop
+- **Lazy evaluation:** Operations queued, executed only when needed (e.g., map display, export)
+- **Parallel processing:** Automatically distributed across many machines
+
+---
+
+## GEE Data Catalog Highlights
+
+**Relevant for Philippine EO:**
+
+::: {.columns}
+::: {.column width="50%"}
+**Optical Imagery:**
+
+- **Sentinel-2 MSI:** 10m, 13 bands, 5-day revisit
+- **Landsat 8/9 OLI:** 30m, 11 bands, 16-day revisit
+- **MODIS:** 250-500m, daily, long time series
+
+**Radar:**
+
+- **Sentinel-1 SAR:** 10m, cloud-free, day/night
+
+**Terrain:**
+
+- **SRTM DEM:** 30m elevation
+- **ALOS World 3D:** 30m (better for SE Asia)
+
+:::
+::: {.column width="50%"}
+**Climate:**
+
+- **ERA5:** Hourly reanalysis (temp, precip)
+- **CHIRPS:** Daily rainfall
+- **MODIS LST:** Land surface temperature
+
+**Pre-processed Products:**
+
+- **Hansen Global Forest Change:** Annual tree cover loss
+- **ESA WorldCover:** Global 10m land cover
+- **Global Surface Water:** Water occurrence
+
+:::
+:::
+
+---
+
+## GEE Code Editor vs. Python API
+
+::: {.columns}
+::: {.column width="50%"}
+**JavaScript (Code Editor)**
+
+- **Pros:**
+  - Browser-based (no installation)
+  - Interactive map interface
+  - Built-in visualization
+  - Great for exploration
+
+- **Cons:**
+  - Limited to GEE environment
+  - Harder to integrate with other tools
+  - Less powerful for data science
+
+**Use Case:** Quick exploration, visualization
+
+:::
+::: {.column width="50%"}
+**Python API**
+
+- **Pros:**
+  - Integrate with NumPy, Pandas, scikit-learn
+  - Jupyter notebooks
+  - Reproducible workflows
+  - Version control (Git)
+  - Advanced analysis
+
+- **Cons:**
+  - Requires installation/setup
+  - Slightly steeper learning curve
+
+**Use Case:** Reproducible research, production workflows
+
+:::
+:::
+
+. . .
+
+::: {.callout-note}
+## Our Approach
+We'll use **Python API** with **geemap** library for best of both worlds: Python ecosystem + interactive maps!
+:::
+
+---
+
+## GEE Random Forest Workflow
+
+**High-level workflow for today's lab:**
+
+```python
+import ee
+import geemap
+
+# 1. Initialize GEE
+ee.Initialize()
+
+# 2. Load Sentinel-2 imagery
+s2 = ee.ImageCollection('COPERNICUS/S2_SR') \
+    .filterBounds(palawan_boundary) \
+    .filterDate('2024-01-01', '2024-12-31') \
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+
+# 3. Compute composite and indices
+composite = s2.median()
+ndvi = composite.normalizedDifference(['B8', 'B4']).rename('NDVI')
+ndwi = composite.normalizedDifference(['B3', 'B8']).rename('NDWI')
+
+# 4. Stack features
+features = composite.select(['B2','B3','B4','B8','B11','B12']) \
+    .addBands([ndvi, ndwi])
+
+# 5. Sample training data
+training = features.sampleRegions(collection=training_polygons,
+                                   properties=['class'],
+                                   scale=10)
+
+# 6. Train Random Forest
+classifier = ee.Classifier.smileRandomForest(numberOfTrees=100) \
+    .train(features=training, classProperty='class', inputProperties=features.bandNames())
+
+# 7. Classify image
+classified = features.classify(classifier)
+
+# 8. Visualize
+Map = geemap.Map()
+Map.addLayer(classified, vis_params, 'Land Cover')
+Map
+```
+
+---
+
+# Philippine NRM Applications {background-color="#2C5F77"}
+
+## Forest Monitoring (DENR, REDD+)
+
+::: {.columns}
+::: {.column width="50%"}
+**Challenges:**
+
+- 7,641 islands, 30 million hectares
+- Cloud cover year-round
+- Rapid deforestation in some areas
+- Limited ground-based monitoring
+
+**RF Classification Helps:**
+
+- Annual forest cover maps
+- Deforestation hotspot detection
+- REDD+ MRV (Monitoring, Reporting, Verification)
+- Protected area encroachment
+
+:::
+::: {.column width="50%"}
+**Example: Palawan Biosphere Reserve**
+
+- **Area:** 1.1 million hectares
+- **Protection:** UNESCO MAB, NIPAS
+- **Threats:** Illegal logging, mining, agriculture
+
+**Workflow:**
+
+1. Annual Sentinel-2 composites (2016-2024)
+2. RF classification (primary forest, secondary, non-forest)
+3. Change detection (forest loss/gain)
+4. Alert system for encroachment
+5. Reports for PCSDS, DENR
+
+:::
+:::
+
+---
+
+## Agricultural Monitoring (DA, PhilRice)
+
+::: {.columns}
+::: {.column width="50%"}
+**Rice Production Monitoring:**
+
+- **Goal:** Estimate planted area and yield
+- **Importance:** Food security planning
+- **Traditional method:** Field surveys (slow, expensive)
+
+**RF Approach:**
+
+- Multi-temporal Sentinel-2 (capture crop phenology)
+- Training data from field surveys
+- Classify: Rice, Other crops, Non-ag
+- Area calculation per province/municipality
+- Early warning for production shortfalls
+
+:::
+::: {.column width="50%"}
+**Example: Central Luzon Rice Bowl**
+
+**Classes:**
+- Rice (wet season)
+- Rice (dry season)
+- Vegetables
+- Fallow/bare
+- Non-agricultural
+
+**Features:**
+- NDVI time series (captures growth cycle)
+- LSWI (Land Surface Water Index)
+- EVI (Enhanced Vegetation Index)
+
+**Validation:**
+- PhilRice field surveys
+- DA crop cut experiments
+
+:::
+:::
+
+---
+
+## Urban Expansion Monitoring (NEDA, HLURB)
+
+::: {.columns}
+::: {.column width="50%"}
+**Metro Manila & Major Cities:**
+
+- **Rapid urbanization:** 3-5% annual growth
+- **Planning needs:** Infrastructure, transport, housing
+- **Environmental concerns:** Loss of green space, flooding
+
+**RF Classification:**
+
+- Urban/built-up
+- Roads and infrastructure
+- Vegetation (parks, trees)
+- Bare soil (construction sites)
+- Water bodies
+
+:::
+::: {.column width="50%"}
+**Applications:**
+
+1. **Urban growth tracking**
+   - Compare 2015 vs. 2024
+   - Identify sprawl patterns
+   - Predict future expansion
+
+2. **Green space monitoring**
+   - Urban vegetation loss
+   - Park accessibility analysis
+
+3. **Flood risk**
+   - Impervious surface mapping
+   - Drainage planning
+
+4. **Compliance**
+   - Illegal construction detection
+   - Zoning violations
+
+:::
+:::
+
+---
+
+## Water Resources (NWRB, LGUs)
+
+**Applications:**
+
+::: {.columns}
+::: {.column width="50%"}
+**Surface Water Mapping:**
+
+- Rivers, lakes, reservoirs
+- Seasonal variations
+- Drought monitoring
+- Flood extent mapping
+
+**RF Advantages:**
+- NDWI as strong predictor
+- Multi-temporal captures seasonal changes
+- Can detect small water bodies
+
+:::
+::: {.column width="50%"}
+**Watershed Management:**
+
+- Land cover within watersheds
+- Forest cover (water regulation)
+- Agriculture (erosion risk)
+- Urban (runoff)
+
+**Example: Angat Dam Watershed**
+- Critical for Metro Manila water supply
+- Monitor forest cover changes
+- Detect encroachment
+- Sediment risk assessment
+
+:::
+:::
+
+---
+
+## Disaster Response (NDRRMC, PAGASA)
+
+**Post-Typhoon Damage Assessment:**
+
+::: {.columns}
+::: {.column width="50%"}
+**Challenge:**
+- Philippines: ~20 typhoons/year
+- Rapid assessment needed for relief
+- Cloud-free imagery rare after storms
+
+**RF Classification Approach:**
+
+1. **Pre-event baseline:** Land cover map
+2. **Post-event imagery:** First clear Sentinel-2
+3. **Damage classes:**
+   - Intact forest/vegetation
+   - Damaged vegetation
+   - Exposed soil/landslides
+   - Flooded areas
+   - Building damage (requires very high res)
+
+:::
+::: {.column width="50%"}
+**Example: Typhoon Odette (2021)**
+
+- **Affected:** Visayas, Mindanao
+- **Assessment needs:**
+   - Agricultural damage (coconut, rice)
+   - Forest destruction
+   - Coastal erosion
+   - Flooded areas
+
+**RF Workflow:**
+- Pre-typhoon: December 2021 composite
+- Post-typhoon: January 2022 composite
+- Classify: Intact, Damaged, Destroyed
+- Area statistics per municipality
+- Priority areas for relief
+
+:::
+:::
+
+---
+
+## Recap: Session 1 Theory
+
+::: {.columns}
+::: {.column width="50%"}
+**What We Learned:**
+
+✓ Supervised classification workflow
+
+✓ Decision trees: Intuitive but limited
+
+✓ Random Forest: Ensemble of trees
+  - Bootstrap sampling
+  - Random feature selection
+  - Majority voting
+
+✓ Feature importance: Which bands matter?
+
+✓ Accuracy assessment:
+  - Confusion matrix
+  - Overall, Producer's, User's accuracy
+  - Kappa coefficient
+
+✓ Google Earth Engine: Cloud-based EO
+
+:::
+::: {.column width="50%"}
+**Key Takeaways:**
+
+1. Random Forest is **powerful** for EO classification
+   - High accuracy
+   - Handles non-linear relationships
+   - Robust to overfitting
+
+2. **Training data quality** is critical
+   - Representative samples
+   - Balanced classes
+   - Sufficient quantity
+
+3. **Feature engineering** improves results
+   - Spectral indices (NDVI, NDWI)
+   - Multi-temporal data
+   - Auxiliary data (DEM)
+
+4. **Accuracy assessment** builds confidence
+   - Always use independent test data
+   - Understand confusion patterns
+
+:::
+:::
+
+---
+
+## Break {background-color="#FBC02D"}
+
+**15-minute break before hands-on lab**
+
+::: {.r-fit-text}
+🔸 Stretch
+
+🔸 Coffee/water
+
+🔸 Check your setup:
+  - Google Earth Engine account
+  - Python environment activated
+  - Jupyter notebook ready
+
+:::
+
+**Coming up:** Hands-on lab with Palawan land cover classification!
+
+---
+
+# Part B: Hands-on Lab {background-color="#2C5F77"}
+
+## Lab Overview
+
+**What We'll Build:** Palawan Land Cover Classification using Random Forest
+
+::: {.columns}
+::: {.column width="50%"}
+**Steps:**
+
+1. Setup and authentication
+2. Load Sentinel-2 imagery
+3. Create cloud-free composite
+4. Calculate spectral indices
+5. Prepare training data
+6. Train Random Forest model
+7. Generate classification map
+8. Validate accuracy
+9. Analyze results
+
+**Duration:** ~1.5 hours
+
+:::
+::: {.column width="50%"}
+**Study Area:** Palawan Province
+
+- **Location:** Western Philippines
+- **Area:** ~14,649 km²
+- **Significance:** UNESCO Biosphere Reserve
+- **Diversity:** Forest, mangroves, agriculture, urban
+
+**Classes:**
+1. Forest
+2. Agriculture
+3. Water
+4. Urban
+5. Bare Soil
+
+:::
+:::
+
+---
+
+## Spectral Indices for Classification
+
+**Key Features Beyond Raw Bands:**
+
+::: {.columns}
+::: {.column width="50%"}
+**Vegetation Indices:**
+
+| **Index** | **Formula** | **Purpose** |
+|-----------|-------------|-------------|
+| **NDVI** | (NIR - Red) / (NIR + Red) | Vegetation vigor |
+| **EVI** | 2.5 × (NIR - Red) / (NIR + 6×Red - 7.5×Blue + 1) | Enhanced sensitivity in high biomass |
+
+```python
+# Calculate NDVI
+ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+
+# Calculate EVI
+evi = image.expression(
+    '2.5 * ((NIR - RED) / (NIR + 6*RED - 7.5*BLUE + 1))',
+    {'NIR': image.select('B8'),
+     'RED': image.select('B4'),
+     'BLUE': image.select('B2')
+    }).rename('EVI')
+```
+:::
+
+::: {.column width="50%"}
+**Water & Built-up Indices:**
+
+| **Index** | **Formula** | **Purpose** |
+|-----------|-------------|-------------|
+| **NDWI** | (Green - NIR) / (Green + NIR) | Water bodies |
+| **MNDWI** | (Green - SWIR) / (Green + SWIR) | Water/wetlands (better separation) |
+| **NDBI** | (SWIR - NIR) / (SWIR + NIR) | Built-up areas |
+
+```python
+# Calculate water indices
+ndwi = image.normalizedDifference(['B3', 'B8']).rename('NDWI')
+mndwi = image.normalizedDifference(['B3', 'B11']).rename('MNDWI')
+
+# Calculate built-up index
+ndbi = image.normalizedDifference(['B11', 'B8']).rename('NDBI')
+```
+:::
+:::
+
+::: {.fragment}
+**Why MNDWI?** Better separates water from built-up areas than NDWI (uses SWIR instead of NIR)
+:::
+
+::: {.notes}
+MNDWI is particularly useful in coastal areas like Palawan where you need to distinguish water bodies from urban areas. SWIR absorption by water creates stronger contrast.
+:::
+
+---
+
+## Lab Instructions
+
+**Follow along in Jupyter notebook:**
+
+```
+../notebooks/session1_hands_on_lab_student.ipynb
+```
+
+**Student version:** With TODO markers for exercises
+
+**Instructor version:** Complete solutions
+
+. . .
+
+::: {.callout-tip}
+## Tips for Success
+- Read markdown cells carefully before running code
+- Experiment with parameters
+- Visualize intermediate results
+- Ask questions when stuck!
+:::
+
+---
+
+## Expected Outputs
+
+By the end of the lab, you will have:
+
+::: {.incremental}
+1. ✓ Interactive map of Palawan with Sentinel-2 composite
+2. ✓ Calculated spectral indices (NDVI, NDWI, NDBI)
+3. ✓ Trained Random Forest classifier (100 trees)
+4. ✓ Land cover classification map
+5. ✓ Confusion matrix and accuracy metrics
+6. ✓ Feature importance ranking
+7. ✓ Area statistics per land cover class
+8. ✓ Exported classification to Google Drive
+:::
+
+**Accuracy Target:** >80% overall accuracy
+
+---
+
+## Session 1 Summary
+
+::: {.columns}
+::: {.column width="50%"}
+**Theory Concepts:**
+
+- Supervised classification workflow
+- Decision trees → Random Forest
+- Bootstrap aggregating
+- Random feature selection
+- Feature importance
+- Accuracy assessment metrics
+- Confusion matrix interpretation
+
+**Tools:**
+
+- Google Earth Engine
+- Python API (geemap)
+- Sentinel-2 imagery
+
+:::
+::: {.column width="50%"}
+**Practical Skills:**
+
+- GEE authentication
+- ImageCollection filtering
+- Composite generation
+- Spectral index calculation
+- Training data preparation
+- RF model training
+- Classification execution
+- Accuracy validation
+- Map visualization
+
+**Philippine Context:**
+
+- Palawan land cover mapping
+- DENR forest monitoring
+- DA agricultural mapping
+- NDRRMC disaster response
+
+:::
+:::
+
+---
+
+## Next Session Preview
+
+**Session 2: Advanced Palawan Land Cover Lab**
+
+- Multi-temporal composites (dry/wet season)
+- Advanced feature engineering (GLCM texture)
+- Topographic features (DEM)
+- 8-class detailed classification
+- Hyperparameter tuning
+- Change detection (2020 vs. 2024)
+- Deforestation analysis
+- Stakeholder reporting
+
+. . .
+
+**Preparation:**
+
+- Complete Session 1 exercises
+- Review confusion matrix analysis
+- Think about classification improvements
+
+---
+
+## Resources
+
+**Documentation:**
+
+- Google Earth Engine: https://developers.google.com/earth-engine
+- geemap: https://geemap.org
+- Sentinel-2: https://sentinel.esa.int/web/sentinel/missions/sentinel-2
+- Random Forest paper: Breiman (2001) - Machine Learning 45:5-32
+
+**Philippine EO:**
+
+- PhilSA: https://philsa.gov.ph
+- NAMRIA: https://namria.gov.ph
+- DOST-ASTI PANDA: https://panda.stamina4space.upd.edu.ph
+
+**Course Materials:**
+
+- GitHub: [repository link]
+- Datasets: [Google Drive link]
+
+---
+
+## Thank You! {background-color="#2C5F77"}
+
+::: {.r-fit-text}
+Questions?
+:::
+
+**Contact:**
+
+- Email: skotsopoulos@neuralio.ai
+- Office Hours: [schedule]
+
+. . .
+
+**Let's move to the hands-on lab!**
+
+🚀 Open: `session1_hands_on_lab.ipynb`

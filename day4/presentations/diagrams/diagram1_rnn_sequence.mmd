@@ -1,0 +1,14 @@
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'22px', 'fontFamily':'Arial'}}}%%
+flowchart LR
+    X1[Input t-1] --> H1[Hidden State]
+    H1 --> O1[Output t-1]
+    H1 -.->|Memory| H2[Hidden State]
+    X2[Input t] --> H2
+    H2 --> O2[Output t]
+    H2 -.->|Memory| H3[Hidden State]
+    X3[Input t+1] --> H3
+    H3 --> O3[Output t+1]
+
+    style H1 fill:#4A90E2,stroke:#2C5F77,stroke-width:2px,color:#fff
+    style H2 fill:#4A90E2,stroke:#2C5F77,stroke-width:2px,color:#fff
+    style H3 fill:#4A90E2,stroke:#2C5F77,stroke-width:2px,color:#fff

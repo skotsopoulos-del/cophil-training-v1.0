@@ -1,0 +1,22 @@
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'22px', 'fontFamily':'Arial'}}}%%
+flowchart TB
+    Input[Input Sequence<br/>NDVI for 12 months]
+
+    LSTM1[LSTM Layer 1<br/>64 units]
+    LSTM2[LSTM Layer 2<br/>32 units]
+
+    Dense1[Dense Layer<br/>16 units, ReLU]
+    Dense2[Dense Layer<br/>1 unit, linear]
+
+    Output[Output<br/>Predicted NDVI month 13]
+
+    Input --> LSTM1
+    LSTM1 --> LSTM2
+    LSTM2 --> Dense1
+    Dense1 --> Dense2
+    Dense2 --> Output
+
+    style LSTM1 fill:#4A90E2,stroke:#2C5F77,stroke-width:2px,color:#fff
+    style LSTM2 fill:#4A90E2,stroke:#2C5F77,stroke-width:2px,color:#fff
+    style Output fill:#2ECC71,stroke:#27ae60,stroke-width:2px,color:#fff
+    style Input fill:#0066cc,stroke:#003d7a,stroke-width:2px,color:#fff

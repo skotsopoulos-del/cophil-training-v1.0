@@ -1,0 +1,37 @@
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'20px', 'fontFamily':'Arial'}}}%%
+flowchart TB
+    Input["Input x_t"]
+    PrevH["Previous h_t-1"]
+    PrevC["Previous C_t-1"]
+
+    FG["Forget Gate σ"]
+    IG["Input Gate σ"]
+    CT["Cell Candidate tanh"]
+    OG["Output Gate σ"]
+
+    NewC["New Cell State C_t"]
+    NewH["New Hidden State h_t"]
+
+    Input --> FG
+    Input --> IG
+    Input --> CT
+    Input --> OG
+
+    PrevH --> FG
+    PrevH --> IG
+    PrevH --> CT
+    PrevH --> OG
+
+    PrevC --> FG
+    FG --> NewC
+    IG --> NewC
+    CT --> NewC
+
+    NewC --> OG
+    OG --> NewH
+
+    style FG fill:#E74C3C,stroke:#c0392b,stroke-width:2px,color:#fff
+    style IG fill:#3498DB,stroke:#2980b9,stroke-width:2px,color:#fff
+    style OG fill:#2ECC71,stroke:#27ae60,stroke-width:2px,color:#fff
+    style NewC fill:#F39C12,stroke:#d68910,stroke-width:2px,color:#fff
+    style NewH fill:#9B59B6,stroke:#8e44ad,stroke-width:2px,color:#fff

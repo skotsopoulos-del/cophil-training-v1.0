@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 500">
+  <defs>
+    <style>
+      .title { font: bold 24px sans-serif; fill: #2C5F77; }
+      .label { font: 16px sans-serif; fill: #2C5F77; }
+      .text { font: 14px sans-serif; fill: #333; }
+      .small-text { font: 12px sans-serif; fill: #666; }
+      .stage { fill: #B8D4E0; stroke: #2C5F77; stroke-width: 2; }
+      .arrow { stroke: #2C5F77; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .header { fill: #2C5F77; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2C5F77" />
+    </marker>
+  </defs>
+
+  <text x="700" y="35" class="title" text-anchor="middle">Object Detection Architecture Families</text>
+
+  <g transform="translate(50, 70)">
+    <rect class="header" width="380" height="40" rx="5"/>
+    <text x="190" y="27" class="label" fill="white" text-anchor="middle">Two-Stage Detector (Faster R-CNN)</text>
+    <rect x="10" y="60" class="stage" width="90" height="60" rx="5"/>
+    <text x="55" y="85" class="text" text-anchor="middle">CNN</text>
+    <text x="55" y="105" class="text" text-anchor="middle">Backbone</text>
+    <line x1="100" y1="90" x2="130" y2="90" class="arrow"/>
+    <rect x="130" y="60" class="stage" width="90" height="60" rx="5"/>
+    <text x="175" y="85" class="text" text-anchor="middle">Region</text>
+    <text x="175" y="105" class="text" text-anchor="middle">Proposals</text>
+    <line x1="220" y1="90" x2="250" y2="90" class="arrow"/>
+    <rect x="250" y="60" class="stage" width="120" height="60" rx="5"/>
+    <text x="310" y="85" class="text" text-anchor="middle">Classification</text>
+    <text x="310" y="105" class="text" text-anchor="middle">+ Regression</text>
+    <text x="10" y="150" class="text" font-weight="bold">Pros:</text>
+    <text x="10" y="170" class="small-text">✓ High accuracy</text>
+    <text x="10" y="188" class="small-text">✓ Good for small objects</text>
+    <text x="10" y="218" class="text" font-weight="bold">Cons:</text>
+    <text x="10" y="238" class="small-text">✗ Slower (~200ms/image)</text>
+  </g>
+
+  <g transform="translate(500, 70)">
+    <rect class="header" width="380" height="40" rx="5"/>
+    <text x="190" y="27" class="label" fill="white" text-anchor="middle">Single-Stage Detector (YOLO/SSD)</text>
+    <rect x="10" y="60" class="stage" width="120" height="60" rx="5"/>
+    <text x="70" y="85" class="text" text-anchor="middle">CNN</text>
+    <text x="70" y="105" class="text" text-anchor="middle">Backbone</text>
+    <line x1="130" y1="90" x2="160" y2="90" class="arrow"/>
+    <rect x="160" y="60" class="stage" width="210" height="60" rx="5"/>
+    <text x="265" y="85" class="text" text-anchor="middle">Direct Dense Predictions</text>
+    <text x="10" y="150" class="text" font-weight="bold">Pros:</text>
+    <text x="10" y="170" class="small-text">✓ Fast (45+ FPS)</text>
+    <text x="10" y="188" class="small-text">✓ Real-time capable</text>
+  </g>
+
+  <g transform="translate(950, 70)">
+    <rect class="header" width="380" height="40" rx="5"/>
+    <text x="190" y="27" class="label" fill="white" text-anchor="middle">Transformer-Based (DETR)</text>
+    <rect x="10" y="60" class="stage" width="100" height="60" rx="5"/>
+    <text x="60" y="85" class="text" text-anchor="middle">CNN</text>
+    <line x1="110" y1="90" x2="140" y2="90" class="arrow"/>
+    <rect x="140" y="60" class="stage" width="110" height="60" rx="5"/>
+    <text x="195" y="85" class="text" text-anchor="middle">Transformer</text>
+    <line x1="250" y1="90" x2="280" y2="90" class="arrow"/>
+    <rect x="280" y="60" class="stage" width="90" height="60" rx="5"/>
+    <text x="325" y="85" class="text" text-anchor="middle">Set Pred</text>
+    <text x="10" y="150" class="text" font-weight="bold">Pros:</text>
+    <text x="10" y="170" class="small-text">✓ No anchors</text>
+  </g>
+</svg>

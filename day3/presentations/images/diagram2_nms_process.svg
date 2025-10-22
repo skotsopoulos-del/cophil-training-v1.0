@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <style>
+      .title { font: bold 22px sans-serif; fill: #2C5F77; }
+      .step-title { font: bold 16px sans-serif; fill: #2C5F77; }
+      .text { font: 14px sans-serif; fill: #333; }
+      .small-text { font: 12px sans-serif; fill: #666; }
+      .box { fill: none; stroke: #E67E22; stroke-width: 2; stroke-dasharray: 5,5; }
+      .box-selected { fill: rgba(46, 204, 113, 0.2); stroke: #2ECC71; stroke-width: 3; }
+      .box-removed { fill: rgba(231, 76, 60, 0.2); stroke: #E74C3C; stroke-width: 2; stroke-dasharray: 3,3; }
+      .arrow { stroke: #2C5F77; stroke-width: 2; marker-end: url(#arrow); }
+      .object { fill: #95A5A6; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2C5F77" />
+    </marker>
+  </defs>
+
+  <text x="600" y="30" class="title" text-anchor="middle">Non-Maximum Suppression (NMS) Process</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(50, 70)">
+    <text x="0" y="0" class="step-title">Step 1: All Detections</text>
+    <text x="0" y="20" class="small-text">Multiple overlapping boxes</text>
+    
+    <rect x="60" y="40" width="80" height="80" fill="#95A5A6"/>
+    <rect x="50" y="50" width="100" height="120" class="box"/>
+    <text x="100" y="180" class="small-text" text-anchor="middle">0.92</text>
+    
+    <rect x="80" y="55" width="110" height="115" class="box"/>
+    <text x="135" y="180" class="small-text" text-anchor="middle">0.88</text>
+    
+    <rect x="70" y="45" width="95" height="125" class="box"/>
+    <text x="117" y="180" class="small-text" text-anchor="middle">0.85</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="250" y1="150" x2="300" y2="150" class="arrow"/>
+
+  <!-- Step 2 -->
+  <g transform="translate(320, 70)">
+    <text x="0" y="0" class="step-title">Step 2: Sort by Confidence</text>
+    <text x="0" y="20" class="small-text">Highest confidence first</text>
+    
+    <rect x="60" y="40" width="80" height="80" fill="#95A5A6"/>
+    <rect x="50" y="50" width="100" height="120" class="box-selected"/>
+    <text x="100" y="180" class="small-text" text-anchor="middle" font-weight="bold">0.92 ← Selected</text>
+    
+    <rect x="80" y="55" width="110" height="115" class="box"/>
+    <text x="135" y="200" class="small-text" text-anchor="middle">0.88</text>
+    
+    <rect x="70" y="45" width="95" height="125" class="box"/>
+    <text x="117" y="220" class="small-text" text-anchor="middle">0.85</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="520" y1="150" x2="570" y2="150" class="arrow"/>
+
+  <!-- Step 3 -->
+  <g transform="translate(590, 70)">
+    <text x="0" y="0" class="step-title">Step 3: Remove High IoU</text>
+    <text x="0" y="20" class="small-text">IoU > 0.5 threshold</text>
+    
+    <rect x="60" y="40" width="80" height="80" fill="#95A5A6"/>
+    <rect x="50" y="50" width="100" height="120" class="box-selected"/>
+    <text x="100" y="180" class="small-text" text-anchor="middle" font-weight="bold">0.92 ✓ Keep</text>
+    
+    <rect x="80" y="55" width="110" height="115" class="box-removed"/>
+    <text x="135" y="200" class="small-text" text-anchor="middle">0.88 ✗ Remove</text>
+    
+    <rect x="70" y="45" width="95" height="125" class="box-removed"/>
+    <text x="117" y="220" class="small-text" text-anchor="middle">0.85 ✗ Remove</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="790" y1="150" x2="840" y2="150" class="arrow"/>
+
+  <!-- Step 4 -->
+  <g transform="translate(860, 70)">
+    <text x="0" y="0" class="step-title">Step 4: Final Result</text>
+    <text x="0" y="20" class="small-text">One box per object</text>
+    
+    <rect x="60" y="40" width="80" height="80" fill="#95A5A6"/>
+    <rect x="50" y="50" width="100" height="120" class="box-selected"/>
+    <text x="100" y="180" class="small-text" text-anchor="middle" font-weight="bold">0.92</text>
+  </g>
+
+  <!-- Bottom explanation -->
+  <g transform="translate(50, 350)">
+    <text x="0" y="0" class="step-title">NMS Algorithm:</text>
+    <text x="0" y="30" class="text">1. Sort all detections by confidence score (highest first)</text>
+    <text x="0" y="55" class="text">2. Select box with highest confidence → add to final detections</text>
+    <text x="0" y="80" class="text">3. Remove all boxes with IoU > threshold (e.g., 0.5) with selected box</text>
+    <text x="0" y="105" class="text">4. Repeat until no boxes remain</text>
+    
+    <text x="0" y="145" class="step-title">Threshold Trade-off:</text>
+    <text x="0" y="175" class="text">• Lower (0.3): Stricter, may remove valid overlapping objects</text>
+    <text x="0" y="200" class="text">• Higher (0.7): Looser, may keep duplicate detections</text>
+    <text x="0" y="225" class="text">• Typical: 0.4-0.5</text>
+  </g>
+</svg>
