@@ -231,7 +231,7 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 **Presentation:**
 [View Online](../day4/presentations/session1_lstm_time_series.html){.btn .btn-primary}
-[Download PDF](../pdfs/day4/day4_session1_lstm_time_series.pdf){.btn .btn-outline download="day4_session1_lstm_time_series.pdf"}
+[Download PDF](../pdfs/day4/Session 1_ LSTMs.pdf){.btn .btn-outline download="Session 1_ LSTMs.pdf"}
 
 **Jupyter Notebook:**
 [LSTM Demo](../day4/notebooks/day4_session1_lstm_demo_STUDENT.ipynb){.btn .btn-primary download="day4_session1_lstm_demo_STUDENT.ipynb"}

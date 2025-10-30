@@ -138,6 +138,14 @@ By the end of this session, you will be able to:
 - **Applications:** Generalist model for any EO task
 - **Key Innovation:** Single model handles radar and optical
 
+**5. Google AlphaEarth (2024)**
+
+- **Architecture:** Planetary-scale transformer (multimodal climate + EO)
+- **Training Data:** Global reanalysis, satellite observations, emissions inventories
+- **Pre-training Task:** Multi-task forecasting (temperature, precipitation, atmospheric constituents)
+- **Applications:** Climate risk analytics, long-range forecasting, emissions monitoring
+- **Key Innovation:** Couples climate dynamics with EO for actionable forecasts
+
 ### How Foundation Models Work
 
 ```{mermaid}
@@ -183,7 +191,12 @@ flowchart TB
 - **Solution:** Clay model (multi-sensor) + regional samples
 - **Result:** Nationwide coverage with transfer learning
 
-**3. Mangrove Conservation**
+**3. Climate Resilience Planning**
+- **Challenge:** Deliver seasonal flood/temperature forecasts with limited compute
+- **Solution:** Google AlphaEarth fine-tuned with PAGASA observations
+- **Result:** Actionable climate-risk layers feeding national adaptation plans
+
+**4. Mangrove Conservation**
 - **Challenge:** Monitor 280K hectares on limited budget
 - **Solution:** SatMAE + 400 DENR samples
 - **Result:** Quarterly monitoring, minimal manual work
