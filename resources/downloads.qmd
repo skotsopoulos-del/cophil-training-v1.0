@@ -12,6 +12,22 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 ## Day 1: EO Data, AI/ML Fundamentals & Geospatial Python
 
+### 📹 Day 1 Full Session Recording
+
+<video controls preload="metadata" style="width: 100%; border-radius: 0.5rem; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,.1); margin-bottom: 0.75rem;">
+  <source src="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/Day_1_all_sessions.mp4" type="video/mp4">
+</video>
+
+<p style="margin-bottom: 1rem; color: #6c757d;">
+<strong>Duration:</strong> 6h 53m | <strong>Size:</strong> 1.19 GB | <strong>Format:</strong> MP4 1080p
+</p>
+
+<p>
+<a href="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/Day_1_all_sessions.mp4" class="btn btn-primary" download="Day_1_all_sessions.mp4">Download MP4</a>
+</p>
+
+---
+
 ### Session 1: Copernicus Sentinel Data & Philippine EO Ecosystem
 
 **Presentation:**
@@ -79,6 +95,22 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 ---
 
 ## Day 2: Machine Learning for Land Cover Classification
+
+### 📹 Day 2 Full Session Recording
+
+<video controls preload="metadata" style="width: 100%; border-radius: 0.5rem; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,.1); margin-bottom: 0.75rem;">
+  <source src="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_2_all_sessions.mp4" type="video/mp4">
+</video>
+
+<p style="margin-bottom: 1rem; color: #6c757d;">
+<strong>Duration:</strong> 6h 05m | <strong>Size:</strong> 875.1 MB | <strong>Format:</strong> MP4 1080p
+</p>
+
+<p>
+<a href="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_2_all_sessions.mp4" class="btn btn-primary" download="DAY_2_all_sessions.mp4">Download MP4</a>
+</p>
+
+---
 
 ### Session 1: Random Forest Classification
 
@@ -158,6 +190,22 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 
 ## Day 3: Semantic Segmentation & Object Detection
 
+### 📹 Day 3 Full Session Recording
+
+<video controls preload="metadata" style="width: 100%; border-radius: 0.5rem; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,.1); margin-bottom: 0.75rem;">
+  <source src="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_3_all_sessions.mp4" type="video/mp4">
+</video>
+
+<p style="margin-bottom: 1rem; color: #6c757d;">
+<strong>Duration:</strong> 4h 52m | <strong>Size:</strong> 610.8 MB | <strong>Format:</strong> MP4 1080p
+</p>
+
+<p>
+<a href="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_3_all_sessions.mp4" class="btn btn-primary" download="DAY_3_all_sessions.mp4">Download MP4</a>
+</p>
+
+---
+
 ### Session 1: U-Net Semantic Segmentation
 
 **Presentation:**
@@ -226,6 +274,22 @@ Download training materials for the CoPhil EO AI/ML Training Programme. All mate
 ---
 
 ## Day 4: Time Series Analysis & Advanced Topics
+
+### 📹 Day 4 Full Session Recording
+
+<video controls preload="metadata" style="width: 100%; border-radius: 0.5rem; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,.1); margin-bottom: 0.75rem;">
+  <source src="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_4_all_sessions.mp4" type="video/mp4">
+</video>
+
+<p style="margin-bottom: 1rem; color: #6c757d;">
+<strong>Duration:</strong> 5h 01m | <strong>Size:</strong> 486.3 MB | <strong>Format:</strong> MP4 1080p
+</p>
+
+<p>
+<a href="https://github.com/DimitrisKasabalis/cophil-training-v1.0/releases/download/v1.0-videos/DAY_4_all_sessions.mp4" class="btn btn-primary" download="DAY_4_all_sessions.mp4">Download MP4</a>
+</p>
+
+---
 
 ### Session 1: LSTM for Time Series
 

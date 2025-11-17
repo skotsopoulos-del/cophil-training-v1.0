@@ -19,3 +19,5 @@ __pycache__/
 # *.ipynb
 _site/
 .DS_Store
+github_releases_links.txt
+.DS_Store

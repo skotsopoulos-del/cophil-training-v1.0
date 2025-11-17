@@ -370,6 +370,105 @@
   border: 0;
 }
 
+/* Video Download Section */
+.video-download-section {
+  margin: 3rem 0;
+  padding: 0;
+}
+
+.video-download-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.video-download-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,51,153,.1);
+  border-color: rgba(0,51,153,.2);
+}
+
+.video-download-card h3 {
+  color: #003399;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.video-player-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.video-player-wrapper video {
+  width: 100%;
+  border-radius: 0.5rem;
+  background: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.video-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.video-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  background: #f8f9fa;
+  border-radius: 0.35rem;
+  font-weight: 500;
+}
+
+.video-meta-item i {
+  font-size: 1rem;
+}
+
+.video-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.video-actions .btn {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-download-card {
+    padding: 1rem;
+  }
+
+  .video-actions {
+    flex-direction: column;
+  }
+
+  .video-actions .btn {
+    width: 100%;
+  }
+
+  .video-meta {
+    gap: 0.5rem;
+  }
+
+  .video-meta-item {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
 /* ============================================================================
    DARK MODE SUPPORT
    ============================================================================ */
@@ -406,6 +505,29 @@
 
 [data-bs-theme="dark"] .agency-logo {
   background-color: #343a40;
+}
+
+[data-bs-theme="dark"] .video-download-card {
+  background: #212529;
+  border-color: rgba(255,255,255,.1);
+}
+
+[data-bs-theme="dark"] .video-download-card:hover {
+  border-color: rgba(255,255,255,.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,.3);
+}
+
+[data-bs-theme="dark"] .video-download-card h3 {
+  color: #4d94ff;
+}
+
+[data-bs-theme="dark"] .video-meta {
+  color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .video-meta-item {
+  background: #343a40;
+  color: #adb5bd;
 }
 
 /* ============================================================================
