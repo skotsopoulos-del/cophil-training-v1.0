@@ -34,6 +34,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          docker system prune -af
+          df -h
+
       - name: Cache Python virtual environment
         uses: actions/cache@v4
         id: venv-cache
